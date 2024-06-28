@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.string('password').notNullable();
         table.text('bio');
         table.string('profile_pic_url');
-        table.decimal('balance', 10, 2).defaultTo(0.00); // Writer's account balance
+        table.decimal('balance', 10, 2).defaultTo(0.00);
         table.timestamps(true, true);
     });
 };
