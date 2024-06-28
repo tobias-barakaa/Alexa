@@ -58,7 +58,6 @@ exports.up = function(knex) {
             'manually_written',
             'collaboratively_written'
         ]).notNullable();
-        table.string('sample_article_id').references('id').inTable('sample_articles').onDelete('SET NULL');
         table.string('client_id').references('id').inTable('users').onDelete('CASCADE');
         table.enu('duration', [
             '3hrs',

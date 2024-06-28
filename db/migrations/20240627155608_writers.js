@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.string('email').unique().notNullable();
         table.string('password').notNullable();
         table.text('bio');
-        table.string('profile_pic_url');
+        table.string('profile_pic');
         table.decimal('balance', 10, 2).defaultTo(0.00);
         table.timestamps(true, true);
     });

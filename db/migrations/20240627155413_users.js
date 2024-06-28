@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.string('username').notNullable().unique();
         table.string('email').unique().notNullable();
         table.string('password').notNullable();
-        table.string('profile_pic_url');
+        table.string('profile_pic');
         table.enu('role', ['client']).notNullable().defaultTo('client');
         table.decimal('balance', 10, 2).defaultTo(0.00);
         table.timestamps(true, true);
