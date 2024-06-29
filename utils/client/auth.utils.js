@@ -1,9 +1,6 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const sha1 = require('sha1');
-const key = process.env.JWT_SECRETT || 'my JWT auth token secret key';
 
-const JWT_SECRET = sha1(key);
 
 // const hashPassword = (password) => {
 // 	let salt = bcrypt.genSaltSync(10);
@@ -11,15 +8,20 @@ const JWT_SECRET = sha1(key);
 // 	return hash;
 // };
 
-const hashPassword = async (password) => {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        return await bcrypt.hash(password, salt);
-    } catch (error) {
-        throw new Error('Hashing failed', error);
-    }
+// const hashPassword = async (password) => {
+//     try {
+//         const salt = await bcrypt.genSalt(10);
+//         return await bcrypt.hash(password, salt);
+//     } catch (error) {
+//         throw new Error('Hashing failed', error);
+//     }
 
-}
+// }
+
+const hashPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+  };
 
 const verifyPassword = async (plainPassword, hashedPassword) => {
     try {

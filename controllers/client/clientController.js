@@ -1,11 +1,10 @@
 const generateToken = require("../../utils/client/generateToken.js");
 const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
+const { hashPassword } = require("../../utils/client/auth.utils.js");
 
-const hashPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
-  return await bcrypt.hash(password, salt);
-};
+
+
 
 const signupUser = async (req, res) => {
   const { first_name, 
@@ -27,6 +26,12 @@ const signupUser = async (req, res) => {
     if (existUser) {
       console.log("User already exists with email:", email);
       return res.status(400).json({ message: "User already exists" });
+    }
+
+    const existUserByUsername = await knex("users").where({ username }).first();
+    if (existUserByUsername) {
+        console.log("Username already taken:", username);
+        return res.status(400).json({ message: "Username already taken" });
     }
     const userRole = await knex("roles").where({name: "client"}).first();
     if (!userRole) {
@@ -76,23 +81,18 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-      // Fetch the user by email
       const user = await knex("users").where({ email }).first();
       
-      // Check if user exists and password matches
       if (user && (await bcrypt.compare(password, user.password))) {
-          // Generate and send a token
           generateToken(res, user.id);
-          
-          // Respond with user information
-          res.json({
+            res.json({
               id: user.id,
               first_name: user.first_name,
               last_name: user.last_name,
               username: user.username,
               email: user.email,
               profile_pic: user.profile_pic,
-              role: user.role_id, // Assuming you want to know the user's role ID
+              role: user.role_id,
               balance: user.balance,
               created_at: user.created_at,
               updated_at: user.updated_at,

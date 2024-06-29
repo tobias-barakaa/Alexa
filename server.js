@@ -18,9 +18,10 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.use("/api/admin", AdminRoute)
 
 app.use('/api/users', userRoutes);
+app.use("/api/admin", AdminRoute)
+
 // app.use('/api/schools', schoolsRoutes);
 // app.use('/api/counties', countiesRoutes);
 // app.use('/api/conversations', conversationsRoutes);

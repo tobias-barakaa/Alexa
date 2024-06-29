@@ -5,7 +5,7 @@ const { signupUser, loginUser, logoutUser, getAllUsers } = require('../../contro
 const router = express.Router();
 
 router.post('/signup', signupUser);
-// router.post('/login', validateLogin, loginUser);
+router.post('/signin', loginUser);
 
 // router.post('/logout', protect, logoutUser);
 // router.post('/getusers', protect, getAllUsers);
