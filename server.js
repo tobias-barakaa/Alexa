@@ -3,12 +3,15 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv')
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const addAdmin = require('./controllers/admin/adminController');
 
 dotenv.config();
 
 
 
 const app = express();
+
+addAdmin();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
