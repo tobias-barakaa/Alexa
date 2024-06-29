@@ -4,7 +4,7 @@ const dotenv = require('dotenv')
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const AdminRoute = require('./routes/admin/adminRoute');
-const { initialAdminSetup } = require('./controllers/admin/adminController');
+const userRoutes = require('./routes/client/clientRoute');
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 app.use("/api/admin", AdminRoute)
 
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 // app.use('/api/schools', schoolsRoutes);
 // app.use('/api/counties', countiesRoutes);
 // app.use('/api/conversations', conversationsRoutes);

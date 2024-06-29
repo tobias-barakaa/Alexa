@@ -4,11 +4,11 @@ const { signupUser, loginUser, logoutUser, getAllUsers } = require('../../contro
 
 const router = express.Router();
 
-router.post('/signup', validateSignup, signupUser);
-router.post('/login', validateLogin, loginUser);
+router.post('/signup', signupUser);
+// router.post('/login', validateLogin, loginUser);
 
-router.post('/logout', protect, logoutUser);
-router.post('/getusers', protect, getAllUsers);
+// router.post('/logout', protect, logoutUser);
+// router.post('/getusers', protect, getAllUsers);
 
 
 module.exports = router;
