@@ -11,38 +11,27 @@ const addAdmin = async (req, res) => {
     try {
         console.log("Request received with body:", req.body);
 
-        // Check if passwords match
         if (password !== passwordConf) {
-            console.log("Passwords do not match");
             return res.status(400).json({ message: "Passwords do not match" });
         }
 
-        // Check if email already exists
         const existUserByEmail = await knex("users").where({ email }).first();
         if (existUserByEmail) {
             console.log("User already exists with email:", email);
             return res.status(400).json({ message: "User already exists with this email" });
         }
-
-        // Check if username already exists
         const existUserByUsername = await knex("users").where({ username }).first();
         if (existUserByUsername) {
             console.log("Username already taken:", username);
             return res.status(400).json({ message: "Username already taken" });
         }
-
-        // Get the role_id for the specified role
         const userRole = await knex("roles").where({ name: role }).first();
         if (!userRole) {
             console.log("Invalid role specified");
             return res.status(400).json({ message: "Invalid role specified" });
         }
-
-        // Hash the password
         const hashedPassword = await hashPassword(password);
         console.log("Password hashed successfully");
-
-        // Insert the new user into the database
         const [newUser] = await knex("users")
             .insert({
                 id: knex.raw("gen_random_uuid()"),
@@ -52,8 +41,8 @@ const addAdmin = async (req, res) => {
                 email,
                 password: hashedPassword,
                 profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-                role: userRole.name, // Correctly assign the role name or ID
-                balance: 0.00, // Default balance
+                role: userRole.name,
+                balance: 0.00,
                 created_at: knex.fn.now(),
                 updated_at: knex.fn.now(),
             })
@@ -61,7 +50,6 @@ const addAdmin = async (req, res) => {
 
         if (newUser) {
             console.log("New user created:", newUser);
-            // Assuming generateToken function generates a token and sends it in the response
             generateToken(res, newUser.id);
             return res.status(201).json({ message: "User created successfully", user: newUser });
         } else {
@@ -73,6 +61,9 @@ const addAdmin = async (req, res) => {
         return res.status(500).json({ message: "An error occurred during user creation" });
     }
 };
+
+module.exports = { addAdmin };
+
 
 
 // const addAdmin = async (req, res) => {
@@ -133,4 +124,3 @@ const addAdmin = async (req, res) => {
 // };
 
 
-module.exports = { addAdmin };

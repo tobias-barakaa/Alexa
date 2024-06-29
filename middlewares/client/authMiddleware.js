@@ -10,7 +10,7 @@ const protect = async (req, res, next) => {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.user = await knex('users')
-                .select('id', 'username', 'email', 'profile_pic', 'bio', 'is_admin', 'created_at', 'updated_at')
+                .select('id', 'username', 'email', 'profile_pic', 'created_at', 'updated_at')
                 .where({ id: decoded.id })
                 .first();
 
