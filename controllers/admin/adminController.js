@@ -1,4 +1,5 @@
-const bcrypt = require(bcryptjs);
+var bcrypt = require('bcryptjs');
+const knex = require('../../db/db');
 
 const addAdmin = async (req, res) => {
     const { ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_FIRST_NAME, ADMIN_LAST_NAME, ADMIN_USERNAME } = process.env;
