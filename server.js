@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv')
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const addAdmin = require('./controllers/admin/adminController');
+const AdminRoute = require('./routes/admin/adminRoute');
+const { initialAdminSetup } = require('./controllers/admin/adminController');
 
 dotenv.config();
 
@@ -11,14 +12,14 @@ dotenv.config();
 
 const app = express();
 
-addAdmin();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+app.use("/api/admin", AdminRoute)
+initialAdminSetup();
 
 // app.use('/api/users', userRoutes);
 // app.use('/api/schools', schoolsRoutes);

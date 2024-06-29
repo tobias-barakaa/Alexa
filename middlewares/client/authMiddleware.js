@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const knex = require('../db/db');
+const knex = require("../../db/db.js");
+
 
 // Protect routes
 const protect = async (req, res, next) => {
@@ -22,8 +23,3 @@ const protect = async (req, res, next) => {
     }
 };
 module.exports = { protect };
-
-const router = express.Router();
-router.post('/admin/add', verifyAdmin, addAdmin);
-
-module.exports = router;
