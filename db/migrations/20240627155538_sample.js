@@ -3,7 +3,7 @@ exports.up = function(knex) {
         table.string('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
         table.string('type').notNullable();
         table.text('content').notNullable();
-        table.timestamps(true, true);
+        table.timestamps(true, true); 
     });
 };
 

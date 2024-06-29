@@ -1,6 +1,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('articles', table => {
         table.string('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
+        table.string('user_id').references('id').inTable('users').onDelete('CASCADE');
         table.text('description').notNullable();
         table.enu('category', [
             'Finance',
@@ -23,7 +24,7 @@ exports.up = function(knex) {
             'Music',
             'Religion',
             'Other'
-        ]).notNullable(); // Category column with enum values
+        ]).notNullable();
         table.integer('number_of_words').notNullable();
         table.integer('quantity').notNullable();
         table.string('keywords').notNullable();
@@ -58,6 +59,8 @@ exports.up = function(knex) {
             'manually_written',
             'collaboratively_written'
         ]).notNullable();
+        table.text('content').defaultTo('');
+        table.string('writer_id').references('id').inTable('writers').onDelete('SET NULL');
         table.string('client_id').references('id').inTable('users').onDelete('CASCADE');
         table.enu('duration', [
             '3hrs',
