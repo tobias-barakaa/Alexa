@@ -3,7 +3,7 @@ exports.up = function(knex) {
         table.string('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
         table.string('user_id').references('id').inTable('users').onDelete('CASCADE');
         table.text('bio').defaultTo("no bio provided yet");
-        table.string('profile_pic_url').defaultTo('https://avatar.iran.liara.run/username?username=default');
+        table.string('profile_pic').defaultTo('https://avatar.iran.liara.run/username?username=default');
         table.string('specializations').defaultTo("not provided yet");
         table.integer('years_of_experience').defaultTo(4);
         table.text('samples').defaultTo("not provided yet");

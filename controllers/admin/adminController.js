@@ -44,13 +44,13 @@ const initialAdminSetup = async () => {
             username: ADMIN_USERNAME,
             email: ADMIN_EMAIL,
             password: hashedPassword,
-            role: 'admin',  // Assuming 'admin' is the valid role
+            role: 'admin',
             profile_pic: `https://avatar.iran.liara.run/username?username=${ADMIN_FIRST_NAME}${ADMIN_LAST_NAME}`
         });
         console.log('Initial admin user created successfully');
     } catch (error) {
         console.error('Error creating initial admin user:', error);
-        if (error.code === '23514') {  
+        if (error.code === '23514') {
             console.error('** Constraint violation', error.constraint);
             console.error('** Check the users_role_check constraint definition.');
         } else {
@@ -58,5 +58,6 @@ const initialAdminSetup = async () => {
         }
     }
 };
+
 
 module.exports = { addAdmin, initialAdminSetup };

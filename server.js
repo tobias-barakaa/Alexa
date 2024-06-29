@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use("/api/admin", AdminRoute)
-initialAdminSetup();
 
 // app.use('/api/users', userRoutes);
 // app.use('/api/schools', schoolsRoutes);
