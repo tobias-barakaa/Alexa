@@ -16,7 +16,7 @@ const getWriters = async (req, res) => {
                 'users.updated_at'
             )
             .join('roles', 'users.role_id', 'roles.id')
-            .where('roles.name', 'writer');
+            .where('roles.name', 'writers');
 
         res.status(200).json({ writers });
     } catch (error) {
@@ -25,4 +25,32 @@ const getWriters = async (req, res) => {
     }
 };
 
-module.exports = {getWriters};
+
+const assignArticle = async (req, res) => {
+    const { article_id, writer_id } = req.body;
+
+    try {
+        const article = await knex('articles').where({ id: article_id }).first();
+
+        if (!article) {
+            return res.status(404).json({ message: 'Article not found' });
+        }
+
+        const updatedArticle = await knex('articles')
+            .where({ id: article_id })
+            .update({
+                writer_id,
+                status: 'in_progress',
+                updated_at: knex.fn.now(),
+            })
+            .returning('*');
+
+        return res.status(200).json({ message: 'Article assigned successfully', article: updatedArticle[0] });
+    } catch (error) {
+        console.error('Error during article assignment:', error);
+        return res.status(500).json({ message: 'An error occurred during article assignment' });
+    }
+};
+
+
+module.exports = {getWriters, assignArticle};

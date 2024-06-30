@@ -8,6 +8,7 @@ const userRoutes = require('./routes/client/clientRoute');
 const writerRoute = require('./routes/writer/writerRoute');
 const articleRoutes = require('./routes/client/articleRoute');
 const articleAdminRoute = require('./routes/admin/articleAdminRoute');
+const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/api/articles', articleRoutes);
 
 // Admin
 app.use('/api/admin/articles', articleAdminRoute);
+app.use('/api/admin/writers', adminWritersRoute);
 
 
 
