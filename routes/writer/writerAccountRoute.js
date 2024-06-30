@@ -6,7 +6,7 @@ const { protectWriter } = require('../../middlewares/writers/writersMiddleware')
 
 const router = express.Router();
 
-router.post('/writer-profile',protect, protectWriter, fillWriterProfile);
+router.post('/writer-profile',protectWriter, fillWriterProfile);
 
 module.exports = router;
 
