@@ -52,33 +52,6 @@ const createArticle = async(req, res) => {
 }
 
 
-const getArticles = async (req, res) => {
-    try {
-        const articles = await knex('articles').select('*');
-        return res.status(200).json({ articles });
-    } catch (error) {
-        console.error('Error fetching articles:', error);
-        return res.status(500).json({ message: 'An error occurred while fetching articles' });
-    }
-};
-
-const getArticle = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const article = await knex('articles').where({ id }).first();
-
-        if (article) {
-            return res.status(200).json({ article });
-        } else {
-            return res.status(404).json({ message: 'Article not found' });
-        }
-    } catch (error) {
-        console.error('Error fetching article:', error);
-        return res.status(500).json({ message: 'An error occurred while fetching the article' });
-    }
-}
-
 const deleteArticle = async (req, res) => {
     const { id } = req.params;
 
@@ -95,9 +68,61 @@ const deleteArticle = async (req, res) => {
         console.error('Error deleting article:', error);
         return res.status(500).json({ message: 'An error occurred while deleting the article' });
     }
-}
+};
+
+
+const updateArticle = async (req, res) => {
+    const articleId = req.params.id;
+    const {
+        user_id,
+        description,
+        category,
+        number_of_words,
+        quantity,
+        keywords,
+        author_tone,
+        language,
+        type,
+        content,
+        duration,
+        cost
+    } = req.body;
+
+    try {
+        const [updatedArticle] = await knex('articles')
+            .where({ id: articleId })
+            .update({
+                user_id,
+                description,
+                category,
+                number_of_words,
+                quantity,
+                keywords,
+                author_tone,
+                language,
+                type,
+                content,
+                duration,
+                cost,
+                updated_at: knex.fn.now()
+            })
+            .returning('*');
+
+        if (updatedArticle) {
+            return res.status(200).json({ message: 'Article updated successfully', article: updatedArticle });
+        } else {
+            return res.status(404).json({ message: 'Article not found' });
+        }
+    } catch (error) {
+        console.error('Error updating article:', error);
+        return res.status(500).json({ message: 'An error occurred while updating the article' });
+    }
+};
+
+
 module.exports = {
     createArticle,
-    getArticles,
+    deleteArticle,
+    updateArticle,
 
 };
