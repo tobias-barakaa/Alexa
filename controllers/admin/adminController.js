@@ -1,5 +1,4 @@
 // adminController.js
-var bcrypt = require('bcryptjs');
 const knex = require("../../db/db.js");
 const { hashPassword } = require('../../utils/client/auth.utils.js');
 const generateToken = require('../../utils/client/generateToken.js');

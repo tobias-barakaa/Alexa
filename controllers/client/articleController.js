@@ -1,4 +1,5 @@
-const knex = require('../db/knex'); // Assuming your Knex configuration is in db/knex.js
+const knex = require("../../db/db.js");
+
 
 async function createArticle(req, res) {
     const {

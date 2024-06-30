@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const AdminRoute = require('./routes/admin/adminRoute');
 const userRoutes = require('./routes/client/clientRoute');
 const writerRoute = require('./routes/writer/writerRoute');
+const articleRoutes = require('./routes/client/articleRoute');
 
 dotenv.config();
 
@@ -23,6 +24,9 @@ app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 app.use("/api/admin", AdminRoute)
 app.use("/api/writer", writerRoute)
+
+app.use('/api/articles', articleRoutes);
+
 
 // app.use('/api/schools', schoolsRoutes);
 // app.use('/api/counties', countiesRoutes);

@@ -19,7 +19,7 @@ const addWriter = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         console.log("Password hashed successfully");
         
-        // Get the role_id for 'writers'
+        
         const role = await knex("roles").where({ name: 'writers' }).first();
         if (!role) {
             console.log("Role 'writers' does not exist");
@@ -35,7 +35,7 @@ const addWriter = async (req, res) => {
                 email,
                 password: hashedPassword,
                 profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-                role_id: role.id, // Use the ID of the 'writers' role
+                role_id: role.id,
                 balance: 0.00,
                 created_at: knex.fn.now(),
                 updated_at: knex.fn.now(),
@@ -43,7 +43,7 @@ const addWriter = async (req, res) => {
             .returning("*");
 
         if (newWriter) {
-            // Fetch the user with the role name
+
             const userWithRole = await knex("users")
                 .select(
                     "users.id",

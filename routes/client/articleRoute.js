@@ -1,11 +1,10 @@
 const express = require('express');
 const { protect } = require('../../middlewares/client/authMiddleware.js');
+const { createArticle } = require('../../controllers/client/articleController.js');
 
 const router = express.Router();
 
 
 
 
-router.post("/articles", protect, article)
-
-app.use('/api/articles', protect, articleRoutes);
+router.post("/order", protect, createArticle)
