@@ -51,7 +51,6 @@ const addWriter = async (req, res) => {
                     "users.last_name",
                     "users.username",
                     "users.email",
-                    "users.password",
                     "users.profile_pic",
                     "roles.name as role",
                     "users.balance",
