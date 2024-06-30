@@ -7,6 +7,7 @@ const AdminRoute = require('./routes/admin/adminRoute');
 const userRoutes = require('./routes/client/clientRoute');
 const writerRoute = require('./routes/writer/writerRoute');
 const articleRoutes = require('./routes/client/articleRoute');
+const articleAdminRoute = require('./routes/admin/articleAdminRoute');
 
 dotenv.config();
 
@@ -26,6 +27,10 @@ app.use("/api/admin", AdminRoute)
 app.use("/api/writer", writerRoute)
 
 app.use('/api/articles', articleRoutes);
+
+// Admin
+app.use('/api/admin/articles', articleAdminRoute);
+
 
 
 const PORT = process.env.PORT || 5000;

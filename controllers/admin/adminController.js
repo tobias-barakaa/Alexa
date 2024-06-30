@@ -1,5 +1,6 @@
 // adminController.js
 const knex = require("../../db/db.js");
+const bcrypt = require('bcryptjs');
 const { hashPassword } = require('../../utils/client/auth.utils.js');
 const generateToken = require('../../utils/client/generateToken.js');
 
@@ -79,11 +80,49 @@ const addAdmin = async (req, res) => {
     }
 };
 
-
-
-
-
-module.exports = { addAdmin };
+const loginAdmin = async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      const user = await knex("users")
+        .select(
+          "users.id",
+          "users.username",
+          "users.email",
+          "users.password",
+          "users.profile_pic",
+          "users.first_name",
+          "users.last_name",
+          "users.balance",
+          "roles.name as role"
+        )
+        .join("roles", "users.role_id", "roles.id")
+        .where({ email })
+        .first();
+  
+      if (user && (await bcrypt.compare(password, user.password))) {
+        generateToken(res, user.id);
+        res.json({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          profile_pic: user.profile_pic,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          balance: user.balance,
+          role: user.role,
+          message: "Successfully logged in 😁",
+        });
+      } else {
+        res.status(401).json({ message: "Invalid email or password" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "An error occurred during login" });
+    }
+  };
+  
+module.exports = { addAdmin, loginAdmin };
 
 
 

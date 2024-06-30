@@ -1,3 +1,40 @@
+const jwt = require('jsonwebtoken');
+const knex = require('../../db/db.js');
+
+const protectAdmin = async (req, res, next) => {
+    let token;
+    token = req.cookies.jwt;
+    if (token) {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = await knex('users')
+                .select(
+                    'users.id',
+                    'users.username',
+                    'users.email',
+                    'users.profile_pic',
+                    'users.created_at',
+                    'users.updated_at',
+                    'roles.name as role'
+                )
+                .join('roles', 'users.role_id', 'roles.id')
+                .where({ 'users.id': decoded.id })
+                .first();
+
+            if (!req.user) {
+                return res.status(401).json({ message: 'Not authorized, user not found' });
+            }
+
+            next();
+        } catch (error) {
+            console.error(error);
+            res.status(401).json({ message: 'Not authorized, token failed' });
+        }
+    } else {
+        res.status(401).json({ message: 'Not authorized, no token' });
+    }
+};
+
 const verifyAdmin = (req, res, next) => {
     const { role } = req.user; 
     if (role !== 'admin') {
@@ -6,4 +43,4 @@ const verifyAdmin = (req, res, next) => {
     next();
 };
 
-module.exports = verifyAdmin;
+module.exports = {protectAdmin, verifyAdmin};

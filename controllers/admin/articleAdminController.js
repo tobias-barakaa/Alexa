@@ -40,4 +40,21 @@ const deleteArticles = async (req, res) => {
 }
 
 
-module.exports = { getArticles, getArticle, deleteArticles }
+const searchArticles = async (req, res) => {
+    const { query } = req.query;
+    if (!query) {
+      return res.status(400).json({ error: 'Query parameter is required' });
+    }
+  
+    try {
+      const articles = await knex('articles')
+        .whereRaw('description ~* ? OR content ~* ?', [query, query]);
+  
+      res.json(articles);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while searching for articles' });
+    }
+  };
+
+module.exports = { getArticles, getArticle, deleteArticles, searchArticles }
