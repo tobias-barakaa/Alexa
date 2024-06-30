@@ -3,17 +3,8 @@ const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
 const { hashPassword } = require("../../utils/client/auth.utils.js");
 
-
-
-
 const signupUser = async (req, res) => {
-  const { first_name, 
-    last_name, 
-    username,
-    email,
-    password,
-    passwordConf }
-    =
+  const { first_name, last_name, username, email, password, passwordConf } =
     req.body;
 
   try {
@@ -30,10 +21,10 @@ const signupUser = async (req, res) => {
 
     const existUserByUsername = await knex("users").where({ username }).first();
     if (existUserByUsername) {
-        console.log("Username already taken:", username);
-        return res.status(400).json({ message: "Username already taken" });
+      console.log("Username already taken:", username);
+      return res.status(400).json({ message: "Username already taken" });
     }
-    const userRole = await knex("roles").where({name: "client"}).first();
+    const userRole = await knex("roles").where({ name: "client" }).first();
     if (!userRole) {
       console.log("Role not found");
       return res.status(400).json({ message: "Role not found" });
@@ -43,6 +34,7 @@ const signupUser = async (req, res) => {
     const profile_pic = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
       first_name + last_name
     )}`;
+
     const [newUser] = await knex("users")
       .insert({
         id: knex.raw("gen_random_uuid()"),
@@ -52,7 +44,7 @@ const signupUser = async (req, res) => {
         email,
         password: hashedPassword,
         profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-        role: "client",
+        role_id: userRole.id,
         balance: 0.0,
         created_at: knex.fn.now(),
         updated_at: knex.fn.now(),
@@ -60,11 +52,28 @@ const signupUser = async (req, res) => {
       .returning("*");
 
     if (newUser) {
-      console.log("New user created:", newUser);
-      generateToken(res, newUser.id);
+      const userWithRole = await knex("users")
+        .select(
+          "users.id",
+          "users.first_name",
+          "users.last_name",
+          "users.username",
+          "users.email",
+          "users.profile_pic",
+          "roles.name as role",
+          "users.balance",
+          "users.created_at",
+          "users.updated_at"
+        )
+        .join("roles", "users.role_id", "roles.id")
+        .where("users.id", newUser.id)
+        .first();
+
+      console.log("New user created:", userWithRole);
+      generateToken(res, userWithRole.id);
       return res
         .status(201)
-        .json({ message: "User created successfully", user: newUser });
+        .json({ message: "User created successfully", user: userWithRole });
     } else {
       console.log("User creation failed");
       return res.status(400).json({ message: "User not created" });
@@ -77,34 +86,36 @@ const signupUser = async (req, res) => {
   }
 };
 
+module.exports = { signupUser };
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-      const user = await knex("users").where({ email }).first();
-      
-      if (user && (await bcrypt.compare(password, user.password))) {
-          generateToken(res, user.id);
-            res.json({
-              id: user.id,
-              first_name: user.first_name,
-              last_name: user.last_name,
-              username: user.username,
-              email: user.email,
-              profile_pic: user.profile_pic,
-              role: user.role_id,
-              balance: user.balance,
-              created_at: user.created_at,
-              updated_at: user.updated_at,
-              message: "Successfully logged in 😁",
-          });
-      } else {
-          // Invalid credentials
-          res.status(401).json({ message: "Invalid email or password" });
-      }
+    const user = await knex("users").where({ email }).first();
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      generateToken(res, user.id);
+      res.json({
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+        email: user.email,
+        profile_pic: user.profile_pic,
+        role: user.role_id,
+        balance: user.balance,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+        message: "Successfully logged in 😁",
+      });
+    } else {
+
+      res.status(401).json({ message: "Invalid email or password" });
+    }
   } catch (error) {
-      console.error("Error during login:", error);
-      res.status(500).json({ message: "An error occurred during login" });
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "An error occurred during login" });
   }
 };
 

@@ -18,6 +18,14 @@ const addWriter = async (req, res) => {
         }
         const hashedPassword = await hashPassword(password);
         console.log("Password hashed successfully");
+        
+        // Get the role_id for 'writers'
+        const role = await knex("roles").where({ name: 'writers' }).first();
+        if (!role) {
+            console.log("Role 'writers' does not exist");
+            return res.status(400).json({ message: "Role 'writers' does not exist" });
+        }
+
         const [newWriter] = await knex("users")
             .insert({
                 id: knex.raw("gen_random_uuid()"),
@@ -27,7 +35,7 @@ const addWriter = async (req, res) => {
                 email,
                 password: hashedPassword,
                 profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-                role: 'writers', 
+                role_id: role.id, // Use the ID of the 'writers' role
                 balance: 0.00,
                 created_at: knex.fn.now(),
                 updated_at: knex.fn.now(),
@@ -35,9 +43,28 @@ const addWriter = async (req, res) => {
             .returning("*");
 
         if (newWriter) {
-            console.log("New writer created:", newWriter);
-            generateToken(res, newWriter.id);
-            return res.status(201).json({ message: "Writer account created successfully", user: newWriter });
+            // Fetch the user with the role name
+            const userWithRole = await knex("users")
+                .select(
+                    "users.id",
+                    "users.first_name",
+                    "users.last_name",
+                    "users.username",
+                    "users.email",
+                    "users.password",
+                    "users.profile_pic",
+                    "roles.name as role",
+                    "users.balance",
+                    "users.created_at",
+                    "users.updated_at"
+                )
+                .join("roles", "users.role_id", "roles.id")
+                .where("users.id", newWriter.id)
+                .first();
+
+            console.log("New writer created:", userWithRole);
+            generateToken(res, userWithRole.id);
+            return res.status(201).json({ message: "Writer account created successfully", user: userWithRole });
         } else {
             console.log("Writer account creation failed");
             return res.status(400).json({ message: "Writer account not created" });

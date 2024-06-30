@@ -4,7 +4,6 @@ const knex = require("../../db/db.js");
 const { hashPassword } = require('../../utils/client/auth.utils.js');
 const generateToken = require('../../utils/client/generateToken.js');
 
-
 const addAdmin = async (req, res) => {
     const { first_name, last_name, username, email, password, passwordConf, profile_pic, role } = req.body;
 
@@ -32,6 +31,7 @@ const addAdmin = async (req, res) => {
         }
         const hashedPassword = await hashPassword(password);
         console.log("Password hashed successfully");
+
         const [newUser] = await knex("users")
             .insert({
                 id: knex.raw("gen_random_uuid()"),
@@ -41,7 +41,7 @@ const addAdmin = async (req, res) => {
                 email,
                 password: hashedPassword,
                 profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-                role: userRole.name,
+                role_id: userRole.id,
                 balance: 0.00,
                 created_at: knex.fn.now(),
                 updated_at: knex.fn.now(),
@@ -49,9 +49,27 @@ const addAdmin = async (req, res) => {
             .returning("*");
 
         if (newUser) {
-            console.log("New user created:", newUser);
-            generateToken(res, newUser.id);
-            return res.status(201).json({ message: "User created successfully", user: newUser });
+            // Fetch the user with the role name
+            const userWithRole = await knex("users")
+                .select(
+                    "users.id",
+                    "users.first_name",
+                    "users.last_name",
+                    "users.username",
+                    "users.email",
+                    "users.profile_pic",
+                    "roles.name as role",
+                    "users.balance",
+                    "users.created_at",
+                    "users.updated_at"
+                )
+                .join("roles", "users.role_id", "roles.id")
+                .where("users.id", newUser.id)
+                .first();
+
+            console.log("New user created:", userWithRole);
+            generateToken(res, userWithRole.id);
+            return res.status(201).json({ message: "User created successfully", user: userWithRole });
         } else {
             console.log("User creation failed");
             return res.status(400).json({ message: "User not created" });
@@ -63,6 +81,7 @@ const addAdmin = async (req, res) => {
 };
 
 module.exports = { addAdmin };
+
 
 
 
