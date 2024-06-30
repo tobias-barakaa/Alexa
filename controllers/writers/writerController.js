@@ -1,4 +1,5 @@
 const knex = require("../../db/db.js");
+const bcrypt = require("bcryptjs");
 const { hashPassword } = require("../../utils/client/auth.utils");
 const generateToken = require("../../utils/client/generateToken");
 
@@ -74,4 +75,52 @@ const addWriter = async (req, res) => {
     }
 };
 
-module.exports = { addWriter };
+
+const loginWriter = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Retrieve user information including role name
+        const user = await knex("users")
+            .select(
+                "users.id",
+                "users.username",
+                "users.email",
+                "users.password",
+                "users.profile_pic",
+                "users.first_name",
+                "users.last_name",
+                "users.balance",
+                "roles.name as role"
+            )
+            .join("roles", "users.role_id", "roles.id")
+            .where({ email })
+            .first();
+
+        // Check if user exists and password matches
+        if (user && (await bcrypt.compare(password, user.password))) {
+            // Generate token and set it in response cookie
+            generateToken(res, user.id);
+
+            // Return user information with login success message
+            return res.json({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                profile_pic: user.profile_pic,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                balance: user.balance,
+                role: user.role,
+                message: "Successfully logged in 😁",
+            });
+        } else {
+            // Handle invalid credentials
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+    } catch (error) {
+        console.error("Error during writer login:", error);
+        return res.status(500).json({ message: "An error occurred during login" });
+    }
+};
+module.exports = { addWriter, loginWriter };
