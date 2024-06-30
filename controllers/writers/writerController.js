@@ -1,3 +1,4 @@
+const knex = require("../../db/db.js");
 const { hashPassword } = require("../../utils/client/auth.utils");
 const generateToken = require("../../utils/client/generateToken");
 
