@@ -4,7 +4,7 @@ const { protectAdmin, verifyAdmin } = require('../../middlewares/admin/adminMidd
 
 const router = express.Router();
 
-router.get("/order", protectAdmin, verifyAdmin, getArticles);
+router.get("/order", protectAdmin,verifyAdmin, getArticles);
 
 
 module.exports = router;
