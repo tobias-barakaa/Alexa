@@ -10,6 +10,8 @@ const generateToken = (res, id) => {
         maxAge: 30 * 24 * 60 * 60 * 1000
       })
 
+      console.log('Token generated and set in cookie:', token);
+
 }
 
 module.exports = generateToken;
