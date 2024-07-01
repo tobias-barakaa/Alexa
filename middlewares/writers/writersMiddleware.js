@@ -51,19 +51,22 @@ const protectWriter = async (req, res, next) => {
                 .where({ 'users.id': decoded.id })
                 .first();
 
+            console.log('Decoded user:', req.user); // Log decoded user for debugging
+
             if (!req.user) {
                 return res.status(401).json({ message: 'Not authorized, user not found' });
             }
 
             // Check if user has writer role
             if (req.user.role !== 'writer') {
+                console.log('User role:', req.user.role); // Log user role for debugging
                 return res.status(403).json({ message: 'Access denied, user is not a writer' });
             }
 
             // User is authenticated and has writer role, proceed
             next();
         } catch (error) {
-            console.error(error);
+            console.error('Error during token verification:', error);
             return res.status(401).json({ message: 'Not authorized, token failed' });
         }
     } else {
