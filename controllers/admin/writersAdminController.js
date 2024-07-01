@@ -53,4 +53,35 @@ const assignArticle = async (req, res) => {
 };
 
 
-module.exports = {getWriters, assignArticle};
+const getWriterProfiles = async (req, res) => {
+    try {
+        const writerProfiles = await knex('writers')
+            .select(
+                'writers.id',
+                'writers.user_id',
+                'writers.bio',
+                'writers.profile_pic',
+                'writers.specializations',
+                'writers.years_of_experience',
+                'writers.samples',
+                'writers.contact',
+                'writers.balance',
+                'writers.available',
+                'writers.last_available_update',
+                'writers.status',
+                'writers.created_at',
+                'writers.updated_at'
+            );
+
+        if (writerProfiles.length > 0) {
+            return res.status(200).json({ message: 'Writer profiles retrieved successfully', writers: writerProfiles });
+        } else {
+            return res.status(404).json({ message: 'No writer profiles found' });
+        }
+    } catch (error) {
+        console.error('Error retrieving writer profiles:', error);
+        return res.status(500).json({ message: 'An error occurred while retrieving writer profiles' });
+    }
+};
+
+module.exports = {getWriters, assignArticle, getWriterProfiles};

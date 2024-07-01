@@ -58,7 +58,7 @@ const protectWriter = async (req, res, next) => {
             }
 
             // Check if user has writer role
-            if (req.user.role !== 'writer') {
+            if (req.user.role !== 'writers') {
                 console.log('User role:', req.user.role); // Log user role for debugging
                 return res.status(403).json({ message: 'Access denied, user is not a writer' });
             }
