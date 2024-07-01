@@ -84,4 +84,37 @@ const getWriterProfiles = async (req, res) => {
     }
 };
 
+
+const updateWriterStatus = async (req, res) => {
+    const { writerId } = req.params;
+    const { status } = req.body;
+
+    try {
+        // Check if the status is valid
+        const validStatuses = ['pending', 'approved', 'rejected'];
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ message: 'Invalid status' });
+        }
+
+        // Update the writer's status in the database
+        const updatedWriter = await knex('writers')
+            .where({ id: writerId })
+            .update({
+                status,
+                updated_at: knex.fn.now()
+            })
+            .returning('*');
+
+        if (updatedWriter.length === 0) {
+            return res.status(404).json({ message: 'Writer not found' });
+        }
+
+        // Send a response with the updated writer profile
+        return res.status(200).json({ message: `Writer status updated to ${status}`, writer: updatedWriter[0] });
+    } catch (error) {
+        console.error('Error updating writer status:', error);
+        return res.status(500).json({ message: 'An error occurred while updating writer status' });
+    }
+};
+
 module.exports = {getWriters, assignArticle, getWriterProfiles};
