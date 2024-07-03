@@ -1,14 +1,15 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavDiv from './layouts/navigation/NavDiv';
 
 
 
 function App() {
 
   return (
-    <>
-     nothing to see
-    </>
+    <div>
+    <NavDiv />
+    </div>
   )
 }
 

@@ -1,0 +1,132 @@
+.navbar {
+    height: 72px;
+    width: 100%;
+    background-color: #069af3;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+}
+
+.hire-writers {
+    padding: 8px 16px;
+    background-color: white;
+    color: #069af3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.hire-writers:hover {
+    background-color: #e0e0e0;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    color: white;
+}
+
+.social-item i {
+    font-size: 1.5em;
+}
+
+.social-item span {
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.ask-question {
+    padding: 8px 16px;
+    background-color: white;
+    color: #069af3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.ask-question i {
+    margin-right: 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #069af3;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+        flex-direction: column;
+    }
+
+    .logo {
+        font-size: 1.6em;
+    }
+
+    .hire-writers {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .social-media {
+        margin-top: 10px;
+    }
+
+    .dropdown {
+        margin-top: 10px;
+    }
+}
