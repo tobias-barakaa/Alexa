@@ -1,7 +1,8 @@
 .navbar {
-    height: 70px;
+    height: 68px;
     width: 100%;
-    background-color: #0074B7;
+    /* background: rgba(10, 47, 53, 0.5); */
+    background: #283e4a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,14 +20,15 @@
   .left-section {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 2px;
   }
   
   .logo {
-    font-size: 2em;
+    font-size: 1.8em;
     color: white;
     font-weight: bold;
     margin-left: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   .social-media {
@@ -54,8 +56,7 @@
   }
   
   .dropdown {
-    position: relative;
-    display: flex;
+    position: block;
     align-items: center;
   }
   
@@ -79,7 +80,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: rgba(10, 47, 53, 0.5);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -88,7 +89,7 @@
   }
   
   .dropdown-content a {
-    color: #069af3;
+    color: #f1f1f1;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -104,14 +105,12 @@
   
   .collaborate-button {
     padding: 8px 16px;
-    background-color: white;
-    color: #069af3;
+    background-color: #f56038;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
-    margin-right: 40px;
   }
   
   .collaborate-button:hover {
