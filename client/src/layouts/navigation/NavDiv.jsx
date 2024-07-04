@@ -1,42 +1,74 @@
 import "./NavDiv.css";
+import { CiHome } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
+import { MdMessage } from "react-icons/md";
+import { IoIosNotifications } from "react-icons/io";
+import { CiBookmark } from "react-icons/ci";
+import { CiBoxList } from "react-icons/ci";
+import { IoIosAnalytics } from "react-icons/io";
+import { CiSettings } from "react-icons/ci";
+import { IoIosLogOut } from "react-icons/io";
+
+
+
+
+
+
 const NavDiv = () => {
   return (
-    <div className="navbar">
-      <div className="container">
-        <div className="left-section">
-          <div className="logo">Enwriters.</div>
-          
-        </div>
-        <div className="social-media">
-          <div className="social-item">
-            <i className="bi bi-facebook"></i>
-            <span>Facebook</span>
-          </div>
-          <div className="social-item">
-            <i className="bi bi-twitter"></i>
-            <span>Twitter</span>
-          </div>
-          <div className="social-item">
-            <i className="bi bi-linkedin"></i>
-            <span>LinkedIn</span>
-          </div>
-          <div className="dropdown">
-            <button className="ask-question">
-              <i className="fas fa-cogs"></i>
-              Our Services
-            </button>
-            <div className="dropdown-content">
-              <a href="#">Data Entry</a>
-              <a href="#">Poetry</a>
-              <a href="#">Blog Writing</a>
-              <a href="#">Social Media Post Writers</a>
-            </div>
-          </div>
-        <button className="collaborate-button">Hire Private Writer</button>
-
-        </div>
-      </div>
+    <div className="container">
+  <div className="item-container">
+    <div className="logo" >
+      Enwriters
     </div>
+    <div className="item">
+    <CiHome />
+
+      <span>Home</span>
+    </div>
+    <div className="item">
+    <CgProfile />
+
+      <span>Profile</span>
+    </div>
+    <div className="item">
+    <MdMessage />
+
+      
+      <span>Messages</span>
+    </div>
+    <div className="item">
+    <IoIosNotifications />
+
+      <span>Notifications</span>
+    </div>
+    <div className="item">
+      <CiBookmark />
+      <span>Bookmarks</span>
+    </div>
+    <div className="item">
+      <CiBoxList />
+      <span>Lists</span>
+    </div>
+    <div className="item">
+    <IoIosAnalytics />
+
+      <span>Analytics</span>
+    </div>
+    <div className="item">
+    <CiSettings />
+
+      <span>Settings</span>
+    </div>
+    <div className="item">
+    <IoIosLogOut />
+
+      <span>Logout</span>
+    </div>
+  </div>
+</div>
+
+
   );
 };
 
