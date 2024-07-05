@@ -1,61 +1,79 @@
 .nav {
     background-color: #ffffff;
-    height: 58px;
+    height: 80px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-shadow: 0 2px 4px rgba(244, 244, 244, 0.8);
-  }
-  
-  .nav-logo {
+}
+
+.nav-logo {
     font-size: 24px;
     font-weight: bold;
     color: #333;
-  }
-  
-  .nav-items {
+}
+
+.nav-items {
     display: flex;
     align-items: center;
-  }
-  
-  .nav-link {
+}
+
+.nav-link {
     color: #333;
     text-decoration: none;
     font-size: 16px;
     margin-right: 20px;
-  }
-  
-  .nav-link:hover {
+}
+
+.nav-link:hover {
     color: #666;
-  }
-  
-  .dropdown-toggle {
+}
+
+.nav-dropdown {
     position: relative;
-  }
-  
-  .dropdown-toggle::after {
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-size: 12px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.nav-dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.dropdown-content {
+    display: none;
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .dropdown-toggle:hover::after {
-    transform: translateY(-50%) rotate(180deg);
-  }
-  
-  .nav-actions {
+    top: 80px;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1;
+    width: 400px;
+}
+
+.dropdown-column {
+    margin-right: 20px;
+}
+
+.dropdown-item {
+    margin-bottom: 20px;
+}
+
+.dropdown-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.nav-actions {
     display: flex;
     align-items: center;
-  }
-  
-  .nav-button {
+}
+
+.nav-button {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -67,11 +85,11 @@
     cursor: pointer;
     border-radius: 4px;
     margin-left: 20px;
-  }
-  
-  .nav-hr {
+}
+
+.nav-hr {
     border: none;
     border-top: 1px solid #ddd;
     width: 100%;
     margin: 0;
-  }
+}
