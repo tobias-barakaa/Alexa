@@ -1,86 +1,52 @@
 // NavDiv.jsx
-import React from "react";
 import "./NavDiv.css";
-import { CiHome } from "react-icons/ci";
-import { CgProfile } from "react-icons/cg";
-import { MdMessage } from "react-icons/md";
-import { IoIosNotifications } from "react-icons/io";
-import { CiBookmark } from "react-icons/ci";
-import { CiBoxList } from "react-icons/ci";
-import { IoIosAnalytics } from "react-icons/io";
-import { CiSettings } from "react-icons/ci";
-import { IoIosLogOut } from "react-icons/io";
+
 
 const NavDiv = () => {
   return (
-    <div className="container">
-      <div className="item-container">
-        <div className="logo">
-          Enwriters
-        </div>
-        <div className="item">
-          <CiHome />
-          <span>Home</span>
-        </div>
-        <div className="item">
-          <MdMessage />
-          <span>Login</span>
-        </div>
-        <div className="item">
-          <IoIosAnalytics />
-          <span>Hire a Writer</span>
-        </div>
-        <div className="item dropdown">
-          <CiBoxList />
-          <span>Our Services</span>
-          <div className="dropdown-content">
-            <div className="dropdown-row">
-              <a href="#">Poetry Writing</a>
-              <a href="#">Social Posts</a>
-              <a href="#">Songs</a>
-              <a href="#">Article Writing</a>
+    <nav className="nav">
+    <div className="nav-logo">
+      <img src="logo.png" alt="Logo" />
+    </div>
+    <div className="nav-items">
+      <a href="#" className="nav-link">Home</a>
+      <a href="#" className="nav-link">Profile</a>
+      <a href="#" className="nav-link">Messages</a>
+      <div className="nav-item dropdown">
+        <a href="#" className="nav-link dropdown-toggle">
+          Our Services
+          <i className="fas fa-chevron-down"></i>
+        </a>
+        <div className="dropdown-menu">
+          <div className="dropdown-row">
+            <div className="dropdown-col">
+              <h3>Our Services</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                euismod, nisl eget aliquam tincidunt, nisl nisl aliquam nisl,
+                eget aliquam nisl nisl eget nisl.
+              </p>
             </div>
-            <div className="dropdown-row">
-              <a href="#">Blog Posts</a>
-              <a href="#">Website Content</a>
-              <a href="#">Product Descriptions</a>
-              <a href="#">Press Releases</a>
-            </div>
-            <div className="dropdown-row">
-              <a href="#">Case Studies</a>
-              <a href="#">White Papers</a>
-              <a href="#">eBooks</a>
-              <a href="#">Resumes</a>
-            </div>
-            <div className="dropdown-row">
-              <a href="#">Cover Letters</a>
-              <a href="#">Copywriting</a>
-              <a href="#">Ghostwriting</a>
+            <div className="dropdown-col">
+              <a href="#" className="dropdown-link">Poetry Writing</a>
+              <a href="#" className="dropdown-link">Social Posts</a>
+              <a href="#" className="dropdown-link">Songs</a>
+              <a href="#" className="dropdown-link">Article Writing</a>
+              <a href="#" className="dropdown-link">Blog Posts</a>
             </div>
           </div>
         </div>
-        <div className="item">
-          <CgProfile />
-          <span>Profile</span>
-        </div>
-        <div className="item">
-          <IoIosNotifications />
-          <span>Notifications</span>
-        </div>
-        <div className="item">
-          <CiBookmark />
-          <span>Bookmarks</span>
-        </div>
-        <div className="item">
-          <CiSettings />
-          <span>Settings</span>
-        </div>
-        <div className="item">
-          <IoIosLogOut />
-          <span>Logout</span>
-        </div>
       </div>
+      <a href="#" className="nav-link">Analytics</a>
+      <a href="#" className="nav-link">Settings</a>
+      <a href="#" className="nav-link">Logout</a>
     </div>
+    <div className="nav-actions">
+      <a href="#" className="nav-link">Sign In</a>
+      <button className="nav-button">Get Started</button>
+    </div>
+    <hr className="nav-hr" />
+  </nav>
   );
 };
 
