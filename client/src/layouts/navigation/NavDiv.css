@@ -82,6 +82,20 @@
     align-items: center;
   }
   
+  .right-buttons .login-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 15px;
+    font-size: 18px;
+    color: #000000;
+    transition: color 0.3s;
+  }
+  
+  .right-buttons .login-button:hover {
+    color: #76bdff;
+  }
+  
   .right-buttons .hire-writers {
     background-color: #76bdff;
     color: #ffffff;
@@ -221,6 +235,7 @@
     display: none;
     flex-direction: column;
     gap: 10px;
+    z-index: 1;
   }
   
   .dropdown:hover .dropdown-menu {

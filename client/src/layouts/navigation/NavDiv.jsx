@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import './NavDiv.css';
 import backgroundImage from '../../assets/images/office.jpg';
 
@@ -18,8 +18,12 @@ const NavDiv = () => {
             <li>
               <a href="#"><i className="bi bi-0-square"></i> Home</a>
             </li>
-            <li className="dropdown" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
-              <a href="#"><i className="bi bi-0-square"></i> Our Services <i className="bi bi-0-square"></i></a>
+            <li 
+              className="dropdown"
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+            >
+              <a href="#"><i className="bi bi-0-square"></i> Services </a>
               {isServicesOpen && (
                 <ul className="dropdown-menu">
                   <li><a href="#">Service 1</a></li>
@@ -30,7 +34,11 @@ const NavDiv = () => {
                 </ul>
               )}
             </li>
-            <li className="dropdown" onMouseEnter={() => setIsCompanyOpen(true)} onMouseLeave={() => setIsCompanyOpen(false)}>
+            <li 
+              className="dropdown"
+              onMouseEnter={() => setIsCompanyOpen(true)}
+              onMouseLeave={() => setIsCompanyOpen(false)}
+            >
               <a href="#"><i className="bi bi-0-square"></i> Company <i className="bi bi-0-square"></i></a>
               {isCompanyOpen && (
                 <ul className="dropdown-menu">
@@ -45,11 +53,12 @@ const NavDiv = () => {
             <li>
               <a href="#"><i className="bi bi-0-square"></i> Contact</a>
             </li>
-            <li>
-              <a href="#"><i className="bi bi-0-square"></i> Login</a>
-            </li>
           </ul>
           <div className="right-buttons">
+            <div className="login-button">
+              <i className="bi bi-0-square"></i>
+              <span>Login</span>
+            </div>
             <a href="#" className="hire-writers">Hire Personal Writers</a>
           </div>
         </nav>
