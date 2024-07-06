@@ -16,14 +16,14 @@ const NavDiv = () => {
           </div>
           <ul className="nav-links">
             <li>
-              <a href="#"><i className="bi bi-0-square"></i> Home</a>
+              <a href="#"><i className="bi bi-house"></i> Home</a>
             </li>
             <li 
               className="dropdown"
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <a href="#"><i className="bi bi-0-square"></i> Services </a>
+              <a href="#">Services <i className="bi bi-caret-down"></i></a>
               {isServicesOpen && (
                 <ul className="dropdown-menu">
                   <li><a href="#">Service 1</a></li>
@@ -39,7 +39,7 @@ const NavDiv = () => {
               onMouseEnter={() => setIsCompanyOpen(true)}
               onMouseLeave={() => setIsCompanyOpen(false)}
             >
-              <a href="#"><i className="bi bi-0-square"></i> Company <i className="bi bi-0-square"></i></a>
+              <a href="#">Company <i className="bi bi-caret-down"></i></a>
               {isCompanyOpen && (
                 <ul className="dropdown-menu">
                   <li><a href="#">About Us</a></li>
@@ -51,12 +51,12 @@ const NavDiv = () => {
               )}
             </li>
             <li>
-              <a href="#"><i className="bi bi-0-square"></i> Contact</a>
+              <a href="#"><i className="bi bi-person-lines-fill"></i> Contact</a>
             </li>
           </ul>
           <div className="right-buttons">
             <div className="login-button">
-              <i className="bi bi-0-square"></i>
+            <i className="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
             </div>
             <a href="#" className="hire-writers">Hire Personal Writers</a>
