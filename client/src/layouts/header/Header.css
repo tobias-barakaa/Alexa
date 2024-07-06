@@ -1,0 +1,132 @@
+
+  /* Header and navigation */
+  header {
+    height: 90px;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav-logo {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  .logo-en {
+    color: #76bdff;
+  }
+  
+  .logo-writers {
+    color: #000000;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links a:hover {
+    color: #76bdff;
+  }
+  
+  .nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #76bdff;
+    transition: width .3s;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  .right-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right-buttons .login-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 15px;
+    font-size: 18px;
+    color: #000000;
+    transition: color 0.3s;
+  }
+  
+  .right-buttons .login-button:hover {
+    color: #76bdff;
+  }
+  
+  .right-buttons .hire-writers {
+    background-color: #76bdff;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  
+  .right-buttons .hire-writers:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Dropdown styles */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+    width: 100%;
+  }
+  
+  .dropdown-menu li {
+    list-style: none;
+  }
+  
+  .dropdown-menu li a {
+    color: #000000;
+  }
+  
+  .dropdown-menu li a:hover {
+    color: #76bdff;
+  }
+  
