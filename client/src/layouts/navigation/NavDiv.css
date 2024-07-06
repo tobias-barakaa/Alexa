@@ -1,4 +1,16 @@
- 
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header and navigation */
   header {
     height: 90px;
     width: 100%;
@@ -36,6 +48,7 @@
   
   .nav-links li {
     margin: 0 15px;
+    position: relative;
   }
   
   .nav-links a {
@@ -43,6 +56,8 @@
     color: #000000;
     font-size: 18px;
     position: relative;
+    display: flex;
+    align-items: center;
   }
   
   .nav-links a:hover {
@@ -81,17 +96,11 @@
     transform: scale(1.05);
   }
   
+  /* Main section */
   main {
     height: calc(100% - 90px);
     background-size: cover;
     background-position: center;
-    position: relative;
-  }
-
-
-  main {
-    height: calc(100% - 90px);
-    background: url('') no-repeat center center/cover;
     position: relative;
   }
   
@@ -141,7 +150,7 @@
     background: #76bdff;
     color: #ffffff;
   }
-
+  
   .btn-primary {
     background: #76bdff;
     color: #ffffff;
@@ -200,112 +209,33 @@
     font-size: 18px;
     cursor: pointer;
   }
-
-
-/*   
   
-  .overlay {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5); 
-  }
-  
-  .content-left {
-    flex: 1;
-    color: #ffffff;
-    padding: 20px;
-  }
-  
-  .content-left h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-  
-  .content-left p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .content-buttons {
-    display: flex;
+  /* Dropdown styles */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 10px;
+    display: none;
+    flex-direction: column;
     gap: 10px;
   }
   
-  .btn-outline {
-    background: transparent;
-    border: 2px solid #76bdff;
-    color: #76bdff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-  }
-  
-  .btn-outline:hover {
-    background: #76bdff;
-    color: #ffffff;
-  }
-  
-  .btn-primary {
-    background: #76bdff;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .btn-primary:hover {
-    transform: scale(1.05);
-  }
-  
-  .content-right {
-    flex: 1;
+  .dropdown:hover .dropdown-menu {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
   }
   
-  .signup-form {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 350px;
+  .dropdown-menu li {
+    list-style: none;
   }
   
-  .signup-form h2 {
-    margin-bottom: 20px;
+  .dropdown-menu li a {
+    color: #000000;
   }
   
-  .signup-form label {
-    display: block;
-    margin-bottom: 5px;
+  .dropdown-menu li a:hover {
+    color: #76bdff;
   }
   
-  .signup-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .signup-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #76bdff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-   */
