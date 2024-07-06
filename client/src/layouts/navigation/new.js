@@ -1,26 +1,4 @@
-import './NavDiv.css';
-import backgroundImage from '../../assets/images/office.jpg';
-import Header from '../header/Header';
-
-const NavDiv = () => {
-  return (
-    <>
-      <Header />
-      <main style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <div className="overlay">
-          <div className="content-left">
-            <h1>Market leader in lead <br />generation within the <br /> Benelux Benelux <br />.</h1>
-            <p>
-              We help large and small businesses in the Netherlands and Belgium get a
-              consistent stream of unique leads and better brand awareness.
-            </p>
-            <div className="content-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-primary">Get Started</button>
-            </div>
-          </div>
-          <div className="content-right">
-          <div className="content-right">
+{/* <div className="content-right">
       <div className="signup-container">
         <h2>Welcome to Enwriters</h2>
         <div className="signup-buttons">
@@ -54,12 +32,4 @@ const NavDiv = () => {
           </div>
         </div>
       </div>
-    </div>
-          </div>
-        </div>
-      </main>
-    </>
-  );
-};
-
-export default NavDiv;
+    </div> */}
