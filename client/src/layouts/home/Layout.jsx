@@ -1,10 +1,24 @@
-import ClientContent from '../client/clientContent'
-import WriterContent from '../writer/writerContent'
+import { useState } from 'react';
+import backgroundImage from '../../assets/images/office.jpg';
+import ModalRegister from '../client/ModalRegister';
+import ClientContent from '../client/clientContent';
+import WriterContent from '../writer/writerContent';
 
 const Layout = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div>
-       <div className="overlay">
+    <>
+      <main style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="overlay">
           <div className="content-left">
             <h1>Market leader in lead <br />generation within the <br /> Benelux Benelux</h1>
             <p>
@@ -16,17 +30,17 @@ const Layout = () => {
               <button className="btn-primary">Get Started</button>
             </div>
           </div>
-          
           <div className="content-right">
-      <div className="signup-container">
-        <ClientContent />
-        <WriterContent />
-      </div>
-    </div>
-         
+            <div className="signup-container">
+              <ClientContent handleOpenModal={handleOpenModal} />
+              <WriterContent />
+            </div>
+          </div>
         </div>
-    </div>
-  )
-}
+      </main>
+      {isModalOpen && <ModalRegister handleCloseModal={handleCloseModal} />}
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
