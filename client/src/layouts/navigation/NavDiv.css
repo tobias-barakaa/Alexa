@@ -96,7 +96,7 @@ main {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 20px;
+  padding: 40px;
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -243,7 +243,7 @@ main {
     border-radius: 3%;
     max-width: 500px;
     padding: 40px;
-    color: white;
+    color: #000000;
   }
   
   .signup-container h2 {
@@ -316,7 +316,7 @@ main {
   
   .signup-container p {
     text-align: center;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 0;
   }
   
@@ -338,7 +338,7 @@ main {
   }
   
   .account-options {
-    color: #ffffff;
+    color: #000000;
     flex: 1;
   }
   
@@ -348,7 +348,7 @@ main {
   }
   
   .account-options p {
-    color: #ffffff;
+    color: #ccc;
     margin-bottom: 10px;
   }
   
@@ -375,4 +375,76 @@ main {
   .account-type-option:hover {
     background-color: #e6e6e6;
   }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .left-side, .right-side {
+    flex: 1; /* Makes sections take up equal space */
+    padding: 20px;
+  }
+  
+  /* Left Side Styles */
+  
+  .left-side h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .buttons button {
+    background-color: #4CAF50; /* Green color for buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .buttons hr {
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: space-around; /* Evenly space buttons */
+  }
+  
+  .social-buttons button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .social-buttons button i {
+    font-size: 20px;
+    color: #000;
+  }
+  
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
   

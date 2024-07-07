@@ -9,7 +9,7 @@ const NavDiv = () => {
       <main style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="overlay">
           <div className="content-left">
-            <h1>Market leader in lead <br />generation within the <br /> Benelux Benelux <br />.</h1>
+            <h1>Market leader in lead <br />generation within the <br /> Benelux Benelux</h1>
             <p>
               We help large and small businesses in the Netherlands and Belgium get a
               consistent stream of unique leads and better brand awareness.
@@ -19,7 +19,7 @@ const NavDiv = () => {
               <button className="btn-primary">Get Started</button>
             </div>
           </div>
-          <div className="content-right">
+          
           <div className="content-right">
       <div className="signup-container">
         <h2>Welcome to Enwriters</h2>
@@ -55,7 +55,7 @@ const NavDiv = () => {
         </div>
       </div>
     </div>
-          </div>
+         
         </div>
       </main>
     </>
