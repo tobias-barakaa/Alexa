@@ -197,7 +197,6 @@ main {
   cursor: pointer;
 }
 
-/* Dropdown styles */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -357,7 +356,7 @@ main {
     padding: 2px 5px;
     border-radius: 3px;
   }
-  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  
   
   .account-type-selector {
     display: flex;
@@ -377,46 +376,6 @@ main {
   }
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .left-side, .right-side {
-    flex: 1; /* Makes sections take up equal space */
-    padding: 20px;
-  }
-  
-  /* Left Side Styles */
-  
-  .left-side h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .buttons button {
-    background-color: #4CAF50; /* Green color for buttons */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
   
   .buttons hr {
     border: 1px solid #ddd;
@@ -424,10 +383,6 @@ main {
     margin-bottom: 10px;
   }
   
-  .social-buttons {
-    display: flex;
-    justify-content: space-around; /* Evenly space buttons */
-  }
   
   .social-buttons button {
     background-color: #fff;
@@ -442,9 +397,5 @@ main {
     color: #000;
   }
   
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
   
   

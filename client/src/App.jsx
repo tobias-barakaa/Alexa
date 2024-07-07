@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavDiv from './layouts/navigation/NavDiv';
+import HomePage from './layouts/home/HomePage';
 
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-    <NavDiv />
+    <HomePage />
     </div>
   )
 }
