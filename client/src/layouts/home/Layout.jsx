@@ -39,6 +39,7 @@ const Layout = () => {
         </div>
       </main>
       {isModalOpen && <ModalRegister handleCloseModal={handleCloseModal} />}
+
     </>
   );
 };

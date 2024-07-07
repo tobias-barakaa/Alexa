@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,54 +13,130 @@
   .modal-content {
     background: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    width: 400px;
+    width: 550px;
     max-width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 36em;
   }
   
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
   
-  .modal-header h2 {
-    margin: 0;
-  }
   
-  .modal-close-button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
   
-  .modal-body form {
+
+
+
+  .signup-form {
     display: flex;
     flex-direction: column;
   }
   
-  .modal-body form label {
-    margin-bottom: 5px;
+  .name-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
   }
   
-  .modal-body form input {
-    margin-bottom: 15px;
+  .name-inputs input {
+    flex: 1;
+  }
+  
+  .signup-form input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
   
-  .modal-body form button {
-    padding: 10px;
-    background: #76bdff;
-    color: #ffffff;
+  .terms-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .terms-checkbox input {
+    margin-right: 5px;
+  }
+  
+  .signup-form-button {
+    width: 200px;
+    padding: 10px 20px;
+    background-color: #76bdff;
+    color: #fff;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
   }
-  
+
+
+
+
+  .containerr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .link {
+    text-decoration: none;
+    color: #333;
+  }
+  .google-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    width: 200px;
+    background-color: rgba(0, 122, 193, 0.2); /* Blue with less opacity */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  .google-btn img {
+    margin-right: 10px; /* Space between logo and text */
+  }
+  .hr-line {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    margin: 15px 0;
+  }
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .full-width-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .checkbox input {
+    margin-right: 5px;
+  }
+  .signup-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #76bdff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
