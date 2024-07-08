@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ClientContent = ({ handleOpenModal }) => {
   return (
     <div>
@@ -22,5 +24,11 @@ const ClientContent = ({ handleOpenModal }) => {
     </div>
   );
 };
+
+
+ClientContent.propTypes = {
+    handleOpenModal: PropTypes.func.isRequired,
+  };
+  
 
 export default ClientContent;
