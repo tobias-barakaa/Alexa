@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
+import { Link, Navigate, useLocation, useNavigate, useNavigation } from 'react-router-dom';
+import { useRegisterMutation } from '../../slices/usersApiSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCredentials } from '../../slices/authSlice';
+import { toast } from 'react-toastify'
 import './ModalRegister.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 
 const ModalRegister = ({ handleCloseModal }) => {
   const handleBackdropClick = (e) => {
@@ -16,9 +22,23 @@ const ModalRegister = ({ handleCloseModal }) => {
   const [username, setUsername] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMatchError, setPasswordMatchError] = useState('');
+  const navigate = useNavigation();
+  const [register, { isLoading, error }] = useRegisterMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search);
+  const redirect = sp.get('redirect') || '/';
+  useEffect(() => {
+    if(userInfo) {
+      navigate('/dashboard')
+    }
+  }, [userInfo, redirect, navigate])
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('submitting', firstName)
     if (password !== confirmPassword) {
       setPasswordMatchError('Passwords do not match');
     } else {
