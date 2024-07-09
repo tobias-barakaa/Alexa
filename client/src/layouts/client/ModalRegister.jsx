@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
-import { Link, Navigate, useLocation, useNavigate, useNavigation } from 'react-router-dom';
-import { useRegisterMutation } from '../../slices/usersApiSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCredentials } from '../../slices/authSlice';
-import { toast } from 'react-toastify'
 import './ModalRegister.css';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRegisterMutation } from '../../slices/usersApiSlice';
 
 const ModalRegister = ({ handleCloseModal }) => {
   const handleBackdropClick = (e) => {
@@ -16,35 +12,38 @@ const ModalRegister = ({ handleCloseModal }) => {
   };
 
   const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordConf, setPasswordConf] = useState('');
   const [passwordMatchError, setPasswordMatchError] = useState('');
-  const navigate = useNavigation();
-  const [register, { isLoading, error }] = useRegisterMutation();
+  const navigate = useNavigate();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  const [register] = useRegisterMutation();
 
-  const { search } = useLocation();
-  const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
-  useEffect(() => {
-    if(userInfo) {
-      navigate('/dashboard')
-    }
-  }, [userInfo, redirect, navigate])
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log('submitting', firstName)
-    if (password !== confirmPassword) {
+    if (password !== passwordConf) {
       setPasswordMatchError('Passwords do not match');
     } else {
       setPasswordMatchError('');
-      console.log('submitting');
-      // Handle form submission
+      try {
+        const userData = {
+          username,
+          email,
+          first_name,
+          last_name,
+          password,
+          passwordConf,
+        };
+        const response = await register(userData).unwrap();
+        console.log('User registered:', response);
+        navigate('/dashboard')
+      } catch (err) {
+        console.error('Failed to register:', err);
+        // Handle registration error
+      }
     }
   };
 
@@ -64,13 +63,13 @@ const ModalRegister = ({ handleCloseModal }) => {
               <input
                 type="text"
                 placeholder="First Name"
-                value={firstName}
+                value={first_name}
                 onChange={(e) => setFirstName(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Last Name"
-                value={lastName}
+                value={last_name}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
@@ -99,8 +98,8 @@ const ModalRegister = ({ handleCloseModal }) => {
               type="password"
               placeholder="Confirm Password"
               className="full-width-input"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={passwordConf}
+              onChange={(e) => setPasswordConf(e.target.value)}
             />
             {passwordMatchError && <p className="error">{passwordMatchError}</p>}
             <div className="checkbox">
