@@ -18,16 +18,16 @@ const Dashboard = () => {
             <input type="text" className="search-bar" placeholder="Search..." />
             
             <button className="gradient-button">
-              <span><i className="bi bi-0-square-fill"></i></span>
+              <span><i className="bi bi-wallet-fill"></i></span>
               Wallet</button>
             <button className="gradient-button">
-            <span><i className="bi bi-0-square-fill"></i></span>
+            <span><i className="bi bi-person-circle"></i></span>
               Profile</button>
             <button className="gradient-button">
-            <span><i className="bi bi-0-square-fill"></i></span>
+            <span><i className="bi bi-gear-wide-connected"></i></span>
               Settings</button>
             <button className="gradient-button">
-            <span><i className="bi bi-0-square-fill"></i></span>
+            <span><i className="bi bi-box-arrow-right"></i></span>
               Logout</button>
           </div>
 

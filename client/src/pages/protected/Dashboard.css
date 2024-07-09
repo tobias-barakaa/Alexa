@@ -57,7 +57,7 @@
   .bottom-nav button span i{
     font-size: 24px; 
     color: #1F4283;
-    margin-right: 4px;
+    margin-right: 10px;
   }
   
   .search-bar {
@@ -283,11 +283,12 @@ nav .search-and-buttons {
   }
   
   .clients {
-    background-color: #556b85;
+    background-color: #1F4283;
   }
   
   .projects {
-    background-color: #7a96ae;
+    /* background-color: #7a96ae; */
+    background-color: #76bdff;
     color: #ffffff;
   }
   
