@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import backgroundImage from '../../assets/images/office.jpg';
-import ModalRegister from '../client/ModalRegister';
 import ClientContent from '../client/clientContent';
 import WriterContent from '../writer/writerContent';
+import ClientRegister from '../client/ClientRegister';
 
 const Layout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +38,7 @@ const Layout = () => {
           </div>
         </div>
       </main>
-      {isModalOpen && <ModalRegister handleCloseModal={handleCloseModal} />}
+      {isModalOpen && <ClientRegister handleCloseModal={handleCloseModal} />}
 
     </>
   );

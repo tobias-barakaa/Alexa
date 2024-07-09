@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
-import './ModalRegister.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import './ClientRegister.css';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../slices/usersApiSlice';
+import { setCredentials } from '../../slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ModalRegister = ({ handleCloseModal }) => {
+const ClientRegister = ({ handleCloseModal }) => {
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       handleCloseModal();
     }
   };
+  
 
   const [email, setEmail] = useState('');
   const [first_name, setFirstName] = useState('');
@@ -18,14 +21,29 @@ const ModalRegister = ({ handleCloseModal }) => {
   const [username, setUsername] = useState('');
   const [passwordConf, setPasswordConf] = useState('');
   const [passwordMatchError, setPasswordMatchError] = useState('');
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
-  const [register] = useRegisterMutation();
+  const [register, { isLoading }] = useRegisterMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search)
+  const redirect = sp.get('redirect') || '/dashboard';
+
+  useEffect(() => {
+    if(userInfo) {
+      navigate(redirect)
+    }
+  }, [userInfo, redirect, navigate])
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== passwordConf) {
       setPasswordMatchError('Passwords do not match');
+      return;
     } else {
       setPasswordMatchError('');
       try {
@@ -38,8 +56,9 @@ const ModalRegister = ({ handleCloseModal }) => {
           passwordConf,
         };
         const response = await register(userData).unwrap();
+        dispatch(setCredentials({...response}));
         console.log('User registered:', response);
-        navigate('/dashboard')
+        navigate(redirect)
       } catch (err) {
         console.error('Failed to register:', err);
         // Handle registration error
@@ -55,7 +74,8 @@ const ModalRegister = ({ handleCloseModal }) => {
         <div className="modal-body">
           <form className="containerr" onSubmit={submitHandler}>
             <h1 className="title">Take your career to new heights</h1>
-            <p>Already have an account? <a href="#" className="link">Sign In</a></p>
+            <p>Already have an account? 
+              <Link to={redirect ? `/login?redirect=${redirect}` : '/register'} className="link">Sign In</Link></p>
             <button type="button" className="google-btn">
               <i className="bi bi-google"></i>Sign up with Google
             </button>
@@ -106,7 +126,10 @@ const ModalRegister = ({ handleCloseModal }) => {
               <input type="checkbox" />
               <label>I agree to the Workfalls Terms of Service and Privacy Policy</label>
             </div>
-            <button type="submit" className="signup-btn">Sign Up as Client</button>
+            <button type="submit"
+             className="signup-btn"
+             disabled={isLoading}
+             >Sign Up as Client</button>
           </form>
         </div>
       </div>
@@ -114,8 +137,8 @@ const ModalRegister = ({ handleCloseModal }) => {
   );
 };
 
-ModalRegister.propTypes = {
+ClientRegister.propTypes = {
   handleCloseModal: PropTypes.func.isRequired,
 };
 
-export default ModalRegister;
+export default ClientRegister;
