@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const WriterContent = () => {
   return (
     <div>
@@ -6,7 +8,7 @@ const WriterContent = () => {
           <div className="vertical-divider"></div>
           <div className="account-options">
             <h3>become a writer account</h3>
-            <p>Have an account? <a href="#">Login</a></p>
+            <p>Have an account? <Link to="/login">Login</Link></p>
             <div className="account-type-selector">
               <div className="account-type-option">Writer</div>
             </div>

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ClientContent = ({ handleOpenModal }) => {
   return (
@@ -19,7 +20,11 @@ const ClientContent = ({ handleOpenModal }) => {
             <i className="bi bi-google"></i> Google
           </button>
         </div>
-        <p>Have an account? <a href="#">Login</a></p>
+        
+        <p>Have an account? 
+
+        <Link to='/login'>Sign In</Link>
+        </p>
       </div>
     </div>
   );
