@@ -1,65 +1,124 @@
+.home{
+    cursor: pointer;
+}
+
+.dashboard-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-header {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .main-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .top-nav, .middle-nav, .bottom-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .top-nav {
+    height: 20px;
+    background-color: rgba(31, 66, 131, 0.8);
+    color: white;
+    font-size: 12px;
+    justify-content: center;
+  }
+  
+  .middle-nav {
+    height: 20px;
+    color: white;
+    font-size: 12px;
+    justify-content: center;
+  }
+  
+  .bottom-nav {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+
+  .bottom-nav button span i{
+    font-size: 24px; 
+    color: #1F4283;
+    margin-right: 4px;
+  }
+  
+  .search-bar {
+    height: 30px;
+    padding: 5px;
+    margin-right: 10px;
+    flex-grow: 1;
+  }
+  
+  .nav-button {
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   
+
+
   
 
-      .navigation {
-        width: 100%;
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
-      }
-      .sub-navigation {
-        height: 20px;
-        display: flex;
-        justify-content: space-between;
-        padding: 5px;
-        color: #fff;
-        background-color: #183978; 
-      }
-      .sub-navigation a {
-        color: #fff;
-        text-decoration: none;
-        padding: 5px;
-        font-weight: bold; 
-      }
-      .navigation-content {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        align-items: center;
-      }
-      .location-list {
-        margin-bottom: 10px;
-        color: #fff;
-        font-size: 0.8rem;
-      }
-     
+
+/* perplexity */
+nav .search-and-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  nav .search-and-buttons input {
+    flex-grow: 1;
+    height: 30px;
+    border: none;
+    padding: 0 10px;
+  }
+  
+ .gradient-button {
+    height: 36px;
+    width: 120px;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+  }
 
 
-
-
-      /* nav .search-and-buttons {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-      }
-      
-      nav .search-and-buttons input {
-        flex-grow: 1;
-        height: 30px;
-        border: none;
-        padding: 0 10px;
-      }
-      
-      nav .gradient-button {
-        height: 30px;
-        width: 100px;
-        background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
-        border: none;
-        margin-left: 10px;
-        cursor: pointer;
-      } */
+/* perplexiyt */
 
 
 
@@ -76,6 +135,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   
   .dashboard-content {
     flex-grow: 1;
@@ -107,7 +182,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px; /* Added margin to move buttons down a bit */
+    margin-top: 20px;
   }
   
   .nav-button {
@@ -156,7 +231,7 @@
   }
   
   .dashboard-box {
-    width: calc(25% - 15px); /* Reduced width by 5px */
+    width: calc(25% - 15px);
     height: 100px;
     padding: 10px;
     display: flex;
@@ -204,20 +279,20 @@
   }
   
   .leads {
-    background-color: #a2c1dc; /* Light Blue */
+    background-color: #a2c1dc;
   }
   
   .clients {
-    background-color: #556b85; /* Dark Blue */
+    background-color: #556b85;
   }
   
   .projects {
-    background-color: #7a96ae; /* New Color */
-    color: #ffffff; /* White text for better readability */
+    background-color: #7a96ae;
+    color: #ffffff;
   }
   
   .revenue {
-    background-color: #b6bec5; /* Gray */
+    background-color: #b6bec5;
   }
   
   @media (max-width: 768px) {

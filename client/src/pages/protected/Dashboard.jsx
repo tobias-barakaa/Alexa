@@ -1,53 +1,43 @@
-import "./Dashboard.css"
+import { Link } from "react-router-dom";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
+        <div className="main-nav">
+          <div className="top-nav">
+            <span className="home">Home<span><Link to="/" ></Link> </span> 
+            | About Website | FAQ | Contact us</span>
+          </div>
+          <div className="middle-nav">
+            <span>Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries</span>
+          </div>
 
-      <div className="navigation">
-    <div className="sub-navigation">
-      <a href="#">Home</a>
-      <a href="#">About Website</a>
-      <a href="#">FAQ</a>
-      <a href="#">Contact Us</a>
-    </div>
-    <div className="navigation-content">
-      <p className="location-list">Dominican Republic | Haiti | Jamaica | Turks and Caicos Islands | All countries</p>
-      {/* <div className="search-and-buttons">
-        <input type="text" className="search-bar" placeholder="Search" />
-        <div className="buttons">
-          <button className="button">Language</button>
-          <button className="button">Units</button>
-          <button className="button">Apps</button>
-          <button className="button">Mobile Version</button>
+          <div className="bottom-nav">
+            <input type="text" className="search-bar" placeholder="Search..." />
+            
+            <button className="gradient-button">
+              <span><i className="bi bi-0-square-fill"></i></span>
+              Wallet</button>
+            <button className="gradient-button">
+            <span><i className="bi bi-0-square-fill"></i></span>
+              Profile</button>
+            <button className="gradient-button">
+            <span><i className="bi bi-0-square-fill"></i></span>
+              Settings</button>
+            <button className="gradient-button">
+            <span><i className="bi bi-0-square-fill"></i></span>
+              Logout</button>
+          </div>
+
+          {/* perplexity */}
+         
+
+
+
+  
         </div>
-      </div> */}
-
-<div className="search-and-buttons">
-    <input type="text" placeholder="Search" />
-    <button className="gradient-button">Language</button>
-    <button className="gradient-button">Units</button>
-    <button className="gradient-button">Apps</button>
-    <button className="gradient-button">Mobile Version</button>
-  </div>
-
-
-
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
       <div className="dashboard-content">
         <div className="dashboard-sidebar">
@@ -55,7 +45,7 @@ const Dashboard = () => {
           <div className="dashboard-nav">
             <div className="nav-buttons">
               <button className="nav-button">Dashboard</button>
-              <button className="nav-button">Order Article</button>
+              <button className="nav-button">Create Article</button>
               <button className="nav-button">Manage Articles</button>
               <button className="nav-button">Blog Posts</button>
               <button className="nav-button">Marketing Campaigns</button>
@@ -112,7 +102,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
