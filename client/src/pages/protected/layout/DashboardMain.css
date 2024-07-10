@@ -5,6 +5,11 @@
     flex-direction: column;
 }
 
+.dashboard-content {
+    flex-grow: 1;
+    display: flex;
+  }
+
 .dashboard-boxes {
     display: flex;
     justify-content: space-between;
