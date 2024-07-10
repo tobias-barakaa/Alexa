@@ -15,7 +15,6 @@ const StepTwo = ({ nextStep, prevStep }) => {
                         <option value="">Select Tone</option>
                         <option value="friendly">Friendly</option>
                         <option value="professional">Professional</option>
-                        {/* Add other tones here */}
                     </select>
                 </div>
                 <div className="form-group">
@@ -24,11 +23,10 @@ const StepTwo = ({ nextStep, prevStep }) => {
                         <option value="">Select Language</option>
                         <option value="American English">American English</option>
                         <option value="British English">British English</option>
-                        {/* Add other languages here */}
                     </select>
                 </div>
-                <button type="button" onClick={prevStep}>Previous</button>
-                <button type="button" onClick={nextStep}>Next</button>
+                <button className='button-article' type="button" onClick={prevStep}>Previous</button>
+                <button className="button-article " type="button" onClick={nextStep}>Next</button>
             </form>
         </div>
     );

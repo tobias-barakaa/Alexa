@@ -15,8 +15,8 @@
   
   .dashboard-layout {
     width: 100%;
-    background-color: #f4f5f8;
-    height: 30px;
+    /* background-color: #f4f5f8; */
+    /* height: 30px; */
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -26,5 +26,15 @@
     margin-left: 10px;
   }
   
+
+  .dashboard-main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
   
   

@@ -16,7 +16,6 @@ const StepOne = ({ nextStep }) => {
                         <option value="Finance">Finance</option>
                         <option value="Economy">Economy</option>
                         <option value="Food">Food</option>
-                        {/* Add other categories here */}
                     </select>
                 </div>
                 <div className="form-group">
