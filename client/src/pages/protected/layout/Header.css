@@ -1,0 +1,61 @@
+.dashboard-header {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.top-nav, .middle-nav, .bottom-nav {
+    display: flex;
+    align-items: center;
+}
+
+.top-nav {
+    height: 30px;
+    width: 30%;
+    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
+    color: white;
+    font-size: 12px;
+    justify-content: center;
+    margin: auto;
+    border-radius: 6px;
+}
+
+.middle-nav {
+    height: 20px;
+    color: white;
+    font-size: 12px;
+    justify-content: center;
+}
+
+.bottom-nav {
+    justify-content: center;
+    height: 60px;
+}
+
+.bottom-nav button span i {
+    font-size: 24px;
+    color: #1F4283;
+    margin-right: 10px;
+}
+
+.search-bar {
+    height: 36px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 6px;
+}
+
+.gradient-button {
+    height: 36px;
+    width: 120px;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}

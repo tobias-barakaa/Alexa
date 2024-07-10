@@ -1,0 +1,58 @@
+.dashboard-main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dashboard-box {
+    width: calc(25% - 15px);
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.dashboard-box i {
+    font-size: 34px;
+    margin-right: 10px;
+    padding-right: 30px;
+}
+
+.box-content h3 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+
+.box-content p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.leads {
+    background-color: #a2c1dc;
+}
+
+.clients {
+    background-color: #76bdff;
+}
+
+.projects {
+    background-color: #7a96ae;
+    color: #ffffff;
+}
+
+.revenue {
+    background-color: #b6bec5;
+}

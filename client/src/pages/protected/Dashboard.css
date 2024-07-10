@@ -21,12 +21,7 @@
     box-sizing: border-box;
   }
   
-  /* .main-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  } */
+  
   
   .top-nav, .middle-nav, .bottom-nav {
     display: flex;
@@ -41,6 +36,7 @@
     font-size: 12px;
     justify-content: center;
     margin: auto;
+    border-radius: 6px;
   }
   
   .middle-nav {
