@@ -7,14 +7,14 @@
     justify-content: center;
     padding: 0 20px;
     box-sizing: border-box;
-}
-
-.top-nav, .middle-nav, .bottom-nav {
+  }
+  
+  .top-nav, .middle-nav, .bottom-nav {
     display: flex;
     align-items: center;
-}
-
-.top-nav {
+  }
+  
+  .top-nav {
     height: 30px;
     width: 30%;
     background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
@@ -23,34 +23,50 @@
     justify-content: center;
     margin: auto;
     border-radius: 6px;
-}
-
-.middle-nav {
+  }
+  
+  .middle-nav {
     height: 20px;
     color: white;
     font-size: 12px;
     justify-content: center;
-}
-
-.bottom-nav {
+  }
+  
+  .bottom-nav {
     justify-content: center;
     height: 60px;
-}
-
-.bottom-nav button span i {
+  }
+  
+  .bottom-nav button span i {
     font-size: 24px;
     color: #1F4283;
     margin-right: 10px;
-}
-
-.search-bar {
+  }
+  
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar {
     height: 36px;
-    padding: 5px;
-    margin-right: 10px;
+    padding: 5px 10px;
     border-radius: 6px;
-}
-
-.gradient-button {
+    border: 1px solid #ccc;
+    width: 200px; 
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+    color: #1F4283;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .gradient-button {
     height: 36px;
     width: 120px;
     border-radius: 5px;
@@ -58,4 +74,5 @@
     border: none;
     margin-left: 10px;
     cursor: pointer;
-}
+  }
+  

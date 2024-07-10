@@ -2,7 +2,7 @@ import './DashboardMain.css'
 
 const DashboardMain = () => {
   return (
-    <div className="dashboard-main">
+    <div>
           <div className="dashboard-boxes">
             <div className="dashboard-box leads">
               <i className="bi bi-0-square-fill"></i>
@@ -33,6 +33,8 @@ const DashboardMain = () => {
               </div>
             </div>
           </div>
+
+         
           
         </div>
   )
