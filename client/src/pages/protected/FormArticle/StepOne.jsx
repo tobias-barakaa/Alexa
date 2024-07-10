@@ -3,7 +3,7 @@ import React from 'react';
 const StepOne = ({ nextStep }) => {
     return (
         <div className="form-container">
-            <h2>ORder Article</h2>
+            <h2 className='order-article-title'>ORDER ARTICLE</h2>
             <form>
             <div className="form-group">
                     <label htmlFor="content">Title:</label>
