@@ -30,13 +30,6 @@ const Dashboard = () => {
             <span><i className="bi bi-box-arrow-right"></i></span>
               Logout</button>
           </div>
-
-          {/* perplexity */}
-         
-
-
-
-  
         </div>
       </div>
       <div className="dashboard-content">

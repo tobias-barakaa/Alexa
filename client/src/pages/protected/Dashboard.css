@@ -21,12 +21,12 @@
     box-sizing: border-box;
   }
   
-  .main-nav {
+  /* .main-nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-  }
+  } */
   
   .top-nav, .middle-nav, .bottom-nav {
     display: flex;
@@ -34,11 +34,13 @@
   }
   
   .top-nav {
-    height: 20px;
-    background-color: rgba(31, 66, 131, 0.8);
+    height: 30px;
+    width: 30%;
+    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
     color: white;
     font-size: 12px;
     justify-content: center;
+    margin: auto;
   }
   
   .middle-nav {
@@ -49,9 +51,8 @@
   }
   
   .bottom-nav {
-    display: flex;
-    align-items: center;
-    height: 50px;
+    justify-content: center;
+    height: 60px;
   }
 
   .bottom-nav button span i{
@@ -61,20 +62,15 @@
   }
   
   .search-bar {
-    height: 30px;
+    height: 36px;
     padding: 5px;
+    /* justify-content: center; */
+    /* flex-grow: 1; */
     margin-right: 10px;
-    flex-grow: 1;
+    border-radius: 6px;
   }
   
-  .nav-button {
-    border: none;
-    color: white;
-    font-size: 12px;
-    padding: 5px 10px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
+  
 
 
 
@@ -117,41 +113,8 @@ nav .search-and-buttons {
     cursor: pointer;
   }
 
+  /* perplexity */
 
-/* perplexiyt */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
   .dashboard-content {
     flex-grow: 1;
     display: flex;
@@ -283,12 +246,12 @@ nav .search-and-buttons {
   }
   
   .clients {
-    background-color: #1F4283;
+    background-color: #76bdff;
   }
   
   .projects {
-    /* background-color: #7a96ae; */
-    background-color: #76bdff;
+    background-color: #7a96ae;
+    /* background-color: #76bdff; */
     color: #ffffff;
   }
   
