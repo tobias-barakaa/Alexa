@@ -1,51 +1,54 @@
 import './DashboardMain.css';
 import OrderNow from './OrderNow';
-import WelcomeSection from './WelcomeSection'; 
-import order from '../../../assets/images/order.svg';
-import ongoing from '../../../assets/images/ongoing.svg';
-import upcoming from '../../../assets/images/upcoming.svg';
+import WelcomeSection from './WelcomeSection';
 
-
-
+ 
+import recentOrdersImg from '../../../assets/images/order.svg';
+import ongoingProjectsImg from '../../../assets/images/ongoing.svg';
+import upcomingDeadlinesImg from '../../../assets/images/upcoming.svg';
+import newFeatureImg from '../../../assets/images/complete.svg';
 
 const DashboardMain = () => {
   return (
     <div className="dashboard-main">
       <WelcomeSection />
-
+      
       <div className="overview-section">
         <div className="statistics">
           <div className="stat-item">
-            <img src={order} alt="Stat 1" className="stat-image" />
-            <div className="stat-content">
+            <img src={recentOrdersImg} alt="Recent Orders" className="stat-image" />
+            <div className="stat-text">
               <h3>Recent Orders</h3>
-              <p>Number of recent orders: <span>5</span></p>
+              <p>Number of recent orders</p>
+              <p className="stat-number">0</p>
             </div>
           </div>
           <div className="stat-item">
-            <img src={ongoing} alt="Stat 2" className="stat-image" />
-            <div className="stat-content">
+            <img src={ongoingProjectsImg} alt="Ongoing Projects" className="stat-image" />
+            <div className="stat-text">
               <h3>Ongoing Projects</h3>
-              <p>Number of ongoing projects: <span>3</span></p>
+              <p>Number of ongoing projects</p>
+              <p className="stat-number">0</p>
             </div>
           </div>
           <div className="stat-item">
-            <img src={upcoming} alt="Stat 3" className="stat-image" />
-            <div className="stat-content">
+            <img src={upcomingDeadlinesImg} alt="Upcoming Deadlines" className="stat-image" />
+            <div className="stat-text">
               <h3>Upcoming Deadlines</h3>
-              <p>Next deadline: July 15, 2024</p>
+              <p>Next deadline</p>
+              <p className="stat-number">0</p>
             </div>
           </div>
           <div className="stat-item">
-            <img src="[path_to_image4]" alt="Stat 4" className="stat-item" />
-            <div className="stat-content">
-              <h3>Completed Articles</h3>
-              <p>Number of completed articles: <span>0</span></p>
+            <img src={newFeatureImg} alt="New Feature" className="stat-image" />
+            <div className="stat-text">
+              <h3>New Feature</h3>
+              <p>Description of new feature</p>
+              <p className="stat-number">0</p>
             </div>
           </div>
         </div>
       </div>
-
       <OrderNow />
     </div>
   );

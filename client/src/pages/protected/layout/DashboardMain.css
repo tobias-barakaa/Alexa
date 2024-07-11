@@ -1,13 +1,17 @@
-
-  
-
-  .overview-section {
-    margin-top: 40px;
+.dashboard-main {
+    padding: 20px;
   }
   
-  .overview-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  
+  .dashboard-image {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 20px;
+  }
+  
+  .overview-section {
+    margin-top: 30px;
   }
   
   .statistics {
@@ -17,35 +21,32 @@
   }
   
   .stat-item {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 5px; /* Reduced border radius */
-    flex: 1 1 calc(25% - 20px); /* Reduced width for four items */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for a grey line effect */
-    display: flex; /* Added for content arrangement */
-    align-items: center; /* Added for content arrangement */
+    padding: 15px;
+    border-radius: 5px; /* Reduced border-radius */
+    flex: 1 1 calc(25% - 20px); /* Reduced width */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Lower shadow */
   }
   
   .stat-image {
-    width: 50px; /* Adjust width as needed for your images */
-    height: 50px; /* Adjust height as needed for your images */
-    margin-right: 20px; /* Spacing between image and content */
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
   }
   
-  .stat-content {
-    flex: 1; /* Allow content to fill remaining space */
+  .stat-text {
+    flex-grow: 1;
   }
   
-  .stat-content h3 {
+  .stat-text h3 {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 18px;
   }
   
-  .stat-content p {
-    margin-top: 5px;
-    font-size: 16px;
+  .stat-number {
+    font-size: 24px;
+    color: #333;
   }
   
-  .stat-content span {
-    font-weight: bold; /* Emphasize numbers */
-  }
