@@ -5,16 +5,16 @@ const Sidenav = () => {
     <div className="dashboard-sidebar">
           <div className="welcome-message">Welcome to Dashboard, John Doe</div>
           <div className="dashboard-nav">
-            <div className="nav-buttons">
-              <button className="nav-button">Dashboard</button>
-              <button className="nav-button">Create Article</button>
-              <button className="nav-button">Manage Articles</button>
-              <button className="nav-button">Blog Posts</button>
-              <button className="nav-button">Marketing Campaigns</button>
-              <button className="nav-button">Analytics</button>
-              <button className="nav-button">Settings</button>
-              <button className="nav-button">Help</button>
-            </div>
+            <ul className="nav-buttons">
+              <li className="nav-li">Dashboard</li>
+              <li className="nav-li">Create Article</li>
+              <li className="nav-li">Manage Articles</li>
+              <li className="nav-li">Blog Posts</li>
+              <li className="nav-li">Marketing Campaigns</li>
+              <li className="nav-li">Analytics</li>
+              <li className="nav-li">Settings</li>
+              <li className="nav-li">Help</li>
+            </ul>
             <div className="social-networks">
               <span>We are on social networks:</span>
               <div className="social-icons">
