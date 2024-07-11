@@ -1,71 +1,75 @@
-
-
-.dashboard-content {
-    flex-grow: 1;
-    display: flex;
+.dashboard-main {
+    padding: 20px;
   }
-
-.dashboard-boxes {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.dashboard-box {
-    width: calc(25% - 15px);
-    height: 100px;
-    padding: 10px;
+  
+  .welcome-section {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    color: #fff;
-}
-
-.dashboard-box i {
-    font-size: 34px;
-    margin-right: 10px;
-    padding-right: 30px;
-}
-
-.box-content h3 {
-    font-size: 16px;
-    margin: 0 0 5px 0;
-}
-
-.box-content p {
-    font-size: 14px;
-    margin: 0;
-}
-
-.leads {
-    background-color: #a2c1dc;
-}
-
-.clients {
-    background-color: #76bdff;
-}
-
-.projects {
-    background-color: #7a96ae;
-    color: #ffffff;
-}
-
-.revenue {
-    background-color: #b6bec5;
-}
-
-
-@media (max-width: 768px) {
-    .dashboard-box {
-      width: calc(50% - 10px);
-    }
-  
-    .dashboard-sidebar {
-      display: none;
-    }
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-
+  
+  .welcome-section h1 {
+    font-size: 28px;
+    margin: 0;
+  }
+  
+  .dashboard-image {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .overview-section {
+    margin-top: 40px;
+  }
+  
+  .overview-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .statistics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .stat-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1 1 calc(33% - 20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-item h3 {
+    margin-top: 0;
+    font-size: 20px;
+  }
+  
+  .features-section {
+    margin-top: 40px;
+  }
+  
+  .features-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-item h3 {
+    margin-top: 0;
+    font-size: 20px;
+  }
   

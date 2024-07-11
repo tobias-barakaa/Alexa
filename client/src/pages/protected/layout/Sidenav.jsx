@@ -14,7 +14,7 @@ const Sidenav = () => {
         </div>
         <div className="nav-item">
           <i className="bi bi-file-earmark-plus"></i>
-          <span>Create Article</span>
+          <span>Order Article</span>
         </div>
         <div className="nav-item">
           <i className="bi bi-list-ul"></i>
@@ -26,16 +26,9 @@ const Sidenav = () => {
         </div>
         <div className="nav-item">
           <i className="bi bi-megaphone"></i>
-          <span>Marketing Campaigns</span>
+          <span>Reviews from spouses</span>
         </div>
-        <div className="nav-item">
-          <i className="bi bi-bar-chart-fill"></i>
-          <span>Analytics</span>
-        </div>
-        <div className="nav-item">
-          <i className="bi bi-gear-fill"></i>
-          <span>Settings</span>
-        </div>
+                
         <div className="nav-item">
           <i className="bi bi-question-circle-fill"></i>
           <span>Help</span>
