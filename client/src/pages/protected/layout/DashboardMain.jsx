@@ -1,12 +1,17 @@
+import React from 'react';
 import './DashboardMain.css';
+import alexxa from '../../../assets/images/alexxa.png';
+import OrderNow from './OrderNow';
 
 const DashboardMain = () => {
   return (
     <div className="dashboard-main">
       <div className="welcome-section">
-        <h1>Welcome to Dashboard John Doe</h1>
-        <i className="bi bi-amd dashboard-image"></i>
-        {/* <img src="path_to_image" alt="Dashboard Image" className="dashboard-image" /> */}
+        <div className="welcome-message">
+          <h1>Welcome to Dashboard, John Doe</h1>
+          <p>Meet world-class publishing professionals</p>
+        </div>
+        <img src={alexxa} alt="Dashboard" className="dashboard-image" />
       </div>
       <div className="overview-section">
         <div className="statistics">
@@ -24,23 +29,10 @@ const DashboardMain = () => {
           </div>
         </div>
       </div>
-      <div className="features-section">
-        <h2>Key Features</h2>
-        <div className="feature-item">
-          <h3>Ordering Articles</h3>
-          <p>Order Form: A straightforward form to specify article details (topic, length, deadline, etc.).</p>
-        </div>
-        <div className="feature-item">
-          <h3>Hiring Personal Writers</h3>
-          <p>Writer Profiles: Detailed profiles of available writers, including ratings, reviews, and expertise areas.</p>
-        </div>
-        <div className="feature-item">
-          <h3>Homework Help</h3>
-          <p>Request Form: A form to submit homework or schoolwork details, including subject, specific questions, and deadlines.</p>
-        </div>
-      </div>
+      <OrderNow />
+      
     </div>
   );
-}
+};
 
 export default DashboardMain;
