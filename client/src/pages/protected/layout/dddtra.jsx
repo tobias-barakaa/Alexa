@@ -235,3 +235,23 @@ export default DashboardMain;
 
 
 
+
+
+  /* .order-now {
+    display: flex;
+    gap: 20px;
+  } */
+  
+  /* .order-now-left {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #ffffff;
+  } */
+  
+  /* .services-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  } */

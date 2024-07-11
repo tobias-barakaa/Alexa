@@ -1,21 +1,90 @@
-.features-section {
-    margin-top: 40px;
-  }
-  
-  .features-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .feature-item {
-    background-color: #ffffff;
+.order-now {
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .feature-item h3 {
+  .services-header {
+    margin-bottom: 20px;
+  }
+  
+  .service-items {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .service-item {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-text {
+    flex-grow: 1;
+  }
+  
+  .service-text h3 {
     margin-top: 0;
     font-size: 20px;
   }
+  
+  .service-text p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .service-text hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .service-text ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  
+  .service-text li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .order-button, .hire-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .order-button {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+  .hire-button {
+    background-color: #28a745;
+    color: #ffffff;
+  }
+  
+  .hire-writer-item .people-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
