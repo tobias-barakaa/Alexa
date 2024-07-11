@@ -1,3 +1,4 @@
+import "./OrderNow.css";
 
 const OrderNow = () => {
   return (

@@ -1,48 +1,14 @@
-.dashboard-main {
-    padding: 20px;
-  }
+
   
-  .welcome-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .welcome-message {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-right: 40px;
-  }
-  
-  .welcome-message h1 {
-    font-size: 28px;
-    margin: 0;
-  }
-  
-  .welcome-message p {
-    font-size: 18px;
-    color: #666666;
-    margin: 0;
-  }
-  
-  .dashboard-image {
-    width: 200px;
-    height: auto;
-  }
-  
+
   .overview-section {
     margin-top: 40px;
   }
   
-  /* .overview-section h2 {
+  .overview-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
-  } */
+  }
   
   .statistics {
     display: flex;
@@ -53,34 +19,33 @@
   .stat-item {
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    flex: 1 1 calc(33% - 20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* Reduced border radius */
+    flex: 1 1 calc(25% - 20px); /* Reduced width for four items */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for a grey line effect */
+    display: flex; /* Added for content arrangement */
+    align-items: center; /* Added for content arrangement */
   }
   
-  .stat-item h3 {
+  .stat-image {
+    width: 50px; /* Adjust width as needed for your images */
+    height: 50px; /* Adjust height as needed for your images */
+    margin-right: 20px; /* Spacing between image and content */
+  }
+  
+  .stat-content {
+    flex: 1; /* Allow content to fill remaining space */
+  }
+  
+  .stat-content h3 {
     margin-top: 0;
     font-size: 20px;
   }
   
-  .features-section {
-    margin-top: 40px;
+  .stat-content p {
+    margin-top: 5px;
+    font-size: 16px;
   }
   
-  .features-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .feature-item {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature-item h3 {
-    margin-top: 0;
-    font-size: 20px;
+  .stat-content span {
+    font-weight: bold; /* Emphasize numbers */
   }

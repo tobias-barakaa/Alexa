@@ -1,0 +1,21 @@
+.features-section {
+    margin-top: 40px;
+  }
+  
+  .features-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-item h3 {
+    margin-top: 0;
+    font-size: 20px;
+  }
