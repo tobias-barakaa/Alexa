@@ -1,66 +1,58 @@
-import './DashboardMain.css';
-import OrderNow from './OrderNow'; // Assuming OrderNow component handles ordering functionality
-import WelcomeSection from './WelcomeSection'; // Assuming WelcomeSection component handles the welcome message
+import './OrderNow.css';
+import curatedLinksIcon from '../../../assets/images/order.svg';
+import naturalLinksIcon from '../../../assets/images/ongoing.svg';
+import people from '../../../assets/images/peoplebg.png';
 
-const DashboardMain = () => {
+const OrderNow = () => {
   return (
-    <div className="dashboard-main">
-      <WelcomeSection />
-
-      <div className="features-section">
-        <div className="features-content">
-          <h2>Our Services</h2>
-          <div className="services-container">
-            <div className="service-item">
-              <i className="bi bi-link-45deg"></i>
-              <div className="service-content">
-                <h3>Curated Links</h3>
-                <p>
-                  Natural link placements in existing content that is highly relevant.
-                </p>
-                <hr />
-                <p>
-                  Content already exists and is indexed in Google. <br />
-                  Article is highly relevant to your website & niche. <br />
-                  Drive strong authority because the content is aged.
-                </p>
-                <button className="order-now-btn">Order Now</button>
-              </div>
-            </div>
-            <div className="service-item">
-              <i className="bi bi-file-earmark-text"></i>
-              <div className="service-content">
-                <h3>Guest Posting</h3>
-                <p>
-                  Get high-quality guest posts published on relevant websites to
-                  boost your website's authority.
-                </p>
-                <hr />
-                <p>
-                  Increase brand awareness and targeted traffic. <br />
-                  Improve SEO and organic search ranking. <br />
-                  Establish yourself as an industry thought leader.
-                </p>
-                <button className="order-now-btn">Order Now</button>
-              </div>
+    <div className="order-now">
+      <div className="services-container">
+        <div className='service-it'>
+        <h3 className='our-services'>Our Services</h3>
+        <div className="service-items">
+          <div className="service-item">
+            <img src={curatedLinksIcon} alt="Curated Links Icon" className="service-icon" />
+            <div className="service-text">
+              <h3>AI Written</h3>
+              <p>Natural link placements in existing content that is highly relevant.</p>
+              <hr />
+              <ul>
+                <li>Content already exists and is indexed in Google.</li>
+                <li>Article is highly relevant to your website & niche.</li>
+                <li>Drive strong authority because the content is aged.</li>
+                <li>Leverages AI to generate high-quality, contextual content.</li>
+              </ul>
+              <button className="order-button">Order Now</button>
             </div>
           </div>
-          <div className="hire-writer-item">
-            <img src="[path_to_image]" alt="People" className="people-image" />
-            <h2>Hire a Writer</h2>
-            <p>
-              Did you know, you can book a call with our in-house specialists to
-              go over your strategy? Book a call at a time to suit you and we
-              will do what we can to help.
-            </p>
-            <button className="hire-writer-btn">Hire a Personal Writer</button>
+          <div className="service-item">
+            <img src={naturalLinksIcon} alt="Natural Links Icon" className="service-icon" />
+            <div className="service-text">
+              <h3>Manually Written</h3>
+              <p>Natural link placements in existing content that is highly relevant.</p>
+              <hr />
+              <ul>
+                <li>Content already exists and is indexed in Google.</li>
+                <li>Article is highly relevant to your website & niche.</li>
+                <li>Drive strong authority because the content is aged.</li>
+                <li>Crafted by experienced human writers for a personal touch.</li>
+              </ul>
+              <button className="order-button">Order Now</button>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div className="hire-writer-item">
+          <img src={people} alt="People" className="people-image" />
+          <div className="service-text">
+            <h3>Hire a Writer</h3>
+            <p>Did you know, you can book a call with our in-house specialists to go over your strategy? Book a call at a time to suit you and we will do what we can to help.</p>
+            <button className="hire-button">Hire a Personal Writer</button>
           </div>
         </div>
       </div>
-
-      <OrderNow />
     </div>
   );
 };
 
-export default DashboardMain;
+export default OrderNow;

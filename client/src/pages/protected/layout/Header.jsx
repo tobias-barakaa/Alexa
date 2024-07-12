@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+import Hellobar from "./Hellobar";
 
 const Header = () => {
+
+
   return (
     <div className="dashboard-header">
       <div className="main-nav">
@@ -12,9 +15,7 @@ const Header = () => {
             </span> | About Website | FAQ | Contact us
           </span>
         </div>
-        <div className="middle-nav">
-          <span>Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries</span>
-        </div>
+        <Hellobar />
         <div className="bottom-nav">
           <div className="search-container">
             <input type="text" className="search-bar" placeholder="Search..." />

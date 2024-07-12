@@ -1,0 +1,36 @@
+.middle-nav {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.message-container {
+  position: relative;
+  height: 40px; /* Adjust based on your needs */
+  overflow: hidden;
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+}
+
+.message.slide-out {
+  transform: translateX(-100%);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.message:not(.slide-out) {
+  animation: slideIn 0.5s ease-in-out;
+}
