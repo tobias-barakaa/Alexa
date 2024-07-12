@@ -25,12 +25,90 @@
     border-radius: 6px;
   }
   
-  .middle-nav {
+  /* .middle-nav {
     height: 20px;
     color: white;
     font-size: 12px;
     justify-content: center;
+  } */
+
+  .middle-nav {
+    position: relative;
+    width: 100%;
+    text-align: center;
   }
+  
+  .middle-nav span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .middle-nav span::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.5;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .middle-nav:hover span {
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  
+  .middle-nav:hover span::after {
+    opacity: 1;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   .bottom-nav {
     justify-content: center;
