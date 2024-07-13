@@ -1,44 +1,91 @@
 .dashboard-header {
-    height: 100px;
-    width: 100%;
-    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
-  
-  .top-nav, .middle-nav, .bottom-nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .top-nav {
-    height: 30px;
-    width: 30%;
-    background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
-    color: white;
-    font-size: 12px;
-    justify-content: center;
-    margin: auto;
-    border-radius: 6px;
-  }
-  
-  /* .middle-nav {
-    height: 20px;
-    color: white;
-    font-size: 12px;
-    justify-content: center;
-  } */
+  height: 100px;
+  width: 100%;
+  background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-  .middle-nav {
+.top-nav, .middle-nav, .bottom-nav {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav {
+  height: 30px;
+  width: 30%;
+  background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
+  color: white;
+  font-size: 12px;
+  justify-content: center;
+  margin: auto;
+  border-radius: 6px;
+}
+
+.middle-nav {
+  height: 10px;
+  color: white;
+  font-size: 12px;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.middle-nav span {
+  display: inline-block;
+  animation: slide-left 10s linear infinite;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.bottom-nav {
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.gradient-button {
+  background: linear-gradient(to right, #078BC8, #1F4283);
+  color: white;
+  border: none;
+  padding: 0px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.gradient-button i {
+  margin-right: 5px;
+}
+
+
+  /* .middle-nav {
     position: relative;
     width: 100%;
     text-align: center;
-  }
+  } */
   
-  .middle-nav span {
+  /* .middle-nav span {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,7 +113,7 @@
   
   .middle-nav:hover span::after {
     opacity: 1;
-  }
+  } */
 
 
 
