@@ -9,7 +9,7 @@ const Sidenav = () => {
         <div className="separator"></div>
       </div>
       <div className="sidebar-nav">
-        <Link className="nav-item" to="/dashboard/dashboardmain">
+        <Link className="nav-item" to="/dashboard">
           <i className="bi bi-grid-fill"></i>
           <span>Dashboard</span>
         </Link>
@@ -25,10 +25,10 @@ const Sidenav = () => {
           <i className="bi bi-newspaper"></i>
           <span>Blog Posts</span>
         </Link>
-        <div className="nav-item">
+        <Link to="/dashboard/reviews" className="nav-item">
           <i className="bi bi-megaphone"></i>
           <span>Reviews</span>
-        </div>
+        </Link>
                 
         <div className="nav-item">
           <i className="bi bi-question-circle-fill"></i>

@@ -10,6 +10,7 @@ import DashboardMain from './pages/protected/layout/DashboardMain';
 import OrderArticles from './pages/protected/article/OrderArticles';
 import ManageArticles from './pages/protected/article/ManageArticles';
 import BlogPost from './pages/protected/article/BlogPost';
+import Reviews from './pages/protected/article/Reviews';
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,10 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "dashboardmain",
+        index: true,
         element: <DashboardMain />
       },
+      
       {
         path: "order",
         element: <OrderArticles />
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "blogposts",
         element: <BlogPost />
+      },
+      {
+        path: "reviews",
+        element: <Reviews />
       }
     ]
   },
