@@ -1,0 +1,70 @@
+.order-article-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .order-article-form {
+    width: 1000px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .description-input,
+  .dropdown-container select {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .dropdown-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .category-dropdown {
+    width: 300px;
+  }
+  
+  .author-tone-dropdown {
+    width: 180px;
+  }
+  
+  .word-count-dropdown {
+    width: 100%;
+  }
+  
+  select {
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+  }
+  
+  select::-ms-expand {
+    display: none;
+  }
+  
+  select option {
+    padding: 8px 12px;
+  }
+  
+  /* Limit dropdown height and enable scrolling */
+  select[multiple] {
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+  }

@@ -17,6 +17,8 @@ exports.up = function(knex) {
         'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative', 
         'persuasive', 'promotional', 'technical', 'other'
       ]).notNullable();
+
+      
       table.enu('status', [
         'pending', 'in_progress', 'completed', 'delivered', 'approved', 'rejected'
       ]).defaultTo('pending').notNullable();
