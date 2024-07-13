@@ -6,6 +6,8 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Dashboard from './pages/protected/Dashboard';
 import LoginClient from './layouts/client/LoginClient';
+import DashboardMain from './pages/protected/layout/DashboardMain';
+import OrderArticles from './pages/protected/article/OrderArticles';
 
 const router = createBrowserRouter([
   {
@@ -20,14 +22,25 @@ const router = createBrowserRouter([
     path: "/servies",
     element: <Services />
   },
-  {
-    path: "/dashboard",
-    element: <Dashboard />
-  },
+  
   {
     path: "/login",
     element: <LoginClient />
-  }
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "dashboardmain",
+        element: <DashboardMain />
+      },
+      {
+        path: "order",
+        element: <OrderArticles />
+      }
+    ]
+  },
 ]);
 
 

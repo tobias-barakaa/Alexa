@@ -1,17 +1,21 @@
+// Dashboard.js
 import "./Dashboard.css";
 import Header from "./layout/Header";
 import Sidenav from "./layout/Sidenav";
-import DashboardMain from "./layout/DashboardMain";
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div className="dashboard-container">
+    <>
       <Header />
-      <div className="dashboard-content">
+
+    <div className="dashboard-container">
+      <div className="left">
         <Sidenav />
-        <DashboardMain />
+          <Outlet />
       </div>
     </div>
+    </>
   );
 };
 

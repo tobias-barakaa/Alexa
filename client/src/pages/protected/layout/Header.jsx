@@ -1,3 +1,4 @@
+// Header.js
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -13,12 +14,7 @@ const Header = () => {
           </span>
         </div>
         <div className="middle-nav">
-          <span>Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries
-          Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries
-
-          Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries
-          Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries
-              </span>
+          <span>Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries</span>
         </div>
         <div className="bottom-nav">
           <div className="search-container">

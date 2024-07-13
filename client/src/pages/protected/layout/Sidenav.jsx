@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Sidenav.css";
 
 const Sidenav = () => {
@@ -8,14 +9,14 @@ const Sidenav = () => {
         <div className="separator"></div>
       </div>
       <div className="sidebar-nav">
-        <div className="nav-item">
+        <Link className="nav-item" to="/dashboard/dashboardmain">
           <i className="bi bi-grid-fill"></i>
           <span>Dashboard</span>
-        </div>
-        <div className="nav-item">
+        </Link>
+        <Link className="nav-item" to="/dashboard/order">
           <i className="bi bi-file-earmark-plus"></i>
           <span>Order Article</span>
-        </div>
+        </Link>
         <div className="nav-item">
           <i className="bi bi-list-ul"></i>
           <span>Manage Articles</span>
@@ -26,7 +27,7 @@ const Sidenav = () => {
         </div>
         <div className="nav-item">
           <i className="bi bi-megaphone"></i>
-          <span>Reviews from spouses</span>
+          <span>Reviews</span>
         </div>
                 
         <div className="nav-item">

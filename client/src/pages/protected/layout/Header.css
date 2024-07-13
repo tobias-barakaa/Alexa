@@ -37,7 +37,7 @@
 
 .middle-nav span {
   display: inline-block;
-  animation: slide-left 10s linear infinite;
+  animation: slide-left 100s linear infinite;
 }
 
 @keyframes slide-left {
