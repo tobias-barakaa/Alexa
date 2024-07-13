@@ -1,4 +1,3 @@
-// Dashboard.js
 import "./Dashboard.css";
 import Header from "./layout/Header";
 import Sidenav from "./layout/Sidenav";
@@ -8,13 +7,12 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-
-    <div className="dashboard-container">
-      <div className="left">
+      <div className="dashboard-container">
         <Sidenav />
+        <div className="content">
           <Outlet />
+        </div>
       </div>
-    </div>
     </>
   );
 };

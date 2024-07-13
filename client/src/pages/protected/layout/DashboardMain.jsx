@@ -2,7 +2,6 @@ import './DashboardMain.css';
 import OrderNow from './OrderNow';
 import WelcomeSection from './WelcomeSection';
 
- 
 import recentOrdersImg from '../../../assets/images/order.svg';
 import ongoingProjectsImg from '../../../assets/images/ongoing.svg';
 import upcomingDeadlinesImg from '../../../assets/images/upcoming.svg';

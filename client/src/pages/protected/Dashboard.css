@@ -1,14 +1,38 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 .dashboard-container {
-    flex-direction: column;
-    background-color: #eff2f3;
-  }
-  
-  .left {
-    display: flex;
-  }
-  
-  
-  .dashboard-layout button {
-    margin-left: 10px;
-  }
-  
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust based on header height */
+  background-color: #eff2f3;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust based on your header height */
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 20%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.dashboard-layout button {
+  margin-left: 10px;
+}
