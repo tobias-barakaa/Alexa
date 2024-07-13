@@ -8,6 +8,8 @@ import Dashboard from './pages/protected/Dashboard';
 import LoginClient from './layouts/client/LoginClient';
 import DashboardMain from './pages/protected/layout/DashboardMain';
 import OrderArticles from './pages/protected/article/OrderArticles';
+import ManageArticles from './pages/protected/article/ManageArticles';
+import BlogPost from './pages/protected/article/BlogPost';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "order",
         element: <OrderArticles />
+      },
+      {
+        path: "manage",
+        element: <ManageArticles />
+      },
+      {
+        path: "blogposts",
+        element: <BlogPost />
       }
     ]
   },

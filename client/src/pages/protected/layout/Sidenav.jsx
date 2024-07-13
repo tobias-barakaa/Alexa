@@ -17,14 +17,14 @@ const Sidenav = () => {
           <i className="bi bi-file-earmark-plus"></i>
           <span>Order Article</span>
         </Link>
-        <div className="nav-item">
+        <Link to="/dashboard/manage" className="nav-item">
           <i className="bi bi-list-ul"></i>
           <span>Manage Articles</span>
-        </div>
-        <div className="nav-item">
+        </Link>
+        <Link to="blogposts" className="nav-item">
           <i className="bi bi-newspaper"></i>
           <span>Blog Posts</span>
-        </div>
+        </Link>
         <div className="nav-item">
           <i className="bi bi-megaphone"></i>
           <span>Reviews</span>
