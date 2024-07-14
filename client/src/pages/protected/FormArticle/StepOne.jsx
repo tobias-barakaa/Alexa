@@ -1,25 +1,29 @@
 import { useState, useEffect } from 'react';
 import './StepOne.css';
 
-const StepOne = ({ nextStep }) => {
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [authorTone, setAuthorTone] = useState('');
-  const [numberOfWords, setNumberOfWords] = useState('');
+const categories = [
+  'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education',
+  'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art',
+  'History', 'Literature', 'Music', 'Religion', 'Other'
+];
+
+const authorTones = [
+  'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative',
+  'persuasive', 'promotional', 'technical', 'other'
+];
+
+const wordCounts = [
+  '100-200', '201-300', '301-500', '501-700', '701-1000'
+];
+
+const StepOne = ({ nextStep, data, onDataChange }) => {
+  const [description, setDescription] = useState(data.description);
+  const [category, setCategory] = useState(data.category);
+  const [authorTone, setAuthorTone] = useState(data.authorTone);
+  const [numberOfWords, setNumberOfWords] = useState(data.numberOfWords);
 
   useEffect(() => {
-    const stepOneData = JSON.parse(localStorage.getItem('stepOneData'));
-    if (stepOneData) {
-      setDescription(stepOneData.description);
-      setCategory(stepOneData.category);
-      setAuthorTone(stepOneData.authorTone);
-      setNumberOfWords(stepOneData.numberOfWords);
-    }
-  }, []);
-
-  useEffect(() => {
-    const stepOneData = { description, category, authorTone, numberOfWords };
-    localStorage.setItem('stepOneData', JSON.stringify(stepOneData));
+    onDataChange({ description, category, authorTone, numberOfWords });
   }, [description, category, authorTone, numberOfWords]);
 
   const handleNextClick = () => {
@@ -52,7 +56,7 @@ const StepOne = ({ nextStep }) => {
                 className="category-dropdown"
               >
                 <option value="">Select a category</option>
-                {category.map((cat, index) => (
+                {categories.map((cat, index) => (
                   <option key={index} value={cat}>{cat}</option>
                 ))}
               </select>
@@ -68,7 +72,7 @@ const StepOne = ({ nextStep }) => {
                 className="author-tone-dropdown"
               >
                 <option value="">Select authors tone</option>
-                {authorTone.map((tone, index) => (
+                {authorTones.map((tone, index) => (
                   <option key={index} value={tone}>{tone}</option>
                 ))}
               </select>
@@ -85,7 +89,7 @@ const StepOne = ({ nextStep }) => {
               className="word-count-dropdown"
             >
               <option value="">Select number of words</option>
-              {numberOfWords.map((count, index) => (
+              {wordCounts.map((count, index) => (
                 <option key={index} value={count}>{count}</option>
               ))}
             </select>
