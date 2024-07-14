@@ -1,5 +1,5 @@
 .dashboard-header {
-  height: 100px;
+  height: 120px;
   width: 100%;
   background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
   display: flex;
@@ -27,18 +27,19 @@
 
 .middle-nav {
   height: 10px;
+  margin: auto;
+  padding: 20px 0px 10px 0px;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   justify-content: center;
   overflow: hidden;
   white-space: nowrap;
-  width: 100%;
 }
 
-.middle-nav span {
+/* .middle-nav span {
   display: inline-block;
-  animation: slide-left 100s linear infinite;
-}
+  animation: slide-left 10s linear infinite;
+} */
 
 @keyframes slide-left {
   0% {
@@ -66,7 +67,8 @@
 
 .gradient-button {
   background: linear-gradient(to right, #078BC8, #1F4283);
-  color: white;
+  color: #000000;
+
   border: none;
   padding: 0px 10px;
   margin: 0 5px;

@@ -50,14 +50,8 @@
     flex: 1;
   }
   
-  .category-dropdown {
-    width: 100%;
-  }
-  
-  .author-tone-dropdown {
-    width: 100%;
-  }
-  
+  .category-dropdown,
+  .author-tone-dropdown,
   .word-count-dropdown {
     width: 100%;
   }
@@ -82,3 +76,23 @@
     max-height: 200px;
     overflow-y: auto;
   }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

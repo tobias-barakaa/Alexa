@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: 40px;
   height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-header {
@@ -39,10 +40,16 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 10px;
+  padding: 6px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
+  margin-left: 40px;
+  color: black;
+  font-size: 38px;
+
+
 }
 
 .nav-item:hover {
@@ -50,11 +57,11 @@
 }
 
 .nav-item i {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .nav-item span {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .sidebar-footer {

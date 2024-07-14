@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './OrderArticles.css';
 
 const OrderArticle = () => {
@@ -25,55 +25,67 @@ const OrderArticle = () => {
   return (
     <div className="order-article-container">
       <div className="order-article-form">
-        <h2>ORDER ARTICLE AND CONTENT</h2>
-        <label className="label">Description</label>
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="description-input"
-        />
+        <h2 className="form-heading">ORDER ARTICLE AND CONTENT</h2>
+        <div className="form-group">
+          <label htmlFor="description" className="form-label">Description:</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="description-input"
+          />
+        </div>
         <div className="input-row">
-          <div className="dropdown-container">
-            <label className="label">Choose a Category</label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="category-dropdown"
-            >
-              <option value="">Choose a category</option>
-              {categories.map((cat, index) => (
-                <option key={index} value={cat}>{cat}</option>
-              ))}
-            </select>
+          <div className="form-group">
+            <label htmlFor="category" className="form-label">Choose a category:</label>
+            <div className="dropdown-container">
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="category-dropdown"
+              >
+                <option value="">Select a category</option>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="dropdown-container">
-            <label className="label">Author's Tone</label>
-            <select
-              value={authorTone}
-              onChange={(e) => setAuthorTone(e.target.value)}
-              className="author-tone-dropdown"
-            >
-              <option value="">Author's tone</option>
-              {authorTones.map((tone, index) => (
-                <option key={index} value={tone}>{tone}</option>
-              ))}
-            </select>
+          <div className="form-group">
+            <label htmlFor="author-tone" className="form-label">Authors tone:</label>
+            <div className="dropdown-container">
+              <select
+                id="author-tone"
+                value={authorTone}
+                onChange={(e) => setAuthorTone(e.target.value)}
+                className="author-tone-dropdown"
+              >
+                <option value="">Select authors tone</option>
+                {authorTones.map((tone, index) => (
+                  <option key={index} value={tone}>{tone}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
-        <div className="dropdown-container">
-          <label className="label">Number of Words</label>
-          <select
-            value={numberOfWords}
-            onChange={(e) => setNumberOfWords(e.target.value)}
-            className="word-count-dropdown"
-          >
-            <option value="">Number of words</option>
-            {wordCounts.map((count, index) => (
-              <option key={index} value={count}>{count}</option>
-            ))}
-          </select>
+        <div className="form-group">
+          <label htmlFor="word-count" className="form-label">Number of words:</label>
+          <div className="dropdown-container">
+            <select
+              id="word-count"
+              value={numberOfWords}
+              onChange={(e) => setNumberOfWords(e.target.value)}
+              className="word-count-dropdown"
+            >
+              <option value="">Select number of words</option>
+              {wordCounts.map((count, index) => (
+                <option key={index} value={count}>{count}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </div>
