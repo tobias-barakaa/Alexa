@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './StepOne.css';
 
 const StepOne = ({ nextStep }) => {
@@ -7,23 +7,22 @@ const StepOne = ({ nextStep }) => {
   const [authorTone, setAuthorTone] = useState('');
   const [numberOfWords, setNumberOfWords] = useState('');
 
-  const categories = [
-    'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education',
-    'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art',
-    'History', 'Literature', 'Music', 'Religion', 'Other'
-  ];
+  useEffect(() => {
+    const stepOneData = JSON.parse(localStorage.getItem('stepOneData'));
+    if (stepOneData) {
+      setDescription(stepOneData.description);
+      setCategory(stepOneData.category);
+      setAuthorTone(stepOneData.authorTone);
+      setNumberOfWords(stepOneData.numberOfWords);
+    }
+  }, []);
 
-  const authorTones = [
-    'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative',
-    'persuasive', 'promotional', 'technical', 'other'
-  ];
-
-  const wordCounts = [
-    '100-200', '201-300', '301-500', '501-700', '701-1000'
-  ];
+  useEffect(() => {
+    const stepOneData = { description, category, authorTone, numberOfWords };
+    localStorage.setItem('stepOneData', JSON.stringify(stepOneData));
+  }, [description, category, authorTone, numberOfWords]);
 
   const handleNextClick = () => {
-    // Validate form fields here if needed
     nextStep();
   };
 
@@ -53,7 +52,7 @@ const StepOne = ({ nextStep }) => {
                 className="category-dropdown"
               >
                 <option value="">Select a category</option>
-                {categories.map((cat, index) => (
+                {category.map((cat, index) => (
                   <option key={index} value={cat}>{cat}</option>
                 ))}
               </select>
@@ -69,7 +68,7 @@ const StepOne = ({ nextStep }) => {
                 className="author-tone-dropdown"
               >
                 <option value="">Select authors tone</option>
-                {authorTones.map((tone, index) => (
+                {authorTone.map((tone, index) => (
                   <option key={index} value={tone}>{tone}</option>
                 ))}
               </select>
@@ -86,7 +85,7 @@ const StepOne = ({ nextStep }) => {
               className="word-count-dropdown"
             >
               <option value="">Select number of words</option>
-              {wordCounts.map((count, index) => (
+              {numberOfWords.map((count, index) => (
                 <option key={index} value={count}>{count}</option>
               ))}
             </select>
@@ -94,7 +93,6 @@ const StepOne = ({ nextStep }) => {
         </div>
         <div className="form-group">
           <button onClick={handleNextClick} className="next-button">Next</button>
-
         </div>
       </div>
     </div>

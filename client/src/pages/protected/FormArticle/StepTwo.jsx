@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./StepTwo.css";
 
-const StepTwo = ({ nextStep, prevStep }) => {
+const StepTwo = ({ prevStep }) => {
   const [formData, setFormData] = useState({
     keywords: '',
     quantity: 1,
@@ -9,6 +9,17 @@ const StepTwo = ({ nextStep, prevStep }) => {
     duration: '3hrs',
     description: '',
   });
+
+  useEffect(() => {
+    // Retrieve StepOne data from local storage
+    const stepOneData = JSON.parse(localStorage.getItem('stepOneData'));
+    if (stepOneData) {
+      setFormData((prevData) => ({
+        ...prevData,
+        ...stepOneData,
+      }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +29,17 @@ const StepTwo = ({ nextStep, prevStep }) => {
     }));
   };
 
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Combine StepOne and StepTwo data
+    const combinedData = { ...formData };
+    
+    // Here you can send combinedData to your database
+    console.log('Submit data to database:', combinedData);
+
+    // Clear local storage
+    localStorage.removeItem('stepOneData');
+  };
 
   return (
     <div className="order-article-container">
@@ -99,11 +120,9 @@ const StepTwo = ({ nextStep, prevStep }) => {
             </select>
           </div>
         </div>
-        
         <div className="form-group">
           <button type="button" className="prev-button" onClick={prevStep}>Prev</button>
-
-          <button type="submit" className="next-button" onClick={nextStep}>Submit</button>
+          <button type="submit" className="next-button" onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </div>
