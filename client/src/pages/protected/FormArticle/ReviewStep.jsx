@@ -15,14 +15,12 @@ const ReviewStep = ({ prevStep, stepOneData, stepTwoData, cost }) => {
       <div className="order-article-form">
         <h2 className="form-heading">REVIEW YOUR ORDER</h2>
         <div className="review-section">
-          <h3>Step One Data</h3>
           <p><strong>Description:</strong> {stepOneData.description}</p>
           <p><strong>Category:</strong> {stepOneData.category}</p>
           <p><strong>Author Tone:</strong> {stepOneData.authorTone}</p>
           <p><strong>Number of Words:</strong> {stepOneData.numberOfWords}</p>
         </div>
         <div className="review-section">
-          <h3>Step Two Data</h3>
           <p><strong>Keywords:</strong> {stepTwoData.keywords}</p>
           <p><strong>Quantity:</strong> {stepTwoData.quantity}</p>
           <p><strong>Author Tone:</strong> {stepTwoData.authorTone}</p>
