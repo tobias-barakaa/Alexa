@@ -8,13 +8,13 @@ const OrderArticle = () => {
   const [numberOfWords, setNumberOfWords] = useState('');
 
   const categories = [
-    'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education', 
-    'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art', 
+    'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education',
+    'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art',
     'History', 'Literature', 'Music', 'Religion', 'Other'
   ];
 
   const authorTones = [
-    'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative', 
+    'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative',
     'persuasive', 'promotional', 'technical', 'other'
   ];
 
@@ -25,6 +25,8 @@ const OrderArticle = () => {
   return (
     <div className="order-article-container">
       <div className="order-article-form">
+        <h2>ORDER ARTICLE AND CONTENT</h2>
+        <label className="label">Description</label>
         <input
           type="text"
           placeholder="Description"
@@ -34,6 +36,7 @@ const OrderArticle = () => {
         />
         <div className="input-row">
           <div className="dropdown-container">
+            <label className="label">Choose a Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -46,12 +49,13 @@ const OrderArticle = () => {
             </select>
           </div>
           <div className="dropdown-container">
+            <label className="label">Author's Tone</label>
             <select
               value={authorTone}
               onChange={(e) => setAuthorTone(e.target.value)}
               className="author-tone-dropdown"
             >
-              <option value="">Authors tone</option>
+              <option value="">Author's tone</option>
               {authorTones.map((tone, index) => (
                 <option key={index} value={tone}>{tone}</option>
               ))}
@@ -59,6 +63,7 @@ const OrderArticle = () => {
           </div>
         </div>
         <div className="dropdown-container">
+          <label className="label">Number of Words</label>
           <select
             value={numberOfWords}
             onChange={(e) => setNumberOfWords(e.target.value)}
