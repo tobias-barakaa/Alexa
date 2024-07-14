@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
-// import ReviewStep from './ReviewStep';
+import ReviewStep from './ReviewStep';
 
 const FormArticle = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -30,6 +30,10 @@ const FormArticle = () => {
     if (savedStepTwoData) setStepTwoData(savedStepTwoData);
   }, []);
 
+  useEffect(() => {
+    calculateCost();
+  }, [stepOneData, stepTwoData]);
+
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
   };
@@ -46,14 +50,15 @@ const FormArticle = () => {
   const handleStepTwoDataChange = (newData) => {
     setStepTwoData(newData);
     localStorage.setItem('stepTwoData', JSON.stringify(newData));
-    calculateCost(newData);
   };
 
-  const calculateCost = (data) => {
-    // Example cost calculation
+  const calculateCost = () => {
     const baseCost = 10;
-    const wordCountCost = parseInt(data.numberOfWords.split('-')[1], 10) / 100;
-    const totalCost = baseCost + wordCountCost * data.quantity;
+    let wordCountCost = 0;
+    if (stepOneData.numberOfWords && stepOneData.numberOfWords.includes('-')) {
+      wordCountCost = parseInt(stepOneData.numberOfWords.split('-')[1], 10) / 100;
+    }
+    const totalCost = baseCost + wordCountCost * stepTwoData.quantity;
     setCost(totalCost);
   };
 

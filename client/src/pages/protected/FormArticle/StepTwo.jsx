@@ -7,6 +7,7 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
   const [authorTone, setAuthorTone] = useState(data.authorTone);
   const [duration, setDuration] = useState(data.duration);
   const [description, setDescription] = useState(data.description);
+  
 
   useEffect(() => {
     onDataChange({ keywords, quantity, authorTone, duration, description });

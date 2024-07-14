@@ -20,11 +20,12 @@ const StepOne = ({ nextStep, data, onDataChange }) => {
   const [description, setDescription] = useState(data.description);
   const [category, setCategory] = useState(data.category);
   const [authorTone, setAuthorTone] = useState(data.authorTone);
-  const [numberOfWords, setNumberOfWords] = useState(data.numberOfWords);
+  const [numberOfWords, setNumberOfWords] = useState(data.numberOfWords || '');
+
 
   useEffect(() => {
     onDataChange({ description, category, authorTone, numberOfWords });
-  }, [description, category, authorTone, numberOfWords]);
+  }, [description, category, authorTone, numberOfWords, onDataChange]);
 
   const handleNextClick = () => {
     nextStep();
