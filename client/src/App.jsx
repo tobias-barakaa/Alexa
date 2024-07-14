@@ -7,10 +7,11 @@ import Services from './pages/Services';
 import Dashboard from './pages/protected/Dashboard';
 import LoginClient from './layouts/client/LoginClient';
 import DashboardMain from './pages/protected/layout/DashboardMain';
-import OrderArticles from './pages/protected/article/OrderArticles';
+// import OrderArticles from './pages/protected/article/OrderArticles';
 import ManageArticles from './pages/protected/article/ManageArticles';
 import BlogPost from './pages/protected/article/BlogPost';
 import Reviews from './pages/protected/article/Reviews';
+import StepForm from './pages/protected/FormArticle/StepForm';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       
       {
         path: "order",
-        element: <OrderArticles />
+        element: <StepForm />
       },
       {
         path: "manage",
