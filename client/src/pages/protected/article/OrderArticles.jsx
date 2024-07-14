@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './OrderArticles.css';
 
-const OrderArticle = () => {
+const OrderArticle = ({ nextStep }) => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [authorTone, setAuthorTone] = useState('');
@@ -21,6 +21,11 @@ const OrderArticle = () => {
   const wordCounts = [
     '100-200', '201-300', '301-500', '501-700', '701-1000'
   ];
+
+  const handleNextClick = () => {
+    // Validate form fields here if needed
+    nextStep();
+  };
 
   return (
     <div className="order-article-container">
@@ -86,6 +91,9 @@ const OrderArticle = () => {
               ))}
             </select>
           </div>
+        </div>
+        <div className="form-group">
+          <button onClick={handleNextClick} className="next-button">Next</button>
         </div>
       </div>
     </div>

@@ -1,57 +1,103 @@
-import React from 'react';
+import { useState } from 'react';
+import './OrderArticles.css';
 
 const StepOne = ({ nextStep }) => {
-    return (
-        <div className="form-container">
-            <h2 className='order-article-title'>ORDER ARTICLE</h2>
-            <form>
-            <div className="form-group">
-                    <label htmlFor="content">Title:</label>
-                    <input type="text" name="content" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="category">Category:</label>
-                    <select name="category">
-                    <option value="Finance">Finance</option>
-                    <option value="Economy">Economy</option>
-                    <option value="Food">Food</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Health">Health</option>
-                    <option value="Technology">Technology</option>
-                    <option value="Business">Business</option>
-                    <option value="Education">Education</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Science">Science</option>
-                    <option value="Environment">Environment</option>
-                    <option value="Politics">Politics</option>
-                    <option value="Art">Art</option>
-                    <option value="History">History</option>
-                    <option value="Literature">Literature</option>
-                    <option value="Music">Music</option>
-                    <option value="Religion">Religion</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <label>Number of Words</label>
-                  <input type="number" name="number_of_words" />
-                  <label>Quantity</label>
-                  <input type="number" name="quantity" />
-                  <label>Keywords</label>
-                  <input type="text" name="keywords" />
-                <div className="form-group">
-                    <label htmlFor="number_of_words">Number of Words:</label>
-                    <input type="number" id="number_of_words" name="number_of_words" required />
-                </div>
-                <button type="button" onClick={nextStep}>Next</button>
-            </form>
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [authorTone, setAuthorTone] = useState('');
+  const [numberOfWords, setNumberOfWords] = useState('');
+
+  const categories = [
+    'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education',
+    'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art',
+    'History', 'Literature', 'Music', 'Religion', 'Other'
+  ];
+
+  const authorTones = [
+    'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative',
+    'persuasive', 'promotional', 'technical', 'other'
+  ];
+
+  const wordCounts = [
+    '100-200', '201-300', '301-500', '501-700', '701-1000'
+  ];
+
+  const handleNextClick = () => {
+    // Validate form fields here if needed
+    nextStep();
+  };
+
+  return (
+    <div className="order-article-container">
+      <div className="order-article-form">
+        <h2 className="form-heading">ORDER ARTICLE AND CONTENT</h2>
+        <div className="form-group">
+          <label htmlFor="description" className="form-label">Description:</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="description-input"
+          />
         </div>
-    );
+        <div className="input-row">
+          <div className="form-group">
+            <label htmlFor="category" className="form-label">Choose a category:</label>
+            <div className="dropdown-container">
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="category-dropdown"
+              >
+                <option value="">Select a category</option>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="author-tone" className="form-label">Authors tone:</label>
+            <div className="dropdown-container">
+              <select
+                id="author-tone"
+                value={authorTone}
+                onChange={(e) => setAuthorTone(e.target.value)}
+                className="author-tone-dropdown"
+              >
+                <option value="">Select authors tone</option>
+                {authorTones.map((tone, index) => (
+                  <option key={index} value={tone}>{tone}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="word-count" className="form-label">Number of words:</label>
+          <div className="dropdown-container">
+            <select
+              id="word-count"
+              value={numberOfWords}
+              onChange={(e) => setNumberOfWords(e.target.value)}
+              className="word-count-dropdown"
+            >
+              <option value="">Select number of words</option>
+              {wordCounts.map((count, index) => (
+                <option key={index} value={count}>{count}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="form-group">
+          <button onClick={handleNextClick} className="next-button">Next</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default StepOne;
