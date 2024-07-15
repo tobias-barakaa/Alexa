@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { updateStepOneData } from '../../../slices/articleSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import './StepOne.css';
-import { useSelector } from 'react-redux';
 
 
 
@@ -21,11 +19,13 @@ const categories = [
   ];
 
   const StepOne = ({ nextStep }) => {
+    const dispatch = useDispatch();
+    const stepOneData = useSelector((state) => state.article.stepOneData);
 
-
-    const handleStepOneDataChange = (event) => {
-        dispatch(setStepOneData({ description: event.target.value }));
+    const handleChange = (field, value) => {
+        dispatch(updateStepOneData({ [field]: value })); 
       };
+      
   
     return (
       <div className="order-article-container">
