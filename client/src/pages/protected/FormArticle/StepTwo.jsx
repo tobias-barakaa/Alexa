@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
 import { calculateTotalCost, updateStepTwoData } from '../../../slices/articleSlice';
+import { selectStepTwoData, selectTotalCost } from '../../../selectors/articleSelectors';
 
 const StepTwo = ({ prevStep, nextStep }) => {
   const dispatch = useDispatch();
-  const stepTwoData = useSelector((state) => state.article?.stepTwoData);
+  const stepTwoData = useSelector(selectStepTwoData);
 
   useEffect(() => {
-    dispatch(updateStepTwoData(stepTwoData));
     dispatch(calculateTotalCost());
   }, [dispatch, stepTwoData]);
 
@@ -25,7 +25,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
           <input
             type="text"
             id="keywords"
-            value={stepTwoData?.keywords}
+            value={stepTwoData.keywords}
             onChange={(e) => handleChange('keywords', e.target.value)}
             className="description-input"
             required
@@ -37,7 +37,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
             <input
               type="number"
               id="quantity"
-              value={stepTwoData?.quantity}
+              value={stepTwoData.quantity}
               onChange={(e) => handleChange('quantity', e.target.value)}
               min="1"
               max="50"
@@ -50,7 +50,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
             <div className="dropdown-container">
               <select
                 id="authorTone"
-                value={stepTwoData?.authorTone}
+                value={stepTwoData.authorTone}
                 onChange={(e) => handleChange('authorTone', e.target.value)}
                 className="category-dropdown"
                 required
@@ -73,7 +73,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
             <div className="dropdown-container">
               <select
                 id="duration"
-                value={stepTwoData?.duration}
+                value={stepTwoData.duration}
                 onChange={(e) => handleChange('duration', e.target.value)}
                 className="category-dropdown"
                 required
@@ -95,7 +95,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
           <label htmlFor="description" className="form-label">Description:</label>
           <textarea
             id="description"
-            value={stepTwoData?.description}
+            value={stepTwoData.description}
             onChange={(e) => handleChange('description', e.target.value)}
             className="description-input"
             required
