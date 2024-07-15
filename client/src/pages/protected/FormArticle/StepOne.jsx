@@ -20,7 +20,7 @@ const categories = [
 
   const StepOne = ({ nextStep }) => {
     const dispatch = useDispatch();
-    const stepOneData = useSelector((state) => state.article.stepOneData);
+    const stepOneData = useSelector((state) => state.article?.stepOneData);
 
     const handleChange = (field, value) => {
         dispatch(updateStepOneData({ [field]: value })); 
