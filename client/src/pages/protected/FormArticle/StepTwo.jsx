@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
+import { calculateTotalCost, updateStepTwoData } from '../../../slices/articleSlice';
 
-const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
-  const [keywords, setKeywords] = useState(data.keywords);
-  const [quantity, setQuantity] = useState(data.quantity);
-  const [authorTone, setAuthorTone] = useState(data.authorTone);
-  const [duration, setDuration] = useState(data.duration);
-  const [description, setDescription] = useState(data.description);
-  
+const StepTwo = ({ prevStep, nextStep }) => {
+  const dispatch = useDispatch();
+  const stepTwoData = useSelector((state) => state.article?.stepTwoData);
 
   useEffect(() => {
-    onDataChange({ keywords, quantity, authorTone, duration, description });
-  }, [keywords, quantity, authorTone, duration, description, onDataChange]);
+    dispatch(updateStepTwoData(stepTwoData));
+    dispatch(calculateTotalCost());
+  }, [dispatch, stepTwoData]);
 
-  const handleNextClick = () => {
-    nextStep();
+  const handleChange = (field, value) => {
+    dispatch(updateStepTwoData({ ...stepTwoData, [field]: value }));
   };
 
   return (
@@ -26,8 +25,8 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
           <input
             type="text"
             id="keywords"
-            value={keywords}
-            onChange={(e) => setKeywords(e.target.value)}
+            value={stepTwoData?.keywords}
+            onChange={(e) => handleChange('keywords', e.target.value)}
             className="description-input"
             required
           />
@@ -38,8 +37,8 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
             <input
               type="number"
               id="quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              value={stepTwoData?.quantity}
+              onChange={(e) => handleChange('quantity', e.target.value)}
               min="1"
               max="50"
               className="description-input"
@@ -51,8 +50,8 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
             <div className="dropdown-container">
               <select
                 id="authorTone"
-                value={authorTone}
-                onChange={(e) => setAuthorTone(e.target.value)}
+                value={stepTwoData?.authorTone}
+                onChange={(e) => handleChange('authorTone', e.target.value)}
                 className="category-dropdown"
                 required
               >
@@ -74,8 +73,8 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
             <div className="dropdown-container">
               <select
                 id="duration"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
+                value={stepTwoData?.duration}
+                onChange={(e) => handleChange('duration', e.target.value)}
                 className="category-dropdown"
                 required
               >
@@ -96,8 +95,8 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
           <label htmlFor="description" className="form-label">Description:</label>
           <textarea
             id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={stepTwoData?.description}
+            onChange={(e) => handleChange('description', e.target.value)}
             className="description-input"
             required
           />
@@ -109,7 +108,7 @@ const StepTwo = ({ prevStep, nextStep, data, onDataChange }) => {
             </button>
           </div>
           <div className="form-group">
-            <button onClick={handleNextClick} className="next-button">
+            <button onClick={nextStep} className="next-button">
               Next
             </button>
           </div>
