@@ -32,6 +32,8 @@ const articleSlice = createSlice({
     updateStepOneData(state, action) {
       state.stepOneData = { ...state.stepOneData, ...action.payload };
       localStorage.setItem('stepOneData', JSON.stringify(state.stepOneData));
+      console.log('State in reducer:', state.stepOneData);
+
     },
     updateStepTwoData(state, action) {
       state.stepTwoData = { ...state.stepTwoData, ...action.payload };
