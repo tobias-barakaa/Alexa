@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const getInitialState = () => {
-  const stepOneData = localStorage.getItem('stepOneData') ? JSON.parse(localStorage.getItem('stepOneData')) : {
+  const stepOneData = JSON.parse(localStorage.getItem('stepOneData')) || {
     description: '',
     category: '',
     authorTone: '',
     numberOfWords: '',
   };
 
-  const stepTwoData = localStorage.getItem('stepTwoData') ? JSON.parse(localStorage.getItem('stepTwoData')) : {
+  const stepTwoData = JSON.parse(localStorage.getItem('stepTwoData')) || {
     keywords: '',
     quantity: 1,
     authorTone: 'friendly',
@@ -16,7 +16,7 @@ const getInitialState = () => {
     description: '',
   };
 
-  const totalCost = localStorage.getItem('totalCost') ? JSON.parse(localStorage.getItem('totalCost')) : 0;
+  const totalCost = JSON.parse(localStorage.getItem('totalCost')) || 0;
 
   return {
     stepOneData,
@@ -32,8 +32,6 @@ const articleSlice = createSlice({
     updateStepOneData(state, action) {
       state.stepOneData = { ...state.stepOneData, ...action.payload };
       localStorage.setItem('stepOneData', JSON.stringify(state.stepOneData));
-      console.log('State in reducer:', state.stepOneData);
-
     },
     updateStepTwoData(state, action) {
       state.stepTwoData = { ...state.stepTwoData, ...action.payload };
