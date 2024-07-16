@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
+import { updateStepTwoData } from '../../../slices/articleSlice';
 
 const StepTwo = ({ prevStep, nextStep }) => {
   const dispatch = useDispatch();
     const stepTwoData = useSelector((state) => state.article?.stepTwoData);
 
     const handleChange = (field, value) => {
-        dispatch(updateStepOneData({ [field]: value })); 
+
+        dispatch(updateStepTwoData({ [field]: value })); 
       };
 
   return (
@@ -110,6 +112,11 @@ const StepTwo = ({ prevStep, nextStep }) => {
       </div>
     </div>
   );
+};
+
+StepTwo.propTypes = {
+  prevStep: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
 };
 
 export default StepTwo;
