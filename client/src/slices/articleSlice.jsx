@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const getInitialState = () => {
   const stepOneData = JSON.parse(localStorage.getItem('stepOneData')) || {
@@ -21,7 +21,7 @@ const getInitialState = () => {
   return {
     stepOneData,
     stepTwoData,
-    totalCost
+    totalCost,
   };
 };
 

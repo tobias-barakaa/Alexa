@@ -22,112 +22,107 @@ const wordCounts = [
 const StepOne = ({ nextStep }) => {
     const dispatch = useDispatch();
     const reduxStepOneData = useSelector((state) => state.article?.stepOneData);
-
+  
     // Local state to handle immediate input changes
     const [localStepOneData, setLocalStepOneData] = useState(reduxStepOneData);
-
+  
     useEffect(() => {
-        // Update local state when Redux state changes
-        setLocalStepOneData(reduxStepOneData);
+      // Update local state when Redux state changes
+      setLocalStepOneData(reduxStepOneData);
     }, [reduxStepOneData]);
-
+  
     const handleChange = (field, value) => {
-        // Update local state immediately
-        setLocalStepOneData(prev => ({ ...prev, [field]: value }));
-        
-        // Dispatch to Redux
-        dispatch(updateStepOneData({ [field]: value }));
+      // Update local state immediately
+      setLocalStepOneData((prev) => ({ ...prev, [field]: value }));
+  
+      // Dispatch to Redux
+      dispatch(updateStepOneData({ [field]: value }));
     };
-
+  
     const handleNextStep = () => {
-        nextStep();
+      nextStep();
     };
 
-
-  return (
-    <div className="order-article-container">
-      <div className="order-article-form">
-        <h2 className="form-heading">ORDER ARTICLE AND CONTENT</h2>
-        <div className="form-group">
-          <label htmlFor="description" className="form-label">Description:</label>
-          <input
+    return (
+        <div className="order-article-container">
+            <div className="order-article-form">
+                <h2 className="form-heading">ORDER ARTICLE AND CONTENT</h2>
+                <div className="form-group">
+                    <label htmlFor="description" className="form-label">Description:</label>
+                    <input
                         type="text"
                         id="description"
                         placeholder="Description"
                         value={localStepOneData?.description || ''}
                         onChange={(e) => handleChange('description', e.target.value)}
-                       
-                        
                         className="description-input"
                     />
-        </div>
-        <div className="input-row">
-          <div className="form-group">
-            <label htmlFor="category" className="form-label">Choose a category:</label>
-            <div className="dropdown-container">
-              <select
-                id="category"
-                value={localStepOneData?.category || ''}
-                onChange={(e) => handleChange('category', e.target.value)}
-                className="category-dropdown"
-              >
-                <option value="">Select a category</option>
-                {categories.map((cat, index) => (
-                  <option key={index} value={cat}>{cat}</option>
-                ))}
-              </select>
+                </div>
+                <div className="input-row">
+                    <div className="form-group">
+                        <label htmlFor="category" className="form-label">Choose a category:</label>
+                        <div className="dropdown-container">
+                            <select
+                                id="category"
+                                value={localStepOneData?.category || ''}
+                                onChange={(e) => handleChange('category', e.target.value)}
+                                className="category-dropdown"
+                            >
+                                <option value="">Select a category</option>
+                                {categories.map((cat, index) => (
+                                    <option key={index} value={cat}>{cat}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="author-tone" className="form-label">Authors tone:</label>
+                        <div className="dropdown-container">
+                            <select
+                                id="author-tone"
+                                value={localStepOneData?.authorTone || ''}
+                                onChange={(e) => handleChange('authorTone', e.target.value)}
+                                className="author-tone-dropdown"
+                            >
+                                <option value="">Select authors tone</option>
+                                {authorTones.map((tone, index) => (
+                                    <option key={index} value={tone}>{tone}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="word-count" className="form-label">Number of words:</label>
+                    <div className="dropdown-container">
+                        <select
+                            id="word-count"
+                            value={localStepOneData?.numberOfWords || ''}
+                            onChange={(e) => handleChange('numberOfWords', e.target.value)}
+                            className="word-count-dropdown"
+                        >
+                            <option value="">Select number of words</option>
+                            {wordCounts.map((count, index) => (
+                                <option key={index} value={count}>{count}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <button onClick={handleNextStep} className="next-button">Next</button>
+                </div>
             </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="author-tone" className="form-label">Authors tone:</label>
-            <div className="dropdown-container">
-              <select
-                id="author-tone"
-
-                value={localStepOneData?.authorTone || ''}
-                onChange={(e) => handleChange('authorTone', e.target.value)}
-               
-                className="author-tone-dropdown"
-              >
-                <option value="">Select authors tone</option>
-                {authorTones.map((tone, index) => (
-                  <option key={index} value={tone}>{tone}</option>
-                ))}
-              </select>
-            </div>
-          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="word-count" className="form-label">Number of words:</label>
-          <div className="dropdown-container">
-            <select
-              id="word-count"
-
-              value={localStepOneData?.numberOfWords || ''}
-              onChange={(e) => handleChange('numberOfWords', e.target.value)}
-             
-              className="word-count-dropdown"
-            >
-              <option value="">Select number of words</option>
-              {wordCounts.map((count, index) => (
-                <option key={index} value={count}>{count}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="form-group">
-          <button onClick={handleNextStep} className="next-button">Next</button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 StepOne.propTypes = {
-  nextStep: PropTypes.func.isRequired,
+    nextStep: PropTypes.func.isRequired,
 };
 
 export default StepOne;
+
+
 
 
 
