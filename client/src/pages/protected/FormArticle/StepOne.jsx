@@ -3,27 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateStepOneData } from '../../../slices/articleSlice';
 import './StepOne.css';
 import { useEffect, useState } from 'react';
-
-const categories = [
-  'Finance', 'Economy', 'Food', 'Travel', 'Health', 'Technology', 'Business', 'Education',
-  'Entertainment', 'Fashion', 'Sports', 'Science', 'Environment', 'Politics', 'Art',
-  'History', 'Literature', 'Music', 'Religion', 'Other'
-];
-
-const authorTones = [
-  'friendly', 'professional', 'casual', 'formal', 'humorous', 'informative',
-  'persuasive', 'promotional', 'technical', 'other'
-];
-
-const wordCounts = [
-  '100-200', '201-300', '301-500', '501-700', '701-1000'
-];
+import { CATEGORIES, AUTHOR_TONES,WORD_COUNT_RANGES } from '../../../../../constants/categories';
 
 const StepOne = ({ nextStep }) => {
     const dispatch = useDispatch();
     const reduxStepOneData = useSelector((state) => state.article?.stepOneData);
   
-    // Local state to handle immediate input changes
     const [localStepOneData, setLocalStepOneData] = useState({
         description: '',
         category: '',
@@ -32,7 +17,6 @@ const StepOne = ({ nextStep }) => {
     });
 
     useEffect(() => {
-        // Initialize local state from local storage if Redux state is empty
         const storedData = JSON.parse(localStorage.getItem('stepOneData'));
         if (reduxStepOneData?.description === '' && storedData) {
             setLocalStepOneData(storedData);
@@ -82,8 +66,7 @@ const StepOne = ({ nextStep }) => {
                                 onChange={(e) => handleChange('category', e.target.value)}
                                 className="category-dropdown"
                             >
-                                <option value="">Select a category</option>
-                                {categories.map((cat, index) => (
+                                {CATEGORIES.map((cat, index) => (
                                     <option key={index} value={cat}>{cat}</option>
                                 ))}
                             </select>
@@ -98,8 +81,7 @@ const StepOne = ({ nextStep }) => {
                                 onChange={(e) => handleChange('authorTone', e.target.value)}
                                 className="author-tone-dropdown"
                             >
-                                <option value="">Select authors tone</option>
-                                {authorTones.map((tone, index) => (
+                                {AUTHOR_TONES.map((tone, index) => (
                                     <option key={index} value={tone}>{tone}</option>
                                 ))}
                             </select>
@@ -115,8 +97,7 @@ const StepOne = ({ nextStep }) => {
                             onChange={(e) => handleChange('numberOfWords', e.target.value)}
                             className="word-count-dropdown"
                         >
-                            <option value="">Select number of words</option>
-                            {wordCounts.map((count, index) => (
+                            {WORD_COUNT_RANGES.map((count, index) => (
                                 <option key={index} value={count}>{count}</option>
                             ))}
                         </select>

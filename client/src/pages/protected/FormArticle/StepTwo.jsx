@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
 import { updateStepTwoData } from '../../../slices/articleSlice';
+import { LANGUAGES } from '../../../../../constants/categories';
 
 const StepTwo = ({ prevStep, nextStep }) => {
   const dispatch = useDispatch();
@@ -51,16 +52,11 @@ const StepTwo = ({ prevStep, nextStep }) => {
                 className="category-dropdown"
                 required
               >
-                <option value="friendly">friendly</option>
-                <option value="professional">professional</option>
-                <option value="casual">casual</option>
-                <option value="formal">formal</option>
-                <option value="humorous">humorous</option>
-                <option value="informative">informative</option>
-                <option value="persuasive">persuasive</option>
-                <option value="promotional">promotional</option>
-                <option value="technical">technical</option>
-                <option value="other">other</option>
+
+                    {LANGUAGES.map((cat, index) => (
+                                    <option key={index} value={cat}>{cat}</option>
+                                ))}
+
               </select>
             </div>
           </div>
