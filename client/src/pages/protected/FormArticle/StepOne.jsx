@@ -24,23 +24,37 @@ const StepOne = ({ nextStep }) => {
     const reduxStepOneData = useSelector((state) => state.article?.stepOneData);
   
     // Local state to handle immediate input changes
-    const [localStepOneData, setLocalStepOneData] = useState(reduxStepOneData);
-  
+    const [localStepOneData, setLocalStepOneData] = useState({
+        description: '',
+        category: '',
+        authorTone: '',
+        numberOfWords: ''
+    });
+
     useEffect(() => {
-      // Update local state when Redux state changes
-      setLocalStepOneData(reduxStepOneData);
+        // Initialize local state from local storage if Redux state is empty
+        const storedData = JSON.parse(localStorage.getItem('stepOneData'));
+        if (reduxStepOneData?.description === '' && storedData) {
+            setLocalStepOneData(storedData);
+        } else {
+            setLocalStepOneData(reduxStepOneData);
+        }
     }, [reduxStepOneData]);
-  
+
     const handleChange = (field, value) => {
-      // Update local state immediately
-      setLocalStepOneData((prev) => ({ ...prev, [field]: value }));
+        // Update local state immediately
+        const updatedData = { ...localStepOneData, [field]: value };
+        setLocalStepOneData(updatedData);
   
-      // Dispatch to Redux
-      dispatch(updateStepOneData({ [field]: value }));
+        // Update local storage
+        localStorage.setItem('stepOneData', JSON.stringify(updatedData));
+
+        // Dispatch to Redux
+        dispatch(updateStepOneData({ [field]: value }));
     };
   
     const handleNextStep = () => {
-      nextStep();
+        nextStep();
     };
 
     return (
@@ -121,6 +135,7 @@ StepOne.propTypes = {
 };
 
 export default StepOne;
+
 
 
 
