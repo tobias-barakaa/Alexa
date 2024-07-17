@@ -21,6 +21,16 @@ const createArticle = async(req, res) => {
         duration,
         cost
     } = req.body;
+    console.log(user_id,
+        description,
+        category,
+        number_of_words,
+        quantity,
+        keywords,
+        author_tone,
+        language,
+        duration,
+        cost)
 
     const validationErrors = validateArticleInput({
         category,

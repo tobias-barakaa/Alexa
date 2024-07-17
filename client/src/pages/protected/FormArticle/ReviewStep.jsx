@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-
 import { useSelector } from 'react-redux';
+import { useOrderArticlesMutation } from '../../../slices/articlesApiSlice';
 import "./ReviewStep.css";
 
 const ReviewStep = ({ prevStep }) => {
@@ -8,13 +8,21 @@ const ReviewStep = ({ prevStep }) => {
   const stepTwoData = useSelector((state) => state.article?.stepTwoData);
   const cost = useSelector((state) => state.article?.totalCost);
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log("Submitting form with data: ", {
-      ...stepOneData,
-      ...stepTwoData,
-      cost,
-    });
+  const [orderArticles, { isLoading, isError, isSuccess, error }] = useOrderArticlesMutation();
+
+  const handleSubmit = async () => {
+    try {
+      const orderData = {
+        ...stepOneData,
+        ...stepTwoData,
+        cost,
+      };
+      console.log("Submitting form with data: ", orderData);
+      await orderArticles(orderData).unwrap();
+      console.log("Order submitted successfully!");
+    } catch (err) {
+      console.error("Failed to submit order: ", err);
+    }
   };
 
   return (
@@ -39,16 +47,18 @@ const ReviewStep = ({ prevStep }) => {
         </div>
         <div className="input-row">
           <div className="form-group">
-            <button className="prev-button" onClick={prevStep}>
+            <button className="prev-button" onClick={prevStep} disabled={isLoading}>
               Previous
             </button>
           </div>
           <div className="form-group">
-            <button className="submit-button" onClick={handleSubmit}>
-              Submit
+            <button className="submit-button" onClick={handleSubmit} disabled={isLoading}>
+              {isLoading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </div>
+        {isError && <p className="error-message">Error: {error?.data?.message || 'Failed to submit order'}</p>}
+        {isSuccess && <p className="success-message">Order submitted successfully!</p>}
       </div>
     </div>
   );
@@ -57,6 +67,5 @@ const ReviewStep = ({ prevStep }) => {
 ReviewStep.propTypes = {
   prevStep: PropTypes.func.isRequired,
 };
+
 export default ReviewStep;
-
-
