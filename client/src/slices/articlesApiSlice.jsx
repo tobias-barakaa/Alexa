@@ -9,9 +9,17 @@ export const articlesApiSlice = apiSlice.injectEndpoints({
                 url: ARTICLES
             }),
             keepUnusedDataFor: 5
+        }),
+        orderArticles: builder.mutation({
+            query: (data) => ({
+                url: ARTICLES,
+                method: 'POST',
+                body: data
+            })
         })
 
     })
+    
 });
 
 export const { useGetArticlesQuery } = articlesApiSlice;
