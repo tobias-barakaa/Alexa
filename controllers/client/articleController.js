@@ -12,7 +12,6 @@ const createArticle = async(req, res) => {
         author_tone,
         language,
         type,
-        content,
         duration,
         cost
     } = req.body;
@@ -31,7 +30,6 @@ const createArticle = async(req, res) => {
                 status: 'pending', 
                 language,
                 type,
-                content,
                 client_id: req.user.id,
                 duration,
                 cost,
