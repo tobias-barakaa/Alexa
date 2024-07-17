@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateStepOneData } from '../../../slices/articleSlice';
 import './StepOne.css';
 import { useEffect, useState } from 'react';
-import { CATEGORIES, AUTHOR_TONES,WORD_COUNT_RANGES } from '../../../../../constants/categories';
+import { CATEGORIES, AUTHOR_TONES,WORD_COUNT_RANGES } from '../../../../../constants/articles';
 
 const StepOne = ({ nextStep }) => {
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const StepOne = ({ nextStep }) => {
         description: '',
         category: '',
         authorTone: '',
-        numberOfWords: ''
+        number_of_words: ''
     });
 
     useEffect(() => {
@@ -93,7 +93,7 @@ const StepOne = ({ nextStep }) => {
                     <div className="dropdown-container">
                         <select
                             id="word-count"
-                            value={localStepOneData?.numberOfWords || ''}
+                            value={localStepOneData?.number_of_words || ''}
                             onChange={(e) => handleChange('numberOfWords', e.target.value)}
                             className="word-count-dropdown"
                         >

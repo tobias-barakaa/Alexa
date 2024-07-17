@@ -18,7 +18,6 @@ const createArticle = async(req, res) => {
         keywords,
         author_tone,
         language,
-        type,
         duration,
         cost
     } = req.body;
@@ -50,8 +49,6 @@ const createArticle = async(req, res) => {
                 author_tone,
                 status: 'pending', 
                 language,
-                type,
-                client_id: req.user.id,
                 duration,
                 cost,
                 created_at: knex.fn.now(),

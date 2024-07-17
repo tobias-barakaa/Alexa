@@ -4,14 +4,14 @@ const getInitialState = () => {
   const stepOneData = JSON.parse(localStorage.getItem('stepOneData')) || {
     description: '',
     category: '',
-    authorTone: '',
-    numberOfWords: '',
+    author_tone: '',
+    number_of_words: '',
   };
 
   const stepTwoData = JSON.parse(localStorage.getItem('stepTwoData')) || {
     keywords: '',
     quantity: 1,
-    authorTone: 'friendly',
+    author_tone: 'friendly',
     duration: '3hrs',
     description: '',
   };
@@ -56,13 +56,13 @@ export default articleSlice.reducer;
 //   stepOneData: {
 //     description: '',
 //     category: '',
-//     authorTone: '',
-//     numberOfWords: '',
+//     author_tone: '',
+//     number_of_words: '',
 //   },
 //   stepTwoData: {
 //     keywords: '',
 //     quantity: 1,
-//     authorTone: 'friendly',
+//     author_tone: 'friendly',
 //     duration: '3hrs',
 //     description: '',
 //   },

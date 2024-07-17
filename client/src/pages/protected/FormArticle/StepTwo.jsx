@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
 import { updateStepTwoData } from '../../../slices/articleSlice';
-import { DURATIONS, LANGUAGES } from '../../../../../constants/categories';
+import { DURATIONS, LANGUAGES } from '../../../../../constants/articles';
 
 const StepTwo = ({ prevStep, nextStep }) => {
   const dispatch = useDispatch();
@@ -43,12 +43,12 @@ const StepTwo = ({ prevStep, nextStep }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="authorTone" className="form-label">Language Tone:</label>
+            <label htmlFor="author_tone" className="form-label">Language Tone:</label>
             <div className="dropdown-container">
               <select
-                id="authorTone"
-                value={stepTwoData?.authorTone}
-                onChange={(e) => handleChange('authorTone', e.target.value)}
+                id="author_tone"
+                value={stepTwoData?.author_tone}
+                onChange={(e) => handleChange('author_tone', e.target.value)}
                 className="category-dropdown"
                 required
               >
@@ -151,12 +151,12 @@ export default StepTwo;
 //             />
 //           </div>
 //           <div className="form-group">
-//             <label htmlFor="authorTone" className="form-label">Language Tone:</label>
+//             <label htmlFor="author_tone" className="form-label">Language Tone:</label>
 //             <div className="dropdown-container">
 //               <select
-//                 id="authorTone"
-//                 value={stepTwoData.authorTone}
-//                 onChange={(e) => handleChange('authorTone', e.target.value)}
+//                 id="author_tone"
+//                 value={stepTwoData.author_tone}
+//                 onChange={(e) => handleChange('author_tone', e.target.value)}
 //                 className="category-dropdown"
 //                 required
 //               >
