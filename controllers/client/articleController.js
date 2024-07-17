@@ -1,4 +1,11 @@
 const knex = require("../../db/db.js");
+const { CATEGORIES,
+    WORD_COUNT_RANGES,
+    AUTHOR_TONES,
+    LANGUAGES,
+    DURATIONS,
+    QUANTITY_RANGE } = require("../../constants/categories");
+const validateArticleInput = require("../../dataValidation/createArticle.js");
 
 
 const createArticle = async(req, res) => {
@@ -15,6 +22,20 @@ const createArticle = async(req, res) => {
         duration,
         cost
     } = req.body;
+
+    const validationErrors = validateArticleInput({
+        category,
+        number_of_words,
+        quantity,
+        author_tone,
+        language,
+        duration
+    });
+
+    if (validationErrors.length > 0) {
+        return res.status(400).json({ message: 'Validation failed', errors: validationErrors });
+    }
+
 
     try {
         const [newArticle] = await knex('articles')
@@ -81,7 +102,6 @@ const updateArticle = async (req, res) => {
         author_tone,
         language,
         type,
-        content,
         duration,
         cost
     } = req.body;
@@ -99,7 +119,6 @@ const updateArticle = async (req, res) => {
                 author_tone,
                 language,
                 type,
-                content,
                 duration,
                 cost,
                 updated_at: knex.fn.now()
