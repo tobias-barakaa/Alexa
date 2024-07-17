@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import "./StepTwo.css";
 import { updateStepTwoData } from '../../../slices/articleSlice';
-import { LANGUAGES } from '../../../../../constants/categories';
+import { DURATIONS, LANGUAGES } from '../../../../../constants/categories';
 
 const StepTwo = ({ prevStep, nextStep }) => {
   const dispatch = useDispatch();
@@ -70,29 +70,14 @@ const StepTwo = ({ prevStep, nextStep }) => {
                 className="category-dropdown"
                 required
               >
-                <option value="3hrs">3 Hours</option>
-                <option value="6hrs">6 Hours</option>
-                <option value="12hrs">12 Hours</option>
-                <option value="1day">1 Day</option>
-                <option value="2days">2 Days</option>
-                <option value="3days">3 Days</option>
-                <option value="5days">5 Days</option>
-                <option value="7days">7 Days</option>
-                <option value="10days">10 Days</option>
+                {DURATIONS.map((cat, index) => (
+                                    <option key={index} value={cat}>{cat}</option>
+                                ))}
               </select>
             </div>
           </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="description" className="form-label">Description:</label>
-          <textarea
-            id="description"
-            value={stepTwoData?.description}
-            onChange={(e) => handleChange('description', e.target.value)}
-            className="description-input"
-            required
-          />
-        </div>
+        
         <div className="input-row">
           <div className="form-group">
             <button className="prev-button" onClick={prevStep}>

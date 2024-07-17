@@ -32,7 +32,6 @@ const ReviewStep = ({ prevStep }) => {
           <p><strong>Quantity:</strong> {stepTwoData?.quantity}</p>
           <p><strong>Author Tone:</strong> {stepTwoData?.authorTone}</p>
           <p><strong>Duration:</strong> {stepTwoData?.duration}</p>
-          <p><strong>Description:</strong> {stepTwoData?.description}</p>
         </div>
         <div className="review-section">
           <h3>Cost</h3>
