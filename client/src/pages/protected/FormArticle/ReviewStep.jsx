@@ -32,13 +32,14 @@ const ReviewStep = ({ prevStep }) => {
         <div className="review-section">
           <p><strong>Description:</strong> {stepOneData?.description}</p>
           <p><strong>Category:</strong> {stepOneData?.category}</p>
-          <p><strong>Author Tone:</strong> {stepOneData?.authorTone}</p>
-          <p><strong>Number of Words:</strong> {stepOneData?.numberOfWords}</p>
+          <p><strong>Author Tone:</strong> {stepOneData?.author_tone}</p>
+          <p><strong>Number of Words:</strong> {stepOneData?.number_of_words}</p>
         </div>
         <div className="review-section">
           <p><strong>Keywords:</strong> {stepTwoData?.keywords}</p>
           <p><strong>Quantity:</strong> {stepTwoData?.quantity}</p>
-          <p><strong>Author Tone:</strong> {stepTwoData?.authorTone}</p>
+          <p><strong>Language:</strong> {stepTwoData?.language}</p>
+
           <p><strong>Duration:</strong> {stepTwoData?.duration}</p>
         </div>
         <div className="review-section">

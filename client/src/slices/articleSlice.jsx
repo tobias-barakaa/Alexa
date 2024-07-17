@@ -4,16 +4,15 @@ const getInitialState = () => {
   const stepOneData = JSON.parse(localStorage.getItem('stepOneData')) || {
     description: '',
     category: '',
-    author_tone: '',
+    author_tone: 'friendly',
     number_of_words: '',
   };
 
   const stepTwoData = JSON.parse(localStorage.getItem('stepTwoData')) || {
     keywords: '',
     quantity: 1,
-    author_tone: 'friendly',
     duration: '3hrs',
-    description: '',
+    language: 'American English'
   };
 
   const totalCost = JSON.parse(localStorage.getItem('totalCost')) || 0;
