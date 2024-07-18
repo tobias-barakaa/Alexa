@@ -27,12 +27,35 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS configuration
+
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:3002',  
+  'http://localhost:3003',
+]
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Adjust this to your frontend URL
-  credentials: true,
+  origin: (origin, callback) => {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, true)
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  credentials:true,         
   optionsSuccessStatus: 200
-};
+}
+
+
+
+
+
 app.use(cors(corsOptions));
+
+
 
 // Routes
 app.use('/api/users', userRoutes);

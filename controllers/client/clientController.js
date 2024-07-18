@@ -236,9 +236,12 @@ const loginUser = async (req, res) => {
     const token = createJWT({ userId: user.id, role: user.role });
     res.cookie('token', token, {
       httpOnly: true,
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      withCredentials: true
     })
 
     // Remove sensitive information before sending response
