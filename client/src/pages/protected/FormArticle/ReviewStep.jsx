@@ -13,20 +13,21 @@ const ReviewStep = ({ prevStep }) => {
 
   const [orderArticles, { isLoading, isError, isSuccess, error }] = useOrderArticlesMutation();
 
-  const handleSubmit = async () => {
-    try {
-      const orderData = {
-        ...formData,
-        cost,
-        user_id: user.id, // Add user_id to the order data
-      };
-      console.log("Submitting form with data: ", orderData);
-      await orderArticles(orderData).unwrap();
-      console.log("Order submitted successfully!");
-    } catch (err) {
-      console.error("Failed to submit order: ", err);
-    }
-  };
+  
+const handleSubmit = async () => {
+  try {
+    const orderData = {
+      ...formData,
+      cost,
+      // Remove user_id from here
+    };
+    console.log("Submitting form with data: ", orderData);
+    await orderArticles(orderData).unwrap();
+    console.log("Order submitted successfully!");
+  } catch (err) {
+    console.error("Failed to submit order: ", err);
+  }
+};
 
   return (
     <div className="order-article-container">

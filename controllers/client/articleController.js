@@ -15,35 +15,30 @@ const createArticle = async (req, res) => {
         cost
     } = req.body;
 
-    const user_id = req.user.userId; 
-
-    console.log(
-        user_id,
-        description,
-        category,
-        number_of_words,
-        quantity,
-        keywords,
-        author_tone,
-        language,
-        duration,
-        cost
-    );
-
-    const validationErrors = validateArticleInput({
-        category,
-        number_of_words,
-        quantity,
-        author_tone,
-        language,
-        duration
-    });
-
-    if (validationErrors.length > 0) {
-        return res.status(400).json({ message: 'Validation failed', errors: validationErrors });
-    }
+    const user_id = req.user.userId;
 
     try {
+        // Check if the user exists
+        const user = await knex('users').where({ id: user_id }).first();
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Validation
+        const validationErrors = validateArticleInput({
+            category,
+            number_of_words,
+            quantity,
+            author_tone,
+            language,
+            duration
+        });
+
+        if (validationErrors.length > 0) {
+            return res.status(400).json({ message: 'Validation failed', errors: validationErrors });
+        }
+
+        // Create article
         const [newArticle] = await knex('articles')
             .insert({
                 id: knex.raw('gen_random_uuid()'),
