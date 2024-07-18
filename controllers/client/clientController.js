@@ -1,7 +1,7 @@
 const generateToken = require("../../utils/client/generateToken.js");
 const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
-const hashPassword = require("../../utils/client/passwordUtiles.js");
+const {hashPassword, comparePassword} = require("../../utils/client/passwordUtiles.js");
 // const { hashPassword } = require("../../utils/client/auth.utils.js");
 
 // const signupUsers = async (req, res) => {
@@ -218,18 +218,20 @@ const loginUser = async (req, res) => {
       .where("users.email", email)
       .first();
 
-    if (!user) {
+      const isValidUser = user && (await comparePassword(req.body.password, user.password))
+
+    if (!isValidUser) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await comparePassword(req.body.password, user.password)
 
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
     // Generate and set token
-    generateToken(res, user.id);
+    
 
     // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
