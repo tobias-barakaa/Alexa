@@ -2,6 +2,7 @@ const generateToken = require("../../utils/client/generateToken.js");
 const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
 const {hashPassword, comparePassword} = require("../../utils/client/passwordUtiles.js");
+const { createJWT } = require("../../utils/client/tokenUtils.js");
 // const { hashPassword } = require("../../utils/client/auth.utils.js");
 
 // const signupUsers = async (req, res) => {
@@ -231,12 +232,15 @@ const loginUser = async (req, res) => {
     }
 
     // Generate and set token
+    const token = createJWT({ userId: user.id, role: user.role });
+
     
 
     // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
 
     res.json({
+      token,
       ...userWithoutPassword,
       message: "Successfully logged in ",
     });
