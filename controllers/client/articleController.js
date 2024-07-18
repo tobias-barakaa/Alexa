@@ -12,7 +12,8 @@ const createArticle = async (req, res) => {
         author_tone,
         language,
         duration,
-        cost
+        cost,
+        writer_id  // Add this to the destructured req.body
     } = req.body;
 
     const user_id = req.user.userId;
@@ -22,6 +23,14 @@ const createArticle = async (req, res) => {
         const user = await knex('users').where({ id: user_id }).first();
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Optionally, check if the writer exists
+        if (writer_id) {
+            const writer = await knex('writers').where({ id: writer_id }).first();
+            if (!writer) {
+                return res.status(404).json({ message: 'Writer not found' });
+            }
         }
 
         // Validation
@@ -43,6 +52,7 @@ const createArticle = async (req, res) => {
             .insert({
                 id: knex.raw('gen_random_uuid()'),
                 user_id,
+                writer_id,  // Include this in the insert
                 description,
                 category,
                 number_of_words,
