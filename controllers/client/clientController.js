@@ -185,36 +185,128 @@ const signupUser = async (req, res) => {
   }
 };
 
+
+
+
+
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await knex("users").where({ email }).first();
-
-    if (user && (await bcrypt.compare(password, user.password))) {
-      generateToken(res, user.id);
-      res.json({
-        id: user.id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        username: user.username,
-        email: user.email,
-        profile_pic: user.profile_pic,
-        role: user.role_id,
-        balance: user.balance,
-        created_at: user.created_at,
-        updated_at: user.updated_at,
-        message: "Successfully logged in 😁",
-      });
-    } else {
-
-      res.status(401).json({ message: "Invalid email or password" });
+    // Input validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
     }
+
+    // Fetch user with role information
+    const user = await knex("users")
+      .select(
+        "users.id",
+        "users.first_name",
+        "users.last_name",
+        "users.username",
+        "users.email",
+        "users.password",
+        "users.profile_pic",
+        "roles.name as role",
+        "users.balance",
+        "users.created_at",
+        "users.updated_at"
+      )
+      .join("roles", "users.role_id", "roles.id")
+      .where("users.email", email)
+      .first();
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate and set token
+    generateToken(res, user.id);
+
+    // Remove sensitive information before sending response
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.json({
+      ...userWithoutPassword,
+      message: "Successfully logged in ",
+    });
+
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "An error occurred during login" });
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   try {
+//     const user = await knex("users").where({ email }).first();
+
+//     if (user && (await bcrypt.compare(password, user.password))) {
+//       generateToken(res, user.id);
+//       res.json({
+//         id: user.id,
+//         first_name: user.first_name,
+//         last_name: user.last_name,
+//         username: user.username,
+//         email: user.email,
+//         profile_pic: user.profile_pic,
+//         role: user.role_id,
+//         balance: user.balance,
+//         created_at: user.created_at,
+//         updated_at: user.updated_at,
+//         message: "Successfully logged in 😁",
+//       });
+//     } else {
+
+//       res.status(401).json({ message: "Invalid email or password" });
+//     }
+//   } catch (error) {
+//     console.error("Error during login:", error);
+//     res.status(500).json({ message: "An error occurred during login" });
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const logoutUser = async (req, res) => {
   res.cookie("jwt", "", {
@@ -225,6 +317,23 @@ const logoutUser = async (req, res) => {
   });
   res.status(200).json({ message: "User logged out successfully" });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getAllUsers = async (req, res) => {
   try {
