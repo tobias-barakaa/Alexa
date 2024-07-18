@@ -6,24 +6,17 @@ export const articlesApiSlice = apiSlice.injectEndpoints({
     getArticles: builder.query({
       query: () => ({
         url: ARTICLES,
+        credentials: 'include',
       }),
       keepUnusedDataFor: 5,
-      credentials: 'include',
     }),
     orderArticles: builder.mutation({
-      query: (data) => {
-        const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-        return {
-          url: ARTICLES,
-          method: 'POST',
-          body: data,
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        };
-      },
+      query: (data) => ({
+        url: ARTICLES,
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      }),
     }),
   }),
 });

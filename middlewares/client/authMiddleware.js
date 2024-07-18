@@ -53,13 +53,13 @@ const { verifyJWT } = require('../../utils/client/tokenUtils.js');
 
 const protect = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const jwt = req.cookies.jwt;
 
-    if (!token) {
-      return res.status(401).json({ message: "Not authorized, no token" });
+    if (!jwt) {
+      return res.status(401).json({ message: "Not authorized, no jwt" });
     }
 
-    const { userId, role } = verifyJWT(token);
+    const { userId, role } = verifyJWT(jwt);
     req.user = { userId, role };
     next();
   } catch (error) {

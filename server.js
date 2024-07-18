@@ -24,7 +24,6 @@ app.use(helmet()); // Adds various HTTP headers for security
 app.use(morgan('dev')); // Logging middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 // CORS configuration
 
@@ -49,11 +48,9 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
 
-
-
-
-
 app.use(cors(corsOptions));
+app.use(cookieParser());
+
 
 
 

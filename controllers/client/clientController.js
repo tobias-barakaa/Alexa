@@ -234,12 +234,12 @@ const loginUser = async (req, res) => {
 
     // Generate and set token
     const token = createJWT({ userId: user.id, role: user.role });
-    res.cookie('token', token, {
-      httpOnly: true,
+    res.cookie('jwt', token, {
+      httpOnly: false,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
       secure: process.env.NODE_ENV === 'production',
       secure: true,
-      sameSite: 'none',
+      sameSite: 'strict',
       path: '/',
       withCredentials: true
     })
