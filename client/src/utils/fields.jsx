@@ -1,6 +1,5 @@
-import { updateStepOneData, updateStepTwoData } from "../slices/articleSlice";
+import { updateFormData } from '../slices/articleSlice';
 
-export const handleInputChange = (field, value, step, dispatch) => {
-    const action = step === 1 ? updateStepOneData : updateStepTwoData;
-    dispatch(action({ [field]: value })); 
+export const handleInputChange = (field, value, dispatch) => {
+    dispatch(updateFormData({ [field]: value }));
 };

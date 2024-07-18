@@ -5,14 +5,12 @@ import { DURATIONS, LANGUAGES } from '../../../../../constants/articles';
 import { handleInputChange } from '../../../utils/fields';
 import FormField from '../../../components/FormField';
 
-
-
 const StepTwo = ({ prevStep, nextStep }) => {
     const dispatch = useDispatch();
-    const stepTwoData = useSelector((state) => state.article?.stepTwoData);
+    const formData = useSelector((state) => state.article?.formData);
 
     const handleChange = (field, value) => {
-        handleInputChange(field, value, 2, dispatch);
+        handleInputChange(field, value, dispatch);
     };
 
     return (
@@ -23,7 +21,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
                     id="keywords"
                     label="Keywords"
                     type="text"
-                    value={stepTwoData.keywords}
+                    value={formData.keywords}
                     handleChange={handleChange}
                     className="description-input"
                     required
@@ -33,7 +31,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
                         id="quantity"
                         label="Quantity"
                         type="number"
-                        value={stepTwoData.quantity}
+                        value={formData.quantity}
                         handleChange={handleChange}
                         className="description-input"
                         required
@@ -44,7 +42,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
                         id="language"
                         label="Language Tone"
                         type="select"
-                        value={stepTwoData.language}
+                        value={formData.language}
                         handleChange={handleChange}
                         options={LANGUAGES}
                         className="category-dropdown"
@@ -54,7 +52,7 @@ const StepTwo = ({ prevStep, nextStep }) => {
                         id="duration"
                         label="Duration"
                         type="select"
-                        value={stepTwoData.duration}
+                        value={formData.duration}
                         handleChange={handleChange}
                         options={DURATIONS}
                         className="category-dropdown"

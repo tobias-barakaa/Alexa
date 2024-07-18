@@ -4,18 +4,21 @@ import { useOrderArticlesMutation } from '../../../slices/articlesApiSlice';
 import "./ReviewStep.css";
 
 const ReviewStep = ({ prevStep }) => {
-  const stepOneData = useSelector((state) => state.article?.stepOneData);
-  const stepTwoData = useSelector((state) => state.article?.stepTwoData);
+  const formData = useSelector((state) => state.article?.formData);
   const cost = useSelector((state) => state.article?.totalCost);
+
+  // Retrieve user information from localStorage
+  const user = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(user)
 
   const [orderArticles, { isLoading, isError, isSuccess, error }] = useOrderArticlesMutation();
 
   const handleSubmit = async () => {
     try {
       const orderData = {
-        ...stepOneData,
-        ...stepTwoData,
+        ...formData,
         cost,
+        user_id: user.id, // Add user_id to the order data
       };
       console.log("Submitting form with data: ", orderData);
       await orderArticles(orderData).unwrap();
@@ -30,17 +33,16 @@ const ReviewStep = ({ prevStep }) => {
       <div className="order-article-form">
         <h2 className="form-heading">REVIEW YOUR ORDER</h2>
         <div className="review-section">
-          <p><strong>Description:</strong> {stepOneData?.description}</p>
-          <p><strong>Category:</strong> {stepOneData?.category}</p>
-          <p><strong>Author Tone:</strong> {stepOneData?.author_tone}</p>
-          <p><strong>Number of Words:</strong> {stepOneData?.number_of_words}</p>
+          <p><strong>Description:</strong> {formData?.description}</p>
+          <p><strong>Category:</strong> {formData?.category}</p>
+          <p><strong>Author Tone:</strong> {formData?.author_tone}</p>
+          <p><strong>Number of Words:</strong> {formData?.number_of_words}</p>
         </div>
         <div className="review-section">
-          <p><strong>Keywords:</strong> {stepTwoData?.keywords}</p>
-          <p><strong>Quantity:</strong> {stepTwoData?.quantity}</p>
-          <p><strong>Language:</strong> {stepTwoData?.language}</p>
-
-          <p><strong>Duration:</strong> {stepTwoData?.duration}</p>
+          <p><strong>Keywords:</strong> {formData?.keywords}</p>
+          <p><strong>Quantity:</strong> {formData?.quantity}</p>
+          <p><strong>Language:</strong> {formData?.language}</p>
+          <p><strong>Duration:</strong> {formData?.duration}</p>
         </div>
         <div className="review-section">
           <h3>Cost</h3>

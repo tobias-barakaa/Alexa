@@ -1,14 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const getInitialState = () => {
-  const stepOneData = JSON.parse(localStorage.getItem('stepOneData')) || {
+  const formData = JSON.parse(localStorage.getItem('formData')) || {
     description: '',
     category: '',
-    author_tone: 'friendly',
+    author_tone: '',
     number_of_words: '',
-  };
-
-  const stepTwoData = JSON.parse(localStorage.getItem('stepTwoData')) || {
     keywords: '',
     quantity: 1,
     duration: '3hrs',
@@ -18,8 +15,7 @@ const getInitialState = () => {
   const totalCost = JSON.parse(localStorage.getItem('totalCost')) || 0;
 
   return {
-    stepOneData,
-    stepTwoData,
+    formData,
     totalCost
   };
 };
@@ -28,13 +24,9 @@ const articleSlice = createSlice({
   name: 'article',
   initialState: getInitialState(),
   reducers: {
-    updateStepOneData(state, action) {
-      state.stepOneData = { ...state.stepOneData, ...action.payload };
-      localStorage.setItem('stepOneData', JSON.stringify(state.stepOneData));
-    },
-    updateStepTwoData(state, action) {
-      state.stepTwoData = { ...state.stepTwoData, ...action.payload };
-      localStorage.setItem('stepTwoData', JSON.stringify(state.stepTwoData));
+    updateFormData(state, action) {
+      state.formData = { ...state.formData, ...action.payload };
+      localStorage.setItem('formData', JSON.stringify(state.formData));
     },
     updateTotalCost(state, action) {
       state.totalCost = action.payload;
@@ -43,48 +35,5 @@ const articleSlice = createSlice({
   },
 });
 
-export const { updateStepOneData, updateStepTwoData, updateTotalCost } = articleSlice.actions;
+export const { updateFormData, updateTotalCost } = articleSlice.actions;
 export default articleSlice.reducer;
-
-
-
-
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   stepOneData: {
-//     description: '',
-//     category: '',
-//     author_tone: '',
-//     number_of_words: '',
-//   },
-//   stepTwoData: {
-//     keywords: '',
-//     quantity: 1,
-//     author_tone: 'friendly',
-//     duration: '3hrs',
-//     description: '',
-//   },
-//   totalCost: 0,
-// };
-
-// const articleSlice = createSlice({
-//   name: 'article', // A unique name for your slice
-//   initialState,
-//   reducers: {
-//     // Define reducer functions here to update state based on actions
-//     updateStepOneData(state, action) {
-//       state.stepOneData = { ...state.stepOneData, ...action.payload }; // Update specific fields
-//     },
-//     updateStepTwoData(state, action) {
-//       state.stepTwoData = { ...state.stepTwoData, ...action.payload }; // Update specific fields
-//     },
-//     updateTotalCost(state, action) {
-//       state.totalCost = action.payload; // Update total cost directly
-//     },
-//     // You can add more reducers here for other actions
-//   },
-// });
-
-// export const { updateStepOneData, updateStepTwoData, updateTotalCost } = articleSlice.actions;
-// export default articleSlice.reducer;

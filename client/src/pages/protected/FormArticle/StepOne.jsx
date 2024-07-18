@@ -6,13 +6,11 @@ import { CATEGORIES, AUTHOR_TONES, WORD_COUNT_RANGES } from '../../../../../cons
 import FormField from '../../../components/FormField';
 import { handleInputChange } from '../../../utils/fields';
 
-
-
 const StepOne = ({ nextStep }) => {
     const dispatch = useDispatch();
-    const reduxStepOneData = useSelector((state) => state.article?.stepOneData);
-  
-    const [localStepOneData, setLocalStepOneData] = useState({
+    const formData = useSelector((state) => state.article?.formData);
+
+    const [localFormData, setLocalFormData] = useState({
         description: '',
         category: '',
         author_tone: '',
@@ -20,19 +18,19 @@ const StepOne = ({ nextStep }) => {
     });
 
     useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('stepOneData'));
-        if (reduxStepOneData?.description === '' && storedData) {
-            setLocalStepOneData(storedData);
+        const storedData = JSON.parse(localStorage.getItem('formData'));
+        if (formData?.description === '' && storedData) {
+            setLocalFormData(storedData);
         } else {
-            setLocalStepOneData(reduxStepOneData);
+            setLocalFormData(formData);
         }
-    }, [reduxStepOneData]);
+    }, [formData]);
 
     const handleChange = (field, value) => {
-        const updatedData = { ...localStepOneData, [field]: value };
-        setLocalStepOneData(updatedData);
-        localStorage.setItem('stepOneData', JSON.stringify(updatedData));
-        handleInputChange(field, value, 1, dispatch);
+        const updatedData = { ...localFormData, [field]: value };
+        setLocalFormData(updatedData);
+        localStorage.setItem('formData', JSON.stringify(updatedData));
+        handleInputChange(field, value, dispatch);
     };
 
     return (
@@ -43,7 +41,7 @@ const StepOne = ({ nextStep }) => {
                     id="description"
                     label="Description"
                     type="text"
-                    value={localStepOneData.description}
+                    value={localFormData.description}
                     handleChange={handleChange}
                     className="description-input"
                 />
@@ -52,7 +50,7 @@ const StepOne = ({ nextStep }) => {
                         id="category"
                         label="Choose a category"
                         type="select"
-                        value={localStepOneData.category}
+                        value={localFormData.category}
                         handleChange={handleChange}
                         options={CATEGORIES}
                         className="category-dropdown"
@@ -61,7 +59,7 @@ const StepOne = ({ nextStep }) => {
                         id="author_tone"
                         label="Author's tone"
                         type="select"
-                        value={localStepOneData.author_tone}
+                        value={localFormData.author_tone}
                         handleChange={handleChange}
                         options={AUTHOR_TONES}
                         className="author-tone-dropdown"
@@ -71,7 +69,7 @@ const StepOne = ({ nextStep }) => {
                     id="number_of_words"
                     label="Number of words"
                     type="select"
-                    value={localStepOneData.number_of_words}
+                    value={localFormData.number_of_words}
                     handleChange={handleChange}
                     options={WORD_COUNT_RANGES}
                     className="word-count-dropdown"
