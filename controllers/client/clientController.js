@@ -1,40 +1,135 @@
 const generateToken = require("../../utils/client/generateToken.js");
 const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
-const { hashPassword } = require("../../utils/client/auth.utils.js");
+const hashPassword = require("../../utils/client/passwordUtiles.js");
+// const { hashPassword } = require("../../utils/client/auth.utils.js");
+
+// const signupUsers = async (req, res) => {
+//   const { first_name, last_name, username, email, password, passwordConf } =
+//     req.body;
+
+//   try {
+//     console.log("Request received with body:", req.body);
+//     if (password !== passwordConf) {
+//       console.log("Passwords do not match");
+//       return res.status(400).json({ message: "Passwords do not match" });
+//     }
+//     const existUser = await knex("users").where({ email }).first();
+//     if (existUser) {
+//       console.log("User already exists with email:", email);
+//       return res.status(400).json({ message: "User already exists" });
+//     }
+
+//     const existUserByUsername = await knex("users").where({ username }).first();
+//     if (existUserByUsername) {
+//       console.log("Username already taken:", username);
+//       return res.status(400).json({ message: "Username already taken" });
+//     }
+//     const userRole = await knex("roles").where({ name: "client" }).first();
+//     if (!userRole) {
+//       console.log("Role not found");
+//       return res.status(400).json({ message: "Role not found" });
+//     }
+//     const hashedPassword = await hashPassword(password);
+//     console.log("Password hashed successfully");
+//     const profile_pic = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
+//       first_name + last_name
+//     )}`;
+
+//     const [newUser] = await knex("users")
+//       .insert({
+//         id: knex.raw("gen_random_uuid()"),
+//         first_name,
+//         last_name,
+//         username,
+//         email,
+//         password: hashedPassword,
+//         profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
+//         role_id: userRole.id,
+//         balance: 0.0,
+//         created_at: knex.fn.now(),
+//         updated_at: knex.fn.now(),
+//       })
+//       .returning("*");
+
+//     if (newUser) {
+//       const userWithRole = await knex("users")
+//         .select(
+//           "users.id",
+//           "users.first_name",
+//           "users.last_name",
+//           "users.username",
+//           "users.email",
+//           "users.profile_pic",
+//           "roles.name as role",
+//           "users.balance",
+//           "users.created_at",
+//           "users.updated_at"
+//         )
+//         .join("roles", "users.role_id", "roles.id")
+//         .where("users.id", newUser.id)
+//         .first();
+
+//       console.log("New user created:", userWithRole);
+//       generateToken(res, userWithRole.id);
+//       return res
+//         .status(201)
+//         .json({ message: "User created successfully", user: userWithRole });
+//     } else {
+//       console.log("User creation failed");
+//       return res.status(400).json({ message: "User not created" });
+//     }
+//   } catch (error) {
+//     console.error("Error during user creation:", error);
+//     return res
+//       .status(500)
+//       .json({ message: "An error occurred during user creation" });
+//   }
+// };
 
 const signupUser = async (req, res) => {
-  const { first_name, last_name, username, email, password, passwordConf } =
-    req.body;
-
   try {
-    console.log("Request received with body:", req.body);
+    const { first_name, last_name, username, email, password, passwordConf } = req.body;
+
+    // Input validation
+    if (!first_name || !last_name || !username || !email || !password || !passwordConf) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
     if (password !== passwordConf) {
-      console.log("Passwords do not match");
       return res.status(400).json({ message: "Passwords do not match" });
     }
-    const existUser = await knex("users").where({ email }).first();
-    if (existUser) {
-      console.log("User already exists with email:", email);
-      return res.status(400).json({ message: "User already exists" });
+
+    // Check if username or email already exists
+    const existingUser = await knex('users')
+      .where({ username })
+      .orWhere({ email })
+      .first();
+
+    if (existingUser) {
+      if (existingUser.username === username) {
+        return res.status(409).json({ message: "Username already exists" });
+      }
+      if (existingUser.email === email) {
+        return res.status(409).json({ message: "Email already exists" });
+      }
     }
 
-    const existUserByUsername = await knex("users").where({ username }).first();
-    if (existUserByUsername) {
-      console.log("Username already taken:", username);
-      return res.status(400).json({ message: "Username already taken" });
-    }
-    const userRole = await knex("roles").where({ name: "client" }).first();
-    if (!userRole) {
-      console.log("Role not found");
-      return res.status(400).json({ message: "Role not found" });
-    }
-    const hashedPassword = await hashPassword(password);
-    console.log("Password hashed successfully");
+    // Password hashing
+    const hashedPassword = await hashPassword(req.body.password)
+
+    // Generate profile picture URL
     const profile_pic = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
       first_name + last_name
     )}`;
 
+    // Fetch the 'client' role ID
+    const clientRole = await knex('roles').where({ name: 'client' }).first();
+    if (!clientRole) {
+      return res.status(500).json({ message: "Client role not found" });
+    }
+
+    // Insert new user
     const [newUser] = await knex("users")
       .insert({
         id: knex.raw("gen_random_uuid()"),
@@ -44,48 +139,51 @@ const signupUser = async (req, res) => {
         email,
         password: hashedPassword,
         profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
-        role_id: userRole.id,
+        role_id: clientRole.id,
         balance: 0.0,
         created_at: knex.fn.now(),
         updated_at: knex.fn.now(),
       })
       .returning("*");
 
-    if (newUser) {
-      const userWithRole = await knex("users")
-        .select(
-          "users.id",
-          "users.first_name",
-          "users.last_name",
-          "users.username",
-          "users.email",
-          "users.profile_pic",
-          "roles.name as role",
-          "users.balance",
-          "users.created_at",
-          "users.updated_at"
-        )
-        .join("roles", "users.role_id", "roles.id")
-        .where("users.id", newUser.id)
-        .first();
-
-      console.log("New user created:", userWithRole);
-      generateToken(res, userWithRole.id);
-      return res
-        .status(201)
-        .json({ message: "User created successfully", user: userWithRole });
-    } else {
+    if (!newUser) {
       console.log("User creation failed");
       return res.status(400).json({ message: "User not created" });
     }
+
+    // Fetch user with role information
+    const userWithRole = await knex("users")
+      .select(
+        "users.id",
+        "users.first_name",
+        "users.last_name",
+        "users.username",
+        "users.email",
+        "users.profile_pic",
+        "roles.name as role",
+        "users.balance",
+        "users.created_at",
+        "users.updated_at"
+      )
+      .join("roles", "users.role_id", "roles.id")
+      .where("users.id", newUser.id)
+      .first();
+
+    console.log("New user created:", userWithRole);
+    
+    // Generate and set token
+    generateToken(res, userWithRole.id);
+
+    return res.status(201).json({ 
+      message: "User created successfully", 
+      user: userWithRole 
+    });
+
   } catch (error) {
     console.error("Error during user creation:", error);
-    return res
-      .status(500)
-      .json({ message: "An error occurred during user creation" });
+    return res.status(500).json({ message: "An error occurred during user creation" });
   }
 };
-
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
