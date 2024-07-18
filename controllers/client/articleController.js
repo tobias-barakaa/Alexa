@@ -1,16 +1,9 @@
 const knex = require("../../db/db.js");
-const { CATEGORIES,
-    WORD_COUNT_RANGES,
-    AUTHOR_TONES,
-    LANGUAGES,
-    DURATIONS,
-    QUANTITY_RANGE } = require("../../constants/categories");
 const validateArticleInput = require("../../dataValidation/createArticle.js");
 
 
-const createArticle = async(req, res) => {
+const createArticle = async (req, res) => {
     const {
-        user_id,
         description,
         category,
         number_of_words,
@@ -21,7 +14,11 @@ const createArticle = async(req, res) => {
         duration,
         cost
     } = req.body;
-    console.log(user_id,
+
+    const user_id = req.user.userId; 
+
+    console.log(
+        user_id,
         description,
         category,
         number_of_words,
@@ -30,7 +27,8 @@ const createArticle = async(req, res) => {
         author_tone,
         language,
         duration,
-        cost)
+        cost
+    );
 
     const validationErrors = validateArticleInput({
         category,
@@ -45,7 +43,6 @@ const createArticle = async(req, res) => {
         return res.status(400).json({ message: 'Validation failed', errors: validationErrors });
     }
 
-
     try {
         const [newArticle] = await knex('articles')
             .insert({
@@ -57,7 +54,7 @@ const createArticle = async(req, res) => {
                 quantity,
                 keywords,
                 author_tone,
-                status: 'pending', 
+                status: 'pending',
                 language,
                 duration,
                 cost,
@@ -75,7 +72,7 @@ const createArticle = async(req, res) => {
         console.error('Error creating article:', error);
         return res.status(500).json({ message: 'An error occurred while creating the article' });
     }
-}
+};
 
 
 const deleteArticle = async (req, res) => {

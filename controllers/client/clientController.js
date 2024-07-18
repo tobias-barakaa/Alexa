@@ -192,6 +192,7 @@ const signupUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
+  console.log("Request received with body:", req.user);
   const { email, password } = req.body;
 
   try {
@@ -233,14 +234,17 @@ const loginUser = async (req, res) => {
 
     // Generate and set token
     const token = createJWT({ userId: user.id, role: user.role });
-
-    
+    res.cookie('token', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    })
 
     // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
 
     res.json({
-      token,
       ...userWithoutPassword,
       message: "Successfully logged in ",
     });
