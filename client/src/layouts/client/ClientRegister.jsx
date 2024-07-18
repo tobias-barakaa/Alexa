@@ -31,7 +31,7 @@ const ClientRegister = ({ handleCloseModal }) => {
   const { userInfo } = useSelector((state) => state.auth);
   const { search } = useLocation();
   const sp = new URLSearchParams(search)
-  const redirect = sp.get('redirect') || '/dashboard';
+  const redirect = sp.get('redirect') || '/login';
 
   useEffect(() => {
     if(userInfo) {

@@ -52,21 +52,30 @@ const { verifyJWT } = require('../../utils/client/tokenUtils.js');
 //   module.exports = {protect}
 
 const protect = async (req, res, next) => {
-  console.log(req.cookies);
-  const {token} = req.cookies;
-  if(!token) throw new Error('Not authorized, no token');
-
   try {
-    const {userId, role} = verifyJWT(token);
-    req.user = {userId, role}
-  next();
+    const token = req.cookies.token;
+
+    if (!token) {
+      return res.status(401).json({ message: "Not authorized, no token" });
+    }
+
+    const { userId, role } = verifyJWT(token);
+    req.user = { userId, role };
+    next();
   } catch (error) {
-  if(!token) throw new Error('Not authorized, no token');
-
+    console.error('Authentication error:', error.message);
     
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+    
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: "Token expired" });
+    }
+    
+    return res.status(500).json({ message: "Authentication failed" });
   }
-
-}
+};
 
   module.exports = {protect}
   

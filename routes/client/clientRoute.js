@@ -6,7 +6,7 @@ const { verifyAdmin } = require('../../middlewares/admin/adminMiddleware.js');
 const router = express.Router();
 
 router.post('/signup', signupUser);
-router.post('/signin', protect, loginUser);
+router.post('/signin', loginUser);
 
 // router.post('/signin',protect,verifyAdmin, loginUser);
 
