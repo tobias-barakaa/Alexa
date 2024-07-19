@@ -8,6 +8,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/signin`,
         method: 'POST',
         body: data,
+        credentials: 'include',
+
       }),
       keepUnusedDataFor: 5
     }),
@@ -16,6 +18,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/signup`,
         method: 'POST',
         body: data,
+        credentials: 'include',
+
       }),
       keepUnusedDataFor: 5
     })

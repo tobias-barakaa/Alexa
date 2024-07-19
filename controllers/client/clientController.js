@@ -192,8 +192,9 @@ const signupUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
-  console.log("Request received with body:", req.user);
+  console.log(req.cookies);
   const { email, password } = req.body;
+  
 
   try {
     // Input validation
@@ -235,14 +236,13 @@ const loginUser = async (req, res) => {
     // Generate and set token
     const token = createJWT({ userId: user.id, role: user.role });
     res.cookie('jwt', token, {
-      httpOnly: false,
+      httpOnly: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
-      secure: process.env.NODE_ENV === 'production',
-      secure: true,
-      sameSite: 'strict',
-      path: '/',
-      withCredentials: true
-    })
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      // path: '/'
+    });
+    
 
     // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
