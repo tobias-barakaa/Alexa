@@ -2,7 +2,9 @@
 const knex = require("../../db/db.js");
 const bcrypt = require('bcryptjs');
 const { hashPassword } = require('../../utils/client/auth.utils.js');
-const generateToken = require('../../utils/client/generateToken.js');
+// const generateToken = require('../../utils/client/generateToken.js');
+const { comparePassword } = require("../../utils/client/passwordUtiles.js");
+const { createJWT } = require("../../utils/client/tokenUtils.js");
 
 const addAdmin = async (req, res) => {
     const { first_name, last_name, username, email, password, passwordConf, profile_pic, role } = req.body;
