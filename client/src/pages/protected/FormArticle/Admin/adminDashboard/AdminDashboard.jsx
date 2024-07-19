@@ -1,4 +1,4 @@
-import { FaHome, FaUsers, FaChartLine, FaCog, FaPenFancy, FaStar, FaFileAlt, FaBell, FaFileAlt, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
+import { FaHome, FaUsers, FaChartLine, FaCog, FaPenFancy, FaStar, FaFileAlt, FaBell, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
 import './AdminDashboard.css'; // Import CSS for styling
 import ChartComponent from './ChartComponent';
 

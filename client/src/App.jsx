@@ -66,8 +66,30 @@ const router = createBrowserRouter([
   },
   {
     path: "/admindashboard",
-    element: <AdminDashboard />
-  },
+    element: <AdminDashboard />,
+    children: [
+      {
+        index: true,
+        element: <AdminDashboard />
+      },
+      
+      {
+        path: "order",
+        element: <StepForm />
+      },
+      {
+        path: "manage",
+        element: <ManageArticles />
+      },
+      {
+        path: "blogposts",
+        element: <BlogPost />
+      },
+      {
+        path: "reviews",
+        element: <Reviews />
+  } ]
+}
 ]);
 
 
