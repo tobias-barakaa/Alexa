@@ -1,24 +1,36 @@
 import { useState } from 'react';
-import './AdminLogin.css'; 
+import { useNavigate } from 'react-router-dom';
+import './AdminLogin.css';
 import { useAdminLoginMutation } from '../../../../slices/adminApiSlice';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showLoader, setShowLoader] = useState(false);
   const [adminLogin, { isLoading, isError, isSuccess, error }] = useAdminLoginMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowLoader(true);
     try {
       await adminLogin({ email, password }).unwrap();
-      // Handle successful login (e.g., redirect to admin dashboard)
+      setTimeout(() => {
+        navigate('/admindashboard');
+      }, 5000); // Redirect after 5 seconds
     } catch (err) {
       console.error('Login failed:', err);
+      setShowLoader(false);
     }
   };
 
   return (
     <div className="login-container">
+      {showLoader && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
+        </div>
+      )}
       <h2>Admin Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
