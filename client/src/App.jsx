@@ -12,6 +12,7 @@ import ManageArticles from './pages/protected/article/ManageArticles';
 import BlogPost from './pages/protected/article/BlogPost';
 import Reviews from './pages/protected/article/Reviews';
 import StepForm from './pages/protected/FormArticle/StepForm';
+import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         element: <Reviews />
       }
     ]
+  },
+  {
+    path: "/admin",
+    element: <AdminLogin />
   },
 ]);
 

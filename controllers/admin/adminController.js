@@ -68,7 +68,6 @@ const addAdmin = async (req, res) => {
                 .first();
 
             console.log("New user created:", userWithRole);
-            generateToken(res, userWithRole.id);
             return res.status(201).json({ message: "User created successfully", user: userWithRole });
         } else {
             console.log("User creation failed");
@@ -81,46 +80,104 @@ const addAdmin = async (req, res) => {
 };
 
 const loginAdmin = async (req, res) => {
-    const { email, password } = req.body;
-  
-    try {
-      const user = await knex("users")
-        .select(
-          "users.id",
-          "users.username",
-          "users.email",
-          "users.password",
-          "users.profile_pic",
-          "users.first_name",
-          "users.last_name",
-          "users.balance",
-          "roles.name as role"
-        )
-        .join("roles", "users.role_id", "roles.id")
-        .where({ email })
-        .first();
-  
-      if (user && (await bcrypt.compare(password, user.password))) {
-        generateToken(res, user.id);
-        res.json({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          profile_pic: user.profile_pic,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          balance: user.balance,
-          role: user.role,
-          message: "Successfully logged in 😁",
-        });
-      } else {
-        res.status(401).json({ message: "Invalid email or password" });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "An error occurred during login" });
+  console.log(req.cookies);
+  const { email, password } = req.body;
+
+  try {
+    // Input validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
     }
-  };
+
+    // Fetch user with role information
+    const user = await knex("users")
+      .select(
+        "users.id",
+        "users.first_name",
+        "users.last_name",
+        "users.username",
+        "users.email",
+        "users.password",
+        "users.profile_pic",
+        "roles.name as role",
+        "users.balance",
+        "users.created_at",
+        "users.updated_at"
+      )
+      .join("roles", "users.role_id", "roles.id")
+      .where("users.email", email)
+      .first();
+
+    const isValidUser = user && (await comparePassword(req.body.password, user.password));
+
+    if (!isValidUser) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate and set token
+    const token = createJWT({ userId: user.id, role: user.role });
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    });
+
+    // Remove sensitive information before sending response
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.json({
+      ...userWithoutPassword,
+      message: "Successfully logged in ",
+    });
+
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "An error occurred during login" });
+  }
+};
+
+
+// const loginAdmin = async (req, res) => {
+//     const { email, password } = req.body;
+  
+//     try {
+//       const user = await knex("users")
+//         .select(
+//           "users.id",
+//           "users.username",
+//           "users.email",
+//           "users.password",
+//           "users.profile_pic",
+//           "users.first_name",
+//           "users.last_name",
+//           "users.balance",
+//           "roles.name as role"
+//         )
+//         .join("roles", "users.role_id", "roles.id")
+//         .where({ email })
+//         .first();
+  
+//       if (user && (await bcrypt.compare(password, user.password))) {
+//         generateToken(res, user.id);
+//         res.json({
+//           id: user.id,
+//           username: user.username,
+//           email: user.email,
+//           profile_pic: user.profile_pic,
+//           first_name: user.first_name,
+//           last_name: user.last_name,
+//           balance: user.balance,
+//           role: user.role,
+//           message: "Successfully logged in 😁",
+//         });
+//       } else {
+//         res.status(401).json({ message: "Invalid email or password" });
+//       }
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: "An error occurred during login" });
+//     }
+//   };
   
 module.exports = { addAdmin, loginAdmin };
 

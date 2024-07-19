@@ -1,4 +1,4 @@
-const generateToken = require("../../utils/client/generateToken.js");
+// const generateToken = require("../../utils/client/generateToken.js");
 const knex = require("../../db/db.js");
 const bcrypt = require("bcryptjs");
 const {hashPassword, comparePassword} = require("../../utils/client/passwordUtiles.js");
@@ -172,8 +172,8 @@ const signupUser = async (req, res) => {
 
     console.log("New user created:", userWithRole);
     
-    // Generate and set token
-    generateToken(res, userWithRole.id);
+    // // Generate and set token
+    // generateToken(res, userWithRole.id);
 
     return res.status(201).json({ 
       message: "User created successfully", 
