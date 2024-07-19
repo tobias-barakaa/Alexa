@@ -1,5 +1,4 @@
-// AdminDashboard.js
-import { FaHome, FaUsers, FaChartLine, FaCog } from 'react-icons/fa'; // Importing icons
+import { FaHome, FaUsers, FaChartLine, FaCog, FaPenFancy, FaStar, FaFileAlt, FaBell, FaFileAlt, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
 import './AdminDashboard.css'; // Import CSS for styling
 import ChartComponent from './ChartComponent';
 
@@ -17,10 +16,28 @@ const AdminDashboard = () => {
               <FaUsers /> <span>Users</span>
             </li>
             <li>
+              <FaPenFancy /> <span>Writers</span>
+            </li>
+            <li>
+              <FaStar /> <span>Reviews</span>
+            </li>
+            <li>
+              <FaFileAlt /> <span>Articles</span>
+            </li>
+            <li>
+              <FaBell /> <span>Notifications</span>
+            </li>
+            <li>
+              <FaFileAlt /> <span>Reports</span>
+            </li>
+            <li>
               <FaChartLine /> <span>Analytics</span>
             </li>
             <li>
               <FaCog /> <span>Settings</span>
+            </li>
+            <li className="logout">
+              <FaSignOutAlt /> <span>Logout</span>
             </li>
           </ul>
         </nav>
@@ -28,7 +45,6 @@ const AdminDashboard = () => {
       <main className="main-content">
         <h1>Welcome to the Admin Dashboard</h1>
         <p>This is where you can manage your application.</p>
-        {/* You can add more components like charts, tables, etc. here */}
         <ChartComponent />
       </main>
     </div>
