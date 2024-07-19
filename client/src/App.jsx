@@ -13,6 +13,7 @@ import BlogPost from './pages/protected/article/BlogPost';
 import Reviews from './pages/protected/article/Reviews';
 import StepForm from './pages/protected/FormArticle/StepForm';
 import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
+import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLogin />
+  },
+  {
+    path: "/admindashboard",
+    element: <AdminDashboard />
   },
 ]);
 
