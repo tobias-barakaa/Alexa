@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import './AdminLogin.css'; // Import the CSS file
+import { useState } from 'react';
+import './AdminLogin.css'; 
 import { useAdminLoginMutation } from '../../../../slices/adminApiSlice';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { isLoading, isError, isSuccess }] = useAdminLoginMutation();
+  const [adminLogin, { isLoading, isError, isSuccess, error }] = useAdminLoginMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({ email, password }).unwrap();
+      await adminLogin({ email, password }).unwrap();
       // Handle successful login (e.g., redirect to admin dashboard)
-    } catch (error) {
-      console.error('Login failed:', error);
+    } catch (err) {
+      console.error('Login failed:', err);
     }
   };
 
@@ -41,7 +41,7 @@ const AdminLogin = () => {
             required
           />
         </div>
-        {isError && <p className="error-message">Login failed. Please try again.</p>}
+        {isError && <p className="error-message">{error?.data?.message || 'Login failed. Please try again.'}</p>}
         <button type="submit" disabled={isLoading} className="submit-button">
           {isLoading ? 'Logging in...' : 'Login'}
         </button>

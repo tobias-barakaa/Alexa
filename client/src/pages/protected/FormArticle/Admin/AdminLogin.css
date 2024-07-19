@@ -1,15 +1,5 @@
 /* AdminLogin.css */
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Soft gradient background for the body */
-  }
   
   .login-container {
     display: flex;
@@ -21,6 +11,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     width: 400px; /* Increased width */
+    margin: 60;
+    margin-top: 100px;
+
   }
   
   h2 {
