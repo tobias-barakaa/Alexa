@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useOrderArticlesMutation } from '../../../slices/articlesApiSlice';
+import { useOrderArticlesMutation } from '../../../slices/client/articlesApiSlice';
 import "./ReviewStep.css";
 
 const ReviewStep = ({ prevStep }) => {

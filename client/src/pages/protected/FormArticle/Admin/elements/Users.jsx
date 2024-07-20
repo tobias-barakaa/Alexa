@@ -1,4 +1,4 @@
-import { useGetUsersQuery } from '../../../../../slices/adminUsersApiSlice';
+import { useGetUsersQuery } from '../../../../../slices/admin/adminUsersApiSlice';
 import './Users.css';
 
 const Users = () => {
