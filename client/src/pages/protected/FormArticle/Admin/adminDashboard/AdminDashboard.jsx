@@ -1,6 +1,6 @@
+import { Outlet } from 'react-router-dom';
 import Sidebar from '../../../../../components/Sidebar';
-import './AdminDashboard.css'; // Import CSS for styling
-import AdminMain from './AdminMain';
+import './AdminDashboard.css'; 
 
 const AdminDashboard = () => {
   return (
@@ -8,7 +8,7 @@ const AdminDashboard = () => {
      <Sidebar />
      <main className="main-content">
 
-     <AdminMain />
+     <Outlet />
      </main>
     </div>
     

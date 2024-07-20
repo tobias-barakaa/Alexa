@@ -14,6 +14,8 @@ import Reviews from './pages/protected/article/Reviews';
 import StepForm from './pages/protected/FormArticle/StepForm';
 import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
 import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
+import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
+import Users from './pages/protected/FormArticle/Admin/elements/Users';
 
 const router = createBrowserRouter([
   {
@@ -70,12 +72,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboard />
+        element: <AdminMain />
       },
       
       {
-        path: "order",
-        element: <StepForm />
+        path: "users",
+        element: <Users />
       },
       {
         path: "manage",

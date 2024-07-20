@@ -1,5 +1,6 @@
 import { FaHome, FaUsers, FaChartLine, FaCog, FaPenFancy, FaStar, FaFileAlt, FaBell, FaSignOutAlt } from 'react-icons/fa';
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -8,10 +9,10 @@ const Sidebar = () => {
     <nav>
       <ul>
         <li>
-          <FaHome /> <span>Home</span>
+          <FaHome /> <span><Link to="/admindashboard">Home</Link></span>
         </li>
         <li>
-          <FaUsers /> <span>Users</span>
+          <FaUsers /> <span><Link to="/admindashboard/users">Users</Link></span>
         </li>
         <li>
           <FaPenFancy /> <span>Writers</span>
