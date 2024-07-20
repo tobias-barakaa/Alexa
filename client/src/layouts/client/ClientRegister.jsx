@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import './ClientRegister.css';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useRegisterMutation } from '../../slices/usersApiSlice';
-import { setCredentials } from '../../slices/authSlice';
+// import { setCredentials } from '../../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRegisterMutation } from '../../slices/client/usersApiSlice';
+import { setCredentials } from '../../slices/client/authSlice';
 
 const ClientRegister = ({ handleCloseModal }) => {
   const handleBackdropClick = (e) => {
