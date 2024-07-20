@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./slices/apiSlice";
-import authSliceReducer from './slices/authSlice';
-import articleSliceReducer from "./slices/articleSlice";
-import adminReducer from './slices/adminSlice';
-import adminUsersReducer from "./slices/adminUsersSlice";
+
+
+
+import articleSliceReducer from "./slices/client/articleSlice";
+
+import authSliceReducer from "./slices/client/authSlice";
+import adminReducer from "./slices/admin/adminSlice";
+import adminUsersReducer from "./slices/admin/adminUsersSlice";
 
 const store = configureStore({
     reducer: {

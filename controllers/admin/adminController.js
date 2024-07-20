@@ -10,7 +10,6 @@ const addAdmin = async (req, res) => {
     const { first_name, last_name, username, email, password, passwordConf, profile_pic, role } = req.body;
 
     try {
-        console.log("Request received with body:", req.body);
 
         if (password !== passwordConf) {
             return res.status(400).json({ message: "Passwords do not match" });

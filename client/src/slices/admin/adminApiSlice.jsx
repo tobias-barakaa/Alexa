@@ -1,5 +1,5 @@
-import { ADMIN_URL } from '../constants';
-import { apiSlice } from './apiSlice';
+import { ADMIN_URL } from '../../constants';
+import { apiSlice } from '../apiSlice';
 
 export const adminApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

@@ -1,5 +1,5 @@
-import { ARTICLES } from "../constants";
-import { apiSlice } from './apiSlice';
+import { ARTICLES } from "../../constants";
+import { apiSlice } from '../apiSlice';
 
 export const articlesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
