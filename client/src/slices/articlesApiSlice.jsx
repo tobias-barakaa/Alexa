@@ -17,6 +17,8 @@ export const articlesApiSlice = apiSlice.injectEndpoints({
         body: data,
         credentials: 'include',
       }),
+      keepUnusedDataFor: 5,
+
     }),
   }),
 });
