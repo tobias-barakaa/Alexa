@@ -80,9 +80,7 @@ const addAdmin = async (req, res) => {
         return res.status(500).json({ message: "An error occurred during user creation" });
     }
 };
-
 const loginAdmin = async (req, res) => {
-  console.log(req.cookies);
   const { email, password } = req.body;
 
   try {
@@ -110,10 +108,16 @@ const loginAdmin = async (req, res) => {
       .where("users.email", email)
       .first();
 
-    const isValidUser = user && (await comparePassword(req.body.password, user.password));
+    // Validate user credentials
+    const isValidUser = user && (await comparePassword(password, user.password));
 
     if (!isValidUser) {
       return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Check if the user is an admin
+    if (user.role !== 'admin') {
+      return res.status(403).json({ message: "Access denied. Admins only." });
     }
 
     // Generate and set token
@@ -129,14 +133,71 @@ const loginAdmin = async (req, res) => {
 
     res.json({
       ...userWithoutPassword,
-      message: "Successfully logged in ",
+      message: "Successfully logged in",
     });
 
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "An error occurred during login" });
   }
-};
+}
+
+// const loginAdmin = async (req, res) => {
+//   console.log(req.cookies);
+//   const { email, password } = req.body;
+
+//   try {
+//     // Input validation
+//     if (!email || !password) {
+//       return res.status(400).json({ message: "Email and password are required" });
+//     }
+
+//     // Fetch user with role information
+//     const user = await knex("users")
+//       .select(
+//         "users.id",
+//         "users.first_name",
+//         "users.last_name",
+//         "users.username",
+//         "users.email",
+//         "users.password",
+//         "users.profile_pic",
+//         "roles.name as role",
+//         "users.balance",
+//         "users.created_at",
+//         "users.updated_at"
+//       )
+//       .join("roles", "users.role_id", "roles.id")
+//       .where("users.email", email)
+//       .first();
+
+//     const isValidUser = user && (await comparePassword(req.body.password, user.password));
+
+//     if (!isValidUser) {
+//       return res.status(401).json({ message: "Invalid email or password" });
+//     }
+
+//     // Generate and set token
+//     const token = createJWT({ userId: user.id, role: user.role });
+//     res.cookie('jwt', token, {
+//       httpOnly: true,
+//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
+//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+//     });
+
+//     // Remove sensitive information before sending response
+//     const { password: _, ...userWithoutPassword } = user;
+
+//     res.json({
+//       ...userWithoutPassword,
+//       message: "Successfully logged in ",
+//     });
+
+//   } catch (error) {
+//     console.error("Error during login:", error);
+//     res.status(500).json({ message: "An error occurred during login" });
+//   }
+// };
 
 const getUsers = async (req, res) => {
     try {
