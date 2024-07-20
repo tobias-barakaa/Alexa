@@ -138,6 +138,34 @@ const loginAdmin = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+    try {
+        const users = await knex("users")
+            .select(
+                "users.id",
+                "users.first_name",
+                "users.last_name",
+                "users.username",
+                "users.email",
+                "users.profile_pic",
+                "roles.name as role",
+                "users.balance",
+                "users.created_at",
+                "users.updated_at"
+            )
+            .join("roles", "users.role_id", "roles.id");
+
+        res.json(users);
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ message: "An error occurred fetching users" });
+    }
+};
+
+  
+module.exports = { addAdmin, loginAdmin, getUsers };
+
+
 
 // const loginAdmin = async (req, res) => {
 //     const { email, password } = req.body;
@@ -180,11 +208,6 @@ const loginAdmin = async (req, res) => {
 //       res.status(500).json({ message: "An error occurred during login" });
 //     }
 //   };
-  
-module.exports = { addAdmin, loginAdmin };
-
-
-
 
 // const addAdmin = async (req, res) => {
 //     const { ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_FIRST_NAME, ADMIN_LAST_NAME, ADMIN_USERNAME } = process.env;

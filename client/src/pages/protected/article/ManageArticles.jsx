@@ -1,7 +1,7 @@
 const ManageArticles = () => {
   return (
     <div>
-      Mange articles
+      Manage articles
     </div>
   )
 }
