@@ -17,7 +17,7 @@ import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/A
 import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
 import Users from './pages/protected/FormArticle/Admin/elements/Users';
 import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
-import WriterContent from './layouts/writer/writerContent';
+import WriterRegister from './layouts/writer/WriterRegister';
 
 const router = createBrowserRouter([
   {
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/writer",
-    element: <WriterContent />
+    element: <WriterRegister />
   },
   {
     path: "/admin",

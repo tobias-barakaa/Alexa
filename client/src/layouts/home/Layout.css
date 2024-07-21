@@ -1,0 +1,310 @@
+
+
+.overlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .content-left {
+    flex: 1;
+    color: #ffffff;
+    padding: 20px;
+  }
+  
+  .content-left h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .content-left p {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  .content-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn-outline {
+    background: transparent;
+    border: 2px solid #76bdff;
+    color: #76bdff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .btn-outline:hover {
+    background: #76bdff;
+    color: #ffffff;
+  }
+  
+  .btn-primary {
+    background: #76bdff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+  }
+  
+  .content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .signup-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+  }
+  
+  .signup-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .signup-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .signup-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .signup-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #76bdff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+  
+  .dropdown-menu li {
+    list-style: none;
+  }
+  
+  .dropdown-menu li a {
+    color: #000000;
+  }
+  
+  .dropdown-menu li a:hover {
+    color: #76bdff;
+  }
+  
+  
+  
+  
+  .content-right {
+      flex: 1;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .signup-container {
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 3%;
+      max-width: 500px;
+      padding: 40px;
+      color: #000000;
+    }
+    
+    .signup-container h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .signup-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .signup-button {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #76bdff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    
+    .or-divider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .or-divider hr {
+      flex-grow: 1;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+    
+    .or-divider span {
+      margin: 0 10px;
+      color: #666;
+    }
+    
+    .social-buttons {
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .social-button {
+      flex: 1;
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 5px;
+    }
+    
+    .social-button i {
+      margin-right: 5px;
+    }
+    
+    .signup-container p {
+      text-align: center;
+      color: #000000;
+      margin-bottom: 0;
+    }
+    
+    .signup-container p a {
+      color: #76bdff;
+      text-decoration: none;
+    }
+    
+    .account-selection {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+    
+    .vertical-divider {
+      border-left: 1px solid #ccc;
+      height: 100px;
+      margin-right: 20px;
+    }
+    
+    .account-options {
+      color: #000000;
+      flex: 1;
+    }
+    
+    .account-options h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .account-options p {
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    
+    .client-label {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    
+    
+    .account-type-selector {
+      display: flex;
+    }
+    
+    .account-type-option {
+      flex: 1;
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .account-type-option:hover {
+      background-color: #e6e6e6;
+    }
+    
+  
+    
+    .buttons hr {
+      border: 1px solid #ddd;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    
+    .social-buttons button {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .social-buttons button i {
+      font-size: 20px;
+      color: #000;
+    }
+    
+    
+    

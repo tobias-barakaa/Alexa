@@ -10,7 +10,7 @@ const WriterContent = () => {
             <h3>become a writer account</h3>
             <p>Have an account? <Link to="/login">Login</Link></p>
             <div className="account-type-selector">
-              <div className="account-type-option">Writer</div>
+              <div className="account-type-option"><span><Link to='/writer'>Writer</Link></span></div>
             </div>
           </div>
         </div>

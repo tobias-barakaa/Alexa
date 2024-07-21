@@ -3,7 +3,7 @@ import backgroundImage from '../../assets/images/office.jpg';
 import ClientContent from '../client/clientContent';
 import WriterContent from '../writer/writerContent';
 import ClientRegister from '../client/ClientRegister';
-
+import "./Layout.css"
 const Layout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
