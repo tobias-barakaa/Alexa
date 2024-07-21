@@ -17,7 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-}
+} 
 
 .stat-item {
   display: flex;

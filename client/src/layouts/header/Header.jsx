@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import "./Header.css";
 
 const Header = () => {
@@ -64,7 +64,7 @@ const Header = () => {
             </li>
           </ul>
           <div className={`right-buttons ${isMenuOpen ? 'active' : ''}`}>
-            <div className="login-button">
+            <div className="login">
               <i className="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
             </div>

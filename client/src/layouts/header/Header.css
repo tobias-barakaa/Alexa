@@ -1,5 +1,5 @@
 header {
-  height: 70px;
+  height: 80px;
   width: 100%;
   background-color: #ffffff;
   display: flex;
@@ -76,24 +76,27 @@ nav {
   align-items: center;
 }
 
-.right-buttons .login-button {
+.login {
   display: flex;
   align-items: center;
   cursor: pointer;
   margin-right: 15px;
-  font-size: 16px;
-  color: #333;
+  font-size: 1.3em;
+  color: #000000;
   transition: color 0.3s;
 }
 
-.right-buttons .login-button:hover {
+.login-button:hover {
   color: #76bdff;
 }
 
-.right-buttons .hire-writers {
+.hire-writers {
+  width: 170px;
+  height: 40px;
   background-color: #76bdff;
+  font-size: 3em;
   color: #ffffff;
-  padding: 8px 16px;
+  padding: 4px 8px;
   text-decoration: none;
   border-radius: 4px;
   font-size: 14px;
