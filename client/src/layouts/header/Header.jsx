@@ -1,9 +1,15 @@
-import  { useState } from 'react';
+import React, { useState } from 'react';
 import "./Header.css";
 
 const Header = () => {
-    const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
       <header>
@@ -12,7 +18,12 @@ const Header = () => {
             <span className="logo-en">En</span>
             <span className="logo-writers">writers</span>
           </div>
-          <ul className="nav-links">
+          <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <li>
               <a href="#"><i className="bi bi-house"></i> Home</a>
             </li>
@@ -52,12 +63,12 @@ const Header = () => {
               <a href="#"><i className="bi bi-person-lines-fill"></i> Contact</a>
             </li>
           </ul>
-          <div className="right-buttons">
+          <div className={`right-buttons ${isMenuOpen ? 'active' : ''}`}>
             <div className="login-button">
               <i className="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
             </div>
-            <a href="#" className="hire-writers">Hire Personal Writers</a>
+            <button className="hire-writers">Hire Personal Writers</button>
           </div>
         </nav>
       </header>
@@ -65,4 +76,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
