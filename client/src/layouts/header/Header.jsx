@@ -68,7 +68,7 @@ const Header = () => {
               <i className="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
             </div>
-            <button className="hire-writers">Hire Personal Writers</button>
+            <button className="hire-writers">Personal Writers</button>
           </div>
         </nav>
       </header>
