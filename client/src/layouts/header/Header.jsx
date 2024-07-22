@@ -28,63 +28,62 @@ const Header = () => {
               <a href="#"><i className="bi bi-house"></i> Home</a>
             </li>
             <li 
-              className="dropdown"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
-            >
-              <a href="#">Services <i className="bi bi-chevron-down"></i></a>
-              {isServicesOpen && (
-                <ul className="dropdown-menue">
-                  <div className='leftt'>
-
-                  <li>
-                    <i className="bi bi-pencil-square"></i>
-                    <div>
-                      <span>Service 1</span>
-                      <p>Description for service 1, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <i className="bi bi-bar-chart"></i>
-                    <div>
-                      <span>Service 2</span>
-                      <p>Description for service 2, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <i className="bi bi-lightbulb"></i>
-                    <div>
-                      <span>Service 3</span>
-                      <p>Description for service 3, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  </div>
-                  <div className='rightt'>
-                  <li>
-                    <i className="bi bi-graph-up"></i>
-                    <div>
-                      <span>Service 4</span>
-                      <p>Description for service 4, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <i className="bi bi-globe"></i>
-                    <div>
-                      <span>Service 5</span>
-                      <p>Description for service 5, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <i className="bi bi-briefcase"></i>
-                    <div>
-                      <span>Service 6</span>
-                      <p>Description for service 6, explaining what it includes.</p>
-                    </div>
-                  </li>
-                  </div>
-                </ul>
-              )}
-            </li>
+  className="dropdown"
+  onMouseEnter={() => setIsServicesOpen(true)}
+  onMouseLeave={() => setIsServicesOpen(false)}
+>
+  <a href="#">Services <i className="bi bi-chevron-down"></i></a>
+  {isServicesOpen && (
+    <div className='dropdown-menu'>
+      <div className='leftt'>
+        <li>
+          <i className="bi bi-pencil-square"></i>
+          <div>
+            <span>Service 1</span>
+            <p>Description for service 1, explaining what it includes.</p>
+          </div>
+        </li>
+        <li>
+          <i className="bi bi-bar-chart"></i>
+          <div>
+            <span>Service 2</span>
+            <p>Description for service 2, explaining what it includes.</p>
+          </div>
+        </li>
+        <li>
+          <i className="bi bi-lightbulb"></i>
+          <div>
+            <span>Service 3</span>
+            <p>Description for service 3, explaining what it includes.</p>
+          </div>
+        </li>
+      </div>
+      <div className='rightt'>
+        <li>
+          <i className="bi bi-graph-up"></i>
+          <div>
+            <span>Service 4</span>
+            <p>Description for service 4, explaining what it includes.</p>
+          </div>
+        </li>
+        <li>
+          <i className="bi bi-globe"></i>
+          <div>
+            <span>Service 5</span>
+            <p>Description for service 5, explaining what it includes.</p>
+          </div>
+        </li>
+        <li>
+          <i className="bi bi-briefcase"></i>
+          <div>
+            <span>Service 6</span>
+            <p>Description for service 6, explaining what it includes.</p>
+          </div>
+        </li>
+      </div>
+    </div>
+  )}
+</li>
             <li 
               className="dropdown"
               onMouseEnter={() => setIsCompanyOpen(true)}
@@ -92,7 +91,7 @@ const Header = () => {
             >
               <a href="#">Company <i className="bi bi-chevron-down"></i></a>
               {isCompanyOpen && (
-                <ul className="dropdown-menue">
+                <ul className="dropdown-menu">
                   <li>
                     <i className="bi bi-file-earmark-text"></i>
                     <div>

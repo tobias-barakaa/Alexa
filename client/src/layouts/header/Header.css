@@ -114,26 +114,23 @@ nav {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Dropdown styles */
-.dropdown-menue {
+.dropdown-menu {
   position: absolute;
+  top: 100%;
   left: 0;
   background: white;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  padding: 20px;
+  padding: 30px;
+  width: 300px;
   display: none;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1;
-  border-radius: 4px;
-  width: 600px; /* Adjusted for two columns */
-  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, auto);
-  margin-top: 30px;
+  gap: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  cursor: pointer;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown-menu:hover {
   display: grid;
 }
 
@@ -141,15 +138,24 @@ nav {
   list-style: none;
   display: flex;
   align-items: center;
+  padding: 10px; /* Add some padding for better hover area */
+  border-radius: 4px; /* Optional: rounded corners for hover effect */
+  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.dropdown-menu li:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
+  border-radius: 5px;
 }
 
 .dropdown-menu li i {
   font-size: 24px;
+  color: #5da8ff;
+
+
   margin-right: 10px;
-  color: #76bdff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Box shadow for icons */
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 4px; /* Adjust border-radius for box shadow */
 }
 
 .dropdown-menu li div {
