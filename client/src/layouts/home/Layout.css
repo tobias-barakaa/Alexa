@@ -162,3 +162,128 @@
   
   
   
+
+
+ 
+  .content-left {
+    margin-top: 80px;
+  }
+  
+  .images-container {
+    display: flex;
+  }
+  
+  .trustpilot-img {
+    height: 80px;
+    width: 200px;
+    margin-left: 0px;
+  }
+  
+  .google-img {
+    height: 60px;
+    width: 160px;
+    margin-top: 20px;
+  }
+  
+  .headline {
+    font-size: 64px;
+    line-height: 1.5;
+  }
+  
+  .small-text {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  
+  .content-right {
+    margin-top: 80px;
+    background-color: white;
+    height: 580px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    margin-right: 100px;
+  }
+  
+  .form-container {
+    padding: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .register {
+    border-radius: 15px;
+    flex: 1;
+    margin-top: 10px;
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .separator-line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .separator span {
+    margin: 0 10px;
+    color: #888;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+  }
+  
+  .social-btn {
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .social-btn i {
+    margin-right: 5px;
+  }
+  
+  .disclaimer {
+    color: #cbcbcb;
+    font-size: 14px;
+  }
+  
+  .form-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .form-checkbox label {
+    margin-left: 10px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .btn-primary {
+    margin-top: 20px;
+  }
+  
+  .sign-in-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .sign-in-link a {
+    color: #76bdff;
+  }
+  
