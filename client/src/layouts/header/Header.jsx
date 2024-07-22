@@ -32,7 +32,7 @@ const Header = () => {
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <a href="#">Services <i className="bi bi-caret-down"></i></a>
+              <a href="#">Services <i className="bi bi-chevron-down"></i></a>
               {isServicesOpen && (
                 <ul className="dropdown-menu">
                   <li><a href="#">Service 1</a></li>
@@ -48,7 +48,7 @@ const Header = () => {
               onMouseEnter={() => setIsCompanyOpen(true)}
               onMouseLeave={() => setIsCompanyOpen(false)}
             >
-              <a href="#">Company <i className="bi bi-caret-down"></i></a>
+              <a href="#">Company <i className="bi bi-chevron-down"></i></a>
               {isCompanyOpen && (
                 <ul className="dropdown-menu">
                   <li><a href="#">About Us</a></li>
