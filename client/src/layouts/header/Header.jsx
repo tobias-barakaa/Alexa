@@ -34,12 +34,54 @@ const Header = () => {
             >
               <a href="#">Services <i className="bi bi-chevron-down"></i></a>
               {isServicesOpen && (
-                <ul className="dropdown-menu">
-                  <li><a href="#">Service 1</a></li>
-                  <li><a href="#">Service 2</a></li>
-                  <li><a href="#">Service 3</a></li>
-                  <li><a href="#">Service 4</a></li>
-                  <li><a href="#">Service 5</a></li>
+                <ul className="dropdown-menue">
+                  <div className='leftt'>
+
+                  <li>
+                    <i className="bi bi-pencil-square"></i>
+                    <div>
+                      <span>Service 1</span>
+                      <p>Description for service 1, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <i className="bi bi-bar-chart"></i>
+                    <div>
+                      <span>Service 2</span>
+                      <p>Description for service 2, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <i className="bi bi-lightbulb"></i>
+                    <div>
+                      <span>Service 3</span>
+                      <p>Description for service 3, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  </div>
+                  <div className='rightt'>
+                  <li>
+                    <i className="bi bi-graph-up"></i>
+                    <div>
+                      <span>Service 4</span>
+                      <p>Description for service 4, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <i className="bi bi-globe"></i>
+                    <div>
+                      <span>Service 5</span>
+                      <p>Description for service 5, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <i className="bi bi-briefcase"></i>
+                    <div>
+                      <span>Service 6</span>
+                      <p>Description for service 6, explaining what it includes.</p>
+                    </div>
+                  </li>
+                  </div>
                 </ul>
               )}
             </li>
@@ -50,12 +92,21 @@ const Header = () => {
             >
               <a href="#">Company <i className="bi bi-chevron-down"></i></a>
               {isCompanyOpen && (
-                <ul className="dropdown-menu">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Our Team</a></li>
-                  <li><a href="#">Careers</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                <ul className="dropdown-menue">
+                  <li>
+                    <i className="bi bi-file-earmark-text"></i>
+                    <div>
+                      <span>Blog</span>
+                      <p>Read the latest updates and insights from our team.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <i className="bi bi-envelope"></i>
+                    <div>
+                      <span>Contact Us</span>
+                      <p>Get in touch with us for any queries or support.</p>
+                    </div>
+                  </li>
                 </ul>
               )}
             </li>

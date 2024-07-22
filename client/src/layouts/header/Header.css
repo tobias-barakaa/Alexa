@@ -1,3 +1,5 @@
+/* Header.css */
+
 header {
   height: 100px;
   width: 100%;
@@ -14,7 +16,6 @@ nav {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  
 }
 
 .nav-logo {
@@ -51,12 +52,10 @@ nav {
   align-items: center;
   transition: color 0.3s;
   font-size: 1.2em;
-
 }
 
 .nav-links a:hover {
   color: #76bdff;
-  
 }
 
 .nav-links a::after {
@@ -69,7 +68,6 @@ nav {
   position: absolute;
   bottom: -5px;
   left: 0;
-  
 }
 
 .nav-links a:hover::after {
@@ -91,7 +89,7 @@ nav {
   transition: color 0.3s;
 }
 
-.login-button:hover {
+.login:hover {
   color: #76bdff;
 }
 
@@ -117,37 +115,57 @@ nav {
 }
 
 /* Dropdown styles */
-.dropdown-menu {
+.dropdown-menue {
   position: absolute;
-  top: 100%;
   left: 0;
   background: white;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  padding: 10px;
+  padding: 20px;
   display: none;
   flex-direction: column;
   gap: 10px;
   z-index: 1;
   border-radius: 4px;
-  min-width: 150px;
+  width: 600px; /* Adjusted for two columns */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  margin-top: 30px;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: flex;
+  display: grid;
 }
 
 .dropdown-menu li {
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
-.dropdown-menu li a {
-  color: #333;
-  font-size: 14px;
-  padding: 5px 0;
-}
-
-.dropdown-menu li a:hover {
+.dropdown-menu li i {
+  font-size: 24px;
+  margin-right: 10px;
   color: #76bdff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Box shadow for icons */
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.dropdown-menu li div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu li span {
+  font-weight: bold;
+  color: #333;
+}
+
+.dropdown-menu li p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
 }
 
 .bi {
@@ -199,6 +217,8 @@ nav {
     position: static;
     box-shadow: none;
     padding-left: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
   .right-buttons.active {
