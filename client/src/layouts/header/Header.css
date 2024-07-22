@@ -119,20 +119,22 @@ nav {
   top: 100%;
   left: 0;
   background: white;
-  padding: 30px;
   width: 300px;
   display: none;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, auto);
   gap: 20px;
   border-radius: 8px;
   z-index: 1000;
   cursor: pointer;
+
+  padding: 4px;
+  flex-direction: column;
 }
 
-.dropdown-menu:hover {
-  display: grid;
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
 }
+
 
 .dropdown-menu li {
   list-style: none;
@@ -141,6 +143,8 @@ nav {
   padding: 10px; /* Add some padding for better hover area */
   border-radius: 4px; /* Optional: rounded corners for hover effect */
   transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+
+  
 }
 
 .dropdown-menu li:hover {

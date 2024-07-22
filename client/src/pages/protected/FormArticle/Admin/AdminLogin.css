@@ -59,7 +59,7 @@
     color: #555;
   }
   
-  input {
+  .login-input {
     width: 100%;
     height: 50px;
     padding: 10px;

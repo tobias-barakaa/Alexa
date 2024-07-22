@@ -41,6 +41,7 @@ const AdminLogin = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className='login-input'
           />
         </div>
         <div className="form-group">
@@ -51,6 +52,7 @@ const AdminLogin = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className='login-input'
           />
         </div>
         {isError && <p className="error-message">{error?.data?.message || 'Login failed. Please try again.'}</p>}

@@ -1,13 +1,13 @@
-body, html {
+/* body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
-}
+} */
 
 .dashboard-container {
   display: flex;
-  height: calc(100vh - 60px); /* Adjust based on header height */
+  height: calc(100vh - 60px); 
   background-color: #eff2f3;
 }
 
