@@ -39,22 +39,22 @@ const Header = () => {
         <li>
           <i className="bi bi-pencil-square"></i>
           <div>
-            <span>Service 1</span>
-            <p>Description for service 1, explaining what it includes.</p>
+            <span>Blog Writing</span>
+            <p>Engaging, SEO-optimized blog posts tailored to your audience and industry.</p>
           </div>
         </li>
         <li>
           <i className="bi bi-bar-chart"></i>
           <div>
-            <span>Service 2</span>
-            <p>Description for service 2, explaining what it includes.</p>
+            <span>Article Creation</span>
+            <p>In-depth, well-researched articles to establish your authority in your field.</p>
           </div>
         </li>
         <li>
           <i className="bi bi-lightbulb"></i>
           <div>
-            <span>Service 3</span>
-            <p>Description for service 3, explaining what it includes.</p>
+            <span>SEO Copywriting</span>
+            <p>Compelling website copy designed to rank well in search engines and convert visitors.</p>
           </div>
         </li>
       </div>
@@ -62,22 +62,22 @@ const Header = () => {
         <li>
           <i className="bi bi-graph-up"></i>
           <div>
-            <span>Service 4</span>
-            <p>Description for service 4, explaining what it includes.</p>
+            <span>Social Media Content</span>
+            <p>Eye-catching posts and captions to boost your social media engagement and following.</p>
           </div>
         </li>
         <li>
           <i className="bi bi-globe"></i>
           <div>
-            <span>Service 5</span>
-            <p>Description for service 5, explaining what it includes.</p>
+            <span>Email Newsletter Writing</span>
+            <p>Persuasive email content that nurtures leads and drives conversions.</p>
           </div>
         </li>
         <li>
           <i className="bi bi-briefcase"></i>
           <div>
-            <span>Service 6</span>
-            <p>Description for service 6, explaining what it includes.</p>
+            <span>Product Descriptions</span>
+            <p>Enticing product descriptions that highlight benefits and drive sales.</p>
           </div>
         </li>
       </div>
@@ -95,7 +95,7 @@ const Header = () => {
                   <li>
                     <i className="bi bi-file-earmark-text"></i>
                     <div>
-                      <span>Blog</span>
+                      <span>Blog Writing</span>
                       <p>Read the latest updates and insights from our team.</p>
                     </div>
                   </li>

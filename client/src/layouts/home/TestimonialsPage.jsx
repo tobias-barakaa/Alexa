@@ -19,7 +19,13 @@ const TestimonialsPage = () => {
       company: "Global Health Initiatives",
       quote: "The blog posts they've written for us have established our brand as a thought leader in the health tech space. Truly impressive work!",
       image: "/path/to/michael-chen-image.jpg"
-    }
+    },
+    {
+        name: "John Smith",
+        company: "Tech Innovators Ltd.",
+        quote: "The content created by this team has significantly boosted our online presence. Our organic traffic has increased by 200% in just 6 months!",
+        image: "/path/to/john-smith-image.jpg"
+      }
   ];
 
   return (
@@ -27,11 +33,15 @@ const TestimonialsPage = () => {
       <h1>What Our Clients Say</h1>
       <div className="testimonials-grid">
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="testimonial-card">
-            <img src={testimonial.image} alt={testimonial.name} className="client-image" />
-            <blockquote>{testimonial.quote}</blockquote>
-            <p className="client-name">{testimonial.name}</p>
-            <p className="client-company">{testimonial.company}</p>
+          <div key={index} className={`testimonial-card ${index % 3 === 0 ? 'large' : 'small'}`}>
+            <div className="testimonial-content">
+              <img src={testimonial.image} alt={testimonial.name} className="client-image" />
+              <div className="star-rating">
+                ★★★★★
+              </div>
+              <p className="client-name">{testimonial.name}</p>
+              <blockquote>{testimonial.quote}</blockquote>
+            </div>
           </div>
         ))}
       </div>

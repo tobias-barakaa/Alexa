@@ -5,6 +5,7 @@ import ServicesPage from './ServicesPage';
 import PortfolioPage from './PortfolioPage';
 import TestimonialsPage from './TestimonialsPage';
 import Footer from './Footer';
+import BusinessCTA from './BusinessCTA';
 
 const HomePage = () => {
   
@@ -17,6 +18,7 @@ const HomePage = () => {
        <Home />
        <ServicesPage />
        <PortfolioPage />
+            <BusinessCTA />
        <TestimonialsPage />
        <Footer />
     </div>

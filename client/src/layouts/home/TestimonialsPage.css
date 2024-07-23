@@ -2,7 +2,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    color: #000;
   }
   
   h1 {
@@ -13,43 +12,70 @@
   
   .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
   
   .testimonial-card {
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   
   .testimonial-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
   }
   
+  .testimonial-card.large {
+    grid-column: span 2;
+  }
+  
+  .testimonial-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
   .client-image {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .star-rating {
+    color: #ffc107;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .client-name {
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   
   blockquote {
     font-style: italic;
     color: #555;
-    margin-bottom: 20px;
+    margin: 0;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
-  .client-name {
-    font-weight: bold;
-    color: #76bdff;
-    margin-bottom: 5px;
-  }
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
   
-  .client-company {
-    color: #888;
+    .testimonial-card.large {
+      grid-column: span 1;
+    }
   }
