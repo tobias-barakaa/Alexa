@@ -1,6 +1,8 @@
 import './HomePage.css';
 import Header from '../header/Header';
-import Layout from './Layout';
+import Home from './Home';
+import ServicesPage from './ServicesPage';
+import PortfolioPage from './PortfolioPage';
 
 const HomePage = () => {
   
@@ -10,7 +12,9 @@ const HomePage = () => {
    
 
       <Header />
-       <Layout />
+       <Home />
+       <ServicesPage />
+       <PortfolioPage />
     </div>
   );
 };

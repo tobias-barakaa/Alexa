@@ -5,7 +5,7 @@ import googleicon from '../../assets/images/googleiccon.png';
 import google from '../../assets/images/google.png';
 
 import facebook from '../../assets/images/facebook.png'; 
-import "./Layout.css";
+import "./Home.css";
 
 const Layout = () => {
   return (
