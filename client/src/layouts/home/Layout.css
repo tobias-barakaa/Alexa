@@ -1,7 +1,11 @@
-  main {
+/* Layout.css */
+
+.layout-main {
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
   
   .overlay {
@@ -11,46 +15,42 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-  } 
-  
-  .register {
-    height: 56px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: transparent;
-    background-image: linear-gradient(to right, #ffffff, #f0f0f0);
-    background-clip: padding-box;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-
-    border-radius: 15px;
-    flex: 1;
-    margin-top: 10px;
-    height: 56px;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
   }
   
-   
+  .content-left, .content-right {
+    flex: 1; /* Take equal space */
+    margin-top: 50px; /* Margin top for both sections */
+  }
+  
+  .images-container {
+    display: flex;
+    justify-content: center; /* Center images */
+    margin-bottom: 20px; /* Space below images */
+  }
+  
+  .trustpilot-img, .google-img {
+    height: 40px; /* Adjusted height */
+    width: 120px; /* Adjusted width */
+    margin: 0 10px; /* Space between images */
+  }
+  
+  .headline {
+    font-size: 36px; /* Adjusted font size */
+    line-height: 1.2;
+    text-align: center; /* Center align */
+  }
+  
   .small-text {
-    font-size: 20px;
+    font-size: 20px; /* Smaller text */
     line-height: 1.5;
+    text-align: center; /* Center align */
   }
   
-  
-   
-  .content-left,.content-right {
-    width: 100%;
-    margin-top: 80px;
-    height: 100px;
-
-  }
-
-
-
-
-
   .content-buttons {
     display: flex;
-    gap: 10px;
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Space between buttons */
   }
   
   .btn-outline, .btn-primary {
@@ -65,7 +65,6 @@
     border: 2px solid #5da8ff;
     color: #5da8ff;
     transition: background 0.3s, color 0.3s;
-    /* height: 30px; */
   }
   
   .btn-outline:hover {
@@ -84,99 +83,34 @@
     transform: scale(1.05);
   }
   
-
- 
-  
-  
-  
-  
-  .form-row input,
-  .form-container input,
-  .form-container button {
-    border-radius: 15px;
-    height: 56px;
-  }
-  
-  
-  
-  .btn-primary {
-    background-color: #5da8ff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .social-buttons button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 10px;
-    cursor: pointer;
-    width: 48%;
-  }
-  
-  
-  
-
-
-  
-  .images-container {
-    display: flex;
-  }
-  
-  .trustpilot-img {
-    height: 80px;
-    width: 200px;
-    margin-left: 0px;
-  }
-  
-  .google-img {
-    height: 60px;
-    width: 160px;
-    margin-top: 20px;
-  }
-  
-  .headline {
-    font-size: 80px;
-    line-height: 1;
-    margin-top: 10px;
-  }
-  
-  .small-text {
-    font-size: 36px;
-    line-height: 1.2;
-  }
-  
-  .content-right {
-    margin-top: 80px;
-    background-color: white;
-    height: 620px;
-    border-radius: 10px;
-    padding: 10px;
-    width: 520px;
-    margin-right: 100px;
-  }
-  
   .form-container {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
     padding: 20px;
   }
   
   .form-row {
-    display: flex;
-    gap: 4px;
+    display: flex; /* Flexbox for name inputs */
+    gap: 4px; /* Space between inputs */
   }
   
   .register {
-   
+    border-radius: 15px;
+    height: 56px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: transparent;
+    background-image: linear-gradient(to right, #ffffff, #f0f0f0);
+    background-clip: padding-box;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Flex grow for inputs */
   }
   
   .separator {
     display: flex;
     align-items: center;
     margin: 20px 0;
+    text-align: center; /* Center align the separator */
   }
   
   .separator-line {
@@ -185,27 +119,31 @@
     background-color: #ccc;
   }
   
-  .separator span {
-    margin: 0 10px;
-    color: #888;
-  }
-  
   .social-buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
   }
   
   .social-btn {
-    flex: 1;
-    margin: 0 5px;
+    flex: 1; /* Flex grow for buttons */
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
   
-  .social-btn i {
-    margin-right: 5px;
+  .social-btn img {
+    height: 20px; /* Icon size */
+    margin-right: 5px; /* Space between icon and text */
+  }
+  
+  .social-btn:hover {
+    background-color: #f0f0f0; /* Light background on hover */
   }
   
   .disclaimer {
@@ -215,24 +153,56 @@
   
   .form-checkbox {
     display: flex;
-
+    align-items: center;
+    margin-top: 10px; /* Space above checkbox */
   }
   
   .form-checkbox label {
-    margin-left: 10px;
+    margin-left: 10px; /* Space between checkbox and label */
   }
   
   .full-width {
-    width: 100%;
+    width: 100%; /* Full width for the button */
   }
   
-    
   .sign-in-link {
     margin-top: 20px;
     text-align: center;
     color: #000;
   }
   
-  .leader {
-    font-weight: 30;
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .overlay {
+      flex-direction: column; /* Stack content vertically */
+      align-items: center; /* Center align */
+    }
+  
+    .content-left, .content-right {
+      width: 100%; /* Full width on small screens */
+      margin-right: 0; /* Remove right margin */
+    }
+  
+    .images-container {
+      flex-direction: column; /* Stack images vertically */
+    }
+  
+    .trustpilot-img, .google-img {
+      width: 100%; /* Full width for images on small screens */
+      height: auto; /* Maintain aspect ratio */
+      margin: 10px 0; /* Space between images */
+    }
+  
+    .headline {
+      font-size: 28px; /* Smaller font size on mobile */
+    }
+  
+    .small-text {
+      font-size: 18px; /* Smaller text on mobile */
+    }
+  
+    .btn-outline, .btn-primary {
+      width: 100%; /* Full width buttons on mobile */
+    }
   }
+  
