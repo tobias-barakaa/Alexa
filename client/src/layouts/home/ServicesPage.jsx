@@ -37,9 +37,11 @@ const ServicesPage = () => {
         ))}
       </div>
       <div className="case-study">
-        <h2>Case Study: Boosting Organic Traffic</h2>
-        <p>For client XYZ, we increased organic traffic by 150% over 6 months through strategic content creation and SEO optimization.</p>
-      </div>
+  <div className="case-study-content">
+    <h2>Case Study: Boosting Organic Traffic</h2>
+    <p>For client XYZ, we increased organic traffic by 150% over 6 months through strategic content creation and SEO optimization.</p>
+  </div>
+</div>
     </div>
   );
 };

@@ -41,6 +41,43 @@
   
   .case-study {
     margin-top: 60px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 30px;
+    background-image: url('../../assets/images/office.jpg');
+    /* background-image: url('/path/to/your/image.jpg'); */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .case-study::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);  /* Dark overlay */
+  }
+  
+  .case-study-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+  
+  .case-study h2 {
+    color: #76bdff;
+    margin-bottom: 20px;
+  }
+  
+  .case-study p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  /* .case-study {
+    margin-top: 60px;
     background-color: #f8f8f8;
     border-radius: 10px;
     padding: 30px;
@@ -49,4 +86,4 @@
   .case-study h2 {
     color: #76bdff;
     margin-bottom: 20px;
-  }
+  } */

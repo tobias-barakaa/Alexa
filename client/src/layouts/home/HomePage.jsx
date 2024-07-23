@@ -3,6 +3,8 @@ import Header from '../header/Header';
 import Home from './Home';
 import ServicesPage from './ServicesPage';
 import PortfolioPage from './PortfolioPage';
+import TestimonialsPage from './TestimonialsPage';
+import Footer from './Footer';
 
 const HomePage = () => {
   
@@ -15,6 +17,8 @@ const HomePage = () => {
        <Home />
        <ServicesPage />
        <PortfolioPage />
+       <TestimonialsPage />
+       <Footer />
     </div>
   );
 };
