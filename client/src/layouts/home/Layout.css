@@ -30,6 +30,7 @@
     display: flex; /* Use flexbox for layout */
     justify-content: center; /* Center content horizontally */
     align-items: flex-start; /* Align content to the top */
+    position: relative; /* Set position to relative for the overlay */
   }
   
   .overlay {
@@ -40,14 +41,26 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%; /* Ensure overlay takes full width */
-    max-width: 1200px; /* Optional: limit the width of the overlay */
     margin: 0 auto; /* Center the overlay */
+    position: absolute; /* Position the overlay absolutely */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Ensure the overlay is on top */
   }
   
   .content-left, .content-right {
     flex: 1; /* Take equal space */
-    margin-top: 50px; /* Margin top for both sections */
+    margin-top: 60px; /* Margin top for both sections */
   }
+
+  /* .content-right {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 24%;
+  } */
   
   .images-container {
     display: flex;
@@ -56,9 +69,8 @@
   }
   
   .trustpilot-img, .google-img {
-    height: 40px; /* Adjusted height */
-    width: 120px; /* Adjusted width */
-    margin: 0 10px; /* Space between images */
+    height: 60px; /* Adjusted height */
+    width: 160px; /* Adjusted width */
   }
   
   .headline {
@@ -112,12 +124,15 @@
   .form-container {
     display: flex;
     flex-direction: column; /* Stack form elements vertically */
+
+    background-color: #ffffff;
     padding: 20px;
+    border-radius: 15px;
+    width: 500px;
   }
   
   .form-row {
     display: flex; /* Flexbox for name inputs */
-    gap: 4px; /* Space between inputs */
   }
   
   .register {
