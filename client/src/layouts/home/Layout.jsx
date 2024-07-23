@@ -14,7 +14,7 @@ const Layout = () => {
               <img src={google} alt="Second" className="google-img" />
             </div>
             <p className="headline">
-              MarktleiderIn<br />leadgeneratie<br />binnen de Benelux.
+              MarktleiderIn<br /><span className='leader'>leadgeneratie</span><br />binnen de Benelux.
             </p>
             <p className="small-text">
             Wij helpen grote en kleine bedrijven in <br />
@@ -30,20 +30,20 @@ const Layout = () => {
           <div className="content-right">
             <form className="form-container">
               <div className="form-row">
-                <input className="register" style={{ height: '56px' }} type="text" placeholder="First Name" />
-                <input className="register" type="text" style={{ height: '56px' }} placeholder="Last Name" />
+                <input className="register"  type="text" placeholder="First Name" />
+                <input className="register" type="text"  placeholder="Last Name" />
               </div>
               <input className="register" type="email" 
               placeholder="Email" style={{ borderRadius: '15px', width: '100%', marginTop: '10px', height: "56px" }} />
 
 <input className="register" type="password" 
-              placeholder="Password" style={{ borderRadius: '15px', width: '100%', marginTop: '10px', height: '56px' }} />
+              placeholder="Password" style={{ borderRadius: '15px', width: '100%', marginTop: '10px' }} />
 
 <input className="register" type="password" 
-              placeholder="Confirm Password" style={{ borderRadius: '15px', width: '100%', height: "56px", marginTop: '10px' }} />
+              placeholder="Confirm Password" style={{ borderRadius: '15px', width: '100%', marginTop: '10px' }} />
 
               <div className="separator">
-                <div className="separator-line"></div>
+                <div className="separator-line" />
                 <span>or</span>
                 <div className="separator-line"></div>
               </div>
