@@ -1,8 +1,10 @@
 // Layout.js
 import backgroundImage from '../../assets/images/office.jpg';
 import trustPilot from '../../assets/images/trust.png';
-import google from '../../assets/images/googleicon.jpg';
-import facebook from '../../assets/images/google.png'; // Add Facebook image if needed
+import googleicon from '../../assets/images/googleiccon.png';
+import google from '../../assets/images/google.png';
+
+import facebook from '../../assets/images/facebook.png'; 
 import "./Layout.css";
 
 const Layout = () => {
@@ -47,7 +49,7 @@ const Layout = () => {
 
               <div className="social-buttons">
                 <button type="button" className="social-btn google">
-                  <img src={google} alt="Google" /> Sign up with Google
+                  <img src={googleicon} alt="Google" /> Sign up with Google
                 </button>
                 <button type="button" className="social-btn facebook">
                   <img src={facebook} alt="Facebook" /> Sign up with Facebook

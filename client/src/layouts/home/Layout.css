@@ -1,11 +1,15 @@
 /* Layout.css */
 
-.layout-main {
+/* .layout-main {
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow-y: auto;
+
+
+    
   }
   
   .overlay {
@@ -14,8 +18,30 @@
     padding: 30px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start; */
+    /* flex-wrap: wrap; Allow wrapping for smaller screens
+  } */
+  .layout-main {
+    background-image: url('../../assets/images/office.jpg'); /* Ensure the correct path */
+    background-size: cover; /* Make the background cover the entire area */
+    background-position: center; /* Center the background image */
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align content to the top */
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: white;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    width: 100%; /* Ensure overlay takes full width */
+    max-width: 1200px; /* Optional: limit the width of the overlay */
+    margin: 0 auto; /* Center the overlay */
   }
   
   .content-left, .content-right {
