@@ -10,10 +10,10 @@ const Sidebar = () => {
 
   return (
     <div className="sidenav">
-      <div className="sidebar-item" onClick={toggleOrderDropdown}>
+      <div className="sidebar-content-item" onClick={toggleOrderDropdown}>
         <span>📦 Order</span>
         {isOrderOpen && (
-          <ul className="dropdown">
+          <ul className="sidebar-dropdown">
             <li>📝 Blog Writing</li>
             <li>✍️ Article Creation</li>
             <li>🎵 Poetry/Song Writing</li>

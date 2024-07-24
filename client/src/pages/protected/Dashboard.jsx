@@ -11,7 +11,7 @@ const Dashboard = () => {
         <Header />
         <div className="content-container">
           <Sidenav />
-          <div className="main-content">
+          <div className="main-contentt">
             <Outlet />
           </div>
         </div>

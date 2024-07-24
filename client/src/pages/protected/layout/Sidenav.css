@@ -1,34 +1,58 @@
-.sidenav {
-  width: 2px; /* Set the sidebar width to 200px */
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  overflow-y: auto; /* Enable vertical scrolling */
+.sidenav-content {
+  width: 240px;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  color: black;
+}
+
+.sidebar-content-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Add a bottom border for separation */
+}
+
+
+
+.sidebar-dropdown {
+  list-style: none;
+  padding-left: 10px; /* Adjusted padding for better alignment */
+  margin: 10px 0 0;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly different background for dropdown */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Border around dropdown */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow */
+}
+
+.sidebar-dropdown li {
+  padding: 10px; /* More space between dropdown items */
+  color: #555;
+  transition: background-color 0.3s;
+}
+
+.sidebar-dropdown li:hover {
+  background-color: rgba(118, 189, 255, 0.2); /* Hover effect for dropdown items */
   color: black;
 }
 
 .sidebar-item {
   padding: 10px;
   cursor: pointer;
-  color: #333; /* Dark text color */
-  transition: background-color 0.3s; /* Transition for hover effect */
+  color: #333;
+  transition: background-color 0.3s;
   color: black;
 }
 
 .sidebar-item:hover {
-  background-color: rgba(118, 189, 255, 0.2); /* Light blue on hover */
-  color: black;
-}
-
-.dropdown {
-  list-style: none; /* Remove default list styling */
-  padding-left: 20px; /* Indent dropdown items */
-  margin: 5px 0 0; /* Margin above dropdown */
-  color: black;
-}
-
-.dropdown li {
-  padding: 5px 0; /* Space between dropdown items */
-  color: #555; /* Slightly lighter text color */
+  background-color: rgba(118, 189, 255, 0.2);
   color: black;
 }
