@@ -7,7 +7,7 @@
 
 .dashboard-container {
   display: flex;
-  height: calc(100vh - 60px); 
+  
   /* background-color: #eff2f3; */
   background-color: #f1f5f9;
 
@@ -15,16 +15,8 @@
 
 
 .content {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin-left: 20%;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  height: 100%;
+  
 }
 
 .dashboard-layout button {
-  margin-left: 10px;
 }

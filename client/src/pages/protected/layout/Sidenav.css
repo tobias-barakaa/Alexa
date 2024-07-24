@@ -1,0 +1,45 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 20%; /* Sidebar width */
+  height: 100vh; /* Full height */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: fixed; /* Fix the sidebar to the left */
+  z-index: 100; /* Ensure it stays above other content */
+}
+
+.sidebar-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333; /* Dark text color */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.sidebar-item:hover {
+  background-color: rgba(118, 189, 255, 0.2); /* Light blue on hover */
+}
+
+.dropdown {
+  list-style: none; /* Remove default list styling */
+  padding-left: 20px; /* Indent dropdown items */
+  margin: 5px 0 0; /* Margin above dropdown */
+}
+
+.dropdown li {
+  padding: 5px 0; /* Space between dropdown items */
+  color: #555; /* Slightly lighter text color */
+}
+
+
+.main-content {
+  flex: 1; /* Take the remaining space */
+  padding: 20px; /* Padding around the main content */
+  margin-left: 20%; /* Leave space for the sidebar */
+  background-color: #f1f5f9; /* Match the sidebar background */
+  height: 100vh; /* Full height */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  z-index: 1; /* Ensure it stays below the sidebar */
+}
