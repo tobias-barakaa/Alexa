@@ -1,18 +1,13 @@
-import { useState } from 'react';
 import './Sidenav.css';
 
 const Sidebar = () => {
-  const [isOrderOpen, setIsOrderOpen] = useState(false);
-
-  const toggleOrderDropdown = () => {
-    setIsOrderOpen(!isOrderOpen);
-  };
+  
 
   return (
-    <div className="sidenav">
-      <div className="sidebar-content-item" onClick={toggleOrderDropdown}>
+    <div className="sidena">
+      <div className="sidebar-content-item" >
         <span>📦 Order</span>
-        {isOrderOpen && (
+       
           <ul className="sidebar-dropdown">
             <li>📝 Blog Writing</li>
             <li>✍️ Article Creation</li>
@@ -20,12 +15,18 @@ const Sidebar = () => {
             <li>📚 Content Editing</li>
             <li>📊 SEO Optimization</li>
           </ul>
-        )}
+      
       </div>
       <div className="sidebar-item">📅 Schedule</div>
-      <div className="sidebar-item">📈 Analytics</div>
-      <div className="sidebar-item">⚙️ Settings</div>
-      <div className="sidebar-item">❓ Help</div>
+<div className="sidebar-item">📈 Analytics</div>
+<div className="sidebar-item">⚙️ Settings</div>
+<div className="sidebar-item">❓ Help</div>
+<div className="sidebar-item">💳 Wallet</div>
+<div className="sidebar-item">👤 Profile</div>
+<div className="sidebar-item">🚪 Logout</div>
+
+
+
     </div>
   );
 };

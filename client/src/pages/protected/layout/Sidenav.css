@@ -1,7 +1,8 @@
 .sidenav-content {
   width: 240px;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: yellow;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
@@ -13,6 +14,7 @@
 }
 
 .sidebar-content-item {
+  background-color: #fff;
   padding: 10px;
   cursor: pointer;
   color: #333;
@@ -44,7 +46,7 @@
   color: black;
 }
 
-.sidebar-item {
+/* .sidebar-item {
   padding: 10px;
   cursor: pointer;
   color: #333;
@@ -54,5 +56,20 @@
 
 .sidebar-item:hover {
   background-color: rgba(118, 189, 255, 0.2);
+  color: black;
+} */
+
+.sidebar-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333; 
+  transition: background-color 0.3s; 
+  color: black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(118, 189, 255, 0.2); 
   color: black;
 }

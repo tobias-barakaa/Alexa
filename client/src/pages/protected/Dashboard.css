@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  background-color: #f1f5f9;
 }
 
 .content-container {

@@ -1,0 +1,42 @@
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .text-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .text-content h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .text-content p {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .image-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-content img {
+    max-height: 180px;
+    object-fit: cover;
+  }
+  
+  .image-content hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  

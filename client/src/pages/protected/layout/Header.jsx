@@ -4,16 +4,16 @@ import "./Header.css";
 const Header = () => {
   return (
     <div className="dashboard-header">
-      <div className="main-nav">
+      {/* <div className="main-nav"> */}
         <div className="top-nav">
           <span className="home">
             <Link to="/">Home</Link> | About Website | FAQ | Contact us
           </span>
         </div>
-        <div className="middle-nav">
+        {/* <div className="middle-nav">
           <span>Dominican Republic Haiti Jamaica Turks and Caicos Islands All countries</span>
-        </div>
-        <div className="bottom-nav">
+        </div> */}
+        {/* <div className="bottom-nav">
           <div className="search-container">
             <input type="text" className="search-bar" placeholder="Search..." />
             <i className="bi bi-search search-icon"></i>
@@ -38,8 +38,8 @@ const Header = () => {
             <span><i className="bi bi-box-arrow-right"></i></span>
 
           </button>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 }

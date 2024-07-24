@@ -1,13 +1,14 @@
-.dashboard-header {
+/* .dashboard-header {
   height: auto;
-  width: 100%;
-  background: linear-gradient(to bottom, #078BC8, #0C6B9E, #0A5A85);
+  width: 100%; */
+  /* background: linear-gradient(to bottom, #078BC8, #0C6B9E, #0A5A85); */
+  /* background-color: #078BC8;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
   box-sizing: border-box;
-}
+} */
 .main-nav {
   display: flex;
   flex-direction: column;
@@ -26,9 +27,10 @@
   color: white; 
   font-size: 16px;
   padding: 10px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 
 .middle-nav {
