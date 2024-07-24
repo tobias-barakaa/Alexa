@@ -1,7 +1,5 @@
-// Sidebar.js
 import { useState } from 'react';
 import './Sidenav.css';
-import Home from './Home';
 
 const Sidebar = () => {
   const [isOrderOpen, setIsOrderOpen] = useState(false);
@@ -11,7 +9,7 @@ const Sidebar = () => {
   };
 
   return (
-    <>    <div className="sidebar">
+    <div className="sidenav">
       <div className="sidebar-item" onClick={toggleOrderDropdown}>
         <span>📦 Order</span>
         {isOrderOpen && (
@@ -29,10 +27,6 @@ const Sidebar = () => {
       <div className="sidebar-item">⚙️ Settings</div>
       <div className="sidebar-item">❓ Help</div>
     </div>
-    <div className="main-content">
-        <Home />
-      </div>
-      </>
   );
 };
 

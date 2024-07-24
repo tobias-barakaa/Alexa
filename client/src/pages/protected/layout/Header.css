@@ -1,17 +1,6 @@
-/* .dashboard-header {
-  height: auto;
-  width: 100%;
-  background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
-  box-sizing: border-box;
-} */
 .dashboard-header {
   height: auto;
   width: 100%;
-  /* background: linear-gradient(to bottom, #078BC8, #056b99, #034d6e); */
   background: linear-gradient(to bottom, #078BC8, #0C6B9E, #0A5A85);
   display: flex;
   flex-direction: column;
@@ -34,7 +23,6 @@
 .top-nav {
   height: auto;
   background: linear-gradient(to bottom, #078BC8, #056b99, #034d6e);
-
   color: white; 
   font-size: 16px;
   padding: 10px;
@@ -91,12 +79,8 @@
   font-weight: bold;
 }
 
-
-
 .gradient-button {
-  /* background: linear-gradient(to right, #078BC8, #1F4283); */
   background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
-
   height: 36px;
   width: 100px;
   color: #000000;

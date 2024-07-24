@@ -1,15 +1,10 @@
-/* Sidebar.css */
-
-.sidebar {
-  width: 10%; /* Sidebar width */
-  height: 100vh; /* Full height */
+.sidenav {
+  width: 2px; /* Set the sidebar width to 200px */
+  height: 100%;
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   overflow-y: auto; /* Enable vertical scrolling */
-  position: fixed; /* Fix the sidebar to the left */
-  z-index: 100; /* Ensure it stays above other content */
-
+  color: black;
 }
 
 .sidebar-item {
@@ -17,25 +12,23 @@
   cursor: pointer;
   color: #333; /* Dark text color */
   transition: background-color 0.3s; /* Transition for hover effect */
-  color: white;
-
+  color: black;
 }
 
 .sidebar-item:hover {
   background-color: rgba(118, 189, 255, 0.2); /* Light blue on hover */
-  color: white;
-
+  color: black;
 }
 
 .dropdown {
   list-style: none; /* Remove default list styling */
   padding-left: 20px; /* Indent dropdown items */
   margin: 5px 0 0; /* Margin above dropdown */
+  color: black;
 }
 
 .dropdown li {
   padding: 5px 0; /* Space between dropdown items */
   color: #555; /* Slightly lighter text color */
-  color: white;
-
+  color: black;
 }
