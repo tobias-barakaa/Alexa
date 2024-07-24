@@ -6,13 +6,20 @@ import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className="dashboard-container">
         <Sidenav />
         <div className="content">
           <Outlet />
         </div>
+      </div> */}
+      <div className="app-container">
+      <Header />
+      <div className="content-container">
+        <Sidenav />
+        <Outlet />
       </div>
+    </div>
     </>
   );
 };

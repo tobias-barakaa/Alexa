@@ -1,22 +1,77 @@
+
+
+/* App.css */
+.app-container {
+  flex-direction: column;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.content-container {
+  display: flex;
+  flex-grow: 1; /* Allow content to take remaining space */
+}
+
+/* Header.css */
+.dashboard-header {
+  width: 100%;
+  background: linear-gradient(to bottom, #078BC8, #0C6B9E, #0A5A85);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Sidebar.css */
+.sidebar {
+  width: 20%; /* Sidebar width */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Main.css */
+.main-content {
+  flex-grow: 1; /* Allow main content to take remaining space */
+  padding: 20px;
+  background-color: #f1f5f9; /* Match the sidebar background */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+
 /* body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
-} */
+}
 
 .dashboard-container {
   display: flex;
-  
-  /* background-color: #eff2f3; */
-  background-color: #f1f5f9;
+  height: calc(100vh - 60px); /* Adjust based on header height */
+  /* background-color: #eff2f3;
+}  */
 
-}
-
-
+/* header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; Adjust based on your header height */
+  /* background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+/* 
 .content {
-  
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 20%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .dashboard-layout button {
-}
+  margin-left: 10px;
+} */
