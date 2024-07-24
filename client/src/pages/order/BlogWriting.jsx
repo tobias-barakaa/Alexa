@@ -19,14 +19,15 @@ const BlogWriting = () => {
     </div>
 
     <div className="form-group">
-      <label >Category</label>
-      <select id="post-category" name="post-category">
-        <option value="">Select a category</option>
-        <option value="technology">Technology</option>
-        <option value="lifestyle">Lifestyle</option>
-        <option value="business">Business</option>
-      </select>
-    </div>
+  <label htmlFor="post-category">Category</label>
+  <select id="post-category" name="post-category" className="styled-select">
+    <option value="">Select a category</option>
+    <option value="technology">Technology</option>
+    <option value="lifestyle">Lifestyle</option>
+    <option value="business">Business</option>
+  </select>
+</div>
+
 
     <div className="form-group">
       <label >Tags</label>

@@ -91,3 +91,52 @@
       width: 100%;
     }
   }
+
+
+
+  .form-group {
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .styled-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #5da8ff;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%235da8ff%22 d%3D%22M2 0L0 2h4zM2 5L0 3h4z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .styled-select:hover {
+    border-color: #3498db;
+  }
+  
+  .styled-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(83, 152, 216, 0.3);
+  }
+  
+  .styled-select option {
+    color: #333;
+    background-color: #fff;
+  }
+  

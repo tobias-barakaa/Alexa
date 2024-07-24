@@ -1,0 +1,116 @@
+.poetry-song-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f7f1; /* Soft, paper-like background */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .poetry-song-container h2 {
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-align: center;
+    font-family: 'Playfair Display', serif; /* A more poetic font */
+  }
+  
+  .poetry-song-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .half-width {
+    flex: 1;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+  }
+  
+  input[type="text"],
+  textarea,
+  select {
+    padding: 12px;
+    border: 1px solid #d1c9b8;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fffcf5;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #8e7c61;
+    box-shadow: 0 0 0 2px rgba(142, 124, 97, 0.2);
+  }
+  
+  textarea#lyrics {
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+    background-color: #fffcf5;
+    border: 1px dashed #d1c9b8;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #8e7c61;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #7c6b52;
+  }
+  
+  @media (max-width: 600px) {
+    .poetry-song-container {
+      padding: 20px;
+    }
+  
+    .form-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .submit-button {
+      width: 100%;
+    }
+  }

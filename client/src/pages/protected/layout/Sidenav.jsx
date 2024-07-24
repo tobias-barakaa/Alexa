@@ -17,7 +17,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sidebar-item">📅 Schedule</div>
-      <div className="sidebar-item">📈 Analytics</div>
+      <div className="sidebar-item">📈 Manage Orders</div>
       <div className="sidebar-item">⚙️ Settings</div>
       <div className="sidebar-item">❓ Help</div>
       <div className="sidebar-item">💳 Wallet</div>

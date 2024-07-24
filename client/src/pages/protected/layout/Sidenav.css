@@ -1,6 +1,6 @@
 .sidena {
-  width: 240px;
-  height: calc(100vh - 60px); /* Adjust the height to account for the header height */
+  width: 260px;
+  height: calc(100vh - 40px); /* Adjust the height to account for the header height */
   background-color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
@@ -35,7 +35,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1); /* Border around dropdown */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow */
-  width: 180px;
+  width: 200px;
 }
 
 .sidebar-dropdown a {
