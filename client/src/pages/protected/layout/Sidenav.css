@@ -1,18 +1,22 @@
-.sidenav-content {
+.sidena {
   width: 240px;
-  height: 100vh;
-  /* background-color: rgba(255, 255, 255, 0.8); */
-  background-color: yellow;
+  height: calc(100vh - 60px); /* Adjust the height to account for the header height */
+  background-color: white;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
-  position: fixed;
   z-index: 100;
-  top: 0;
+  top: 60px; /* Adjust this value to the height of your header */
   left: 0;
   color: black;
 }
 
+.sidena a {
+  text-decoration: none;
+  color: inherit; /* Ensures the link color inherits the surrounding text color */
+}
+
+/* Other existing styles */
 .sidebar-content-item {
   background-color: #fff;
   padding: 10px;
@@ -21,8 +25,6 @@
   transition: background-color 0.3s;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Add a bottom border for separation */
 }
-
-
 
 .sidebar-dropdown {
   list-style: none;
@@ -33,6 +35,12 @@
   border: 1px solid rgba(0, 0, 0, 0.1); /* Border around dropdown */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow */
+  width: 180px;
+}
+
+.sidebar-dropdown a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .sidebar-dropdown li {
@@ -46,19 +54,6 @@
   color: black;
 }
 
-/* .sidebar-item {
-  padding: 10px;
-  cursor: pointer;
-  color: #333;
-  transition: background-color 0.3s;
-  color: black;
-}
-
-.sidebar-item:hover {
-  background-color: rgba(118, 189, 255, 0.2);
-  color: black;
-} */
-
 .sidebar-item {
   padding: 10px;
   cursor: pointer;
@@ -69,7 +64,16 @@
   background-color: #fff;
 }
 
+.sidebar-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .sidebar-item:hover {
   background-color: rgba(118, 189, 255, 0.2); 
   color: black;
+}
+
+.sidebar-item a:hover {
+  color: #3498db; /* Optional hover color for links */
 }

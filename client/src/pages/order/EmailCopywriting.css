@@ -1,0 +1,97 @@
+.email-copywriting-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .email-copywriting-container h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .email-copywriting-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .character-count {
+    font-size: 12px;
+    color: #7f8c8d;
+    text-align: right;
+    margin-top: 5px;
+  }
+  
+  .submit-button {
+    background-color: #2980b9;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #3498db;
+  }
+  
+  .email-results {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+  }
+  
+  .email-results h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  #email-preview {
+    white-space: pre-wrap;
+  }
+  

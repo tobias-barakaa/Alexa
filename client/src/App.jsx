@@ -20,6 +20,11 @@ import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
 import WriterRegister from './layouts/writer/WriterRegister';
 import BlogWriting from './pages/order/BlogWriting';
 import ArticleCreation from './pages/order/ArticleCreation';
+import PoetryAndSong from './pages/order/PoetryAndSong';
+import ContentEditing from './pages/order/ContentEditing';
+import SeoOptimization from './pages/order/SeoOptimization';
+import ResumeCVWriting from './pages/order/ResumeCVWriting';
+import EmailCopywriting from './pages/order/EmailCopywriting';
 
 const router = createBrowserRouter([
   {
@@ -61,8 +66,24 @@ const router = createBrowserRouter([
         element: <ArticleCreation />
       },
       {
-        path: "reviews",
-        element: <Reviews />
+        path: "poetryandsong",
+        element: <PoetryAndSong />
+      },
+      {
+        path: "contentediting",
+        element: <ContentEditing />
+      },
+      {
+        path: "seooptimization",
+        element: <SeoOptimization />
+      },
+      {
+        path: "resumecvwriting",
+        element: <ResumeCVWriting />
+      },
+      {
+        path: "emailcopywriting",
+        element: <EmailCopywriting />
       }
     ]
   },
