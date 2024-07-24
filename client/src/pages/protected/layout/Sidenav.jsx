@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Sidenav.css';
 
 const Sidebar = () => {
@@ -9,8 +10,8 @@ const Sidebar = () => {
         <span>📦 Order</span>
        
           <ul className="sidebar-dropdown">
-          <li>📝 Blog Writing</li>
-<li>✍️ Article Creation</li>
+          <li><span><Link to="blogorder">📝 Blog Writing</Link></span></li>
+<li><span><Link to="articlecreation"> ✍️ Article Creation</Link></span></li>
 <li>🎵 Poetry/Song Writing</li>
 <li>📚 Content Editing</li>
 <li>📊 SEO Optimization</li>

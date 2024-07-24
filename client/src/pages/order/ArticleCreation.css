@@ -1,0 +1,114 @@
+.article-creation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .article-creation-container h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-align: center;
+  }
+  
+  .article-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .half-width {
+    flex: 1;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea,
+  select {
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #2980b9;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #3498db;
+  }
+  
+  @media (max-width: 600px) {
+    .article-creation-container {
+      padding: 20px;
+    }
+  
+    .form-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .submit-button {
+      width: 100%;
+    }
+  }

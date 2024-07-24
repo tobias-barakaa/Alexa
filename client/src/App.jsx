@@ -11,13 +11,15 @@ import DashboardMain from './pages/protected/layout/DashboardMain';
 import ManageArticles from './pages/protected/article/ManageArticles';
 import BlogPost from './pages/protected/article/BlogPost';
 import Reviews from './pages/protected/article/Reviews';
-import StepForm from './pages/protected/FormArticle/StepForm';
+// import StepForm from './pages/protected/FormArticle/StepForm';
 import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
 import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
 import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
 import Users from './pages/protected/FormArticle/Admin/elements/Users';
 import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
 import WriterRegister from './layouts/writer/WriterRegister';
+import BlogWriting from './pages/order/BlogWriting';
+import ArticleCreation from './pages/order/ArticleCreation';
 
 const router = createBrowserRouter([
   {
@@ -47,16 +49,16 @@ const router = createBrowserRouter([
       },
       
       {
-        path: "order",
-        element: <StepForm />
+        path: "blogorder",
+        element: <BlogWriting />
       },
       {
         path: "manage",
         element: <ManageArticles />
       },
       {
-        path: "blogposts",
-        element: <BlogPost />
+        path: "articlecreation",
+        element: <ArticleCreation />
       },
       {
         path: "reviews",

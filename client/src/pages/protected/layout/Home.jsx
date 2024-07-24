@@ -39,6 +39,33 @@ const Home = () => {
   <span className="number">7</span>
 </div>
     </div>
+
+    <section className="recent-activity">
+  <h2>Recent Activity</h2>
+  <ul className="activity-list">
+    <li className="activity-item">
+      <span className="activity-icon">🆕</span>
+      <div className="activity-content">
+        <p>New project Website Redesign created</p>
+        <small>2 hours ago</small>
+      </div>
+    </li>
+    <li className="activity-item">
+      <span className="activity-icon">✅</span>
+      <div className="activity-content">
+        <p>Content Writing task completed in Blog Update project</p>
+        <small>Yesterday</small>
+      </div>
+    </li>
+    <li className="activity-item">
+      <span className="activity-icon">💬</span>
+      <div className="activity-content">
+        <p>New comment on SEO Optimization task</p>
+        <small>2 days ago</small>
+      </div>
+    </li>
+  </ul>
+</section>
     </>
 
   );
