@@ -1,4 +1,3 @@
-// Header.js
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -8,9 +7,7 @@ const Header = () => {
       <div className="main-nav">
         <div className="top-nav">
           <span className="home">
-            Home<span>
-              <Link to="/" ></Link>
-            </span> | About Website | FAQ | Contact us
+            <Link to="/">Home</Link> | About Website | FAQ | Contact us
           </span>
         </div>
         <div className="middle-nav">
@@ -22,20 +19,24 @@ const Header = () => {
             <i className="bi bi-search search-icon"></i>
           </div>
           <button className="gradient-button">
-            <span><i className="bi bi-wallet-fill"></i></span>
             Wallet
+            <span><i className="bi bi-wallet-fill"></i></span>
+
           </button>
           <button className="gradient-button">
-            <span><i className="bi bi-person-circle"></i></span>
             Profile
+            <span><i className="bi bi-person-circle"></i></span>
+
           </button>
           <button className="gradient-button">
-            <span><i className="bi bi-gear-wide-connected"></i></span>
             Settings
+            <span><i className="bi bi-gear-wide-connected"></i></span>
+
           </button>
           <button className="gradient-button">
-            <span><i className="bi bi-box-arrow-right"></i></span>
             Logout
+            <span><i className="bi bi-box-arrow-right"></i></span>
+
           </button>
         </div>
       </div>

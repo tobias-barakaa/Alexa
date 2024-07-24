@@ -8,7 +8,8 @@
 .dashboard-container {
   display: flex;
   height: calc(100vh - 60px); 
-  background-color: #eff2f3;
+  /* background-color: #eff2f3; */
+  
 }
 
 

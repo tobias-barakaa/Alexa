@@ -26,7 +26,7 @@ const ServicesPage = () => {
 
   return (
     <div className="services-page">
-      <h1>Our Services</h1>
+      <h1 className='our-services'>Our Services</h1>
       <div className="services-grid">
         {services.map((service, index) => (
           <div key={index} className="service-card">

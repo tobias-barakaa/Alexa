@@ -4,9 +4,12 @@
     padding: 40px 20px;
     color: #000;
   }
-  
+  .our-services {
+    color: #000000;
+  }
   h1 {
-    color: #76bdff;
+    /* color: #76bdff; */
+    color: #000;
     text-align: center;
     margin-bottom: 40px;
   }

@@ -1,5 +1,5 @@
 .dashboard-header {
-  height: 120px;
+  height: auto;
   width: 100%;
   background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
   display: flex;
@@ -9,37 +9,38 @@
   box-sizing: border-box;
 }
 
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .top-nav, .middle-nav, .bottom-nav {
   display: flex;
   align-items: center;
 }
 
 .top-nav {
-  height: 30px;
-  width: 30%;
-  background: linear-gradient(to bottom, #078BC8, #1F4283, #1F4384);
-  color: white;
-  font-size: 12px;
-  justify-content: center;
-  margin: auto;
+  height: auto;
+  background: linear-gradient(to bottom, #76bdff, #1f4283, #1F4384);
+  color: white; 
+  font-size: 16px;
+  padding: 10px;
   border-radius: 6px;
+  justify-content: center;
+  text-align: center;
 }
 
 .middle-nav {
-  height: 10px;
-  margin: auto;
-  padding: 20px 0px 10px 0px;
+  height: auto;
+  margin: 10px 0;
   color: white;
   font-size: 14px;
-  justify-content: center;
   overflow: hidden;
   white-space: nowrap;
+  text-align: center;
 }
-
-/* .middle-nav span {
-  display: inline-block;
-  animation: slide-left 10s linear infinite;
-} */
 
 @keyframes slide-left {
   0% {
@@ -52,154 +53,89 @@
 
 .bottom-nav {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .search-container {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
 .search-bar {
-  padding: 5px;
-  margin-right: 5px;
+  height: 36px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px; 
 }
 
-.gradient-button {
-  background: linear-gradient(to right, #078BC8, #1F4283);
-  color: #000000;
+.search-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #1F4283;
+  font-size: 24px;
+  font-weight: bold;
+}
 
+
+
+.gradient-button {
+  /* background: linear-gradient(to right, #078BC8, #1F4283); */
+  background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
+
+  height: 36px;
+  width: 100px;
+  color: #000000;
   border: none;
-  padding: 0px 10px;
-  margin: 0 5px;
+  padding: 10px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .gradient-button i {
-  margin-right: 5px;
+  margin-left: 10px;
+  color: #1F4283;
+  font-size: 20px;
+  justify-content: flex-end;
 }
 
-
-  /* .middle-nav {
-    position: relative;
-    width: 100%;
+@media (max-width: 768px) {
+  .top-nav, .middle-nav, .bottom-nav {
+    flex-direction: column;
     text-align: center;
-  } */
-  
-  /* .middle-nav span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s ease-in-out;
   }
-  
-  .middle-nav span::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: 0.5;
-    transition: all 0.5s ease-in-out;
-  }
-  
-  .middle-nav:hover span {
-    top: 0;
-    left: 0;
-    transform: translate(0, 0);
-  }
-  
-  .middle-nav:hover span::after {
-    opacity: 1;
-  } */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   .bottom-nav {
     justify-content: center;
-    height: 60px;
   }
-  
-  .bottom-nav button span i {
-    font-size: 24px;
-    color: #1F4283;
-    margin-right: 10px;
-  }
-  
+
   .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+    margin-bottom: 10px;
   }
-  
+
   .search-bar {
-    height: 36px;
-    padding: 5px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 200px; 
+    max-width: none;
   }
-  
-  .search-icon {
-    position: absolute;
-    right: 10px;
-    font-size: 16px;
-    color: #1F4283;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+
   .gradient-button {
-    height: 36px;
-    width: 120px;
-    border-radius: 5px;
-    background-image: linear-gradient(to right, #f0f0f0, #d0d0d0, #b0b0b0);
-    border: none;
-    margin-left: 10px;
-    cursor: pointer;
+    width: 100%;
+    justify-content: center;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .top-nav, .middle-nav {
+    font-size: 14px;
+  }
+
+  .gradient-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
