@@ -48,26 +48,45 @@
 
 .home-container {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping of boxes */
-  gap: 20px; /* Space between boxes */
-  padding: 20px; /* Padding around the container */
+  flex-wrap: wrap; 
+  gap: 20px; 
+  padding: 20px; 
 }
 
 .home-box {
-  flex: 1 1 calc(25% - 20px); /* Responsive width for boxes */
-  padding: 20px;
-  border-radius: 2px; /* Rounded corners */
-  color: #078BC8; /* White text color */
-  display: flex;
-  flex-direction: column; /* Stack icon and text vertically */
-  justify-content: center; /* Center align content */
-  align-items: center; /* Center align content */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Box shadow */
-  transition: transform 0.3s; /* Transition for hover effect */
-  width: 80px;
-  height: 160px;
-}
-
-.home-box:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-}
+    flex: 1 1 calc(25% - 20px);
+    padding: 20px;
+    border-radius: 8px;
+    color: #078BC8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 150px;
+    height: 180px;
+    background-color: #ffffff;
+  }
+  
+  .home-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .home-box .icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .home-box .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .home-box .number {
+    font-size: 32px;
+    font-weight: bold;
+  }

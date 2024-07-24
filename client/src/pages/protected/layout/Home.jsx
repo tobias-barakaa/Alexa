@@ -18,22 +18,26 @@ const Home = () => {
 
 
 
-      <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-        <span>📰 News</span>
-        <span>Latest Updates</span>
-      </div>
-      <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-        <span>📚 Resources</span>
-        <span>Useful Materials</span>
-      </div>
-      <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-        <span>📊 Reports</span>
-        <span>Performance Metrics</span>
-      </div>
-      <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-        <span>📅 Events</span>
-        <span>Upcoming Activities</span>
-      </div>
+    <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
+  <span className="icon">📂</span>
+  <span className="title">Open Projects</span>
+  <span className="number">12</span>
+</div>
+<div className="home-box" style={{ backgroundColor: '#ffffff' }}>
+  <span className="icon">⏳</span>
+  <span className="title">Pending</span>
+  <span className="number">5</span>
+</div>
+<div className="home-box" style={{ backgroundColor: '#ffffff' }}>
+  <span className="icon">✅</span>
+  <span className="title">Completed</span>
+  <span className="number">28</span>
+</div>
+<div className="home-box" style={{ backgroundColor: '#ffffff' }}>
+  <span className="icon">💾</span>
+  <span className="title">Saved</span>
+  <span className="number">7</span>
+</div>
     </div>
     </>
 

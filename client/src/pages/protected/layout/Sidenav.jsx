@@ -9,11 +9,13 @@ const Sidebar = () => {
         <span>📦 Order</span>
        
           <ul className="sidebar-dropdown">
-            <li>📝 Blog Writing</li>
-            <li>✍️ Article Creation</li>
-            <li>🎵 Poetry/Song Writing</li>
-            <li>📚 Content Editing</li>
-            <li>📊 SEO Optimization</li>
+          <li>📝 Blog Writing</li>
+<li>✍️ Article Creation</li>
+<li>🎵 Poetry/Song Writing</li>
+<li>📚 Content Editing</li>
+<li>📊 SEO Optimization</li>
+<li>📄 Resume/CV Writing</li>
+<li>📧 Email Copywriting</li>
           </ul>
       
       </div>
