@@ -1,30 +1,55 @@
-import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../slices/client/blogApiSlice";
+import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery, useCreateBlogMutation } from "../../slices/client/blogApiSlice";
 import "./BlogWriting.css";
 
 const BlogWriting = () => {
-  const { data: numberofwords, isLoading, isError } = useGetNumberOfWordsQuery();
-  const { data: timeframe } = useGetTimeFrameQuery();
-  const { data: blogcategories } = useGetCategoriesQuery();
+  const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
+  const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
+  const { data: blogcategories, isLoading: isLoadingCategories, isError: isErrorCategories } = useGetCategoriesQuery();
+  const [createBlog] = useCreateBlogMutation();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newBlog = {
+      title: formData.get('post-title'),
+      category_id: formData.get('post-category'),
+      tags: formData.get('post-tags'),
+      excerpt: formData.get('post-excerpt'),
+      number_of_words_id: formData.get('word-count'),
+      timeframe_id: formData.get('time-frame'),
+    };
 
+    try {
+      await createBlog(newBlog).unwrap();
+      alert('Blog created successfully!');
+    } catch (err) {
+      alert('Error creating blog: ' + err.message);
+    }
+  };
 
   return (
     <div className="blog-writing-section">
       <h2>Create New Blog Post</h2>
       
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="post-title">Title</label>
-          <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" />
+          <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" required />
         </div>
 
         <div className="form-group">
           <label htmlFor="post-category">Category</label>
-          <select id="post-category" name="post-category" className="styled-select">
+          <select id="post-category" name="post-category" className="styled-select" required>
             <option value="" disabled selected>Select a category</option>
-            {blogcategories && blogcategories.map(category => (
-              <option key={category.id} value={category.id}>{category.name}</option>
-            ))}
+            {isLoadingCategories ? (
+              <option>Loading...</option>
+            ) : isErrorCategories ? (
+              <option>Error loading data</option>
+            ) : (
+              blogcategories.map(category => (
+                <option key={category.id} value={category.id}>{category.name}</option>
+              ))
+            )}
           </select>
         </div>
 
@@ -41,11 +66,11 @@ const BlogWriting = () => {
         <div className="select-container">
           <div className="select-wrapper">
             <label htmlFor="word-count">Word Count</label>
-            <select className="custom-select" id="word-count">
+            <select className="custom-select" id="word-count" name="word-count" required>
               <option value="" disabled selected>Select word count</option>
-              {isLoading ? (
+              {isLoadingWords ? (
                 <option>Loading...</option>
-              ) : isError ? (
+              ) : isErrorWords ? (
                 <option>Error loading data</option>
               ) : (
                 numberofwords.map(word => (
@@ -57,19 +82,17 @@ const BlogWriting = () => {
 
           <div className="select-wrapper">
             <label htmlFor="time-frame">Time Frame</label>
-            <select className="custom-select" id="time-frame">
+            <select className="custom-select" id="time-frame" name="time-frame" required>
               <option value="" disabled selected>Select time frame</option>
-              {
-                isLoading ? (
-                  <option>Loading....</option>
-                ) : isError ? (
-                  <option>Error loading data </option>
-                ) : (
-                  timeframe.map(time => (
-                    <option key={time.id} value={time.id}>{time.duration}</option>
-                  ))
-                )
-              }
+              {isLoadingTimeframe ? (
+                <option>Loading...</option>
+              ) : isErrorTimeframe ? (
+                <option>Error loading data</option>
+              ) : (
+                timeframe.map(time => (
+                  <option key={time.id} value={time.id}>{time.duration}</option>
+                ))
+              )}
             </select>
           </div>
         </div>

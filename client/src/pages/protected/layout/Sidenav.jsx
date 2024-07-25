@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className="sidena">
       <div className="sidebar-content-item">
-        <span>📦 Order</span>
+        <span>📦 Services</span>
         <ul className="sidebar-dropdown">
           <li><span><Link to="blogorder">📝 Blog Writing</Link></span></li>
           <li><span><Link to="articlecreation">✍️ Article Creation</Link></span></li>
@@ -15,6 +15,14 @@ const Sidebar = () => {
           <li><span><Link to="resumecvwriting">📄 Resume/CV Writing</Link></span></li>
           <li><span><Link to="emailcopywriting">📧 Email Copywriting</Link></span></li>
         </ul>
+      </div>
+      <div className="sidebar-content-item">
+      <span>📊 Manage Orders</span>
+<ul className="sidebar-dropdown">
+  <li><span><Link to="editorders">🖋️ Edit Orders</Link></span></li>
+  <li><span><Link to="articlecreation">🕰️ Orders History</Link></span></li>
+  <li><span><Link to="poetryandsong">🏁 Completed Orders</Link></span></li>
+</ul>
       </div>
       <div className="sidebar-item">📅 Schedule</div>
       <div className="sidebar-item">📈 Manage Orders</div>

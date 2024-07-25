@@ -36,31 +36,30 @@ const createBlog = async (req, res) => {
     excerpt,
     number_of_words_id,
     timeframe_id,
-    user_id,
     status,
   } = req.body;
 
-  if (
-    !title ||
-    !category_id ||
-    !number_of_words_id ||
-    !timeframe_id ||
-    !user_id
-  ) {
+  const user_id = req.user.userId;
+
+  if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
     return res.status(400).json({ error: "Required fields are missing." });
   }
 
   try {
-    const category = await knex("blogcategories")
-      .where("id", category_id)
-      .first();
+    // Check if the user exists
+    const user = await knex('users').where({ id: user_id }).first();
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    
+
+    const category = await knex("blogcategories").where("id", category_id).first();
     if (!category) {
       return res.status(400).json({ error: "Invalid category ID." });
     }
 
-    const numberOfWords = await knex("numberofwords")
-      .where("id", number_of_words_id)
-      .first();
+    const numberOfWords = await knex("numberofwords").where("id", number_of_words_id).first();
     if (!numberOfWords) {
       return res.status(400).json({ error: "Invalid number of words ID." });
     }
@@ -70,12 +69,8 @@ const createBlog = async (req, res) => {
       return res.status(400).json({ error: "Invalid timeframe ID." });
     }
 
-    const user = await knex("users").where("id", user_id).first();
-    if (!user) {
-      return res.status(400).json({ error: "Invalid user ID." });
-    }
-
     const now = new Date();
+    const blogStatus = status || 'draft';
     const [newBlog] = await knex("blogs")
       .insert({
         title,
@@ -85,34 +80,17 @@ const createBlog = async (req, res) => {
         number_of_words_id,
         timeframe_id,
         user_id,
-        status,
-        published_at: status === "published" ? now : null,
+        status: blogStatus,
+        published_at: blogStatus === "published" ? now : null,
         created_at: now,
         updated_at: now,
       })
-      .returning("*");
 
-    if (!status) {
-      newBlog.status = "draft";
-    }
-    if (newBlog.status === "published") {
-      newBlog.published_at = now;
-    } else {
-      newBlog.published_at = null;
-    }
-
-    await knex("blogs").where("id", newBlog.id).update({
-      status: newBlog.status,
-      published_at: newBlog.published_at,
+    res.status(201).json({
+      success: true,
+      message: "Blog created successfully.",
+      blog: newBlog,
     });
-
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "Blog created successfully.",
-        blog: newBlog,
-      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to create blog." });
