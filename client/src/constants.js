@@ -6,3 +6,6 @@ export const ADMIN_USERS_URL = 'api/admin/users';
 export const ARTICLES = 'api/articles/order';
 export const COMMENTS = 'api/comments';
 export const PAYPAL_URL= '/api/articles'
+
+export const NUMBEROFWORDS = '/api/b'
+export const BLOG_URL = '/api/blog'
