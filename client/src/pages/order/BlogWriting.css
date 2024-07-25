@@ -140,3 +140,75 @@
     background-color: #fff;
   }
   
+
+  .select-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .select-wrapper {
+    position: relative;
+    width: 200px;
+  }
+  
+  .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 55px 15px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-select:focus {
+    outline: none;
+    border-color: #6c757d;
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.2);
+  }
+  
+  .select-wrapper::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #6c757d;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-select:hover {
+    background-color: #e9ecef;
+  }
+  
+  .custom-select:hover + .select-wrapper::after {
+    color: #495057;
+  }
+  
+  .custom-select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .custom-select option:hover {
+    background-color: #f8f9fa;
+  }
+
+
+
+
+
+
+
+
+  
