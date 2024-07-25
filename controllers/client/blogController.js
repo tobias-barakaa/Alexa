@@ -52,8 +52,6 @@ const createBlog = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    
-
     const category = await knex("blogcategories").where("id", category_id).first();
     if (!category) {
       return res.status(400).json({ error: "Invalid category ID." });
@@ -71,7 +69,7 @@ const createBlog = async (req, res) => {
 
     const now = new Date();
     const blogStatus = status || 'draft';
-    const [newBlog] = await knex("blogs")
+    const [newBlogId] = await knex("blogs")
       .insert({
         title,
         category_id,
@@ -85,6 +83,9 @@ const createBlog = async (req, res) => {
         created_at: now,
         updated_at: now,
       })
+      .returning('id');
+
+    const newBlog = await knex("blogs").where("id", newBlogId.id).first();
 
     res.status(201).json({
       success: true,
@@ -96,6 +97,127 @@ const createBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to create blog." });
   }
 };
+
+// In your API routes
+const getAllBlogs = async (req, res) => {
+  try {
+    const blogs = await knex('blogs').select('*');
+    res.status(200).json({ blogs }); // Make sure this matches what you're expecting in the frontend
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch blogs.' });
+  }
+};
+
+
+
+
+
+// const getBlog = async (req, res) => {
+//   const { id } = req.params;
+//   const user_id = req.user.userId;
+
+//   try {
+//     const blog = await knex("blogs")
+//       .select(
+//         "blogs.*",
+//         "blogcategories.name as category_name",
+//         "numberofwords.words as word_count",
+//         "timeframe.name as timeframe_name",
+//         "users.username as author_name"
+//       )
+//       .leftJoin("blogcategories", "blogs.category_id", "blogcategories.id")
+//       .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
+//       .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
+//       .leftJoin("users", "blogs.user_id", "users.id")
+//       .where("blogs.id", id)
+//       .first();
+
+//     if (!blog) {
+//       return res.status(404).json({ error: "Blog not found." });
+//     }
+
+//     // Check if the user is authorized to view this blog
+//     // This assumes that users can only view their own blogs
+//     // Modify this check according to your authorization rules
+//     if (blog.user_id !== user_id) {
+//       return res.status(403).json({ error: "You are not authorized to view this blog." });
+//     }
+
+//     // Format the response
+//     const formattedBlog = {
+//       id: blog.id,
+//       title: blog.title,
+//       excerpt: blog.excerpt,
+//       tags: blog.tags,
+//       content: blog.content,
+//       category: {
+//         id: blog.category_id,
+//         name: blog.category_name
+//       },
+//       wordCount: {
+//         id: blog.number_of_words_id,
+//         count: blog.word_count
+//       },
+//       timeframe: {
+//         id: blog.timeframe_id,
+//         name: blog.timeframe_name
+//       },
+//       author: {
+//         id: blog.user_id,
+//         username: blog.author_name
+//       },
+//       status: blog.status,
+//       publishedAt: blog.published_at,
+//       createdAt: blog.created_at,
+//       updatedAt: blog.updated_at
+//     };
+
+//     res.json({
+//       success: true,
+//       blog: formattedBlog
+//     });
+
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Failed to retrieve blog." });
+//   }
+// };
+
+const getBlog = async (req, res) => {
+  const { id } = req.params;
+  const user_id = req.user.userId;
+
+  if (!id || !user_id) {
+    return res.status(400).json({ error: "Blog ID and user ID are required." });
+  }
+
+  try {
+    // Check if the user exists
+    const user = await knex('users').where({ id: user_id }).first();
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Fetch the blog
+    const blog = await knex('blogs')
+      .where({ id, user_id })
+      .first();
+
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.status(200).json({
+      success: true,
+      blog,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve blog." });
+  }
+};
+
 
 const updateBlog = async (req, res) => {
   const { id } = req.params;
@@ -188,5 +310,7 @@ module.exports = {
   getTimeframe,
   getCategories,
   createBlog,
+  getAllBlogs,
+  getBlog,
   updateBlog,
 };

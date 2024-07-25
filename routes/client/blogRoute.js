@@ -1,6 +1,6 @@
 const express = require('express');
 const { protect } = require('../../middlewares/client/authMiddleware.js');
-const { createBlog, updateBlog, getNumberOfWords, getTimeframe, getCategories } = require('../../controllers/client/blogController.js');
+const { createBlog, updateBlog, getNumberOfWords, getTimeframe, getCategories, getBlog, getAllBlogs } = require('../../controllers/client/blogController.js');
 
 const router = express.Router();
 
@@ -9,10 +9,15 @@ const router = express.Router();
 router.get('/numberofwords', getNumberOfWords);
 router.get('/timeframe', getTimeframe);
 router.get('/categories', getCategories);
+ 
 
 // private routers
 router.post('/createblog',protect, createBlog);
+router.get('/getall',protect, getAllBlogs);
+
+router.get('/blogs/:id',protect, getBlog);
 router.put('/updateblog/:id',protect, updateBlog);
+
 
 
   

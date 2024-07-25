@@ -20,8 +20,11 @@ const BlogWriting = () => {
     };
 
     try {
-      await createBlog(newBlog).unwrap();
+    const response = await createBlog(newBlog).unwrap();
+    console.log(response)
       alert('Blog created successfully!');
+      localStorage.setItem('newBlogId', response.blog.id);
+      
     } catch (err) {
       alert('Error creating blog: ' + err.message);
     }

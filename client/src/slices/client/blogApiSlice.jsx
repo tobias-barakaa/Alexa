@@ -1,48 +1,58 @@
 import { BLOG_URL } from "../../constants";
-import { apiSlice } from '../apiSlice';
+import { apiSlice } from "../apiSlice";
 
 export const blogApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-
     getNumberOfWords: builder.query({
-        query: () => ({
-            url: `${BLOG_URL}/numberofwords`,
-            credentials: 'include',
-
-        }),
-        keepUnusedDataFor: 5,
+      query: () => ({
+        url: `${BLOG_URL}/numberofwords`,
+        credentials: "include", // This is typically for cookies, but may not be needed if using headers for JWT
+      }),
+      keepUnusedDataFor: 5,
     }),
     getTimeFrame: builder.query({
-        query: () => ({
-            url: `${BLOG_URL}/timeframe`,
-        }),
+      query: () => ({
+        url: `${BLOG_URL}/timeframe`,
+      }),
     }),
     getCategories: builder.query({
-        query: () => ({
-            url: `${BLOG_URL}/categories`,
-        }),
+      query: () => ({
+        url: `${BLOG_URL}/categories`,
+      }),
     }),
     createBlog: builder.mutation({
       query: (data) => ({
         url: `${BLOG_URL}/createblog`,
-        method: 'POST',
+        method: "POST",
         body: data,
-        credentials: 'include',
-
+        credentials: "include", // Same note as above
       }),
-      keepUnusedDataFor: 5
+      keepUnusedDataFor: 5,
+    }),
+    getBlog: builder.query({
+      query: (id) => ({
+        url: `${BLOG_URL}/blogs/${id}`,
+        credentials: "include", // Same note as above
+      }),
+      keepUnusedDataFor: 5,
     }),
     updateBlog: builder.mutation({
-      query: (data) => ({
-        url: `${BLOG_URL}/updateblog`,
-        method: 'PUT',
+      query: ({ id, ...data }) => ({
+        url: `${BLOG_URL}/updateblog/${id}`,
+        method: "PUT",
         body: data,
-        credentials: 'include',
-
+        credentials: "include", // Same note as above
       }),
-      keepUnusedDataFor: 5
-    })
-  })
+      keepUnusedDataFor: 5,
+    }),
+  }),
 });
-export const { useGetNumberOfWordsQuery, useGetTimeFrameQuery,useGetCategoriesQuery, useCreateBlogMutation } = blogApiSlice;
 
+export const {
+  useGetNumberOfWordsQuery,
+  useGetTimeFrameQuery,
+  useGetCategoriesQuery,
+  useCreateBlogMutation,
+  useGetBlogQuery,
+  useUpdateBlogMutation,
+} = blogApiSlice;
