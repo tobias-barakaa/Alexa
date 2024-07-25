@@ -14,6 +14,9 @@ const articleAdminRoute = require('./routes/admin/articleAdminRoute');
 const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
 
+// blog route import
+const blogRoute = require('./routes/client/blogRoute');
+
 // Load environment variables
 dotenv.config();
 
@@ -57,6 +60,9 @@ app.use('/api/articles', articleRoutes);
 app.use('/api/admin/articles', articleAdminRoute);
 app.use('/api/admin/writers', adminWritersRoute);
 app.use('/api/writer/fill-profile', writerAccountProfileRoute);
+
+//Blog Route
+app.use('/api/blog', blogRoute);
 
 // 404 handler
 app.use((req, res, next) => {
