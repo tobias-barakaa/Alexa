@@ -45,6 +45,29 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getUserBlog: builder.query({
+        query: () => ({
+          url: `${BLOG_URL}/usersblog`,
+          credentials: "include", // Same note as above
+        }),
+        keepUnusedDataFor: 5,
+      }),
+
+      getLatest: builder.query({
+        query: () => ({
+          url: `${BLOG_URL}/getlatest`,
+          credentials: "include", // Same note as above
+        }),
+        keepUnusedDataFor: 5,
+      }),
+
+      getRecent: builder.query({
+        query: () => ({
+          url: `${BLOG_URL}/getrecent`,
+          credentials: "include", // Same note as above
+        }),
+        keepUnusedDataFor: 5,
+      }),
   }),
 });
 
@@ -55,4 +78,7 @@ export const {
   useCreateBlogMutation,
   useGetBlogQuery,
   useUpdateBlogMutation,
+  useGetUserBlogQuery,
+  useGetLatestQuery,
+  useGetRecentQuery
 } = blogApiSlice;

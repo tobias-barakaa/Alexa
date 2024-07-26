@@ -1,14 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery, useCreateBlogMutation } from "../../slices/client/blogApiSlice";
 import "./BlogWriting.css";
+import { useState } from "react";
 
 const BlogWriting = () => {
   const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
   const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
   const { data: blogcategories, isLoading: isLoadingCategories, isError: isErrorCategories } = useGetCategoriesQuery();
   const [createBlog] = useCreateBlogMutation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+  
     const formData = new FormData(e.target);
     const newBlog = {
       title: formData.get('post-title'),
@@ -18,13 +24,22 @@ const BlogWriting = () => {
       number_of_words_id: formData.get('word-count'),
       timeframe_id: formData.get('time-frame'),
     };
-
+  
     try {
-      const createdBlog = await createBlog(newBlog).unwrap();
-      localStorage.setItem('createdBlog', JSON.stringify(createdBlog.blog));
-      alert('Blog created successfully!');
+      // Simulate a 5-second delay
+      await new Promise(resolve => setTimeout(resolve, 5000));
+  
+      await createBlog(newBlog).unwrap();
+      
+      // Show success message
+      alert('Blog post submitted successfully!');
+      
+      // Redirect to dashboard
+      navigate('/dashboard');
     } catch (err) {
       alert('Error creating blog: ' + err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -32,7 +47,7 @@ const BlogWriting = () => {
     <div className="blog-writing-section">
       <h2>Create New Blog Post</h2>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={isSubmitting ? 'blurred' : ''}>
         <div className="form-group">
           <label htmlFor="post-title">Title</label>
           <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" required />
@@ -98,7 +113,10 @@ const BlogWriting = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-button">Save Post</button>
+        <button type="submit" className="submit-button">
+          
+        {isSubmitting ? <div className="loader"></div> : <span>Save Post</span>}
+        </button>
       </form>
     </div>
   );

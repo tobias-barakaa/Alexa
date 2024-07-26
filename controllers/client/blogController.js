@@ -28,87 +28,6 @@ const getCategories = async (req, res) => {
   }
 };
 
-// const createBlog = async (req, res) => {
-//   const {
-//     title,
-//     category_id,
-//     tags,
-//     excerpt,
-//     number_of_words_id,
-//     timeframe_id,
-//     status,
-//   } = req.body;
-
-//   const user_id = req.user.userId; // Assuming user ID is set in the request
-
-//   // Validate required fields
-//   if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
-//     return res.status(400).json({ error: "Required fields are missing." });
-//   }
-
-//   try {
-//     // Check if the user exists
-//     const user = await knex('users').where({ id: user_id }).first();
-//     if (!user) {
-//       return res.status(404).json({ error: 'User not found' });
-//     }
-
-//     // Check if the category is valid
-//     const category = await knex("blogcategories").where("id", category_id).first();
-//     if (!category) {
-//       return res.status(400).json({ error: "Invalid category ID." });
-//     }
-
-//     // Check if the number of words is valid
-//     const numberOfWords = await knex("numberofwords").where("id", number_of_words_id).first();
-//     if (!numberOfWords) {
-//       return res.status(400).json({ error: "Invalid number of words ID." });
-//     }
-
-//     // Check if the timeframe is valid
-//     const timeframe = await knex("timeframe").where("id", timeframe_id).first();
-//     if (!timeframe) {
-//       return res.status(400).json({ error: "Invalid timeframe ID." });
-//     }
-
-//     const now = new Date();
-//     const blogStatus = status || 'draft'; // Default to 'draft' if no status provided
-
-//     // Insert the new blog post into the database
-//     const [newBlogId] = await knex("blogs")
-//       .insert({
-//         title,
-//         category_id,
-//         tags,
-//         excerpt,
-//         number_of_words_id,
-//         timeframe_id,
-//         user_id,
-//         status: blogStatus,
-//         published_at: blogStatus === "published" ? now : null,
-//         created_at: now,
-//         updated_at: now,
-//       })
-//       .returning('id');
-
-//     // Extract the ID value from the object
-//     const blogId = newBlogId.id;
-
-//     // Retrieve the newly created blog post
-//     const newBlog = await knex("blogs").where("id", blogId).first();
-
-//     // Return the created blog post
-//     res.status(201).json({
-//       success: true,
-//       message: "Blog created successfully.",
-//       blog: newBlog,
-//     });
-//   } catch (error) {
-//     console.error("Error creating blog:", error);
-//     res.status(500).json({ error: "Failed to create blog." });
-//   }
-// };
-
 const createBlog = async (req, res) => {
   const {
     title,
@@ -187,82 +106,44 @@ const createBlog = async (req, res) => {
   }
 };
 
+const getTwoLatestPostByUser = async(req, res) => {
+  try {
+    const blogs = await knex('blogs')
+      .orderBy('created_at', 'desc')
+      .limit(2);
+    res.json({ success: true, blogs });
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ error: "Failed to fetch blogs." });
+  }
+}
 
 
+const getBlogsByUser = async (req, res) => {
+  const user_id = req.user.userId; // Assuming user ID is set in the request
+
+  try {
+    // Check if the user exists
+    const user = await knex('users').where({ id: user_id }).first();
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Retrieve all blogs by the user
+    const blogs = await knex('blogs').where({ user_id });
+
+    // Return the blogs
+    res.status(200).json({
+      success: true,
+      blogs,
+    });
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ error: "Failed to fetch blogs." });
+  }
+};
 
 
-
-// const createBlog = async (req, res) => {
-//   const {
-//     title,
-//     category_id,
-//     tags,
-//     excerpt,
-//     number_of_words_id,
-//     timeframe_id,
-//     status,
-//   } = req.body;
-
-//   const user_id = req.user.userId;
-
-//   if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
-//     return res.status(400).json({ error: "Required fields are missing." });
-//   }
-
-//   try {
-//     // Check if the user exists
-//     const user = await knex('users').where({ id: user_id }).first();
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     const category = await knex("blogcategories").where("id", category_id).first();
-//     if (!category) {
-//       return res.status(400).json({ error: "Invalid category ID." });
-//     }
-
-//     const numberOfWords = await knex("numberofwords").where("id", number_of_words_id).first();
-//     if (!numberOfWords) {
-//       return res.status(400).json({ error: "Invalid number of words ID." });
-//     }
-
-//     const timeframe = await knex("timeframe").where("id", timeframe_id).first();
-//     if (!timeframe) {
-//       return res.status(400).json({ error: "Invalid timeframe ID." });
-//     }
-
-//     const now = new Date();
-//     const blogStatus = status || 'draft';
-//     const [newBlogId] = await knex("blogs")
-//       .insert({
-//         title,
-//         category_id,
-//         tags,
-//         excerpt,
-//         number_of_words_id,
-//         timeframe_id,
-//         user_id,
-//         status: blogStatus,
-//         published_at: blogStatus === "published" ? now : null,
-//         created_at: now,
-//         updated_at: now,
-//       })
-//       .returning('id');
-
-//     const newBlog = await knex("blogs").where("id", newBlogId.id).first();
-
-//     res.status(201).json({
-//       success: true,
-//       message: "Blog created successfully.",
-//       blog: newBlog,
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Failed to create blog." });
-//   }
-// };
-
-// In your API routes
 const getAllBlogs = async (req, res) => {
   try {
     const blogs = await knex('blogs').select('*');
@@ -275,78 +156,6 @@ const getAllBlogs = async (req, res) => {
 
 
 
-
-
-// const getBlog = async (req, res) => {
-//   const { id } = req.params;
-//   const user_id = req.user.userId;
-
-//   try {
-//     const blog = await knex("blogs")
-//       .select(
-//         "blogs.*",
-//         "blogcategories.name as category_name",
-//         "numberofwords.words as word_count",
-//         "timeframe.name as timeframe_name",
-//         "users.username as author_name"
-//       )
-//       .leftJoin("blogcategories", "blogs.category_id", "blogcategories.id")
-//       .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
-//       .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
-//       .leftJoin("users", "blogs.user_id", "users.id")
-//       .where("blogs.id", id)
-//       .first();
-
-//     if (!blog) {
-//       return res.status(404).json({ error: "Blog not found." });
-//     }
-
-//     // Check if the user is authorized to view this blog
-//     // This assumes that users can only view their own blogs
-//     // Modify this check according to your authorization rules
-//     if (blog.user_id !== user_id) {
-//       return res.status(403).json({ error: "You are not authorized to view this blog." });
-//     }
-
-//     // Format the response
-//     const formattedBlog = {
-//       id: blog.id,
-//       title: blog.title,
-//       excerpt: blog.excerpt,
-//       tags: blog.tags,
-//       content: blog.content,
-//       category: {
-//         id: blog.category_id,
-//         name: blog.category_name
-//       },
-//       wordCount: {
-//         id: blog.number_of_words_id,
-//         count: blog.word_count
-//       },
-//       timeframe: {
-//         id: blog.timeframe_id,
-//         name: blog.timeframe_name
-//       },
-//       author: {
-//         id: blog.user_id,
-//         username: blog.author_name
-//       },
-//       status: blog.status,
-//       publishedAt: blog.published_at,
-//       createdAt: blog.created_at,
-//       updatedAt: blog.updated_at
-//     };
-
-//     res.json({
-//       success: true,
-//       blog: formattedBlog
-//     });
-
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Failed to retrieve blog." });
-//   }
-// };
 
 const getBlog = async (req, res) => {
   const { id } = req.params;
@@ -473,6 +282,38 @@ const updateBlog = async (req, res) => {
   }
 };
 
+
+
+const getrecentBlogs = async(req, res) => {
+
+  const userId = req.user ? req.user.userId : null;
+  // const userId = req.query.userId; // Get user ID from query parameters
+
+  if (!userId) {
+    return res.status(400).json({ error: 'User ID is required.' });
+  }
+
+  try {
+    const now = new Date();
+    const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
+
+    // Fetch blogs created by the user within the last 30 minutes
+    const recentBlogs = await knex('blogs')
+      .where('user_id', userId)
+      .andWhere('created_at', '>=', thirtyMinutesAgo)
+      .orderBy('created_at', 'desc'); // Sort by creation time, most recent first
+
+    res.status(200).json({
+      success: true,
+      blogs: recentBlogs,
+    });
+  } catch (error) {
+    console.error('Error fetching recent blogs:', error);
+    res.status(500).json({ error: 'Failed to fetch recent blogs.' });
+  }
+}
+
+
 module.exports = {
   getNumberOfWords,
   getTimeframe,
@@ -481,4 +322,7 @@ module.exports = {
   getAllBlogs,
   getBlog,
   updateBlog,
+  getBlogsByUser,
+  getTwoLatestPostByUser,
+  getrecentBlogs
 };

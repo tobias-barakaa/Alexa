@@ -1,9 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
 import './Sidenav.css';
+import { useGetRecentQuery } from '../../../slices/client/blogApiSlice';
 
 const Sidebar = () => {
   const { id } = useParams();
-  console.log(id, "why me")
+  const { data: recentOrdersCount, isLoading, isError } = useGetRecentQuery();
 
   return (
     <div className="sidena">
@@ -23,7 +24,7 @@ const Sidebar = () => {
         <span>📊 Manage Orders</span>
         <ul className="sidebar-dropdown">
           <li><span><Link to="editorders">🖋️ Edit Orders</Link></span></li>
-          <li><span><Link to="articlecreation">🕰️ Orders History</Link></span></li>
+          <li><span><Link to="ordershistory">🕰️ Orders History</Link></span></li>
           <li><span><Link to="poetryandsong">🏁 Completed Orders</Link></span></li>
         </ul>
       </div>

@@ -24,6 +24,7 @@ import SeoOptimization from './pages/order/SeoOptimization';
 import ResumeCVWriting from './pages/order/ResumeCVWriting';
 import EmailCopywriting from './pages/order/EmailCopywriting';
 import EditOrders from './pages/order/manageOrders/EditOrders';
+import OrderHistory from './pages/order/manageOrders/OrderHistory';
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "editorders",
         element: <EditOrders />
+      },
+      {
+        path: "ordershistory",
+        element: <OrderHistory />
       }
     ]
   },

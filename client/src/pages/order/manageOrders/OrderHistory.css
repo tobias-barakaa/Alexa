@@ -1,0 +1,48 @@
+.loading {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .error {
+    font-size: 16px;
+    color: red;
+  }
+  
+  .order-history {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-history h1 {
+    color: #078BC8;
+    margin-bottom: 20px;
+  }
+  
+  .order-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .order-item h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .order-item p {
+    margin: 5px 0;
+  }
+  
+  .no-orders {
+    font-size: 16px;
+    color: #666;
+  }
+  
