@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Sidenav.css';
 
 const Sidebar = () => {
+  const { orderId } = useParams();
+
   return (
     <div className="sidena">
       <div className="sidebar-content-item">
@@ -19,7 +21,7 @@ const Sidebar = () => {
       <div className="sidebar-content-item">
       <span>📊 Manage Orders</span>
 <ul className="sidebar-dropdown">
-  <li><span><Link to="editorders">🖋️ Edit Orders</Link></span></li>
+  <li><span><Link to="/editorders/:id">🖋️ Edit Orders</Link></span></li>
   <li><span><Link to="articlecreation">🕰️ Orders History</Link></span></li>
   <li><span><Link to="poetryandsong">🏁 Completed Orders</Link></span></li>
 </ul>

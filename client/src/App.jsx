@@ -87,7 +87,7 @@ const router = createBrowserRouter([
         element: <EmailCopywriting />
       },
       {
-        path: "editorders",
+        path: "editorders/:id",
         element: <EditOrders />
       }
     ]

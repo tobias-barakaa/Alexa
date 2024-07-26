@@ -6,7 +6,13 @@ import './EditOrders.css';
 const EditOrders = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: blog, error, isLoading } = useGetBlogQuery();
+  
+  useEffect(() => {
+    console.log(`Fetching blog with ID: ${id}`); // Log the ID to check if it's correct
+  }, [id]);
+
+  const { data: blog, error, isLoading } = useGetBlogQuery(id);
+
   const [updateBlog] = useUpdateBlogMutation();
 
   const [formState, setFormState] = useState({
@@ -42,7 +48,7 @@ const EditOrders = () => {
     e.preventDefault();
     try {
       await updateBlog({ id, ...formState }).unwrap();
-      navigate('/orders'); // Redirect to orders page after successful update
+      navigate('/orders/:id'); // Redirect to orders page after successful update
     } catch (err) {
       console.error('Failed to update order:', err);
     }
