@@ -6,7 +6,7 @@ export const blogApiSlice = apiSlice.injectEndpoints({
     getNumberOfWords: builder.query({
       query: () => ({
         url: `${BLOG_URL}/numberofwords`,
-        credentials: "include", // This is typically for cookies, but may not be needed if using headers for JWT
+        credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
@@ -25,14 +25,14 @@ export const blogApiSlice = apiSlice.injectEndpoints({
         url: `${BLOG_URL}/createblog`,
         method: "POST",
         body: data,
-        credentials: "include", // Same note as above
+        credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
     getBlog: builder.query({
       query: (orderId) => ({
         url: `${BLOG_URL}/blogs/${orderId}`,
-        credentials: "include", // Same note as above
+        credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
@@ -41,33 +41,38 @@ export const blogApiSlice = apiSlice.injectEndpoints({
         url: `${BLOG_URL}/updateblog/${id}`,
         method: "PUT",
         body: data,
-        credentials: "include", // Same note as above
+        credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
+    deleteBlog: builder.mutation({
+      query: (id) => ({
+        url: `${BLOG_URL}/deleteblog/${id}`, // Adjust the URL if your backend uses a different route
+        method: "DELETE",
+        credentials: "include",
+      }),
+    }),
     getUserBlog: builder.query({
-        query: () => ({
-          url: `${BLOG_URL}/usersblog`,
-          credentials: "include", // Same note as above
-        }),
-        keepUnusedDataFor: 5,
+      query: () => ({
+        url: `${BLOG_URL}/usersblog`,
+        credentials: "include",
       }),
-
-      getLatest: builder.query({
-        query: () => ({
-          url: `${BLOG_URL}/getlatest`,
-          credentials: "include", // Same note as above
-        }),
-        keepUnusedDataFor: 5,
+      keepUnusedDataFor: 5,
+    }),
+    getLatest: builder.query({
+      query: () => ({
+        url: `${BLOG_URL}/getlatest`,
+        credentials: "include",
       }),
-
-      getRecent: builder.query({
-        query: () => ({
-          url: `${BLOG_URL}/getrecent`,
-          credentials: "include", // Same note as above
-        }),
-        keepUnusedDataFor: 5,
+      keepUnusedDataFor: 5,
+    }),
+    getRecent: builder.query({
+      query: () => ({
+        url: `${BLOG_URL}/getrecent`,
+        credentials: "include",
       }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
@@ -78,7 +83,8 @@ export const {
   useCreateBlogMutation,
   useGetBlogQuery,
   useUpdateBlogMutation,
+  useDeleteBlogMutation,
   useGetUserBlogQuery,
   useGetLatestQuery,
-  useGetRecentQuery
+  useGetRecentQuery,
 } = blogApiSlice;

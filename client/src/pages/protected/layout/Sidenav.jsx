@@ -1,10 +1,7 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Sidenav.css';
-import { useGetRecentQuery } from '../../../slices/client/blogApiSlice';
 
 const Sidebar = () => {
-  const { id } = useParams();
-  const { data: recentOrdersCount, isLoading, isError } = useGetRecentQuery();
 
   return (
     <div className="sidena">
