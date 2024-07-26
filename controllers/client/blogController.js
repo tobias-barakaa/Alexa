@@ -196,93 +196,6 @@ const getBlog = async (req, res) => {
 
 
 
-const updateBlog = async (req, res) => {
-  const { id } = req.params;
-  const {
-    title,
-    category_id,
-    tags,
-    excerpt,
-    number_of_words_id,
-    timeframe_id,
-    status,
-  } = req.body;
-
-  try {
-    const blog = await knex("blogs").where("id", id).first();
-
-    if (!blog) {
-      return res.status(404).json({ error: "Blog not found." });
-    }
-
-    const now = new Date();
-    const createdAt = new Date(blog.created_at);
-    const timeDifference = now - createdAt;
-    const thirtyMinutesInMs = 30 * 60 * 1000;
-
-    if (timeDifference > thirtyMinutesInMs) {
-      return res
-        .status(403)
-        .json({
-          error:
-            "Blog can no longer be updated. The 30-minute update window has expired.",
-        });
-    }
-
-    // Perform the same validations as in createBlog
-    if (category_id) {
-      const category = await knex("blogcategories")
-        .where("id", category_id)
-        .first();
-      if (!category) {
-        return res.status(400).json({ error: "Invalid category ID." });
-      }
-    }
-
-    if (number_of_words_id) {
-      const numberOfWords = await knex("numberofwords")
-        .where("id", number_of_words_id)
-        .first();
-      if (!numberOfWords) {
-        return res.status(400).json({ error: "Invalid number of words ID." });
-      }
-    }
-
-    if (timeframe_id) {
-      const timeframe = await knex("timeframe")
-        .where("id", timeframe_id)
-        .first();
-      if (!timeframe) {
-        return res.status(400).json({ error: "Invalid timeframe ID." });
-      }
-    }
-
-    const [updatedBlog] = await knex("blogs")
-      .where("id", id)
-      .update({
-        title: title || blog.title,
-        category_id: category_id || blog.category_id,
-        tags: tags || blog.tags,
-        excerpt: excerpt || blog.excerpt,
-        number_of_words_id: number_of_words_id || blog.number_of_words_id,
-        timeframe_id: timeframe_id || blog.timeframe_id,
-        status: status || blog.status,
-        updated_at: now,
-      })
-      .returning("*");
-
-    res.json({
-      success: true,
-      message: "Blog updated successfully.",
-      blog: updatedBlog,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to update blog." });
-  }
-};
-
-
 
 const getrecentBlogs = async(req, res) => {
 
@@ -314,6 +227,105 @@ const getrecentBlogs = async(req, res) => {
 }
 
 
+const editBlog = async (req, res) => {
+  const { blogId } = req.params;
+  const { title, category_id, tags, excerpt, number_of_words_id, timeframe_id, status } = req.body;
+  const user_id = req.user.userId; // Assuming user ID is set in the request
+
+  if (!blogId) {
+    return res.status(400).json({ error: "Blog ID is required." });
+  }
+
+  try {
+    // Fetch the blog post
+    const blog = await knex('blogs').where({ id: blogId }).first();
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog post not found." });
+    }
+
+    // Check if the user owns this blog post
+    if (blog.user_id !== user_id) {
+      return res.status(403).json({ error: "You don't have permission to edit this blog post." });
+    }
+
+    // Check if it's within 30 minutes of creation
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+    if (new Date(blog.created_at) < thirtyMinutesAgo) {
+      return res.status(403).json({ error: "You can only edit the blog post within 30 minutes of creation." });
+    }
+
+    // Validate required fields
+    if (!title || !category_id || !number_of_words_id || !timeframe_id) {
+      return res.status(400).json({ error: "Required fields are missing." });
+    }
+
+    // Perform the update
+    const updatedBlog = await knex('blogs')
+      .where({ id: blogId })
+      .update({
+        title,
+        category_id,
+        tags,
+        excerpt,
+        number_of_words_id,
+        timeframe_id,
+        status: status || blog.status,
+        updated_at: new Date()
+      })
+      .returning('*');
+
+    res.json({
+      success: true,
+      message: "Blog post updated successfully.",
+      blog: updatedBlog[0]
+    });
+
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    res.status(500).json({ error: "Failed to update blog post." });
+  }
+};
+
+
+
+const deleteBlog = async (req, res) => {
+  const { blogId } = req.params;
+  const user_id = req.user.userId; // Assuming user ID is set in the request
+
+  try {
+    // Fetch the blog post
+    const blog = await knex('blogs').where({ id: blogId }).first();
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog post not found." });
+    }
+
+    // Check if the user owns this blog post
+    if (blog.user_id !== user_id) {
+      return res.status(403).json({ error: "You don't have permission to delete this blog post." });
+    }
+
+    // Check if it's within 30 minutes of creation
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+    if (new Date(blog.created_at) < thirtyMinutesAgo) {
+      return res.status(403).json({ error: "You can only delete the blog post within 30 minutes of creation." });
+    }
+
+    // Perform the deletion
+    await knex('blogs').where({ id: blogId }).del();
+
+    res.json({
+      success: true,
+      message: "Blog post deleted successfully."
+    });
+
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    res.status(500).json({ error: "Failed to delete blog post." });
+  }
+};
+
 module.exports = {
   getNumberOfWords,
   getTimeframe,
@@ -321,8 +333,9 @@ module.exports = {
   createBlog,
   getAllBlogs,
   getBlog,
-  updateBlog,
   getBlogsByUser,
   getTwoLatestPostByUser,
-  getrecentBlogs
+  getrecentBlogs,
+  editBlog,
+  deleteBlog
 };
