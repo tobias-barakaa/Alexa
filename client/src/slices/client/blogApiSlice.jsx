@@ -30,8 +30,8 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     getBlog: builder.query({
-      query: (id) => ({
-        url: `${BLOG_URL}/blogs/${id}`,
+      query: (orderId) => ({
+        url: `${BLOG_URL}/blogs/${orderId}`,
         credentials: "include", // Same note as above
       }),
       keepUnusedDataFor: 5,

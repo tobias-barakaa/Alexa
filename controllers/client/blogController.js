@@ -28,6 +28,87 @@ const getCategories = async (req, res) => {
   }
 };
 
+// const createBlog = async (req, res) => {
+//   const {
+//     title,
+//     category_id,
+//     tags,
+//     excerpt,
+//     number_of_words_id,
+//     timeframe_id,
+//     status,
+//   } = req.body;
+
+//   const user_id = req.user.userId; // Assuming user ID is set in the request
+
+//   // Validate required fields
+//   if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
+//     return res.status(400).json({ error: "Required fields are missing." });
+//   }
+
+//   try {
+//     // Check if the user exists
+//     const user = await knex('users').where({ id: user_id }).first();
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Check if the category is valid
+//     const category = await knex("blogcategories").where("id", category_id).first();
+//     if (!category) {
+//       return res.status(400).json({ error: "Invalid category ID." });
+//     }
+
+//     // Check if the number of words is valid
+//     const numberOfWords = await knex("numberofwords").where("id", number_of_words_id).first();
+//     if (!numberOfWords) {
+//       return res.status(400).json({ error: "Invalid number of words ID." });
+//     }
+
+//     // Check if the timeframe is valid
+//     const timeframe = await knex("timeframe").where("id", timeframe_id).first();
+//     if (!timeframe) {
+//       return res.status(400).json({ error: "Invalid timeframe ID." });
+//     }
+
+//     const now = new Date();
+//     const blogStatus = status || 'draft'; // Default to 'draft' if no status provided
+
+//     // Insert the new blog post into the database
+//     const [newBlogId] = await knex("blogs")
+//       .insert({
+//         title,
+//         category_id,
+//         tags,
+//         excerpt,
+//         number_of_words_id,
+//         timeframe_id,
+//         user_id,
+//         status: blogStatus,
+//         published_at: blogStatus === "published" ? now : null,
+//         created_at: now,
+//         updated_at: now,
+//       })
+//       .returning('id');
+
+//     // Extract the ID value from the object
+//     const blogId = newBlogId.id;
+
+//     // Retrieve the newly created blog post
+//     const newBlog = await knex("blogs").where("id", blogId).first();
+
+//     // Return the created blog post
+//     res.status(201).json({
+//       success: true,
+//       message: "Blog created successfully.",
+//       blog: newBlog,
+//     });
+//   } catch (error) {
+//     console.error("Error creating blog:", error);
+//     res.status(500).json({ error: "Failed to create blog." });
+//   }
+// };
+
 const createBlog = async (req, res) => {
   const {
     title,
@@ -91,11 +172,8 @@ const createBlog = async (req, res) => {
       })
       .returning('id');
 
-    // Extract the ID value from the object
-    const blogId = newBlogId.id;
-
     // Retrieve the newly created blog post
-    const newBlog = await knex("blogs").where("id", blogId).first();
+    const newBlog = await knex("blogs").where("id", newBlogId.id).first();
 
     // Return the created blog post
     res.status(201).json({
@@ -108,6 +186,7 @@ const createBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to create blog." });
   }
 };
+
 
 
 

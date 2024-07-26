@@ -1,20 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useGetBlogQuery, useUpdateBlogMutation } from '../../../slices/client/blogApiSlice';
+import { useParams } from 'react-router-dom';
+// import { useGetBlogQuery } from '../../../slices/client/blogApiSlice';
 import './EditOrders.css';
 
 const EditOrders = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { id: orderId } = useParams();
   
-  useEffect(() => {
-    console.log(`Fetching blog with ID: ${id}`); // Log the ID to check if it's correct
-  }, [id]);
-
-  const { data: blog, error, isLoading } = useGetBlogQuery(id);
-
-  const [updateBlog] = useUpdateBlogMutation();
-
   const [formState, setFormState] = useState({
     title: '',
     category: '',
@@ -25,115 +16,82 @@ const EditOrders = () => {
   });
 
   useEffect(() => {
-    if (blog) {
+    const savedBlog = JSON.parse(localStorage.getItem('createdBlog'));
+    if (savedBlog) {
       setFormState({
-        title: blog.title || '',
-        category: blog.category || '',
-        tags: blog.tags || '',
-        excerpt: blog.excerpt || '',
-        wordCount: blog.wordCount || '',
-        timeFrame: blog.timeFrame || '',
+        title: savedBlog.title || '',
+        category: savedBlog.category_id || '',
+        tags: savedBlog.tags || '',
+        excerpt: savedBlog.excerpt || '',
+        wordCount: savedBlog.number_of_words_id || '',
+        timeFrame: savedBlog.timeframe_id || '',
       });
     }
-  }, [blog]);
-
-  const handleChange = (e) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await updateBlog({ id, ...formState }).unwrap();
-      navigate('/orders/:id'); // Redirect to orders page after successful update
-    } catch (err) {
-      console.error('Failed to update order:', err);
-    }
-  };
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading order.</div>;
+  }, []);
 
   return (
-    <div className="edit-orders-section">
-      <h2>Edit Order</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-orders-container">
+      <h2>View Order</h2>
+      <form>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
             name="title"
             value={formState.title}
-            onChange={handleChange}
-            placeholder="Enter blog post title"
+            readOnly
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category">Category:</label>
           <input
             type="text"
             id="category"
             name="category"
             value={formState.category}
-            onChange={handleChange}
-            placeholder="Enter category"
+            readOnly
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="tags">Tags/Keywords</label>
+          <label htmlFor="tags">Tags:</label>
           <input
             type="text"
             id="tags"
             name="tags"
             value={formState.tags}
-            onChange={handleChange}
-            placeholder="Enter tags, separated by commas"
+            readOnly
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="excerpt">Excerpt (Optional)</label>
+          <label htmlFor="excerpt">Excerpt:</label>
           <textarea
             id="excerpt"
             name="excerpt"
-            rows="3"
             value={formState.excerpt}
-            onChange={handleChange}
-            placeholder="Write a short excerpt"
-          ></textarea>
+            readOnly
+          />
         </div>
-
         <div className="form-group">
-          <label htmlFor="wordCount">Word Count</label>
+          <label htmlFor="wordCount">Word Count:</label>
           <input
             type="number"
             id="wordCount"
             name="wordCount"
             value={formState.wordCount}
-            onChange={handleChange}
-            placeholder="Enter word count"
+            readOnly
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="timeFrame">Time Frame</label>
+          <label htmlFor="timeFrame">Time Frame:</label>
           <input
             type="text"
             id="timeFrame"
             name="timeFrame"
             value={formState.timeFrame}
-            onChange={handleChange}
-            placeholder="Enter time frame"
+            readOnly
           />
         </div>
-
-        <button type="submit" className="submit-button">Update Order</button>
       </form>
     </div>
   );

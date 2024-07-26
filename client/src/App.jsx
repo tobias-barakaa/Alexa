@@ -7,11 +7,9 @@ import Services from './pages/Services';
 import Dashboard from './pages/protected/Dashboard';
 import LoginClient from './layouts/client/LoginClient';
 import DashboardMain from './pages/protected/layout/DashboardMain';
-// import OrderArticles from './pages/protected/article/OrderArticles';
 import ManageArticles from './pages/protected/article/ManageArticles';
 import BlogPost from './pages/protected/article/BlogPost';
 import Reviews from './pages/protected/article/Reviews';
-// import StepForm from './pages/protected/FormArticle/StepForm';
 import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
 import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
 import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
@@ -37,10 +35,9 @@ const router = createBrowserRouter([
     element: <About />
   },
   {
-    path: "/servies",
+    path: "/services",
     element: <Services />
   },
-  
   {
     path: "/login",
     element: <LoginClient />
@@ -53,7 +50,6 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardMain />
       },
-      
       {
         path: "blogorder",
         element: <BlogWriting />
@@ -87,7 +83,7 @@ const router = createBrowserRouter([
         element: <EmailCopywriting />
       },
       {
-        path: "editorders/:id",
+        path: "editorders",
         element: <EditOrders />
       }
     ]
@@ -108,7 +104,6 @@ const router = createBrowserRouter([
         index: true,
         element: <AdminMain />
       },
-      
       {
         path: "users",
         element: <Users />
@@ -124,19 +119,15 @@ const router = createBrowserRouter([
       {
         path: "reviews",
         element: <Reviews />
-  } ]
-}
+      }
+    ]
+  }
 ]);
 
-
-
 function App() {
-
   return (
-    <RouterProvider router={router}>
-    <HomePage />
-    </RouterProvider>
-  )
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;
