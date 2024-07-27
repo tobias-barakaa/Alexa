@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useGetRecentQuery, useUpdateBlogMutation } from "../../../slices/client/blogApiSlice";
+import { useGetRecentQuery, useUpdateBlogMutation, useDeleteBlogMutation } from "../../../slices/client/blogApiSlice";
 import PropTypes from "prop-types";
 
 import "./EditOrders.css";
 import EditModal from './EditModal';
+import ConfirmationModal from './DeleteConfirmationModal';
 
 const CountdownTimer = ({ createdAt }) => {
   const [timeLeft, setTimeLeft] = useState('');
@@ -34,10 +35,12 @@ const CountdownTimer = ({ createdAt }) => {
 const EditOrders = () => {
   const { data, isLoading, isError, error } = useGetRecentQuery();
   const [updateBlog] = useUpdateBlogMutation();
+  const [deleteBlog] = useDeleteBlogMutation();
   const [editingBlog, setEditingBlog] = useState(null);
   const [category, setCategory] = useState('');
   const [numOfWords, setNumOfWords] = useState('');
   const [durationTime, setDurationTime] = useState('');
+  const [deletingBlog, setDeletingBlog] = useState(null); // State for blog to be deleted
 
   // Ensure consistent useEffect hook order
   useEffect(() => {
@@ -77,6 +80,27 @@ const EditOrders = () => {
     }
   };
 
+  const handleDelete = (blog) => {
+    setDeletingBlog(blog);
+  };
+
+  const confirmDelete = async () => {
+    if (deletingBlog) {
+      try {
+        await deleteBlog(deletingBlog.id).unwrap();
+        setDeletingBlog(null);
+        window.location.reload(); // Reload the page to reflect the deletion
+      } catch (err) {
+        console.error("Failed to delete blog:", err);
+        // Handle error (e.g., show an error message to the user)
+      }
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeletingBlog(null);
+  };
+
   return (
     <div className="edit-orders">
       <h1>Recent Blog Orders</h1>
@@ -111,6 +135,7 @@ const EditOrders = () => {
                 <button 
                   className={`delete-button ${!canEditOrDelete ? 'disabled' : ''}`}
                   disabled={!canEditOrDelete}
+                  onClick={() => handleDelete(blog)}
                 >
                   Delete
                 </button>
@@ -133,6 +158,11 @@ const EditOrders = () => {
           durationTime={durationTime}
         />
       )}
+      <ConfirmationModal
+        isOpen={!!deletingBlog}
+        onClose={cancelDelete}
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 };
