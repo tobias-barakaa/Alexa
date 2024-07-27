@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useGetRecentQuery, useUpdateBlogMutation } from "../../../slices/client/blogApiSlice";
+import PropTypes from "prop-types";
+
 import "./EditOrders.css";
 import EditModal from './EditModal';
 
@@ -135,4 +137,7 @@ const EditOrders = () => {
   );
 };
 
+CountdownTimer.propTypes = {
+  createdAt: PropTypes.string.isRequired,
+};
 export default EditOrders;

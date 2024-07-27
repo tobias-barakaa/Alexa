@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./EditModal.css";
 import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
 
@@ -139,6 +140,25 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
       </div>
     </div>
   );
+};
+
+EditModal.propTypes = {
+  blog: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category_id: PropTypes.number.isRequired,
+    tags: PropTypes.string.isRequired,
+    excerpt: PropTypes.string.isRequired,
+    number_of_words_id: PropTypes.number.isRequired,
+    timeframe_id: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+  }).isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  numOfWords: PropTypes.string.isRequired,
+  durationTime: PropTypes.string.isRequired,
 };
 
 export default EditModal;
