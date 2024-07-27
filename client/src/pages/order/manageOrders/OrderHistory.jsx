@@ -26,6 +26,8 @@ const OrderHistory = () => {
               <p>Category: {blog.category_id || "N/A"}</p>
               <p>Word Count: {blog.number_of_words_id || "N/A"}</p>
               <p>Timeframe: {blog.timeframe_id || "N/A"}</p>
+              <p>Excerpt: {blog.excerpt || "N/A"}</p>
+
               <p>Status: {blog.status}</p>
               <p>Created At: {new Date(blog.created_at).toLocaleString()}</p>
             </li>

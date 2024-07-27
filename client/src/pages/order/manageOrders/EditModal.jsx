@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./EditModal.css";
+import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
 
-const EditModal = ({ blog, isOpen, onClose, onUpdate }) => {
+const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, durationTime }) => {
   const [formData, setFormData] = useState({
     title: blog.title,
     category_id: blog.category_id,
@@ -11,34 +12,16 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate }) => {
     timeframe_id: blog.timeframe_id,
     status: blog.status,
   });
-  const [numberOfWordsOptions, setNumberOfWordsOptions] = useState([]);
 
-  useEffect(() => {
-    // Fetch valid number of words options
-    const fetchNumberOfWordsOptions = async () => {
-      try {
-        const response = await fetch('/api/numberofwords');
-        const data = await response.json();
-        
-        // Check if data is an array before setting state
-        if (Array.isArray(data)) {
-          setNumberOfWordsOptions(data);
-        } else {
-          console.error("Expected an array but got:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching number of words options:", error);
-      }
-    };
-
-    fetchNumberOfWordsOptions();
-  }, []);
+  const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
+  const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
+  const { data: blogcategories, isLoading: isLoadingCategories, isError: isErrorCategories } = useGetCategoriesQuery();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name.includes('_id') ? parseInt(value) : value, // Ensure IDs are numbers
+      [name]: value,
     });
   };
 
@@ -54,58 +37,104 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate }) => {
       <div className="modal-content">
         <h2>Edit Blog Post</h2>
         <form onSubmit={handleSubmit}>
-            <label>Title</label>
+          <label htmlFor="post-title">Title</label>
           <input
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="Title"
           />
-          <input
-            name="category_id"
-            type="number"
-            value={formData.category_id}
-            onChange={handleChange}
-            placeholder="Category ID"
-          />
+
+          <div className="form-group">
+            <label htmlFor="post-category">Category</label>
+            <select
+              id="post-category"
+              name="category_id"
+              value={formData.category_id}
+              onChange={handleChange}
+              className="styled-select"
+              required
+            >
+              <option value="">{category}</option>
+              {isLoadingCategories ? (
+                <option>Loading...</option>
+              ) : isErrorCategories ? (
+                <option>Error loading data</option>
+              ) : (
+                blogcategories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
+
+          <label htmlFor="post-tags">Tags/Keywords</label>
           <input
             name="tags"
             value={formData.tags}
             onChange={handleChange}
             placeholder="Tags"
           />
+
+          <label htmlFor="post-excerpt">Excerpt</label>
           <textarea
             name="excerpt"
             value={formData.excerpt}
             onChange={handleChange}
             placeholder="Excerpt"
           />
+
+          <label htmlFor="post-word-count">Word Count</label>
           <select
             name="number_of_words_id"
             value={formData.number_of_words_id}
             onChange={handleChange}
           >
-            {numberOfWordsOptions.map(option => (
-              <option key={option.id} value={option.id}>{option.name}</option>
-            ))}
+            <option value="">{numOfWords}</option>
+            {isLoadingWords ? (
+              <option>Loading...</option>
+            ) : isErrorWords ? (
+              <option>Error loading data</option>
+            ) : (
+              numberofwords.map((word) => (
+                <option key={word.id} value={word.id}>
+                  {word.words}
+                </option>
+              ))
+            )}
           </select>
-          <input
-            name="timeframe_id"
-            type="number"
-            value={formData.timeframe_id}
-            onChange={handleChange}
-            placeholder="Timeframe ID"
-          />
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-          >
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
-          </select>
+
+          <div className="select-wrapper">
+            <label htmlFor="time-frame">Time Frame</label>
+            <select
+              className="custom-select"
+              id="time-frame"
+              name="timeframe_id"
+              value={formData.timeframe_id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">{durationTime}</option>
+              {isLoadingTimeframe ? (
+                <option>Loading...</option>
+              ) : isErrorTimeframe ? (
+                <option>Error loading data</option>
+              ) : (
+                timeframe.map((time) => (
+                  <option key={time.id} value={time.id}>
+                    {time.duration}
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
+
           <button type="submit">Update</button>
-          <button type="button" onClick={onClose}>Cancel</button>
+          <button type="button" onClick={onClose}>
+            Cancel
+          </button>
         </form>
       </div>
     </div>

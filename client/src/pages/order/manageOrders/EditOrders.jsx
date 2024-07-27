@@ -29,20 +29,22 @@ const CountdownTimer = ({ createdAt }) => {
   return <span className="countdown-timer">{timeLeft}</span>;
 };
 
-
-
-
-
-
-
-
-
-
-
 const EditOrders = () => {
   const { data, isLoading, isError, error } = useGetRecentQuery();
   const [updateBlog] = useUpdateBlogMutation();
   const [editingBlog, setEditingBlog] = useState(null);
+  const [category, setCategory] = useState('');
+  const [numOfWords, setNumOfWords] = useState('');
+  const [durationTime, setDurationTime] = useState('');
+
+  // Ensure consistent useEffect hook order
+  useEffect(() => {
+    if (editingBlog) {
+      setCategory(editingBlog.category_name);
+      setNumOfWords(editingBlog.number_of_words);
+      setDurationTime(editingBlog.timeframe_duration);
+    }
+  }, [editingBlog]);
 
   if (isLoading) {
     return <div className="loading">Loading recent orders...</div>;
@@ -83,11 +85,11 @@ const EditOrders = () => {
         {blogs.map((blog) => {
           const createdAt = new Date(blog.created_at);
           const timeDiff = Date.now() - createdAt.getTime();
-          const canEditOrDelete = timeDiff <= 30 * 60 * 1000; 
+          const canEditOrDelete = timeDiff <= 30 * 60 * 1000;
 
           return (
             <div key={blog.id} className="blog-card">
-              <h2>{blog.title}</h2>
+              <h2>Title: {blog.title}</h2>
               <p><strong>Category:</strong> {blog.category_name}</p>
               <p><strong>Tags:</strong> {blog.tags}</p>
               <p><strong>Excerpt:</strong> {blog.excerpt}</p>
@@ -124,6 +126,9 @@ const EditOrders = () => {
           isOpen={!!editingBlog}
           onClose={handleCloseModal}
           onUpdate={handleUpdate}
+          category={category}
+          numOfWords={numOfWords}
+          durationTime={durationTime}
         />
       )}
     </div>
