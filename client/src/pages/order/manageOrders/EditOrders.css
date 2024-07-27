@@ -114,6 +114,11 @@ p strong + .countdown-timer {
   margin-left: 5px;
 }
 
+
+
+
+
+
 @media (max-width: 600px) {
   .blog-cards {
     grid-template-columns: 1fr;

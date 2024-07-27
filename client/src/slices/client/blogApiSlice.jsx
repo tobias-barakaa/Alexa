@@ -38,7 +38,7 @@ export const blogApiSlice = apiSlice.injectEndpoints({
     }),
     updateBlog: builder.mutation({
       query: ({ id, ...data }) => ({
-        url: `${BLOG_URL}/updateblog/${id}`,
+        url: `${BLOG_URL}/editblog/${id}`,
         method: "PUT",
         body: data,
         credentials: "include",

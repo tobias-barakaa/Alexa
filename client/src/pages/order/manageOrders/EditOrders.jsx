@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useGetRecentQuery } from "../../../slices/client/blogApiSlice";
+import { useGetRecentQuery, useUpdateBlogMutation } from "../../../slices/client/blogApiSlice";
 import "./EditOrders.css";
+import EditModal from './EditModal';
 
 const CountdownTimer = ({ createdAt }) => {
   const [timeLeft, setTimeLeft] = useState('');
@@ -28,8 +29,20 @@ const CountdownTimer = ({ createdAt }) => {
   return <span className="countdown-timer">{timeLeft}</span>;
 };
 
+
+
+
+
+
+
+
+
+
+
 const EditOrders = () => {
   const { data, isLoading, isError, error } = useGetRecentQuery();
+  const [updateBlog] = useUpdateBlogMutation();
+  const [editingBlog, setEditingBlog] = useState(null);
 
   if (isLoading) {
     return <div className="loading">Loading recent orders...</div>;
@@ -40,6 +53,25 @@ const EditOrders = () => {
   }
 
   const blogs = data?.blogs || [];
+
+  const handleEdit = (blog) => {
+    setEditingBlog(blog);
+  };
+
+  const handleCloseModal = () => {
+    setEditingBlog(null);
+  };
+
+  const handleUpdate = async (id, updatedData) => {
+    try {
+      await updateBlog({ id, ...updatedData }).unwrap();
+      setEditingBlog(null);
+      // Optionally, you can refetch the recent blogs here
+    } catch (err) {
+      console.error("Failed to update blog:", err);
+      // Handle error (e.g., show an error message to the user)
+    }
+  };
 
   return (
     <div className="edit-orders">
@@ -68,6 +100,7 @@ const EditOrders = () => {
                 <button 
                   className={`edit-button ${!canEditOrDelete ? 'disabled' : ''}`}
                   disabled={!canEditOrDelete}
+                  onClick={() => handleEdit(blog)}
                 >
                   Edit
                 </button>
@@ -85,6 +118,14 @@ const EditOrders = () => {
           );
         })}
       </div>
+      {editingBlog && (
+        <EditModal
+          blog={editingBlog}
+          isOpen={!!editingBlog}
+          onClose={handleCloseModal}
+          onUpdate={handleUpdate}
+        />
+      )}
     </div>
   );
 };
