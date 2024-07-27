@@ -88,11 +88,11 @@ const EditOrders = () => {
           return (
             <div key={blog.id} className="blog-card">
               <h2>{blog.title}</h2>
-              <p><strong>Category ID:</strong> {blog.category_id}</p>
+              <p><strong>Category:</strong> {blog.category_name}</p>
               <p><strong>Tags:</strong> {blog.tags}</p>
               <p><strong>Excerpt:</strong> {blog.excerpt}</p>
-              <p><strong>Word Count ID:</strong> {blog.number_of_words_id}</p>
-              <p><strong>Timeframe ID:</strong> {blog.timeframe_id}</p>
+              <p><strong>Word Count:</strong> {blog.number_of_words}</p>
+              <p><strong>Timeframe:</strong> {blog.timeframe_duration}</p>
               <p><strong>Status:</strong> {blog.status}</p>
               <p><strong>Created At:</strong> {createdAt.toLocaleString()}</p>
               <p><strong>Time Remaining:</strong> <CountdownTimer createdAt={blog.created_at} /></p>

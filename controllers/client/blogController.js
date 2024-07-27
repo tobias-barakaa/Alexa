@@ -27,7 +27,6 @@ const getCategories = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch categories options." });
   }
 };
-
 const createBlog = async (req, res) => {
   const {
     title,
@@ -91,20 +90,125 @@ const createBlog = async (req, res) => {
       })
       .returning('id');
 
-    // Retrieve the newly created blog post
-    const newBlog = await knex("blogs").where("id", newBlogId.id).first();
+    // Retrieve the newly created blog post with additional details
+    const newBlog = await knex("blogs")
+      .select(
+        "blogs.id",
+        "blogs.title",
+        "blogs.tags",
+        "blogs.excerpt",
+        "blogs.user_id",
+        "blogs.status",
+        "blogs.published_at",
+        "blogs.created_at",
+        "blogs.updated_at",
+        "blogcategories.name as category_name",
+        "numberofwords.words as number_of_words",
+        "timeframe.duration as timeframe_duration"
+      )
+      .leftJoin("blogcategories", "blogs.category_id", "blogcategories.id")
+      .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
+      .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
+      .where("blogs.id", newBlogId.id)
+      .first();
 
-    // Return the created blog post
+    // Return the created blog post with detailed information
     res.status(201).json({
       success: true,
       message: "Blog created successfully.",
-      blog: newBlog,
+      blog: {
+        ...newBlog,
+        category_id: undefined, // Explicitly exclude category_id
+        number_of_words_id: undefined, // Explicitly exclude number_of_words_id
+        timeframe_id: undefined, // Explicitly exclude timeframe_id
+      },
     });
   } catch (error) {
     console.error("Error creating blog:", error);
     res.status(500).json({ error: "Failed to create blog." });
   }
 };
+
+
+
+
+// const createBlog = async (req, res) => {
+//   const {
+//     title,
+//     category_id,
+//     tags,
+//     excerpt,
+//     number_of_words_id,
+//     timeframe_id,
+//     status,
+//   } = req.body;
+
+//   const user_id = req.user.userId; // Assuming user ID is set in the request
+
+//   // Validate required fields
+//   if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
+//     return res.status(400).json({ error: "Required fields are missing." });
+//   }
+
+//   try {
+//     // Check if the user exists
+//     const user = await knex('users').where({ id: user_id }).first();
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Check if the category is valid
+//     const category = await knex("blogcategories").where("id", category_id).first();
+//     if (!category) {
+//       return res.status(400).json({ error: "Invalid category ID." });
+//     }
+
+//     // Check if the number of words is valid
+//     const numberOfWords = await knex("numberofwords").where("id", number_of_words_id).first();
+//     if (!numberOfWords) {
+//       return res.status(400).json({ error: "Invalid number of words ID." });
+//     }
+
+//     // Check if the timeframe is valid
+//     const timeframe = await knex("timeframe").where("id", timeframe_id).first();
+//     if (!timeframe) {
+//       return res.status(400).json({ error: "Invalid timeframe ID." });
+//     }
+
+//     const now = new Date();
+//     const blogStatus = status || 'draft'; // Default to 'draft' if no status provided
+
+//     // Insert the new blog post into the database
+//     const [newBlogId] = await knex("blogs")
+//       .insert({
+//         title,
+//         category_id,
+//         tags,
+//         excerpt,
+//         number_of_words_id,
+//         timeframe_id,
+//         user_id,
+//         status: blogStatus,
+//         published_at: blogStatus === "published" ? now : null,
+//         created_at: now,
+//         updated_at: now,
+//       })
+//       .returning('id');
+
+//     // Retrieve the newly created blog post
+//     const newBlog = await knex("blogs").where("id", newBlogId.id).first();
+
+//     // Return the created blog post
+//     res.status(201).json({
+//       success: true,
+//       message: "Blog created successfully.",
+//       blog: newBlog,
+//     });
+//   } catch (error) {
+//     console.error("Error creating blog:", error);
+//     res.status(500).json({ error: "Failed to create blog." });
+//   }
+// };
 
 const getTwoLatestPostByUser = async(req, res) => {
   try {
@@ -196,11 +300,8 @@ const getBlog = async (req, res) => {
 
 
 
-
-const getrecentBlogs = async(req, res) => {
-
+const getrecentBlogs = async (req, res) => {
   const userId = req.user ? req.user.userId : null;
-  // const userId = req.query.userId; // Get user ID from query parameters
 
   if (!userId) {
     return res.status(400).json({ error: 'User ID is required.' });
@@ -212,13 +313,35 @@ const getrecentBlogs = async(req, res) => {
 
     // Fetch blogs created by the user within the last 30 minutes
     const recentBlogs = await knex('blogs')
-      .where('user_id', userId)
-      .andWhere('created_at', '>=', thirtyMinutesAgo)
-      .orderBy('created_at', 'desc'); // Sort by creation time, most recent first
+      .select(
+        "blogs.id",
+        "blogs.title",
+        "blogs.tags",
+        "blogs.excerpt",
+        "blogs.user_id",
+        "blogs.status",
+        "blogs.published_at",
+        "blogs.created_at",
+        "blogs.updated_at",
+        "blogcategories.name as category_name",
+        "numberofwords.words as number_of_words",
+        "timeframe.duration as timeframe_duration"
+      )
+      .leftJoin("blogcategories", "blogs.category_id", "blogcategories.id")
+      .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
+      .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
+      .where('blogs.user_id', userId)
+      .andWhere('blogs.created_at', '>=', thirtyMinutesAgo)
+      .orderBy('blogs.created_at', 'desc'); // Sort by creation time, most recent first
 
     res.status(200).json({
       success: true,
-      blogs: recentBlogs,
+      blogs: recentBlogs.map(blog => ({
+        ...blog,
+        category_id: undefined, // Explicitly exclude category_id
+        number_of_words_id: undefined, // Explicitly exclude number_of_words_id
+        timeframe_id: undefined, // Explicitly exclude timeframe_id
+      })),
     });
   } catch (error) {
     console.error('Error fetching recent blogs:', error);

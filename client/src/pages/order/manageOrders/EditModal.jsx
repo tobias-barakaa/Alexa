@@ -54,6 +54,7 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate }) => {
       <div className="modal-content">
         <h2>Edit Blog Post</h2>
         <form onSubmit={handleSubmit}>
+            <label>Title</label>
           <input
             name="title"
             value={formData.title}
