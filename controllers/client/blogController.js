@@ -352,7 +352,7 @@ const getrecentBlogs = async (req, res) => {
 
 const editBlog = async (req, res) => {
   const { blogId } = req.params;
-  const { title, category_id, tags, excerpt, number_of_words_id, timeframe_id, status } = req.body;
+  const { title, category_id , tags, excerpt, number_of_words_id, timeframe_id, status } = req.body;
   const user_id = req.user.userId; // Assuming user ID is set in the request
 
   if (!blogId) {
@@ -379,9 +379,9 @@ const editBlog = async (req, res) => {
     }
 
     // Validate required fields
-    if (!title || !category_id || !number_of_words_id || !timeframe_id) {
-      return res.status(400).json({ error: "Required fields are missing." });
-    }
+    // if (!title || !number_of_words_id || !timeframe_id) {
+    //   return res.status(400).json({ error: "Required fields are missing." });
+    // }
 
     // Perform the update
     const updatedBlog = await knex('blogs')

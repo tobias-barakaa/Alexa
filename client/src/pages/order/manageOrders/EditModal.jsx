@@ -54,9 +54,9 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
               value={formData.category_id}
               onChange={handleChange}
               className="styled-select"
-              required
+              
             >
-              <option value="">{category}</option>
+                <option value="">{category}</option>
               {isLoadingCategories ? (
                 <option>Loading...</option>
               ) : isErrorCategories ? (
@@ -115,7 +115,6 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
               name="timeframe_id"
               value={formData.timeframe_id}
               onChange={handleChange}
-              required
             >
               <option value="">{durationTime}</option>
               {isLoadingTimeframe ? (
