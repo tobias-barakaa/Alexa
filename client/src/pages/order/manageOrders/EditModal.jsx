@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./EditModal.css";
 import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
@@ -13,10 +13,24 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
     timeframe_id: blog.timeframe_id,
     status: blog.status,
   });
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
   const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
   const { data: blogcategories, isLoading: isLoadingCategories, isError: isErrorCategories } = useGetCategoriesQuery();
+
+  useEffect(() => {
+    // Update formData with props when modal opens
+    setFormData({
+      title: blog.title,
+      category_id: blog.category_id,
+      tags: blog.tags,
+      excerpt: blog.excerpt,
+      number_of_words_id: blog.number_of_words_id,
+      timeframe_id: blog.timeframe_id,
+      status: blog.status,
+    });
+  }, [blog, isOpen]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +43,10 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdate(blog.id, formData);
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 5000); // Hide after 5 seconds
   };
 
   if (!isOpen) return null;
@@ -37,6 +55,9 @@ const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, dura
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Edit Blog Post</h2>
+        {showSuccessMessage && (
+          <div className="success-message">Updated successfully!</div>
+        )}
         <form onSubmit={handleSubmit}>
           <label htmlFor="post-title">Title</label>
           <input

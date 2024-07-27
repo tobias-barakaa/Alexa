@@ -7,7 +7,7 @@ const Header = () => {
      
         <div className="top-nav">
           <span className="home">
-            <Link to="/">Home</Link> | About Website | FAQ | Contact us
+            Home | About Website | FAQ | Contact us
           </span>
         </div>
         
