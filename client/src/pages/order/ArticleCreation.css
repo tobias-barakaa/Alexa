@@ -54,38 +54,40 @@ textarea {
 
 
 
-
-
-
-
-
-
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.cost-container {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.flex-item {
-  flex: 1;
+.cost-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
+.cost-label {
+  font-size: 14px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
 
+.cost-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #28a745;
+}
 
-@media (max-width: 768px) {
-  .article {
-    padding: 20px;
-  }
-  
-  .create-input {
-    font-size: 1.5em;
-  }
+.currency {
+  font-size: 24px;
+  vertical-align: top;
+  margin-right: 2px;
+}
 
-  .flex-container {
-    flex-direction: column;
-  }
-
-  .flex-item {
-    width: 100%;
-  }
+.amount {
+  letter-spacing: -1px;
 }

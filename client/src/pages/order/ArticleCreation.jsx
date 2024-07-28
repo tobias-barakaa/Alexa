@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+//import { useCreateArticleMutation, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from '../../slices/client/articleApiSlice';
 import './ArticleCreation.css';
+import { useCreateArticleMutation } from '../../slices/client/articleCreationApiSlice';
 import { useGetNumberOfWordsQuery, useGetTimeFrameQuery } from '../../slices/client/blogApiSlice';
 
 const ArticleCreation = () => {
@@ -9,25 +11,67 @@ const ArticleCreation = () => {
   const [wordCount, setWordCount] = useState('');
   const [toneStyle, setToneStyle] = useState('');
   const [links, setLinks] = useState('');
+  const [complexity, setComplexity] = useState('basic'); // New state for complexity
   const [cost, setCost] = useState(0);
 
   const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
   const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
 
-  const costPerWord = 0.06; // Define the cost per word here (e.g., $0.06 per word)
+  const costPerWord = 0.06; // Base cost per word
+
+  // Cost multipliers for different complexity levels
+  const complexityMultiplier = {
+    basic: 1,
+    intermediate: 1.5,
+    advanced: 2
+  };
+
+  const [createArticle, { isLoading, isError, error }] = useCreateArticleMutation();
 
   useEffect(() => {
     if (wordCount && numberofwords) {
       const selectedWord = numberofwords.find((word) => word.id === parseInt(wordCount));
       if (selectedWord) {
-        setCost(selectedWord.words * costPerWord);
+        const baseCost = selectedWord.words * costPerWord;
+        const finalCost = baseCost * complexityMultiplier[complexity]; // Adjust cost based on complexity
+        setCost(finalCost);
       }
     }
-  }, [wordCount, numberofwords]);
+  }, [wordCount, numberofwords, complexity]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createArticle({
+        title,
+        description,
+        keywords,
+        wordCount,
+        toneStyle,
+        links,
+        complexity,
+        cost,
+      }).unwrap();
+      // Handle success (e.g., clear form, show success message)
+      setTitle('');
+      setDescription('');
+      setKeywords('');
+      setWordCount('');
+      setToneStyle('');
+      setLinks('');
+      setComplexity('basic');
+      setCost(0);
+      alert('Article created successfully!');
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      console.log('Failed to create article:', error);
+    }
+  };
 
   return (
     <div className='new-blog-section'>
-      <form className='article' id="form-input">
+      <form className='article' id="form-input" onSubmit={handleSubmit}>
         <div className="create-input-container">
           <p className="create-input">Create New Article</p>
         </div>
@@ -66,7 +110,7 @@ const ArticleCreation = () => {
 
           <div className="form-group flex-item">
             <label htmlFor="timeFrame">Time Frame:</label>
-            <select id="timeFrame" value={timeframe} >
+            <select id="timeFrame" value={timeframe}>
               <option value="">Select time frame</option>
               {isLoadingTimeframe ? (
                 <option>Loading...</option>
@@ -84,7 +128,7 @@ const ArticleCreation = () => {
         <div className="form-group">
           <label>Tone and Style:</label>
           <select value={toneStyle} onChange={(e) => setToneStyle(e.target.value)} required>
-            <option value="">Formal</option>
+            <option value="">Select tone and style</option>
             <option value="formal">Formal</option>
             <option value="casual">Casual</option>
             <option value="conversational">Conversational</option>
@@ -97,7 +141,7 @@ const ArticleCreation = () => {
 
         <div className="form-group">
           <label>Complexity:</label>
-          <select value="" >
+          <select value={complexity} onChange={(e) => setComplexity(e.target.value)} required>
             <option value="basic">Basic</option>
             <option value="intermediate">Intermediate</option>
             <option value="advanced">Advanced</option>
@@ -109,12 +153,16 @@ const ArticleCreation = () => {
           <input type="text" id="links" value={links} onChange={(e) => setLinks(e.target.value)} />
         </div>
 
-        <div className="form-group">
-          <label>Cost:</label>
-          <p>${cost.toFixed(2)}</p> {/* Display the cost here */}
+        <div className="cost-container">
+          <div className="cost-label">Estimated Cost</div>
+          <div className="cost-value">
+            <span className="currency">$</span>
+            <span className="amount">{cost.toFixed(2)}</span>
+          </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isLoading}>Submit</button>
+        {isError && <p className="error-message">{error?.data?.message || 'Failed to create article'}</p>}
       </form>
     </div>
   );
