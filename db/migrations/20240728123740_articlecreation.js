@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('articlecreation', (table) => {
       table.increments('id').primary();
-      table.integer('user_id').references('id').inTable('users').notNullable().onDelete('CASCADE');
+      table.string('user_id').notNullable().references('id').inTable('users');
       table.string('title').notNullable();
       table.text('description').notNullable();
       table.text('keywords');
@@ -20,5 +20,5 @@ exports.up = function(knex) {
   
   exports.down = function(knex) {
     return knex.schema.dropTableIfExists('articlecreation');
+
   };
-  

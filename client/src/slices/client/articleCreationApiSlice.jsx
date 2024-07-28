@@ -1,11 +1,11 @@
-import { BLOG_URL } from "../../constants";
+import { ARTICLE_URL } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const articleApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createArticle: builder.mutation({
       query: (data) => ({
-        url: `${BLOG_URL}/createarticle`,
+        url: `${ARTICLE_URL}/create`,
         method: "POST",
         body: data,
         credentials: "include",
@@ -13,11 +13,11 @@ export const articleApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     getNumberOfWords: builder.query({
-      query: () => `${BLOG_URL}/numberofwords`,
+      query: () => `${ARTICLE_URL}/numberofwords`,
       keepUnusedDataFor: 5,
     }),
     getTimeFrame: builder.query({
-      query: () => `${BLOG_URL}/timeframe`,
+      query: () => `${ARTICLE_URL}/timeframe`,
       keepUnusedDataFor: 5,
     }),
   }),

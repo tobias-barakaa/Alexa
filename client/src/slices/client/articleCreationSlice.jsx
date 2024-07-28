@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 };
 
-const articleSlice = createSlice({
+const articleCreationSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
@@ -24,6 +24,6 @@ const articleSlice = createSlice({
   },
 });
 
-export const { setCurrentArticle, clearCurrentArticle, setError, clearError } = articleSlice.actions;
+export const { setCurrentArticle, clearCurrentArticle, setError, clearError } = articleCreationSlice.actions;
 
-export default articleSlice.reducer;
+export default articleCreationSlice.reducer;

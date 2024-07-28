@@ -13,6 +13,7 @@ const articleRoutes = require('./routes/client/articleRoute');
 const articleAdminRoute = require('./routes/admin/articleAdminRoute');
 const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
+const articleCreationRouter = require('./routes/client/articleCreationRoute');
 
 // blog route import
 const blogRoute = require('./routes/client/blogRoute');
@@ -63,6 +64,10 @@ app.use('/api/writer/fill-profile', writerAccountProfileRoute);
 
 //Blog Route
 app.use('/api/blog', blogRoute);
+
+// Artice Creation
+app.use('/api/articlecreation', articleCreationRouter);
+
 
 // 404 handler
 app.use((req, res, next) => {

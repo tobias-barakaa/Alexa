@@ -9,5 +9,5 @@ export const PAYPAL_URL= '/api/articles'
 
 export const NUMBEROFWORDS = '/api/b'
 export const BLOG_URL = '/api/blog'
-export const ARTICLE_URL = '/api/article'
+export const ARTICLE_URL = '/api/articlecreation'
 

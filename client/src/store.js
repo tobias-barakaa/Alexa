@@ -9,6 +9,7 @@ import authSliceReducer from "./slices/client/authSlice";
 import adminReducer from "./slices/admin/adminSlice";
 import adminUsersReducer from "./slices/admin/adminUsersSlice";
 import blogsSliceReducer from "./slices/client/blogSlice";
+import articlecreationSliceReducer from "./slices/client/articleCreationSlice";
 
 
 const store = configureStore({
@@ -18,7 +19,8 @@ const store = configureStore({
         auth: authSliceReducer,
         admin: adminReducer,
         users: adminUsersReducer,
-        blog: blogsSliceReducer 
+        blog: blogsSliceReducer,
+        articlecreation: articlecreationSliceReducer, 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
     devTools: true,
