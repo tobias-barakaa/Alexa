@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery, useCreateBlogMutation } from "../../slices/client/blogApiSlice";
 import "./BlogWriting.css";
 import { useState } from "react";
+import "./Overall.css"
 
 const BlogWriting = () => {
   const { data: numberofwords, isLoading: isLoadingWords, isError: isErrorWords } = useGetNumberOfWordsQuery();
@@ -45,9 +46,12 @@ const BlogWriting = () => {
 
   return (
     <div className="blog-writing-section">
-      <h2>Create New Blog Post</h2>
       
-      <form onSubmit={handleSubmit} className={isSubmitting ? 'blurred' : ''}>
+      <form onSubmit={handleSubmit} className={isSubmitting ? 'blurred' : ''} id="form-input">
+      <div className="create-input-container">
+  <p className="create-input">Create New Blog Post</p>
+</div>
+
         <div className="form-group">
           <label htmlFor="post-title">Title</label>
           <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" required />

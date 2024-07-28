@@ -1,0 +1,30 @@
+#form-input {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    border: 2px solid #e0e0e0;
+  
+  }
+
+.create-input-container {
+    /* background: linear-gradient(135deg, #6e8efb, #a777e3); */
+    background-color: #078BC8;
+    padding: 2px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .create-input {
+    font-size: 2em;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
+  }
