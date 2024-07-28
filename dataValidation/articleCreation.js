@@ -7,7 +7,6 @@ const validateArticleCreation = [
   check('word_count').isInt({ min: 1 }).withMessage('Word count must be a positive integer'),
   check('complexity').notEmpty().withMessage('Complexity is required'),
   check('cost').isFloat({ min: 0 }).withMessage('Cost must be a positive number'),
-  check('number_of_words_id').isInt().withMessage('Number of words ID must be an integer'),
   check('timeframe_id').isInt().withMessage('Timeframe ID must be an integer'),
   (req, res, next) => {
     const errors = validationResult(req);

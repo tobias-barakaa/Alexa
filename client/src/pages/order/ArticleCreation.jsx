@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './ArticleCreation.css';
 import { useCreateArticleMutation } from '../../slices/client/articleCreationApiSlice';
-import { useGetTimeFrameQuery, useGetNumberOfWordsQuery } from '../../slices/client/blogApiSlice';
+import { useGetTimeFrameQuery } from '../../slices/client/blogApiSlice';
 
 const ArticleCreation = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [keywords, setKeywords] = useState('');
-  const [word_count, setWordCount] = useState('');
+  const [word_count, setWordCount] = useState(''); // Ensure this is a string for correct parsing later
   const [timeFrame, setTimeFrame] = useState('');
   const [tone_style, setToneStyle] = useState('');
   const [links, setLinks] = useState('');
@@ -15,33 +15,31 @@ const ArticleCreation = () => {
   const [cost, setCost] = useState(0);
 
   const { data: timeframe, isLoading: isLoadingTimeframe, isError: isErrorTimeframe } = useGetTimeFrameQuery();
-  const { data: numberOfWords, isLoading: isLoadingNumberOfWords, isError: isErrorNumberOfWords } = useGetNumberOfWordsQuery();
 
   const costPerWord = 0.06;
-  const complexityMultiplier = {
+  const complexityMultiplier = useMemo(() => ({
     basic: 1,
     intermediate: 1.5,
     advanced: 2
-  };
+  }), []);
 
   const [createArticle, { isLoading, isError, error }] = useCreateArticleMutation();
 
   useEffect(() => {
     if (word_count) {
-      const selectedWordData = numberOfWords?.find(word => word.id === parseInt(word_count));
-      if (selectedWordData) {
-        const baseCost = selectedWordData.word_count * costPerWord;
-        const finalCost = baseCost * complexityMultiplier[complexity];
-        setCost(finalCost);
-      }
+      const baseCost = word_count * costPerWord;
+      const finalCost = baseCost * complexityMultiplier[complexity];
+      setCost(finalCost);
     }
-  }, [word_count, complexity, numberOfWords]);
+  }, [word_count, complexity, complexityMultiplier]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!word_count) {
-      alert('Please select a valid word count.');
+    // Validate wordCount
+    const parsedWordCount = parseInt(word_count, 10);
+    if (isNaN(parsedWordCount) || parsedWordCount <= 0) {
+      alert('Word count must be a positive integer');
       return;
     }
 
@@ -50,12 +48,12 @@ const ArticleCreation = () => {
         title,
         description,
         keywords,
-        word_count: parseInt(word_count, 10), // Ensure integer is sent
+        word_count: parsedWordCount, // Ensure integer is sent
         tone_style,
         links,
         complexity,
         cost,
-        number_of_words_id: parseInt(word_count, 10), // Ensure integer is sent
+        number_of_words_id: parsedWordCount, // Assuming this should map to the same as word_count
         timeframe_id: parseInt(timeFrame, 10) // Ensure integer is sent
       }).unwrap();
       setTitle('');
@@ -100,15 +98,11 @@ const ArticleCreation = () => {
             <label htmlFor="wordCount">Word Count:</label>
             <select id="wordCount" value={word_count} onChange={(e) => setWordCount(e.target.value)} required>
               <option value="">Select word count</option>
-              {isLoadingNumberOfWords ? (
-                <option>Loading...</option>
-              ) : isErrorNumberOfWords ? (
-                <option>Error loading data</option>
-              ) : (
-                numberOfWords.map(word => (
-                  <option key={word.id} value={word.id}>{word.word_count}</option>
-                ))
-              )}
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+              <option value={1500}>1500</option>
+              <option value={2000}>2000</option>
+              <option value={2500}>2500</option>
             </select>
           </div>
 
