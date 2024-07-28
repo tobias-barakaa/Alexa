@@ -1,101 +1,58 @@
-import React from 'react';
-import "./ArticleCreation.css";
+import React, { useState } from 'react';
+import './ArticleCreation.css';
 
 const ArticleCreation = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [wordCount, setWordCount] = useState('');
+  const [toneStyle, setToneStyle] = useState('');
+  const [links, setLinks] = useState('');
+  const [deadline, setDeadline] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission, e.g., send the data to an API or log it
+    const formData = { title, description, keywords, wordCount, toneStyle, links, deadline };
+    console.log(formData);
+  };
+
   return (
-    <div>
-      <div className="article-creation-container">
-  <h2>Create New Article</h2>
-  
-  <form className="article-form">
-    <div className="form-group">
-      <label >Article Title</label>
-      <input type="text" id="article-title" name="article-title" 
-      placeholder="Enter the main title of your article" /> 
+    <div className="form-container">
+      <h1>Article Creation Form</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Title:</label>
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Description:</label>
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+        </div>
+        <div className="form-group">
+          <label>Keywords:</label>
+          <input type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Word Count:</label>
+          <input type="number" value={wordCount} onChange={(e) => setWordCount(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Tone and Style:</label>
+          <input type="text" value={toneStyle} onChange={(e) => setToneStyle(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Links:</label>
+          <input type="text" value={links} onChange={(e) => setLinks(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Deadline:</label>
+          <input type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
+  );
+};
 
-    <div className="form-group">
-      <label >Subtitle</label>
-      <input type="text" id="article-subtitle" name="article-subtitle" placeholder="Enter a subtitle or deck" />
-    </div>
-
-    <div className="form-group">
-      <label >Author Name</label>
-      <input type="text" id="author-name" name="author-name" placeholder="Enter author's name" />
-    </div>
-
-    <div className="form-group">
-      <label >Introduction</label>
-      <textarea id="article-intro" name="article-intro" rows="4" placeholder="Write your article introduction"></textarea>
-    </div>
-
-    <div className="form-group">
-      <label >Main Body</label>
-      <textarea id="article-body" name="article-body" rows="10" placeholder="Write the main content of your article"></textarea>
-    </div>
-
-    <div className="form-group">
-      <label >Conclusion</label>
-      <textarea id="article-conclusion" name="article-conclusion" rows="4" placeholder="Write your article conclusion"></textarea>
-    </div>
-
-    <div className="form-group">
-      <label >References/Sources</label>
-      <textarea id="article-references" name="article-references" rows="3" placeholder="List your references and sources"></textarea>
-    </div>
-
-    <div className="form-group">
-      <label >Keywords</label>
-      <input type="text" id="article-keywords" 
-      name="article-keywords" placeholder="Enter keywords, separated by commas" />
-    </div>
-
-    <div className="form-row">
-      <div className="form-group half-width">
-        <label >Target Audience</label>
-        <input type="text" id="target-audience" name="target-audience" 
-        placeholder="Describe your target audience" />
-      </div>
-
-      <div className="form-group half-width">
-        <label >Word Count Goal</label>
-        <input type="number" id="word-count" name="word-count" placeholder="Enter target word count" />
-      </div>
-    </div>
-
-    <div className="form-row">
-      <div className="form-group half-width">
-        <label >Deadline</label>
-        <input type="date" id="deadline" name="deadline" />
-      </div>
-
-      <div className="form-group half-width">
-        <label >Article Type</label>
-        <select id="article-type" name="article-type">
-          <option value="">Select article type</option>
-          <option value="news">News</option>
-          <option value="feature">Feature</option>
-          <option value="opinion">Opinion</option>
-          <option value="interview">Interview</option>
-        </select>
-      </div>
-    </div>
-
-    <div className="form-group">
-      <label >Pull Quote</label>
-      <textarea id="pull-quote" name="pull-quote" rows="2" placeholder="Enter a notable quote from the article"></textarea>
-    </div>
-
-    <div className="form-group">
-      <label>Upload Images</label>
-      <input type="file" id="image-upload" name="image-upload" multiple />
-    </div>
-
-    <button type="submit" className="submit-button">Save Article</button>
-  </form>
-</div>
-    </div>
-  )
-}
-
-export default ArticleCreation
+export default ArticleCreation;
