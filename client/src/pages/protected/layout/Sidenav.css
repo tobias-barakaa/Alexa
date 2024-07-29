@@ -55,6 +55,15 @@
   border-radius: 10%; /* Make it circular */
 }
 
+.orderr {
+  margin-right: 10px; 
+  font-size: 1.2em;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.1);
+  padding: 5px;
+  border-radius: 10%; /* Make it circular */
+}
+
+
 
 .sidebar-dropdown a {
   text-decoration: none;

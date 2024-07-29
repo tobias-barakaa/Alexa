@@ -17,9 +17,9 @@ const Sidebar = () => {
       <div className="sidebar-content-item">
         <span className='services'>Orders</span>
         <ul className="sidebar-dropdown">
-          <li><span><Link to="editorders">🖋️ Edit Orders</Link></span></li>
-          <li><span><Link to="ordershistory">🕰️ Orders History</Link></span></li>
-          <li><span><Link to="poetryandsong">🏁 Completed Orders</Link></span></li>
+          <li><span><Link to="editorders"><span className='orderr'>🖋️ </span> Edit Orders</Link></span></li>
+          <li><span><Link to="ordershistory"><span className='orderr'>🕰️</span> Orders History</Link></span></li>
+          <li><span><Link to="poetryandsong"><span className='orderr'>🏁 </span>Completed Orders</Link></span></li>
         </ul>
       </div>
       
