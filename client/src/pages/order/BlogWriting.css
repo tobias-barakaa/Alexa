@@ -19,6 +19,25 @@
     margin-bottom: 20px;
   }
   
+
+  .title {
+    background-color: #FFCD35; /* Yellow background */
+    color: #333; /* Dark text color */
+    padding: 5px 10px;
+    border-radius: 5px; /* Optional: To make the title background a bit rounded */
+  }
+  
+  .title-input {
+    height: 40px; /* Fixed height */
+    border-radius: 30px; /* Rounded corners */
+    border: 2px solid #0386c2; /* Bluish border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow */
+    padding: 0 10px; /* Padding inside the input */
+    width: 100%; /* Optional: Full width to match the container */
+  }
+  
+
+
   label {
     display: block;
     margin-bottom: 5px;
@@ -26,7 +45,7 @@
     color: #333;
   }
   
-  input[type="text"],
+  /* input[type="text"],
   textarea,
   select {
     width: 100%;
@@ -34,15 +53,15 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-  }
+  } */
   
-  textarea {
+  /* textarea {
     resize: vertical;
   }
+   */
   
   
-  
-  input[type="file"] {
+  /* input[type="file"] {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
@@ -56,7 +75,7 @@
     display: inline-block;
     margin-right: 15px;
   }
-  
+   */
   
   .select-container {
     display: flex;
@@ -76,18 +95,7 @@
     color: #333;
   }
   
-  .custom-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
-    appearance: none; /* Removes default styling */
-    background-color: white;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-  }
+  
   
   .custom-select:focus {
     outline: none;

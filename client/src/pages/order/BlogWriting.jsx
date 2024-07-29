@@ -53,7 +53,7 @@ const BlogWriting = () => {
 </div>
 
         <div className="form-group">
-          <label htmlFor="post-title">Title</label>
+          <label htmlFor="post-title" className="title">Title</label>
           <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" required />
         </div>
 

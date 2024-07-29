@@ -58,7 +58,7 @@
     color: #34495e;
   }
   
-  input[type="text"],
+  /* input[type="text"],
   input[type="email"],
   input[type="tel"],
   textarea {
@@ -75,7 +75,7 @@
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-  }
+  } */
   
   textarea {
     resize: vertical;
