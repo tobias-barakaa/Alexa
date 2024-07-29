@@ -11,6 +11,10 @@
   
   }
 
+  #page-section{
+    border-radius: 18px;
+  }
+
   .create-input-container {
     background-color: #f8f9fa;
     border-left: 5px solid #078BC8;

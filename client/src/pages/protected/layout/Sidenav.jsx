@@ -10,7 +10,6 @@ const Sidebar = () => {
         <ul className="sidebar-dropdown">
           <li><span><Link to="blogorder">📝 Blog Writing</Link></span></li>
           <li><span><Link to="articlecreation">✍️ Article Creation</Link></span></li>
-          <li><span><Link to="seooptimization">📊 SEO Optimization</Link></span></li>
           <li><span><Link to="resumecvwriting">📄 Resume/CV Writing</Link></span></li>
           <li><span><Link to="emailcopywriting">📧 Email Copywriting</Link></span></li>
         </ul>

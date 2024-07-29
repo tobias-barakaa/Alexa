@@ -45,7 +45,7 @@ const BlogWriting = () => {
   };
 
   return (
-    <div className="blog-writing-section">
+    <div className="blog-writing-section" id="page-section">
       
       <form onSubmit={handleSubmit} className={isSubmitting ? 'blurred' : ''} id="form-input">
       <div className="create-input-container">

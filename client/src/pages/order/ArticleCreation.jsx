@@ -72,7 +72,7 @@ const ArticleCreation = () => {
   };
 
   return (
-    <div className='new-blog-section'>
+    <div className='new-blog-section' id="page-section">
       <form className='article' id="form-input" onSubmit={handleSubmit}>
         <div className="create-input-container">
           <p className="create-input">Create New Article</p>

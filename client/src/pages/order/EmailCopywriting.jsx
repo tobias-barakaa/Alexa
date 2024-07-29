@@ -2,7 +2,7 @@ import "./EmailCopywriting.css";
 
 const EmailCopywriting = () => {
   return (
-    <div className="email-copywriting-container">
+    <div className="email-copywriting-container" id="page-section">
       <h2>Email Copywriting</h2>
       <form className="email-copywriting-form">
         <div className="form-group">
