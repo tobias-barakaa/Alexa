@@ -7,7 +7,7 @@
   height: auto;
   /* background: linear-gradient(to bottom, #078BC8, #056b99, #034d6e); */
   /* background-color: #2c3e50; */
-  background-color: #034d6e;
+  background-color: #056b99;
   color: white; 
   font-size: 16px;
   padding: 10px;
@@ -61,5 +61,6 @@
     font-size: 14px;
   }
 }
+
 
 
