@@ -4,74 +4,110 @@
 } */
 
 .top-navbar {
+  padding: 10px;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 40px;
+}
+
+.nav-list li {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  height: 100%;
+}
+
+.nav-list .home {
+  background-color: #f0f0f0;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+
+}
+
+.nav-list .about,
+.nav-list .faq {
+  background-color: #E8EBE0;
+  margin-left: 1px;
+  cursor: pointer;
+
+}
+
+.nav-list .contact {
+  background-color: #FFCD35;
+  color: #000000;
+  border-radius: 0 15px 15px 0;
+  margin-left: 1px;
+  width: 160px;
+  justify-content: center;
+  margin-left: 2px;
+  cursor: pointer;
+
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .nav-list li {
+    width: 100%;
+    margin: 2px 0;
+    border-radius: 10px;
+  }
+
+  .nav-list .contact {
+    width: 100%;
+  }
+}
+
+.menu{
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: #0477ad;
+  color: white;
+}
+
+.what {
+  margin-left:5px;
+  border-radius: 15px;
+  background-color: #0386c2;
+  color: #ffffff;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.top-navbar {
   height: auto;
   /* background: linear-gradient(to bottom, #078BC8, #056b99, #034d6e); */
   /* background-color: #2c3e50; */
   background-color: #056b99;
   color: white; 
-  font-size: 28px;
+  font-size: 20px;
   padding: 10px;
   /* justify-content: center; */
   /* text-align: center; */
   /* width: 100%; */
+  color: #056b99;
 }
 
 .greey{
-  background: linear-gradient(to right, #ffffff, #d3d3d3, #a9a9a9, #ffffff);
-
-  height: 40px;
-  width: 800px;
-  border-radius: 16px;
+  
 }
-.yel{
-  background-color: yellow;
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-
-
-@media (max-width: 768px) {
-  .top-nav, .middle-nav, .bottom-nav {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .bottom-nav {
-    justify-content: center;
-  }
-
-  .search-container {
-    margin-bottom: 10px;
-  }
-
-  .search-bar {
-    max-width: none;
-  }
-
-  .gradient-button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .top-nav, .middle-nav {
-    font-size: 14px;
-  }
-
-  .gradient-button {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
 
 
