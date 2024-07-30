@@ -33,7 +33,7 @@
     flex-direction: column;
   }
   
-  .modal-content input,
+  .modal-content ,
   .modal-content textarea,
   .modal-content select {
     margin-bottom: 10px;

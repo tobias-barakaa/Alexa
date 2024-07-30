@@ -18,7 +18,7 @@ label {
   color: #34495e;
 }
 
-input[type="text"],
+/* input[type="text"],
 input[type="number"],
 textarea,
 select {
@@ -36,7 +36,7 @@ textarea:focus,
 select:focus {
   border-color: #3498db;
   outline: none;
-}
+} */
 
 textarea {
   height: 150px;

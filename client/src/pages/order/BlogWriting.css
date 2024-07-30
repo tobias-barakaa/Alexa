@@ -21,29 +21,175 @@
   
 
   .title {
-    background-color: #FFCD35; /* Yellow background */
-    color: #333; /* Dark text color */
+    background-color: #FFCD35; 
+    color: #333; 
     padding: 5px 10px;
-    border-radius: 5px; /* Optional: To make the title background a bit rounded */
+    border-radius: 5px; 
+  }
+  
+  /* .title-input {
+    height: 80px; 
+    border-radius: 30px; 
+    border: 2px solid #0386c2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 0 10px; 
+    width: 100%; 
+  }  */
+  .title {
+    background-color: #FFCD35;
+    color: #333; /* A dark color for the text */
+    padding: 5px 10px;
+    border-radius: 5px;
+
+  }
+
+  .title-blog {
+    background-color: #FFCD35;
+    color: #333; /* A dark color for the text */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* More pronounced, grey-white shadow */
+    font-size: 20px;
+    width: 70px;
+    justify-content: center;
+    height: 38px;
+    padding: 10px;
+
+
   }
   
   .title-input {
-    height: 40px; /* Fixed height */
-    border-radius: 30px; /* Rounded corners */
-    border: 2px solid #0386c2; /* Bluish border */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow */
-    padding: 0 10px; /* Padding inside the input */
-    width: 100%; /* Optional: Full width to match the container */
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #0386c2; /* The bluish color you suggested */
+    padding: 0 10px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on focus */
+
+
+    width: 100%; /* Assuming you want it to take full width */
+    box-sizing: border-box;
+    margin-top: 10px;
+    
   }
   
+  .title-input:focus {
+    outline: none;
+    border-color: #0477ad; /* A slightly darker blue for focus state */
+    box-shadow: 0 2px 6px rgba(3, 134, 194, 0.2); /* Slightly more pronounced shadow on focus */
+  }
 
 
-  label {
-    display: block;
-    margin-bottom: 5px;
+
+
+
+  .category-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .category-label {
+    display: inline-block;
+    background-color: #0477ad;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+  }
+  
+  .category-select-wrapper {
+    position: relative;
+  }
+  
+  .category-styled-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid #0477ad;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .category-styled-select:focus {
+    outline: none;
+    border-color: #0477ad;
+    box-shadow: 0 6px 8px rgba(255, 205, 53, 0.2);
+  }
+  
+  .category-styled-select:hover {
+    background-color: #FFF9E6;
+  }
+  
+  .category-select-wrapper::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #0477ad;
+  }
+  
+  .category-styled-select option {
+    padding: 10px;
+    background-color: white;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .category-styled-select option:hover,
+  .category-styled-select option:focus,
+  .category-styled-select option:active {
+    background-color: #0477ad;
     color: #333;
   }
+  
+  /* For Firefox */
+  .category-styled-select {
+    -moz-padding-start: 10px;
+  }
+  
+  /* For IE and Edge */
+  .category-styled-select::-ms-expand {
+    display: none;
+  }
+  
+  /* Styling for Webkit browsers (Chrome, Safari) */
+  .category-styled-select::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .category-styled-select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .category-styled-select::-webkit-scrollbar-thumb {
+    background: #0477ad;
+    border-radius: 5px;
+  }
+  
+  .category-styled-select::-webkit-scrollbar-thumb:hover {
+    background: #0477ad;
+  }
+
+
+
+
+
+
+
+
+
+  
   
   /* input[type="text"],
   textarea,

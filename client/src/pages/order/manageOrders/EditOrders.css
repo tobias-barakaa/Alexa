@@ -108,7 +108,6 @@ h1 {
   color: #e74c3c;
 }
 
-/* Add this if you want to make the timer more prominent */
 p strong + .countdown-timer {
   font-size: 1.2em;
   margin-left: 5px;

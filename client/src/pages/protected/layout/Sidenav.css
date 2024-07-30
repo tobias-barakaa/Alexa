@@ -52,7 +52,7 @@
   font-size: 1.4em;
   box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.1);
   padding: 5px;
-  border-radius: 10%; /* Make it circular */
+  border-radius: 50%; /* Make it circular */
 }
 
 .orderr {
@@ -60,7 +60,7 @@
   font-size: 1.2em;
   box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.1);
   padding: 5px;
-  border-radius: 10%; /* Make it circular */
+  border-radius: 50%; /* Make it circular */
 }
 
 
@@ -102,6 +102,7 @@
 .sidebar-item:hover {
   background-color: rgba(118, 189, 255, 0.2); 
   color: black;
+
 }
 
 .sidebar-item a:hover {

@@ -53,25 +53,28 @@ const BlogWriting = () => {
 </div>
 
         <div className="form-group">
-          <label htmlFor="post-title" className="title">Title</label>
-          <input type="text" id="post-title" name="post-title" placeholder="Enter blog post title" required />
+        <label htmlFor="post-title" className="title-blog">Title</label>
+<input type="text" id="post-title" name="post-title" className="title-input" placeholder="Enter blog post title" required />
+
         </div>
 
-        <div className="form-group">
-          <label htmlFor="post-category">Category</label>
-          <select id="post-category" name="post-category" className="styled-select" required>
-            <option value="" disabled selected>Select a category</option>
-            {isLoadingCategories ? (
-              <option>Loading...</option>
-            ) : isErrorCategories ? (
-              <option>Error loading data</option>
-            ) : (
-              blogcategories.map(category => (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              ))
-            )}
-          </select>
-        </div>
+        <div className="category-form-group">
+  <label htmlFor="post-category" className="category-label">Category</label>
+  <div className="category-select-wrapper">
+    <select id="post-category" name="post-category" className="category-styled-select" required>
+      <option value="" disabled selected>Select a category</option>
+      {isLoadingCategories ? (
+        <option>Loading...</option>
+      ) : isErrorCategories ? (
+        <option>Error loading data</option>
+      ) : (
+        blogcategories.map(category => (
+          <option key={category.id} value={category.id}>{category.name}</option>
+        ))
+      )}
+    </select>
+  </div>
+</div>
 
         <div className="form-group">
           <label htmlFor="post-tags">Tags/Keywords</label>
