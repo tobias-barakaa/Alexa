@@ -76,10 +76,16 @@ const BlogWriting = () => {
   </div>
 </div>
 
-        <div className="form-group">
-          <label htmlFor="post-tags">Tags/Keywords</label>
-          <input type="text" id="post-tags" name="post-tags" placeholder="Enter tags, separated by commas" />
-        </div>
+<div className="tags-form-group">
+  <label htmlFor="post-tags" className="tags-label">Tags/Keywords</label>
+  <input 
+    type="text" 
+    id="post-tags" 
+    name="post-tags" 
+    className="tags-input"
+    placeholder="Enter tags, separated by commas" 
+  />
+</div>
 
         <div className="form-group">
           <label htmlFor="post-excerpt">Excerpt(Optional)</label>
