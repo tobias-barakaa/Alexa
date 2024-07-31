@@ -87,44 +87,50 @@ const BlogWriting = () => {
   />
 </div>
 
-        <div className="form-group">
-          <label htmlFor="post-excerpt">Excerpt(Optional)</label>
-          <textarea id="post-excerpt" name="post-excerpt" rows="3" placeholder="Write a short excerpt"></textarea>
-        </div>
+<div className="excerpt-form-group">
+  <label htmlFor="post-excerpt" className="excerpt-label">Excerpt (Optional)</label>
+  <textarea 
+    id="post-excerpt" 
+    name="post-excerpt" 
+    className="excerpt-textarea" 
+    rows="3" 
+    placeholder="Write a short excerpt"
+  ></textarea>
+</div>
 
-        <div className="select-container">
-          <div className="select-wrapper">
-            <label htmlFor="word-count">Word Count</label>
-            <select className="custom-select" id="word-count" name="word-count" required>
-              <option value="" disabled selected>Select word count</option>
-              {isLoadingWords ? (
-                <option>Loading...</option>
-              ) : isErrorWords ? (
-                <option>Error loading data</option>
-              ) : (
-                numberofwords.map(word => (
-                  <option key={word.id} value={word.id}>{word.words}</option>
-                ))
-              )}
-            </select>
-          </div>
+<div className="select-container">
+  <div className="select-wrapper word-count-wrapper">
+    <label htmlFor="word-count" className="select-label">Word Count</label>
+    <select className="custom-select" id="word-count" name="word-count" required>
+      <option value="" disabled selected>Select word count</option>
+      {isLoadingWords ? (
+        <option>Loading...</option>
+      ) : isErrorWords ? (
+        <option>Error loading data</option>
+      ) : (
+        numberofwords.map(word => (
+          <option key={word.id} value={word.id}>{word.words}</option>
+        ))
+      )}
+    </select>
+  </div>
 
-          <div className="select-wrapper">
-            <label htmlFor="time-frame">Time Frame</label>
-            <select className="custom-select" id="time-frame" name="time-frame" required>
-              <option value="" disabled selected>Select time frame</option>
-              {isLoadingTimeframe ? (
-                <option>Loading...</option>
-              ) : isErrorTimeframe ? (
-                <option>Error loading data</option>
-              ) : (
-                timeframe.map(time => (
-                  <option key={time.id} value={time.id}>{time.duration}</option>
-                ))
-              )}
-            </select>
-          </div>
-        </div>
+  <div className="select-wrapper time-frame-wrapper">
+    <label htmlFor="time-frame" className="select-label">Time Frame</label>
+    <select className="custom-select" id="time-frame" name="time-frame" required>
+      <option value="" disabled selected>Select time frame</option>
+      {isLoadingTimeframe ? (
+        <option>Loading...</option>
+      ) : isErrorTimeframe ? (
+        <option>Error loading data</option>
+      ) : (
+        timeframe.map(time => (
+          <option key={time.id} value={time.id}>{time.duration}</option>
+        ))
+      )}
+    </select>
+  </div>
+</div>
 
         <button type="submit" className="submit-button">
           
