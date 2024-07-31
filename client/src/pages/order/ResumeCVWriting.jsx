@@ -1,3 +1,4 @@
+import EducationSection from "./EducationSection";
 import "./ResumeCVWriting.css";
 import WorkExperienceSection from "./WorkExperienceSection";
 const ResumeCVWriting = () => {
@@ -95,13 +96,15 @@ const ResumeCVWriting = () => {
       <button type="button" id="add-work-experience" className="add-button">Add Work Experience</button>
     </section> */}
 
-    <section className="form-section">
+    <EducationSection />
+
+    {/* <section className="form-section">
       <h3>Education</h3>
       <div id="education-container">
         
       </div>
       <button type="button" id="add-education" className="add-button">Add Education</button>
-    </section>
+    </section> */}
 
     <section className="form-section">
       <h3>Skills</h3>
