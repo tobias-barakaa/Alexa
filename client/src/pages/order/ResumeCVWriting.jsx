@@ -106,31 +106,60 @@ const ResumeCVWriting = () => {
       <button type="button" id="add-education" className="add-button">Add Education</button>
     </section> */}
 
-    <section className="form-section">
-      <h3>Skills</h3>
-      <div className="form-group">
-        <label>Skills (comma-separated)</label>
-        <input type="text" id="skills" name="skills" placeholder="JavaScript, Python, Project Management" />
-      </div>
-    </section>
+<section className="skills-section">
+  <h3 className="skills-title">Skills</h3>
+  <div className="skills-form-group">
+    <label htmlFor="skills" className="skills-input-label">Skills (comma-separated)</label>
+    <input 
+      type="text" 
+      id="skills" 
+      name="skills" 
+      placeholder="JavaScript, Python, Project Management" 
+      className="skills-input"
+    />
+  </div>
+</section>
 
-    <section className="form-section">
-      <h3>Additional Sections</h3>
-      <div className="form-group">
-        <label >Languages</label>
-        <input type="text" id="languages" name="languages" placeholder="English (Native), Spanish (Fluent)" />
-      </div>
-      <div className="form-group">
-        <label>Certifications</label>
-        <textarea id="certifications" name="certifications" rows="3" placeholder="List your relevant certifications"></textarea>
-      </div>
-      <div className="form-group">
-        <label>Achievements</label>
-        <textarea id="achievements" name="achievements" rows="3" placeholder="List your key achievements"></textarea>
-      </div>
-    </section>
+<section className="additional-sections">
+  <h3 className="additional-sections-title">Additional Sections</h3>
+  
+  <div className="languages-form-group">
+    <label htmlFor="languages" className="languages-input-label">Languages</label>
+    <input 
+      type="text" 
+      id="languages" 
+      name="languages" 
+      placeholder="English (Native), Spanish (Fluent)" 
+      className="languages-input"
+    />
+  </div>
+  
+  <div className="certifications-form-group">
+    <label htmlFor="certifications" className="certifications-input-label">Certifications</label>
+    <textarea 
+      id="certifications" 
+      name="certifications" 
+      rows="3" 
+      placeholder="List your relevant certifications"
+      className="certifications-textarea"
+    ></textarea>
+  </div>
+  
+  <div className="achievements-form-group">
+    <label htmlFor="achievements" className="achievements-input-label">Achievements</label>
+    <textarea 
+      id="achievements" 
+      name="achievements" 
+      rows="3" 
+      placeholder="List your key achievements"
+      className="achievements-textarea"
+    ></textarea>
+  </div>
+</section>
 
-    <button type="submit" className="submit-button">Generate Resume/CV</button>
+
+
+    <button type="submit" className="submit-buttonn">Generate Resume/CV</button>
   </form>
 </div>
     </div>

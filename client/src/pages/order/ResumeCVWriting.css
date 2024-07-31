@@ -103,11 +103,149 @@
 
 
 
+  .skills-section {
+    margin-bottom: 20px;
+  }
+  
+  .skills-title {
+    color: #078BC8;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .skills-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .skills-input-label {
+    display: block;
+    color: #078BC8;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .skills-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #078BC8;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    height: 50px;
+  }
+  
+  .skills-input:focus {
+    outline: none;
+    border-color: #056b99;
+    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
+  }
+  
+  .skills-input::placeholder {
+    color: #999;
+  }
 
 
 
 
 
+
+
+
+  .additional-sections {
+    margin-bottom: 20px;
+  }
+  
+  .additional-sections-title {
+    color: #078BC8;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .languages-form-group,
+  .certifications-form-group,
+  .achievements-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .languages-input-label,
+  .certifications-input-label,
+  .achievements-input-label {
+    display: block;
+    color: #078BC8;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .languages-input,
+  .certifications-textarea,
+  .achievements-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #078BC8;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .languages-input {
+    height: 50px;
+  }
+  
+  .certifications-textarea,
+  .achievements-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .languages-input:focus,
+  .certifications-textarea:focus,
+  .achievements-textarea:focus {
+    outline: none;
+    border-color: #056b99;
+    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
+  }
+  
+  .languages-input::placeholder,
+  .certifications-textarea::placeholder,
+  .achievements-textarea::placeholder {
+    color: #999;
+  }
+
+
+
+
+
+  .submit-buttonn {
+    background-color: #078BC8;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: 2px solid #078BC8;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .submit-buttonn:hover {
+    background-color: #056b99;
+    border-color: #056b99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .submit-buttonn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(7, 139, 200, 0.3);
+  }
+  
+  .submit-buttonn:active {
+    transform: translateY(1px);
+  }
 
 
 
