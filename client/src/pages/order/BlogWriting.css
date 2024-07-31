@@ -339,15 +339,7 @@
     box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
   }
   
-  .select-wrapper::after {
-    content: '\25BC';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #078BC8;
-  }
+  
   
   /* Styling for options */
   .custom-select option {

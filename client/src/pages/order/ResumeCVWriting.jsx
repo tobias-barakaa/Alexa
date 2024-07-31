@@ -1,12 +1,63 @@
 import "./ResumeCVWriting.css";
+import WorkExperienceSection from "./WorkExperienceSection";
 const ResumeCVWriting = () => {
   return (
     <div>
       <div className="resume-cv-container">
-  <h2>Resume/CV Writing</h2>
   
-  <form className="resume-cv-form">
-    <section className="form-section">
+  <form className="resume-cv-form" id="form-input">
+
+  <div className="create-input-container">
+  <p className="create-input"> Resume/CV Writing
+  </p>
+</div>
+
+
+
+
+
+
+<section className="form-section personal-info-section">
+  <h3 className="section-title">Personal Information</h3>
+  <div className="form-row">
+    <div className="form-group half-width">
+      <label className="input-label" htmlFor="full-name">Full Name</label>
+      <input className="styled-input" type="text" id="full-name" name="full-name" placeholder="John Doe" />
+    </div>
+    <div className="form-group half-width">
+      <label className="input-label" htmlFor="job-title">Job Title</label>
+      <input className="styled-input" type="text" id="job-title" name="job-title" placeholder="Software Developer" />
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="form-group half-width">
+      <label className="input-label" htmlFor="email">Email</label>
+      <input className="styled-input" type="email" id="email" name="email" placeholder="johndoe@example.com" />
+    </div>
+    <div className="form-group half-width">
+      <label className="input-label" htmlFor="phone">Phone</label>
+      <input className="styled-input" type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" />
+    </div>
+  </div>
+  <div className="form-group">
+    <label className="input-label" htmlFor="summary">Professional Summary</label>
+    <textarea className="styled-textarea" id="summary" name="summary" rows="4" placeholder="Brief overview of your professional background and key skills"></textarea>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {/* <section className="form-section">
       <h3>Personal Information</h3>
       <div className="form-row">
         <div className="form-group half-width">
@@ -32,15 +83,17 @@ const ResumeCVWriting = () => {
         <label >Professional Summary</label>
         <textarea id="summary" name="summary" rows="4" placeholder="Brief overview of your professional background and key skills"></textarea>
       </div>
-    </section>
+    </section> */}
 
-    <section className="form-section">
+    <WorkExperienceSection />
+
+    {/* <section className="form-section">
       <h3>Work Experience</h3>
       <div id="work-experience-container">
         
       </div>
       <button type="button" id="add-work-experience" className="add-button">Add Work Experience</button>
-    </section>
+    </section> */}
 
     <section className="form-section">
       <h3>Education</h3>

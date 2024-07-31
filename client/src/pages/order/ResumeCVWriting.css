@@ -1,20 +1,134 @@
-.resume-cv-container {
+/* .resume-cv-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  } */
+
+  .resume-cv-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
   }
   
-  .resume-cv-container h2 {
+  /* .resume-cv-container h2 {
     color: #2c3e50;
     margin-bottom: 30px;
     font-size: 28px;
     text-align: center;
     font-family: 'Arial', sans-serif;
+  } */
+  
+
+  .form-section {
+    margin-bottom: 30px;
   }
   
+  .section-title {
+    color: #078BC8;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .half-width {
+    width: 48%;
+  }
+  
+  .input-label {
+    display: block;
+    color: #078BC8;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .styled-input, .styled-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #078BC8;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .styled-input {
+    height: 50px;
+  }
+  
+  .styled-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .styled-input:focus, .styled-textarea:focus {
+    outline: none;
+    border-color: #056b99;
+    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
+  }
+  
+  .styled-input::placeholder, .styled-textarea::placeholder {
+    color: #999;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+    }
+    
+    .half-width {
+      width: 100%;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .resume-cv-form {
     display: flex;
     flex-direction: column;

@@ -13,7 +13,6 @@ import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
 import WriterRegister from './layouts/writer/WriterRegister';
 import BlogWriting from './pages/order/BlogWriting';
 import ArticleCreation from './pages/order/ArticleCreation';
-import ContentEditing from './pages/order/ContentEditing';
 import ResumeCVWriting from './pages/order/ResumeCVWriting';
 import EmailCopywriting from './pages/order/EmailCopywriting';
 import EditOrders from './pages/order/manageOrders/EditOrders';
@@ -47,10 +46,7 @@ const router = createBrowserRouter([
         element: <ArticleCreation />
       },
       
-      {
-        path: "contentediting",
-        element: <ContentEditing />
-      },
+     
      
       {
         path: "resumecvwriting",
