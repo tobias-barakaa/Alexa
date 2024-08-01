@@ -14,7 +14,7 @@ const createArticle = async (req, res) => {
     links,
     complexity,
     cost,
-    number_of_words_id,
+    // number_of_words_id,
     timeframe_id,
   } = req.body;
   console.log({

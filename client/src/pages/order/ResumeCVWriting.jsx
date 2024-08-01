@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import EducationSection from "./EducationSection";
-import "./ResumeCVWriting.css";
 import WorkExperienceSection from "./WorkExperienceSection";
+import { useNavigate } from 'react-router-dom';
+import "./ResumeCVWriting.css";
 
 const ResumeCVWriting = () => {
   const [personalInfo, setPersonalInfo] = useState({ fullName: '', jobTitle: '', email: '', phone: '', summary: '' });
@@ -14,6 +15,7 @@ const ResumeCVWriting = () => {
   const [achievements, setAchievements] = useState('');
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (field, value) => {
     setPersonalInfo({ ...personalInfo, [field]: value });
@@ -22,29 +24,45 @@ const ResumeCVWriting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      personalInfo,
-      experiences,
-      skills,
-      languages,
-      certifications,
-      achievements,
-      educations
+        personalInfo,
+        experiences,
+        skills,
+        languages,
+        certifications,
+        achievements,
+        educations
     };
+    console.log('this is the dat', formData)
 
     try {
-      const response = await axios.post('http://localhost:5000/api/resume/create', formData, {
-        withCredentials: true, // Include credentials with the request
-        headers: {
-            'Content-Type': 'application/json'
+        const response = await axios.post('http://localhost:5000/api/resume/create', formData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log('Response:', response.data);
+        setSuccessMessage('Resume submitted successfully!');
+        setError(null);
+
+        // Extract resumeId from response
+        const resumeId = response.data.resume.id;
+        console.log('Resume ID:', resumeId);
+
+        if (resumeId) {
+            navigate(`/dashboard/resume/${resumeId}`);
+        } else {
+            setError('Failed to retrieve the resume ID. Please try again.');
         }
-    });
-    console.log('Response:', response.data);
     } catch (error) {
-      setError('Failed to submit the resume/CV. Please try again.');
-      setSuccessMessage('');
-      console.error('Error:', error);
+        setError('Failed to submit the resume/CV. Please try again.');
+        setSuccessMessage('');
+        console.error('Error:', error);
     }
-  };
+};
+
+
 
   return (
     <div className="resume-cv-container">

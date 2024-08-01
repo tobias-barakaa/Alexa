@@ -148,7 +148,8 @@ const getResumeById = async (req, res) => {
                 'work_experience.end_date',
                 'work_experience.responsibilities',
                 'users.id as user_id',
-                'users.name as user_name',
+                'users.first_name as user_first_name', // Adjust column name
+                'users.last_name as user_last_name',   // Adjust column name
                 'users.email as user_email'
             )
             .where('resumes.id', resumeId)
@@ -176,7 +177,8 @@ const getResumeById = async (req, res) => {
                 work_experience: [],
                 user: {
                     id: resumeData.user_id,
-                    name: resumeData.user_name,
+                    first_name: resumeData.user_first_name, // Adjust field
+                    last_name: resumeData.user_last_name,   // Adjust field
                     email: resumeData.user_email
                 }
             }
@@ -213,39 +215,6 @@ const getResumeById = async (req, res) => {
     }
 };
 
-
-
-// const getResumeById = async (req, res) => {
-//     const { id } = req.params;
-//     const userId = req.user.id; // Assuming req.user contains authenticated user info
-
-//     try {
-//         // Fetch the resume and check if it belongs to the authenticated user
-//         const [resume] = await knex('resumes')
-//             .where('id', id)
-//             .andWhere('user_id', userId) // Ensure the resume belongs to the authenticated user
-//             .first();
-
-//         if (!resume) {
-//             return res.status(404).json({ message: 'Resume not found or you do not have access' });
-//         }
-
-//         const educations = await knex('education')
-//             .where('resume_id', id);
-
-//         const experiences = await knex('work_experience')
-//             .where('resume_id', id);
-
-//         res.json({
-//             resume,
-//             educations,
-//             experiences
-//         });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'Failed to fetch resume' });
-//     }
-// };
 
 
 module.exports = {
