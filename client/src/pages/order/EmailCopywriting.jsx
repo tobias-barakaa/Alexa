@@ -4,36 +4,55 @@ const EmailCopywriting = () => {
   return (
     <div className="email-copywriting-container" id="page-section">
       <h2>Email Copywriting</h2>
-      <form className="email-copywriting-form">
-        <div className="form-group">
-          <label>Sender Name</label>
-          <input type="text" id="sender-name" name="sender-name" placeholder="Enter sender's name" />
-        </div>
+      <form className="copywriting-form">
+  <h2 className="form-title">Request Copywriting Services</h2>
 
-        <div className="form-group">
-          <label>Sender Email</label>
-          <input type="email" id="sender-email" name="sender-email" placeholder="Enter sender's email" />
-        </div>
+  <div className="form-group">
+    <label htmlFor="client-name" className="input-label">Your Name</label>
+    <input type="text" id="client-name" name="clientName" className="styled-input" placeholder="John Doe" required />
+  </div>
 
-        <div className="form-group">
-          <label>Subject Line</label>
-          <input type="text" id="subject-line" name="subject-line" placeholder="Enter email subject line" />
-          <div className="character-count">0/60 characters</div>
-        </div>
+  <div className="form-group">
+    <label htmlFor="client-email" className="input-label">Your Email</label>
+    <input type="email" id="client-email" name="clientEmail" className="styled-input" placeholder="johndoe@example.com" required />
+  </div>
 
-        <div className="form-group">
-          <label>Email Body</label>
-          <textarea id="email-body" name="email-body" rows="10" placeholder="Enter email body"></textarea>
-          <div className="character-count">0/500 characters</div>
-        </div>
+  <div className="form-group">
+    <label htmlFor="project-type" className="input-label">Type of Copywriting</label>
+    <select id="project-type" name="projectType" className="styled-input" required>
+      <option value="">Select a type</option>
+      <option value="website">Website Copy</option>
+      <option value="blog">Blog Posts</option>
+      <option value="social">Social Media Content</option>
+      <option value="email">Email Campaigns</option>
+      <option value="ad">Ad Copy</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
 
-        <div className="form-group">
-          <label>Call to Action</label>
-          <input type="text" id="call-to-action" name="call-to-action" placeholder="Enter call to action" />
-        </div>
+  <div className="form-group">
+    <label htmlFor="project-description" className="input-label">Project Description</label>
+    <textarea id="project-description" name="projectDescription" className="styled-textarea" rows="4" placeholder="Briefly describe your project and requirements" required></textarea>
+  </div>
 
-        <button type="submit" className="submit-button">Generate Email Copy</button>
-      </form>
+  <div className="form-group">
+    <label htmlFor="deadline" className="input-label">Preferred Deadline</label>
+    <input type="date" id="deadline" name="deadline" className="styled-input" />
+  </div>
+
+  <div className="form-group">
+    <label htmlFor="budget" className="input-label">Budget Range</label>
+    <select id="budget" name="budget" className="styled-input">
+      <option value="">Select a range</option>
+      <option value="under-500">Under $500</option>
+      <option value="500-1000">$500 - $1000</option>
+      <option value="1000-2000">$1000 - $2000</option>
+      <option value="over-2000">Over $2000</option>
+    </select>
+  </div>
+
+  <button type="submit" className="submit-button">Submit Request</button>
+</form>
 
       <div className="email-results">
         <h3>Email Copy Preview</h3>

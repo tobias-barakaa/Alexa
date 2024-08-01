@@ -95,3 +95,72 @@
     white-space: pre-wrap;
   }
   
+
+
+
+
+
+
+
+
+
+  .copywriting-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-title {
+    color: #078BC8;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .styled-input,
+  .styled-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #078BC8;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .styled-input {
+    height: 50px;
+  }
+  
+  .styled-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .styled-input:focus,
+  .styled-textarea:focus {
+    outline: none;
+    border-color: #056b99;
+    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
+  }
+  
+  .submit-button {
+    background-color: #078BC8;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    background-color: #056b99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
