@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import "./EducationSection.css";
 
 const EducationSection = ({ educations, setEducations }) => {
@@ -90,6 +91,11 @@ const EducationSection = ({ educations, setEducations }) => {
       <button type="button" className="add-button" onClick={addEducation}>Add Education</button>
     </section>
   );
+};
+
+EducationSection.propTypes = {
+  educations: PropTypes.array,
+  setEducations: PropTypes.func.isRequired
 };
 
 export default EducationSection;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import EducationSection from "./EducationSection";
 import "./ResumeCVWriting.css";
 import WorkExperienceSection from "./WorkExperienceSection";
@@ -6,16 +7,19 @@ import WorkExperienceSection from "./WorkExperienceSection";
 const ResumeCVWriting = () => {
   const [personalInfo, setPersonalInfo] = useState({ fullName: '', jobTitle: '', email: '', phone: '', summary: '' });
   const [experiences, setExperiences] = useState([]);
+  const [educations, setEducations] = useState([]);
   const [skills, setSkills] = useState('');
   const [languages, setLanguages] = useState('');
   const [certifications, setCertifications] = useState('');
   const [achievements, setAchievements] = useState('');
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (field, value) => {
     setPersonalInfo({ ...personalInfo, [field]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       personalInfo,
@@ -24,9 +28,22 @@ const ResumeCVWriting = () => {
       languages,
       certifications,
       achievements,
+      educations
     };
-    // Send formData to your server or database
-    console.log('Form Submitted:', formData);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/resume/create', formData, {
+        withCredentials: true, // Include credentials with the request
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log('Response:', response.data);
+    } catch (error) {
+      setError('Failed to submit the resume/CV. Please try again.');
+      setSuccessMessage('');
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -103,7 +120,7 @@ const ResumeCVWriting = () => {
           </div>
         </section>
         <WorkExperienceSection experiences={experiences} setExperiences={setExperiences} />
-        <EducationSection />
+        <EducationSection educations={educations} setEducations={setEducations} />
         <section className="skills-section">
           <h3 className="skills-title">Skills</h3>
           <div className="skills-form-group">
@@ -158,10 +175,12 @@ const ResumeCVWriting = () => {
             ></textarea>
           </div>
         </section>
-        <button type="submit" className="submit-buttonn">Generate Resume/CV</button>
+        <button type="submit" className="submit-button">Generate Resume/CV</button>
       </form>
+      {error && <p className="error-message">{error}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
   );
-}
+};
 
 export default ResumeCVWriting;
