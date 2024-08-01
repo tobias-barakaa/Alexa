@@ -7,7 +7,7 @@ const ArticleCreation = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [keywords, setKeywords] = useState('');
-  const [wordCount, setWordCount] = useState(''); // Ensure this is a string for correct parsing later
+  const [wordCount, setWordCount] = useState('');
   const [timeFrame, setTimeFrame] = useState('');
   const [toneStyle, setToneStyle] = useState('');
   const [links, setLinks] = useState('');
@@ -36,7 +36,6 @@ const ArticleCreation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate wordCount
     const parsedWordCount = parseInt(wordCount, 10);
     if (isNaN(parsedWordCount) || parsedWordCount <= 0) {
       alert('Word count must be a positive integer');
@@ -48,13 +47,13 @@ const ArticleCreation = () => {
         title,
         description,
         keywords,
-        word_count: parsedWordCount, // Ensure integer is sent
+        word_count: parsedWordCount,
         tone_style: toneStyle,
         links,
         complexity,
         cost,
-        number_of_words_id: parsedWordCount, // Assuming this should map to the same as word_count
-        timeframe_id: parseInt(timeFrame, 10) // Ensure integer is sent
+        number_of_words_id: parsedWordCount,
+        timeframe_id: parseInt(timeFrame, 10)
       }).unwrap();
       setTitle('');
       setDescription('');
@@ -103,7 +102,7 @@ const ArticleCreation = () => {
           </div>
         </div>
 
-        <div className="article-flex-container">
+        <div className="article-flex-container bordered-container">
           <div className="article-flex-item">
             <div className="article-select-group">
               <label htmlFor="wordCount" className="article-select-label">Word Count</label>
@@ -147,42 +146,69 @@ const ArticleCreation = () => {
               </select>
             </div>
           </div>
+
+          <div className="article-flex-item">
+            <div className="article-select-group">
+              <label htmlFor="tone-style" className="article-select-label">Tone and Style</label>
+              <select
+                className="article-select"
+                id="tone-style"
+                value={toneStyle}
+                onChange={(e) => setToneStyle(e.target.value)}
+                required
+              >
+                <option value="">Select tone and style</option>
+                <option value="formal">Formal</option>
+                <option value="casual">Casual</option>
+                <option value="conversational">Conversational</option>
+                <option value="technical">Technical</option>
+                <option value="persuasive">Persuasive</option>
+                <option value="informative">Informative</option>
+                <option value="humorous">Humorous</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="new-article-section">
           <div className="article-form-group">
-            <label className="article-input-label" htmlFor="tone-style">Tone and Style:</label>
+            <label className="article-input-label" htmlFor="complexity">Complexity:</label>
             <select
               className="article-select"
-              id="tone-style"
-              value={toneStyle}
-              onChange={(e) => setToneStyle(e.target.value)}
+              id="complexity"
+              value={complexity}
+              onChange={(e) => setComplexity(e.target.value)}
               required
             >
-              <option value="">Select tone and style</option>
-              <option value="formal">Formal</option>
-              <option value="casual">Casual</option>
-              <option value="conversational">Conversational</option>
-              <option value="technical">Technical</option>
-              <option value="persuasive">Persuasive</option>
-              <option value="informative">Informative</option>
-              <option value="humorous">Humorous</option>
+              <option value="basic">Basic</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
             </select>
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Complexity:</label>
-          <select value={complexity} onChange={(e) => setComplexity(e.target.value)} required>
-            <option value="basic">Basic</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
+        <div className="article-form-group">
+          <label htmlFor="keywords" className="article-input-label">Keywords</label>
+          <input 
+            type="text" 
+            id="keywords" 
+            className="article-input"
+            value={keywords} 
+            onChange={(e) => setKeywords(e.target.value)} 
+            placeholder="Enter keywords (comma-separated)"
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="links">Links (optional):</label>
-          <input type="text" id="links" value={links} onChange={(e) => setLinks(e.target.value)} />
+        <div className="article-form-group">
+          <label htmlFor="links" className="article-input-label">Links (optional)</label>
+          <input 
+            type="text" 
+            id="links" 
+            className="article-input"
+            value={links} 
+            onChange={(e) => setLinks(e.target.value)} 
+            placeholder="Enter any links (comma-separated)"
+          />
         </div>
 
         <div className="cost-container">
