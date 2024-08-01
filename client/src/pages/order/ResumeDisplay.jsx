@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ResumeDisplay.css';
 import { useParams } from 'react-router-dom';
@@ -39,96 +39,125 @@ const ResumeDisplay = () => {
 
   return (
     <div className="resume-container">
-      <h1>Resume Details</h1>
-      <table className="resume-table">
-        <tbody>
-          <tr>
-            <th>Full Name</th>
-            <td>{resume.full_name}</td>
-          </tr>
-          <tr>
-            <th>Job Title</th>
-            <td>{resume.job_title}</td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{resume.email}</td>
-          </tr>
-          <tr>
-            <th>Phone</th>
-            <td>{resume.phone}</td>
-          </tr>
-          <tr>
-            <th>Summary</th>
-            <td>{resume.summary}</td>
-          </tr>
-          <tr>
-            <th>Skills</th>
-            <td>{resume.skills}</td>
-          </tr>
-          <tr>
-            <th>Languages</th>
-            <td>{resume.languages}</td>
-          </tr>
-          <tr>
-            <th>Certifications</th>
-            <td>{resume.certifications}</td>
-          </tr>
-          <tr>
-            <th>Achievements</th>
-            <td>{resume.achievements}</td>
-          </tr>
-        </tbody>
-      </table>
+    <h1>Resume Details</h1>
+    
+    <h2>User Information</h2>
+    <table className="resume-table">
+      <tbody>
+        <tr>
+          <th>User ID</th>
+          <td>{resume.user.id}</td>
+        </tr>
+        <tr>
+          <th>First Name</th>
+          <td>{resume.user.first_name}</td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td>{resume.user.last_name}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{resume.user.email}</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <h2>Education</h2>
-      <table className="resume-table">
-        <thead>
-          <tr>
-            <th>Degree</th>
-            <th>Institution</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {resume.education.map((edu) => (
-            <tr key={edu.id}>
-              <td>{edu.degree}</td>
-              <td>{edu.institution}</td>
-              <td>{new Date(edu.start_date).toLocaleDateString()}</td>
-              <td>{new Date(edu.end_date).toLocaleDateString()}</td>
-              <td>{edu.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <h2>Resume Information</h2>
+    <table className="resume-table">
+      <tbody>
+        <tr>
+          <th>Resume ID</th>
+          <td>{resume.id}</td>
+        </tr>
+        <tr>
+          <th>Full Name</th>
+          <td>{resume.full_name}</td>
+        </tr>
+        <tr>
+          <th>Job Title</th>
+          <td>{resume.job_title}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{resume.email}</td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td>{resume.phone}</td>
+        </tr>
+        <tr>
+          <th>Summary</th>
+          <td>{resume.summary}</td>
+        </tr>
+        <tr>
+          <th>Skills</th>
+          <td>{resume.skills}</td>
+        </tr>
+        <tr>
+          <th>Languages</th>
+          <td>{resume.languages}</td>
+        </tr>
+        <tr>
+          <th>Certifications</th>
+          <td>{resume.certifications}</td>
+        </tr>
+        <tr>
+          <th>Achievements</th>
+          <td>{resume.achievements}</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <h2>Work Experience</h2>
-      <table className="resume-table">
-        <thead>
-          <tr>
-            <th>Job Title</th>
-            <th>Company</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Responsibilities</th>
+    <h2>Education</h2>
+    <table className="resume-table">
+      <thead>
+        <tr>
+          <th>Degree</th>
+          <th>Institution</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {resume.education.map((edu) => (
+          <tr key={edu.id}>
+            <td>{edu.degree}</td>
+            <td>{edu.institution}</td>
+            <td>{new Date(edu.start_date).toLocaleDateString()}</td>
+            <td>{new Date(edu.end_date).toLocaleDateString()}</td>
+            <td>{edu.description}</td>
           </tr>
-        </thead>
-        <tbody>
-          {resume.work_experience.map((exp) => (
-            <tr key={exp.id}>
-              <td>{exp.job_title}</td>
-              <td>{exp.company}</td>
-              <td>{new Date(exp.start_date).toLocaleDateString()}</td>
-              <td>{new Date(exp.end_date).toLocaleDateString()}</td>
-              <td>{exp.responsibilities}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
+
+    <h2>Work Experience</h2>
+    <table className="resume-table">
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Responsibilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        {resume.work_experience.map((exp) => (
+          <tr key={exp.id}>
+            <td>{exp.job_title}</td>
+            <td>{exp.company}</td>
+            <td>{new Date(exp.start_date).toLocaleDateString()}</td>
+            <td>{new Date(exp.end_date).toLocaleDateString()}</td>
+            <td>{exp.responsibilities}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
   );
 };
 

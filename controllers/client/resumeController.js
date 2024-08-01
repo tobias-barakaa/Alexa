@@ -142,71 +142,74 @@ const getResumeById = async (req, res) => {
                 'education.end_date',
                 'education.description',
                 'work_experience.id as work_experience_id',
-                'work_experience.job_title',
+                'work_experience.job_title as work_job_title',
                 'work_experience.company',
-                'work_experience.start_date',
-                'work_experience.end_date',
+                'work_experience.start_date as work_start_date',
+                'work_experience.end_date as work_end_date',
                 'work_experience.responsibilities',
                 'users.id as user_id',
-                'users.first_name as user_first_name', // Adjust column name
-                'users.last_name as user_last_name',   // Adjust column name
+                'users.first_name as user_first_name',
+                'users.last_name as user_last_name',
                 'users.email as user_email'
             )
-            .where('resumes.id', resumeId)
-            .first();
+            .where('resumes.id', resumeId);
 
-        if (!resumeData) {
+        if (!resumeData || resumeData.length === 0) {
             return res.status(404).json({ message: 'Resume not found' });
         }
 
         // Structure the response
         const response = {
             resume: {
-                id: resumeData.resume_id,
-                user_id: resumeData.user_id,
-                full_name: resumeData.full_name,
-                job_title: resumeData.job_title,
-                email: resumeData.email,
-                phone: resumeData.phone,
-                summary: resumeData.summary,
-                skills: resumeData.skills,
-                languages: resumeData.languages,
-                certifications: resumeData.certifications,
-                achievements: resumeData.achievements,
+                id: resumeData[0].resume_id,
+                user_id: resumeData[0].user_id,
+                full_name: resumeData[0].full_name,
+                job_title: resumeData[0].job_title,
+                email: resumeData[0].email,
+                phone: resumeData[0].phone,
+                summary: resumeData[0].summary,
+                skills: resumeData[0].skills,
+                languages: resumeData[0].languages,
+                certifications: resumeData[0].certifications,
+                achievements: resumeData[0].achievements,
                 education: [],
                 work_experience: [],
                 user: {
-                    id: resumeData.user_id,
-                    first_name: resumeData.user_first_name, // Adjust field
-                    last_name: resumeData.user_last_name,   // Adjust field
-                    email: resumeData.user_email
+                    id: resumeData[0].user_id,
+                    first_name: resumeData[0].user_first_name,
+                    last_name: resumeData[0].user_last_name,
+                    email: resumeData[0].user_email
                 }
             }
         };
 
         // Add education data
-        if (resumeData.education_id) {
-            response.resume.education.push({
-                id: resumeData.education_id,
-                degree: resumeData.degree,
-                institution: resumeData.institution,
-                start_date: resumeData.start_date,
-                end_date: resumeData.end_date,
-                description: resumeData.description
-            });
-        }
+        resumeData.forEach(row => {
+            if (row.education_id) {
+                response.resume.education.push({
+                    id: row.education_id,
+                    degree: row.degree,
+                    institution: row.institution,
+                    start_date: row.start_date,
+                    end_date: row.end_date,
+                    description: row.description
+                });
+            }
+        });
 
         // Add work experience data
-        if (resumeData.work_experience_id) {
-            response.resume.work_experience.push({
-                id: resumeData.work_experience_id,
-                job_title: resumeData.job_title,
-                company: resumeData.company,
-                start_date: resumeData.start_date,
-                end_date: resumeData.end_date,
-                responsibilities: resumeData.responsibilities
-            });
-        }
+        resumeData.forEach(row => {
+            if (row.work_experience_id) {
+                response.resume.work_experience.push({
+                    id: row.work_experience_id,
+                    job_title: row.work_job_title,
+                    company: row.company,
+                    start_date: row.work_start_date,
+                    end_date: row.work_end_date,
+                    responsibilities: row.responsibilities
+                });
+            }
+        });
 
         return res.status(200).json(response);
     } catch (error) {
@@ -214,6 +217,7 @@ const getResumeById = async (req, res) => {
         return res.status(500).json({ error: 'Failed to fetch resume' });
     }
 };
+
 
 
 

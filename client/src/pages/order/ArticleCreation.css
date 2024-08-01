@@ -1,92 +1,118 @@
 .new-blog-section {
-max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
-    border: 2px solid #e0e0e0;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
 }
 
-.form-group {
-  margin-bottom: 25px;
+.article-form-group {
+  margin-bottom: 20px;
 }
 
-label {
-  display: block;
+.article-input-label,
+.article-description-label,
+.article-select-label {
+  display: inline-block;
+  background-color: #078BC8;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 15px;
   margin-bottom: 8px;
   font-weight: bold;
-  color: #34495e;
+  font-size: 18px;
 }
 
-/* input[type="text"],
-input[type="number"],
-textarea,
-select {
+.article-input,
+.article-description-input,
+.article-select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #bdc3c7;
-  border-radius: 4px;
+  padding: 12px 15px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  border: 1px solid #078BC8;
+  border-radius: 15px;
+  background-color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus,
-select:focus {
-  border-color: #3498db;
+.article-input:focus,
+.article-description-input:focus,
+.article-select:focus {
   outline: none;
-} */
+  border-color: #056b99;
+  box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
+}
 
-textarea {
+.article-input::placeholder,
+.article-description-input::placeholder {
+  color: #999;
+}
+
+.article-description-group {
+  margin-bottom: 20px;
+}
+
+.article-flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.article-flex-item {
+  width: 48%;
+}
+
+.floating-description-input {
+  position: relative;
+}
+
+.floating-description-input textarea {
   height: 150px;
-  resize: vertical;
 }
-
-
-
-@media (max-width: 600px) {
-  form {
-    padding: 20px;
-  }
-}
-
-
 
 .cost-container {
-  background-color: #f8f9fa;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.cost-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.cost-label {
-  font-size: 14px;
-  color: #6c757d;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
 }
 
 .cost-value {
-  font-size: 36px;
-  font-weight: bold;
-  color: #28a745;
+  color: #333;
 }
 
 .currency {
-  font-size: 24px;
-  vertical-align: top;
-  margin-right: 2px;
+  margin-right: 5px;
 }
 
 .amount {
-  letter-spacing: -1px;
+  font-size: 24px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+button[type="submit"] {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #078BC8;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #056b99;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
