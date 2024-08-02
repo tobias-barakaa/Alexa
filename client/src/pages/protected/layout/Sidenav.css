@@ -4,15 +4,16 @@
   background-color: white;
   border-radius: 15px;
   margin-top: 20px;
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); */
+  /* border: 2px solid #e0e0e0; */
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.02), 0px 0px 0px 1px rgba(27, 31, 35, 0.15);
   overflow-y: auto;
   z-index: 100;
-  top: 60px; 
+  top: 60px; /* Adjust this value to the height of your header */
   left: 0;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  padding-top: 10px;
 }
 
 .sidena a {
@@ -23,18 +24,22 @@
 
 }
 .services {
-  margin-top: 20px;
   font-size: 26px;
-  font-weight: 700;
   padding: 20px;
 
 }
+
+
+
+
+
+
 /* Other existing styles */
-.sidebar-content-item {
+.sidebar-content-itemm {
   background-color: #fff;
   padding: 10px;
   cursor: pointer;
-  color: #333;
+  color: #000000;
   transition: background-color 0.3s;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Add a bottom border for separation */
 }
@@ -52,12 +57,11 @@
   box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.1);
   padding: 5px;
   border-radius: 50%; /* Make it circular */
-  font-size: 12px;
 }
 
 .orderr {
   margin-right: 10px; 
-  font-size: 1.4em;
+  font-size: 1.2em;
   box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.1);
   padding: 5px;
   border-radius: 50%; /* Make it circular */
@@ -114,113 +118,55 @@
 
 
 
-.sidebar-menu-container {
-  width: 250px;
-  border-radius: 15px;
-  margin: auto;
-  padding-top: 20px;
-  border-radius: 15px;
-}
 
-
-
-.sidebar-menu-container {
-  width: 250px;
-  margin-top: 20px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f1f5f9;
-}
-
-.sidebar-menu-title {
-  background-color: #3b82f6;
-  color: white;
-  padding: 12px 16px;
-  margin: 0;
-  font-size: 18px;
+/* Services title */
+.services {
+  font-size: 24px; /* Slightly smaller for consistency */
   font-weight: 600;
+  margin-bottom: 20px; /* Spacing below the title */
+  display: block;
 }
 
-.sidebar-menu-content {
-  padding: 16px;
-  height: calc(50vh - 80px); /* Adjusted for profile height */
-  overflow-y: auto;
+/* Sidebar content item */
+.sidebar-content-item {
+  background-color: #f1f5f9; /* Light blue background */
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 20px; /* Spacing between items */
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.sidebar-menu-list {
-  list-style-type: none;
+/* Dropdown menu */
+.sidebar-dropdownn {
+  list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0;
 }
 
-.sidebar-menu-item {
-  margin-bottom: 12px;
+/* Dropdown menu items */
+.sidebar-dropdownn li {
+  padding: 10px 15px; /* More spacing for better readability */
+  transition: background-color 0.3s;
 }
 
-.sidebar-menu-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-decoration: none;
-  color: #1e3a8a;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+.sidebar-dropdownn li:hover {
+  background-color: #e0e7ff; /* Light blue hover effect */
+  border-radius: 10px;
 }
 
-.sidebar-menu-link:hover {
-  background-color: rgba(59, 130, 246, 0.1);
-}
-
-.sidebar-menu-icon {
-  font-size: 18px;
-}
-
-.sidebar-menu-text {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.sidebar-options {
-  border-top: 1px solid #cbd5e1;
-  padding-top: 16px;
-}
-
-.sidebar-options-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 12px;
-}
-
-.sidebar-profile {
-  padding: 16px;
-  background-color: #e2e8f0;
-  border-top: 1px solid #cbd5e1;
-  display: flex;
-  align-items: center;
-}
-
-.sidebar-profile-avatar {
-  width: 40px;
-  height: 40px;
+/* Blog writing icons */
+.blog-writing {
+  margin-right: 10px;
+  font-size: 1.4em;
+  padding: 5px;
   border-radius: 50%;
-  margin-right: 12px;
 }
 
-.sidebar-profile-info {
+/* Ensure links inherit styles and are easy to read */
+.sidebar-dropdown a {
+  text-decoration: none;
+  color: #333; /* Dark text color */
   display: flex;
-  flex-direction: column;
-}
-
-.sidebar-profile-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1e3a8a;
-}
-
-.sidebar-profile-role {
-  font-size: 12px;
-  color: #64748b;
+  align-items: center;
 }
