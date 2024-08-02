@@ -78,7 +78,7 @@ const ArticleCreation = () => {
         </div>
 
         <div className="blog-form-group" id='blog'>
-          <label htmlFor="title" className="blog-input-label">Title</label>
+          <label htmlFor="title" className="blog-input-labell">Title</label>
           <input 
             type="text" 
             id="title" 
@@ -90,7 +90,7 @@ const ArticleCreation = () => {
         </div>
 
         <div className="article-description-group">
-          <label htmlFor="description" className="article-description-label">Description</label>
+          <label htmlFor="description" className="blog-input-labell">Description</label>
           <div className="floating-description-input">
             <textarea 
               id="description" 
@@ -105,7 +105,7 @@ const ArticleCreation = () => {
         <div className="article-flex-container bordered-container">
           <div className="article-flex-item">
             <div className="article-select-group">
-              <label htmlFor="wordCount" className="article-select-label">Word Count</label>
+              <label htmlFor="wordCount" className="blog-input-labell">Word Count</label>
               <select 
                 id="wordCount" 
                 className="article-select"
@@ -113,7 +113,7 @@ const ArticleCreation = () => {
                 onChange={(e) => setWordCount(e.target.value)} 
                 required
               >
-                <option value="">Select word count</option>
+                <option value={300}>300</option>
                 <option value={500}>500</option>
                 <option value={1000}>1000</option>
                 <option value={1500}>1500</option>
@@ -125,7 +125,7 @@ const ArticleCreation = () => {
 
           <div className="article-flex-item">
             <div className="article-select-group">
-              <label htmlFor="timeFrame" className="article-select-label">Time Frame</label>
+              <label htmlFor="timeFrame" className="blog-input-labell">Time Frame</label>
               <select 
                 id="timeFrame" 
                 className="article-select"
@@ -133,7 +133,6 @@ const ArticleCreation = () => {
                 onChange={(e) => setTimeFrame(e.target.value)} 
                 required
               >
-                <option value="">Select time frame</option>
                 {isLoadingTimeframe ? (
                   <option>Loading...</option>
                 ) : isErrorTimeframe ? (
@@ -149,7 +148,7 @@ const ArticleCreation = () => {
 
           <div className="article-flex-item">
             <div className="article-select-group">
-              <label htmlFor="tone-style" className="article-select-label">Tone and Style</label>
+              <label htmlFor="tone-style" className="blog-input-labell">Tone and Style</label>
               <select
                 className="article-select"
                 id="tone-style"
@@ -157,7 +156,6 @@ const ArticleCreation = () => {
                 onChange={(e) => setToneStyle(e.target.value)}
                 required
               >
-                <option value="">Select tone and style</option>
                 <option value="formal">Formal</option>
                 <option value="casual">Casual</option>
                 <option value="conversational">Conversational</option>
@@ -172,7 +170,7 @@ const ArticleCreation = () => {
 
         <div className="new-article-section">
           <div className="article-form-group">
-            <label className="article-input-label" htmlFor="complexity">Complexity:</label>
+            <label className="blog-input-labell" htmlFor="complexity">Complexity:</label>
             <select
               className="article-select"
               id="complexity"
@@ -188,7 +186,7 @@ const ArticleCreation = () => {
         </div>
 
         <div className="article-form-group">
-          <label htmlFor="keywords" className="article-input-label">Keywords</label>
+          <label htmlFor="keywords" className="blog-input-labell">Keywords</label>
           <input 
             type="text" 
             id="keywords" 
@@ -200,7 +198,7 @@ const ArticleCreation = () => {
         </div>
 
         <div className="article-form-group">
-          <label htmlFor="links" className="article-input-label">Links (optional)</label>
+          <label htmlFor="links" className="blog-input-labell">Links (optional)</label>
           <input 
             type="text" 
             id="links" 

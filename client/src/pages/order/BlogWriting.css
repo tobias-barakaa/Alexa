@@ -38,25 +38,16 @@
   }  */
   .title {
     background-color: #FFCD35;
-    color: #333; /* A dark color for the text */
+    color: #000; /* A dark color for the text */
     padding: 5px 10px;
     border-radius: 5px;
 
   }
 
   .title-blog {
-    background-color: #078BC8;
-    color: #ffffff; /* A dark color for the text */
+    color: #078BC8; /* A dark color for the text */
     padding: 5px 10px;
-    border-radius: 15px;
-    display: inline-block;
-    margin-bottom: 10px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* More pronounced, grey-white shadow */
-    font-size: 20px;
-    width: 70px;
     justify-content: center;
-    height: 38px;
-    padding: 10px;
 
 
   }
@@ -67,7 +58,8 @@
     border: 1px solid #0386c2; /* The bluish color you suggested */
     padding: 0 10px;
     font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on focus */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 
     width: 100%; /* Assuming you want it to take full width */
@@ -80,7 +72,8 @@
   .title-input:focus {
     outline: none;
     border-color: #0477ad; /* A slightly darker blue for focus state */
-    box-shadow: 0 2px 6px rgba(3, 134, 194, 0.2); /* Slightly more pronounced shadow on focus */
+  box-shadow: 0 0 5px #056b99;
+    
   }
 
 
@@ -232,8 +225,7 @@
   
   .tags-label {
     display: inline-block;
-    background-color: #078BC8; /* Yellow/orange background */
-    color: #ffffff;
+    color: #078BC8;
     padding: 5px 10px;
     border-radius: 15px;
     margin-bottom: 8px;
@@ -248,13 +240,14 @@
     border: 1px solid #078BC8;
     border-radius: 15px;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   }
   
   .tags-input:focus {
     outline: none;
     border-color: #078BC8;
-    box-shadow: 0 0 0 2px rgba(255, 205, 53, 0.5);
+    box-shadow: 0 0 5px #056b99;
+
   }
   
   .tags-input::placeholder {

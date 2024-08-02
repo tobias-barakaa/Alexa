@@ -11,12 +11,9 @@
   margin-bottom: 20px;
 }
 
-.article-input-label,
-.article-description-label,
-.article-select-label {
+.blog-input-labell {
   display: inline-block;
-  background-color: #078BC8;
-  color: #ffffff;
+  color: #078BC8;
   padding: 5px 10px;
   border-radius: 15px;
   margin-bottom: 8px;
@@ -40,8 +37,8 @@
 .article-description-input:focus,
 .article-select:focus {
   outline: none;
-  border-color: #ffb703;
-  box-shadow: 0 0 5px #ffb703;
+  border-color: #056b99;
+  box-shadow: 0 0 5px #056b99;
 }
 
 .article-description-input {
