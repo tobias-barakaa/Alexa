@@ -1,173 +1,62 @@
-import { useState, useEffect } from 'react';
-import { useGetRecentQuery, useUpdateBlogMutation, useDeleteBlogMutation } from "../../../slices/client/blogApiSlice";
-import PropTypes from "prop-types";
-
-import "./EditOrders.css";
-import EditModal from './EditModal';
-import ConfirmationModal from './DeleteConfirmationModal';
-
-const CountdownTimer = ({ createdAt }) => {
-  const [timeLeft, setTimeLeft] = useState('');
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const createdTime = new Date(createdAt).getTime();
-      const timeDiff = now - createdTime;
-      const timeLeftMs = Math.max(30 * 60 * 1000 - timeDiff, 0);
-
-      if (timeLeftMs === 0) {
-        clearInterval(timer);
-        setTimeLeft('Time expired');
-      } else {
-        const minutes = Math.floor(timeLeftMs / (1000 * 60));
-        const seconds = Math.floor((timeLeftMs % (1000 * 60)) / 1000);
-        setTimeLeft(`${minutes}:${seconds.toString().padStart(2, '0')}`);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [createdAt]);
-
-  return <span className="countdown-timer">{timeLeft}</span>;
-};
+import { Link } from 'react-router-dom';
+import './EditOrders.css';
+import { useEffect, useState } from 'react';
 
 const EditOrders = () => {
-  const { data, isLoading, isError, error } = useGetRecentQuery();
-  const [updateBlog] = useUpdateBlogMutation();
-  const [deleteBlog] = useDeleteBlogMutation();
-  const [editingBlog, setEditingBlog] = useState(null);
-  const [category, setCategory] = useState('');
-  const [numOfWords, setNumOfWords] = useState('');
-  const [durationTime, setDurationTime] = useState('');
-  const [deletingBlog, setDeletingBlog] = useState(null); // State for blog to be deleted
 
-  // Ensure consistent useEffect hook order
+
+  const [tip, setTip] = useState('');
+
+  const tips = [
+    "Use power words to make your content more engaging.",
+    "Break up long paragraphs to improve readability.",
+    "Always proofread your content before publishing.",
+    "Use subheadings to organize your thoughts and guide readers.",
+    "Incorporate relevant statistics to add credibility to your writing.",
+    "Start with a strong hook to capture your audience's attention.",
+    "Use active voice for more impactful writing.",
+    "Include a clear call-to-action in your content.",
+    "Optimize your content for SEO by including relevant keywords.",
+    "Use analogies to explain complex ideas simply."
+  ];
+
   useEffect(() => {
-    if (editingBlog) {
-      setCategory(editingBlog.category_name);
-      setNumOfWords(editingBlog.number_of_words);
-      setDurationTime(editingBlog.timeframe_duration);
-    }
-  }, [editingBlog]);
+    setTip(tips[Math.floor(Math.random() * tips.length)]);
+  }, []);
 
-  if (isLoading) {
-    return <div className="loading">Loading recent orders...</div>;
-  }
-
-  if (isError) {
-    return <div className="error">Error: {error.message}</div>;
-  }
-
-  const blogs = data?.blogs || [];
-
-  const handleEdit = (blog) => {
-    setEditingBlog(blog);
-  };
-
-  const handleCloseModal = () => {
-    setEditingBlog(null);
-  };
-
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      await updateBlog({ id, ...updatedData }).unwrap();
-      setEditingBlog(null);
-      // Optionally, you can refetch the recent blogs here
-    } catch (err) {
-      console.error("Failed to update blog:", err);
-      // Handle error (e.g., show an error message to the user)
-    }
-  };
-
-  const handleDelete = (blog) => {
-    setDeletingBlog(blog);
-  };
-
-  const confirmDelete = async () => {
-    if (deletingBlog) {
-      try {
-        await deleteBlog(deletingBlog.id).unwrap();
-        setDeletingBlog(null);
-        window.location.reload(); // Reload the page to reflect the deletion
-      } catch (err) {
-        console.error("Failed to delete blog:", err);
-        // Handle error (e.g., show an error message to the user)
-      }
-    }
-  };
-
-  const cancelDelete = () => {
-    setDeletingBlog(null);
-  };
+  const editOptions = [
+    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/editBlog' },
+    { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/editArticle' },
+    { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
+    { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/editEmailCopywriting' },
+  ];
 
   return (
-    <div className="edit-orders">
-      <h1>Recent Blog Orders</h1>
+    <div className="edit-orders-container">
+      <h1>Edit Your Content</h1>
+      <p className="subtitle">Select an option to edit your content</p>
       <div className="warning">
-        Warning: Blog posts can only be edited or deleted within 30 minutes of posting.
+        Warning: Content can only be edited within 30 minutes of posting.
       </div>
-      <div className="blog-cards">
-        {blogs.map((blog) => {
-          const createdAt = new Date(blog.created_at);
-          const timeDiff = Date.now() - createdAt.getTime();
-          const canEditOrDelete = timeDiff <= 30 * 60 * 1000;
-
-          return (
-            <div key={blog.id} className="blog-card">
-              <h2>Title: {blog.title}</h2>
-              <p><strong>Category:</strong> {blog.category_name}</p>
-              <p><strong>Tags:</strong> {blog.tags}</p>
-              <p><strong>Excerpt:</strong> {blog.excerpt}</p>
-              <p><strong>Word Count:</strong> {blog.number_of_words}</p>
-              <p><strong>Timeframe:</strong> {blog.timeframe_duration}</p>
-              <p><strong>Status:</strong> {blog.status}</p>
-              <p><strong>Created At:</strong> {createdAt.toLocaleString()}</p>
-              <p><strong>Time Remaining:</strong> <CountdownTimer createdAt={blog.created_at} /></p>
-              <div className="action-buttons">
-                <button 
-                  className={`edit-button ${!canEditOrDelete ? 'disabled' : ''}`}
-                  disabled={!canEditOrDelete}
-                  onClick={() => handleEdit(blog)}
-                >
-                  Edit
-                </button>
-                <button 
-                  className={`delete-button ${!canEditOrDelete ? 'disabled' : ''}`}
-                  disabled={!canEditOrDelete}
-                  onClick={() => handleDelete(blog)}
-                >
-                  Delete
-                </button>
-              </div>
-              {!canEditOrDelete && (
-                <p className="time-expired">Time for editing/deleting has expired</p>
-              )}
+      <div className="edit-options-grid">
+        {editOptions.map((option, index) => (
+          <Link to={option.link} key={index} className="edit-option-link">
+            <div className="edit-option-box">
+              <span className="edit-option-icon">{option.icon}</span>
+              <span className="edit-option-title">{option.title}</span>
+              <span className="edit-option-description">{option.description}</span>
             </div>
-          );
-        })}
+          </Link>
+        ))}
       </div>
-      {editingBlog && (
-        <EditModal
-          blog={editingBlog}
-          isOpen={!!editingBlog}
-          onClose={handleCloseModal}
-          onUpdate={handleUpdate}
-          category={category}
-          numOfWords={numOfWords}
-          durationTime={durationTime}
-        />
-      )}
-      <ConfirmationModal
-        isOpen={!!deletingBlog}
-        onClose={cancelDelete}
-        onConfirm={confirmDelete}
-      />
+
+      <div className="content-tip">
+        <h3>Content Creation Tip:</h3>
+        <p>{tip}</p>
+      </div>
+
     </div>
   );
 };
 
-CountdownTimer.propTypes = {
-  createdAt: PropTypes.string.isRequired,
-};
 export default EditOrders;

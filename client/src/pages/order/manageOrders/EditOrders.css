@@ -1,125 +1,162 @@
-.edit-orders {
+.edit-orders-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  text-align: center;
 }
 
 h1 {
-  font-size: 24px;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #718096;
   margin-bottom: 20px;
-  color: #333;
-  text-align: center;
 }
 
 .warning {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
+  background-color: #fff5f5;
+  border: 1px solid #fc8181;
+  color: #c53030;
   padding: 10px;
-  margin-bottom: 20px;
   border-radius: 4px;
-  text-align: center;
+  margin-bottom: 30px;
 }
 
-.blog-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.edit-options-grid {
+  display: flex;
+  justify-content: center;
   gap: 20px;
 }
 
-.blog-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: box-shadow 0.3s ease;
+.edit-option-link {
+  text-decoration: none;
+  color: inherit;
 }
 
-.blog-card:hover {
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.blog-card h2 {
-  font-size: 18px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.blog-card p {
-  margin: 10px 0;
-  color: #555;
-}
-
-.action-buttons {
+.edit-option-box {
+  width: 160px;
+  height: 160px;
   display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid #3b82f6; */
+  border: 2px solid #dedede;
+
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  padding: 10px;
 }
 
-.edit-button, .delete-button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.edit-option-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.edit-button {
-  background-color: #3498db;
-  color: white;
+.edit-option-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
 }
 
-.delete-button {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.edit-button:hover, .delete-button:hover {
-  opacity: 0.8;
-}
-
-.edit-button.disabled, .delete-button.disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.time-expired {
-  color: #e74c3c;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.loading, .error {
-  text-align: center;
-  padding: 20px;
+.edit-option-title {
   font-size: 18px;
-  color: #666;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 5px;
 }
 
-.error {
-  color: #e74c3c;
+.edit-option-description {
+  font-size: 10px;
+  color: #718096;
+  text-align: center;
 }
-
-.countdown-timer {
-  font-weight: bold;
-  color: #e74c3c;
-}
-
-p strong + .countdown-timer {
-  font-size: 1.2em;
-  margin-left: 5px;
-}
-
-
-
-
-
 
 @media (max-width: 600px) {
-  .blog-cards {
-    grid-template-columns: 1fr;
+  .edit-options-grid {
+    flex-wrap: wrap;
+  }
+  
+  .edit-option-box {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .edit-option-icon {
+    font-size: 20px;
+  }
+  
+  .edit-option-title {
+    font-size: 12px;
+  }
+  
+  .edit-option-description {
+    font-size: 8px;
   }
 }
+
+
+.content-tip {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ebf8ff;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-tip h3 {
+  color: #2b6cb0;
+  margin-bottom: 10px;
+}
+
+.content-tip p {
+  color: #2c5282;
+  font-style: italic;
+}
+
+
+/* 
+{ icon: '📝', title: 'Edit Blog', color: '#4299e1' },
+{ icon: '✍️', title: 'Edit Article', color: '#48bb78' },
+{ icon: '📄', title: 'Edit Resume', color: '#ed8936' },
+{ icon: '📧', title: 'Edit Email Copywriting', color: '#9f7aea' },
+
+import './EditOrders.css';
+
+const EditOrders = () => {
+  const editOptions = [
+    { icon: '📝', title: 'Edit Blog', color: '#4299e1' },
+    { icon: '✍️', title: 'Edit Article', color: '#48bb78' },
+    { icon: '📄', title: 'Edit Resume', color: '#ed8936' },
+    { icon: '📧', title: 'Edit Email Copywriting', color: '#9f7aea' },
+  ];
+
+  return (
+    <>
+    <h1>Recent  Orders</h1>
+      <div className="warning">
+        Warning:  posts can only be edited or deleted within 30 minutes of posting.
+      </div>
+    <div className="edit-options-grid">
+      
+      {editOptions.map((option, index) => (
+        <div 
+          key={index} 
+          className="edit-option-box"
+          style={{ borderColor: option.color }}
+        >
+          <span className="edit-option-icon">{option.icon}</span>
+          <span className="edit-option-title">{option.title}</span>
+        </div>
+      ))}
+    </div>
+    </>
+
+  );
+};
+
+export default EditOrders; */
