@@ -1,403 +1,127 @@
+/* BlogWriting.css */
+.new-blog-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+}
 
-.blog-writing-section {
-        max-width: 900px;
+.blog-form-group, .category-form-group, .tags-form-group, .excerpt-form-group, .article-flex-container {
+  margin-bottom: 20px;
+}
 
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    border: 2px solid #e0e0e0;
-  }
+.create-input-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  
-  
-  .blog-writing-section h2 {
-    color: #078BC8;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
+.create-input {
+  font-size: 24px;
+  font-weight: bold;
+  color: #078BC8;
+}
 
-  .title {
-    background-color: #FFCD35; 
-    color: #333; 
-    padding: 5px 10px;
-    border-radius: 5px; 
-  }
-  
-  /* .title-input {
-    height: 80px; 
-    border-radius: 30px; 
-    border: 2px solid #0386c2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    padding: 0 10px; 
-    width: 100%; 
-  }  */
-  .title {
-    background-color: #FFCD35;
-    color: #000; /* A dark color for the text */
-    padding: 5px 10px;
-    border-radius: 5px;
+.blog-input-labell {
+  display: inline-block;
+  color: #078BC8;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
 
-  }
+.article-input,
+.article-description-input,
+.article-select {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #078BC8;
+  border-radius: 15px;
+  background-color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
-  .title-blog {
-    color: #078BC8; /* A dark color for the text */
-    padding: 5px 10px;
-    justify-content: center;
-
-
-  }
-  
-  .title-input {
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid #0386c2; /* The bluish color you suggested */
-    padding: 0 10px;
-    font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-
-
-    width: 100%; /* Assuming you want it to take full width */
-    box-sizing: border-box;
-    margin-top: 10px;
-    color: #ffffff;
-    
-  }
-  
-  .title-input:focus {
-    outline: none;
-    border-color: #0477ad; /* A slightly darker blue for focus state */
+.article-input:focus,
+.article-description-input:focus,
+.article-select:focus {
+  outline: none;
+  border-color: #056b99;
   box-shadow: 0 0 5px #056b99;
-    
-  }
+}
 
+.article-description-input {
+  height: 150px;
+}
 
-  
-  .select-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; /* Adds space between the two select wrappers */
-  }
-  
-  .select-wrapper {
-    flex: 1; /* Makes each wrapper take up equal space */
-    max-width: calc(50% - 10px); /* Ensures each wrapper doesn't exceed half the container width minus half the gap */
-  }
-  
-  .select-wrapper label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  
-  
-  .custom-select:focus {
-    outline: none;
-    border-color: #078BC8;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.1);
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .select-container {
-      flex-direction: column;
-    }
-  
-    .select-wrapper {
-      max-width: 100%;
-    }
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .blog-writing-section {
-      padding: 15px;
-    }
-  
-    input[type="text"],
-    textarea,
-    select {
-      font-size: 14px;
-    }
-  
-    .submit-button {
-      width: 100%;
-    }
-  }
+.floating-description-input {
+  position: relative;
+}
 
+.article-flex-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #078BC8;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+}
 
+.article-flex-item {
+  flex: 1;
+  margin-right: 10px;
+}
 
-  .loader {
-    /* Add your loader styling here */
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+.article-flex-item:last-child {
+  margin-right: 0;
+}
 
+button[type="submit"] {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #078BC8;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
+button[type="submit"]:hover {
+  background-color: #056b99;
+}
 
-  .category-form-group {
-    margin-bottom: 20px;
-  }
-  
-  .category-label {
-    display: inline-block;
-    color: #078BC8;
-    padding: 5px 0;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .category-select-wrapper {
-    position: relative;
-  }
-  
-  .category-styled-select {
-    width: 100%;
-    height: 50px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .category-styled-select:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .category-select-wrapper::after {
-    content: '\25BC';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #078BC8;
-  }
-  
-  /* Styling for options */
-  .category-styled-select option {
-    padding: 10px;
-  }
-  
-  /* For Firefox */
-  .category-styled-select {
-    -moz-padding-start: 10px;
-  }
-  
-  /* For IE and Edge */
-  .category-styled-select::-ms-expand {
-    display: none;
-  }
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
+.loader {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 16px;
+  height: 16px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
 
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-
-
-  .tags-form-group {
-    margin-bottom: 20px;
-  }
-  
-  .tags-label {
-    display: inline-block;
-    color: #078BC8;
-    padding: 5px 10px;
-    border-radius: 15px;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .tags-input {
-    width: 100%;
-    height: 50px; 
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-
-  }
-  
-  .tags-input:focus {
-    outline: none;
-    border-color: #078BC8;
-    box-shadow: 0 0 5px #056b99;
-
-  }
-  
-  .tags-input::placeholder {
-    color: #999;
-  }
-
-
-  .excerpt-form-group {
-    margin-bottom: 20px;
-  }
-  
-  .excerpt-label {
-    display: inline-block;
-    color: #078BC8;
-    padding: 5px 0;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .excerpt-textarea {
-    width: 100%;
-    min-height: 100px; /* Increased height for better visibility */
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    resize: vertical; /* Allows vertical resizing */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .excerpt-textarea:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .excerpt-textarea::placeholder {
-    color: #999;
-  }
-
-
-
-
-
-  .select-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .select-wrapper {
-    width: 48%; /* Adjust as needed */
-  }
-  
-  .select-label {
-    display: block;
-    color: #078BC8;
-    padding: 5px 0;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .custom-select {
-    width: 100%;
-    height: 50px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .custom-select:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  
-  
-  /* Styling for options */
-  .custom-select option {
-    padding: 10px;
-  }
-  
-  /* For Firefox */
-  .custom-select {
-    -moz-padding-start: 10px;
-  }
-  
-  /* For IE and Edge */
-  .custom-select::-ms-expand {
-    display: none;
-  }
-  
-  /* Media query for smaller screens */
-  @media (max-width: 768px) {
-    .select-container {
-      flex-direction: column;
-    }
-    
-    .select-wrapper {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-  }
-
-
-
-
-  .submit-button {
-    width: 100%;
-    height: 50px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background-color: #078BC8;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .submit-button:hover {
-    background-color: #056b99;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .submit-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(7, 139, 200, 0.3);
-  }
-  
-  .submit-button:active {
-    background-color: #045d85;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(1px);
-  }
-  
-  /* For disabled state */
-  .submit-button:disabled {
-    background-color: #a0a0a0;
-    cursor: not-allowed;
-  }
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}

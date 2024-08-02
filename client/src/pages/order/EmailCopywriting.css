@@ -1,166 +1,88 @@
-.email-copywriting-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .email-copywriting-container h2 {
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 28px;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .email-copywriting-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #34495e;
-  }
-/*   
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #fff;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-  }
-   */
-  textarea {
-    resize: vertical;
-  }
-  
-  .character-count {
-    font-size: 12px;
-    color: #7f8c8d;
-    text-align: right;
-    margin-top: 5px;
-  }
-  
-  .submit-button {
-    background-color: #2980b9;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    transition: background-color 0.3s;
-    align-self: flex-start;
-    margin-top: 10px;
-  }
-  
-  .submit-button:hover {
-    background-color: #3498db;
-  }
-  
-  .email-results {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-  }
-  
-  .email-results h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-  }
-  
-  #email-preview {
-    white-space: pre-wrap;
-  }
-  
+.email-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+}
 
 
 
+.email-group {
+  margin-bottom: 20px;
+}
 
+.email-label {
+  display: inline-block;
+  color: #078BC8;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
 
+.email-input,
+.email-textarea,
+.email-select {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #078BC8;
+  border-radius: 15px;
+  background-color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
+.email-input:focus,
+.email-textarea:focus,
+.email-select:focus {
+  outline: none;
+  border-color: #056b99;
+  box-shadow: 0 0 5px #056b99;
+}
 
+.email-textarea {
+  height: 150px;
+}
 
+.email-submit-button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #078BC8;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  .copywriting-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .form-title {
-    color: #078BC8;
-    font-size: 28px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .styled-input,
-  .styled-textarea {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .styled-input {
-    height: 50px;
-  }
-  
-  .styled-textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  
-  .styled-input:focus,
-  .styled-textarea:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .submit-button {
-    background-color: #078BC8;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .submit-button:hover {
-    background-color: #056b99;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+.email-submit-button:hover {
+  background-color: #056b99;
+}
+
+.email-submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.email-results {
+  margin-top: 30px;
+}
+
+.email-preview-title {
+  color: #078BC8;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.email-preview {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
