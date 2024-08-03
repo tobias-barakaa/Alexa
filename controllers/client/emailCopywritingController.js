@@ -43,6 +43,48 @@ const emailCopywritingCreate = async (req, res) => {
   
   
 
+  const getEmailCopyWriting = async (req, res) => {
+    try {
+      // Ensure the user is authenticated
+      const userId = req.user && req.user.userId;
+  
+      if (!userId) {
+        return res.status(403).json({ message: 'User not authenticated. Access denied.' });
+      }
+  
+      const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000); // Calculate the time 30 minutes ago
+  
+      // Query for requests created by the user within the last 30 minutes
+      const recentRequests = await knex('emailcopywriting')
+        .where('user_id', userId)  // Filter by user ID
+        .andWhere('created_at', '>=', thirtyMinutesAgo) // Filter by creation time
+        .select('*');
+  
+      if (recentRequests.length > 0) {
+        // If there are recent requests, return them
+        return res.status(200).json({
+          message: 'Recent email copywriting requests retrieved successfully.',
+          requests: recentRequests,
+        });
+      } else {
+        // If no recent requests, return all requests created by the user
+        const allUserRequests = await knex('emailcopywriting')
+          .where('user_id', userId) // Filter by user ID
+          .select('*');
+          
+        return res.status(200).json({
+          message: 'No recent requests found. Returning all requests created by the user.',
+          requests: allUserRequests,
+        });
+      }
+    } catch (error) {
+      console.error('Error retrieving email copywriting requests:', error);
+      res.status(500).json({ message: 'Error retrieving email copywriting requests', error: error.message });
+    }
+  };
+  
+  
+
 //   const getEmailCopyWriting = async (req, res) => {
 //     try {
 //       let query = knex('emailcopywriting');
@@ -69,38 +111,38 @@ const emailCopywritingCreate = async (req, res) => {
 //   }
   
 
-const getEmailCopyWriting = async (req, res) => {
-    try {
-      const now = new Date();
-      const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
+// const getEmailCopyWriting = async (req, res) => {
+//     try {
+//       const now = new Date();
+//       const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
   
-      let query = knex('emailcopywriting');
+//       let query = knex('emailcopywriting');
   
-      // If user is logged in, only fetch their requests
-      if (req.user && req.user.userId) {
-        query = query
-          .where('user_id', req.user.userId)
-          .andWhere('created_at', '<', thirtyMinutesAgo); // Filter by creation time
-      } else {
-        // For non-logged in users, return an error
-        return res.status(401).json({ message: 'Please log in to view your requests' });
-      }
+//       // If user is logged in, only fetch their requests
+//       if (req.user && req.user.userId) {
+//         query = query
+//           .where('user_id', req.user.userId)
+//           .andWhere('created_at', '<', thirtyMinutesAgo); // Filter by creation time
+//       } else {
+//         // For non-logged in users, return an error
+//         return res.status(401).json({ message: 'Please log in to view your requests' });
+//       }
   
-      const requests = await query.select();
+//       const requests = await query.select();
   
-      if (requests.length === 0) {
-        return res.status(404).json({ message: 'No email copywriting requests found.' });
-      }
+//       if (requests.length === 0) {
+//         return res.status(404).json({ message: 'No email copywriting requests found.' });
+//       }
   
-      res.status(200).json({
-        message: 'Email copywriting requests retrieved successfully',
-        requests: requests,
-      });
-    } catch (error) {
-      console.error('Error fetching email copywriting requests:', error);
-      res.status(500).json({ message: 'Error fetching email copywriting requests', error: error.message });
-    }
-  };
+//       res.status(200).json({
+//         message: 'Email copywriting requests retrieved successfully',
+//         requests: requests,
+//       });
+//     } catch (error) {
+//       console.error('Error fetching email copywriting requests:', error);
+//       res.status(500).json({ message: 'Error fetching email copywriting requests', error: error.message });
+//     }
+//   };
   
 
 
