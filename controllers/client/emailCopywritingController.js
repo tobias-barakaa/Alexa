@@ -43,13 +43,44 @@ const emailCopywritingCreate = async (req, res) => {
   
   
 
-  const getEmailCopyWriting = async (req, res) => {
+//   const getEmailCopyWriting = async (req, res) => {
+//     try {
+//       let query = knex('emailcopywriting');
+  
+//       // If user is logged in, only fetch their requests
+//       if (req.user && req.user.userId) {
+//         query = query.where('user_id', req.user.userId);
+//       } else {
+//         // For non-logged in users, return an error
+//         return res.status(401).json({ message: 'Please log in to view your requests' });
+//       }
+  
+//       const requests = await query.select();
+  
+//       res.status(200).json({
+//         message: 'Email copywriting requests retrieved successfully',
+//         requests: requests
+//       });
+  
+//     } catch (error) {
+//       console.error('Error fetching email copywriting requests:', error);
+//       res.status(500).json({ message: 'Error fetching email copywriting requests', error: error.message });
+//     }
+//   }
+  
+
+const getEmailCopyWriting = async (req, res) => {
     try {
+      const now = new Date();
+      const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
+  
       let query = knex('emailcopywriting');
   
       // If user is logged in, only fetch their requests
       if (req.user && req.user.userId) {
-        query = query.where('user_id', req.user.userId);
+        query = query
+          .where('user_id', req.user.userId)
+          .andWhere('created_at', '<', thirtyMinutesAgo); // Filter by creation time
       } else {
         // For non-logged in users, return an error
         return res.status(401).json({ message: 'Please log in to view your requests' });
@@ -57,16 +88,19 @@ const emailCopywritingCreate = async (req, res) => {
   
       const requests = await query.select();
   
+      if (requests.length === 0) {
+        return res.status(404).json({ message: 'No email copywriting requests found.' });
+      }
+  
       res.status(200).json({
         message: 'Email copywriting requests retrieved successfully',
-        requests: requests
+        requests: requests,
       });
-  
     } catch (error) {
       console.error('Error fetching email copywriting requests:', error);
       res.status(500).json({ message: 'Error fetching email copywriting requests', error: error.message });
     }
-  }
+  };
   
 
 

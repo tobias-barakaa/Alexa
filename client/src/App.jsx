@@ -19,6 +19,7 @@ import EditOrders from './pages/order/manageOrders/EditOrders';
 import OrderHistory from './pages/order/manageOrders/OrderHistory';
 import ResumeDisplay from './pages/order/ResumeDisplay';
 import EditBlog from './pages/order/editOrders/EditBlog';
+import EditEmailCopyWriting from './pages/order/editOrders/EditEmailCopyWriting';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "editblog",
         element: <EditBlog />
+      },
+      {
+        path: "editemailcopywriting",
+        element: <EditEmailCopyWriting />
       }
     ]
   },

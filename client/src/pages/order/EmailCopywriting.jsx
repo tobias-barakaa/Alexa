@@ -39,8 +39,10 @@ const EmailCopywriting = () => {
     
     try {
       const response = await axios.post('http://localhost:5000/api/emailcopywriting/create', formData, {
+        withCredentials: true,
+        
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
           // Include authentication headers if needed
           // 'Authorization': `Bearer ${yourToken}`
         }
