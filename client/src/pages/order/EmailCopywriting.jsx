@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./EmailCopywriting.css";
 
 const EmailCopywriting = () => {
@@ -8,7 +9,6 @@ const EmailCopywriting = () => {
     deadline: "6hrs",
     wordCount: "under-100",
     cost: 0,
-    budget: "",
   });
 
   const handleChange = (e) => {
@@ -34,15 +34,30 @@ const EmailCopywriting = () => {
     return wordCountValue * costPerWord;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/emailcopywriting/create', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Include authentication headers if needed
+          // 'Authorization': `Bearer ${yourToken}`
+        }
+      });
+
+      console.log(response.data);
+      alert('Request submitted successfully!');
+      // Optionally, you can clear the form or redirect the user here
+    } catch (error) {
+      console.error('Error submitting request:', error);
+      alert('There was an error submitting your request.');
+    }
   };
 
   return (
     <div className="email-container">
-      <form className="email-form" onSubmit={handleSubmit} id="form-input">
+      <form className="email-form" onSubmit={handleSubmit}>
         <div className="create-input-container">
           <p className="create-input">Request Copywriting Services</p>
         </div>
@@ -131,8 +146,6 @@ const EmailCopywriting = () => {
             />
           </div>
         </div>
-
-       
 
         <button type="submit" className="email-submit-button">Submit Request</button>
       </form>

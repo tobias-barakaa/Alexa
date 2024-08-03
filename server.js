@@ -15,6 +15,8 @@ const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
 const articleCreationRouter = require('./routes/client/articleCreationRoute');
 const resumeRoute = require('./routes/client/resumeRoute');
+const emailCopywritingRoute = require('./routes/client/emailCopywritingRoute');
+
 
 
 // blog route import
@@ -73,6 +75,10 @@ app.use('/api/articlecreation', articleCreationRouter);
 
 // Resume Creation
 app.use('/api/resume', resumeRoute);
+
+
+// Email Creation
+app.use('/api/emailcopywriting', emailCopywritingRoute);
 
 // 404 handler
 app.use((req, res, next) => {
