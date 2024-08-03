@@ -104,7 +104,7 @@ const EditBlog = () => {
   return (
     <div className="edit-orders">
       <h1>Recent Blog Orders</h1>
-      <div className="warning">
+      <div className="warningg">
         Warning: Blog posts can only be edited or deleted within 30 minutes of posting.
       </div>
       <div className="blog-cards">

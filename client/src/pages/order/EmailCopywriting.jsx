@@ -3,11 +3,11 @@ import "./EmailCopywriting.css";
 
 const EmailCopywriting = () => {
   const [formData, setFormData] = useState({
-    clientName: "",
-    clientEmail: "",
     projectType: "",
     projectDescription: "",
-    deadline: "",
+    deadline: "6hrs",
+    wordCount: "under-100",
+    cost: 0,
     budget: "",
   });
 
@@ -16,6 +16,22 @@ const EmailCopywriting = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleWordCountChange = (e) => {
+    const wordCount = e.target.value;
+    const cost = calculateCost(wordCount);
+    setFormData({
+      ...formData,
+      wordCount,
+      cost,
+    });
+  };
+
+  const calculateCost = (wordCount) => {
+    const costPerWord = 0.1; // Example: $0.1 per word
+    const wordCountValue = wordCount === "under-100" ? 100 : parseInt(wordCount);
+    return wordCountValue * costPerWord;
   };
 
   const handleSubmit = (e) => {
@@ -29,34 +45,6 @@ const EmailCopywriting = () => {
       <form className="email-form" onSubmit={handleSubmit} id="form-input">
         <div className="create-input-container">
           <p className="create-input">Request Copywriting Services</p>
-        </div>
-
-        <div className="email-group">
-          <label htmlFor="client-name" className="email-label">Your Name</label>
-          <input
-            type="text"
-            id="client-name"
-            name="clientName"
-            className="email-input"
-            placeholder="John Doe"
-            value={formData.clientName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="email-group">
-          <label htmlFor="client-email" className="email-label">Your Email</label>
-          <input
-            type="email"
-            id="client-email"
-            name="clientEmail"
-            className="email-input"
-            placeholder="johndoe@example.com"
-            value={formData.clientEmail}
-            onChange={handleChange}
-            required
-          />
         </div>
 
         <div className="email-group">
@@ -94,31 +82,57 @@ const EmailCopywriting = () => {
 
         <div className="email-group">
           <label htmlFor="deadline" className="email-label">Preferred Deadline</label>
-          <input
-            type="date"
+          <select
             id="deadline"
             name="deadline"
-            className="email-input"
+            className="email-select"
             value={formData.deadline}
             onChange={handleChange}
-          />
+            required
+          >
+            <option value="6hrs">6 Hours</option>
+            <option value="12hrs">12 Hours</option>
+            <option value="1day">1 Day</option>
+            <option value="2days">2 Days</option>
+            <option value="1week">1 Week</option>
+            <option value="2weeks">2 Weeks</option>
+          </select>
         </div>
 
         <div className="email-group">
-          <label htmlFor="budget" className="email-label">Budget Range</label>
+          <label htmlFor="word-count" className="email-label">Number of Words</label>
           <select
-            id="budget"
-            name="budget"
+            id="word-count"
+            name="wordCount"
             className="email-select"
-            value={formData.budget}
-            onChange={handleChange}
+            value={formData.wordCount}
+            onChange={handleWordCountChange}
+            required
           >
-            <option value="under-500">Under $500</option>
-            <option value="500-1000">$500 - $1000</option>
-            <option value="1000-2000">$1000 - $2000</option>
-            <option value="over-2000">Over $2000</option>
+            <option value="under-100">Under 100</option>
+            {[...Array(10)].map((_, i) => (
+              <option key={i + 1} value={(i + 1) * 100}>
+                {(i + 1) * 100}
+              </option>
+            ))}
           </select>
         </div>
+
+        <div className="cost-container">
+          <div className="email-group">
+            <label htmlFor="cost" className="email-label">Estimated Cost</label>
+            <input
+              type="text"
+              id="cost"
+              name="cost"
+              className="email-input"
+              value={`$${formData.cost.toFixed(2)}`}
+              readOnly
+            />
+          </div>
+        </div>
+
+       
 
         <button type="submit" className="email-submit-button">Submit Request</button>
       </form>
