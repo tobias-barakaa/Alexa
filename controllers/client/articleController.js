@@ -5,7 +5,7 @@ const validateArticleInput = require("../../dataValidation/createArticle.js");
 const createArticle = async (req, res) => {
    
 
-    console.log(req.cookies); 
+    // console.log(req.cookies); 
       
       
     const {
