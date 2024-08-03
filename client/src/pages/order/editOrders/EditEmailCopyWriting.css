@@ -13,8 +13,6 @@
   }
   
   .request-list {
-    list-style-type: none;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -68,7 +66,7 @@
     color: white;
   }
   
-  .edit-button:hover {
+  .edit-button:hover:not(:disabled) {
     background-color: #3a7bc8;
   }
   
@@ -77,8 +75,13 @@
     color: white;
   }
   
-  .delete-button:hover {
+  .delete-button:hover:not(:disabled) {
     background-color: #c0392b;
+  }
+  
+  .edit-button:disabled, .delete-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
   
   @media (max-width: 768px) {
