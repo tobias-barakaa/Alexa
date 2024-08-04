@@ -26,7 +26,7 @@ const EditOrders = () => {
 
   const editOptions = [
     { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog' },
-    { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/editArticle' },
+    { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation' },
     { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
     { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting' },
   ];

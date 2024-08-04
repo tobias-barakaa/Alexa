@@ -58,8 +58,40 @@ const createArticle = async (req, res) => {
   }
 };
 
+const getArticlesAfter30Minutes = async (req, res) => {
+  const user_id = req.user?.userId;
+
+  if (!user_id) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    // Calculate the time 30 minutes ago
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+
+    // Query for articles created by the user after 30 minutes
+    const articles = await knex("articlecreation")
+      .where('user_id', user_id) // Filter by user ID
+      .andWhere('created_at', '>=', thirtyMinutesAgo) // Filter by creation time
+      .select('*');
+
+    if (articles.length === 0) {
+      return res.status(404).json({ message: "No articles found created after 30 minutes." });
+    }
+
+    res.status(200).json({
+      message: "Articles retrieved successfully.",
+      articles: articles,
+    });
+  } catch (error) {
+    console.error('Error retrieving articles:', error);
+    res.status(500).json({ error: "Failed to retrieve articles" });
+  }
+};
+
+
 const updateArticleCreation = async (req, res) => {
-  const { id } = req.params; // Assuming the article ID is passed as a URL parameter
+  const { id } = req.params; 
   const {
     title,
     description,
@@ -134,51 +166,51 @@ router.get("/", async (req, res) => {
 });
 
 // Update an article
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const {
-    title,
-    description,
-    keywords,
-    word_count,
-    tone_style = "formal",
-    links,
-    complexity,
-    cost,
-    status,
-    number_of_words_id,
-    timeframe_id,
-  } = req.body;
-  const user_id = req.user.userId;
+// const updateArticleCreation = async (req, res) => {
+//   const { id } = req.params;
+//   const {
+//     title,
+//     description,
+//     keywords,
+//     word_count,
+//     tone_style = "formal",
+//     links,
+//     complexity,
+//     cost,
+//     status,
+//     number_of_words_id,
+//     timeframe_id,
+//   } = req.body;
+//   const user_id = req.user.userId;
 
-  try {
-    const [article] = await knex("articles")
-      .where({ id, user_id })
-      .update({
-        title,
-        description,
-        keywords,
-        word_count,
-        tone_style,
-        links,
-        complexity,
-        cost,
-        status,
-        number_of_words_id,
-        timeframe_id,
-      })
-      .returning("*");
-    if (!article) {
-      return res.status(404).json({ error: "Article not found" });
-    }
-    res.status(200).json(article);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to update article" });
-  }
-});
+//   try {
+//     const [article] = await knex("articles")
+//       .where({ id, user_id })
+//       .update({
+//         title,
+//         description,
+//         keywords,
+//         word_count,
+//         tone_style,
+//         links,
+//         complexity,
+//         cost,
+//         status,
+//         number_of_words_id,
+//         timeframe_id,
+//       })
+//       .returning("*");
+//     if (!article) {
+//       return res.status(404).json({ error: "Article not found" });
+//     }
+//     res.status(200).json(article);
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to update article" });
+//   }
+// }
 
 // Delete an article
-router.delete("/:id", async (req, res) => {
+const deleteArticleCreation = async (req, res) => {
   const { id } = req.params;
   const user_id = req.user.userId;
 
@@ -191,6 +223,6 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to delete article" });
   }
-});
+};
 
-module.exports = { createArticle, updateArticleCreation };
+module.exports = { createArticle,getArticlesAfter30Minutes, updateArticleCreation, deleteArticleCreation };
