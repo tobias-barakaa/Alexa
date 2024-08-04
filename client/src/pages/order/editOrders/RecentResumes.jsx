@@ -63,9 +63,48 @@ const RecentResumes = () => {
             <p><strong>Email:</strong> {resume.email}</p>
             <p><strong>Phone:</strong> {resume.phone}</p>
             <p><strong>Summary:</strong> {resume.summary}</p>
+            <p><strong>Skills:</strong> {resume.skills}</p>
+            <p><strong>Languages:</strong> {resume.languages}</p>
+            <p><strong>Certifications:</strong> {resume.certifications}</p>
+            <p><strong>Achievements:</strong> {resume.achievements}</p>
+
+            {resume.education.length > 0 && (
+              <div className="education">
+                <h3>Education</h3>
+                <ul>
+                  {resume.education.map(edu => (
+                    <li key={edu.id}>
+                      <p><strong>Degree:</strong> {edu.degree}</p>
+                      <p><strong>Institution:</strong> {edu.institution}</p>
+                      <p><strong>Start Date:</strong> {new Date(edu.start_date).toLocaleDateString()}</p>
+                      <p><strong>End Date:</strong> {new Date(edu.end_date).toLocaleDateString()}</p>
+                      <p><strong>Description:</strong> {edu.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {resume.work_experience.length > 0 && (
+              <div className="work-experience">
+                <h3>Work Experience</h3>
+                <ul>
+                  {resume.work_experience.map(work => (
+                    <li key={work.id}>
+                      <p><strong>Job Title:</strong> {work.job_title}</p>
+                      <p><strong>Company:</strong> {work.company}</p>
+                      <p><strong>Start Date:</strong> {new Date(work.start_date).toLocaleDateString()}</p>
+                      <p><strong>End Date:</strong> {new Date(work.end_date).toLocaleDateString()}</p>
+                      <p><strong>Responsibilities:</strong> {work.responsibilities}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="actions">
               <button onClick={() => handleEdit(resume.id)}>Edit</button>
-              <button onClick={() => handleDelete(resume.id)}>Delete</button>
+              <button onClick={() => handleDelete(resume.id)} className="delete">Delete</button>
             </div>
           </div>
         ))

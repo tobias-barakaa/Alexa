@@ -51,7 +51,8 @@ const ResumeCVWriting = () => {
         localStorage.setItem('resumecvid', resumeId);
 
         if (resumeId) {
-            navigate(`/dashboard/resume/${resumeId}`);
+            // navigate(`/dashboard/resume/${resumeId}`);
+            navigate('/dashboard');
         } else {
             setError('Failed to retrieve the resume ID. Please try again.');
         }

@@ -8,6 +8,7 @@ const EditOrders = () => {
   const [editBlogCount, setEditBlogCount] = useState(0);
   const [editArticleCount, setEditArticleCount] = useState(0);
   const [editEmailCount, setEditEmailCount] = useState(0);
+  const [editResumeCount, setEditResumeCount] = useState(0); // New state for resume count
 
   const tips = [
     "Use power words to make your content more engaging.",
@@ -31,8 +32,6 @@ const EditOrders = () => {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            // Include authentication headers if needed
-            // 'Authorization': `Bearer ${yourToken}`
           }
         });
         setEditBlogCount(response.data.count); // Extract count from response data
@@ -47,8 +46,6 @@ const EditOrders = () => {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            // Include authentication headers if needed
-            // 'Authorization': `Bearer ${yourToken}`
           }
         });
         setEditArticleCount(response.data.count); // Extract count from response data
@@ -63,8 +60,6 @@ const EditOrders = () => {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            // Include authentication headers if needed
-            // 'Authorization': `Bearer ${yourToken}`
           }
         });
         setEditEmailCount(response.data.count); // Extract count from response data
@@ -73,16 +68,32 @@ const EditOrders = () => {
       }
     };
 
+    const fetchResumeCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/resume/getcount', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        setEditResumeCount(response.data.count); // Extract count from response data
+      } catch (error) {
+        console.error('Error fetching resume count:', error);
+      }
+    };
+
     fetchBlogCount();
     fetchArticleCount();
     fetchEmailCount();
+    fetchResumeCount(); // Fetch resume count
   }, []);
+
   const resumeId = localStorage.getItem('resumecvid');
 
   const editOptions = [
     { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
     { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation', count: editArticleCount },
-    { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: `/dashboard/editresume/${resumeId}` },
+    { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/dashboard/getrecentresume', count: editResumeCount }, // Include resume count
     { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting', count: editEmailCount },
   ];
 
@@ -102,6 +113,7 @@ const EditOrders = () => {
                 {option.title}
                 {option.title === 'Edit Blog' && <span style={{ color: "red" }}> ({editBlogCount})</span>}
                 {option.title === 'Edit Article' && <span style={{ color: "red" }}> ({editArticleCount})</span>}
+                {option.title === 'Edit Resume' && <span style={{ color: "red" }}> ({editResumeCount})</span>}
                 {option.title === 'Edit Email' && <span style={{ color: "red" }}> ({editEmailCount})</span>}
               </span>
               <span className="edit-option-description">{option.description}</span>
