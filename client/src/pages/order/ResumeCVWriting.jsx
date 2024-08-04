@@ -48,7 +48,7 @@ const ResumeCVWriting = () => {
 
         // Extract resumeId from response
         const resumeId = response.data.resume.id;
-        console.log('Resume ID:', resumeId);
+        localStorage.setItem('resumecvid', resumeId);
 
         if (resumeId) {
             navigate(`/dashboard/resume/${resumeId}`);

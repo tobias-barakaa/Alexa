@@ -77,11 +77,12 @@ const EditOrders = () => {
     fetchArticleCount();
     fetchEmailCount();
   }, []);
+  const resumeId = localStorage.getItem('resumecvid');
 
   const editOptions = [
     { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
     { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation', count: editArticleCount },
-    { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
+    { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: `/dashboard/editresume/${resumeId}` },
     { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting', count: editEmailCount },
   ];
 
