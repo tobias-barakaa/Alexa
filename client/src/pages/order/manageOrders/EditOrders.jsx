@@ -33,7 +33,7 @@ const EditOrders = () => {
             // 'Authorization': `Bearer ${yourToken}`
           }
         });
-        setEditBlogCount(response.data);
+        setEditBlogCount(response.data.count); // Extract count from response data
       } catch (error) {
         console.error('Error fetching blog count:', error);
       }
@@ -43,7 +43,7 @@ const EditOrders = () => {
   }, []);
 
   const editOptions = [
-    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
+    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog' },
     { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation' },
     { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
     { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting' },
@@ -51,7 +51,6 @@ const EditOrders = () => {
 
   return (
     <div className="edit-orders-container">
-      {editBlogCount}
       <h1>Edit Your Content</h1>
       <p className="subtitle">Select an option to edit your content</p>
       <div className="warning">
@@ -62,8 +61,10 @@ const EditOrders = () => {
           <Link to={option.link} key={index} className="edit-option-link">
             <div className="edit-option-box">
               <span className="edit-option-icon">{option.icon}</span>
-              <span className="edit-option-title">{option.title}</span>
-              {editBlogCount}
+              <span className="edit-option-title">
+                {option.title}
+                {option.title === 'Edit Blog' && <span style={{ color: "red" }}> ({editBlogCount})</span>}
+              </span>
               <span className="edit-option-description">{option.description}</span>
             </div>
           </Link>

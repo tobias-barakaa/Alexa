@@ -86,7 +86,9 @@ const EditEmailCopyWriting = () => {
     <div className="edit-email-copywriting">
       <h1>Edit Email Copywriting Requests</h1>
       {requests.length === 0 ? (
-        <p>No requests found.</p>
+       <div className="warning">
+       Warning: Content can only be edited within 30 minutes of posting.
+     </div>
       ) : (
         <div className="request-list">
           {requests.map((request) => {
