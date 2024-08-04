@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import UpdateModalEmailCopywriting from './UpdateModalEmailCopywriting';
 import './EditEmailCopyWriting.css';
 
 const EditEmailCopyWriting = () => {
@@ -7,6 +8,8 @@ const EditEmailCopyWriting = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [, forceUpdate] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
     fetchRequests();
@@ -23,7 +26,7 @@ const EditEmailCopyWriting = () => {
   const fetchRequests = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/emailcopywriting/getall', {
+      const response = await axios.get('http://localhost:5000/api/emailcopywriting/getall',{
         withCredentials: true
       });
       console.log('API Response:', response.data);
@@ -40,12 +43,20 @@ const EditEmailCopyWriting = () => {
     }
   };
 
-  const handleEdit = (id) => {
-    console.log('Edit request:', id);
+  const handleEdit = (request) => {
+    setSelectedRequest(request);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRequest(null);
+    fetchRequests(); // Refresh the data after closing the modal
   };
 
   const handleDelete = (id) => {
     console.log('Delete request:', id);
+    // Implement delete functionality
   };
 
   const calculateTimeLeft = (createdAt) => {
@@ -86,18 +97,23 @@ const EditEmailCopyWriting = () => {
               <div key={request.id} className="request-item">
                 <h3>{request.project_type}</h3>
                 <p><strong>Description:</strong> {request.project_description}</p>
-                <p><strong>Deadline:</strong> {new Date(request.deadline).toLocaleDateString()}</p>
+                <p><strong>Deadline:</strong> {request.deadline}</p>
                 <p><strong>Word Count:</strong> {request.word_count}</p>
                 <p><strong>Cost:</strong> ${request.cost}</p>
                 <p><strong>Status:</strong> {request.status}</p>
                 <p><strong>Time left to edit/delete:</strong> {formatTime(timeLeft)}</p>
-                <button onClick={() => handleEdit(request.id)} className="edit-button" disabled={timeLeft === 0}>Edit</button>
+                <button onClick={() => handleEdit(request)} className="edit-button" disabled={timeLeft === 0}>Edit</button>
                 <button onClick={() => handleDelete(request.id)} className="delete-button" disabled={timeLeft === 0}>Delete</button>
               </div>
             );
           })}
         </div>
       )}
+      <UpdateModalEmailCopywriting
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        requestData={selectedRequest}
+      />
     </div>
   );
 };
