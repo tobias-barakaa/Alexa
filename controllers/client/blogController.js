@@ -350,6 +350,34 @@ const getrecentBlogs = async (req, res) => {
 }
 
 
+const getRecentBlogsCount = async (req, res) => {
+  const userId = req.user ? req.user.userId : null;
+  if (!userId) {
+    return res.status(400).json({ error: 'User ID is required.' });
+  }
+
+  try {
+    const now = new Date();
+    const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
+
+    // Fetch the count of blogs created by the user within the last 30 minutes
+    const recentBlogsCount = await knex('blogs')
+      .count('id as count')
+      .where('user_id', userId)
+      .andWhere('created_at', '>=', thirtyMinutesAgo)
+      .first();
+
+    res.status(200).json({
+      success: true,
+      count: recentBlogsCount.count
+    });
+  } catch (error) {
+    console.error('Error fetching recent blogs count:', error);
+    res.status(500).json({ error: 'Failed to fetch recent blogs count.' });
+  }
+};
+
+
 const editBlog = async (req, res) => {
   const { blogId } = req.params;
   const { title, category_id , tags, excerpt, number_of_words_id, timeframe_id, status } = req.body;
@@ -459,6 +487,7 @@ module.exports = {
   getBlogsByUser,
   getTwoLatestPostByUser,
   getrecentBlogs,
+  getRecentBlogsCount,
   editBlog,
   deleteBlog
 };

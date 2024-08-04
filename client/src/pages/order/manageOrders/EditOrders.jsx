@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import './EditOrders.css';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const EditOrders = () => {
-
-
   const [tip, setTip] = useState('');
+  const [editBlogCount, setEditBlogCount] = useState(0);
 
   const tips = [
     "Use power words to make your content more engaging.",
@@ -22,10 +22,28 @@ const EditOrders = () => {
 
   useEffect(() => {
     setTip(tips[Math.floor(Math.random() * tips.length)]);
+    
+    const fetchBlogCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/blog/getcount', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            // Include authentication headers if needed
+            // 'Authorization': `Bearer ${yourToken}`
+          }
+        });
+        setEditBlogCount(response.data);
+      } catch (error) {
+        console.error('Error fetching blog count:', error);
+      }
+    };
+
+    fetchBlogCount();
   }, []);
 
   const editOptions = [
-    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog' },
+    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
     { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation' },
     { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
     { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting' },
@@ -33,6 +51,7 @@ const EditOrders = () => {
 
   return (
     <div className="edit-orders-container">
+      {editBlogCount}
       <h1>Edit Your Content</h1>
       <p className="subtitle">Select an option to edit your content</p>
       <div className="warning">
@@ -44,6 +63,7 @@ const EditOrders = () => {
             <div className="edit-option-box">
               <span className="edit-option-icon">{option.icon}</span>
               <span className="edit-option-title">{option.title}</span>
+              {editBlogCount}
               <span className="edit-option-description">{option.description}</span>
             </div>
           </Link>
@@ -54,7 +74,6 @@ const EditOrders = () => {
         <h3>Content Creation Tip:</h3>
         <p>{tip}</p>
       </div>
-
     </div>
   );
 };

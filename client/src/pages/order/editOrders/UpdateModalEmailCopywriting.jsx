@@ -80,7 +80,7 @@ const UpdateModalEmailCopywriting = ({ isOpen, onClose, requestData }) => {
   className="email-select"
   value={formData.project_type}
   onChange={handleChange}
-  required
+  
 >
   <option value="">{formData.project_type}</option>
   {projectTypes.map(projectType => (

@@ -12,6 +12,7 @@ const {
   getrecentBlogs,
   editBlog,
   deleteBlog,
+  getRecentBlogsCount,
 } = require("../../controllers/client/blogController.js");
 
 const router = express.Router();
@@ -21,11 +22,13 @@ router.get("/numberofwords", getNumberOfWords);
 router.get("/timeframe", getTimeframe);
 router.get("/categories", getCategories);
 
+
 // Private routes
 router.post("/createblog", protect, createBlog);
 router.get("/getall", protect, getAllBlogs);
 router.get("/getlatest", protect, getTwoLatestPostByUser);
 router.get("/getrecent", protect, getrecentBlogs);
+router.get('/getcount', protect, getRecentBlogsCount)
 // router.delete("/blogs/:id", protect, deleteBlog);
 router.delete('/deleteblog/:blogId', protect, deleteBlog);
 
