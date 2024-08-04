@@ -90,6 +90,62 @@ const getArticlesAfter30Minutes = async (req, res) => {
 };
 
 
+
+const getArticleCountAfter30Minutes = async (req, res) => {
+  const userId = req.user ? req.user.userId : null;
+  if (!userId) {
+    return res.status(400).json({ error: 'User ID is required.' });
+  }
+
+  try {
+    const now = new Date();
+    const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000); // 30 minutes ago
+
+    // Fetch the count of articles created by the user within the last 30 minutes
+    const recentArticlesCount = await knex('articlecreation')
+      .count('id as count')
+      .where('user_id', userId)
+      .andWhere('created_at', '>=', thirtyMinutesAgo)
+      .first();
+
+    res.status(200).json({
+      success: true,
+      count: recentArticlesCount.count
+    });
+  } catch (error) {
+    console.error('Error fetching recent articles count:', error);
+    res.status(500).json({ error: 'Failed to fetch recent articles count.' });
+  }
+};
+
+
+const getEmailCopyWritingCount = async (req, res) => {
+  const user_id = req.user?.userId;
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User not logged in' });
+  }
+
+  try {
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+
+    const recentRequests = await knex('emailcopywriting')
+      .where('user_id', user_id)
+      .andWhere('created_at', '>', thirtyMinutesAgo);
+
+    const requestCount = recentRequests.length;
+
+    res.json({
+      message: 'Recent email copywriting requests retrieved successfully',
+      count: requestCount
+    });
+  } catch (error) {
+    console.error('Error retrieving recent email copywriting requests:', error);
+    res.status(500).json({ error: 'An error occurred while retrieving the requests' });
+  }
+};
+
+
 const updateArticleCreation = async (req, res) => {
   const { id } = req.params; 
   const {
@@ -225,4 +281,4 @@ const deleteArticleCreation = async (req, res) => {
   }
 };
 
-module.exports = { createArticle,getArticlesAfter30Minutes, updateArticleCreation, deleteArticleCreation };
+module.exports = { createArticle,getArticlesAfter30Minutes, getArticleCountAfter30Minutes,getEmailCopyWritingCount,updateArticleCreation, deleteArticleCreation };

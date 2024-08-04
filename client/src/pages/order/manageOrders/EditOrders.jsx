@@ -6,6 +6,8 @@ import axios from 'axios';
 const EditOrders = () => {
   const [tip, setTip] = useState('');
   const [editBlogCount, setEditBlogCount] = useState(0);
+  const [editArticleCount, setEditArticleCount] = useState(0);
+  const [editEmailCount, setEditEmailCount] = useState(0);
 
   const tips = [
     "Use power words to make your content more engaging.",
@@ -39,14 +41,48 @@ const EditOrders = () => {
       }
     };
 
+    const fetchArticleCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/articlecreation/articlecount', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            // Include authentication headers if needed
+            // 'Authorization': `Bearer ${yourToken}`
+          }
+        });
+        setEditArticleCount(response.data.count); // Extract count from response data
+      } catch (error) {
+        console.error('Error fetching article count:', error);
+      }
+    };
+
+    const fetchEmailCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/emailcopywriting/getcount', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            // Include authentication headers if needed
+            // 'Authorization': `Bearer ${yourToken}`
+          }
+        });
+        setEditEmailCount(response.data.count); // Extract count from response data
+      } catch (error) {
+        console.error('Error fetching email copywriting count:', error);
+      }
+    };
+
     fetchBlogCount();
+    fetchArticleCount();
+    fetchEmailCount();
   }, []);
 
   const editOptions = [
-    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog' },
-    { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation' },
+    { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
+    { icon: '✍️', title: 'Edit Article', description: 'Update articles', link: '/dashboard/editarticlecreation', count: editArticleCount },
     { icon: '📄', title: 'Edit Resume', description: 'Revise resumes', link: '/editResume' },
-    { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting' },
+    { icon: '📧', title: 'Edit Email', description: 'Refine email copy', link: '/dashboard/editemailcopywriting', count: editEmailCount },
   ];
 
   return (
@@ -64,6 +100,8 @@ const EditOrders = () => {
               <span className="edit-option-title">
                 {option.title}
                 {option.title === 'Edit Blog' && <span style={{ color: "red" }}> ({editBlogCount})</span>}
+                {option.title === 'Edit Article' && <span style={{ color: "red" }}> ({editArticleCount})</span>}
+                {option.title === 'Edit Email' && <span style={{ color: "red" }}> ({editEmailCount})</span>}
               </span>
               <span className="edit-option-description">{option.description}</span>
             </div>

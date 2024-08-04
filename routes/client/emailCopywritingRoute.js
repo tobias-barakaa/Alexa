@@ -3,6 +3,7 @@ const { validateEmailCopywriting } = require("../../dataValidation/emailCopywrit
 const { protect } = require("../../middlewares/client/authMiddleware.js");
 
 const { emailCopywritingCreate, getEmailCopyWriting } = require("../../controllers/client/emailCopywritingController.js");
+const { getEmailCopyWritingCount } = require("../../controllers/client/articleCreationController.js");
 
 
 const router = express.Router();
@@ -10,6 +11,8 @@ const router = express.Router();
 
 router.post("/create",validateEmailCopywriting, protect, emailCopywritingCreate);
 router.get("/getall", protect, getEmailCopyWriting);
+router.get("/getcount", protect, getEmailCopyWritingCount);
+
 
 // router.put('/update/:id',protect, updateArticleCreation);
 
