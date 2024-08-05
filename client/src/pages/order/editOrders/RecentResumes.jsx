@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RecentResumes.css'; // Add your CSS file here
+import { useNavigate } from 'react-router-dom';
 
 const RecentResumes = () => {
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  // const resumeId = localStorage.getItem('resumecvid');
+
 
   useEffect(() => {
     const fetchResumes = async () => {
@@ -31,6 +35,7 @@ const RecentResumes = () => {
     // Redirect to edit page or show edit form
     console.log(`Edit resume with ID: ${resumeId}`);
     // Example: navigate(`/edit/${resumeId}`);
+    navigate(`/dashboard/editresume/${resumeId}`)
   };
 
   const handleDelete = async (resumeId) => {

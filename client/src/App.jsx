@@ -23,6 +23,7 @@ import EditEmailCopyWriting from './pages/order/editOrders/EditEmailCopyWriting'
 import EditArticleCreation from './pages/order/editOrders/EditArticleCreation';
 // import EditResume from './pages/order/editOrders/EditResume';
 import RecentResumes from './pages/order/editOrders/RecentResumes';
+import EditResume from './pages/order/editOrders/EditResume';
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "getrecentresume",
         element: <RecentResumes />
+      },
+      {
+        path: "editresume/:resumeId",
+        element: <EditResume />
       }
     ]
   },

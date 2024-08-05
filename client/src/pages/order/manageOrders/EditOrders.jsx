@@ -8,7 +8,7 @@ const EditOrders = () => {
   const [editBlogCount, setEditBlogCount] = useState(0);
   const [editArticleCount, setEditArticleCount] = useState(0);
   const [editEmailCount, setEditEmailCount] = useState(0);
-  const [editResumeCount, setEditResumeCount] = useState(0); // New state for resume count
+  const [editResumeCount, setEditResumeCount] = useState(0); 
 
   const tips = [
     "Use power words to make your content more engaging.",
@@ -34,7 +34,7 @@ const EditOrders = () => {
             'Content-Type': 'application/json',
           }
         });
-        setEditBlogCount(response.data.count); // Extract count from response data
+        setEditBlogCount(response.data.count); 
       } catch (error) {
         console.error('Error fetching blog count:', error);
       }
@@ -48,7 +48,7 @@ const EditOrders = () => {
             'Content-Type': 'application/json',
           }
         });
-        setEditArticleCount(response.data.count); // Extract count from response data
+        setEditArticleCount(response.data.count); 
       } catch (error) {
         console.error('Error fetching article count:', error);
       }
@@ -62,7 +62,7 @@ const EditOrders = () => {
             'Content-Type': 'application/json',
           }
         });
-        setEditEmailCount(response.data.count); // Extract count from response data
+        setEditEmailCount(response.data.count);
       } catch (error) {
         console.error('Error fetching email copywriting count:', error);
       }
@@ -76,7 +76,7 @@ const EditOrders = () => {
             'Content-Type': 'application/json',
           }
         });
-        setEditResumeCount(response.data.count); // Extract count from response data
+        setEditResumeCount(response.data.count); 
       } catch (error) {
         console.error('Error fetching resume count:', error);
       }
@@ -85,10 +85,10 @@ const EditOrders = () => {
     fetchBlogCount();
     fetchArticleCount();
     fetchEmailCount();
-    fetchResumeCount(); // Fetch resume count
+    fetchResumeCount(); 
   }, []);
 
-  const resumeId = localStorage.getItem('resumecvid');
+  // const resumeId = localStorage.getItem('resumecvid');
 
   const editOptions = [
     { icon: '📝', title: 'Edit Blog', description: 'Modify blog posts', link: '/dashboard/editblog', count: editBlogCount },
