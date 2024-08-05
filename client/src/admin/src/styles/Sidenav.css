@@ -1,20 +1,22 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
 .side {
   width: 250px;
-  background-color: #2c3e50;
-  color: white;
-  padding: 15px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #2c3e50, #34495e);
+  color: #ecf0f1;
+  padding: 20px 0;
   position: fixed;
-  height: 100%;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  transition: all 0.3s ease;
 }
 
 .side h2 {
   text-align: center;
-  font-family: 'Arial', sans-serif;
-  border-bottom: 1px solid #34495e;
-  padding-bottom: 10px;
+  font-size: 24px;
+  padding: 20px 0;
+  margin: 0;
+  border-bottom: 1px solid #4a6278;
 }
 
 .side ul {
@@ -24,53 +26,79 @@
 }
 
 .side ul li {
-  margin: 15px 0;
+  padding: 0;
+  transition: background-color 0.3s ease;
 }
 
 .side ul li a {
-  color: white;
+  color: #ecf0f1;
   text-decoration: none;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
-  font-family: 'Arial', sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+}
+
+.side ul li a:hover {
+  background-color: #4a6278;
 }
 
 .side ul li a i {
   margin-right: 10px;
+  width: 20px;
+  text-align: center;
 }
 
-.side ul li a:hover {
+.side ul li.dropdown > a {
+  justify-content: space-between;
+}
+
+.side ul li.dropdown > a i:last-child {
+  margin-left: 10px;
+}
+
+.dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
   background-color: #34495e;
-  border-radius: 5px;
-  padding-left: 10px;
 }
 
-.main-content {
-  margin-left: 270px; /* Adjust according to sidenav width */
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+.dropdown-menu.open {
+  max-height: 500px; /* Adjust this value based on your needs */
 }
 
-.card {
-  background-color: #ecf0f1;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  width: calc(33% - 20px);
-  vertical-align: top;
+.dropdown-menu li a {
+  padding-left: 50px;
+  font-size: 14px;
 }
 
-.card h3 {
-  margin: 0;
-  font-size: 1.2em;
-  font-family: 'Arial', sans-serif;
+/* Active state */
+.side ul li a.active {
+  background-color: #3498db;
+  color: #fff;
 }
 
-.card p {
-  font-size: 2em;
-  color: #2980b9;
-  font-family: 'Arial', sans-serif;
+/* Responsive design */
+@media (max-width: 768px) {
+  .side {
+    width: 70px;
+  }
+
+  .side h2 {
+    display: none;
+  }
+
+  .side ul li a span {
+    display: none;
+  }
+
+  .side:hover {
+    width: 250px;
+  }
+
+  .side:hover h2,
+  .side:hover ul li a span {
+    display: inline;
+  }
 }
