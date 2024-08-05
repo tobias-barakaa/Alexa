@@ -11,3 +11,7 @@ export const NUMBEROFWORDS = '/api/b'
 export const BLOG_URL = '/api/blog'
 export const ARTICLE_URL = '/api/articlecreation'
 
+
+// Admin
+export const ADMIN_BLOG_URL = 'api/blog/admin/blogs';
+

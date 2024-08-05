@@ -7,10 +7,16 @@ const getAllBlogs = async (req, res) => {
       .select(
         'blogs.id',
         'blogs.title',
-        'blogs.content',
+        'blogs.tags',
+        'blogs.excerpt',
+        'blogs.status',
+        'blogs.published_at',
         'blogs.created_at',
+        'blogs.updated_at',
         'users.id as user_id',
-        'users.name as user_name',
+        'users.first_name as user_first_name',
+        'users.last_name as user_last_name',
+        'users.username as user_name',
         'users.email as user_email'
       );
 

@@ -16,6 +16,9 @@ const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
 const articleCreationRouter = require('./routes/client/articleCreationRoute');
 const resumeRoute = require('./routes/client/resumeRoute');
 const emailCopywritingRoute = require('./routes/client/emailCopywritingRoute');
+//Admin
+const blogAdminRoute = require('./routes/admin/blogRoute');
+
 
 
 
@@ -66,6 +69,9 @@ app.use('/api/admin/articles', articleAdminRoute);
 app.use('/api/admin/writers', adminWritersRoute);
 app.use('/api/writer/fill-profile', writerAccountProfileRoute);
 
+
+// Admin
+app.use('/api/blog', blogAdminRoute);
 
 //Blog Route
 app.use('/api/blog', blogRoute);
