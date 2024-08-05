@@ -1,104 +1,101 @@
 .side {
   width: 250px;
-  height: 100vh;
-  background: linear-gradient(to bottom, #2c3e50, #34495e);
-  color: #ecf0f1;
-  padding: 20px 0;
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px;
   position: fixed;
-  left: 0;
-  top: 0;
-  overflow-y: auto;
-  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid black;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
 }
 
 .side h2 {
   text-align: center;
-  font-size: 24px;
-  padding: 20px 0;
-  margin: 0;
-  border-bottom: 1px solid #4a6278;
+  font-size: 1.5em;
+  margin-bottom: 20px;
 }
 
 .side ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
 .side ul li {
-  padding: 0;
-  transition: background-color 0.3s ease;
+  margin: 15px 0;
 }
 
 .side ul li a {
-  color: #ecf0f1;
+  color: white;
   text-decoration: none;
-  padding: 15px 20px;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
 .side ul li a:hover {
-  background-color: #4a6278;
+  background-color: #1a1a2e;
 }
 
 .side ul li a i {
   margin-right: 10px;
-  width: 20px;
-  text-align: center;
 }
 
-.side ul li.dropdown > a {
-  justify-content: space-between;
+.side .dropdown .btn {
+  width: 100%;
+  text-align: left;
 }
 
-.side ul li.dropdown > a i:last-child {
-  margin-left: 10px;
+.side .dropdown .dropdown-menu {
+  display: none;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background-color: #2c3e50;
+  border: none;
+  box-shadow: none;
 }
 
-.dropdown-menu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: #34495e;
+.side .dropdown.show .dropdown-menu {
+  display: flex;
 }
 
-.dropdown-menu.open {
-  max-height: 500px; /* Adjust this value based on your needs */
+.side .dropdown .dropdown-menu .dropdown-item {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  display: block;
 }
 
-.dropdown-menu li a {
-  padding-left: 50px;
-  font-size: 14px;
+.side .dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: #1a1a2e;
+  color: #3498db;
 }
 
-/* Active state */
-.side ul li a.active {
-  background-color: #3498db;
-  color: #fff;
+.main-content {
+  margin-left: 270px; /* Adjust according to sidenav width */
+  padding: 20px;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .side {
-    width: 70px;
-  }
+.card {
+  background-color: #ecf0f1;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  width: calc(33% - 20px);
+  vertical-align: top;
+}
 
-  .side h2 {
-    display: none;
-  }
+.card h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
 
-  .side ul li a span {
-    display: none;
-  }
-
-  .side:hover {
-    width: 250px;
-  }
-
-  .side:hover h2,
-  .side:hover ul li a span {
-    display: inline;
-  }
+.card p {
+  font-size: 2em;
+  color: #2980b9;
 }
