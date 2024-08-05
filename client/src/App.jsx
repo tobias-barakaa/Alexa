@@ -24,6 +24,7 @@ import EditArticleCreation from './pages/order/editOrders/EditArticleCreation';
 // import EditResume from './pages/order/editOrders/EditResume';
 import RecentResumes from './pages/order/editOrders/RecentResumes';
 import EditResume from './pages/order/editOrders/EditResume';
+import DashboardAdmin from './admin/src/pages/DashboardAdmin';
 
 const router = createBrowserRouter([
   {
@@ -107,7 +108,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admindashboard",
-    element: <AdminDashboard />,
+    element: <DashboardAdmin />,
     children: [
       {
         index: true,
