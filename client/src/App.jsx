@@ -6,9 +6,9 @@ import Dashboard from './pages/protected/Dashboard';
 import LoginClient from './layouts/client/LoginClient';
 import DashboardMain from './pages/protected/layout/DashboardMain';
 import AdminLogin from './pages/protected/FormArticle/Admin/AdminLogin';
-import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
-import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
-import Users from './pages/protected/FormArticle/Admin/elements/Users';
+// import AdminDashboard from './pages/protected/FormArticle/Admin/adminDashboard/AdminDashboard';
+// import AdminMain from './pages/protected/FormArticle/Admin/adminDashboard/AdminMain';
+// import Users from './pages/protected/FormArticle/Admin/elements/Users';
 import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
 import WriterRegister from './layouts/writer/WriterRegister';
 import BlogWriting from './pages/order/BlogWriting';
@@ -25,6 +25,8 @@ import EditArticleCreation from './pages/order/editOrders/EditArticleCreation';
 import RecentResumes from './pages/order/editOrders/RecentResumes';
 import EditResume from './pages/order/editOrders/EditResume';
 import DashboardAdmin from './admin/src/pages/DashboardAdmin';
+import Blog from './admin/src/pages/Blog';
+import Main from './admin/src/pages/Main';
 
 const router = createBrowserRouter([
   {
@@ -112,11 +114,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminMain />
+        element: <Main />
       },
       {
-        path: "users",
-        element: <Users />
+        path: "blog",
+        element: <Blog />
       },
       {
         path: "writers",

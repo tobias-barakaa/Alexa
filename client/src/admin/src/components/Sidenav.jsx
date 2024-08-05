@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import "../styles/Sidenav.css";
+import  { useState } from 'react';
+import '../styles/Sidenav.css'; // Import CSS for styling
+import { Link } from 'react-router-dom';
 
 const Sidenav = () => {
-  const [ordersOpen, setOrdersOpen] = useState(false);
+  const [isOrdersOpen, setIsOrdersOpen] = useState(false);
 
-  const toggleOrdersDropdown = () => {
-    setOrdersOpen(!ordersOpen);
+  const toggleOrders = () => {
+    setIsOrdersOpen(!isOrdersOpen);
   };
 
   return (
     <div className="side">
-      <h2>Admin Panel</h2>
-      <ul>
-        <li><a href="#dashboard"><i className="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li><a href="#users"><i className="fas fa-users"></i> Users</a></li>
-        <li><a href="#products"><i className="fas fa-box"></i> Products</a></li>
-        <li className={`dropdown ${ordersOpen ? 'show' : ''}`}>
-          <a href="#orders" onClick={toggleOrdersDropdown} className="btn btn-secondary dropdown-toggle">
-            <i className="fas fa-shopping-cart"></i> Orders
-            <i className={`fas fa-chevron-${ordersOpen ? 'up' : 'down'}`}></i>
-          </a>
-          <div className={`dropdown-menu ${ordersOpen ? 'show' : ''}`}>
-            <a className="dropdown-item" href="#blog-writing">Blog Writing</a>
-            <a className="dropdown-item" href="#article-creation">Article Creation</a>
-            <a className="dropdown-item" href="#resume">Resume</a>
-            <a className="dropdown-item" href="#email-copywriting">Email Copywriting</a>
-          </div>
+        <h2>Admin Panel</h2>
+      <ul className="side-list">
+        <li>User</li>
+        <li>Product</li>
+        <li>Reports</li>
+        <li onClick={toggleOrders} className={`dropdown-toggle ${isOrdersOpen ? 'open' : ''}`}>
+          Orders
         </li>
-        <li><a href="#reports"><i className="fas fa-chart-line"></i> Reports</a></li>
-        <li><a href="#settings"><i className="fas fa-cog"></i> Settings</a></li>
-        <li><a href="#support"><i className="fas fa-life-ring"></i> Support</a></li>
+        {isOrdersOpen && (
+          <ul className="dropdown-list">
+            <Link to="/admindashboard/blog">Blog</Link>
+            <li>Articles</li>
+            <li>Resume</li>
+            <li>Email copywriting</li>
+          </ul>
+        )}
+        <li>Analytics</li>
+        <li>Settings</li>
+        <li>Profile</li>
       </ul>
     </div>
   );
