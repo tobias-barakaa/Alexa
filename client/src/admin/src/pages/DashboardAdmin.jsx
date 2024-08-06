@@ -10,7 +10,9 @@ const DashboardAdmin = () => {
        <Outlet />
       </div>
     </div>
+    
   );
 };
 
 export default DashboardAdmin;
+

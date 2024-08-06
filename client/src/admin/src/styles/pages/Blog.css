@@ -1,35 +1,99 @@
+/* Blog.css */
 .blog-container {
-    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
     background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
   }
   
   .blog-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 0 auto;
+    table-layout: auto;
   }
   
-  .blog-table th, .blog-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+  .blog-table thead {
+    background-color: #333;
+    color: white;
+  }
+  
+  .blog-table th,
+  .blog-table td {
+    padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
   }
   
   .blog-table th {
-    background-color: #5da8ff;
+    background-color: #4CAF50;
     color: white;
-    text-transform: uppercase;
   }
   
-  .blog-table tbody tr {
+  .blog-row:hover {
+    background-color: #f1f1f1;
     cursor: pointer;
   }
   
-  .blog-table tbody tr:hover {
-    background-color: #f1f1f1;
+  @media (max-width: 768px) {
+    .blog-table,
+    .blog-table thead,
+    .blog-table tbody,
+    .blog-table th,
+    .blog-table td,
+    .blog-table tr {
+      display: block;
+    }
+  
+    .blog-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  
+    .blog-table tr {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+  
+    .blog-table td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      text-align: right;
+    }
+  
+    .blog-table td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      content: attr(data-label);
+      text-align: left;
+      font-weight: bold;
+    }
   }
   
-  .blog-table tbody tr:active {
-    background-color: #ddd;
-  }
+  .blog-table td[data-label="Title"]:before { content: "Title"; }
+  .blog-table td[data-label="Tags"]:before { content: "Tags"; }
+  .blog-table td[data-label="Excerpt"]:before { content: "Excerpt"; }
+  .blog-table td[data-label="Status"]:before { content: "Status"; }
+  .blog-table td[data-label="Published"]:before { content: "Published"; }
+  .blog-table td[data-label="Author"]:before { content: "Author"; }
+  .blog-table td[data-label="Created"]:before { content: "Created"; }
+  .blog-table td[data-label="Updated"]:before { content: "Updated"; }
   

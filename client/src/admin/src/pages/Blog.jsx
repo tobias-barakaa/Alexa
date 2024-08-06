@@ -2,25 +2,24 @@ import { useGetBlogsQuery } from '../../../slices/admin/blogApiSlice';
 import '../styles/pages/Blog.css';
 
 const Blog = () => {
-
   const { data, isLoading, isError } = useGetBlogsQuery();
-  const handleRowClick = (blog) => {
-    // Handle click event (e.g., navigate to blog detail page)
-    console.log('Blog clicked:', blog);
+
+  const handleBlogClick = (id) => {
+   
+    console.log(`Blog with ID ${id} clicked`);
   };
 
- 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading blogs</div>;
 
   return (
-    <div className="blog-container">
+    <div>
       <h1>Blogs</h1>
       {data.blogs && data.blogs.length > 0 ? (
         <table className="blog-table">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Title</th>
               <th>Tags</th>
               <th>Excerpt</th>
               <th>Status</th>
@@ -32,7 +31,7 @@ const Blog = () => {
           </thead>
           <tbody>
             {data.blogs.map((blog) => (
-              <tr key={blog.id} onClick={() => handleRowClick(blog)} className="blog-row">
+              <tr key={blog.id} className="blog-row" onClick={() => handleBlogClick(blog.id)}>
                 <td>{blog.title}</td>
                 <td>{blog.tags}</td>
                 <td>{blog.excerpt}</td>
