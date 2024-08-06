@@ -1,99 +1,54 @@
 /* Blog.css */
-.blog-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+
+/* Base styling */
+
+  /* Container styling */
   
-  .blog-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
+  
+  /* Header styling */
+  h1 {
     font-size: 2em;
     color: #333;
+    border-bottom: 2px solid #5da8ff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
   }
   
+  /* Table styling */
   .blog-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
-    table-layout: auto;
-  }
-  
-  .blog-table thead {
-    background-color: #333;
-    color: white;
+    margin-bottom: 20px;
   }
   
   .blog-table th,
   .blog-table td {
-    padding: 10px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    word-wrap: break-word;
   }
   
   .blog-table th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #5da8ff;
+    color: #fff;
+    font-weight: bold;
   }
   
+  .blog-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Blog row styling */
   .blog-row:hover {
-    background-color: #f1f1f1;
+    background-color: #e2e6ea;
     cursor: pointer;
   }
   
-  @media (max-width: 768px) {
-    .blog-table,
-    .blog-table thead,
-    .blog-table tbody,
-    .blog-table th,
-    .blog-table td,
-    .blog-table tr {
-      display: block;
-    }
-  
-    .blog-table thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-  
-    .blog-table tr {
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-    }
-  
-    .blog-table td {
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-      text-align: right;
-    }
-  
-    .blog-table td:before {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      content: attr(data-label);
-      text-align: left;
-      font-weight: bold;
-    }
+  /* Loading and error styling */
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
   }
-  
-  .blog-table td[data-label="Title"]:before { content: "Title"; }
-  .blog-table td[data-label="Tags"]:before { content: "Tags"; }
-  .blog-table td[data-label="Excerpt"]:before { content: "Excerpt"; }
-  .blog-table td[data-label="Status"]:before { content: "Status"; }
-  .blog-table td[data-label="Published"]:before { content: "Published"; }
-  .blog-table td[data-label="Author"]:before { content: "Author"; }
-  .blog-table td[data-label="Created"]:before { content: "Created"; }
-  .blog-table td[data-label="Updated"]:before { content: "Updated"; }
   
