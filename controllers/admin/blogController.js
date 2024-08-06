@@ -27,6 +27,7 @@ const getAllBlogs = async (req, res) => {
 const getBlogById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("hwo is this an id and not id", id);
     const blog = await knex('blogs')
       .join('users', 'blogs.user_id', '=', 'users.id')
       .leftJoin('blogcategories', 'blogs.category_id', 'blogcategories.id')

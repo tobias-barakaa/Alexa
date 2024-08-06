@@ -14,12 +14,12 @@ export const adminUsersApiSlice = apiSlice.injectEndpoints({
 
         getBlogsId: builder.query({
             query: (blogId) => ({
-                url: `${ADMIN_BLOG_URL}/${blogId}`,
-                credentials: 'include',
+              url: `${ADMIN_BLOG_URL}/${blogId}`,
+              credentials: 'include',
             }),
             keepUnusedDataFor: 5,
-            
-            }),
+          }),
+          
         
         deleteUser: builder.mutation({
         query: (data) => ({

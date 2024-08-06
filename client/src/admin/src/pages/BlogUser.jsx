@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useGetBlogsIdQuery } from '../../../slices/admin/blogApiSlice';
 
 const BlogUser = () => {
-    const blogId = useParams();
+    const {id: blogId} = useParams();
+    console.log(blogId);
   const { data, error, isLoading } = useGetBlogsIdQuery(blogId);
   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
   const [selectedFile, setSelectedFile] = useState(null);
@@ -42,18 +43,18 @@ const BlogUser = () => {
 
       {/* Middle column */}
       <div style={{ flex: 1 }}>
-        <p>{blog?.title}</p>
-        <p>{blog?.tags}</p>
-        <p>{blog?.excerpt}</p>
-        <p>{blog?.status}</p>
-        <p>{blog?.published_at || 'Not published'}</p>
-        <p>{new Date(blog?.created_at).toLocaleString()}</p>
-        <p>{new Date(blog?.updated_at).toLocaleString()}</p>
-        <p>{blog?.user_id}</p>
-        <p>{`${blog?.user_first_name} ${blog?.user_last_name}`}</p>
-        <p>{blog?.category_name}</p>
-        <p>{blog?.number_of_words}</p>
-        <p>{blog?.timeframe_duration}</p>
+        <p>{blog.title}</p>
+        <p>{blog.tags}</p>
+        <p>{blog.excerpt}</p>
+        <p>{blog.status}</p>
+        <p>{blog.published_at || 'Not published'}</p>
+        <p>{new Date(blog.created_at).toLocaleString()}</p>
+        <p>{new Date(blog.updated_at).toLocaleString()}</p>
+        <p>{blog.user_id}</p>
+        <p>{`${blog.user_first_name} ${blog.user_last_name}`}</p>
+        <p>{blog.category_name}</p>
+        <p>{blog.number_of_words}</p>
+        <p>{blog.timeframe_duration}</p>
       </div>
 
       {/* Right column */}
