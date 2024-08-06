@@ -1,92 +1,99 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// src/components/BlogUser.js
+import React, { useState } from 'react';
 import { useGetBlogsIdQuery } from '../../../slices/admin/blogApiSlice';
+import '../styles/pages/BlogUser.css';
+import { useParams } from 'react-router-dom';
+import { FaEye } from 'react-icons/fa'; // Make sure to install react-icons package
+
 
 const BlogUser = () => {
-    const {id: blogId} = useParams();
-    console.log(blogId);
-  const { data, error, isLoading } = useGetBlogsIdQuery(blogId);
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
-  const [selectedFile, setSelectedFile] = useState(null);
+    const { id: blogId } = useParams();
+  const { data, isLoading, isError } = useGetBlogsIdQuery(blogId);
+  const [status, setStatus] = useState('draft'); // Default status
+//   const [file, setFile] = useState(null); // For file upload
+  const [timer, setTimer] = useState(60); // Example timer in seconds
+
+  // Timer effect
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isError) return <div>Error loading blog details</div>;
 
-  const { blog } = data;
+//   const handleFileChange = (e) => {
+//     setFile(e.target.files[0]);
+//   };
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
-  const handleSend = () => {
-    // Implement send functionality
-    console.log('Sending file:', selectedFile);
-  };
+//   const handleSubmit = () => {
+//     console.log('File submitted:', file);
+//     console.log('Status:', status);
+//     // Handle the send action here
+//   };
 
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
-      {/* Left column */}
-      <div style={{ flex: 1 }}>
-        <h3>Title</h3>
-        <h3>Tags</h3>
-        <h3>Excerpt</h3>
-        <h3>Status</h3>
-        <h3>Published At</h3>
-        <h3>Created At</h3>
-        <h3>Updated At</h3>
-        <h3>User ID</h3>
-        <h3>User Name</h3>
-        <h3>Category</h3>
-        <h3>Word Count</h3>
-        <h3>Timeframe</h3>
-      </div>
-
-      {/* Middle column */}
-      <div style={{ flex: 1 }}>
-        <p>{blog.title}</p>
-        <p>{blog.tags}</p>
-        <p>{blog.excerpt}</p>
-        <p>{blog.status}</p>
-        <p>{blog.published_at || 'Not published'}</p>
-        <p>{new Date(blog.created_at).toLocaleString()}</p>
-        <p>{new Date(blog.updated_at).toLocaleString()}</p>
-        <p>{blog.user_id}</p>
-        <p>{`${blog.user_first_name} ${blog.user_last_name}`}</p>
-        <p>{blog.category_name}</p>
-        <p>{blog.number_of_words}</p>
-        <p>{blog.timeframe_duration}</p>
-      </div>
-
-      {/* Right column */}
-      <div style={{ flex: 1 }}>
+    <>
         <div style={{ 
-          border: '1px solid #ccc', 
-          padding: '10px', 
-          marginBottom: '10px' 
+          border: '2px solid black', 
+          padding: '20px', 
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginLeft: '20px',
+          marginRight: '20px',
         }}>
-          <select defaultValue={blog.status}>
+          <p style={{ margin: 0 }}>Blog Request by User</p>
+          <FaEye size={24} />
+        </div>
+    
+    <div className="blog-user-container">
+      <div className="middle-section">
+        <h2>{data.blog.title}</h2>
+        <p><strong>Tags:</strong> {data.blog.tags}</p>
+        <p><strong>Excerpt:</strong> {data.blog.excerpt}</p>
+        <p><strong>Status:</strong> {data.blog.status}</p>
+        <p><strong>Published At:</strong> {data.blog.published_at || 'Not published'}</p>
+        <p><strong>Created At:</strong> {new Date(data.blog.created_at).toLocaleDateString()}</p>
+        <p><strong>Updated At:</strong> {new Date(data.blog.updated_at).toLocaleDateString()}</p>
+    
+
+      
+        <h3>Details</h3>
+        <p>This section can provide additional details or explanations about the blog post.</p>
+      </div>
+
+      
+<div className="right-section">
+<div className="blog-detail-right">
+<div className="dropdown-container">
+          <select value={status} onChange={(e) => setStatus(e.target.value)} className="status-dropdown">
             <option value="draft">Draft</option>
+            <option value="processing">Processing</option>
             <option value="published">Published</option>
             <option value="archived">Archived</option>
-            <option value="processing">Processing</option>
+            <option value="deleted">Deleted</option>
           </select>
+          <button className="update-button">Update</button>
         </div>
+        <div className="timer">Time remaining: {timer} seconds</div>
 
-        <button style={{ width: '100%', padding: '10px', marginBottom: '10px' }}>
-          Update
-        </button>
-
-        <div style={{ marginBottom: '10px' }}>
-          Time left: {Math.floor(timeLeft / 3600)}h {Math.floor((timeLeft % 3600) / 60)}m {timeLeft % 60}s
+        <div className="file-upload">
+          <input type="file"  /> 
+          {/* onChange={handleFileChange} */}
         </div>
-
-        <input type="file" onChange={handleFileChange} style={{ marginBottom: '10px' }} />
-
-        <button onClick={handleSend} style={{ width: '100%', padding: '10px' }}>
+        <button className='send-button' style={{ width: '100%', padding: '10px' }}>
           Send
         </button>
       </div>
     </div>
+    </div>
+    </>
+
   );
 };
 

@@ -1,0 +1,137 @@
+/* src/styles/pages/BlogUser.css */
+.blog-user-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .left-section {
+    flex: 1;
+    margin-right: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .middle-section {
+    flex: 2;
+    margin-right: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .right-section {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .dropdown-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .status-dropdown {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .update-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .update-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .timer {
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .file-upload {
+    margin: 10px 0;
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .send-button:hover {
+    background-color: #218838;
+  }
+  
+
+
+
+
+
+
+  .blog-detail-right {
+    padding-left: 20px;
+  }
+  
+  .action-box {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .action-box label {
+    margin-right: 10px;
+  }
+  
+  .update-button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .timer {
+    margin-bottom: 20px;
+  }
+  
+  .file-upload {
+    display: flex;
+    align-items: center;
+  }
+  
+  .file-upload input {
+    margin-right: 10px;
+  }
+  
+
+  .send-button {
+    padding: 10px;
+    background-color: #5da8ff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
