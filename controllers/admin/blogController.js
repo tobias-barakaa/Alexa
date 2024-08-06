@@ -29,6 +29,9 @@ const getBlogById = async (req, res) => {
     const { id } = req.params;
     const blog = await knex('blogs')
       .join('users', 'blogs.user_id', '=', 'users.id')
+      .leftJoin('blogcategories', 'blogs.category_id', 'blogcategories.id')
+      .leftJoin('numberofwords', 'blogs.number_of_words_id', 'numberofwords.id')
+      .leftJoin('timeframe', 'blogs.timeframe_id', 'timeframe.id')
       .select(
         'blogs.id',
         'blogs.title',
@@ -38,7 +41,12 @@ const getBlogById = async (req, res) => {
         'blogs.published_at',
         'blogs.created_at',
         'blogs.updated_at',
-        'blogs.user_id'
+        'blogs.user_id',
+        'users.first_name as user_first_name',
+        'users.last_name as user_last_name',
+        'blogcategories.name as category_name',
+        'numberofwords.words as number_of_words',
+        'timeframe.duration as timeframe_duration'
       )
       .where('blogs.id', id)
       .first();
@@ -53,6 +61,7 @@ const getBlogById = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch the blog.' });
   }
 };
+
 
 module.exports = {
   getAllBlogs,

@@ -9,7 +9,18 @@ export const adminUsersApiSlice = apiSlice.injectEndpoints({
             credentials: 'include',
         }),
         keepUnusedDataFor: 5,
+        
         }),
+
+        getBlogsId: builder.query({
+            query: (blogId) => ({
+                url: `${ADMIN_BLOG_URL}/${blogId}`,
+                credentials: 'include',
+            }),
+            keepUnusedDataFor: 5,
+            
+            }),
+        
         deleteUser: builder.mutation({
         query: (data) => ({
             url: ADMIN_BLOG_URL,
@@ -22,4 +33,4 @@ export const adminUsersApiSlice = apiSlice.injectEndpoints({
     }),
     });
 
-export const { useGetBlogsQuery, useDeleteUserMutation } = adminUsersApiSlice;
+export const { useGetBlogsQuery,useGetBlogsIdQuery, useDeleteUserMutation } = adminUsersApiSlice;

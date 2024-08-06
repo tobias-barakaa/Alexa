@@ -27,6 +27,7 @@ import EditResume from './pages/order/editOrders/EditResume';
 import DashboardAdmin from './admin/src/pages/DashboardAdmin';
 import Blog from './admin/src/pages/Blog';
 import Main from './admin/src/pages/Main';
+import BlogUser from './admin/src/pages/BlogUser';
 
 const router = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
       {
         path: "writers",
         element: <Writers />
+      },
+      {
+        path: "bloguser/:id",
+        element: <BlogUser />
       },
       
       

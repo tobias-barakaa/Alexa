@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import { useGetBlogsQuery } from '../../../slices/admin/blogApiSlice';
 import '../styles/pages/Blog.css';
 
 const Blog = () => {
   const { data, isLoading, isError } = useGetBlogsQuery();
+  const navigate = useNavigate();
 
   const handleBlogClick = (id) => {
    
-    console.log(`Blog with ID ${id} clicked`);
+    navigate('/admindashboard/bloguser/' + id);
   };
 
   if (isLoading) return <div>Loading...</div>;
