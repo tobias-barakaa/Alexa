@@ -91,6 +91,10 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "Resource not found" });
 });
 
+// upload file
+app.use('/file/image', uploadRouter);
+
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
