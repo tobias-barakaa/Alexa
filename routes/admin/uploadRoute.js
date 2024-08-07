@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' }); // Configure multer for file upload
 
 // router.post('/link', upload.single('file'), uploadFile);
 
-router.post('/link',protect, (req, res, next) => {
+router.post('/link/:blogId',protect, (req, res, next) => {
     next();
   }, upload.single('file'), uploadFile);
 
