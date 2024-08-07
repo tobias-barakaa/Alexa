@@ -1,12 +1,22 @@
-// routes/uploadRouter.js
 const express = require('express');
 const multer = require('multer');
-const fileUploadController = require('../controllers/fileUploadController');
+const { uploadFile, downloadFile } = require("../../controllers/admin/fileUploadController")
+// const { uploadFile, downloadFile } = require('../../controllers/fileUploadController'); // Adjust the path if needed
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' }); // Configure multer for file upload
 
-router.post('/link', upload.single('file'), fileUploadController.uploadFile);
-router.get('/download/:id', fileUploadController.downloadFile);
+// router.post('/link', upload.single('file'), uploadFile);
+
+router.post('/link', (req, res, next) => {
+    console.log('Received a request to /link');
+    next();
+  }, upload.single('file'), uploadFile);
+
+
+//   router.post('/link', upload.single('file'), (req, res, next) => {
+//     uploadFile(req, res).catch(next);
+//   });
+router.get('/download/:id', downloadFile);
 
 module.exports = router;

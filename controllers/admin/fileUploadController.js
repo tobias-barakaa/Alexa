@@ -2,14 +2,13 @@
 const cloudinary = require('cloudinary').v2;
 const knex = require("../../db/db.js");
 
-// Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-exports.uploadFile = async (req, res) => {
+const uploadFile = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
@@ -33,7 +32,7 @@ exports.uploadFile = async (req, res) => {
   }
 };
 
-exports.downloadFile = async (req, res) => {
+const downloadFile = async (req, res) => {
   try {
     const file = await knex('files').where({ id: req.params.id }).first();
     if (!file) {
@@ -46,3 +45,5 @@ exports.downloadFile = async (req, res) => {
     res.status(500).json({ error: 'Download failed' });
   }
 };
+
+module.exports = { uploadFile, downloadFile };

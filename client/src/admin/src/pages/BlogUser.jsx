@@ -4,6 +4,7 @@ import { useGetBlogsIdQuery } from '../../../slices/admin/blogApiSlice';
 import '../styles/pages/BlogUser.css';
 import { useParams } from 'react-router-dom';
 import { FaEye } from 'react-icons/fa'; // Make sure to install react-icons package
+import FileUpload from './FileUpload';
 
 
 const BlogUser = () => {
@@ -92,6 +93,7 @@ const BlogUser = () => {
       </div>
     </div>
     </div>
+    <FileUpload />
     </>
 
   );

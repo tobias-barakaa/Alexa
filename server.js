@@ -18,6 +18,9 @@ const resumeRoute = require('./routes/client/resumeRoute');
 const emailCopywritingRoute = require('./routes/client/emailCopywritingRoute');
 //Admin
 const blogAdminRoute = require('./routes/admin/blogRoute');
+//upload
+const uploadRoute = require('./routes/admin/uploadRoute');
+
 
 
 
@@ -92,7 +95,7 @@ app.use((req, res, next) => {
 });
 
 // upload file
-app.use('/file/image', uploadRouter);
+app.use('/api/file/image', uploadRoute);
 
 
 // Global error handler
