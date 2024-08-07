@@ -8,7 +8,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-
 const uploadFile = async (req, res) => {
   try {
     const allowedMimeTypes = ['application/pdf', 'application/zip', 'text/csv'];
@@ -31,7 +30,7 @@ const uploadFile = async (req, res) => {
       return res.status(400).json({ error: 'Missing user ID or blog ID' });
     }
 
-    const insertResult = await knex('files').insert({
+    const insertResult = await knex('fields').insert({
       cloudinary_url: result.secure_url,
       public_id: result.public_id,
       filename: req.file.originalname,
@@ -51,6 +50,23 @@ const uploadFile = async (req, res) => {
     res.status(500).json({ error: 'Upload failed' });
   }
 };
+
+const downloadFile = async (req, res) => {
+  try {
+    const file = await knex('fields').where({ id: req.params.id }).first();
+    if (!file) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    res.redirect(file.cloudinary_url);
+  } catch (error) {
+    console.error('Download error:', error);
+    res.status(500).json({ error: 'Download failed' });
+  }
+};
+
+module.exports = { uploadFile, downloadFile };
+
 // const uploadFile = async (req, res) => {
   
 //   // console.log(req.file)
@@ -77,18 +93,18 @@ const uploadFile = async (req, res) => {
 //   }
 // };
 
-const downloadFile = async (req, res) => {
-  try {
-    const file = await knex('files').where({ id: req.params.id }).first();
-    if (!file) {
-      return res.status(404).json({ error: 'File not found' });
-    }
+// const downloadFile = async (req, res) => {
+//   try {
+//     const file = await knex('files').where({ id: req.params.id }).first();
+//     if (!file) {
+//       return res.status(404).json({ error: 'File not found' });
+//     }
 
-    res.redirect(file.cloudinary_url);
-  } catch (error) {
-    console.error('Download error:', error);
-    res.status(500).json({ error: 'Download failed' });
-  }
-};
+//     res.redirect(file.cloudinary_url);
+//   } catch (error) {
+//     console.error('Download error:', error);
+//     res.status(500).json({ error: 'Download failed' });
+//   }
+// };
 
-module.exports = { uploadFile, downloadFile };
+// module.exports = { uploadFile, downloadFile };
