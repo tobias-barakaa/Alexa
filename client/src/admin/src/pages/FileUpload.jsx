@@ -19,6 +19,7 @@ const FileUpload = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    console.log('Uploading file:', file);
 
     try {
       const response = await axios.post('http://localhost:5000/api/file/image/link', formData, 
@@ -40,7 +41,7 @@ const FileUpload = () => {
     <div>
       <h2>File Upload</h2>
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" onChange={handleFileChange} accept='image/*' />
         <button type="submit">Upload</button>
       </form>
       {message && <p>{message}</p>}

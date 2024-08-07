@@ -89,13 +89,15 @@ app.use('/api/resume', resumeRoute);
 // Email Creation
 app.use('/api/emailcopywriting', emailCopywritingRoute);
 
+app.use('/api/file/image', uploadRoute);
+
+
 // 404 handler
 app.use((req, res, next) => {
   res.status(404).json({ message: "Resource not found" });
 });
 
 // upload file
-app.use('/api/file/image', uploadRoute);
 
 
 // Global error handler

@@ -1,5 +1,7 @@
 const express = require('express');
 const multer = require('multer');
+const { protect } = require('../../middlewares/client/authMiddleware.js');
+
 const { uploadFile, downloadFile } = require("../../controllers/admin/fileUploadController")
 // const { uploadFile, downloadFile } = require('../../controllers/fileUploadController'); // Adjust the path if needed
 
@@ -8,7 +10,7 @@ const upload = multer({ dest: 'uploads/' }); // Configure multer for file upload
 
 // router.post('/link', upload.single('file'), uploadFile);
 
-router.post('/link', (req, res, next) => {
+router.post('/link',protect, (req, res, next) => {
     console.log('Received a request to /link');
     next();
   }, upload.single('file'), uploadFile);
