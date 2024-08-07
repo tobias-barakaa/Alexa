@@ -9,14 +9,15 @@ cloudinary.config({
 });
 
 const uploadFile = async (req, res) => {
-  console.log(req.file)
+  
+  // console.log(req.file)
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
     const result = await cloudinary.uploader.upload(req.file.path, {
-      resource_type: 'auto'
+      resource_type: 'raw'
     });
 
     // Store file info in database
@@ -24,7 +25,7 @@ const uploadFile = async (req, res) => {
       cloudinary_url: result.secure_url,
       public_id: result.public_id,
       filename: req.file.originalname
-    });
+    }).returning('id');
 
     res.json({ message: 'File uploaded successfully', id, url: result.secure_url });
   } catch (error) {

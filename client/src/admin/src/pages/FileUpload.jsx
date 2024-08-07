@@ -39,13 +39,17 @@ const FileUpload = () => {
 
   return (
     <div>
-      <h2>File Upload</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} accept='image/*' />
-        <button type="submit">Upload</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+  <h2>File Upload</h2>
+  <form onSubmit={handleSubmit}>
+    <input 
+      type="file" 
+      onChange={handleFileChange} 
+      accept=".pdf,.zip,.csv"
+    />
+    <button type="submit">Upload</button>
+  </form>
+  {message && <p>{message}</p>}
+</div>
   );
 };
 

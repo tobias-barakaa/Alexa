@@ -11,7 +11,6 @@ const upload = multer({ dest: 'uploads/' }); // Configure multer for file upload
 // router.post('/link', upload.single('file'), uploadFile);
 
 router.post('/link',protect, (req, res, next) => {
-    console.log('Received a request to /link');
     next();
   }, upload.single('file'), uploadFile);
 

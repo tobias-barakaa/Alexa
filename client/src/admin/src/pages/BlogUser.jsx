@@ -3,16 +3,50 @@ import React, { useState } from 'react';
 import { useGetBlogsIdQuery } from '../../../slices/admin/blogApiSlice';
 import '../styles/pages/BlogUser.css';
 import { useParams } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa'; // Make sure to install react-icons package
+import { FaEye } from 'react-icons/fa'; 
 import FileUpload from './FileUpload';
+import axios from 'axios';
 
 
 const BlogUser = () => {
     const { id: blogId } = useParams();
   const { data, isLoading, isError } = useGetBlogsIdQuery(blogId);
-  const [status, setStatus] = useState('draft'); // Default status
-//   const [file, setFile] = useState(null); // For file upload
-  const [timer, setTimer] = useState(60); // Example timer in seconds
+  const [status, setStatus] = useState('draft'); 
+  const [timer, setTimer] = useState(60); 
+
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState('');
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      setMessage('Please select a file');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log('Uploading file:', file);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/file/image/link', formData, 
+        {withCredentials: true},
+        {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log('Upload response:', response.data);
+      setMessage(`File uploaded successfully. ID: ${response.data.id}`);
+    } catch (error) {
+      setMessage('File upload failed');
+      console.error('Upload error:', error);
+    }
+  };
 
   // Timer effect
   React.useEffect(() => {
@@ -25,16 +59,6 @@ const BlogUser = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading blog details</div>;
-
-//   const handleFileChange = (e) => {
-//     setFile(e.target.files[0]);
-//   };
-
-//   const handleSubmit = () => {
-//     console.log('File submitted:', file);
-//     console.log('Status:', status);
-//     // Handle the send action here
-//   };
 
   return (
     <>
@@ -83,13 +107,20 @@ const BlogUser = () => {
         </div>
         <div className="timer">Time remaining: {timer} seconds</div>
 
-        <div className="file-upload">
-          <input type="file"  /> 
-          {/* onChange={handleFileChange} */}
-        </div>
-        <button className='send-button' style={{ width: '100%', padding: '10px' }}>
-          Send
-        </button>
+      
+
+        <form onSubmit={handleSubmit}>
+    <input 
+      type="file" 
+      onChange={handleFileChange} 
+      accept=".pdf,.zip,.csv"
+    />
+    {/* <button type="submit">Upload</button> */}
+    <button className='send-button' style={{ width: '100%', padding: '10px', marginTop: '10px' }}>Upload</button>
+  </form>
+  {message && <p>{message}</p>}
+
+       
       </div>
     </div>
     </div>
