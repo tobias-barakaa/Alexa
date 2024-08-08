@@ -4,7 +4,7 @@ import { adminApiSlice } from './adminApiSlice';
 const initialState = {
   user: null,
   error: null,
-  status: 'idle', // idle | loading | succeeded | failed
+  status: 'idle', 
 };
 
 const adminSlice = createSlice({

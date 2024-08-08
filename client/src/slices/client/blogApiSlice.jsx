@@ -3,6 +3,17 @@ import { apiSlice } from "../apiSlice";
 
 export const blogApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+
+    createBlog: builder.mutation({
+      query: (data) => ({
+        url: `${BLOG_URL}/createblog`,
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
+
     getNumberOfWords: builder.query({
       query: () => ({
         url: `${BLOG_URL}/numberofwords`,
@@ -20,15 +31,7 @@ export const blogApiSlice = apiSlice.injectEndpoints({
         url: `${BLOG_URL}/categories`,
       }),
     }),
-    createBlog: builder.mutation({
-      query: (data) => ({
-        url: `${BLOG_URL}/createblog`,
-        method: "POST",
-        body: data,
-        credentials: "include",
-      }),
-      keepUnusedDataFor: 5,
-    }),
+    
     getBlog: builder.query({
       query: (orderId) => ({
         url: `${BLOG_URL}/blogs/${orderId}`,

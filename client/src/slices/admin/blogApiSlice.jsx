@@ -3,6 +3,15 @@ import { apiSlice } from '../apiSlice';
 
 export const adminUsersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
+       createBlog: builder.mutation({
+            query: (newBlog) => ({
+              url: `${ADMIN_BLOG_URL}`,
+              method: 'POST',
+              body: newBlog,
+              credentials: 'include',
+            }),
+            invalidatesTags: ['Blogs'],
+          }),
         getBlogs: builder.query({
         query: () => ({
             url: `${ADMIN_BLOG_URL}`,
