@@ -6,11 +6,9 @@ exports.up = function(knex) {
         table.string('profile_pic').defaultTo('https://avatar.iran.liara.run/username?username=default');
         table.string('specializations').defaultTo("not provided yet");
         table.integer('years_of_experience').defaultTo(4);
-        table.text('samples').defaultTo("not provided yet");
         table.string('contact').defaultTo('not provided yet');
         table.decimal('balance', 10, 2).defaultTo(0.00);
         table.boolean('available').defaultTo(false); 
-        table.timestamp('last_available_update');
         table.enu('status', ['pending', 'approved', 'rejected']).defaultTo('pending').notNullable();
         table.timestamps(true, true);
     });
@@ -19,3 +17,4 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.dropTable('writers');
 };
+  

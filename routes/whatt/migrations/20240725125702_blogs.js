@@ -12,7 +12,7 @@ exports.up = function(knex) {
       table.integer('number_of_words_id').unsigned().notNullable().references('id').inTable('numberofwords');
       table.integer('timeframe_id').unsigned().notNullable().references('id').inTable('timeframe');
       table.string('user_id').notNullable().references('id').inTable('users'); 
-      table.enum('status', ['draft', 'published', 'archived', 'pending review', 'rejected', 'scheduled']).defaultTo('draft');
+      table.enum('status', ['Processing', 'pending', 'rejected', 'scheduled', 'completed', 'deleted']).defaultTo('pending');
       table.timestamp('published_at');
       table.timestamps(true, true); 
     });
