@@ -1,7 +1,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('emailcopywriting', table => {
         table.increments('id').primary();
-        table.string('user_id').notNullable().references('id').inTable('users');
+        table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
         table.integer('project_type_id').unsigned().notNullable().references('id').inTable('project_types').defaultTo(
             knex.raw('(SELECT id FROM project_types WHERE name = ?)', ['Email Copywriting']));
         table.text('project_description').notNullable();

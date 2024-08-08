@@ -14,8 +14,11 @@ exports.up = function(knex) {
             knex.raw('(SELECT id FROM timeframe WHERE duration = ?)', ['1 day']));
         table.integer('quantity_id').unsigned().notNullable().references('id').inTable('quantity').defaultTo(
             knex.raw('(SELECT id FROM quantity WHERE name = ?)', ['1'])
-        )
-        table.string('user_id').notNullable().references('id').inTable('users');
+        );
+        table.integer('language_id').unsigned().notNullable().references('id').inTable('languages').defaultTo(
+            knex.raw('(SELECT id FROM languages WHERE name = ?)', ['American English'])
+        );
+        table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
         table.decimal('cost', 10, 2).notNullable().defaultTo(0.00);
         table.integer('status_id').unsigned().notNullable().references('id').inTable('status').defaultTo(
           knex.raw('(SELECT id FROM status WHERE name = ?)', ['Pending'])

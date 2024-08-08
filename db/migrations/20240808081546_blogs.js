@@ -9,7 +9,10 @@ exports.up = function(knex) {
         knex.raw('(SELECT id FROM numberofwords WHERE words = ?)', [300]));
       table.integer('timeframe_id').unsigned().notNullable().references('id').inTable('timeframe').defaultTo(
         knex.raw('(SELECT id FROM timeframe WHERE duration = ?)', ['1 day']));
-      table.string('user_id').notNullable().references('id').inTable('users');
+        table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.integer('language_id').unsigned().notNullable().references('id').inTable('languages').defaultTo(
+          knex.raw('(SELECT id FROM languages WHERE name = ?)', ['American English'])
+        );
       table.decimal('cost', 10, 2).notNullable().defaultTo(0.00);
       table.integer('status_id').unsigned().notNullable().references('id').inTable('status').defaultTo(
         knex.raw('(SELECT id FROM status WHERE name = ?)', ['Pending'])

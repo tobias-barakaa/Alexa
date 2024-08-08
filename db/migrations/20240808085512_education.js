@@ -1,7 +1,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('education', table => {
         table.increments('id').primary();
-        table.string('resume_id').references('id').inTable('resumes').onDelete('CASCADE');
+        table.integer('resume_id').unsigned().references('id').inTable('resumes').onDelete('CASCADE');
         table.string('degree').notNullable();
         table.string('institution').notNullable();
         table.date('start_date').notNullable();
