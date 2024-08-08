@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.createTable('resumes', table => {
+    return knex.schema.createTable('resumes', function(table) {
         table.increments('id').primary();
         table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
         table.string('full_name').notNullable();
@@ -13,9 +13,7 @@ exports.up = function(knex) {
         table.text('achievements');
         table.integer('timeframe_id').unsigned().notNullable().references('id').inTable('timeframe');
         table.decimal('cost', 10, 2).notNullable().defaultTo(0.00);
-        table.integer('status_id').unsigned().notNullable().references('id').inTable('status').defaultTo(
-            knex.raw('(SELECT id FROM status WHERE name = ?)', ['Pending'])
-          );
+        table.integer('status_id').unsigned().notNullable().references('id').inTable('status');
         table.timestamps(true, true);
     });
 };
@@ -23,4 +21,3 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.dropTable('resumes');
 };
-
