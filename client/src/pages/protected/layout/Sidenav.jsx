@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import profile from '../../../assets/images/alexxa.png';
+// import profile from '../../../assets/images/alexxa.png';
 import './Sidenav.css';
 
 const Sidebar = () => {
@@ -74,7 +74,7 @@ const Sidebar = () => {
         <div className="profile-section">
           <hr className="profile-divider" />
           <div className="profile-container">
-            <img src={profile} alt="Profile" className="profile-image" />
+            {/* <img src={profile} alt="Profile" className="profile-image" /> */}
             <div className="profile-info">
               <h4 className="profile-name">John Doe</h4>
               <p className="profile-role">Member</p>

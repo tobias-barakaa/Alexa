@@ -50,7 +50,7 @@ export const blogApiSlice = apiSlice.injectEndpoints({
     }),
     deleteBlog: builder.mutation({
       query: (id) => ({
-        url: `${BLOG_URL}/deleteblog/${id}`, // Adjust the URL if your backend uses a different route
+        url: `${BLOG_URL}/deleteblog/${id}`,
         method: "DELETE",
         credentials: "include",
       }),

@@ -1,21 +1,23 @@
 // Layout.js
-import backgroundImage from '../../assets/images/office.jpg';
-import trustPilot from '../../assets/images/trust.png';
-import googleicon from '../../assets/images/googleiccon.png';
-import google from '../../assets/images/google.png';
+// import backgroundImage from '../../assets/images/office.jpg';
+// import trustPilot from '../../assets/images/trust.png';
+// import googleicon from '../../assets/images/googleiccon.png';
+// import google from '../../assets/images/google.png';
 
-import facebook from '../../assets/images/facebook.png'; 
+// import facebook from '../../assets/images/facebook.png'; 
 import "./Home.css";
 
 const Layout = () => {
   return (
     <>
-      <main className="layout-main" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <main className="layout-main" >
+      {/* style={{ backgroundImage: `url(${backgroundImage})` }} */}
+
         <div className="overlay">
           <div className="content-left">
             <div className="images-container">
-              <img src={trustPilot} alt="Trust Pilot" className="trustpilot-img" />
-              <img src={google} alt="Google" className="google-img" />
+              {/* <img src={trustPilot} alt="Trust Pilot" className="trustpilot-img" />
+              <img src={google} alt="Google" className="google-img" /> */}
             </div>
             <p className="headline">
               Marktleider in<br /><span className='leader'>leadgeneratie</span><br />binnen de Benelux.
@@ -49,10 +51,10 @@ const Layout = () => {
 
               <div className="social-buttons">
                 <button type="button" className="social-btn google">
-                  <img src={googleicon} alt="Google" /> Sign up with Google
+                  {/* <img src={googleicon} alt="Google" /> Sign up with Google */}
                 </button>
                 <button type="button" className="social-btn facebook">
-                  <img src={facebook} alt="Facebook" /> Sign up with Facebook
+                  {/* <img src={facebook} alt="Facebook" /> Sign up with Facebook */}
                 </button>
               </div>
 

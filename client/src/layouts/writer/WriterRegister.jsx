@@ -1,11 +1,11 @@
 import "./WriterRegister.css";
-import brr from "../../assets/images/brr.jpg"
+// import brr from "../../assets/images/brr.jpg"
 
 const WriterRegister = () => {
   return (
     <div className="register-container">
       <div className="register-image">
-        <img src={brr} alt="writers" />
+        {/* <img src={brr} alt="writers" /> */}
       </div>
       <div className="register-form">
         <h2>Create Your Writer Account</h2>
