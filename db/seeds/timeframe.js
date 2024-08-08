@@ -7,7 +7,7 @@ exports.seed = function(knex) {
   return knex('timeframe').del()
     .then(function () {
       // Inserts seed entries
-      return knex('timeframes').insert([
+      return knex('timeframe').insert([
         { id: 1, duration: '12 Hours' },
         { id: 3, duration: '1 day' },
         { id: 3, duration: '2 days' },

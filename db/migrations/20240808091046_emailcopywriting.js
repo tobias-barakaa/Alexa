@@ -2,7 +2,8 @@ exports.up = function(knex) {
     return knex.schema.createTable('emailcopywriting', table => {
         table.increments('id').primary();
         table.string('user_id').notNullable().references('id').inTable('users');
-        table.string('project_type').notNullable();
+        table.integer('project_type_id').unsigned().notNullable().references('id').inTable('project_types').defaultTo(
+            knex.raw('(SELECT id FROM project_types WHERE name = ?)', ['Email Copywriting']));
         table.text('project_description').notNullable();
         table.integer('timeframe_id').unsigned().notNullable().references('id').inTable('timeframe').defaultTo(
             knex.raw('(SELECT id FROM timeframe WHERE duration = ?)', ['1 day']));
