@@ -8,12 +8,14 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('categories').insert([
-        { id: 1, name: 'Technology' },
-        { id: 2, name: 'Lifestyle' },
-        { id: 3, name: 'Business' },
-        { id: 4, name: 'Health' },
-        { id: 5, name: 'Education' },
-        { id: 6, name: 'Other' }
+        { id: 1, name: 'General' },
+        { id: 2, name: 'Formal' },
+        { id: 3, name: 'Technology' },
+        { id: 4, name: 'Lifestyle' },
+        { id: 5, name: 'Business' },
+        { id: 6, name: 'Health' },
+        { id: 7, name: 'Education' },
+        { id: 8, name: 'Other' }
 
       ]);
     });

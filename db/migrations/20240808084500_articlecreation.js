@@ -3,7 +3,9 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table.string('title').notNullable();
         table.text('description').notNullable();
-        table.integer('category_id').unsigned().notNullable().references('id').inTable('categories');
+        table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').defaultTo(
+            knex.raw('(SELECT id FROM categories WHERE name = ?)', ['General'])
+        )
         table.text('Keywords').defaultTo('').nullable();
         table.string('complexity').notNullable();
         table.integer('number_of_words_id').unsigned().notNullable().references('id').inTable('numberofwords').defaultTo(

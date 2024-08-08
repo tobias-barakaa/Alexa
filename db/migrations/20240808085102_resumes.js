@@ -1,6 +1,6 @@
 exports.up = function(knex) {
     return knex.schema.createTable('resumes', table => {
-        table.string('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
+        table.increments('id').primary();
         table.string('user_id').references('id').inTable('users').onDelete('CASCADE');
         table.string('full_name').notNullable();
         table.string('job_title').notNullable();
