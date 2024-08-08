@@ -41,10 +41,10 @@ const createBlog = async (req, res) => {
     language_id,
     cost,
     published_at,
-    status = 'draft', // Default to 'draft' if status is not provided
+    status_id = 1, // Default to status_id 1 if not provided
   } = req.body;
 
-  const user_id = req.user.userId; 
+  const user_id = req.user.userId;
 
   // Validate required fields
   if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id || !language_id || cost === undefined) {
@@ -78,8 +78,7 @@ const createBlog = async (req, res) => {
 
     // Set default values and timestamps
     const now = new Date();
-    const blogStatus = status === 'published' ? 'published' : 'draft'; // Ensure status is either 'published' or 'draft'
-    const publishedAt = blogStatus === 'published' ? now : published_at; // Only set published_at if status is 'published'
+    const publishedAt = status_id === 1 ? now : published_at; // Only set published_at if status_id is 1
 
     // Insert the new blog post into the database
     const [newBlogId] = await knex("blogs")
@@ -93,7 +92,7 @@ const createBlog = async (req, res) => {
         number_of_words_id,
         timeframe_id,
         user_id,
-        status: blogStatus,
+        status_id,
         published_at: publishedAt,
         created_at: now,
         updated_at: now,
@@ -108,7 +107,7 @@ const createBlog = async (req, res) => {
         "blogs.tags",
         "blogs.excerpt",
         "blogs.user_id",
-        "blogs.status",
+        "blogs.status_id",
         "blogs.published_at",
         "blogs.created_at",
         "blogs.updated_at",
@@ -119,7 +118,7 @@ const createBlog = async (req, res) => {
       .leftJoin("categories", "blogs.category_id", "categories.id")
       .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
       .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
-      .where("blogs.id", newBlogId)
+      .where("blogs.id", newBlogId) // Ensure newBlogId is an integer
       .first();
 
     // Return the created blog post with detailed information
@@ -131,6 +130,7 @@ const createBlog = async (req, res) => {
         category_id: undefined, // Explicitly exclude category_id
         number_of_words_id: undefined, // Explicitly exclude number_of_words_id
         timeframe_id: undefined, // Explicitly exclude timeframe_id
+        status_id: undefined, // Explicitly exclude status_id
       },
     });
   } catch (error) {
@@ -138,6 +138,7 @@ const createBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to create blog." });
   }
 };
+
 
 
 
