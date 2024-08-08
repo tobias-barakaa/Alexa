@@ -18,3 +18,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.dropTable('resumes');
 };
+
+table.integer('status_id').unsigned().notNullable().references('id').inTable('status').defaultTo(
+    knex.raw('(SELECT id FROM status WHERE name = ?)', ['Pending'])
+  );

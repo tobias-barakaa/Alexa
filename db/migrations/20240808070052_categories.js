@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('blogcategories', function(table) {
+    return knex.schema.createTable('categories', function(table) {
       table.increments('id').primary();
       table.string('name').notNullable();
     });
