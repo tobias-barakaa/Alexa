@@ -27,6 +27,9 @@ const getCategories = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch categories options." });
   }
 };
+
+
+
 const createBlog = async (req, res) => {
   const {
     title,
@@ -35,13 +38,16 @@ const createBlog = async (req, res) => {
     excerpt,
     number_of_words_id,
     timeframe_id,
-    status,
+    language_id,
+    cost,
+    published_at,
+    status = 'draft', // Default to 'draft' if status is not provided
   } = req.body;
 
-  const user_id = req.user.userId; // Assuming user ID is set in the request
+  const user_id = req.user.userId; 
 
   // Validate required fields
-  if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id) {
+  if (!title || !category_id || !number_of_words_id || !timeframe_id || !user_id || !language_id || cost === undefined) {
     return res.status(400).json({ error: "Required fields are missing." });
   }
 
@@ -53,7 +59,7 @@ const createBlog = async (req, res) => {
     }
 
     // Check if the category is valid
-    const category = await knex("blogcategories").where("id", category_id).first();
+    const category = await knex("categories").where("id", category_id).first();
     if (!category) {
       return res.status(400).json({ error: "Invalid category ID." });
     }
@@ -70,21 +76,25 @@ const createBlog = async (req, res) => {
       return res.status(400).json({ error: "Invalid timeframe ID." });
     }
 
+    // Set default values and timestamps
     const now = new Date();
-    const blogStatus = status || 'draft'; // Default to 'draft' if no status provided
+    const blogStatus = status === 'published' ? 'published' : 'draft'; // Ensure status is either 'published' or 'draft'
+    const publishedAt = blogStatus === 'published' ? now : published_at; // Only set published_at if status is 'published'
 
     // Insert the new blog post into the database
     const [newBlogId] = await knex("blogs")
       .insert({
         title,
         category_id,
+        language_id,
+        cost,
         tags,
         excerpt,
         number_of_words_id,
         timeframe_id,
         user_id,
         status: blogStatus,
-        published_at: blogStatus === "published" ? now : null,
+        published_at: publishedAt,
         created_at: now,
         updated_at: now,
       })
@@ -102,14 +112,14 @@ const createBlog = async (req, res) => {
         "blogs.published_at",
         "blogs.created_at",
         "blogs.updated_at",
-        "blogcategories.name as category_name",
+        "categories.name as category_name",
         "numberofwords.words as number_of_words",
         "timeframe.duration as timeframe_duration"
       )
-      .leftJoin("blogcategories", "blogs.category_id", "blogcategories.id")
+      .leftJoin("categories", "blogs.category_id", "categories.id")
       .leftJoin("numberofwords", "blogs.number_of_words_id", "numberofwords.id")
       .leftJoin("timeframe", "blogs.timeframe_id", "timeframe.id")
-      .where("blogs.id", newBlogId.id)
+      .where("blogs.id", newBlogId)
       .first();
 
     // Return the created blog post with detailed information
@@ -128,6 +138,7 @@ const createBlog = async (req, res) => {
     res.status(500).json({ error: "Failed to create blog." });
   }
 };
+
 
 
 
