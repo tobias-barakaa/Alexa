@@ -40,7 +40,7 @@ const signupUser = async (req, res) => {
 
     const [newUser] = await knex("users")
       .insert({
-        id: knex.raw("gen_random_uuid()"),
+        // id: knex.raw("gen_random_uuid()"),
         username,
         email,
         password: hashedPassword,
@@ -103,8 +103,6 @@ const loginUser = async (req, res) => {
     const user = await knex("users")
       .select(
         "users.id",
-        "users.first_name",
-        "users.last_name",
         "users.username",
         "users.email",
         "users.password",

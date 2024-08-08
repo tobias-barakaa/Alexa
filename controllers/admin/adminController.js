@@ -1,19 +1,13 @@
 // adminController.js
 const knex = require("../../db/db.js");
-const bcrypt = require('bcryptjs');
 const { hashPassword } = require('../../utils/client/auth.utils.js');
-// const generateToken = require('../../utils/client/generateToken.js');
 const { comparePassword } = require("../../utils/client/passwordUtiles.js");
 const { createJWT } = require("../../utils/client/tokenUtils.js");
 
 const addAdmin = async (req, res) => {
-    const { first_name, last_name, username, email, password, passwordConf, profile_pic, role } = req.body;
+    const { username, email, password, profile_pic, role } = req.body;
 
-    try {
-
-        if (password !== passwordConf) {
-            return res.status(400).json({ message: "Passwords do not match" });
-        }
+    try {    
 
         const existUserByEmail = await knex("users").where({ email }).first();
         if (existUserByEmail) {
@@ -35,9 +29,6 @@ const addAdmin = async (req, res) => {
 
         const [newUser] = await knex("users")
             .insert({
-                id: knex.raw("gen_random_uuid()"),
-                first_name,
-                last_name,
                 username,
                 email,
                 password: hashedPassword,
@@ -50,12 +41,9 @@ const addAdmin = async (req, res) => {
             .returning("*");
 
         if (newUser) {
-            // Fetch the user with the role name
             const userWithRole = await knex("users")
                 .select(
                     "users.id",
-                    "users.first_name",
-                    "users.last_name",
                     "users.username",
                     "users.email",
                     "users.profile_pic",
@@ -83,17 +71,13 @@ const loginAdmin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Input validation
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Fetch user with role information
     const user = await knex("users")
       .select(
         "users.id",
-        "users.first_name",
-        "users.last_name",
         "users.username",
         "users.email",
         "users.password",
@@ -107,19 +91,16 @@ const loginAdmin = async (req, res) => {
       .where("users.email", email)
       .first();
 
-    // Validate user credentials
     const isValidUser = user && (await comparePassword(password, user.password));
 
     if (!isValidUser) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Check if the user is an admin
     if (user.role !== 'admin') {
       return res.status(403).json({ message: "Access denied. Admins only." });
     }
 
-    // Generate and set token
     const token = createJWT({ userId: user.id, role: user.role });
     res.cookie('jwt', token, {
       httpOnly: true,
@@ -127,7 +108,6 @@ const loginAdmin = async (req, res) => {
       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
     });
 
-    // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
 
     res.json({
@@ -140,63 +120,6 @@ const loginAdmin = async (req, res) => {
     res.status(500).json({ message: "An error occurred during login" });
   }
 }
-
-// const loginAdmin = async (req, res) => {
-//   console.log(req.cookies);
-//   const { email, password } = req.body;
-
-//   try {
-//     // Input validation
-//     if (!email || !password) {
-//       return res.status(400).json({ message: "Email and password are required" });
-//     }
-
-//     // Fetch user with role information
-//     const user = await knex("users")
-//       .select(
-//         "users.id",
-//         "users.first_name",
-//         "users.last_name",
-//         "users.username",
-//         "users.email",
-//         "users.password",
-//         "users.profile_pic",
-//         "roles.name as role",
-//         "users.balance",
-//         "users.created_at",
-//         "users.updated_at"
-//       )
-//       .join("roles", "users.role_id", "roles.id")
-//       .where("users.email", email)
-//       .first();
-
-//     const isValidUser = user && (await comparePassword(req.body.password, user.password));
-
-//     if (!isValidUser) {
-//       return res.status(401).json({ message: "Invalid email or password" });
-//     }
-
-//     // Generate and set token
-//     const token = createJWT({ userId: user.id, role: user.role });
-//     res.cookie('jwt', token, {
-//       httpOnly: true,
-//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
-//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-//     });
-
-//     // Remove sensitive information before sending response
-//     const { password: _, ...userWithoutPassword } = user;
-
-//     res.json({
-//       ...userWithoutPassword,
-//       message: "Successfully logged in ",
-//     });
-
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     res.status(500).json({ message: "An error occurred during login" });
-//   }
-// };
 
 const getUsers = async (req, res) => {
     try {
@@ -224,106 +147,4 @@ const getUsers = async (req, res) => {
 
   
 module.exports = { addAdmin, loginAdmin, getUsers };
-
-
-
-// const loginAdmin = async (req, res) => {
-//     const { email, password } = req.body;
-  
-//     try {
-//       const user = await knex("users")
-//         .select(
-//           "users.id",
-//           "users.username",
-//           "users.email",
-//           "users.password",
-//           "users.profile_pic",
-//           "users.first_name",
-//           "users.last_name",
-//           "users.balance",
-//           "roles.name as role"
-//         )
-//         .join("roles", "users.role_id", "roles.id")
-//         .where({ email })
-//         .first();
-  
-//       if (user && (await bcrypt.compare(password, user.password))) {
-//         generateToken(res, user.id);
-//         res.json({
-//           id: user.id,
-//           username: user.username,
-//           email: user.email,
-//           profile_pic: user.profile_pic,
-//           first_name: user.first_name,
-//           last_name: user.last_name,
-//           balance: user.balance,
-//           role: user.role,
-//           message: "Successfully logged in 😁",
-//         });
-//       } else {
-//         res.status(401).json({ message: "Invalid email or password" });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: "An error occurred during login" });
-//     }
-//   };
-
-// const addAdmin = async (req, res) => {
-//     const { ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_FIRST_NAME, ADMIN_LAST_NAME, ADMIN_USERNAME } = process.env;
-//     try {
-//         const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
-//         const [newAdmin] = await knex('users')
-//             .insert({
-//                 first_name: ADMIN_FIRST_NAME,
-//                 last_name: ADMIN_LAST_NAME,
-//                 username: ADMIN_USERNAME,
-//                 email: ADMIN_EMAIL,
-//                 password: hashedPassword,
-//                 role: 'admin',
-//                 profile_pic: `https://avatar.iran.liara.run/username?username=${ADMIN_FIRST_NAME}${ADMIN_LAST_NAME}`
-//             })
-//             .returning('*');
-
-//         res.status(201).json(newAdmin);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'An error occurred while adding the admin' });
-//     }
-// };
-
-// const initialAdminSetup = async () => {
-//     const { ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_FIRST_NAME, ADMIN_LAST_NAME, ADMIN_USERNAME } = process.env;
-
-//     try {
-//         const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
-
-//         console.log('Creating admin user with details:');
-//         console.log(`  Email: ${ADMIN_EMAIL}`);
-//         console.log(`  First Name: ${ADMIN_FIRST_NAME}`);
-//         console.log(`  Last Name: ${ADMIN_LAST_NAME}`);
-//         console.log(`  Username: ${ADMIN_USERNAME}`);
-//         console.log(`  Role: admin`);
-
-//         await knex('users').insert({
-//             first_name: ADMIN_FIRST_NAME,
-//             last_name: ADMIN_LAST_NAME,
-//             username: ADMIN_USERNAME,
-//             email: ADMIN_EMAIL,
-//             password: hashedPassword,
-//             role: 'admin',
-//             profile_pic: `https://avatar.iran.liara.run/username?username=${ADMIN_FIRST_NAME}${ADMIN_LAST_NAME}`
-//         });
-//         console.log('Initial admin user created successfully');
-//     } catch (error) {
-//         console.error('Error creating initial admin user:', error);
-//         if (error.code === '23514') {
-//             console.error('** Constraint violation', error.constraint);
-//             console.error('** Check the users_role_check constraint definition.');
-//         } else {
-//             console.error('** Unexpected error:', error.message);
-//         }
-//     }
-// };
-
 
