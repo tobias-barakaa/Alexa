@@ -39,14 +39,14 @@ const createBlog = async (req, res) => {
     const userId = req.user.userId;
     const {
       title,
-      category = 'General', // Default value for category
+      category = 'General', 
       tags = '',
       excerpt = '',
-      word_count = 300, // Default value for word_count
-      duration = '1 day', // Default value for duration
-      language = 'American English', // Default value for language
-      cost = 0.00, // Default value for cost
-      status = 'Pending' // Default value for status
+      word_count = 300, 
+      duration = '1 day', 
+      language = 'American English',
+      cost = 0.00, 
+      status = 'Pending' 
     } = req.body;
 
     // Check if the user exists

@@ -2,7 +2,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('blogs', function(table) {
         table.increments('id').primary(); 
         table.string('title').notNullable();
-        table.string('category').defaultTo('General'); // New category field with default value
+        table.string('category').defaultTo('General'); 
         table.text('tags').defaultTo('').nullable();
         table.text('excerpt').defaultTo('').nullable();
         table.integer('word_count').unsigned().notNullable().defaultTo(300);
@@ -19,3 +19,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.dropTable('blogs');
 };
+
+
+
+

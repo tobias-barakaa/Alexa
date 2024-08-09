@@ -10,7 +10,6 @@ const BlogForm = () => {
     excerpt: '',
     number_of_words_id: '',
     timeframe_id: '',
-    status: 'draft',
     cost: 0, // Calculated cost
   });
 
@@ -137,20 +136,6 @@ const BlogForm = () => {
           ))}
         </select>
       </div>
-
-      <div className="form-group">
-        <label>Status</label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          required
-        >
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-      </div>
-
       <div className="form-group">
         <label>Estimated Cost: ${formData.cost.toFixed(2)}</label>
       </div>
