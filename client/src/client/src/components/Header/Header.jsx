@@ -1,5 +1,4 @@
-// src/components/Header.js
-import '../../styles/Header/Header.css';
+import '../../styles/components/Header.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 

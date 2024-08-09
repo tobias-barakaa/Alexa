@@ -17,6 +17,8 @@ const HomePage = () => {
 
       <Header />
        {/* <Home /> */}
+
+       
        <ServicesPage />
        <PortfolioPage />
             <BusinessCTA />
