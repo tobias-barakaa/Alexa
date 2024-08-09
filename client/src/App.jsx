@@ -13,7 +13,7 @@ import Writers from './pages/protected/FormArticle/Admin/elements/Writers';
 import WriterRegister from './layouts/writer/WriterRegister';
 import BlogWriting from './pages/order/BlogWriting';
 // import ArticleCreation from './pages/order/ArticleCreation';
-import ResumeCVWriting from './pages/order/ResumeCVWriting';
+// import ResumeCVWriting from './pages/order/ResumeCVWriting';
 import EmailCopywriting from './pages/order/EmailCopywriting';
 import EditOrders from './pages/order/manageOrders/EditOrders';
 import OrderHistory from './pages/order/manageOrders/OrderHistory';
@@ -30,6 +30,8 @@ import Main from './admin/src/pages/Main';
 import BlogUser from './admin/src/pages/BlogUser';
 import BlogForm from './client/src/pages/BlogForm';
 import ArticleCreation from './client/src/pages/ArticleCreation';
+import ResumeCVWriting from './client/src/pages/ResumeCVWriting';
+
 
 
 const router = createBrowserRouter([
