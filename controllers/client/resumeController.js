@@ -4,7 +4,7 @@ const knex = require("../../db/db.js");
 // Example Express.js Controller
 
 const createResume = async (req, res) => {
-    const { personalInfo, educations, experiences, skills, languages, certifications, achievements } = req.body;
+    const { personalInfo, educations,profile_pic, experiences,cost, skills, languages, certifications, achievements } = req.body;
     const userId = req.user?.userId; // Assuming req.user contains the logged-in user info
 
     console.log('Received data:', {
@@ -32,7 +32,9 @@ const createResume = async (req, res) => {
                 skills,
                 languages,
                 certifications,
-                achievements
+                achievements,
+                cost,
+                profile_pic
             }).returning('*');
 
             const resumeId = resume.id;
@@ -86,6 +88,9 @@ const createResume = async (req, res) => {
                     'resumes.languages',
                     'resumes.certifications',
                     'resumes.achievements',
+                    'resumes.profile_pic',
+                    'resumes.cost',
+                    'resumes.status',
                     'education.id as education_id',
                     'education.degree',
                     'education.institution',
@@ -97,7 +102,8 @@ const createResume = async (req, res) => {
                     'work_experience.company',
                     'work_experience.start_date',
                     'work_experience.end_date',
-                    'work_experience.responsibilities'
+                    'work_experience.responsibilities',
+                    
                 )
                 .where('resumes.id', resumeId)
                 .first();

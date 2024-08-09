@@ -13,49 +13,32 @@ const ResumeCVWriting = () => {
   const [languages, setLanguages] = useState('');
   const [certifications, setCertifications] = useState('');
   const [achievements, setAchievements] = useState('');
-  const [profilePic, setProfilePic] = useState(''); // Profile Picture state
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
-
-  // Fixed cost value
-  const fixedCost = 80.00;
 
   const handleChange = (field, value) => {
     setPersonalInfo({ ...personalInfo, [field]: value });
   };
 
-  const handleProfilePicChange = (e) => {
-    setProfilePic(e.target.files[0]);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Create FormData to handle file upload (if profilePic is a file upload)
-    const formData = new FormData();
-    formData.append('fullName', personalInfo.fullName);
-    formData.append('jobTitle', personalInfo.jobTitle);
-    formData.append('email', personalInfo.email);
-    formData.append('phone', personalInfo.phone);
-    formData.append('summary', personalInfo.summary);
-    formData.append('skills', skills);
-    formData.append('languages', languages);
-    formData.append('certifications', certifications);
-    formData.append('achievements', achievements);
-    formData.append('cost', fixedCost);
-    formData.append('status', 'Pending');
-    formData.append('profile_pic', profilePic); // Profile picture
-
-    // Add experiences and educations as JSON strings (or as they are, depending on how backend handles them)
-    formData.append('experiences', JSON.stringify(experiences));
-    formData.append('educations', JSON.stringify(educations));
+    const formData = {
+        personalInfo,
+        experiences,
+        skills,
+        languages,
+        certifications,
+        achievements,
+        educations
+    };
+    console.log('this is the dat', formData)
 
     try {
         const response = await axios.post('http://localhost:5000/api/resume/create', formData, {
             withCredentials: true,
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             }
         });
 
@@ -63,10 +46,12 @@ const ResumeCVWriting = () => {
         setSuccessMessage('Resume submitted successfully!');
         setError(null);
 
+        // Extract resumeId from response
         const resumeId = response.data.resume.id;
         localStorage.setItem('resumecvid', resumeId);
 
         if (resumeId) {
+            // navigate(`/dashboard/resume/${resumeId}`);
             navigate('/dashboard');
         } else {
             setError('Failed to retrieve the resume ID. Please try again.');
@@ -76,7 +61,9 @@ const ResumeCVWriting = () => {
         setSuccessMessage('');
         console.error('Error:', error);
     }
-  };
+};
+
+
 
   return (
     <div className="resume-cv-container">
@@ -149,16 +136,6 @@ const ResumeCVWriting = () => {
               value={personalInfo.summary}
               onChange={(e) => handleChange('summary', e.target.value)}
             ></textarea>
-          </div>
-          <div className="form-group">
-            <label className="input-label" htmlFor="profile-pic">Profile Picture</label>
-            <input
-              className="styled-input"
-              type="file"
-              id="profile-pic"
-              name="profile-pic"
-              onChange={handleProfilePicChange}
-            />
           </div>
         </section>
         <WorkExperienceSection experiences={experiences} setExperiences={setExperiences} />

@@ -6,7 +6,7 @@ const EmailCopywriting = () => {
   const [formData, setFormData] = useState({
     projectType: "",
     projectDescription: "",
-    deadline: "6hrs",
+    duration: "6hrs", // Changed from deadline to duration
     wordCount: "under-100",
     cost: 0,
   });
@@ -36,13 +36,12 @@ const EmailCopywriting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post('http://localhost:5000/api/emailcopywriting/create', formData, {
         withCredentials: true,
-        
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
           // Include authentication headers if needed
           // 'Authorization': `Bearer ${yourToken}`
         }
@@ -98,12 +97,12 @@ const EmailCopywriting = () => {
         </div>
 
         <div className="email-group">
-          <label htmlFor="deadline" className="email-label">Preferred Deadline</label>
+          <label htmlFor="duration" className="email-label">Preferred Deadline</label>
           <select
-            id="deadline"
-            name="deadline"
+            id="duration"
+            name="duration"
             className="email-select"
-            value={formData.deadline}
+            value={formData.duration} // Changed from deadline to duration
             onChange={handleChange}
             required
           >

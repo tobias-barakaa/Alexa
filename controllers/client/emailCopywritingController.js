@@ -1,45 +1,86 @@
 const knex = require("../../db/db.js");
 
 
-const emailCopywritingCreate = async (req, res) => {
+// const emailCopywritingCreate = async (req, res) => {
+//     try {
+//       const { projectType, projectDescription, duration, wordCount, cost } = req.body;
+  
+//       let userId = null;
+//       if (req.user && req.user.userId) {
+//         userId = req.user.userId;
+//       }
+  
+//       // Prepare the new request object
+//       const newRequest = {
+//         user_id: userId,
+//         project_type: projectType,
+//         project_description: projectDescription,
+//         duration: duration,
+//         word_count: wordCount,
+//         cost: cost,
+//       };
+  
+//       // Insert the new email copywriting request and return the inserted ID
+//       const [insertedId] = await knex('emailcopywriting')
+//         .returning('id')
+//         .insert(newRequest);
+  
+//       // Prepare the response
+//       const responseMessage = userId 
+//         ? 'Email copywriting request created successfully and associated with your account' 
+//         : 'Email copywriting request created successfully. Log in to associate it with your account';
+  
+//       res.status(201).json({ 
+//         message: responseMessage,
+//         requestId: insertedId
+//       });
+  
+//     } catch (error) {
+//       console.error('Error creating email copywriting request:', error);
+//       res.status(500).json({ message: 'Error creating email copywriting request', error: error.message });
+//     }
+//   };
+
+  const emailCopywritingCreate = async (req, res) => {
     try {
-      const { projectType, projectDescription, duration, wordCount, cost } = req.body;
-  
-      let userId = null;
-      if (req.user && req.user.userId) {
-        userId = req.user.userId;
-      }
-  
-      // Prepare the new request object
-      const newRequest = {
-        user_id: userId,
-        project_type: projectType,
-        project_description: projectDescription,
-        duration: duration,
-        word_count: wordCount,
-        cost: cost,
-      };
-  
-      // Insert the new email copywriting request and return the inserted ID
-      const [insertedId] = await knex('emailcopywriting')
-        .returning('id')
-        .insert(newRequest);
-  
-      // Prepare the response
-      const responseMessage = userId 
-        ? 'Email copywriting request created successfully and associated with your account' 
-        : 'Email copywriting request created successfully. Log in to associate it with your account';
-  
-      res.status(201).json({ 
-        message: responseMessage,
-        requestId: insertedId
-      });
-  
+        const { projectType, projectDescription, duration, wordCount, cost } = req.body;
+
+        // Extract the user ID from the request if the user is logged in
+        let userId = req.user?.userId || null;
+
+        // Prepare the new request object with default values for missing fields
+        const newRequest = {
+            user_id: userId,
+            project_type: projectType,
+            project_description: projectDescription,
+            duration: duration || '1 day',
+            word_count: wordCount || 300,
+            cost: cost || 0.00,
+            status: 'Pending', // Set default status
+        };
+
+        // Insert the new email copywriting request and return the inserted ID
+        const [insertedId] = await knex('emailcopywriting')
+            .returning('id')
+            .insert(newRequest);
+
+        // Prepare the response message
+        const responseMessage = userId 
+            ? 'Email copywriting request created successfully and associated with your account' 
+            : 'Email copywriting request created successfully. Log in to associate it with your account';
+
+        // Send the response back to the client
+        res.status(201).json({ 
+            message: responseMessage,
+            requestId: insertedId
+        });
+
     } catch (error) {
-      console.error('Error creating email copywriting request:', error);
-      res.status(500).json({ message: 'Error creating email copywriting request', error: error.message });
+        console.error('Error creating email copywriting request:', error);
+        res.status(500).json({ message: 'Error creating email copywriting request', error: error.message });
     }
-  };
+};
+
   
   
 
