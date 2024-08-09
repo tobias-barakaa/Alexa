@@ -28,6 +28,7 @@ import DashboardAdmin from './admin/src/pages/DashboardAdmin';
 import Blog from './admin/src/pages/Blog';
 import Main from './admin/src/pages/Main';
 import BlogUser from './admin/src/pages/BlogUser';
+import BlogForm from './client/src/pages/BlogForm';
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "blogorder",
-        element: <BlogWriting />
+        element: <BlogForm />
       },
      
       {

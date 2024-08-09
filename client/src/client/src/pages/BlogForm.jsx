@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useCreateBlogMutation, useGetNumberOfWordsQuery, useGetTimeFrameQuery, useGetCategoriesQuery } from './path_to_your_blogApiSlice';
+import { useState, useEffect } from 'react';
+import { useCreateBlogMutation, useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from '../../../slices/client/blogApiSlice';
+import "../styles/pages/BlogForm.css";
 
 const BlogForm = () => {
   const [formData, setFormData] = useState({
@@ -9,14 +10,30 @@ const BlogForm = () => {
     excerpt: '',
     number_of_words_id: '',
     timeframe_id: '',
-    user_id: '9faf7bba-6d23-46a8-a260-40ffe04d6708',
     status: 'draft',
+    cost: 0, // Calculated cost
   });
 
   const [createBlog] = useCreateBlogMutation();
   const { data: categories = [] } = useGetCategoriesQuery();
   const { data: numberOfWords = [] } = useGetNumberOfWordsQuery();
   const { data: timeFrames = [] } = useGetTimeFrameQuery();
+
+  // Calculate cost whenever number_of_words_id or timeframe_id changes
+  useEffect(() => {
+    const selectedWord = numberOfWords.find(word => word.id === parseInt(formData.number_of_words_id));
+    const selectedTimeFrame = timeFrames.find(time => time.id === parseInt(formData.timeframe_id));
+
+    let cost = 0;
+    if (selectedWord && selectedTimeFrame) {
+      cost = selectedWord.word_count * 0.05 + selectedTimeFrame.timeframe.length * 2;
+    }
+    
+    setFormData(prevData => ({
+      ...prevData,
+      cost,
+    }));
+  }, [formData.number_of_words_id, formData.timeframe_id, numberOfWords, timeFrames]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +45,9 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { cost, ...submitData } = formData;
     try {
-      await createBlog(formData).unwrap();
+      await createBlog(submitData).unwrap();
       alert('Blog post created successfully!');
     } catch (error) {
       console.error('Failed to create blog:', error);
@@ -38,8 +56,8 @@ const BlogForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className="blog-form">
+      <div className="form-group">
         <label>Title</label>
         <input
           type="text"
@@ -50,7 +68,7 @@ const BlogForm = () => {
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Category</label>
         <select
           name="category_id"
@@ -67,7 +85,7 @@ const BlogForm = () => {
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Tags/Keywords</label>
         <input
           type="text"
@@ -77,7 +95,7 @@ const BlogForm = () => {
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Excerpt</label>
         <textarea
           name="excerpt"
@@ -86,7 +104,7 @@ const BlogForm = () => {
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Number of Words</label>
         <select
           name="number_of_words_id"
@@ -103,7 +121,7 @@ const BlogForm = () => {
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Timeframe</label>
         <select
           name="timeframe_id"
@@ -114,13 +132,13 @@ const BlogForm = () => {
           <option value="">Select Timeframe</option>
           {timeFrames.map((timeFrame) => (
             <option key={timeFrame.id} value={timeFrame.id}>
-              {timeFrame.name}
+              {timeFrame.timeframe}
             </option>
           ))}
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Status</label>
         <select
           name="status"
@@ -133,7 +151,11 @@ const BlogForm = () => {
         </select>
       </div>
 
-      <button type="submit">Submit</button>
+      <div className="form-group">
+        <label>Estimated Cost: ${formData.cost.toFixed(2)}</label>
+      </div>
+
+      <button type="submit" className="submit-button">Submit</button>
     </form>
   );
 };

@@ -2,31 +2,37 @@ const knex = require("../../db/db.js");
 
 const getNumberOfWords = async (req, res) => {
   try {
-    const numberOfWords = await knex("numberofwords").select("id", "words");
+    const numberOfWords = await knex('number_of_words').select('*');
     res.json(numberOfWords);
   } catch (error) {
-    console.error("Error fetching number of words options:", error);
-    res.status(500).json({ error: "Failed to fetch number of words options." });
+    res.status(500).json({ message: 'Error fetching number of words', error });
   }
 };
 
 const getTimeframe = async (req, res) => {
   try {
-    const timeframes = await knex("timeframe").select("id", "duration");
-    res.json(timeframes);
+    const durations = await knex('duration').select('*');
+    res.json(durations);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch timeframes options." });
+    res.status(500).json({ message: 'Error fetching durations', error });
   }
 };
-
 const getCategories = async (req, res) => {
   try {
-    const categories = await knex("blogcategories").select("id", "name");
+    const categories = await knex('categories').select('*');
     res.json(categories);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch categories options." });
+    res.status(500).json({ error: 'Failed to fetch categories' });
   }
 };
+// const getCategories = async (req, res) => {
+//   try {
+//     const categories = await knex("blogcategories").select("id", "name");
+//     res.json(categories);
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to fetch categories options." });
+//   }
+// };
 
 const createBlog = async (req, res) => {
   try {
