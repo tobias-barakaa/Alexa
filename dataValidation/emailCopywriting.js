@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const validateEmailCopywriting = [
   check('projectType').notEmpty().withMessage('Project type is required'),
   check('projectDescription').notEmpty().withMessage('Project description is required'),
-  check('deadline').notEmpty().withMessage('Deadline is required'),
+  check('duration').notEmpty().withMessage('Deadline is required'),
   check('wordCount').isInt({ min: 1 }).withMessage('Word count must be a positive integer'),
   check('cost').isFloat({ min: 0 }).withMessage('Cost must be a positive number'),
   (req, res, next) => {

@@ -14,7 +14,9 @@ const createResume = async (req, res) => {
         skills,
         languages,
         certifications,
-        achievements
+        achievements,
+        cost,
+        profile_pic
     });
 
     try {

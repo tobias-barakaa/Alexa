@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.string('full_name').notNullable();
         table.string('job_title').notNullable();
         table.string('email').notNullable();
-        table.string('phone').notNullable();
+        table.string('phone').notNullable().defaultTo('000-000-0000');
         table.text('summary');
         table.text('skills');
         table.text('languages').defaultTo('American English');
