@@ -3,7 +3,7 @@ const knex = require("../../db/db.js");
 
 const emailCopywritingCreate = async (req, res) => {
     try {
-      const { projectType, projectDescription, deadline, wordCount, cost } = req.body;
+      const { projectType, projectDescription, duration, wordCount, cost } = req.body;
   
       let userId = null;
       if (req.user && req.user.userId) {
@@ -15,7 +15,7 @@ const emailCopywritingCreate = async (req, res) => {
         user_id: userId,
         project_type: projectType,
         project_description: projectDescription,
-        deadline: deadline,
+        duration: duration,
         word_count: wordCount,
         cost: cost,
       };

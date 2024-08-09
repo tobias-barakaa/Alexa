@@ -44,7 +44,9 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { cost, ...submitData } = formData;
+    const { 
+      //const
+      ...submitData } = formData;
     try {
       await createBlog(submitData).unwrap();
       alert('Blog post created successfully!');

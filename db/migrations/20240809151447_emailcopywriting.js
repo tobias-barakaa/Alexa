@@ -4,10 +4,10 @@ exports.up = function(knex) {
         table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
         table.string('project_type').notNullable();
         table.text('project_description').notNullable();
-        table.string('deadline').notNullable();
-        table.integer('word_count').notNullable();
-        table.decimal('cost', 10, 2).notNullable();
-        table.string('status').defaultTo('pending');
+        table.string('duration', 255).defaultTo('1 day');
+        table.integer('word_count').unsigned().notNullable().defaultTo(300);
+        table.decimal('cost', 10, 2).notNullable().defaultTo(0.00);
+        table.enu('status', ['Pending', 'Published', 'Completed', 'Processing', 'Deleted', 'Rejected']).defaultTo('Pending');
         table.timestamps(true, true);
     });
 };
