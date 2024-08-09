@@ -1,0 +1,50 @@
+.dashboard-main {
+  padding: 10px;
+}
+
+.dashboard-image {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.overview-section {
+  margin-top: 30px;
+}
+
+.statistics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+} 
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  flex: 1 1 calc(25% - 20px);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.stat-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.stat-text {
+  flex-grow: 1;
+}
+
+.stat-text h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.stat-number {
+  font-size: 24px;
+  color: #333;
+}

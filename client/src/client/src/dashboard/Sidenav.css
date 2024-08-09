@@ -1,0 +1,280 @@
+.sidena {
+  width: 260px;
+  height: calc(100vh - 40px); /* Adjust the height to account for the header height */
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 20px;
+  border: 2px solid #e0e0e0;
+
+  
+  
+}
+
+
+
+
+/* 
+.sidebar-menu-container {
+  width: 250px;
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+} */
+
+.sidebar-menu-title {
+  color: #000000;
+  padding: 12px 16px;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.sidebar-menu-content {
+  padding: 1px;
+  
+}
+
+.sidebar-menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  
+}
+
+.sidebar-menu-item {
+  margin-bottom: 8px;
+  
+  
+}
+
+.sidebar-menu-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  
+}
+
+.sidebar-menu-link:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.sidebar-menu-icon {
+  margin-right: 12px;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.sidebar-menu-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+/* 
+.sidebar-menu-container {
+  background-color: #f1f5f9;
+  border-radius: 15px;
+  overflow: hidden;
+} */
+
+.manage-container {
+  /* background-color: #f1f5f9; */
+  /* border-radius: 15px; */
+  width: 90%;
+  margin-left: 10px;
+  /* height: 42vh; */
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  margin-top: 30px;
+
+
+}
+
+.manage-title {
+  color: #000000;
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 5px;
+}
+
+.manage-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.manage-item {
+  margin-bottom: 10px;
+}
+
+.manage-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.manage-link:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.manage-icon {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.manage-text {
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.manage-notification {
+  background-color: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+
+
+.profile-section {
+  margin-top: 20px;
+  position: relative;
+}
+
+.profile-divider {
+  border: none;
+  height: 1px;
+  background-color: #078BC8;
+  margin: 10px 0;
+}
+
+.profile-container {
+  background-color: #f0f4f8;
+  border-radius: 15px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  border: 2px solid #ffffff;
+}
+
+.profile-info {
+  flex-grow: 1;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.profile-role {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #718096;
+}
+
+.profile-dropdown-toggle {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.profile-dropdown-toggle.active {
+  transform: rotate(180deg);
+}
+
+.profile-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.profile-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.profile-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.profile-dropdown.active {
+  max-height: 100px;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #e53e3e;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(229, 62, 62, 0.1);
+}
+
+.logout-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
