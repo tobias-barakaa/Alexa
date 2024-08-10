@@ -1,9 +1,9 @@
 .sidena {
   width: 260px;
-  height: calc(100vh - 40px); /* Adjust the height to account for the header height */
+  height: calc(100vh - 40px); 
   background-color: white;
-  border-radius: 15px;
-  margin-top: 20px;
+  /* border-radius: 15px; */
+  /* margin-top: 20px; */
   border: 2px solid #e0e0e0;
 
   

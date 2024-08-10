@@ -14,7 +14,7 @@ const Sidebar = () => {
     <div className="sidena">
       <div className="sidebar-menu-container">
         <h3 className="sidebar-menu-title">Services</h3>
-        <div className="sidebar-menu-content">
+        <div className="sidebar-menu-content"
           <ul className="sidebar-menu-list">
             <li className="sidebar-menu-item">
               <Link to="blogorder" className="sidebar-menu-link">
