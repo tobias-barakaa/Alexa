@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './RecentResumes.css'; // Add your CSS file here
+import "../../styles/pages/edit/RecentResumes.css";
 import { useNavigate } from 'react-router-dom';
 
 const RecentResumes = () => {

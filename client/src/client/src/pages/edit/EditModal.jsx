@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./EditModal.css";
-import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
+import "../../styles/pages/edit/EditBlog.css";
+import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../../slices/client/blogApiSlice";
+//import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
 
 const EditModal = ({ blog, isOpen, onClose, onUpdate, category, numOfWords, durationTime }) => {
   const [formData, setFormData] = useState({

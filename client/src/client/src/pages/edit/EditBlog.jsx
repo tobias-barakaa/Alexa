@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useGetRecentQuery, useUpdateBlogMutation, useDeleteBlogMutation } from "../../../slices/client/blogApiSlice";
+//import { useGetRecentQuery, useUpdateBlogMutation, useDeleteBlogMutation } from "../../../slices/client/blogApiSlice";
 import PropTypes from "prop-types";
 
-import "./EditBlog.css";
+import "../../styles/pages/edit/EditBlog.css";
+// import "../../styles/pages/edit/ConfirmationModal.css";
+import "../../styles/pages/edit/ConfirmationModal.css";
+
 import EditModal from './EditModal';
-import ConfirmationModal from './DeleteConfirmationModal';
+// import ConfirmationModal from './DeleteConfirmationModal';
+import { useDeleteBlogMutation, useGetRecentQuery, useUpdateBlogMutation } from '../../../../slices/client/blogApiSlice';
 
 const CountdownTimer = ({ createdAt }) => {
   const [timeLeft, setTimeLeft] = useState('');

@@ -46,7 +46,7 @@ import ArticleCreation from './client/src/pages/ArticleCreation';
 // import Blog from './client/src/pages/Blog';
 import Blog from './admin/src/pages/Blog';
 import BlogUser from './admin/src/pages/BlogUser';
-// import BlogUser from './client/src/pages/BlogUser';
+// import BlogUser from './client/src/pages/BlogUser'; EditResume
 // import Writers from './client/src/pages/Writers';
 // import WriterRegister from './client/src/pages/WriterRegister';
 // import BlogForm from './client/src/pages/BlogForm';
@@ -68,8 +68,11 @@ import EditResume from './client/src/pages/edit/EditResume'
 // import DashboardAdmin from './client/src/pages/DashboardAdmin';
 import DashboardAdmin from './admin/src/pages/DashboardAdmin';
 import DashboardMain from './client/src/dashboard/DashboardMain';
+import EditBlog from './client/src/pages/edit/EditBlog';
+import EditOrders from './client/src/pages/edit/EditOrders';
 // import Main from './client/src/pages/Main';
 // import EditOrders from './client/src/dashboard/'
+import RecentResumes from './client/src/pages/edit/RecentResumes'
 
 
 
@@ -113,10 +116,10 @@ const router = createBrowserRouter([
         path: "emailcopywriting",
         element: <EmailCopywriting />
       },
-      // {
-      //   path: "editorders",
-      //   element: <EditOrders />
-      // },                         
+      {
+        path: "editorders",
+        element: <EditOrders />
+      },                         
       {
         path: "ordershistory",
         element: <OrderHistory />
@@ -125,10 +128,10 @@ const router = createBrowserRouter([
       //   path: "resume/:resumeId",
       //   element: <ResumeDisplay />
       // },
-      // {
-      //   path: "editblog",
-      //   element: <EditBlog />
-      // },
+      {
+        path: "editblog",
+        element: <EditBlog />
+      },
       {
         path: "editemailcopywriting",
         element: <EditEmailCopyWriting />
@@ -137,10 +140,10 @@ const router = createBrowserRouter([
         path: "editarticlecreation",
         element: <EditArticleCreation />
       },
-      // {
-      //   path: "getrecentresume",
-      //   element: <RecentResumes />
-      // },
+      {
+        path: "getrecentresume",
+        element: <RecentResumes />
+      },
       {
         path: "editresume/:resumeId",
         element: <EditResume />
