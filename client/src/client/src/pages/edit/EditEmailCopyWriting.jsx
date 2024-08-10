@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UpdateModalEmailCopywriting from './UpdateModalEmailCopywriting';
-import './EditEmailCopyWriting.css';
+import '../../styles/pages/edit/EditEmailCopyWriting.css';
 
 const EditEmailCopyWriting = () => {
   const [requests, setRequests] = useState([]);

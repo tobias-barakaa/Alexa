@@ -1,5 +1,5 @@
-import '../../styles/components/Header.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import "../styles/components/Header.css";
 
 
 const Header = () => {

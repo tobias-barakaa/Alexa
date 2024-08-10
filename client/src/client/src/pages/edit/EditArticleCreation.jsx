@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './EditArticleCreation.css';
+import '../../styles/pages/edit/EditArticleCreation.css';
 
 const EditArticleCreation = () => {
   const [articles, setArticles] = useState([]);

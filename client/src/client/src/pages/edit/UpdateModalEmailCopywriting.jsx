@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './UpdateModalEmailCopywriting.css';
+import '../../styles/pages/edit/UpdateModalEmailCopywriting.css';
 
 const UpdateModalEmailCopywriting = ({ isOpen, onClose, requestData }) => {
   const [formData, setFormData] = useState({

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import './LoginClient.css';
+import '../styles/pages/LoginClient.css';
 // import { setCredentials } from '../../slices/authSlice';
-import { useLoginMutation } from '../../slices/client/usersApiSlice';
-import { setCredentials } from '../../slices/client/authSlice';
+// import { useLoginMutation } from '../../slices/client/usersApiSlice';
+import { useLoginMutation } from '../../../slices/client/usersApiSlice';
+import { setCredentials } from '../../../slices/client/authSlice';
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');

@@ -34,6 +34,43 @@ import HomePage from './client/src/pages/HomePage';
 // import ArticleCreation from './client/src/pages/ArticleCreation';
 // import ResumeCVWriting from './client/src/pages/ResumeCVWriting';
 // import EmailCopywriting from './client/src/pages/EmailCopywriting';
+// import LoginClient from './client/src/pages/LoginClient';
+import LoginClient from './client/src/pages/LoginClient'
+// import Dashboard from './client/src/pages/Dashboard';
+import Dashboard from './client/src/pages/Dashboard';
+// import DashboardMain from './client/src/pages/DashboardMain';
+import BlogForm from './client/src/pages/BlogForm';
+import ArticleCreation from './client/src/pages/ArticleCreation';
+// import DashboardMain from './client/src/pages/DashboardMain';
+// import AdminLogin from './client/src/pages/AdminLogin';
+// import Blog from './client/src/pages/Blog';
+import Blog from './admin/src/pages/Blog';
+import BlogUser from './admin/src/pages/BlogUser';
+// import BlogUser from './client/src/pages/BlogUser';
+// import Writers from './client/src/pages/Writers';
+// import WriterRegister from './client/src/pages/WriterRegister';
+// import BlogForm from './client/src/pages/BlogForm';
+// import ArticleCreation from './client/src/pages/ArticleCreation';
+import ResumeCVWriting from './client/src/pages/ResumeCVWriting';
+import EmailCopywriting from './client/src/pages/EmailCopywriting';
+// import EditOrders from './admin/src/pages/'
+import OrderHistory from './client/src/pages/manageorders/OrderHistory'
+// import ResumeDisplay from './admin/src/pages/'
+// import EditBlog from './client/src/pages/EditBlog';
+// import EditEmailCopyWriting from './client/src/pages/EditEmailCopyWriting';
+import EditEmailCopyWriting from './client/src/pages/edit/EditEmailCopyWriting'
+import EditArticleCreation from './client/src/pages/edit/EditArticleCreation'
+// import RecentResumes from './client/src/pages'
+import EditResume from './client/src/pages/edit/EditResume'
+
+// import RecentResumes from './client/src/pages/RecentResumes';
+// import EditResume from './client/src/pages/EditResume';
+// import DashboardAdmin from './client/src/pages/DashboardAdmin';
+import DashboardAdmin from './admin/src/pages/DashboardAdmin';
+import DashboardMain from './client/src/pages/DashboardMain';
+// import Main from './client/src/pages/Main';
+// import EditOrders from './client/src/dashboard/'
+
 
 
 
@@ -76,22 +113,22 @@ const router = createBrowserRouter([
         path: "emailcopywriting",
         element: <EmailCopywriting />
       },
-      {
-        path: "editorders",
-        element: <EditOrders />
-      },
+      // {
+      //   path: "editorders",
+      //   element: <EditOrders />
+      // },                         
       {
         path: "ordershistory",
         element: <OrderHistory />
       },
-      {
-        path: "resume/:resumeId",
-        element: <ResumeDisplay />
-      },
-      {
-        path: "editblog",
-        element: <EditBlog />
-      },
+      // {
+      //   path: "resume/:resumeId",
+      //   element: <ResumeDisplay />
+      // },
+      // {
+      //   path: "editblog",
+      //   element: <EditBlog />
+      // },
       {
         path: "editemailcopywriting",
         element: <EditEmailCopyWriting />
@@ -100,40 +137,40 @@ const router = createBrowserRouter([
         path: "editarticlecreation",
         element: <EditArticleCreation />
       },
-      {
-        path: "getrecentresume",
-        element: <RecentResumes />
-      },
+      // {
+      //   path: "getrecentresume",
+      //   element: <RecentResumes />
+      // },
       {
         path: "editresume/:resumeId",
         element: <EditResume />
       }
     ]
   },
-  {
-    path: "/writer",
-    element: <WriterRegister />
-  },
-  {
-    path: "/admin",
-    element: <AdminLogin />
-  },
+  // {
+  //   path: "/writer",
+  //   element: <WriterRegister />
+  // },
+  // {
+  //   path: "/admin",
+  //   element: <AdminLogin />
+  // },
   {
     path: "/admindashboard",
     element: <DashboardAdmin />,
     children: [
-      {
-        index: true,
-        element: <Main />
-      },
+      // {
+      //   index: true,
+      //   element: <Main />
+      // },
       {
         path: "blog",
         element: <Blog />
       },
-      {
-        path: "writers",
-        element: <Writers />
-      },
+      // {
+      //   path: "writers",
+      //   element: <Writers />
+      // },
       {
         path: "bloguser/:id",
         element: <BlogUser />

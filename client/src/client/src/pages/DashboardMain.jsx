@@ -1,4 +1,4 @@
-import './DashboardMain.css';
+import '../styles/pages/DashboardMain.css';
 import Home from './Home';
 
 

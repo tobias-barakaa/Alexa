@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './EditResume.css';
+import '../../styles/pages/edit/EditResume.css';
 
 const EditResume = () => {
     const resumeId = localStorage.getItem('resumecvid');
