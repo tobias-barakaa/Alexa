@@ -67,7 +67,7 @@ import EditResume from './client/src/pages/edit/EditResume'
 // import EditResume from './client/src/pages/EditResume';
 // import DashboardAdmin from './client/src/pages/DashboardAdmin';
 import DashboardAdmin from './admin/src/pages/DashboardAdmin';
-import DashboardMain from './client/src/pages/DashboardMain';
+import DashboardMain from './client/src/dashboard/DashboardMain';
 // import Main from './client/src/pages/Main';
 // import EditOrders from './client/src/dashboard/'
 

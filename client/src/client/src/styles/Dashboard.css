@@ -1,0 +1,36 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f1f5f9;
+  }
+  
+  .content-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  
+  
+  .main-contentt {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f1f5f9; 
+    padding: 20px;
+  }
+  
+  
+  .dashboard-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px; 
+  }
+  
+  .content {
+    margin-left: 200px; 
+    padding: 20px;
+    flex-grow: 1;
+    height: 100vh;
+  }
