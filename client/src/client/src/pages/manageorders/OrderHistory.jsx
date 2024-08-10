@@ -1,5 +1,5 @@
 // import { useGetUserBlogQuery } from "../../../slices/client/blogApiSlice";
-import { useGetBlogQuery, useGetUserBlogQuery } from "../../../../slices/client/blogApiSlice";
+import { useGetUserBlogQuery } from "../../../../slices/client/blogApiSlice";
 import "../../styles/pages/manageorders/OrderHistory.css";
 
 const OrderHistory = () => {

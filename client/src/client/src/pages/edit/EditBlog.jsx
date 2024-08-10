@@ -7,7 +7,7 @@ import "../../styles/pages/edit/EditBlog.css";
 import "../../styles/pages/edit/ConfirmationModal.css";
 
 import EditModal from './EditModal';
-// import ConfirmationModal from './DeleteConfirmationModal';
+import ConfirmationModal from './DeleteConfirmationModal';
 import { useDeleteBlogMutation, useGetRecentQuery, useUpdateBlogMutation } from '../../../../slices/client/blogApiSlice';
 
 const CountdownTimer = ({ createdAt }) => {

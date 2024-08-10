@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './ConfirmationModal.css';
+import '../../styles/pages/edit/ConfirmationModal.css';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
