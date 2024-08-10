@@ -1,5 +1,5 @@
 .login-container {
-    position: relative; /* Add position relative to parent element */
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
