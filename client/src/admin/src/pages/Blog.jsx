@@ -10,17 +10,18 @@ const Blog = () => {
     navigate('/admindashboard/bloguser/' + id);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading blogs</div>;
+  if (isLoading) return <div className="loading">Loading...</div>;
+  if (isError) return <div className="error">Error loading blogs</div>;
 
   return (
-    <div>
-      <h1>Blogs</h1>
-      {data && data.length > 0 ? (
+    <div className="blog-container">
+      <h1 className="blog-title">Blogs</h1>
+      {data && data.blogs && data.blogs.length > 0 ? (
         <table className="blog-table">
           <thead>
             <tr>
               <th>Title</th>
+              <th>Category</th>
               <th>Tags</th>
               <th>Excerpt</th>
               <th>Status</th>
@@ -30,9 +31,14 @@ const Blog = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((blog) => (
-              <tr key={blog.id} className="blog-row" onClick={() => handleBlogClick(blog.id)}>
+            {data.blogs.map((blog) => (
+              <tr
+                key={blog.id}
+                className="blog-row"
+                onClick={() => handleBlogClick(blog.id)}
+              >
                 <td>{blog.title}</td>
+                <td>{blog.category}</td>
                 <td>{blog.tags || 'No tags'}</td>
                 <td>{blog.excerpt}</td>
                 <td>{blog.status}</td>

@@ -126,8 +126,6 @@ const getUsers = async (req, res) => {
         const users = await knex("users")
             .select(
                 "users.id",
-                "users.first_name",
-                "users.last_name",
                 "users.username",
                 "users.email",
                 "users.profile_pic",

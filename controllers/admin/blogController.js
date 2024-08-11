@@ -2,19 +2,43 @@ const knex = require('../../db/db.js');
 
 const getAllBlogs = async (req, res) => {
   try {
+    const userId = req.user.userId;
+
+    // Fetch the user and their role from the users and roles tables
+    const user = await knex('users')
+      .join('roles', 'users.role_id', '=', 'roles.id')  // Assuming you have a roles table
+      .select('users.*', 'roles.name as role')  // Selecting user's details and the role name
+      .where('users.id', userId)
+      .first();
+      
+    console.log(user);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (user.role !== 'admin') {
+      return res.status(403).json({ error: 'Access denied. Admins only.' });
+    }
+
+    // Fetch blogs created by the logged-in admin
     const blogs = await knex('blogs')
-      .join('users', 'blogs.user_id', '=', 'users.id')
       .select(
-        'blogs.id',
-        'blogs.title',
-        'blogs.tags',
-        'blogs.excerpt',
-        'blogs.status',
-        'blogs.published_at',
-        'blogs.created_at',
-        'blogs.updated_at',
-        
-      );
+        'id',
+        'title',
+        'category',
+        'tags',
+        'excerpt',
+        'word_count',
+        'duration',
+        'language',
+        'cost',
+        'status',
+        'created_at',
+        'updated_at',
+        'published_at'
+      )
+      .where('user_id', userId);
 
     res.status(200).json({ blogs });
   } catch (error) {
@@ -24,30 +48,28 @@ const getAllBlogs = async (req, res) => {
 };
 
 
+
+
 const getBlogById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("hwo is this an id and not id", id);
+
+    // Fetch the blog by ID and join with the users table to get the creator's info
     const blog = await knex('blogs')
       .join('users', 'blogs.user_id', '=', 'users.id')
-      .leftJoin('blogcategories', 'blogs.category_id', 'blogcategories.id')
-      .leftJoin('numberofwords', 'blogs.number_of_words_id', 'numberofwords.id')
-      .leftJoin('timeframe', 'blogs.timeframe_id', 'timeframe.id')
       .select(
         'blogs.id',
         'blogs.title',
         'blogs.tags',
         'blogs.excerpt',
         'blogs.status',
+        'blogs.category',
+
         'blogs.published_at',
         'blogs.created_at',
         'blogs.updated_at',
         'blogs.user_id',
-        'users.first_name as user_first_name',
-        'users.last_name as user_last_name',
-        'blogcategories.name as category_name',
-        'numberofwords.words as number_of_words',
-        'timeframe.duration as timeframe_duration'
+    
       )
       .where('blogs.id', id)
       .first();
@@ -62,6 +84,7 @@ const getBlogById = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch the blog.' });
   }
 };
+
 
 
 module.exports = {

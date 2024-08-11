@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGetBlogsIdQuery } from '../../../slices/admin/blogApiSlice';
 import '../styles/pages/BlogUser.css';
 import { useParams } from 'react-router-dom';
@@ -8,9 +8,8 @@ import axios from 'axios';
 const BlogUser = () => {
   const { id: blogId } = useParams();
   const { data, isLoading, isError } = useGetBlogsIdQuery(blogId);
-  const [status, setStatus] = useState('draft'); 
+  const [status, setStatus] = useState('Pending'); 
   const [timer, setTimer] = useState(60); 
-
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
 
@@ -27,7 +26,7 @@ const BlogUser = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('user_id', data.blog.user_id); // Add user_id to the formData
+    formData.append('user_id', data.blog.user_id); 
 
     try {
       const response = await axios.post(`http://localhost:5000/api/file/image/link/${blogId}`, formData, {
@@ -36,7 +35,6 @@ const BlogUser = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log('Upload response:', response.data);
       setMessage(`File uploaded successfully. ID: ${response.data.id}`);
     } catch (error) {
       setMessage('File upload failed');
@@ -44,10 +42,9 @@ const BlogUser = () => {
     }
   };
 
-  // Timer effect
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
-      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+      setTimer(prev => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -75,10 +72,10 @@ const BlogUser = () => {
       <div className="blog-user-container">
         <div className="middle-section">
           <h2>{data.blog.title}</h2>
-          <p><strong>Tags:</strong> {data.blog.tags}</p>
+          <p><strong>Tags:</strong> {data.blog.tags || 'No tags'}</p>
           <p><strong>Excerpt:</strong> {data.blog.excerpt}</p>
           <p><strong>Status:</strong> {data.blog.status}</p>
-          <p><strong>Published At:</strong> {data.blog.published_at || 'Not published'}</p>
+          <p><strong>Published At:</strong> {data.blog.published_at ? new Date(data.blog.published_at).toLocaleDateString() : 'Not published'}</p>
           <p><strong>Created At:</strong> {new Date(data.blog.created_at).toLocaleDateString()}</p>
           <p><strong>Updated At:</strong> {new Date(data.blog.updated_at).toLocaleDateString()}</p>
           <h3>Details</h3>
@@ -104,7 +101,7 @@ const BlogUser = () => {
                 onChange={handleFileChange} 
                 accept=".pdf,.zip,.csv"
               />
-              <button className='send-button' style={{ width: '100%', padding: '10px', marginTop: '10px' }}>Upload</button>
+              <button type="submit" className='send-button' style={{ width: '100%', padding: '10px', marginTop: '10px' }}>Upload</button>
             </form>
             {message && <p>{message}</p>}
           </div>
