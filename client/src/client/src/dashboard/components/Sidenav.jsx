@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import profile from '../../../assets/images/alexxa.png';
 import './Sidenav.css';
 
 const Sidebar = () => {
+  const location = useLocation();
+  const initialActiveLink = localStorage.getItem('activeLink') || location.pathname; // Retrieve from localStorage or use current path
+  const [activeLink, setActiveLink] = useState(initialActiveLink);
   const [dropdownActive, setDropdownActive] = useState(false);
-  const location = useLocation(); // Get current location
-  const [activeLink, setActiveLink] = useState(location.pathname); // Set active link based on the current path
 
   // Update active link when a link is clicked
   const handleLinkClick = (path) => {
     setActiveLink(path);
+    localStorage.setItem('activeLink', path); // Store the active link in localStorage
   };
 
+  // Set the active link based on current location when the component mounts
+  useEffect(() => {
+    setActiveLink(initialActiveLink);
+  }, [location.pathname]);
 
   const toggleDropdown = () => {
     setDropdownActive(!dropdownActive);
@@ -23,7 +28,7 @@ const Sidebar = () => {
       <div className="sidebar-menu-container">
         <p className="sidebar-menu-title">Services</p>
         <div className="sidebar-menu-content">
-        <ul className="sidebar-menu-list">
+          <ul className="sidebar-menu-list">
             <li className="sidebar-menu-item">
               <Link
                 to="blogorder"
@@ -69,64 +74,45 @@ const Sidebar = () => {
       </div>
       <hr className="profile-divider" />
 
-
       <div className="manage-container">
         <p className="manage-title" style={{ color: "#078BC8" }}>Manage Orders</p>
         <ul className="manage-list">
-         
-
-
-
-          <li className="sidebar-menu-item">
-              <Link
-                to="blogorder"
-                className={`sidebar-menu-link ${activeLink === '/editorders' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/editorders')}
-              >
-                <i className="bi bi-pencil-square sidebar-menu-icon"></i>
-                <span className="sidebar-menu-text">Edit Orders</span>
-              </Link>
-            </li>
-
-
-
-
-        
-
-          <li className="sidebar-menu-item">
-              <Link
-                to="ordershistory"
-                className={`sidebar-menu-link ${activeLink === '/ordershistory' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/ordershistory')}
-              >
-                <i className="bi bi-pencil-square sidebar-menu-icon"></i>
-                <span className="sidebar-menu-text">Orders History</span>
-              </Link>
-            </li>
-
-
-
-        
-
-
-          <li className="sidebar-menu-item">
-              <Link
-                to="poetryandsong"
-                className={`sidebar-menu-link ${activeLink === '/poetryandsong' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/poetryandsong')}
-              >
-                <i className="bi bi-pencil-square sidebar-menu-icon"></i>
-                <span className="sidebar-menu-text">Completed Orders</span>
-              </Link>
-            </li>
-
-
-
+          <li className="manage-item">
+            <Link
+              to="editorders"
+              className={`sidebar-menu-link ${activeLink === '/editorders' ? 'active' : ''}`}
+              onClick={() => handleLinkClick('/editorders')}
+            >
+              <i className="bi bi-pencil-square manage-icon"></i>
+              <span className="manage-text">Edit Orders</span>
+              <span className="manage-notification">2</span>
+            </Link>
+          </li>
+          <li className="manage-item">
+            <Link
+              to="ordershistory"
+              className={`sidebar-menu-link ${activeLink === '/ordershistory' ? 'active' : ''}`}
+              onClick={() => handleLinkClick('/ordershistory')}
+            >
+              <i className="bi bi-hourglass manage-icon"></i>
+              <span className="manage-text">Orders History</span>
+            </Link>
+          </li>
+          <li className="manage-item">
+            <Link
+              to="poetryandsong"
+              className={`sidebar-menu-link ${activeLink === '/poetryandsong' ? 'active' : ''}`}
+              onClick={() => handleLinkClick('/poetryandsong')}
+            >
+              <i className="bi bi-building-check manage-icon"></i>
+              <span className="manage-text">Completed Orders</span>
+              <span className="manage-notification">5</span>
+            </Link>
+          </li>
         </ul>
 
         <div className="profile-section">
           <div className="profile-container">
-            {/* <img src={profile} alt="Profile" className="profile-image" /> */}
             <div className="profile-info">
               <h4 className="profile-name">John Doe</h4>
               <p className="profile-role">Member</p>
@@ -148,7 +134,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-
-

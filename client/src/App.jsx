@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import HomePage from './layouts/home/HomePage';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from './client/src/pages/HomePage';
+import Main from './admin/src/pages/Main';
 // import HomePage from './client/src/home/HomePage';
 // import Dashboard from './pages/protected/Dashboard';
 // import LoginClient from './layouts/client/LoginClient';
@@ -162,10 +163,10 @@ const router = createBrowserRouter([
     path: "/admindashboard",
     element: <DashboardAdmin />,
     children: [
-      // {
-      //   index: true,
-      //   element: <Main />
-      // },
+      {
+        index: true,
+        element: <Main />
+      },
       {
         path: "blog",
         element: <Blog />

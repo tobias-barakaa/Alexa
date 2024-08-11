@@ -52,14 +52,6 @@
 
 
 
-
-
-
-
-
-
-
-
 .sidebar-menu-title {
   position: relative;
   font-size: 1.5rem;
@@ -240,6 +232,7 @@
   color: #078BC8;
 }
 
+
 .manage-text {
   flex-grow: 1;
   font-size: 14px;
@@ -333,7 +326,7 @@
 .profile-icon:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-
+.manage-icon
 .profile-dropdown {
   position: absolute;
   bottom: 100%;

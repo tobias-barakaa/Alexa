@@ -7,7 +7,6 @@ const Blog = () => {
   const navigate = useNavigate();
 
   const handleBlogClick = (id) => {
-   
     navigate('/admindashboard/bloguser/' + id);
   };
 
@@ -17,7 +16,7 @@ const Blog = () => {
   return (
     <div>
       <h1>Blogs</h1>
-      {data.blogs && data.blogs.length > 0 ? (
+      {data && data.length > 0 ? (
         <table className="blog-table">
           <thead>
             <tr>
@@ -26,20 +25,18 @@ const Blog = () => {
               <th>Excerpt</th>
               <th>Status</th>
               <th>Published</th>
-              <th>Author</th>
               <th>Created</th>
               <th>Updated</th>
             </tr>
           </thead>
           <tbody>
-            {data.blogs.map((blog) => (
+            {data.map((blog) => (
               <tr key={blog.id} className="blog-row" onClick={() => handleBlogClick(blog.id)}>
                 <td>{blog.title}</td>
-                <td>{blog.tags}</td>
+                <td>{blog.tags || 'No tags'}</td>
                 <td>{blog.excerpt}</td>
                 <td>{blog.status}</td>
-                <td>{blog.published_at || 'Not published'}</td>
-                <td>{blog.user_first_name} {blog.user_last_name}</td>
+                <td>{blog.published_at ? new Date(blog.published_at).toLocaleDateString() : 'Not published'}</td>
                 <td>{new Date(blog.created_at).toLocaleDateString()}</td>
                 <td>{new Date(blog.updated_at).toLocaleDateString()}</td>
               </tr>
