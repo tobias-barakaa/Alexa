@@ -54,6 +54,7 @@ const { verifyJWT } = require('../../utils/client/tokenUtils.js');
 const protect = async (req, res, next) => {
   try {
     const jwt = req.cookies.jwt;
+    console.log('Cookies:', req.cookies); // Log cookies to check if the token is present
 
     if (!jwt) {
       return res.status(401).json({ message: "Not authorized, no jwt" });

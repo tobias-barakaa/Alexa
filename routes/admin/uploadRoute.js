@@ -4,7 +4,7 @@ const multer = require('multer');
 const { protect } = require("../../middlewares/client/authMiddleware.js");
 
 
-const { uploadFile, downloadFile } = require("../../controllers/admin/fileUploadController")
+const { uploadFile } = require("../../controllers/admin/fileUploadController")
 // const { uploadFile, downloadFile } = require('../../controllers/fileUploadController'); // Adjust the path if needed
 
 const router = express.Router();
@@ -20,6 +20,6 @@ router.post('/link/:blogId',protect, (req, res, next) => {
 //   router.post('/link', upload.single('file'), (req, res, next) => {
 //     uploadFile(req, res).catch(next);
 //   });
-router.get('/download/:id',protect, downloadFile);
+// router.get('/download/:id',protect, downloadFile);
 
 module.exports = router;

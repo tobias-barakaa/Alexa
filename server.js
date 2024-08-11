@@ -20,6 +20,7 @@ const emailCopywritingRoute = require('./routes/client/emailCopywritingRoute');
 const blogAdminRoute = require('./routes/admin/blogRoute');
 //upload
 const uploadRoute = require('./routes/admin/uploadRoute');
+const fileRoute = require('./routes/client/fileRoute');
 
 
 
@@ -91,6 +92,11 @@ app.use('/api/emailcopywriting', emailCopywritingRoute);
 
 app.use('/api/file/image', uploadRoute);
 
+// client file Route Download
+
+app.use('/api/file/image', fileRoute);
+
+
 
 // 404 handler
 app.use((req, res, next) => {
@@ -98,7 +104,6 @@ app.use((req, res, next) => {
 });
 
 // upload file
-
 
 // Global error handler
 app.use((err, req, res, next) => {
