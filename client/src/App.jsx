@@ -74,6 +74,7 @@ import EditOrders from './client/src/pages/edit/EditOrders';
 // import Main from './client/src/pages/Main';
 // import EditOrders from './client/src/dashboard/'
 import RecentResumes from './client/src/pages/edit/RecentResumes'
+import CompletedOrders from './client/src/pages/manageorders/CompletedOrders';
 
 
 
@@ -129,9 +130,14 @@ const router = createBrowserRouter([
       //   path: "resume/:resumeId",
       //   element: <ResumeDisplay />
       // },
+   
       {
         path: "editblog",
         element: <EditBlog />
+      },
+      {
+        path: "completedorders",
+        element: <CompletedOrders />
       },
       {
         path: "editemailcopywriting",

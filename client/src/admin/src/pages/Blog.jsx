@@ -37,6 +37,8 @@ const Blog = () => {
                 className="blog-row"
                 onClick={() => handleBlogClick(blog.id)}
               >
+                <td>{blog.id}</td>
+
                 <td>{blog.title}</td>
                 <td>{blog.category}</td>
                 <td>{blog.tags || 'No tags'}</td>

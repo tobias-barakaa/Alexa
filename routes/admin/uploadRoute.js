@@ -18,6 +18,6 @@ router.post('/link/:blogId',protect, (req, res, next) => {
 //   router.post('/link', upload.single('file'), (req, res, next) => {
 //     uploadFile(req, res).catch(next);
 //   });
-router.get('/download/:id', downloadFile);
+router.get('/download/:id',protect, downloadFile);
 
 module.exports = router;

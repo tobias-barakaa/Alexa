@@ -100,9 +100,9 @@ const Sidebar = () => {
           </li>
           <li className="manage-item">
             <Link
-              to="poetryandsong"
-              className={`sidebar-menu-link ${activeLink === '/poetryandsong' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/poetryandsong')}
+              to="completedorders"
+              className={`sidebar-menu-link ${activeLink === '/completedorders' ? 'active' : ''}`}
+              onClick={() => handleLinkClick('/completedorders')}
             >
               <i className="bi bi-building-check manage-icon"></i>
               <span className="manage-text">Completed Orders</span>

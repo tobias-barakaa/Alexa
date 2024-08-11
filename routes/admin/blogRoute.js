@@ -6,6 +6,7 @@ const { getAllBlogs, getBlogById } = require('../../controllers/admin/blogContro
 const router = express.Router();
 
 router.get('/admin/blogs', protect, verifyAdmin, getAllBlogs);
+
 router.get('/admin/blogs/:id', protect, verifyAdmin, getBlogById);
 
 

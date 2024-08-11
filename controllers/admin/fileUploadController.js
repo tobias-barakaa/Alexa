@@ -30,7 +30,7 @@ const uploadFile = async (req, res) => {
       return res.status(400).json({ error: 'Missing user ID or blog ID' });
     }
 
-    const insertResult = await knex('fields').insert({
+    const [insertResult] = await knex('fields').insert({
       cloudinary_url: result.secure_url,
       public_id: result.public_id,
       filename: req.file.originalname,
@@ -38,32 +38,61 @@ const uploadFile = async (req, res) => {
       blog_id
     }).returning('id');
 
-    if (!Array.isArray(insertResult) || insertResult.length === 0) {
-      throw new Error('Failed to insert file information into the database');
-    }
+    const insertedId = insertResult.id;
 
-    const [id] = insertResult;
+    const uploadedFile = await knex('fields')
+      .where('id', insertedId)
+      .first();
 
-    res.json({ message: 'File uploaded successfully', id, url: result.secure_url });
+    res.json({
+      message: 'File uploaded successfully',
+      file: {
+        id: uploadedFile.id,
+        cloudinary_url: uploadedFile.cloudinary_url,
+        public_id: uploadedFile.public_id,
+        filename: uploadedFile.filename,
+        user_id: uploadedFile.user_id,
+        blog_id: uploadedFile.blog_id,
+        created_at: uploadedFile.created_at,
+        updated_at: uploadedFile.updated_at
+      }
+    });
   } catch (error) {
     console.error('Upload error:', error);
     res.status(500).json({ error: 'Upload failed' });
   }
 };
 
+
 const downloadFile = async (req, res) => {
   try {
-    const file = await knex('fields').where({ id: req.params.id }).first();
+    // Fetch the file details from the database
+    const file = await knex('fields')
+      .where({ id: req.params.id })
+      .first();
+
     if (!file) {
       return res.status(404).json({ error: 'File not found' });
     }
 
+    // Ensure the user is logged in and matches the file's user_id
+    if (req.user?.userId !== file.user_id) {
+      return res.status(403).json({ error: 'You do not have permission to access this file' });
+    }
+
+    // Ensure the blog_id matches the one associated with the file (if necessary)
+    if (req.params.blogId && req.params.blogId !== String(file.blog_id)) {
+      return res.status(403).json({ error: 'Invalid blog ID for this file' });
+    }
+
+    // Redirect to the Cloudinary URL to download the file
     res.redirect(file.cloudinary_url);
   } catch (error) {
     console.error('Download error:', error);
     res.status(500).json({ error: 'Download failed' });
   }
 };
+
 
 module.exports = { uploadFile, downloadFile };
 

@@ -43,7 +43,7 @@ const FileDownload = () => {
       <input
         type="text"
         value={fileId}
-        onChange={(e) => setFileId(e.target.value)}
+        onChange={(e) => setFileId(e.target.value)}  // Ensure fileId is updated on change
         placeholder="Enter file ID"
       />
       <button onClick={handleDownload}>Download</button>
