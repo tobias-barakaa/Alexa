@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminLogin.css';
-import { useAdminLoginMutation } from '../../../../slices/admin/adminApiSlice';
+import '../styles/pages/AdminLogin.css';
+// import { useAdminLoginMutation } from '../../../../slices/admin/adminApiSlice';
+import { useAdminLoginMutation } from '../../../slices/admin/adminApiSlice'
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');

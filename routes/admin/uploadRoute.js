@@ -1,6 +1,8 @@
 const express = require('express');
 const multer = require('multer');
-const { protect } = require('../../middlewares/client/authMiddleware.js');
+// const { protect } = require('../../middlewares/client/authMiddleware.js');
+const { protect } = require("../../middlewares/client/authMiddleware.js");
+
 
 const { uploadFile, downloadFile } = require("../../controllers/admin/fileUploadController")
 // const { uploadFile, downloadFile } = require('../../controllers/fileUploadController'); // Adjust the path if needed

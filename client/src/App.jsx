@@ -75,6 +75,7 @@ import EditOrders from './client/src/pages/edit/EditOrders';
 // import EditOrders from './client/src/dashboard/'
 import RecentResumes from './client/src/pages/edit/RecentResumes'
 import CompletedOrders from './client/src/pages/manageorders/CompletedOrders';
+import AdminLogin from './admin/src/pages/AdminLogin';
 
 
 
@@ -161,10 +162,10 @@ const router = createBrowserRouter([
   //   path: "/writer",
   //   element: <WriterRegister />
   // },
-  // {
-  //   path: "/admin",
-  //   element: <AdminLogin />
-  // },
+  {
+    path: "/admin",
+    element: <AdminLogin />
+  },
   {
     path: "/admindashboard",
     element: <DashboardAdmin />,
