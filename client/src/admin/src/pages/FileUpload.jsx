@@ -22,7 +22,7 @@ const FileUpload = () => {
     console.log('Uploading file:', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/file/image/link', formData, 
+      const response = await axios.post('http://localhost:5000/api/file/image/link/foryou', formData, 
         {withCredentials: true},
         {
         headers: {
@@ -39,7 +39,7 @@ const FileUpload = () => {
 
   return (
     <div>
-  <h2>File Upload</h2>
+  <h2>File Uploaddd</h2>
   <form onSubmit={handleSubmit}>
     <input 
       type="file" 

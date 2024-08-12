@@ -1,46 +1,56 @@
 const knex = require("../../db/db.js");
-const axios = require("axios")
+const axios = require("axios");
+const cloudinary = require('../../utils/cloudinary.js')
 
 
-const downloadFile = async (req, res) => {
-  console.log(req.user, 'this is the user you have been waiting for');
-  try {
-    // Fetch the file details from the database
-    const file = await knex('fields')
-      .where({ id: req.params.id })
-      .first();
+// const downloadFile = async (req, res) => {
+//   try {
+//     const result = await cloudinary.uploader.upload(req.file.path);
+//     res.json(result);
+//   } catch (error) {
+    
+//   }
+// }
 
-    if (!file) {
-      return res.status(404).json({ error: 'File not found' });
-    }
+// const downloadFile = async (req, res) => {
+//   console.log(req.user, 'this is the user you have been waiting for');
+//   try {
+//     // Fetch the file details from the database
+//     const file = await knex('fields')
+//       .where({ id: req.params.id })
+//       .first();
 
-    // Ensure the user is logged in and matches the file's user_id
-    if (req.user?.userId !== file.user_id) {
-      return res.status(403).json({ error: 'You do not have permission to access this file' });
-    }
+//     if (!file) {
+//       return res.status(404).json({ error: 'File not found' });
+//     }
 
-    // Ensure the blog_id matches the one associated with the file (if necessary)
-    if (req.params.blogId && req.params.blogId !== String(file.blog_id)) {
-      return res.status(403).json({ error: 'Invalid blog ID for this file' });
-    }
+//     // Ensure the user is logged in and matches the file's user_id
+//     if (req.user?.userId !== file.user_id) {
+//       return res.status(403).json({ error: 'You do not have permission to access this file' });
+//     }
 
-    // Fetch the file from Cloudinary
-    const response = await axios.get(file.cloudinary_url, {
-      responseType: 'stream', // Stream the file content
-    });
+//     // Ensure the blog_id matches the one associated with the file (if necessary)
+//     if (req.params.blogId && req.params.blogId !== String(file.blog_id)) {
+//       return res.status(403).json({ error: 'Invalid blog ID for this file' });
+//     }
 
-    // Set the headers for file download
-    res.setHeader('Content-Disposition', `attachment; filename="${file.filename}"`);
-    res.setHeader('Content-Type', response.headers['content-type']);
+//     // Fetch the file from Cloudinary
+//     const response = await axios.get(file.cloudinary_url, {
+//       responseType: 'stream', // Stream the file content
+//     });
 
-    // Pipe the file stream directly to the response
-    response.data.pipe(res);
+//     // Set the headers for file download
+//     res.setHeader('Content-Disposition', `attachment; filename="${file.filename}"`);
+//     res.setHeader('Content-Type', response.headers['content-type']);
 
-  } catch (error) {
-    console.error('Download error:', error);
-    res.status(500).json({ error: 'Download failed' });
-  }
-};
+//     // Pipe the file stream directly to the response
+//     response.data.pipe(res);
+
+//   } catch (error) {
+//     console.error('Download error:', error);
+//     res.status(500).json({ error: 'Download failed' });
+//   }
+// };
 
 // const downloadFile = async (req, res) => {
 //   console.log(req.user, 'this is the user you have been waiting for');
@@ -113,4 +123,4 @@ const downloadFile = async (req, res) => {
 //     }
 //   };
 
-module.exports = { downloadFile };
+// module.exports = { downloadFile };

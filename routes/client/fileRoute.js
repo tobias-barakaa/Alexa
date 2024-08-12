@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // router.post('/download/:id', protect, downloadFile);
-router.get('/download/:id',protect, downloadFile);
+// router.get('/download/:id',protect, downloadFile);
 
 
 // router.post('/signin',protect,verifyAdmin, loginUser);

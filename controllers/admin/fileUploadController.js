@@ -1,67 +1,75 @@
 // controllers/fileUploadController.js
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('../../utils/cloudinary.js')
 const knex = require("../../db/db.js");
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET
+// });
 
 const uploadFile = async (req, res) => {
   try {
-    const allowedMimeTypes = ['application/pdf', 'application/zip', 'text/csv'];
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
-
-    if (!allowedMimeTypes.includes(req.file.mimetype)) {
-      return res.status(400).json({ error: 'Invalid file type' });
-    }
-
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      resource_type: 'raw'
-    });
-
-    const user_id = req.user?.userId;
-    const blog_id = req.params.blogId;
-
-    if (!user_id || !blog_id) {
-      return res.status(400).json({ error: 'Missing user ID or blog ID' });
-    }
-
-    const [insertResult] = await knex('fields').insert({
-      cloudinary_url: result.secure_url,
-      public_id: result.public_id,
-      filename: req.file.originalname,
-      user_id,
-      blog_id
-    }).returning('id');
-
-    const insertedId = insertResult.id;
-
-    const uploadedFile = await knex('fields')
-      .where('id', insertedId)
-      .first();
-
-    res.json({
-      message: 'File uploaded successfully',
-      file: {
-        id: uploadedFile.id,
-        cloudinary_url: uploadedFile.cloudinary_url,
-        public_id: uploadedFile.public_id,
-        filename: uploadedFile.filename,
-        user_id: uploadedFile.user_id,
-        blog_id: uploadedFile.blog_id,
-        created_at: uploadedFile.created_at,
-        updated_at: uploadedFile.updated_at
-      }
-    });
+    const result = await cloudinary.uploader.upload(req.file.path);
+    res.json(result);
   } catch (error) {
-    console.error('Upload error:', error);
-    res.status(500).json({ error: 'Upload failed' });
+    
   }
-};
+}
+// const uploadFile = async (req, res) => {
+//   try {
+//     const allowedMimeTypes = ['application/pdf', 'application/zip', 'text/csv'];
+//     if (!req.file) {
+//       return res.status(400).json({ error: 'No file uploaded' });
+//     }
+
+//     if (!allowedMimeTypes.includes(req.file.mimetype)) {
+//       return res.status(400).json({ error: 'Invalid file type' });
+//     }
+
+//     const result = await cloudinary.uploader.upload(req.file.path, {
+//       resource_type: 'raw'
+//     });
+
+//     const user_id = req.user?.userId;
+//     const blog_id = req.params.blogId;
+
+//     if (!user_id || !blog_id) {
+//       return res.status(400).json({ error: 'Missing user ID or blog ID' });
+//     }
+
+//     const [insertResult] = await knex('fields').insert({
+//       cloudinary_url: result.secure_url,
+//       public_id: result.public_id,
+//       filename: req.file.originalname,
+//       user_id,
+//       blog_id
+//     }).returning('id');
+
+//     const insertedId = insertResult.id;
+
+//     const uploadedFile = await knex('fields')
+//       .where('id', insertedId)
+//       .first();
+
+//     res.json({
+//       message: 'File uploaded successfully',
+//       file: {
+//         id: uploadedFile.id,
+//         cloudinary_url: uploadedFile.cloudinary_url,
+//         public_id: uploadedFile.public_id,
+//         filename: uploadedFile.filename,
+//         user_id: uploadedFile.user_id,
+//         blog_id: uploadedFile.blog_id,
+//         created_at: uploadedFile.created_at,
+//         updated_at: uploadedFile.updated_at
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Upload error:', error);
+//     res.status(500).json({ error: 'Upload failed' });
+//   }
+// };
 
 
 // const downloadFile = async (req, res) => {

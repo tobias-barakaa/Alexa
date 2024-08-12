@@ -29,7 +29,7 @@ const BlogUser = () => {
     formData.append('user_id', data.blog.user_id); 
 
     try {
-      const response = await axios.post(`http://localhost:5000/api/file/image/link/${blogId}`, formData, {
+      const response = await axios.post(`http://localhost:5000/api/file/image/link/foryou`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data'

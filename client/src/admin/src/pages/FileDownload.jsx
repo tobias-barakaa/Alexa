@@ -14,7 +14,7 @@ const FileDownload = () => {
     }
   
     try {
-      const response = await axios.get(`http://localhost:5000/api/file/image/download/${fileId}`, {
+      const response = await axios.get(`http://localhost:5000/api/file/image/downloa/${fileId}`, {
         withCredentials: true,
         responseType: 'blob' // Ensure response type is set to 'blob'
       });
