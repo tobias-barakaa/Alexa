@@ -1,35 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const FileDownload = () => {
-  const [fileId, setFileId] = useState('');
+  const [files, setFiles] = useState([]);
   const [message, setMessage] = useState('');
 
-  const handleDownload = async () => {
-    console.log("File ID entered:", fileId);  // Debugging: Check the fileId value
+  useEffect(() => {
+    // Fetch blogId from localStorage
+    const blogId = localStorage.getItem('blogId');
+    const recipientId = 4; // Replace with actual recipient ID
 
-    if (!fileId) {
-      setMessage('Please enter a file ID');
-      return;
+    if (blogId) {
+      fetchFiles(blogId, recipientId);
     }
+  }, []);
 
+  const fetchFiles = async (blogId, recipientId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/file/image/download/${fileId}`,
-        {
-            withCredentials: true
-        },
-        {
-        responseType: 'blob'
+      const response = await axios.get(`http://localhost:5000/api/files/${recipientId}/${blogId}`, {
+        withCredentials: true, // Ensure that your authentication cookies are sent
       });
+      setFiles(response.data);
+    } catch (error) {
+      setMessage('Failed to fetch files');
+      console.error('Fetch error:', error);
+    }
+  };
 
-      const fileName = response.headers['content-disposition']
-        ? response.headers['content-disposition'].split('filename=')[1]
-        : `file-${fileId}.pdf`;
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+  const handleDownload = async (fileUrl) => {
+    try {
+      // Trigger a download in the browser
       const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', fileName);
+      link.href = fileUrl;
+      link.setAttribute('download', 'file.pdf'); // Or determine a better name for the file
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -44,14 +47,16 @@ const FileDownload = () => {
   return (
     <div>
       <h2>File Download</h2>
-      <input
-        type="text"
-        value={fileId}
-        onChange={(e) => setFileId(e.target.value)}  // Ensure fileId is updated on change
-        placeholder="Enter file ID"
-      />
-      <button onClick={handleDownload}>Download</button>
       {message && <p>{message}</p>}
+      <ul>
+        {files.map(file => (
+          <li key={file.id}>
+            <button onClick={() => handleDownload(file.file_url)}>
+              Download {file.public_id}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

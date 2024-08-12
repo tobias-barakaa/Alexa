@@ -5,6 +5,7 @@ const upload = require('../../utils/multer.js')
 // const { protect } = require('../../middlewares/client/authMiddleware.js');
 const { protect } = require("../../middlewares/client/authMiddleware.js");
 const { uploadFile } = require('../../controllers/admin/fileUploadController.js');
+const { verifyAdmin } = require('../../middlewares/admin/adminMiddleware.js');
 
 
 // const { uploadFile } = require("../../controllers/admin/fileUploadController.js")
@@ -14,7 +15,7 @@ const router = express.Router();
 // const upload = multer({ dest: 'uploads/' });
 
 
-router.post('/link/foryou',protect, upload.single('file'), uploadFile);
+router.post('/link/foryou',protect,verifyAdmin, upload.single('file'), uploadFile);
 
   // router.post('/link/:blogId',protect, (req, res, next) => {
   //   next();

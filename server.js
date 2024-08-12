@@ -94,7 +94,7 @@ app.use('/api/file/image', uploadRoute);
 
 // client file Route Download
 
-app.use('/api/file/image', fileRoute);
+app.use('/api/file/url', fileRoute);
 
 
 

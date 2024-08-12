@@ -16,4 +16,4 @@ export const ARTICLE_URL = '/api/articlecreation'
 export const ADMIN_BLOG_URL = 'api/blog/admin/blogs';
 
 // Completed
-export const COMPLETED = 'api/blog/api/file/image/download'
+export const COMPLETED = '/api/file/url'

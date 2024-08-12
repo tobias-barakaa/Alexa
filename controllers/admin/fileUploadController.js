@@ -18,20 +18,23 @@ const knex = require("../../db/db.js");
 // }
 const uploadFile = async (req, res) => {
   try {
-    const { blog_id, user_id } = req.body; // Extract blog_id and recipient user_id from the request
+    const { blog_id, user_id } = req.body;
+    const uploaded_by = req.user?.userId;
+
+    if (!blog_id) {
+      return res.status(400).json({ error: 'blog_id is required' });
+    }
 
     const result = await cloudinary.uploader.upload(req.file.path);
-
     const fileUrl = result.secure_url;
     const publicId = result.public_id;
 
-    // Save the file details in the database
     const [fileRecord] = await knex('uploads').insert({
       file_url: fileUrl,
       public_id: publicId,
-      recipient_id: user_id, // The user the file is for
-      uploaded_by: req.user.id, // The admin uploading the file
-      blog_id: blog_id,
+      recipient_id: user_id,
+      uploaded_by: uploaded_by,
+      blog_id: blog_id, // Ensure blog_id is included here
     }).returning('*');
 
     res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
@@ -40,6 +43,11 @@ const uploadFile = async (req, res) => {
     res.status(500).json({ error: 'Failed to upload file' });
   }
 };
+
+
+
+module.exports = { uploadFile };
+
 
 // const uploadFile = async (req, res) => {
 //   try {
@@ -127,7 +135,6 @@ const uploadFile = async (req, res) => {
 // };
 
 
-module.exports = { uploadFile };
 
 // const uploadFile = async (req, res) => {
   

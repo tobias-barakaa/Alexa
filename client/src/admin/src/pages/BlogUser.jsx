@@ -14,6 +14,11 @@ const BlogUser = () => {
   const [message, setMessage] = useState('');
   const [fileUrl, setFileUrl] = useState('');
 
+  useEffect(() => {
+    if (blogId) {
+      localStorage.setItem('blogId', blogId);
+    }
+  }, [blogId]);
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -24,38 +29,61 @@ const BlogUser = () => {
       setMessage('Please select a file');
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('user_id', data.blog.user_id); 
-
+    formData.append('user_id', data.blog.user_id);
+    formData.append('blog_id', blogId);  // Ensure blog_id is passed here
+  
     try {
       const response = await axios.post(`http://localhost:5000/api/file/image/link/foryou`, formData, {
         withCredentials: true,
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       });
       setMessage(`File uploaded successfully. ID: ${response.data.id}`);
-      setFileUrl(response.data.fileUrl); // Save the file URL for download
+      setFileUrl(response.data.fileUrl);
     } catch (error) {
       setMessage('File upload failed');
       console.error('Upload error:', error);
     }
   };
+  
+
+  // const handleDownload = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:5000/api/file/url/${blogId}`, {
+  //       withCredentials: true, // Ensure that your authentication cookies are sent
+  //     });
+
+  //     const downloadUrl = response.data.fileUrl;
+
+  //     // Trigger a download in the browser
+  //     const link = document.createElement('a');
+  //     link.href = downloadUrl;
+  //     link.setAttribute('download', 'file.pdf'); // or any other name
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
+  //   } catch (error) {
+  //     console.error('Download error:', error);
+  //     alert('Failed to download the file.');
+  //   }
+  // };
 
   const handleDownload = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/file/url/${blogId}`, {
-        withCredentials: true, // Ensure that your authentication cookies are sent
+        withCredentials: true, // Include cookies for authentication
       });
-
+  
       const downloadUrl = response.data.fileUrl;
-
+  
       // Trigger a download in the browser
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.setAttribute('download', 'file.pdf'); // or any other name
+      link.setAttribute('download', 'file.pdf'); // Optional: set a default file name
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -128,7 +156,7 @@ const BlogUser = () => {
             </form>
             {fileUrl && (
               <button onClick={handleDownload} className="download-button">
-                Download File
+                Download Files
               </button>
             )}
             {message && <p>{message}</p>}
