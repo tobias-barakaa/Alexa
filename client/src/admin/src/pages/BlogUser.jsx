@@ -12,6 +12,7 @@ const BlogUser = () => {
   const [timer, setTimer] = useState(60); 
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
+  const [fileUrl, setFileUrl] = useState('');
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -36,9 +37,31 @@ const BlogUser = () => {
         }
       });
       setMessage(`File uploaded successfully. ID: ${response.data.id}`);
+      setFileUrl(response.data.fileUrl); // Save the file URL for download
     } catch (error) {
       setMessage('File upload failed');
       console.error('Upload error:', error);
+    }
+  };
+
+  const handleDownload = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/file/url/${blogId}`, {
+        withCredentials: true, // Ensure that your authentication cookies are sent
+      });
+
+      const downloadUrl = response.data.fileUrl;
+
+      // Trigger a download in the browser
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', 'file.pdf'); // or any other name
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Download error:', error);
+      alert('Failed to download the file.');
     }
   };
 
@@ -103,6 +126,11 @@ const BlogUser = () => {
               />
               <button type="submit" className='send-button' style={{ width: '100%', padding: '10px', marginTop: '10px' }}>Upload</button>
             </form>
+            {fileUrl && (
+              <button onClick={handleDownload} className="download-button">
+                Download File
+              </button>
+            )}
             {message && <p>{message}</p>}
           </div>
         </div>

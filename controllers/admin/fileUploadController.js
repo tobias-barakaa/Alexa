@@ -8,14 +8,39 @@ const knex = require("../../db/db.js");
 //   api_secret: process.env.CLOUDINARY_API_SECRET
 // });
 
+// const uploadFile = async (req, res) => {
+//   try {
+//     const result = await cloudinary.uploader.upload(req.file.path);
+//     res.json(result);
+//   } catch (error) {
+    
+//   }
+// }
 const uploadFile = async (req, res) => {
   try {
+    const { blog_id, user_id } = req.body; // Extract blog_id and recipient user_id from the request
+
     const result = await cloudinary.uploader.upload(req.file.path);
-    res.json(result);
+
+    const fileUrl = result.secure_url;
+    const publicId = result.public_id;
+
+    // Save the file details in the database
+    const [fileRecord] = await knex('uploads').insert({
+      file_url: fileUrl,
+      public_id: publicId,
+      recipient_id: user_id, // The user the file is for
+      uploaded_by: req.user.id, // The admin uploading the file
+      blog_id: blog_id,
+    }).returning('*');
+
+    res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
   } catch (error) {
-    
+    console.error('Upload error:', error);
+    res.status(500).json({ error: 'Failed to upload file' });
   }
-}
+};
+
 // const uploadFile = async (req, res) => {
 //   try {
 //     const allowedMimeTypes = ['application/pdf', 'application/zip', 'text/csv'];
