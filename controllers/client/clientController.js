@@ -215,7 +215,6 @@ const loginUser = async (req, res) => {
 
 
 
-
 const logoutUser = async (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,

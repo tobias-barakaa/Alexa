@@ -3,29 +3,70 @@ const axios = require("axios");
 const cloudinary = require('../../utils/cloudinary.js')
 
 // controllers/client/fileController.js
+// const downloadFile = async (req, res) => {
+//   const { userId } = req.params;
+
+//   try {
+//     const upload = await knex('uploads')
+//       .where('recipient_id', userId)
+//       .first();
+
+//     if (!upload) {
+//       return res.status(404).json({ error: 'No file found for this user' });
+//     }
+
+//     // Depending on how you want to handle the file, you could:
+//     // 1. Redirect the user to the file URL (for cloud-hosted files like on Cloudinary)
+//     res.redirect(upload.file_url);
+
+//     // 2. Or stream the file directly to the client (useful for private file storage)
+//     // e.g., if you download the file from a service and stream it to the client.
+//   } catch (error) {
+//     console.error('Error fetching the file:', error);
+//     res.status(500).json({ error: 'An error occurred while fetching the file' });
+//   }
+// };
+
+
 const downloadFile = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const upload = await knex('uploads')
+    const uploads = await knex('uploads')
       .where('recipient_id', userId)
-      .first();
+      .select('*')
+      .orderBy('created_at', 'desc');
 
-    if (!upload) {
-      return res.status(404).json({ error: 'No file found for this user' });
+    if (uploads.length === 0) {
+      return res.status(404).json({ error: 'No files found for this user' });
     }
 
-    // Depending on how you want to handle the file, you could:
-    // 1. Redirect the user to the file URL (for cloud-hosted files like on Cloudinary)
-    res.redirect(upload.file_url);
-
-    // 2. Or stream the file directly to the client (useful for private file storage)
-    // e.g., if you download the file from a service and stream it to the client.
+    res.json(uploads);
   } catch (error) {
-    console.error('Error fetching the file:', error);
-    res.status(500).json({ error: 'An error occurred while fetching the file' });
+    console.error('Error fetching the files:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the files' });
   }
 };
+
+const getFileId = async (req, res) => {
+    const { fileId } = req.params;
+    const userId = req.user.id; // Assuming you have authentication middleware
+  
+    try {
+      const file = await knex('file_uploads')
+        .where({ id: fileId, recipient_id: userId })
+        .first();
+  
+      if (!file) {
+        return res.status(404).json({ error: 'File not found or you don\'t have permission to access it' });
+      }
+  
+      res.redirect(file.file_url);
+    } catch (error) {
+      console.error('Error downloading the file:', error);
+      res.status(500).json({ error: 'An error occurred while downloading the file' });
+    }
+  }
 
 
 
@@ -44,7 +85,7 @@ const fetchAllUploads = async (req, res) => {
   }
 };
 
-module.exports = { downloadFile, fetchAllUploads };
+module.exports = { downloadFile, fetchAllUploads, getFileId };
 
 
 

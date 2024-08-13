@@ -1,37 +1,56 @@
+
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const FileDownload = () => {
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const userId = userInfo?.id;
+function FileDownloader() {
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleDownload = async () => {
-    if (!userId) {
-      console.error('Invalid user ID');
-      return;
-    }
+  useEffect(() => {
+    fetchFiles();
+  }, []);
 
+  const fetchFiles = async () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      const userId = userInfo.id;
     try {
+      setLoading(true);
       const response = await axios.get(`http://localhost:5000/api/file/url/${userId}`, {
-        responseType: 'blob',
         withCredentials: true
       });
-
-      // Assuming that your response includes a direct file URL or the file blob
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `file_${userId}.pdf`); // Adjust the filename as needed
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error('Download error:', error);
+      setFiles(response.data);
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to fetch files');
+      setLoading(false);
     }
   };
 
-  return (
-    <button onClick={handleDownload}>Download File</button>
-  );
-};
+  const handleDownload = (fileId) => {
+    window.open(`http://localhost:5000/api/file/url/${fileId}`, '_blank');
+  };
 
-export default FileDownload;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
+  return (
+    <div>
+      <h2>Your Files</h2>
+      {files.length === 0 ? (
+        <p>No files found.</p>
+      ) : (
+        <ul>
+          {files.map(file => (
+            <li key={file.id}>
+              Blog ID: {file.blog_id} - {file.file_url}
+              <button onClick={() => handleDownload(file.id)}>Download</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default FileDownloader;
