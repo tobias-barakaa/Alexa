@@ -6,7 +6,7 @@ const BlogForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     category_id: '',
-    tags_keywords: '',
+    tags: '',
     excerpt: '',
     number_of_words_id: '',
     timeframe_id: '',
@@ -90,8 +90,8 @@ const BlogForm = () => {
         <label>Tags/Keywords</label>
         <input
           type="text"
-          name="tags_keywords"
-          value={formData.tags_keywords}
+          name="tags"
+          value={formData.tags}
           onChange={handleChange}
         />
       </div>
