@@ -9,8 +9,9 @@ const router = express.Router();
 
 // router.post('/download/:id', protect, downloadFile);
 // router.get('/download/:id',protect, downloadFile);
-// router.get('/:blogId', protect, downloadFile);
+router.get('/:userId', protect, downloadFile);
 router.get('/uploads', protect, fetchAllUploads)
+
 
 
 

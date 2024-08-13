@@ -3,31 +3,30 @@ const axios = require("axios");
 const cloudinary = require('../../utils/cloudinary.js')
 
 // controllers/client/fileController.js
-
 const downloadFile = async (req, res) => {
+  const { userId } = req.params;
+
   try {
-    const { fileId, blogId } = req.params;  // Assuming fileId and blogId are passed as URL parameters
-    const userId = req.user?.userId; // Ensure the user is logged in
-
-    if (!fileId || !blogId || !userId) {
-      return res.status(400).json({ error: 'File ID, Blog ID, and User ID are required' });
-    }
-
-    // Fetch the file that matches the file_id, blog_id, and recipient_id
-    const fileRecord = await knex('uploads')
-      .where({ id: fileId, blog_id: blogId, recipient_id: userId })
+    const upload = await knex('uploads')
+      .where('recipient_id', userId)
       .first();
 
-    if (!fileRecord) {
-      return res.status(404).json({ error: 'File not found' });
+    if (!upload) {
+      return res.status(404).json({ error: 'No file found for this user' });
     }
 
-    res.json({ fileUrl: fileRecord.file_url });
+    // Depending on how you want to handle the file, you could:
+    // 1. Redirect the user to the file URL (for cloud-hosted files like on Cloudinary)
+    res.redirect(upload.file_url);
+
+    // 2. Or stream the file directly to the client (useful for private file storage)
+    // e.g., if you download the file from a service and stream it to the client.
   } catch (error) {
-    console.error('Download error:', error);
-    res.status(500).json({ error: 'Failed to download file' });
+    console.error('Error fetching the file:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the file' });
   }
 };
+
 
 
 const fetchAllUploads = async (req, res) => {

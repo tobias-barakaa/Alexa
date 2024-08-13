@@ -37,6 +37,8 @@ const getCategories = async (req, res) => {
 const createBlog = async (req, res) => {
   try {
     const userId = req.user.userId;
+    console.log(userId, 'User ID on blog creation');
+
     const {
       title,
       category = 'General', 
@@ -49,7 +51,6 @@ const createBlog = async (req, res) => {
       status = 'Pending' 
     } = req.body;
 
-    // Check if the user exists
     const user = await knex('users').where('id', userId).first();
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -69,20 +70,71 @@ const createBlog = async (req, res) => {
       status,
       created_at: new Date(),
       updated_at: new Date(),
-    }).returning('id'); // Ensure the ID of the new blog is returned
+    }).returning('id');
 
-    // Send response
+    console.log(newBlogId, 'Blog ID after creation');
+
     res.status(201).json({
       success: true,
       message: 'Blog created successfully. Please wait while we process your request.',
       blogId: newBlogId
     });
   } catch (err) {
-    // Handle errors and send response
     console.error("Error creating blog:", err.message);
     res.status(400).json({ error: "Failed to create blog. " + err.message });
   }
 };
+
+
+// const createBlog = async (req, res) => {
+//   try {
+//     const userId = req.user.userId;
+//     const {
+//       title,
+//       category = 'General', 
+//       tags = '',
+//       excerpt = '',
+//       word_count = 300, 
+//       duration = '1 day', 
+//       language = 'American English',
+//       cost = 0.00, 
+//       status = 'Pending' 
+//     } = req.body;
+
+//     // Check if the user exists
+//     const user = await knex('users').where('id', userId).first();
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Insert the new blog post into the database
+//     const [newBlogId] = await knex('blogs').insert({
+//       title,
+//       category,
+//       tags,
+//       excerpt,
+//       word_count,
+//       duration,
+//       user_id: userId,
+//       language,
+//       cost,
+//       status,
+//       created_at: new Date(),
+//       updated_at: new Date(),
+//     }).returning('id'); // Ensure the ID of the new blog is returned
+
+//     // Send response
+//     res.status(201).json({
+//       success: true,
+//       message: 'Blog created successfully. Please wait while we process your request.',
+//       blogId: newBlogId
+//     });
+//   } catch (err) {
+//     // Handle errors and send response
+//     console.error("Error creating blog:", err.message);
+//     res.status(400).json({ error: "Failed to create blog. " + err.message });
+//   }
+// };
 
 const getTwoLatestPostByUser = async(req, res) => {
   try {
