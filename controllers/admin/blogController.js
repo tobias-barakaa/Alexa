@@ -6,8 +6,8 @@ const getAllBlogs = async (req, res) => {
     console.log(userId, 'User ID in getAllBlogs');
 
     const user = await knex('users')
-      .join('roles', 'users.role_id', '=', 'roles.id')  
-      .select('users.*', 'roles.name as role')  
+      .join('roles', 'users.role_id', '=', 'roles.id')
+      .select('users.*', 'roles.name as role')
       .where('users.id', userId)
       .first();
       
@@ -21,6 +21,7 @@ const getAllBlogs = async (req, res) => {
       return res.status(403).json({ error: 'Access denied. Admins only.' });
     }
 
+    // Remove user filter for testing
     const blogs = await knex('blogs')
       .select(
         'id',
@@ -36,17 +37,65 @@ const getAllBlogs = async (req, res) => {
         'created_at',
         'updated_at',
         'published_at'
-      )
-      .where('user_id', userId);
+      );
 
     console.log(blogs, 'Blogs fetched in getAllBlogs');
 
     res.status(200).json({ blogs });
   } catch (error) {
-    console.error(error);
+    console.error('Error in getAllBlogs:', error);
     res.status(500).json({ error: 'Failed to fetch blogs.' });
   }
 };
+
+
+// const getAllBlogs = async (req, res) => {
+//   try {
+//     const userId = req.user.userId;
+//     console.log(userId, 'User ID in getAllBlogs');
+
+//     const user = await knex('users')
+//       .join('roles', 'users.role_id', '=', 'roles.id')  
+//       .select('users.*', 'roles.name as role')  
+//       .where('users.id', userId)
+//       .first();
+      
+//     console.log(user, 'User details in getAllBlogs');
+
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     if (user.role !== 'admin') {
+//       return res.status(403).json({ error: 'Access denied. Admins only.' });
+//     }
+
+//     const blogs = await knex('blogs')
+//       .select(
+//         'id',
+//         'title',
+//         'category',
+//         'tags',
+//         'excerpt',
+//         'word_count',
+//         'duration',
+//         'language',
+//         'cost',
+//         'status',
+//         'created_at',
+//         'updated_at',
+//         'published_at'
+//       )
+//       .where('user_id', userId);
+
+//     console.log(blogs, 'Blogs fetched in getAllBlogs');
+
+//     res.status(200).json({ blogs });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to fetch blogs.' });
+//   }
+// };
 
 
 // const getAllBlogs = async (req, res) => {
