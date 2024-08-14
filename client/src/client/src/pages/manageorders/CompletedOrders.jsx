@@ -1,5 +1,4 @@
-
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function FileDownloader() {
@@ -13,7 +12,8 @@ function FileDownloader() {
 
   const fetchFiles = async () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      const userId = userInfo.id;
+    const userId = userInfo.id;
+
     try {
       setLoading(true);
       const response = await axios.get(`http://localhost:5000/api/file/url/${userId}`, {

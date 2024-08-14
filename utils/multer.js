@@ -5,7 +5,7 @@ const storage = multer({
     storage: multer.diskStorage({}),
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname);
-        if (ext !== '.jpg' && ext !== '.pdf' && ext !== '.png') {
+        if (ext !== '.csv' && ext !== '.pdf') {
             cb(new Error('File type is not supported'), false);
             return;
         }

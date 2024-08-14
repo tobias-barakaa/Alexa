@@ -47,26 +47,46 @@ const downloadFile = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching the files' });
   }
 };
-
 const getFileId = async (req, res) => {
-    const { fileId } = req.params;
-    const userId = req.user.id; // Assuming you have authentication middleware
-  
-    try {
-      const file = await knex('file_uploads')
-        .where({ id: fileId, recipient_id: userId })
-        .first();
-  
-      if (!file) {
-        return res.status(404).json({ error: 'File not found or you don\'t have permission to access it' });
-      }
-  
-      res.redirect(file.file_url);
-    } catch (error) {
-      console.error('Error downloading the file:', error);
-      res.status(500).json({ error: 'An error occurred while downloading the file' });
+  const { fileId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const file = await knex('uploads')  // Assuming 'uploads' is the correct table
+      .where({ id: fileId, recipient_id: userId })
+      .first();
+
+    if (!file) {
+      return res.status(404).json({ error: 'File not found or you don\'t have permission to access it' });
     }
+
+    res.redirect(file.file_url);
+  } catch (error) {
+    console.error('Error downloading the file:', error);
+    res.status(500).json({ error: 'An error occurred while downloading the file' });
   }
+};
+
+
+// const getFileId = async (req, res) => {
+//     const { fileId } = req.params;
+//     const userId = req.user.id; // Assuming you have authentication middleware
+  
+//     try {
+//       const file = await knex('file_uploads')
+//         .where({ id: fileId, recipient_id: userId })
+//         .first();
+  
+//       if (!file) {
+//         return res.status(404).json({ error: 'File not found or you don\'t have permission to access it' });
+//       }
+  
+//       res.redirect(file.file_url);
+//     } catch (error) {
+//       console.error('Error downloading the file:', error);
+//       res.status(500).json({ error: 'An error occurred while downloading the file' });
+//     }
+//   }
 
 
 

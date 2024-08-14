@@ -44,9 +44,33 @@ const uploadFile = async (req, res) => {
   }
 };
 
+const getUploadedFiles = async (req, res) => {
+  try {
+    const recipient_id = req.user?.userId; // Ensure the user is logged in
+
+    if (!recipient_id) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    // Fetch all files for the recipient
+    const files = await knex('uploads')
+      .where({ recipient_id });
+
+    if (files.length === 0) {
+      return res.status(404).json({ error: 'No files found' });
+    }
+
+    res.json(files);
+  } catch (error) {
+    console.error('Error fetching uploaded files:', error);
+    res.status(500).json({ error: 'Failed to fetch files' });
+  }
+};
 
 
-module.exports = { uploadFile };
+
+
+module.exports = { uploadFile, getUploadedFiles };
 
 
 // const uploadFile = async (req, res) => {
