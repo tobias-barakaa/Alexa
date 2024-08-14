@@ -26,6 +26,7 @@ const uploadFile = async (req, res) => {
     }
 
     const result = await cloudinary.uploader.upload(req.file.path);
+    console.log(result)
     const fileUrl = result.secure_url;
     const publicId = result.public_id;
 
