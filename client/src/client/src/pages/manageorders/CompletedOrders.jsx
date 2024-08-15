@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import "../../styles/pages/manageorders/FileDownloader.css";
 
-const FileDownloader = () => {
+const CompletedOrders = () => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -66,4 +66,4 @@ const FileDownloader = () => {
   );
 };
 
-export default FileDownloader;
+export default CompletedOrders;
