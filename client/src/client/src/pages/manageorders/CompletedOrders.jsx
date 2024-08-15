@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import fileDownload from 'js-file-download';
 import "../../styles/pages/manageorders/FileDownloader.css";
 
 const FileDownloader = () => {
