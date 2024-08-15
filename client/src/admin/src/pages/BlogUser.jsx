@@ -14,11 +14,6 @@ const BlogUser = () => {
   const [message, setMessage] = useState('');
   const [fileUrl, setFileUrl] = useState('');
 
-  useEffect(() => {
-    if (blogId) {
-      localStorage.setItem('blogId', blogId);
-    }
-  }, [blogId]);
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };

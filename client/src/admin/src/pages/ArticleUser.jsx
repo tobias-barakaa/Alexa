@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import "../styles/pages/ArticleUser.css";
 
-const UserDetail = ({ id }) => {
+const UserDetail = () => {
+    const { id: article_id } = useParams();
+    console.log(article_id, 'yes you');
+
   const [article, setArticle] = useState(null);
   const [status, setStatus] = useState('');
   const [file, setFile] = useState(null);
@@ -9,7 +14,9 @@ const UserDetail = ({ id }) => {
   React.useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/admin/article/retrieve/${id}`);
+        const response = await axios.get(`http://localhost:5000/api/admin/article/retrieve/${article_id}`,
+            { withCredentials: true }
+        );
         setArticle(response.data.data);
         setStatus(response.data.data.status);
       } catch (error) {
@@ -18,7 +25,7 @@ const UserDetail = ({ id }) => {
     };
 
     fetchArticle();
-  }, [id]);
+  }, [article_id]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/pages/ArticleDetails.css';
@@ -32,7 +32,7 @@ const ArticleDetails = () => {
   }, []);
 
   const handleArticleClick = (id) => {
-    navigate('/dashboard/' + id);
+    navigate('/admindashboard/articleuser/' + id);
   };
 
   if (loading) return <div>Loading...</div>;

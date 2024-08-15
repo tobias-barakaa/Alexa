@@ -79,6 +79,7 @@ import AdminLogin from './admin/src/pages/AdminLogin';
 import CompletedOrders from './client/src/pages/manageorders/completed/CompletedOrders';
 import BlogWritingComplete from './client/src/pages/manageorders/completed/BlogWritingComplete';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
+import UserDetail from './admin/src/pages/ArticleUser';
 
 
 
@@ -197,6 +198,10 @@ const router = createBrowserRouter([
       {
         path: "articles",
         element: <ArticleDetails />
+      },
+      {
+        path: "articleuser/:id",
+        element: <UserDetail />
       },
       
       
