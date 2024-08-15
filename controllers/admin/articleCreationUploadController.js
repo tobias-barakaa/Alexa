@@ -1,27 +1,27 @@
-// controllers/fileUploadController.js
-const cloudinary = require('../../utils/cloudinary.js')
+// controllers/articleUploadController.js
+const cloudinary = require('../../utils/cloudinary.js');
 const knex = require("../../db/db.js");
 
-const uploadFile = async (req, res) => {
+const uploadArticleFile = async (req, res) => {
   try {
-    const { blog_id, user_id } = req.body;
+    const { article_id, user_id } = req.body;
     const uploaded_by = req.user?.userId;
 
-    if (!blog_id) {
-      return res.status(400).json({ error: 'blog_id is required' });
+    if (!article_id) {
+      return res.status(400).json({ error: 'article_id is required' });
     }
 
     const result = await cloudinary.uploader.upload(req.file.path);
-    console.log(result)
+    console.log(result);
     const fileUrl = result.secure_url;
     const publicId = result.public_id;
 
-    const [fileRecord] = await knex('uploads').insert({
+    const [fileRecord] = await knex('upload_articles').insert({
       file_url: fileUrl,
       public_id: publicId,
       recipient_id: user_id,
       uploaded_by: uploaded_by,
-      blog_id: blog_id, 
+      article_id: article_id, // Ensure article_id is included here
     }).returning('*');
 
     res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
@@ -31,31 +31,52 @@ const uploadFile = async (req, res) => {
   }
 };
 
-const getUploadedFiles = async (req, res) => {
-  try {
-    const recipient_id = req.user?.userId; // Ensure the user is logged in
-
-    if (!recipient_id) {
-      return res.status(400).json({ error: 'User ID is required' });
+const getUploadedArticleFiles = async (req, res) => {
+    try {
+      const recipient_id = req.user?.userId;
+      const userRole = req.user?.role;
+  
+      if (!recipient_id) {
+        return res.status(400).json({
+          status: 400,
+          error: 'Bad Request',
+          message: 'User ID is required. Please ensure you are logged in and try again.',
+          type: 'Client Error'
+        });
+      }
+  
+      let query = knex('upload_articles').where({ recipient_id });
+  
+      if (userRole === 'admin') {
+        query = query.select('id', 'file_url', 'public_id', 'recipient_id', 'uploaded_by', 'article_id', 'created_at');
+      } else {
+        query = query.select('id', 'file_url', 'public_id', 'recipient_id', 'article_id', 'created_at');
+      }
+  
+      const files = await query;
+  
+      if (files.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Not Found',
+          message: 'No files found for the specified user.',
+          type: 'Client Error'
+        });
+      }
+  
+      res.json(files);
+    } catch (error) {
+      console.error('Error fetching uploaded files:', error);
+  
+      res.status(500).json({
+        status: 500,
+        error: 'Internal Server Error',
+        message: 'An unexpected error occurred while fetching the uploaded files. Please try again later.',
+        type: 'Server Error'
+      });
     }
+  };
+  
+  
 
-    // Fetch all files for the recipient
-    const files = await knex('uploads')
-      .where({ recipient_id });
-
-    if (files.length === 0) {
-      return res.status(404).json({ error: 'No files found' });
-    }
-
-    res.json(files);
-  } catch (error) {
-    console.error('Error fetching uploaded files:', error);
-    res.status(500).json({ error: 'Failed to fetch files' });
-  }
-};
-
-
-
-
-module.exports = { uploadFile, getUploadedFiles };
-
+module.exports = { uploadArticleFile, getUploadedArticleFiles };

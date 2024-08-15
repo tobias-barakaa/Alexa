@@ -21,6 +21,7 @@ const blogAdminRoute = require('./routes/admin/blogRoute');
 //upload
 const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
+const articleCreationRoute = require('./routes/admin/articleCreation')
 
 
 
@@ -95,6 +96,14 @@ app.use('/api/file/image', uploadRoute);
 // client file Route Download
 
 app.use('/api/file/url', fileRoute);
+
+// admin Article Creation
+app.use('/api/admin/article', articleCreationRoute)
+
+
+// admin file Route Download
+
+app.use('/api/article', fileRoute);
 
 
 
