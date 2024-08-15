@@ -1,3 +1,5 @@
+const knex = require('../../db/db.js');
+
 const getAllArticles = async (req, res) => {
     try {
       // Check if the user is authenticated
@@ -15,7 +17,7 @@ const getAllArticles = async (req, res) => {
       }
   
       // Fetch all articles
-      const articles = await knex('articles').select('*');
+      const articles = await knex('articlecreation').select('*');
   
       if (articles.length === 0) {
         return res.status(404).json({
