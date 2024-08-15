@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import '../styles/components/Sidenav.css'; // Import CSS for styling
 import { Link } from 'react-router-dom';
 
@@ -11,25 +11,25 @@ const Sidenav = () => {
 
   return (
     <div className="side">
-        <h2>Admin Panel</h2>
+      <h2>Admin Panel</h2>
       <ul className="side-list">
-        <li>User</li>
-        <li>Product</li>
-        <li>Reports</li>
-        <li onClick={toggleOrders} className={`dropdown-toggle ${isOrdersOpen ? 'open' : ''}`}>
+        <li><Link to="/admindashboard/users">User</Link></li>
+        <li><Link to="/admindashboard/products">Product</Link></li>
+        <li><Link to="/admindashboard/reports">Reports</Link></li>
+        <li onClick={toggleOrders} className={`dropdown-toggle ${isOrdersOpen ? 'open' : 'open'}`}>
           Orders
         </li>
         {isOrdersOpen && (
           <ul className="dropdown-list">
-            <Link to="/admindashboard/blog">Blog</Link>
-            <li>Articles</li>
+            <li><Link to="/admindashboard/blog">Blog</Link></li>
+            <li><Link to="/admindashboard/articles">Articles</Link></li>
             <li>Resume</li>
-            <li>Email copywriting</li>
+            <li>Email Copywriting</li>
           </ul>
         )}
-        <li>Analytics</li>
-        <li>Settings</li>
-        <li>Profile</li>
+        <li><Link to="/admindashboard/analytics">Analytics</Link></li>
+        <li><Link to="/admindashboard/settings">Settings</Link></li>
+        <li><Link to="/admindashboard/profile">Profile</Link></li>
       </ul>
     </div>
   );
