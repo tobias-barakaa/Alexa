@@ -74,8 +74,9 @@ import EditOrders from './client/src/pages/edit/EditOrders';
 // import Main from './client/src/pages/Main';
 // import EditOrders from './client/src/dashboard/'
 import RecentResumes from './client/src/pages/edit/RecentResumes'
-import CompletedOrders from './client/src/pages/manageorders/CompletedOrders';
+// import CompletedOrders from './client/src/pages/manageorders/CompletedOrders';
 import AdminLogin from './admin/src/pages/AdminLogin';
+import CompletedOrders from './client/src/pages/manageorders/completed/CompletedOrders';
 
 
 
