@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/pages/ArticleDetails.css';
 
 const ArticleDetails = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -28,6 +30,10 @@ const ArticleDetails = () => {
 
     fetchArticles();
   }, []);
+
+  const handleArticleClick = (id) => {
+    navigate('/dashboard/' + id);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -57,7 +63,11 @@ const ArticleDetails = () => {
         </thead>
         <tbody>
           {articles.map(article => (
-            <tr key={article.id}>
+            <tr
+              key={article.id}
+              className="article-row"
+              onClick={() => handleArticleClick(article.id)}
+            >
               <td>{article.id}</td>
               <td>{article.title.substring(0, 2)}</td>
               <td>{article.description.substring(0, 2)}</td>
