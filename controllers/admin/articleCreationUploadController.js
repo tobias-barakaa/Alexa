@@ -21,7 +21,7 @@ const uploadFile = async (req, res) => {
       public_id: publicId,
       recipient_id: user_id,
       uploaded_by: uploaded_by,
-      blog_id: blog_id, // Ensure blog_id is included here
+      blog_id: blog_id, 
     }).returning('*');
 
     res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });

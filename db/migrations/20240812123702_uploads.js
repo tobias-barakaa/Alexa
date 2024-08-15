@@ -15,5 +15,5 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
-    return knex.schema.dropTable('file_uploads');
+    return knex.schema.dropTable('uploads');
   };

@@ -228,20 +228,6 @@ const logoutUser = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const getAllUsers = async (req, res) => {
   try {
     const users = await knex("users").select(
