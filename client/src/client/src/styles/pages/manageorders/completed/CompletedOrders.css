@@ -25,24 +25,26 @@
   
   .box {
     width: 100%;
-    padding: 15px;
+    padding: 16.5px; /* Increased by 10% from 15px */
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #76bdff; /* Your blue color */
     border-radius: 5px;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .box:hover {
-    border-color: #76bdff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
   
   .box-icon {
     font-size: 24px;
     margin-right: 15px;
-    color: #76bdff;
+    color: #76bdff; /* Your blue color */
   }
   
   .box-title {

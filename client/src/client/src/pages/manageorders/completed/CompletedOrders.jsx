@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../../styles/pages/manageorders/completed/CompletedOrders.css";
+import { Link } from 'react-router-dom';
 
 const CompletedOrders = () => {
   const handleBoxClick = (type) => {
@@ -12,10 +13,10 @@ const CompletedOrders = () => {
       <h2 className="heading">Choose Your Content Type</h2>
       <p className="instruction">Click on an option to select your desired service</p>
       <div className="container">
-        <div className="box" onClick={() => handleBoxClick('Blog Writing')}>
+        <Link className="box" to="completedblog">
           <div className="box-icon">📝</div>
           <div className="box-title">Blog Writing</div>
-        </div>
+        </Link>
         <div className="box" onClick={() => handleBoxClick('Article Creation')}>
           <div className="box-icon">📰</div>
           <div className="box-title">Article Creation</div>

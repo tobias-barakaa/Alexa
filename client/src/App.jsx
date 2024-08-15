@@ -77,6 +77,7 @@ import RecentResumes from './client/src/pages/edit/RecentResumes'
 // import CompletedOrders from './client/src/pages/manageorders/CompletedOrders';
 import AdminLogin from './admin/src/pages/AdminLogin';
 import CompletedOrders from './client/src/pages/manageorders/completed/CompletedOrders';
+import BlogWritingComplete from './client/src/pages/manageorders/completed/BlogWritingComplete';
 
 
 
@@ -156,6 +157,10 @@ const router = createBrowserRouter([
       {
         path: "editresume/:resumeId",
         element: <EditResume />
+      },
+      {
+        path: "completedorders/completedblog",
+        element: <BlogWritingComplete />
       }
     ]
   },
