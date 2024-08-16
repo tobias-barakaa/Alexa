@@ -45,29 +45,7 @@ const BlogUser = () => {
     }
   };
   
-
-  // const handleDownload = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:5000/api/file/url/${blogId}`, {
-  //       withCredentials: true, // Ensure that your authentication cookies are sent
-  //     });
-
-  //     const downloadUrl = response.data.fileUrl;
-
-  //     // Trigger a download in the browser
-  //     const link = document.createElement('a');
-  //     link.href = downloadUrl;
-  //     link.setAttribute('download', 'file.pdf'); // or any other name
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     link.remove();
-  //   } catch (error) {
-  //     console.error('Download error:', error);
-  //     alert('Failed to download the file.');
-  //   }
-  // };
-
-  const handleDownload = async () => {
+ const handleDownload = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/file/url/${blogId}`, {
         withCredentials: true, // Include cookies for authentication

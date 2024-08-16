@@ -22,7 +22,7 @@ const blogAdminRoute = require('./routes/admin/blogRoute');
 const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
 const articleCreationRoute = require('./routes/admin/articleCreation')
-
+const articleCreationUploadRoute = require('./routes/admin/articleCreationUploadFile')
 
 
 
@@ -91,6 +91,7 @@ app.use('/api/resume', resumeRoute);
 // Email Creation
 app.use('/api/emailcopywriting', emailCopywritingRoute);
 
+// Admin file Route
 app.use('/api/file/image', uploadRoute);
 
 // client file Route Download
@@ -104,6 +105,9 @@ app.use('/api/admin/article', articleCreationRoute)
 // admin file Route Download
 
 app.use('/api/article', fileRoute);
+
+// admin Article Creation Upload
+app.use('/api/admin/article', articleCreationUploadRoute)
 
 
 
