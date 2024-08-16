@@ -80,6 +80,7 @@ import CompletedOrders from './client/src/pages/manageorders/completed/Completed
 import BlogWritingComplete from './client/src/pages/manageorders/completed/BlogWritingComplete';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
 import UserDetail from './admin/src/pages/ArticleUser';
+import ArticlePage from './client/src/pages/manageorders/completed/ArticlePage';
 
 
 
@@ -163,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: "completedorders/completedblog",
         element: <BlogWritingComplete />
+      },
+      {
+        path: "completedorders/completedarticle",
+        element: <ArticlePage />
       }
     ]
   },

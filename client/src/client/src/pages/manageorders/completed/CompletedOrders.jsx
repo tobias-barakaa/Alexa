@@ -16,6 +16,11 @@ const CompletedOrders = () => {
           <div className="box-icon">📝</div>
           <div className="box-title">Blog Writing</div>
         </Link>
+        <Link className="box" to="completedarticle">
+          <div className="box-icon">📰</div>
+          <div className="box-title">Article Creation</div>
+        </Link>
+
         <div className="box" onClick={() => handleBoxClick('Article Creation')}>
           <div className="box-icon">📰</div>
           <div className="box-title">Article Creation</div>
