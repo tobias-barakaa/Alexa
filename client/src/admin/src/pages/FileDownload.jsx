@@ -41,7 +41,7 @@ const FileDownload = () => {
 
   return (
     <div>
-      <h2>File Download</h2>
+      <h2>File Downloadd</h2>
       <input
         type="text"
         value={fileId}

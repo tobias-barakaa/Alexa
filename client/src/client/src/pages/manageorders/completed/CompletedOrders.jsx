@@ -1,4 +1,3 @@
-import React from 'react';
 import "../../../styles/pages/manageorders/completed/CompletedOrders.css";
 import { Link } from 'react-router-dom';
 

@@ -8,6 +8,7 @@ const UserDetail = () => {
   const [article, setArticle] = useState(null);
   const [status, setStatus] = useState('');
   const [file, setFile] = useState(null);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -35,9 +36,31 @@ const UserDetail = () => {
     console.log('Updating status to:', status);
   };
 
-  const handleSend = () => {
-    console.log('Sending file:', file);
+  const handleSend = async () => {
+    if (!file) {
+      setMessage('Please select a file.');
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('article_id', article_id);
+    formData.append('user_id', article.user_id); // Assuming article.user_id is the recipient_id
+  
+    try {
+      const response = await axios.post(`http://localhost:5000/api/admin/article/upload`, formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setMessage(`File uploaded successfully. ID: ${response.data.id}`);
+    } catch (error) {
+      setMessage('File upload failed.');
+      console.error('Upload error:', error);
+    }
   };
+  
 
   if (!article) return <div>Loading...</div>;
 
@@ -74,6 +97,7 @@ const UserDetail = () => {
           <label>Upload File:</label>
           <input type='file' onChange={handleFileChange} />
           <button onClick={handleSend} className='send-button'>Send</button>
+          {message && <p>{message}</p>}
         </div>
       </div>
     </div>

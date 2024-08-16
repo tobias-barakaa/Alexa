@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 router.post('/upload',protect,verifyAdmin, upload.single('file'), uploadArticleFile);
-router.get('/article/retrieve', protect, getUploadedArticleFiles);
+router.get('/upload/retrieve', protect, getUploadedArticleFiles);
 
 
 module.exports = router;
