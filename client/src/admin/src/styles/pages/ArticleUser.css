@@ -1,84 +1,69 @@
+/* ArticleUser.css */
+
 .article-details-container {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Space between the two sections */
     padding: 20px;
-    background-color: #f0f2f5;
+    background-color: #f4f4f4; /* Light background color for the entire container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
   }
   
   .article-details-left {
-    flex: 2;
-    background-color: #ffffff;
+    flex: 2; /* Take up more space for article details */
+    background-color: #ffffff; /* White background for details */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
   }
   
   .article-details-right {
-    flex: 1;
-    background-color: #f8f9fa;
+    flex: 1; /* Take up less space for actions */
+    background-color: #ffffff; /* White background for actions */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .article-details-right div {
-    margin-bottom: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
   }
   
   h2 {
-    color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space below the heading */
+    color: #333; /* Darker color for headings */
   }
   
-  p {
-    margin-bottom: 10px;
-    line-height: 1.5;
-    color: #555;
+  .form-group {
+    margin-bottom: 20px; /* Space below each form group */
   }
   
   label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-    color: #444;
+    font-weight: bold; /* Bold labels */
+    display: block; /* Block display for labels */
+    margin-bottom: 5px; /* Space below labels */
   }
   
   select, input[type="file"], button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    font-size: 14px;
-    color: #333;
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside inputs */
+    margin-bottom: 10px; /* Space below inputs */
+    border-radius: 4px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border color */
   }
   
   button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s; /* Transition for hover effect */
   }
   
   button:hover {
-    background-color: #0056b3;
-  }
-  
-  .update-button {
-    background-color: #28a745;
-  }
-  
-  .update-button:hover {
-    background-color: #218838;
+    background-color: #0056b3; /* Darker shade on hover */
   }
   
   .send-button {
-    background-color: #17a2b8;
+    background-color: #5da8ff; /* Send button color */
   }
   
   .send-button:hover {
-    background-color: #117a8b;
+    background-color: #3d8adf; /* Darker shade on hover */
   }
-  

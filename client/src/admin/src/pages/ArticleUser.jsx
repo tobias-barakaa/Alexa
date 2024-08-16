@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import "../styles/pages/ArticleUser.css";
+import '../styles/pages/ArticleUser.css';
 
 const UserDetail = () => {
   const { id: article_id } = useParams();
@@ -42,8 +42,8 @@ const UserDetail = () => {
   if (!article) return <div>Loading...</div>;
 
   return (
-    <div className="article-details-container">
-      <div className="article-details-left">
+    <div className='article-details-container'>
+      <div className='article-details-left'>
         <h2>Article Details</h2>
         <p><strong>Title:</strong> {article.title}</p>
         <p><strong>Description:</strong> {article.description}</p>
@@ -59,21 +59,21 @@ const UserDetail = () => {
         <p><strong>Created At:</strong> {new Date(article.created_at).toLocaleString()}</p>
         <p><strong>Updated At:</strong> {new Date(article.updated_at).toLocaleString()}</p>
       </div>
-      <div className="article-details-right">
+      <div className='article-details-right'>
         <h2>Actions</h2>
-        <div>
-          <label>Status</label>
+        <div className='form-group'>
+          <label htmlFor='status'>Status:</label>
           <select value={status} onChange={handleStatusChange}>
-            <option value="Pending">Pending</option>
-            <option value="Processing">Processing</option>
-            <option value="Completed">Completed</option>
+            <option value='Pending'>Pending</option>
+            <option value='Processing'>Processing</option>
+            <option value='Completed'>Completed</option>
           </select>
-          <button onClick={handleUpdate} className="update-button">Update</button>
+          <button onClick={handleUpdate}>Update</button>
         </div>
-        <div>
-          <p>Time remaining: 0 seconds</p>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleSend} className="send-button">Send</button>
+        <div className='form-group'>
+          <label>Upload File:</label>
+          <input type='file' onChange={handleFileChange} />
+          <button onClick={handleSend} className='send-button'>Send</button>
         </div>
       </div>
     </div>
