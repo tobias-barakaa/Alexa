@@ -20,11 +20,11 @@ const CompletedOrders = () => {
           <div className="box-icon">📰</div>
           <div className="box-title">Article Creation</div>
         </Link>
-
-      <div className="box" onClick={() => handleBoxClick('CV Writing')}>
+        
+      <Link className="box" to="completedresumes">
           <div className="box-icon">📄</div>
           <div className="box-title">CV Writing</div>
-        </div>
+        </Link>
         <div className="box" onClick={() => handleBoxClick('Email Copywriting')}>
           <div className="box-icon">✉️</div>
           <div className="box-title">Email Copywriting</div>

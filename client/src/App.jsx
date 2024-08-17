@@ -83,6 +83,7 @@ import UserDetail from './admin/src/pages/ArticleUser';
 import ArticlePage from './client/src/pages/manageorders/completed/ArticlePage';
 import ResumeCVWritingDetails from './admin/src/pages/ResumeCVWritingDetails';
 import ResumeCVWritingUser from './admin/src/pages/ResumeCVWritingUser';
+import CvWriting from './client/src/pages/manageorders/completed/CvWriting';
 
 
 
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
       {
         path: "completedorders/completedarticle",
         element: <ArticlePage />
+      },
+      {
+        path: "completedorders/completedresumes",
+        element: <CvWriting />
       }
     ]
   },
