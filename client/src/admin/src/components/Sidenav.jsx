@@ -23,7 +23,7 @@ const Sidenav = () => {
           <ul className="dropdown-list">
             <li><Link to="/admindashboard/blog">Blog</Link></li>
             <li><Link to="/admindashboard/articles">Articles</Link></li>
-            <li>Resume</li>
+            <li><Link to="/admindashboard/resumes">Resume</Link></li>
             <li>Email Copywriting</li>
           </ul>
         )}

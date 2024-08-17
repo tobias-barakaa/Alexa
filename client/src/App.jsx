@@ -81,6 +81,7 @@ import BlogWritingComplete from './client/src/pages/manageorders/completed/BlogW
 import ArticleDetails from './admin/src/pages/ArticleDetails';
 import UserDetail from './admin/src/pages/ArticleUser';
 import ArticlePage from './client/src/pages/manageorders/completed/ArticlePage';
+import ResumeCVWritingDetails from './admin/src/pages/ResumeCVWritingDetails';
 
 
 
@@ -207,6 +208,10 @@ const router = createBrowserRouter([
       {
         path: "articleuser/:id",
         element: <UserDetail />
+      },
+      {
+        path: "resumes",
+        element: <ResumeCVWritingDetails />
       },
       
       
