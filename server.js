@@ -24,6 +24,10 @@ const fileRoute = require('./routes/client/fileRoute');
 const articleCreationRoute = require('./routes/admin/articleCreation')
 const articleCreationUploadRoute = require('./routes/admin/articleCreationUploadFile')
 
+// Resume CV Writing
+const cvResumeWritingRoute = require('./routes/admin/cvResumeWritingRoute');
+const cvResumeWritingUploadRoute = require('./routes/admin/resumeCvWritingUploadRoute');
+
 
 
 
@@ -108,6 +112,13 @@ app.use('/api/article', fileRoute);
 
 // admin Article Creation Upload
 app.use('/api/admin/article', articleCreationUploadRoute)
+
+// admin Resume CV Wrting 
+app.use('/api/admin/cvwriting', cvResumeWritingRoute);
+
+// admin Resume CV writing upload
+app.use('/api/admin/resume', cvResumeWritingUploadRoute)
+
 
 
 

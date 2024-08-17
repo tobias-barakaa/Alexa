@@ -89,8 +89,10 @@ const signupUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
-  console.log(req.cookies);
+  // console.log(req.cookies);
   const { email, password } = req.body;
+  console.log(email, password)
+  
   
 
   try {
@@ -119,7 +121,7 @@ const loginUser = async (req, res) => {
       const isValidUser = user && (await comparePassword(req.body.password, user.password))
 
     if (!isValidUser) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.status(401).json({ message: "Invalid email orrrr password" });
     }
 
     const isPasswordValid = await comparePassword(req.body.password, user.password)
