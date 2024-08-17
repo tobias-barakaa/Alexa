@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { saveAs } from 'file-saver';
-
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import "../../../styles/pages/manageorders/completed/CVWriting.css"; // Ensure this path is correct
 
 const CVWriting = () => {
   const { id: resumeId } = useParams(); // Assuming resumeId is in the URL
-  const [resumeData, setResumeData] = useState(null);
+  const [resumeData, setResumeData] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -24,80 +22,70 @@ const CVWriting = () => {
     fetchResumeData();
   }, [resumeId]);
 
-  const handleDownload = async (fileUrl) => {
-    try {
-      const response = await axios.get(fileUrl, {
-        responseType: 'blob',
-      });
-  
-      const blob = new Blob([response.data], { type: response.headers['content-type'] });
-      saveAs(blob, `Resume-${resumeData.full_name}.pdf`); // Use FileSaver to trigger the download
-    } catch (error) {
-      setMessage('Failed to download file.');
-      console.error('Download error:', error);
-    }
-  };
-  
-
-  if (!resumeData) return <div>Loading...</div>;
+  if (!resumeData.length) return <div>Loading...</div>;
 
   return (
     <div className="cvwriting-container">
-      <div className="resume-details">
-        <h2>Resume Details</h2>
-        <p><strong>Full Name:</strong> {resumeData.full_name}</p>
-        <p><strong>Job Title:</strong> {resumeData.job_title}</p>
-        <p><strong>Email:</strong> {resumeData.email}</p>
-        <p><strong>Phone:</strong> {resumeData.phone}</p>
-        <p><strong>Summary:</strong> {resumeData.summary}</p>
-        <p><strong>Skills:</strong> {resumeData.skills}</p>
-        <p><strong>Languages:</strong> {resumeData.languages}</p>
-        <p><strong>Certifications:</strong> {resumeData.certifications}</p>
-        <p><strong>Achievements:</strong> {resumeData.achievements}</p>
-        <p><strong>Cost:</strong> ${resumeData.cost}</p>
-        <p><strong>Status:</strong> {resumeData.status}</p>
-        <p><strong>Created At:</strong> {new Date(resumeData.resume_created_at).toLocaleString()}</p>
-        <p><strong>Updated At:</strong> {new Date(resumeData.resume_updated_at).toLocaleString()}</p>
+      {resumeData.map((resume) => (
+        <div key={resume.file_id} className="resume-details">
+          <h2>Resume Details</h2>
+          <p><strong>Full Name:</strong> {resume.full_name}</p>
+          <p><strong>Job Title:</strong> {resume.job_title}</p>
+          <p><strong>Email:</strong> {resume.email}</p>
+          <p><strong>Phone:</strong> {resume.phone}</p>
+          <p><strong>Summary:</strong> {resume.summary}</p>
+          <p><strong>Skills:</strong> {resume.skills}</p>
+          <p><strong>Languages:</strong> {resume.languages}</p>
+          <p><strong>Certifications:</strong> {resume.certifications}</p>
+          <p><strong>Achievements:</strong> {resume.achievements}</p>
+          <p><strong>Cost:</strong> ${resume.cost}</p>
+          <p><strong>Status:</strong> {resume.status}</p>
+          <p><strong>Created At:</strong> {new Date(resume.resume_created_at).toLocaleString()}</p>
+          <p><strong>Updated At:</strong> {new Date(resume.resume_updated_at).toLocaleString()}</p>
 
-        <h3>Education</h3>
-        {resumeData.education && resumeData.education.length > 0 ? (
-          resumeData.education.map((edu) => (
-            <div key={edu.education_id} className="resume-education">
-              <p><strong>Degree:</strong> {edu.degree}</p>
-              <p><strong>Institution:</strong> {edu.institution}</p>
-              <p><strong>Start Date:</strong> {edu.start_date}</p>
-              <p><strong>End Date:</strong> {edu.end_date}</p>
-              <p><strong>Description:</strong> {edu.description}</p>
-            </div>
-          ))
-        ) : (
-          <p>No education information available.</p>
-        )}
+          <h3>Education</h3>
+          {resume.education && resume.education.length > 0 ? (
+            resume.education.map((edu, index) => (
+              <div key={index} className="resume-education">
+                <p><strong>Degree:</strong> {edu.degree}</p>
+                <p><strong>Institution:</strong> {edu.institution}</p>
+                <p><strong>Start Date:</strong> {edu.start_date}</p>
+                <p><strong>End Date:</strong> {edu.end_date}</p>
+                <p><strong>Description:</strong> {edu.description}</p>
+              </div>
+            ))
+          ) : (
+            <p>No education information available.</p>
+          )}
 
-        <h3>Work Experience</h3>
-        {resumeData.work_experience && resumeData.work_experience.length > 0 ? (
-          resumeData.work_experience.map((work) => (
-            <div key={work.work_experience_id} className="resume-work-experience">
-              <p><strong>Company:</strong> {work.company}</p>
-              <p><strong>Job Title:</strong> {work.job_title}</p>
-              <p><strong>Start Date:</strong> {work.start_date}</p>
-              <p><strong>End Date:</strong> {work.end_date}</p>
-              <p><strong>Responsibilities:</strong> {work.responsibilities}</p>
-            </div>
-          ))
-        ) : (
-          <p>No work experience information available.</p>
-        )}
+          <h3>Work Experience</h3>
+          {resume.work_experience && resume.work_experience.length > 0 ? (
+            resume.work_experience.map((work, index) => (
+              <div key={index} className="resume-work-experience">
+                <p><strong>Company:</strong> {work.company}</p>
+                <p><strong>Job Title:</strong> {work.job_title}</p>
+                <p><strong>Start Date:</strong> {work.start_date}</p>
+                <p><strong>End Date:</strong> {work.end_date}</p>
+                <p><strong>Responsibilities:</strong> {work.responsibilities}</p>
+              </div>
+            ))
+          ) : (
+            <p>No work experience information available.</p>
+          )}
 
-        <div className="download-section">
-          <h3>Download Resume File</h3>
-          <a href={resumeData.file_url} download className="download-button">
-            Download Attached File
-          </a>
-          <button className="download-button" onClick={() => handleDownload(resumeData?.file_url)}>Download</button>
-          {message && <p>{message}</p>}
+          <div className="download-section">
+            <h3>Download Resume File</h3>
+            <a 
+              href={resume.file_url} 
+              download={`Resume-${resume.full_name}.pdf`} 
+              className="download-button"
+            >
+              Download Resume
+            </a>
+            {message && <p>{message}</p>}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
