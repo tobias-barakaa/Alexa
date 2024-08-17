@@ -117,7 +117,7 @@ app.use('/api/admin/article', articleCreationUploadRoute)
 app.use('/api/admin/cvwriting', cvResumeWritingRoute);
 
 // admin Resume CV writing upload
-app.use('/api/admin/resume', cvResumeWritingUploadRoute)
+app.use('/api/admin/resume/file', cvResumeWritingUploadRoute)
 
 
 

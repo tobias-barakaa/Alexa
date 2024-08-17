@@ -44,11 +44,15 @@ const ResumeCVWritingUser = () => {
   
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('resume_id', resumeId);
-    formData.append('user_id', resume.user_id); // Assuming resume.user_id is the recipient_id
+    formData.append('resumes_id', resumeId); // Change to 'resumes_id' if that’s what the backend expects
+    formData.append('user_id', resume?.user_id); 
+  
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
   
     try {
-      const response = await axios.post(`http://localhost:5000/api/admin/cvwriting/upload`, formData, {
+      const response = await axios.post(`http://localhost:5000/api/admin/resume/file/upload`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
