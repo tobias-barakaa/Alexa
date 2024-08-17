@@ -82,6 +82,7 @@ import ArticleDetails from './admin/src/pages/ArticleDetails';
 import UserDetail from './admin/src/pages/ArticleUser';
 import ArticlePage from './client/src/pages/manageorders/completed/ArticlePage';
 import ResumeCVWritingDetails from './admin/src/pages/ResumeCVWritingDetails';
+import ResumeCVWritingUser from './admin/src/pages/ResumeCVWritingUser';
 
 
 
@@ -213,6 +214,12 @@ const router = createBrowserRouter([
         path: "resumes",
         element: <ResumeCVWritingDetails />
       },
+      {
+        path: "resumeuser/:id",
+        element: <ResumeCVWritingUser />
+      },
+      
+
       
       
     ]

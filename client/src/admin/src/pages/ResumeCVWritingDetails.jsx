@@ -32,7 +32,7 @@ const ResumeCVWritingDetails = () => {
   };
 
   const handleRowClick = (resumeId) => {
-    navigate(`/resumes/${resumeId}`);
+    navigate('/admindashboard/resumeuser/' + resumeId);
   };
 
   return (

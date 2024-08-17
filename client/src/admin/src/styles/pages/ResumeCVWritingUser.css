@@ -1,0 +1,109 @@
+.resume-details-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resume-details-left,
+  .resume-details-right {
+    width: 48%;
+  }
+  
+  .resume-details-left h2,
+  .resume-details-right h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .resume-details-left p,
+  .resume-details-left h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .resume-education,
+  .resume-work-experience {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resume-education p,
+  .resume-work-experience p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type='file'] {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .send-button,
+  .form-group button {
+    padding: 10px 20px;
+    background-color: #078bc8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover,
+  .form-group button:hover {
+    background-color: #056b99;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .resume-details-right p {
+    color: #555;
+  }
+  
+  .send-button {
+    margin-top: 10px;
+  }
+  
+  .resume-details-right {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  p.message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: green;
+  }
+  
