@@ -7,7 +7,6 @@ const uploadArticleFile = async (req, res) => {
       const { article_id, user_id } = req.body;
       const uploaded_by = req.user?.userId;
   
-      // Ensure both article_id and user_id are provided
       if (!article_id || !user_id) {
         return res.status(400).json({ error: 'article_id and user_id are required' });
       }
@@ -19,7 +18,7 @@ const uploadArticleFile = async (req, res) => {
       const [fileRecord] = await knex('upload_articles').insert({
         file_url: fileUrl,
         public_id: publicId,
-        recipient_id: user_id,  // This should not be null
+        recipient_id: user_id,  
         uploaded_by: uploaded_by,
         article_id: article_id,
       }).returning('*');
