@@ -86,6 +86,7 @@ import ResumeCVWritingUser from './admin/src/pages/ResumeCVWritingUser';
 import CvWriting from './client/src/pages/manageorders/completed/CvWriting';
 import EmailCopyWriting from './admin/src/pages/EmailCopyWriting';
 import EmailCopyWritingUser from './admin/src/pages/EmailCopyWritingUser';
+import EmailCopyWritingComplete from './client/src/pages/manageorders/completed/EmailCopyWritingComplete';
 
 
 
@@ -177,6 +178,10 @@ const router = createBrowserRouter([
       {
         path: "completedorders/completedresumes",
         element: <CvWriting />
+      },
+      {
+        path: "completedorders/completedemailcopywriting",
+        element: <EmailCopyWritingComplete />
       }
     ]
   },

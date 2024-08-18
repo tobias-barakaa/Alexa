@@ -2,11 +2,6 @@ import "../../../styles/pages/manageorders/completed/CompletedOrders.css";
 import { Link } from 'react-router-dom';
 
 const CompletedOrders = () => {
-  const handleBoxClick = (type) => {
-    console.log(`Selected: ${type}`);
-    // Add your click handling logic here
-  };
-
   return (
     <div className="completed-orders">
       <h2 className="heading">Choose Your Content Type</h2>
@@ -25,10 +20,14 @@ const CompletedOrders = () => {
           <div className="box-icon">📄</div>
           <div className="box-title">CV Writing</div>
         </Link>
-        <div className="box" onClick={() => handleBoxClick('Email Copywriting')}>
-          <div className="box-icon">✉️</div>
-          <div className="box-title">Email Copywriting</div>
-        </div>
+
+        <Link className="box" to="completedemailcopywriting">
+        <div className="box-icon">✉️</div>
+
+        <div className="box-title">Email Copywriting</div>
+
+        </Link>
+        
       </div>
     </div>
   );
