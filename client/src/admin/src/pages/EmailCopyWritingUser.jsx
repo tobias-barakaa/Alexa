@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../styles/pages/ArticleUser.css'; // You can reuse the same styles
+import '../styles/pages/ArticleUser.css'; 
 
 const EmailCopyWritingUser = () => {
-  const { id: emailCopywriting_id } = useParams(); // Get the ID from the URL params
+  const { id: emailCopywriting_id } = useParams(); 
   const [emailCopywriting, setEmailCopywriting] = useState(null);
   const [status, setStatus] = useState('');
   const [file, setFile] = useState(null);

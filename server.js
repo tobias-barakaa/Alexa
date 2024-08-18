@@ -125,7 +125,7 @@ app.use('/api/admin/cvwriting', cvResumeWritingRoute);
 app.use('/api/admin/resume/file', cvResumeWritingUploadRoute)
 
 // admin email copywriting
-app.use('/api/admin/email/file', emailCopyWritingUploadRoute)
+app.use('/api/admin/emailcopywriting', emailCopyWritingUploadRoute)
 
 // Admin email copywriting 
 app.use('/api/admin/emailcopywriting', emailcoypwritingRoute)
