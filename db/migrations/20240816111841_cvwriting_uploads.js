@@ -8,7 +8,6 @@ exports.up = function(knex) {
         table.integer('resumes_id').unsigned().notNullable();  
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
-        // Foreign key constraints
         table.foreign('recipient_id').references('id').inTable('users').onDelete('CASCADE');
         table.foreign('uploaded_by').references('id').inTable('users').onDelete('CASCADE');
         table.foreign('resumes_id').references('id').inTable('resumes').onDelete('CASCADE');
