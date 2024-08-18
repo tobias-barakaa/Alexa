@@ -29,7 +29,9 @@ const cvResumeWritingRoute = require('./routes/admin/cvResumeWritingRoute');
 const cvResumeWritingUploadRoute = require('./routes/admin/resumeCvWritingUploadRoute');
 
 // Email Copy Writing
-const emailCopyWritingUploadRoute = require('./routes/admin/emailCopyWritingUploadRoute')
+const emailCopyWritingUploadRoute = require('./routes/admin/emailCopyWritingUploadRoute');
+
+const emailcoypwritingRoute = require('./routes/admin/emailCopywritingRoute');
 
 
 
@@ -124,6 +126,9 @@ app.use('/api/admin/resume/file', cvResumeWritingUploadRoute)
 
 // admin email copywriting
 app.use('/api/admin/email/file', emailCopyWritingUploadRoute)
+
+// Admin email copywriting 
+app.use('/api/admin/email/create', emailcoypwritingRoute)
 
 
 // 404 handler

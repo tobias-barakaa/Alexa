@@ -135,4 +135,4 @@ const getEmailCopywritingRequests = async (req, res) => {
     }
   };
   
-module.exports = {getEmailCopywritingRequests};  
+module.exports = {getEmailCopywritingRequests, getEmailCopywritingById};  
