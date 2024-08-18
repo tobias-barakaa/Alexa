@@ -1,4 +1,5 @@
 const knex = require('../../db/db.js');
+const cloudinary = require('../../utils/cloudinary.js');
 
 // const uploadEmailCopywritingFile = async (req, res) => {
 //     try {
@@ -32,10 +33,12 @@ const knex = require('../../db/db.js');
 
   const uploadEmailCopywritingFile = async (req, res) => {
     try {
-      const { email_copywriting_id, user_id } = req.body;
-      const uploaded_by = req.user?.userId;
+      
+      const { emailCopywriting_id, user_id } = req.body;
+
+          const uploaded_by = req.user?.userId;
   
-      if (!email_copywriting_id || !user_id) {
+      if (!emailCopywriting_id || !user_id) {
         return res.status(400).json({ error: 'email_copywriting_id and user_id are required' });
       }
   
@@ -50,7 +53,7 @@ const knex = require('../../db/db.js');
         public_id: publicId,
         recipient_id: user_id,
         uploaded_by: uploaded_by,
-        email_copywriting_id: email_copywriting_id,
+        email_copywriting_id: emailCopywriting_id,
       }).returning('*');
   
       res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
