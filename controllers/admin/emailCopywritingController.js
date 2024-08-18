@@ -93,7 +93,6 @@ const getEmailCopywritingRequests = async (req, res) => {
           'emailcopywriting.created_at',
           'emailcopywriting.updated_at',
           'users.id as user_id',
-          'users.full_name',
           'users.email'
         )
         .first();

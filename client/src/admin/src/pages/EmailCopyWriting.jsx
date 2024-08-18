@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "../styles/pages/EmailCopyWriting.css";
+import { useNavigate } from "react-router-dom";
 
 const EmailCopyWriting = () => {
   const [emailCopywritingData, setEmailCopywritingData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEmailCopywritingData = async () => {
@@ -21,6 +23,9 @@ const EmailCopyWriting = () => {
   }, []);
 
 
+  const handleRowClick = (emailcopywritingId) => {
+    navigate('/admindashboard/emailcopywriting/' + emailcopywritingId);
+  };
  
   
 
@@ -45,7 +50,7 @@ const EmailCopyWriting = () => {
         </thead>
         <tbody>
           {emailCopywritingData.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handleRowClick(item.id)} >
               <td>{item.id}</td>
               <td>{item.project_type}</td>
               <td>{item.project_description}</td>
