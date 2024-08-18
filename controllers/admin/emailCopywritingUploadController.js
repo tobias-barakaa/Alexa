@@ -1,6 +1,36 @@
 const knex = require('../../db/db.js');
 
-const uploadEmailCopywritingFile = async (req, res) => {
+// const uploadEmailCopywritingFile = async (req, res) => {
+//     try {
+//       const { email_copywriting_id, user_id } = req.body;
+//       const uploaded_by = req.user?.userId;
+  
+//       if (!email_copywriting_id || !user_id) {
+//         return res.status(400).json({ error: 'email_copywriting_id and user_id are required' });
+//       }
+  
+//       const result = await cloudinary.uploader.upload(req.file.path);
+//       const fileUrl = result.secure_url;
+//       const publicId = result.public_id;
+  
+//       const [fileRecord] = await knex('email_copywriting_uploads')
+//         .insert({
+//           file_url: fileUrl,
+//           public_id: publicId,
+//           recipient_id: user_id,
+//           uploaded_by: uploaded_by,
+//           email_copywriting_id: email_copywriting_id,
+//         })
+//         .returning('*');
+  
+//       res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
+//     } catch (error) {
+//       console.error('Upload error:', error);
+//       res.status(500).json({ error: 'Failed to upload file' });
+//     }
+//   };
+
+  const uploadEmailCopywritingFile = async (req, res) => {
     try {
       const { email_copywriting_id, user_id } = req.body;
       const uploaded_by = req.user?.userId;
@@ -9,19 +39,19 @@ const uploadEmailCopywritingFile = async (req, res) => {
         return res.status(400).json({ error: 'email_copywriting_id and user_id are required' });
       }
   
+      // Upload the file to Cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       const fileUrl = result.secure_url;
       const publicId = result.public_id;
   
-      const [fileRecord] = await knex('email_copywriting_uploads')
-        .insert({
-          file_url: fileUrl,
-          public_id: publicId,
-          recipient_id: user_id,
-          uploaded_by: uploaded_by,
-          email_copywriting_id: email_copywriting_id,
-        })
-        .returning('*');
+      // Insert the file data into the email_copywriting_uploads table
+      const [fileRecord] = await knex('email_copywriting_uploads').insert({
+        file_url: fileUrl,
+        public_id: publicId,
+        recipient_id: user_id,
+        uploaded_by: uploaded_by,
+        email_copywriting_id: email_copywriting_id,
+      }).returning('*');
   
       res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
     } catch (error) {
@@ -29,6 +59,7 @@ const uploadEmailCopywritingFile = async (req, res) => {
       res.status(500).json({ error: 'Failed to upload file' });
     }
   };
+  
 
 
   const getUploadedEmailCopywritingFiles = async (req, res) => {
