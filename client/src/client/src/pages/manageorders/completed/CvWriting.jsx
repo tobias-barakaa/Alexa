@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import "../../../styles/pages/manageorders/completed/CVWriting.css"; // Ensure this path is correct
+import "../../../styles/pages/manageorders/completed/CVWriting.css";
 
 const CVWriting = () => {
-  const { id: resumeId } = useParams(); // Assuming resumeId is in the URL
+  const { id: resumeId } = useParams(); 
   const [resumeData, setResumeData] = useState([]);
   const [message, setMessage] = useState('');
 

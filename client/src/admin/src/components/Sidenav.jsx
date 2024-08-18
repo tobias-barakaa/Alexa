@@ -24,7 +24,8 @@ const Sidenav = () => {
             <li><Link to="/admindashboard/blog">Blog</Link></li>
             <li><Link to="/admindashboard/articles">Articles</Link></li>
             <li><Link to="/admindashboard/resumes">Resume</Link></li>
-            <li>Email Copywriting</li>
+            <li><Link to="/admindashboard/emailcopywriting">Email Copywriting</Link></li>
+
           </ul>
         )}
         <li><Link to="/admindashboard/analytics">Analytics</Link></li>

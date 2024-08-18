@@ -1,0 +1,39 @@
+.email-copywriting-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .email-copywriting-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .email-copywriting-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .email-copywriting-table th, 
+  .email-copywriting-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .email-copywriting-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .email-copywriting-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .email-copywriting-table tr:hover {
+    background-color: #ddd;
+  }
+  

@@ -128,7 +128,7 @@ app.use('/api/admin/resume/file', cvResumeWritingUploadRoute)
 app.use('/api/admin/email/file', emailCopyWritingUploadRoute)
 
 // Admin email copywriting 
-app.use('/api/admin/email/create', emailcoypwritingRoute)
+app.use('/api/admin/emailcopywriting', emailcoypwritingRoute)
 
 
 // 404 handler

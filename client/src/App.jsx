@@ -84,6 +84,7 @@ import ArticlePage from './client/src/pages/manageorders/completed/ArticlePage';
 import ResumeCVWritingDetails from './admin/src/pages/ResumeCVWritingDetails';
 import ResumeCVWritingUser from './admin/src/pages/ResumeCVWritingUser';
 import CvWriting from './client/src/pages/manageorders/completed/CvWriting';
+import EmailCopyWriting from './admin/src/pages/EmailCopyWriting';
 
 
 
@@ -222,6 +223,10 @@ const router = createBrowserRouter([
       {
         path: "resumeuser/:id",
         element: <ResumeCVWritingUser />
+      },
+      {
+        path: "emailcopywriting",
+        element: <EmailCopyWriting />
       },
       
 
