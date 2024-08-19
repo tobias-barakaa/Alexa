@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import BusinessCTA from '../components/BusinessCTA';
 
 import Header from "../components/Header";
+import HeroSection from '../components/HeroSection';
 
 const HomePage = () => {
   
@@ -23,7 +24,7 @@ const HomePage = () => {
 
       <Header />
        {/* <Home /> */}
-
+      <HeroSection />
        
        <ServicesPage />
        <PortfolioPage />
