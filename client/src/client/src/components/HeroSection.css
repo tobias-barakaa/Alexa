@@ -1,0 +1,160 @@
+
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 100px;
+  }
+
+.hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+
+
+
+  
+
+
+
+
+
+
+  
+  .left-side {
+    flex: 1;
+
+    padding-right: 40px;
+    max-width: 500px;
+
+  }
+  
+  .left-side p {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+
+  }
+  
+  .left-side  {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  @media (max-width: 768px) {
+    .hero-content {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .left-side, .right-side {
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+
+
+
+
+
+
+/* 
+
+  .left-side, .right-side {
+    flex: 1;
+    max-width: 500px;
+  } */
+
+
+
+  .hero-right {
+    flex: 1;
+    display: flex;
+    max-width: 500px;
+
+  }
+  
+  .signup-box {
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 60px;
+  }
+  
+  .signup-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  
+  .signup-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding-top: 20px;
+
+  }
+  
+  .signup-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .google-button-signup {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  
