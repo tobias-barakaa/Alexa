@@ -10,6 +10,21 @@
     font-size: 24px;
     font-weight: bold;
   }
+
+  .custom-button {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  }
+  
+  .custom-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
   
   .spacer {
     flex: 1;

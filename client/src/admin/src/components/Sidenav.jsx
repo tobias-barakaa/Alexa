@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../styles/components/Sidenav.css'; // Import CSS for styling
+import '../styles/components/Sidenav.css'; 
 import { Link } from 'react-router-dom';
 
 const Sidenav = () => {

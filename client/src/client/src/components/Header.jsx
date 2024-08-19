@@ -30,8 +30,10 @@ const Header = () => {
           <span>Ecosystem</span>
         </div>
       </div>
-<button style={{ marginRight: "40px", padding: "12px" }}>This is the button</button>
 
+      <button className="custom-button" style={{ marginRight: "40px", padding: "12px" }}>
+  This is the button
+</button>
 
     </header>
     <hr style={{ backgroundColor: '#000000', height: '1px', border: 'none' }}/>

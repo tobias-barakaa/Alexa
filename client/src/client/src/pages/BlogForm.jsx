@@ -10,7 +10,7 @@ const BlogForm = () => {
     excerpt: '',
     number_of_words_id: '',
     timeframe_id: '',
-    cost: 0, // Calculated cost
+    cost: 0,
   });
 
   const [createBlog] = useCreateBlogMutation();
