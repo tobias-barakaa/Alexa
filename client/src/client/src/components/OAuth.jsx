@@ -1,8 +1,35 @@
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from '../../../firebase';
+import { setCredentials } from '../../../slices/client/authSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+
+// const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [loginError, setLoginError] = useState('');
+
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const [login, { isLoading }] = useLoginMutation();
+
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const userData = { email, password };
+  //     const response = await login(userData).unwrap();
+  //     dispatch(setCredentials(response));
+  //     navigate('/dashboard');
+  //   } catch (err) {
+  //     setLoginError('Failed to login. Please check your email and password.');
+  //   }
+  // };
 
 const OAuth = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
     const handleGoogle = async () => {
        const auth = getAuth(app);
        const provider = new GoogleAuthProvider();
@@ -26,6 +53,8 @@ const OAuth = () => {
         if(res.ok) {
           console.log('User logged in:', data);
           // Handle successful login
+          dispatch(setCredentials(data));
+          navigate('/dashboard');
         }
         
        } catch (error) {
