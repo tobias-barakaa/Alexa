@@ -3,9 +3,12 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Import the process object from the node global scope
+import process from 'process';
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCNUR8FXaGe66MfD6K2xAUQLhNFHkxhkAQ",
+  apiKey: process.env.VITE_FIREBASE_API_KEY,
   authDomain: "enwriters-2c99b.firebaseapp.com",
   projectId: "enwriters-2c99b",
   storageBucket: "enwriters-2c99b.appspot.com",
@@ -14,4 +17,4 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);

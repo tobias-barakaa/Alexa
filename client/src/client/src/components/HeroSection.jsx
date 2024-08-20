@@ -20,9 +20,8 @@ const HeroSection = () => {
 
 
 
-      <div className="hero-right">
         <ClientRegister />
-      </div>
+      
     </div>
     </div>
   );
