@@ -1,8 +1,8 @@
 // import '../styles/pages/ClientRegister.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { setCredentials } from '../../slices/authSlice';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRegisterMutation } from "../../../slices/client/usersApiSlice";
 // import { setCredentials } from '../../slices/client/authSlice';
 import { setCredentials } from "../../../slices/client/authSlice";
@@ -18,16 +18,16 @@ const ClientRegister = () => {
 
   const [register, { isLoading }] = useRegisterMutation();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  // const { userInfo } = useSelector((state) => state.auth);
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const redirect = sp.get("redirect") || "/login";
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [userInfo, redirect, navigate]);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate(redirect);
+  //   }
+  // }, [userInfo, redirect, navigate]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const ClientRegister = () => {
         const response = await register(userData).unwrap();
         dispatch(setCredentials({ ...response }));
         console.log("User registered:", response);
-        navigate(redirect);
+        navigate('/login');
       } catch (err) {
         console.error("Failed to register:", err);
         // Handle registration error
