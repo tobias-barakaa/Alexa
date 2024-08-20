@@ -51,9 +51,10 @@ const ClientRegister = () => {
 
   return (
     <div className="hero-right">
-    
+
+<div className="signup-box">
+
       <form onSubmit={submitHandler}>
-        <div className="signup-box">
           <div className="signup-title-container">
             <h3 className="signup-title">Sign Up</h3>
           </div>
@@ -82,7 +83,6 @@ const ClientRegister = () => {
             Sign Up as Client
           </button>
           
-        </div>
       </form>
             {/* <i className="fab fa-google"></i>Sign up with Google */}
             <OAuth />
@@ -97,6 +97,8 @@ const ClientRegister = () => {
             </Link>
           </a>
     </div>
+    </div>
+
   );
 };
 

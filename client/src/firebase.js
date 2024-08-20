@@ -4,11 +4,9 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Import the process object from the node global scope
-import process from 'process';
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "enwriters-2c99b.firebaseapp.com",
   projectId: "enwriters-2c99b",
   storageBucket: "enwriters-2c99b.appspot.com",

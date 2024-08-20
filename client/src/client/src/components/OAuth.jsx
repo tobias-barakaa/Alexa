@@ -9,7 +9,24 @@ const OAuth = () => {
        provider.setCustomParameters({ prompt: 'select_account' });
        try {
         const result = await signInWithPopup(auth, provider);
-        console.log('why',result);
+        const res = await fetch('/api/auth/google', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          
+          },
+          body: JSON.stringify({
+            name: result.user.displayName,
+            email: result.user.email,
+            googlePhotoUrl: result.user.photoURL,
+
+          })
+        })
+        const data = await res.json();
+        if(res.ok) {
+          console.log('User logged in:', data);
+          // Handle successful login
+        }
         
        } catch (error) {
          console.error(error);
