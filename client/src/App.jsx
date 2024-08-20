@@ -87,6 +87,7 @@ import CvWriting from './client/src/pages/manageorders/completed/CvWriting';
 import EmailCopyWriting from './admin/src/pages/EmailCopyWriting';
 import EmailCopyWritingUser from './admin/src/pages/EmailCopyWritingUser';
 import EmailCopyWritingComplete from './client/src/pages/manageorders/completed/EmailCopyWritingComplete';
+import AboutPage from './client/src/pages/AboutPage';
 
 
 
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginClient />
+  },
+  {
+    path: "/about",
+    element: <AboutPage />
   },
   {
     path: "dashboard",

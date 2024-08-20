@@ -7,6 +7,7 @@ import '../styles/pages/LoginClient.css';
 import { useLoginMutation } from '../../../slices/client/usersApiSlice';
 import { setCredentials } from '../../../slices/client/authSlice';
 import logo from "../assets/images/logo.png";
+import OAuth from '../components/OAuth';
 
 
 const LoginClient = () => {
@@ -32,8 +33,7 @@ const LoginClient = () => {
 
   return (
     <div className="login-container">
-      <img src={logo} alt="logo" className="log" />
-      <h2 className="welcome-text">Welcome back</h2>
+      <img src={logo} alt="logo" className="login-logo" />
       <form onSubmit={submitHandler}>
         <input
           type="email"
@@ -62,14 +62,8 @@ const LoginClient = () => {
         <span>or continue with</span>
         <hr />
       </div>
-      <button className="google-button">
-        <i className="fab fa-google"></i>
-        Google
-      </button>
-      <button className="facebook-button">
-        <i className="fab fa-facebook-f"></i>
-        Facebook
-      </button>
+      <OAuth />
+      
     </div>
   );
 };
