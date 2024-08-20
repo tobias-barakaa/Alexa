@@ -6,6 +6,8 @@ import '../styles/pages/LoginClient.css';
 // import { useLoginMutation } from '../../slices/client/usersApiSlice';
 import { useLoginMutation } from '../../../slices/client/usersApiSlice';
 import { setCredentials } from '../../../slices/client/authSlice';
+import logo from "../assets/images/logo.png";
+
 
 const LoginClient = () => {
   const [email, setEmail] = useState('');
@@ -30,7 +32,7 @@ const LoginClient = () => {
 
   return (
     <div className="login-container">
-      <div className="logo">Enwriters</div>
+      <img src={logo} alt="logo" className="log" />
       <h2 className="welcome-text">Welcome back</h2>
       <form onSubmit={submitHandler}>
         <input

@@ -1,5 +1,6 @@
 import React from 'react';
 import './HeroSection.css';
+import ClientRegister from '../pages/ClientRegister';
 
 const HeroSection = () => {
   return (
@@ -32,17 +33,7 @@ const HeroSection = () => {
         </div>
       </div> */}
       <div className="hero-right">
-        <div className="signup-box">
-        <div className="signup-title-container">
-            <h3 className="signup-title">Sign Up</h3>
-          </div>
-          <input type="text" placeholder="Name" className="signup-input" />
-          <input type="email" placeholder="Email" className="signup-input" />
-          <input type="password" placeholder="Password" className="signup-input" />
-          <button className="signup-button">Sign Up</button>
-          <button className="google-button-signup">Sign up with Google</button>
-          <a href="#" className="login-link">Already have an account? Log in</a>
-        </div>
+       <ClientRegister />
       </div>
     </div>
     </div>
