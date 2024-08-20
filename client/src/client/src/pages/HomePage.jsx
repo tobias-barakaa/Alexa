@@ -23,7 +23,7 @@ const HomePage = () => {
    
 
       <Header />
-       {/* <Home /> */}
+      
        <HeroSection />       
        <ServicesPage />
        <PortfolioPage />
