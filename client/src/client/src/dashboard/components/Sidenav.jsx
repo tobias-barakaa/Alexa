@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 import './Sidenav.css';
 
 const Sidebar = () => {
@@ -26,7 +27,9 @@ const Sidebar = () => {
   return (
     <div className="sidena">
       <div className="sidebar-menu-container">
-        <p className="sidebar-menu-title">Services</p>
+      <Link to="/dashboard" onClick={() => handleLinkClick('/dashboard')}>
+          <img src={logo} style={{ width: "240px", height: "80px" }} alt="Logo" className="logo" />
+        </Link>
         <div className="sidebar-menu-content">
           <ul className="sidebar-menu-list">
             <li className="sidebar-menu-item">
