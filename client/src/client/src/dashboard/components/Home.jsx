@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import { useGetLatestQuery } from '../../../slices/client/blogApiSlice';
 
+
 const Home = () => {
   const { data, isLoading, isError, error } = useGetLatestQuery();
 
@@ -23,7 +24,7 @@ const Home = () => {
           <p>Browse profiles and collaborate on projects.</p>
         </div>
         <div className="image-container">
-          <img src="path_to_your_image.jpg" alt="Publishing professionals" />
+
         </div>
         <hr className="divider" />
       </div>
