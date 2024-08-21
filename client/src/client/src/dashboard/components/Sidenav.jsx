@@ -21,7 +21,10 @@ const Sidebar = () => {
   return (
     <div className="sidena">
       <div className="sidebar-menu-container">
-        <Link to="/dashboard" onClick={() => handleLinkClick('/dashboard')}>
+        <Link to="/dashboard" 
+        className={`sidebar-menu-link ${activeLink === '/dashboard' ? 'active' : ''}`}
+        
+        onClick={() => handleLinkClick('/dashboard')}>
           <img src={logo} alt="Logo" className="logo" />
         </Link>
         <hr className="dark-divider" />
