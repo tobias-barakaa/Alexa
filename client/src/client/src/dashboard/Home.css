@@ -26,11 +26,12 @@
   }
   
   .image-container {
-    width: 1200px;
+    width: 80vw; 
     height: 150px;
     overflow: hidden;
     border-radius: 10px;
   }
+  
   
   .image-container img {
     width: 100%;

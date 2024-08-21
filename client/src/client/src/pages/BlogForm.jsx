@@ -44,7 +44,6 @@ const BlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { 
-      //const
       ...submitData } = formData;
     try {
       await createBlog(submitData).unwrap();
@@ -56,93 +55,105 @@ const BlogForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="blog-form">
-      <div className="form-group">
-        <label>Title</label>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
+    <div className="blog-form-container">
+      <div className="blog-form-inner">
+        <h2 className="blog-form-title">Create Your Blog Post</h2>
+        <form onSubmit={handleSubmit} className="blog-form">
+          <div className="form-group">
+            <label className="form-label">Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
 
-      <div className="form-group">
-        <label>Category</label>
-        <select
-          name="category_id"
-          value={formData.category_id}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Category</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
+          <div className="form-group">
+            <label className="form-label">Category</label>
+            <select
+              name="category_id"
+              value={formData.category_id}
+              onChange={handleChange}
+              className="form-control"
+              required
+            >
+              <option value="">Select Category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <div className="form-group">
-        <label>Tags/Keywords</label>
-        <input
-          type="text"
-          name="tags"
-          value={formData.tags}
-          onChange={handleChange}
-        />
-      </div>
+          <div className="form-group">
+            <label className="form-label">Tags/Keywords</label>
+            <input
+              type="text"
+              name="tags"
+              value={formData.tags}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      <div className="form-group">
-        <label>Excerpt</label>
-        <textarea
-          name="excerpt"
-          value={formData.excerpt}
-          onChange={handleChange}
-        />
-      </div>
+          <div className="form-group">
+            <label className="form-label">Excerpt</label>
+            <textarea
+              name="excerpt"
+              value={formData.excerpt}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      <div className="form-group">
-        <label>Number of Words</label>
-        <select
-          name="number_of_words_id"
-          value={formData.number_of_words_id}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Number of Words</option>
-          {numberOfWords.map((word) => (
-            <option key={word.id} value={word.id}>
-              {word.name}
-            </option>
-          ))}
-        </select>
-      </div>
+          <div className="form-group">
+            <label className="form-label">Number of Words</label>
+            <select
+              name="number_of_words_id"
+              value={formData.number_of_words_id}
+              onChange={handleChange}
+              className="form-control"
+              required
+            >
+              <option value="">Select Number of Words</option>
+              {numberOfWords.map((word) => (
+                <option key={word.id} value={word.id}>
+                  {word.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <div className="form-group">
-        <label>Timeframe</label>
-        <select
-          name="timeframe_id"
-          value={formData.timeframe_id}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Timeframe</option>
-          {timeFrames.map((timeFrame) => (
-            <option key={timeFrame.id} value={timeFrame.id}>
-              {timeFrame.timeframe}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Estimated Cost: ${formData.cost.toFixed(2)}</label>
-      </div>
+          <div className="form-group">
+            <label className="form-label">Timeframe</label>
+            <select
+              name="timeframe_id"
+              value={formData.timeframe_id}
+              onChange={handleChange}
+              className="form-control"
+              required
+            >
+              <option value="">Select Timeframe</option>
+              {timeFrames.map((timeFrame) => (
+                <option key={timeFrame.id} value={timeFrame.id}>
+                  {timeFrame.timeframe}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <button type="submit" className="submit-button">Submit</button>
-    </form>
+          <div className="form-group">
+            <label className="form-label">Estimated Cost: ${formData.cost.toFixed(2)}</label>
+          </div>
+
+          <button type="submit" className="submit-button">Submit</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
