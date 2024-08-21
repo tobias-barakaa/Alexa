@@ -1,9 +1,9 @@
-import React from 'react';
-import './AboutPage.css'; // Import the CSS file
+import './AboutPage.css'; 
 import articlesImage from '../assets/images/br.jpg';
 import cvImage from '../assets/images/brr.jpg';
 import blogsImage from '../assets/images/people.jpg';
-import emailImage from '../assets/images/peoplebg.png';
+import emailImage from '../assets/images/order.svg';
+
 
 
 const AboutPage = () => {

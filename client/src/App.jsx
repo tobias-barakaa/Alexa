@@ -88,6 +88,7 @@ import EmailCopyWriting from './admin/src/pages/EmailCopyWriting';
 import EmailCopyWritingUser from './admin/src/pages/EmailCopyWritingUser';
 import EmailCopyWritingComplete from './client/src/pages/manageorders/completed/EmailCopyWritingComplete';
 import AboutPage from './client/src/pages/AboutPage';
+// import AboutPage from './client/src/pages/AboutPage';
 
 
 
