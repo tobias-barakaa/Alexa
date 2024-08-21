@@ -18,7 +18,6 @@ const BlogForm = () => {
   const { data: numberOfWords = [] } = useGetNumberOfWordsQuery();
   const { data: timeFrames = [] } = useGetTimeFrameQuery();
 
-  // Calculate cost whenever number_of_words_id or timeframe_id changes
   useEffect(() => {
     const selectedWord = numberOfWords.find(word => word.id === parseInt(formData.number_of_words_id));
     const selectedTimeFrame = timeFrames.find(time => time.id === parseInt(formData.timeframe_id));

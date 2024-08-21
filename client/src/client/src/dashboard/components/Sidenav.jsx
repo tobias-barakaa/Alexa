@@ -6,8 +6,7 @@ import SidebarProfile from './SidebarProfile';
 
 const Sidebar = () => {
   const location = useLocation();
-  const initialActiveLink = localStorage.getItem('activeLink') || location.pathname;
-  const [activeLink, setActiveLink] = useState(initialActiveLink);
+  const [activeLink, setActiveLink] = useState(location.pathname);
 
   const handleLinkClick = (path) => {
     setActiveLink(path);
@@ -15,16 +14,18 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    setActiveLink(initialActiveLink);
+    // Update activeLink whenever the location changes
+    setActiveLink(location.pathname);
   }, [location.pathname]);
 
   return (
     <div className="sidena">
       <div className="sidebar-menu-container">
-        <Link to="/dashboard" 
-        className={`sidebar-menu-link ${activeLink === '/dashboard' ? 'active' : ''}`}
-        
-        onClick={() => handleLinkClick('/dashboard')}>
+        <Link 
+          to="/dashboard" 
+          className={`sidebar-menu-link ${activeLink === '/dashboard' || activeLink === '/dashboard/' ? 'active' : ''}`}
+          onClick={() => handleLinkClick('/dashboard')}
+        >
           <img src={logo} alt="Logo" className="logo" />
         </Link>
         <hr className="dark-divider" />
@@ -32,9 +33,9 @@ const Sidebar = () => {
           <ul className="sidebar-menu-list">
             <li className="sidebar-menu-item">
               <Link
-                to="blogorder"
-                className={`sidebar-menu-link ${activeLink === '/blogorder' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/blogorder')}
+                to="/dashboard/blogorder" 
+                className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/blogorder')}
               >
                 <i className="bi bi-pencil-square sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Blog Writing</span>
@@ -42,9 +43,9 @@ const Sidebar = () => {
             </li>
             <li className="sidebar-menu-item">
               <Link
-                to="articlecreation"
-                className={`sidebar-menu-link ${activeLink === '/articlecreation' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/articlecreation')}
+                to="/dashboard/articlecreation"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/articlecreation' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/articlecreation')}
               >
                 <i className="bi bi-bookshelf sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Article Creation</span>
@@ -52,9 +53,9 @@ const Sidebar = () => {
             </li>
             <li className="sidebar-menu-item">
               <Link
-                to="resumecvwriting"
-                className={`sidebar-menu-link ${activeLink === '/resumecvwriting' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/resumecvwriting')}
+                to="/dashboard/resumecvwriting"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/resumecvwriting' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/resumecvwriting')}
               >
                 <i className="bi bi-card-list sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Resume/CV Writing</span>
@@ -62,9 +63,9 @@ const Sidebar = () => {
             </li>
             <li className="sidebar-menu-item">
               <Link
-                to="emailcopywriting"
-                className={`sidebar-menu-link ${activeLink === '/emailcopywriting' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/emailcopywriting')}
+                to="/dashboard/emailcopywriting"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/emailcopywriting' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/emailcopywriting')}
               >
                 <i className="bi bi-printer sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Email Copywriting</span>
@@ -79,9 +80,9 @@ const Sidebar = () => {
           <ul className="manage-list">
             <li className="sidebar-menu-item">
               <Link
-                to="editorders"
-                className={`sidebar-menu-link ${activeLink === '/editorders' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/editorders')}
+                to="/dashboard/editorders"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/editorders' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/editorders')}
               >
                 <i className="bi bi-pencil-square sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Edit Orders</span>
@@ -89,9 +90,9 @@ const Sidebar = () => {
             </li>
             <li className="sidebar-menu-item">
               <Link
-                to="ordershistory"
-                className={`sidebar-menu-link ${activeLink === '/ordershistory' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/ordershistory')}
+                to="/dashboard/ordershistory"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/ordershistory' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/ordershistory')}
               >
                 <i className="bi bi-hourglass sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Order History</span>
@@ -99,9 +100,9 @@ const Sidebar = () => {
             </li>
             <li className="sidebar-menu-item">
               <Link
-                to="completedorders"
-                className={`sidebar-menu-link ${activeLink === '/completedorders' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('/completedorders')}
+                to="/dashboard/completedorders"
+                className={`sidebar-menu-link ${activeLink === '/dashboard/completedorders' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/dashboard/completedorders')}
               >
                 <i className="bi bi-building-check sidebar-menu-icon"></i>
                 <span className="sidebar-menu-text">Completed Orders</span>
@@ -110,7 +111,6 @@ const Sidebar = () => {
           </ul>
         </div>
         <SidebarProfile />
-
       </div>
     </div>
   );
