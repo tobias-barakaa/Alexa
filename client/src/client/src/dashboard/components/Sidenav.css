@@ -62,6 +62,13 @@
   border-radius: 4px;
   border: 1px solid #e0e0e0; 
   color: #000000;
+
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+
+
+  border-radius: 18px;
+
+
 }
 
 .sidebar-menu-icon {

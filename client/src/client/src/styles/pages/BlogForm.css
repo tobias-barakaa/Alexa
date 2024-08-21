@@ -1,40 +1,71 @@
+/* Outer container */
 .blog-form-container {
-  background-color: #f9f9f9;
+  background-color: #fffdfd;
   width: 800px;
   padding: 15px;
   margin: 20px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Inner container */
 .blog-form-inner {
   background-color: #ffffff;
   padding: 30px;
-  width: calc(800px - 30px);
-  height: calc(100% - 30px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  width: 750px; 
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px; 
+  margin: 20px auto;
+
+
 }
 
+/* Form title */
 .blog-form-title {
-  text-align: center;
-  margin-bottom: 20px;
   font-size: 24px;
   color: #333;
+  font-stretch:extra-condensed;
+  line-height: 40px;
+
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 4px;
+width: 770px; 
+height: 40px;
+text-align: center;
+
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
+/* Form label */
 .form-label {
-  display: block;
-  background-color: #d6d3d3;
-  padding: 10px 20px;
+  
+
+
+
+
+  background-image: linear-gradient(-180deg, #007BFF, #0056D2);
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #e7e9ec;
+
+  color: #007BFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  height: 40px;
+width: 200px; 
+text-align: center;
+  line-height: 40px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(200, 200, 200, 0.3);
-  width: 120px;
-  font-weight: bold;
-  color: #333;
+  padding: 0 20px;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
 }
+
 
 .form-control {
   width: 100%;
@@ -44,6 +75,7 @@
   border-radius: 5px;
 }
 
+/* Submit button */
 .submit-button {
   width: 100%;
   padding: 15px;

@@ -43,8 +43,7 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { 
-      ...submitData } = formData;
+    const { ...submitData } = formData;
     try {
       await createBlog(submitData).unwrap();
       alert('Blog post created successfully!');
@@ -56,8 +55,9 @@ const BlogForm = () => {
 
   return (
     <div className="blog-form-container">
+        <p className="blog-form-title">Create Your Blog Post</p>
+
       <div className="blog-form-inner">
-        <h2 className="blog-form-title">Create Your Blog Post</h2>
         <form onSubmit={handleSubmit} className="blog-form">
           <div className="form-group">
             <label className="form-label">Title</label>

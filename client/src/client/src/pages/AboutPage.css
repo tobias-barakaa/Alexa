@@ -24,35 +24,6 @@
     line-height: 1.6; /* Increase line height for readability */
   }
   
-  /* Styling for Service Sections */
-  .about-service {
-    margin-bottom: 60px; /* Increase space between each service */
-  }
-  
-  .service-title {
-    font-size: 2rem; /* Service title font size */
-    font-weight: 600; /* Make service title bold */
-    margin-bottom: 20px; /* Space below the title */
-    text-align: center; /* Center the title */
-  }
-  
-  /* Different Colors for Each Service Title */
-  .articles-title {
-    color: #078BC8; /* Blue for Article Writing */
-  }
-  
-  .cv-title {
-    color: #D9534F; /* Red for CV Writing */
-  }
-  
-  .blogs-title {
-    color: #5BC0DE; /* Light blue for Blog Writing */
-  }
-  
-  .email-title {
-    color: #5CB85C; /* Green for Email Copywriting */
-  }
-  
   /* Styling for Content Sections */
   .about-content {
     display: flex; /* Flexbox for layout */
