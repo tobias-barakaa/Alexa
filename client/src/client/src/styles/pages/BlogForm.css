@@ -35,6 +35,7 @@ text-align: center;
 
 }
 
+/* Form group */
 .form-group {
   margin-bottom: 20px;
 }
@@ -46,8 +47,8 @@ text-align: center;
 
 
 
-  background-image: linear-gradient(-180deg, #007BFF, #0056D2);
-  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  /* background-image: linear-gradient(-180deg, #007BFF, #0056D2); */
+  /* background-image: linear-gradient(#f7f8fa ,#e7e9ec); */
   border-radius: 18px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #e7e9ec;
@@ -58,11 +59,11 @@ text-align: center;
   font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
   height: 40px;
 width: 200px; 
-text-align: center;
+/* text-align: center; */
   line-height: 40px;
   margin-bottom: 10px;
   padding: 0 20px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   transition: background-color 0.2s;
 }
 
@@ -79,7 +80,8 @@ text-align: center;
 .submit-button {
   width: 100%;
   padding: 15px;
-  background-color: #078BC8;
+  background-image: linear-gradient(-180deg, #007BFF, #0056D2);
+  /* background-color: #078BC8; */
   color: #fff;
   font-size: 18px;
   border: none;
