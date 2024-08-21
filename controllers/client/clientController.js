@@ -44,7 +44,7 @@ const signupUser = async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
+        profile_pic: profile_pic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
         role_id: clientRole.id,
         balance: 0.0,
         created_at: knex.fn.now(),
@@ -90,10 +90,7 @@ const signupUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   // console.log(req.cookies);
-  const { email, password } = req.body;
-  console.log(email, password)
-  
-  
+  const { email, password } = req.body;  
 
   try {
     // Input validation
@@ -159,64 +156,6 @@ const loginUser = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   try {
-//     const user = await knex("users").where({ email }).first();
-
-//     if (user && (await bcrypt.compare(password, user.password))) {
-//       generateToken(res, user.id);
-//       res.json({
-//         id: user.id,
-//         first_name: user.first_name,
-//         last_name: user.last_name,
-//         username: user.username,
-//         email: user.email,
-//         profile_pic: user.profile_pic,
-//         role: user.role_id,
-//         balance: user.balance,
-//         created_at: user.created_at,
-//         updated_at: user.updated_at,
-//         message: "Successfully logged in 😁",
-//       });
-//     } else {
-
-//       res.status(401).json({ message: "Invalid email or password" });
-//     }
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     res.status(500).json({ message: "An error occurred during login" });
-//   }
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const logoutUser = async (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
@@ -250,4 +189,135 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, logoutUser, getAllUsers };
+const google = async (req, res, next) => {
+  const { name, email, googlePhotoUrl } = req.body;
+  try {
+    // Check if the user already exists
+    const user = await knex('users').where({ email }).first();
+    if (user) {
+      const token = createJWT({ userId: user.id, role: user.role_id });
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7), // 7 days
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      });
+      res.json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        profile_pic: user.profile_pic,
+        role: user.role_id,
+        balance: user.balance,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+        message: "Successfully logged in 😁",
+      });
+    } else {
+      // Create a new user
+      const generatedPassword = Math.random().toString(36).slice(-8);
+      const hashedPassword = await hashPassword(generatedPassword);
+      const newUser = await knex('users').insert({
+        username: name.toLowerCase().split(' ').join('') + Math.random().toString(36).slice(-5),
+        email,
+        password: hashedPassword,
+        profile_pic: googlePhotoUrl,
+        role_id: 1,
+        balance: 0.0,
+        created_at: knex.fn.now(),
+        updated_at: knex.fn.now(),
+      }).returning('*');
+
+      // Generate JWT for the new user
+      const token = createJWT({ userId: newUser[0].id, role: newUser[0].role_id });
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7), // 7 days
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      });
+      res.json({
+        id: newUser[0].id,
+        username: newUser[0].username,
+        email: newUser[0].email,
+        profile_pic: newUser[0].profile_pic,
+        role: newUser[0].role_id,
+        balance: newUser[0].balance,
+        created_at: newUser[0].created_at,
+        updated_at: newUser[0].updated_at,
+        message: "Successfully signed up 😁",
+      });
+    }
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "An error occurred during login" });
+  }
+};
+
+
+// const google = async(req, res, next) => {
+//   const { name, email, googlePhotoUrl } = req.body;
+//   try {
+//     const user = await knex('users').where({ email }).first();
+//     if (user) {
+//     const token = createJWT({ userId: user.id, role: user.role });
+//     res.cookie('jwt', token, {
+//       httpOnly: true,
+//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
+//       // secure: process.env.NODE_ENV === 'production',
+//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+//       httpOnly: true,
+//       // path: '/'
+//     });
+//       res.json({
+//         id: user.id,
+//         username: user.username,
+//         email: user.email,
+//         profile_pic: user.profile_pic,
+//         role: user.role_id,
+//         balance: user.balance,
+//         created_at: user.created_at,
+//         updated_at: user.updated_at,
+//         message: "Successfully logged in 😁",
+//       });
+//     } else {
+//       const generatedPassword = Math.random().toString(36).slice(-8);
+//       const hashedPassword = await hashPassword(generatedPassword);
+//       const newUser = await knex('users').insert({
+//         username: name.toLowerCase().split(' ').join('') + Math.random().toString(36).slice(-5),
+//         email,
+//         password: hashedPassword,
+//         profile_pic: googlePhotoUrl,
+//         role_id: 1,
+//         balance: 0.0,
+//         created_at: knex.fn.now(),
+//         updated_at: knex.fn.now(),
+//       }).returning('*');
+//     const token = createJWT({ userId: user.id, role: user.role });
+//     res.cookie('jwt', token, {
+//       httpOnly: true,
+//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
+//       // secure: process.env.NODE_ENV === 'production',
+//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+//       httpOnly: true,
+//       // path: '/'
+//     });
+//       res.json({
+//         id: newUser[0].id,
+//         first_name: newUser[0].first_name,
+//         last_name: newUser[0].last_name,
+//         username: newUser[0].username,
+//         email: newUser[0].email,
+//         profile_pic: newUser[0].profile_pic,
+//         role: newUser[0].role_id,
+//         balance: newUser[0].balance,
+//         created_at: newUser[0].created_at,
+//         updated_at: newUser[0].updated_at,
+//         message: "Successfully signed up 😁",
+//       });
+//     }
+//   } catch (error) {
+//     console.error("Error during login:", error);
+//     res.status(500).json({ message: "An error occurred during login" });
+//   }
+// }
+
+module.exports = { signupUser, loginUser, logoutUser, getAllUsers, google };

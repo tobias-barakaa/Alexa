@@ -2,34 +2,29 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import './Sidenav.css';
+import SidebarProfile from './SidebarProfile';
 
 const Sidebar = () => {
   const location = useLocation();
-  const initialActiveLink = localStorage.getItem('activeLink') || location.pathname; // Retrieve from localStorage or use current path
+  const initialActiveLink = localStorage.getItem('activeLink') || location.pathname;
   const [activeLink, setActiveLink] = useState(initialActiveLink);
-  const [dropdownActive, setDropdownActive] = useState(false);
 
-  // Update active link when a link is clicked
   const handleLinkClick = (path) => {
     setActiveLink(path);
-    localStorage.setItem('activeLink', path); // Store the active link in localStorage
+    localStorage.setItem('activeLink', path);
   };
 
-  // Set the active link based on current location when the component mounts
   useEffect(() => {
     setActiveLink(initialActiveLink);
   }, [location.pathname]);
 
-  const toggleDropdown = () => {
-    setDropdownActive(!dropdownActive);
-  };
-
   return (
     <div className="sidena">
       <div className="sidebar-menu-container">
-      <Link to="/dashboard" onClick={() => handleLinkClick('/dashboard')}>
-          <img src={logo} style={{ width: "240px", height: "80px" }} alt="Logo" className="logo" />
+        <Link to="/dashboard" onClick={() => handleLinkClick('/dashboard')}>
+          <img src={logo} alt="Logo" className="logo" />
         </Link>
+        <hr className="dark-divider" />
         <div className="sidebar-menu-content">
           <ul className="sidebar-menu-list">
             <li className="sidebar-menu-item">
@@ -75,62 +70,44 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
-      <hr className="profile-divider" />
-
       <div className="manage-container">
-        <p className="manage-title" style={{ color: "#078BC8" }}>Manage Orders</p>
-        <ul className="manage-list">
-          <li className="manage-item">
-            <Link
-              to="editorders"
-              className={`sidebar-menu-link ${activeLink === '/editorders' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/editorders')}
-            >
-              <i className="bi bi-pencil-square manage-icon"></i>
-              <span className="manage-text">Edit Orders</span>
-              <span className="manage-notification">2</span>
-            </Link>
-          </li>
-          <li className="manage-item">
-            <Link
-              to="ordershistory"
-              className={`sidebar-menu-link ${activeLink === '/ordershistory' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/ordershistory')}
-            >
-              <i className="bi bi-hourglass manage-icon"></i>
-              <span className="manage-text">Orders History</span>
-            </Link>
-          </li>
-          <li className="manage-item">
-            <Link
-              to="completedorders"
-              className={`sidebar-menu-link ${activeLink === '/completedorders' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/completedorders')}
-            >
-              <i className="bi bi-building-check manage-icon"></i>
-              <span className="manage-text">Completed Orders</span>
-              <span className="manage-notification">5</span>
-            </Link>
-          </li>
-        </ul>
-
-        <div className="profile-section">
-          <div className="profile-container">
-            <div className="profile-info">
-              <h4 className="profile-name">John Doe</h4>
-              <p className="profile-role">Member</p>
-            </div>
-            <button className="profile-dropdown-toggle" onClick={toggleDropdown}>▼</button>
-            <button className="profile-icon">⚙️</button>
-          </div>
-          <div className={`profile-dropdown ${dropdownActive ? 'active' : ''}`}>
-            <button className="logout-button">
-              <span className="logout-icon">🚪</span>
-              Logout
-            </button>
-          </div>
-          <hr className="profile-divider" />
+        <div className="sidebar-menu-container">
+          <hr className="dark-divider" />
+          <ul className="manage-list">
+            <li className="sidebar-menu-item">
+              <Link
+                to="editorders"
+                className={`sidebar-menu-link ${activeLink === '/editorders' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/editorders')}
+              >
+                <i className="bi bi-pencil-square sidebar-menu-icon"></i>
+                <span className="sidebar-menu-text">Edit Orders</span>
+              </Link>
+            </li>
+            <li className="sidebar-menu-item">
+              <Link
+                to="ordershistory"
+                className={`sidebar-menu-link ${activeLink === '/ordershistory' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/ordershistory')}
+              >
+                <i className="bi bi-hourglass sidebar-menu-icon"></i>
+                <span className="sidebar-menu-text">Order History</span>
+              </Link>
+            </li>
+            <li className="sidebar-menu-item">
+              <Link
+                to="completedorders"
+                className={`sidebar-menu-link ${activeLink === '/completedorders' ? 'active' : ''}`}
+                onClick={() => handleLinkClick('/completedorders')}
+              >
+                <i className="bi bi-building-check sidebar-menu-icon"></i>
+                <span className="sidebar-menu-text">Completed Orders</span>
+              </Link>
+            </li>
+          </ul>
         </div>
+        <SidebarProfile />
+
       </div>
     </div>
   );
