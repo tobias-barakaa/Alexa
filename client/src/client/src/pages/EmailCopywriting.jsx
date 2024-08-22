@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages/EmailCopywriting.css";
 import FormLayout from "../dashboard/components/FormLayout";
 
@@ -7,10 +8,13 @@ const EmailCopywriting = () => {
   const [formData, setFormData] = useState({
     projectType: "",
     projectDescription: "",
-    duration: "6hrs", // Changed from deadline to duration
+    duration: "6hrs",
     wordCount: "under-100",
     cost: 0,
   });
+
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -30,26 +34,41 @@ const EmailCopywriting = () => {
   };
 
   const calculateCost = (wordCount) => {
-    const costPerWord = 0.1; // Example: $0.1 per word
+    const costPerWord = 0.1; 
     const wordCountValue = wordCount === "under-100" ? 100 : parseInt(wordCount);
     return wordCountValue * costPerWord;
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.projectType) newErrors.projectType = "Project type is required.";
+    if (!formData.projectDescription) newErrors.projectDescription = "Project description is required.";
+    if (!formData.duration) newErrors.duration = "Duration is required.";
+    if (!formData.wordCount) newErrors.wordCount = "Word count is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       const response = await axios.post('http://localhost:5000/api/emailcopywriting/create', formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
-         
-        }
+        },
       });
 
       console.log(response.data);
       alert('Request submitted successfully!');
-      // Optionally, you can clear the form or redirect the user here
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error submitting request:', error);
       alert('There was an error submitting your request.');
@@ -59,10 +78,6 @@ const EmailCopywriting = () => {
   return (
     <FormLayout title="Request Copywriting Services">
       <form className="email-form" onSubmit={handleSubmit}>
-        {/* <div className="create-input-container">
-          <p className="create-input">Request Copywriting Services</p>
-        </div> */}
-
         <div className="email-group">
           <label htmlFor="project-type" className="email-label">Type of Copywriting</label>
           <select
@@ -71,8 +86,9 @@ const EmailCopywriting = () => {
             className="email-select"
             value={formData.projectType}
             onChange={handleChange}
-            required
+            
           >
+            <option value="">Select Type</option>
             <option value="social">Social Media Content</option>
             <option value="website">Website Copy</option>
             <option value="blog">Blog Posts</option>
@@ -80,6 +96,7 @@ const EmailCopywriting = () => {
             <option value="ad">Ad Copy</option>
             <option value="other">Other</option>
           </select>
+          {errors.projectType && <span className="error-message">{errors.projectType}</span>}
         </div>
 
         <div className="email-group">
@@ -92,8 +109,9 @@ const EmailCopywriting = () => {
             placeholder="Briefly describe your project and requirements"
             value={formData.projectDescription}
             onChange={handleChange}
-            required
+            
           ></textarea>
+          {errors.projectDescription && <span className="error-message">{errors.projectDescription}</span>}
         </div>
 
         <div className="email-group">
@@ -104,7 +122,7 @@ const EmailCopywriting = () => {
             className="email-select"
             value={formData.duration} 
             onChange={handleChange}
-            required
+            
           >
             <option value="6hrs">6 Hours</option>
             <option value="12hrs">12 Hours</option>
@@ -113,6 +131,7 @@ const EmailCopywriting = () => {
             <option value="1week">1 Week</option>
             <option value="2weeks">2 Weeks</option>
           </select>
+          {errors.duration && <span className="error-message">{errors.duration}</span>}
         </div>
 
         <div className="email-group">
@@ -123,7 +142,7 @@ const EmailCopywriting = () => {
             className="email-select"
             value={formData.wordCount}
             onChange={handleWordCountChange}
-            required
+            
           >
             <option value="under-100">Under 100</option>
             {[...Array(10)].map((_, i) => (
@@ -132,6 +151,7 @@ const EmailCopywriting = () => {
               </option>
             ))}
           </select>
+          {errors.wordCount && <span className="error-message">{errors.wordCount}</span>}
         </div>
 
         <div className="cost-container">
@@ -150,7 +170,7 @@ const EmailCopywriting = () => {
 
         <button type="submit" className="email-submit-button">Submit Request</button>
       </form>
-  </FormLayout>
+    </FormLayout>
   );
 };
 

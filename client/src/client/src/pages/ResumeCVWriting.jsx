@@ -21,13 +21,14 @@ import { setPersonalInfo,
  } from '../../../slices/client/resumeCVWritingSlice';
 import { useSubmitResumeMutation } from '../../../slices/client/resumeCVWritingApiSlice';
 import FormLayout from '../dashboard/components/FormLayout';
+import { useState } from 'react';
 
 const ResumeCVWriting = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [submitResume] = useSubmitResumeMutation();
+  const [errors, setErrors] = useState({});
 
-  // Get the entire state from the Redux store
   const {
     personalInfo,
     experiences,
@@ -40,74 +41,88 @@ const ResumeCVWriting = () => {
     successMessage,
   } = useSelector((state) => state.resumeCVWriting);
 
-  const handleChange = (field, value) => {
-    dispatch(setPersonalInfo({ [field]: value }));
+
+const handleChange = (field, value) => {
+  dispatch(setPersonalInfo({ [field]: value }));
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const newErrors = {};
+  if (!personalInfo.fullName) newErrors.fullName = "Full Name is required.";
+  if (!personalInfo.jobTitle) newErrors.jobTitle = "Job Title is required.";
+  if (!personalInfo.email) newErrors.email = "Email is required.";
+  if (!personalInfo.phone) newErrors.phone = "Phone is required.";
+  if (!personalInfo.summary) newErrors.summary = "Professional Summary is required.";
+  
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  const formData = {
+    personalInfo,
+    experiences,
+    educations,
+    skills,
+    languages,
+    certifications,
+    achievements,
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const formData = {
-      personalInfo,
-      experiences,
-      educations,
-      skills,
-      languages,
-      certifications,
-      achievements,
-    };
-  
-    try {
-      const response = await submitResume(formData).unwrap();
-  
-      console.log('Response from API:', response); 
-  
-      const resumeId = response?.resume?.id; 
-  
-      if (resumeId) {
-        dispatch(setSuccessMessage('Resume submitted successfully!'));
-        dispatch(setError(null));
-        localStorage.setItem('resumecvid', resumeId);
-        navigate('/dashboard');
-      } else {
-        dispatch(setError('Failed to retrieve the resume ID. Please try again.'));
-      }
-    } catch (error) {
-      dispatch(setError('Failed to submit the resume/CV. Please try again.'));
-      dispatch(setSuccessMessage(''));
-      console.error('Error:', error);
+  try {
+    const response = await submitResume(formData).unwrap();
+
+    console.log('Response from API:', response);
+
+    const resumeId = response?.resume?.id;
+
+    if (resumeId) {
+      dispatch(setSuccessMessage('Resume submitted successfully!'));
+      dispatch(setError(null));
+      localStorage.setItem('resumecvid', resumeId);
+      navigate('/dashboard');
+    } else {
+      dispatch(setError('Failed to retrieve the resume ID. Please try again.'));
     }
-  };
-  
+  } catch (error) {
+    dispatch(setError('Failed to submit the resume/CV. Please try again.'));
+    dispatch(setSuccessMessage(''));
+    console.error('Error:', error);
+  }
+};
 
-  return (
-    <FormLayout title="Request Resume/CV Writing Services">
-      <form className="resume-cv-form" onSubmit={handleSubmit}>
-        <div className="create-input-container">
-        </div>
+return (
+  <FormLayout title="Request Resume/CV Writing Services">
+    <form className="resume-cv-form" onSubmit={handleSubmit}>
 
-        <PersonalInfoSection personalInfo={personalInfo} handleChange={handleChange} />
-        <WorkExperienceSection experiences={experiences} setExperiences={(data) => dispatch(setExperiences(data))} />
-        <EducationSection educations={educations} setEducations={(data) => dispatch(setEducations(data))} />
-        <SkillsSection skills={skills} setSkills={(data) => dispatch(setSkills(data))} />
-        <AdditionalSections
-          languages={languages}
-          setLanguages={(data) => dispatch(setLanguages(data))}
-          certifications={certifications}
-          setCertifications={(data) => dispatch(setCertifications(data))}
-          achievements={achievements}
-          setAchievements={(data) => dispatch(setAchievements(data))}
-        />
 
-        <button type="submit" className="submit-button">
-          Submit 
-        </button>
-      </form>
-      {error && <ErrorMessage message={error} />}
-      {successMessage && <SuccessMessage message={successMessage} />}
-    
-    </FormLayout>
-  );
+      <PersonalInfoSection
+        personalInfo={personalInfo}
+        handleChange={handleChange}
+        errors={errors} 
+      />
+      <WorkExperienceSection experiences={experiences} setExperiences={(data) => dispatch(setExperiences(data))} />
+      <EducationSection educations={educations} setEducations={(data) => dispatch(setEducations(data))} />
+      <SkillsSection skills={skills} setSkills={(data) => dispatch(setSkills(data))} />
+      <AdditionalSections
+        languages={languages}
+        setLanguages={(data) => dispatch(setLanguages(data))}
+        certifications={certifications}
+        setCertifications={(data) => dispatch(setCertifications(data))}
+        achievements={achievements}
+        setAchievements={(data) => dispatch(setAchievements(data))}
+      />
+
+      <button type="submit" className="submit-button">
+        Submit
+      </button>
+    </form>
+    {error && <ErrorMessage message={error} />}
+    {successMessage && <SuccessMessage message={successMessage} />}
+  </FormLayout>
+);
 };
 
 export default ResumeCVWriting;
