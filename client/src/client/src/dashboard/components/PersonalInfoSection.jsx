@@ -1,4 +1,5 @@
-import "./PersonalInfoSection.css"
+import "./PersonalInfoSection.css";
+
 const PersonalInfoSection = ({ personalInfo, handleChange }) => (
     <section className="form-section personal-info-section">
       <h3 className="section-title">Personal Information</h3>
