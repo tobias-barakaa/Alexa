@@ -1,116 +1,12 @@
-
-  .resume-cv-container {
-    background-color: #fffdfd;
-    width: 800px;
-    padding: 15px;
-    margin: 20px auto;
-    border: solid 2px #c9c9c9;
-    border-radius: 8px;
-  }
-
-
- .form-layout-inner {
-    background-color: #ffffff;
-    padding: 30px;
-    width: 750px; 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 5px; 
-    margin: 20px auto;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  .resume-cv-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .create-input-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .create-input {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .form-section {
-    margin-bottom: 20px;
-  }
-  
-  .section-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .form-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .half-width {
-    width: 48%;
-  }
-  
-  .input-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .styled-input,
-  .styled-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .styled-textarea {
-    resize: vertical;
-  }
-  
-  .submit-button {
-    padding: 10px 20px;
-    background-color: #078bc8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
-  }
-  
-  .submit-button:hover {
-    background-color: #005f8a;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 20px;
-  }
-  
-  .success-message {
-    color: green;
-    margin-top: 20px;
-  }
-  
+.form-layout-title {
+  font-size: 24px;
+  color: #333;
+  font-stretch: extra-condensed;
+  line-height: 40px;
+  background-image: linear-gradient(#f7f8fa, #e7e9ec);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 4px;
+  width: 770px; 
+  height: 40px;
+  text-align: center;
+}

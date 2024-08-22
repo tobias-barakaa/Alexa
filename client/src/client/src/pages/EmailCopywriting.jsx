@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/pages/EmailCopywriting.css";
+import FormLayout from "../dashboard/components/FormLayout";
 
 const EmailCopywriting = () => {
   const [formData, setFormData] = useState({
@@ -42,8 +43,7 @@ const EmailCopywriting = () => {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
-          // Include authentication headers if needed
-          // 'Authorization': `Bearer ${yourToken}`
+         
         }
       });
 
@@ -57,11 +57,11 @@ const EmailCopywriting = () => {
   };
 
   return (
-    <div className="email-container">
+    <FormLayout title="Request Copywriting Services">
       <form className="email-form" onSubmit={handleSubmit}>
-        <div className="create-input-container">
+        {/* <div className="create-input-container">
           <p className="create-input">Request Copywriting Services</p>
-        </div>
+        </div> */}
 
         <div className="email-group">
           <label htmlFor="project-type" className="email-label">Type of Copywriting</label>
@@ -102,7 +102,7 @@ const EmailCopywriting = () => {
             id="duration"
             name="duration"
             className="email-select"
-            value={formData.duration} // Changed from deadline to duration
+            value={formData.duration} 
             onChange={handleChange}
             required
           >
@@ -150,7 +150,7 @@ const EmailCopywriting = () => {
 
         <button type="submit" className="email-submit-button">Submit Request</button>
       </form>
-    </div>
+  </FormLayout>
   );
 };
 

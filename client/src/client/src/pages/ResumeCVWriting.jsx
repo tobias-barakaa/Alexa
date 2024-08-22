@@ -20,6 +20,7 @@ import { setPersonalInfo,
   setSuccessMessage,
  } from '../../../slices/client/resumeCVWritingSlice';
 import { useSubmitResumeMutation } from '../../../slices/client/resumeCVWritingApiSlice';
+import FormLayout from '../dashboard/components/FormLayout';
 
 const ResumeCVWriting = () => {
   const dispatch = useDispatch();
@@ -80,9 +81,7 @@ const ResumeCVWriting = () => {
   
 
   return (
-    <div className="resume-cv-container">
-          <p className="create-input">Resume/CV Writing</p>
-<div className='form-layout-inner' >
+    <FormLayout title="Request Resume/CV Writing Services">
       <form className="resume-cv-form" onSubmit={handleSubmit}>
         <div className="create-input-container">
         </div>
@@ -106,8 +105,8 @@ const ResumeCVWriting = () => {
       </form>
       {error && <ErrorMessage message={error} />}
       {successMessage && <SuccessMessage message={successMessage} />}
-    </div>
-    </div>
+    
+    </FormLayout>
   );
 };
 
