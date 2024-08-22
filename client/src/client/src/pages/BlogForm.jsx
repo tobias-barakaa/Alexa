@@ -58,8 +58,16 @@ const BlogForm = () => {
         <p className="blog-form-title">Create Your Blog Post</p>
 
       <div className="blog-form-inner">
+        <input className='input-class' placeholder='Title' />
         <form onSubmit={handleSubmit} className="blog-form">
-          <div className="form-group">
+        <div className="form-group row">
+    <label className="col-sm-2 col-form-label col-form-label-lg">Title</label>
+    <div className="col-sm-10">
+      <input type="email" className="form-control form-control-lg"
+      id="colFormLabelLg" placeholder="col-form-label-lg" />
+    </div>
+  </div>
+          {/* <div className="form-group">
             <label className="form-label">Title</label>
             <input
               type="text"
@@ -69,7 +77,7 @@ const BlogForm = () => {
               className="form-control"
               required
             />
-          </div>
+          </div> */}
 
           <div className="form-group">
             <label className="form-label">Category</label>
