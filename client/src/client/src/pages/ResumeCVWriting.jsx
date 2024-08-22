@@ -59,9 +59,9 @@ const ResumeCVWriting = () => {
     try {
       const response = await submitResume(formData).unwrap();
   
-      console.log('Response from API:', response); // Log the entire response to see its structure
+      console.log('Response from API:', response); 
   
-      const resumeId = response?.resume?.id; // Make sure this matches the actual response structure
+      const resumeId = response?.resume?.id; 
   
       if (resumeId) {
         dispatch(setSuccessMessage('Resume submitted successfully!'));
@@ -81,9 +81,10 @@ const ResumeCVWriting = () => {
 
   return (
     <div className="resume-cv-container">
+          <p className="create-input">Resume/CV Writing</p>
+<div className='form-layout-inner' >
       <form className="resume-cv-form" onSubmit={handleSubmit}>
         <div className="create-input-container">
-          <p className="create-input">Resume/CV Writing</p>
         </div>
 
         <PersonalInfoSection personalInfo={personalInfo} handleChange={handleChange} />
@@ -105,6 +106,7 @@ const ResumeCVWriting = () => {
       </form>
       {error && <ErrorMessage message={error} />}
       {successMessage && <SuccessMessage message={successMessage} />}
+    </div>
     </div>
   );
 };

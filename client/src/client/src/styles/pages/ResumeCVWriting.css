@@ -1,10 +1,38 @@
 
   .resume-cv-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    background-color: #fffdfd;
+    width: 800px;
+    padding: 15px;
+    margin: 20px auto;
+    border: solid 2px #c9c9c9;
+    border-radius: 8px;
   }
+
+
+ .form-layout-inner {
+    background-color: #ffffff;
+    padding: 30px;
+    width: 750px; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px; 
+    margin: 20px auto;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   .resume-cv-form {
     display: flex;
