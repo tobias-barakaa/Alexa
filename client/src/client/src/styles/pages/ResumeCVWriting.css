@@ -1,48 +1,42 @@
-/* .resume-cv-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  } */
 
   .resume-cv-container {
-    max-width: 900px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    border: 2px solid #e0e0e0;
   }
   
-  /* .resume-cv-container h2 {
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 28px;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-  } */
+  .resume-cv-form {
+    display: flex;
+    flex-direction: column;
+  }
   
-
+  .create-input-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .create-input {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
   .form-section {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   
   .section-title {
-    color: #078BC8;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
   
   .form-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   
   .half-width {
@@ -51,329 +45,44 @@
   
   .input-label {
     display: block;
-    color: #078BC8;
-    margin-bottom: 8px;
-    font-weight: bold;
+    margin-bottom: 5px;
   }
   
-  .styled-input, .styled-textarea {
+  .styled-input,
+  .styled-textarea {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .styled-input {
-    height: 50px;
   }
   
   .styled-textarea {
-    min-height: 100px;
     resize: vertical;
   }
-  
-  .styled-input:focus, .styled-textarea:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .styled-input::placeholder, .styled-textarea::placeholder {
-    color: #999;
-  }
-  
-  /* Media query for smaller screens */
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-    }
-    
-    .half-width {
-      width: 100%;
-    }
-  }
-
-
-
-
-
-
-
-  .skills-section {
-    margin-bottom: 20px;
-  }
-  
-  .skills-title {
-    color: #078BC8;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .skills-form-group {
-    margin-bottom: 20px;
-  }
-  
-  .skills-input-label {
-    display: block;
-    color: #078BC8;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .skills-input {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-    height: 50px;
-  }
-  
-  .skills-input:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .skills-input::placeholder {
-    color: #999;
-  }
-
-
-
-
-
-
-
-
-  .additional-sections {
-    margin-bottom: 20px;
-  }
-  
-  .additional-sections-title {
-    color: #078BC8;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .languages-form-group,
-  .certifications-form-group,
-  .achievements-form-group {
-    margin-bottom: 20px;
-  }
-  
-  .languages-input-label,
-  .certifications-input-label,
-  .achievements-input-label {
-    display: block;
-    color: #078BC8;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .languages-input,
-  .certifications-textarea,
-  .achievements-textarea {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #078BC8;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .languages-input {
-    height: 50px;
-  }
-  
-  .certifications-textarea,
-  .achievements-textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  
-  .languages-input:focus,
-  .certifications-textarea:focus,
-  .achievements-textarea:focus {
-    outline: none;
-    border-color: #056b99;
-    box-shadow: 0 0 0 2px rgba(7, 139, 200, 0.3);
-  }
-  
-  .languages-input::placeholder,
-  .certifications-textarea::placeholder,
-  .achievements-textarea::placeholder {
-    color: #999;
-  }
-
-
-
-
-
-  .submit-buttonn {
-    background-color: #078BC8;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: 2px solid #078BC8;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .submit-buttonn:hover {
-    background-color: #056b99;
-    border-color: #056b99;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .submit-buttonn:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(7, 139, 200, 0.3);
-  }
-  
-  .submit-buttonn:active {
-    transform: translateY(1px);
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .resume-cv-form {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .form-section {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
-  }
-  
-  .form-section h3 {
-    color: #34495e;
-    margin-bottom: 20px;
-    font-size: 20px;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .half-width {
-    flex: 1;
-  }
-  
-  label {
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #34495e;
-  }
-  
-  /* input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea {
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #fff;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-  } */
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  .add-button {
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
   
   .submit-button {
-    background-color: #2980b9;
+    padding: 10px 20px;
+    background-color: #078bc8;
     color: white;
-    padding: 14px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 18px;
-    font-weight: 600;
-    transition: background-color 0.3s;
-    align-self: flex-start;
     margin-top: 20px;
   }
   
   .submit-button:hover {
-    background-color: #3498db;
+    background-color: #005f8a;
   }
   
-  @media (max-width: 768px) {
-    .resume-cv-container {
-      padding: 20px;
-    }
-  
-    .form-row {
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    .submit-button {
-      width: 100%;
-    }
+  .error-message {
+    color: red;
+    margin-top: 20px;
   }
+  
+  .success-message {
+    color: green;
+    margin-top: 20px;
+  }
+  

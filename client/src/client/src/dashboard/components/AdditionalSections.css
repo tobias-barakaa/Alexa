@@ -1,0 +1,42 @@
+.additional-sections {
+    margin-bottom: 20px;
+  }
+  
+  .additional-sections-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #078bc8;
+    font-weight: bold;
+  }
+  
+  .languages-form-group,
+  .certifications-form-group,
+  .achievements-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .languages-input-label,
+  .certifications-input-label,
+  .achievements-input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .languages-input,
+  .certifications-textarea,
+  .achievements-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .certifications-textarea,
+  .achievements-textarea {
+    resize: vertical;
+  }
+  

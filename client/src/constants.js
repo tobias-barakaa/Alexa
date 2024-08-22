@@ -11,6 +11,9 @@ export const NUMBEROFWORDS = '/api/b'
 export const BLOG_URL = '/api/blog'
 export const ARTICLE_URL = '/api/articlecreation'
 
+// REsume CV Writing
+export const RESUME_CV_WRITING_URL = '/api/resume';
+
 
 // Admin
 export const ADMIN_BLOG_URL = 'api/blog/admin/blogs';
