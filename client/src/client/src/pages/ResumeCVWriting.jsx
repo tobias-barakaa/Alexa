@@ -1,18 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setPersonalInfo,
-  setExperiences,
-  setEducations,
-  setSkills,
-  setLanguages,
-  setCertifications,
-  setAchievements,
-  setError,
-  setSuccessMessage,
-  
-} from '../features/resumeCVWriting/resumeCVWritingSlice';
-import { useSubmitResumeMutation } from '../features/resumeCVWriting/resumeCVWritingApiSlice';
 import EducationSection from './EducationSection';
 import WorkExperienceSection from './WorkExperienceSection';
 import '../styles/pages/ResumeCVWriting.css';
@@ -21,6 +8,18 @@ import SkillsSection from '../dashboard/components/SkillsSection';
 import AdditionalSections from '../dashboard/components/AdditionalSections';
 import ErrorMessage from '../dashboard/components/ErrorMessage';
 import SuccessMessage from '../dashboard/components/SuccessMessage';
+import { setPersonalInfo,
+
+  setExperiences,
+  setEducations,
+  setSkills,
+  setLanguages,
+  setCertifications,
+  setAchievements,
+  setError,
+  setSuccessMessage,
+ } from '../../../slices/client/resumeCVWritingSlice';
+import { useSubmitResumeMutation } from '../../../slices/client/resumeCVWritingApiSlice';
 
 const ResumeCVWriting = () => {
   const dispatch = useDispatch();
@@ -46,6 +45,7 @@ const ResumeCVWriting = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const formData = {
       personalInfo,
       experiences,
@@ -55,17 +55,18 @@ const ResumeCVWriting = () => {
       certifications,
       achievements,
     };
-
+  
     try {
       const response = await submitResume(formData).unwrap();
-
-      dispatch(setSuccessMessage('Resume submitted successfully!'));
-      dispatch(setError(null));
-
-      const resumeId = response.id; // Assuming the response contains the resume ID
-      localStorage.setItem('resumecvid', resumeId);
-
+  
+      console.log('Response from API:', response); // Log the entire response to see its structure
+  
+      const resumeId = response?.resume?.id; // Make sure this matches the actual response structure
+  
       if (resumeId) {
+        dispatch(setSuccessMessage('Resume submitted successfully!'));
+        dispatch(setError(null));
+        localStorage.setItem('resumecvid', resumeId);
         navigate('/dashboard');
       } else {
         dispatch(setError('Failed to retrieve the resume ID. Please try again.'));
@@ -76,6 +77,7 @@ const ResumeCVWriting = () => {
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <div className="resume-cv-container">

@@ -1,17 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./slices/apiSlice";
-
-
-
 import articleSliceReducer from "./slices/client/articleSlice";
-
 import authSliceReducer from "./slices/client/authSlice";
 import adminReducer from "./slices/admin/adminSlice";
 import adminUsersReducer from "./slices/admin/adminUsersSlice";
 import blogsSliceReducer from "./slices/client/blogSlice";
 import blogsSliceApiReducer from "./slices/admin/blogSlice";
-
 import articlecreationSliceReducer from "./slices/client/articleCreationSlice";
+import resumeCVWritingReducer from './slices/client/resumeCVWritingSlice';
 
 
 const store = configureStore({
@@ -24,6 +20,8 @@ const store = configureStore({
         blog: blogsSliceReducer,
         blogs: blogsSliceApiReducer,
         articlecreation: articlecreationSliceReducer, 
+        resumeCVWriting: resumeCVWritingReducer
+
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
     devTools: true,
