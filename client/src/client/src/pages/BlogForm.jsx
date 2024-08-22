@@ -235,7 +235,13 @@
 
 //components/BlogForm.jsx
 import { useState, useEffect } from "react";
-import { useCreateBlogMutation, useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
+//import { useCreateBlogMutation, useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from "../../../slices/client/blogApiSlice";
+import {
+  useCreateBlogMutation,
+  useGetCategoriesQuery,
+  useGetNumberOfWordsQuery,
+  useGetTimeFrameQuery,
+} from "../../../slices/client/blogApiSlice";
 import { useNavigate } from "react-router-dom";
 import Loader from "../dashboard/components/Loader";
 import FormLayout from "../dashboard/components/FormLayout";
@@ -328,7 +334,7 @@ const BlogForm = () => {
   };
 
   return (
-    <FormLayout title="Create Your Blog Post">
+    <FormLayout title="Request Blog Post Services">
       <form onSubmit={handleSubmit} className="blog-form">
         
         <div className="form-group">

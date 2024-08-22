@@ -334,7 +334,6 @@
   }
   
   .add-button {
-    background-color: #27ae60;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -345,9 +344,6 @@
     margin-top: 10px;
   }
   
-  .add-button:hover {
-    background-color: #2ecc71;
-  }
   
   .submit-button {
     background-color: #2980b9;
