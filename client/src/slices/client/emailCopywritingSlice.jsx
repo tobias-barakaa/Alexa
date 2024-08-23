@@ -2,7 +2,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  // your initial state here
+    emailCopywriting: {
+        emailSubject: '',
+        emailBody: '',
+        emailSignature: '',
+    },
+    error: null,
+    successMessage: '',
 };
 
 export const emailCopywritingSlice = createSlice({
