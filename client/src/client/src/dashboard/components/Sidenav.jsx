@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    // Update activeLink whenever the location changes
+   
     setActiveLink(location.pathname);
   }, [location.pathname]);
 
