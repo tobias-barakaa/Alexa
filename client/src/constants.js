@@ -18,6 +18,7 @@ export const RESUME_CV_WRITING_URL = '/api/resume';
 export const EMAIL_COPYWRITING_URL = '/api/emailcopywriting';
 
 
+
 // Admin
 export const ADMIN_BLOG_URL = 'api/blog/admin/blogs';
 
