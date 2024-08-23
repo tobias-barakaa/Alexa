@@ -40,7 +40,7 @@ import LoginClient from './client/src/pages/LoginClient'
 // import Dashboard from './client/src/pages/Dashboard';
 import Dashboard from './client/src/pages/Dashboard';
 // import DashboardMain from './client/src/pages/DashboardMain';
-import BlogForm from './client/src/pages/BlogForm';
+
 import ArticleCreation from './client/src/pages/ArticleCreation';
 // import DashboardMain from './client/src/pages/DashboardMain';
 // import AdminLogin from './client/src/pages/AdminLogin';
@@ -88,6 +88,8 @@ import EmailCopyWriting from './admin/src/pages/EmailCopyWriting';
 import EmailCopyWritingUser from './admin/src/pages/EmailCopyWritingUser';
 import EmailCopyWritingComplete from './client/src/pages/manageorders/completed/EmailCopyWritingComplete';
 import AboutPage from './client/src/pages/AboutPage';
+import Payment from './client/src/pages/Payment';
+import BlogForm from './client/src/pages/BlogForm';
 // import AboutPage from './client/src/pages/AboutPage';
 
 
@@ -143,6 +145,10 @@ const router = createBrowserRouter([
       {
         path: "ordershistory",
         element: <OrderHistory />
+      },
+      {
+        path: "payment",
+        element: <Payment />
       },
       // {
       //   path: "resume/:resumeId",

@@ -297,10 +297,30 @@
 
 }
 
+
+
+.sidena::-webkit-scrollbar {
+  width: 3px; 
+  background-color: #0581f5; 
+
+}
+
+.sidena::-webkit-scrollbar-thumb {
+  background-color: #dddddd; 
+  border-radius: 10px;
+}
+
+.sidena::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.sidena::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 .logo {
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .dark-divider {
