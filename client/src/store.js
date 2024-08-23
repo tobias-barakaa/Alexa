@@ -8,6 +8,7 @@ import blogsSliceReducer from "./slices/client/blogSlice";
 import blogsSliceApiReducer from "./slices/admin/blogSlice";
 import articlecreationSliceReducer from "./slices/client/articleCreationSlice";
 import resumeCVWritingReducer from './slices/client/resumeCVWritingSlice';
+import emailCopywritingSliceReducer from './slices/client/emailCopywritingSlice';
 
 
 const store = configureStore({
@@ -20,7 +21,8 @@ const store = configureStore({
         blog: blogsSliceReducer,
         blogs: blogsSliceApiReducer,
         articlecreation: articlecreationSliceReducer, 
-        resumeCVWriting: resumeCVWritingReducer
+        resumeCVWriting: resumeCVWritingReducer,
+        emailCopywriting: emailCopywritingSliceReducer,
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
