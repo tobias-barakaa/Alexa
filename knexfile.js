@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config();
 
 module.exports = {
@@ -5,10 +6,10 @@ module.exports = {
     client: 'pg',
     connection: process.env.DEV_DATABASE_URL,
     migrations: {
-      directory: './db/migrations' // Directory for migration files
+      directory: path.join(__dirname, 'db', 'migrations')
     },
     seeds: {
-      directory: './db/seeds' 
+      directory: path.join(__dirname, 'db', 'seeds')
     },
     pool: {
       min: 2,
@@ -16,15 +17,14 @@ module.exports = {
     },
     ssl: { rejectUnauthorized: false }
   },
-
   test: {
     client: 'pg',
     connection: process.env.TEST_DATABASE_URL,
     migrations: {
-      directory: './db/migrations'
+      directory: path.join(__dirname, 'db', 'migrations')
     },
     seeds: {
-      directory: './db/seeds'
+      directory: path.join(__dirname, 'db', 'seeds')
     },
     pool: {
       min: 2,
@@ -32,66 +32,19 @@ module.exports = {
     },
     ssl: { rejectUnauthorized: false }
   },
-
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './db/migrations'
+      directory: path.join(__dirname, 'db', 'migrations')
     },
     seeds: {
-      directory: './db/seeds'
+      directory: path.join(__dirname, 'db', 'seeds')
     },
     pool: {
       min: 2,
-      max: 20 // Increased max pool size for production
+      max: 20
     },
     ssl: { rejectUnauthorized: false }
   }
 };
-
-
-// require("dotenv").config();
-
-// module.exports = {
-//   development: {
-//     client: 'pg',
-//     connection: process.env.DATABASE_URL,
-//     pool: {
-//       min: 1,
-//       max: 5,
-//       acquireTimeoutMillis: 60000,
-//       createTimeoutMillis: 30000,
-//       idleTimeoutMillis: 30000
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations',
-//       directory: './db/migrations'
-//     },
-//     seeds: {
-//       directory: './db/seeds'
-//     }
-//   },
-//   production: {
-//     client: 'pg',
-//     connection: {
-//       connectionString: process.env.DATABASE_URL,
-//       ssl: { rejectUnauthorized: false }
-//     },
-//     pool: {
-//       min: 1,
-//       max: 5,
-//       acquireTimeoutMillis: 60000,
-//       createTimeoutMillis: 30000,
-//       idleTimeoutMillis: 30000
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations',
-//       directory: './db/migrations'
-//     },
-//     seeds: {
-//       directory: './db/seeds'
-//     }
-//   }
-// };
-
