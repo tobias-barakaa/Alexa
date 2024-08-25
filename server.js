@@ -50,6 +50,7 @@ app.use(morgan('dev')); // Logging middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // CORS configuration
 const allowedOrigins = [
   'http://127.0.0.1:5173',

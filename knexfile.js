@@ -92,17 +92,31 @@
 //   }
 // };
 
+
 require("dotenv").config();
+const { RetryAgent } = require('undici');
 
 const knexConfig = {
   development: {
     client: 'pg',
     connection: {
-      host: process.env.DB_HOST,
-      database: process.env.DB_DATABASE,
-      port: process.env.DB_PORT || 5432,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD
+      host: "ep-old-lake-a2fauoba.eu-central-1.aws.neon.tech",
+      database: "enwriter_app",
+      user: "enwriter_app_owner",
+      password: "6SNpHlIYkc0f",
+      port: 5432,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      agent: {
+        http: new RetryAgent({
+          connect: {
+            timeout: 10000, // 10 seconds
+          },
+          retries: 3, // Number of retry attempts
+          retryDelay: 1000 // Wait time before retrying (1 second)
+        }),
+      }
     },
     pool: {
       min: 2,
@@ -119,18 +133,34 @@ const knexConfig = {
   production: {
     client: 'pg',
     connection: {
-  host: "ep-quiet-mountain-a5anl9iv.us-east-2.aws.neon.tech",
-  database: "Enwriter-writers",
-  user: "writers-app_owner",
-  password: "Dct0POI4SbjR",
-  port: 5432,
+      host: "ep-old-lake-a2fauoba.eu-central-1.aws.neon.tech",
+      database: "enwriter_app",
+      user: "enwriter_app_owner",
+      password: "6SNpHlIYkc0f",
+      port: 5432,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      agent: {
+        http: new RetryAgent({
+          connect: {
+            timeout: 20000, // 20 seconds
+          },
+          retries: 5, // Number of retry attempts in production
+          retryDelay: 2000 // Wait time before retrying (2 seconds)
+        }),
+      }
     },
     pool: {
-      min: 2,
-      max: 10
+      max: 100,
+      min: 0,
+      acquire: 1000000,
+      idle: 100000,
+      evict: 2000,
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      directory: './db/migrations'
     },
     seeds: {
       directory: './db/seeds'
@@ -138,7 +168,8 @@ const knexConfig = {
   }
 };
 
-
 module.exports = knexConfig;
+
+  
 
 
