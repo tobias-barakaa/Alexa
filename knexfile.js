@@ -92,38 +92,14 @@
 //   }
 // };
 
+require('dotenv').config();
 
-require("dotenv").config();
-const { RetryAgent } = require('undici');
+const connectionString = process.env.CONNECT
 
 const knexConfig = {
   development: {
     client: 'pg',
-    connection: {
-      
-
-      host: process.env.DB_HOST,
-      database: process.env.DB_DATABASE,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT || 5432,
-
-
-
-
-      ssl: {
-        rejectUnauthorized: false,
-      },
-      agent: {
-        http: new RetryAgent({
-          connect: {
-            timeout: 10000, // 10 seconds
-          },
-          retries: 3, // Number of retry attempts
-          retryDelay: 1000 // Wait time before retrying (1 second)
-        }),
-      }
-    },
+    connection: connectionString,
     pool: {
       min: 2,
       max: 10
@@ -138,31 +114,10 @@ const knexConfig = {
   },
   production: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST,
-      database: process.env.DB_DATABASE,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      port: process.env.DB_PORT || 5432,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-      agent: {
-        http: new RetryAgent({
-          connect: {
-            timeout: 20000, // 20 seconds
-          },
-          retries: 5, // Number of retry attempts in production
-          retryDelay: 2000 // Wait time before retrying (2 seconds)
-        }),
-      }
-    },
+    connection: connectionString,
     pool: {
-      max: 100,
-      min: 0,
-      acquire: 1000000,
-      idle: 100000,
-      evict: 2000,
+      min: 2,
+      max: 10
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -175,7 +130,4 @@ const knexConfig = {
 };
 
 module.exports = knexConfig;
-
-  
-
 
