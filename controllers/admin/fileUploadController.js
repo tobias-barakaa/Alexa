@@ -16,7 +16,7 @@ const uploadFile = async (req, res) => {
     const fileUrl = result.secure_url;
     const publicId = result.public_id;
 
-    const [fileRecord] = await knex('uploads').insert({
+    const [fileRecord] = await knex('blog_upload').insert({
       file_url: fileUrl,
       public_id: publicId,
       recipient_id: user_id,
@@ -40,7 +40,7 @@ const getUploadedFiles = async (req, res) => {
     }
 
     // Fetch all files for the recipient
-    const files = await knex('uploads')
+    const files = await knex('blog_upload')
       .where({ recipient_id });
 
     if (files.length === 0) {

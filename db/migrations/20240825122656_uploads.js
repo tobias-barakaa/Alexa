@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.createTable('uploads', function(table) {
+    return knex.schema.createTable('blog_upload', function(table) {
       table.increments('id').primary();
       table.string('file_url', 255).notNullable();
       table.string('public_id', 255).notNullable();
@@ -15,5 +15,5 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
-    return knex.schema.dropTable('uploads');
+    return knex.schema.dropTable('blog_upload');
   };

@@ -17,20 +17,8 @@
     margin: 20px auto;
   }
   
-  .form-layout-title {
-    font-size: 24px;
-    color: #333;
-    font-stretch: extra-condensed;
-    line-height: 40px;
-    background-image: linear-gradient(#f7f8fa, #e7e9ec);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 4px;
-    width: 770px; 
-    height: 40px;
-    text-align: center;
-  }
   
-  /* The rest of your form-related styles */
+  
   .input-class {
     position: relative;
     font-size: 14px;

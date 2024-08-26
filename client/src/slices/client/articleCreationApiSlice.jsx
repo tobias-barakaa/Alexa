@@ -12,19 +12,19 @@ export const articleApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
-    getNumberOfWords: builder.query({
-      query: () => `${ARTICLE_URL}/numberofwords`,
-      keepUnusedDataFor: 5,
-    }),
-    getTimeFrame: builder.query({
-      query: () => `${ARTICLE_URL}/timeframe`,
-      keepUnusedDataFor: 5,
-    }),
+    // getNumberOfWords: builder.query({
+    //   query: () => `${ARTICLE_URL}/numberofwords`,
+    //   keepUnusedDataFor: 5,
+    // }),
+    // getTimeFrame: builder.query({
+    //   query: () => `${ARTICLE_URL}/timeframe`,
+    //   keepUnusedDataFor: 5,
+    // }),
   }),
 });
 
 export const {
   useCreateArticleMutation,
-  useGetNumberOfWordsQuery,
-  useGetTimeFrameQuery,
+  // useGetNumberOfWordsQuery,
+  // useGetTimeFrameQuery,
 } = articleApiSlice;

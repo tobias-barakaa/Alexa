@@ -227,8 +227,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentArticle, setError } from '../../../slices/client/articleCreationSlice';
-import { useCreateArticleMutation, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from '../../../slices/client/articleCreationApiSlice';
-import { useGetCategoriesQuery } from '../../../slices/client/blogApiSlice';
+import { useCreateArticleMutation } from '../../../slices/client/articleCreationApiSlice';
+import { useGetCategoriesQuery, useGetNumberOfWordsQuery, useGetTimeFrameQuery } from '../../../slices/client/blogApiSlice';
 import FormLayout from '../dashboard/components/FormLayout';
 // import FormLayout from '../../components/FormLayout/FormLayout'; 
 
