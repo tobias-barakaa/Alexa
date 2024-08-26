@@ -100,11 +100,17 @@ const knexConfig = {
   development: {
     client: 'pg',
     connection: {
-      host: "ep-old-lake-a2fauoba.eu-central-1.aws.neon.tech",
-      database: "enwriter_app",
-      user: "enwriter_app_owner",
-      password: "6SNpHlIYkc0f",
-      port: 5432,
+      
+
+      host: process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT || 5432,
+
+
+
+
       ssl: {
         rejectUnauthorized: false,
       },
@@ -133,11 +139,11 @@ const knexConfig = {
   production: {
     client: 'pg',
     connection: {
-      host: "ep-old-lake-a2fauoba.eu-central-1.aws.neon.tech",
-      database: "enwriter_app",
-      user: "enwriter_app_owner",
-      password: "6SNpHlIYkc0f",
-      port: 5432,
+      host: process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT || 5432,
       ssl: {
         rejectUnauthorized: false,
       },
