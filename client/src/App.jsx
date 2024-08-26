@@ -90,6 +90,7 @@ import EmailCopyWritingComplete from './client/src/pages/manageorders/completed/
 import AboutPage from './client/src/pages/AboutPage';
 import Payment from './client/src/pages/Payment';
 import BlogForm from './client/src/pages/BlogForm';
+import UserProfile from './client/src/pages/UserProfile';
 // import AboutPage from './client/src/pages/AboutPage';
 
 
@@ -194,6 +195,10 @@ const router = createBrowserRouter([
       {
         path: "completedorders/completedemailcopywriting",
         element: <EmailCopyWritingComplete />
+      },
+      {
+        path: "profile",
+        element: <UserProfile />
       }
     ]
   },

@@ -22,11 +22,21 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 
       }),
       keepUnusedDataFor: 5
+    }),
+    profile: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/profile`,
+        method: 'PUT',
+        body: data,
+        credentials: 'include',
+
+      }),
+      keepUnusedDataFor: 5
     })
   })
 });
 
-export const { useLoginMutation, useRegisterMutation } = usersApiSlice;
+export const { useLoginMutation, useRegisterMutation, useProfileMutation } = usersApiSlice;
 
 
 

@@ -25,7 +25,7 @@ const SidebarProfile = () => {
       </div>
       {dropdownActive && (
         <div className="profile-dropdown">
-          <Link to="/profile" className="dropdown-item">
+          <Link to="profile/" className="dropdown-item">
             <i className="bi bi-person dropdown-item-icon"></i>
             <span>My Profile</span>
           </Link>
