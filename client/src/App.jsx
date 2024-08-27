@@ -92,6 +92,8 @@ import Payment from './client/src/pages/Payment';
 import BlogForm from './client/src/pages/BlogForm';
 import UserProfile from './client/src/pages/UserProfile';
 import Settings from './client/src/pages/Settings';
+import ComingSoon from './client/src/components/ComingSoon';
+import LearnMore from './client/src/components/LearnMore';
 // import AboutPage from './client/src/pages/AboutPage';
 
 
@@ -111,6 +113,14 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <AboutPage />
+  },
+  {
+    path: "/comingsoon",
+    element: <ComingSoon />
+  },
+  {
+    path: "/learnmore",
+    element: <LearnMore />
   },
   {
     path: "dashboard",

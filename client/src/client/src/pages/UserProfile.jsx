@@ -1,5 +1,5 @@
 // UserProfile.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './UserProfile.css';
 
 const UserProfile = () => {

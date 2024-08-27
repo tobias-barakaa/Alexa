@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("../../db/db.js");
+const cron = require('node-cron');
 
 const createArticle = async (req, res) => {
   const userId = req.user.userId;
@@ -252,20 +253,47 @@ router.get("/", async (req, res) => {
 // }
 
 // Delete an article
-const deleteArticleCreation = async (req, res) => {
-  const { id } = req.params;
-  const user_id = req.user.userId;
+// const deleteArticleCreation = async (req, res) => {
+//   const { id } = req.params;
+//   const user_id = req.user.userId;
 
+//   try {
+//     const deleted = await knex("articles").where({ id, user_id }).del();
+//     if (!deleted) {
+//       return res.status(404).json({ error: "Article not found" });
+//     }
+//     res.status(204).send();
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to delete article" });
+//   }
+// };
+
+const deleteArticleCreation = async (id, res) => {
   try {
-    const deleted = await knex("articles").where({ id, user_id }).del();
-    if (!deleted) {
-      return res.status(404).json({ error: "Article not found" });
-    }
-    res.status(204).send();
+      const article = await knex('articlecreation').where({ id }).first();
+
+      if (!article) {
+          return res.status(404).json({ message: `Article with ID ${id} not found.` });
+      }
+
+      // Check if the article is younger than 30 minutes
+      const createdTime = new Date(article.created_at);
+      const currentTime = new Date();
+
+      const timeDifference = (currentTime - createdTime) / 1000 / 60; // Difference in minutes
+
+      if (timeDifference < 30) {
+          await knex('articlecreation').where({ id }).del();
+          res.json({ message: `Article with ID ${id} has been deleted successfully.` });
+      } else {
+          res.json({ message: `Article with ID ${id} is older than 30 minutes and cannot be deleted.` });
+      }
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete article" });
+      console.error(`Failed to delete article with ID ${id}: ${error.message}`);
+      res.status(500).json({ message: `Failed to delete article with ID ${id}`, detail: error.message });
   }
 };
+
 
 module.exports = {
   createArticle,

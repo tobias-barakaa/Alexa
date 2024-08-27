@@ -1,5 +1,6 @@
 import './HeroSection.css';
 import ClientRegister from '../pages/ClientRegister';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -12,7 +13,9 @@ const HeroSection = () => {
           </span>
           <div className="button-group">
             <button className="btn btn-primary">Start Writing</button>
+            <Link to='/learnmore'>
             <button className="btn btn-secondary">Learn More</button>
+            </Link>
           </div>
         </div>
         <ClientRegister />

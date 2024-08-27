@@ -320,4 +320,4 @@ const google = async (req, res, next) => {
 //   }
 // }
 
-module.exports = { signupUser, loginUser, logoutUser, getAllUsers, google };
+module.exports = { signupUser, loginUser, logoutUser, getAllUsers, google, logoutUser };

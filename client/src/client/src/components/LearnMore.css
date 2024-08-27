@@ -1,0 +1,54 @@
+/* LearnMore.css */
+.learn-more {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #444;
+    margin-top: 30px;
+  }
+  
+  p {
+    line-height: 1.6;
+  }
+  
+  .resource-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .resource-link:hover {
+    background-color: #0056b3;
+  }
+  
+  .resources ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .resources li {
+    padding: 10px 0;
+  }
+  
+  .resources a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .resources a:hover {
+    text-decoration: underline;
+  }

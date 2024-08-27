@@ -13,11 +13,4 @@ router.get('/get/:id', protect, getResumeById)
 router.get('/getcount', protect, getResumeCount)
 
 
-
-// router.post('/signin',protect,verifyAdmin, loginUser);
-
-// router.post('/logout', protect, logoutUser);
-// router.post('/getusers', protect, getAllUsers);
-
-
 module.exports = router;

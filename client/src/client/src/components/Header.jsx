@@ -22,9 +22,9 @@ const Header = () => {
        
       </div>
 
-      <ul className="custom-button" style={{ marginRight: "40px", padding: "12px" }}>
-  This is the button
-</ul>
+      <Link  to="comingsoon" className="custom-button" style={{ marginRight: "40px", padding: "12px" }}>
+  Become a Writer
+</Link>
 
     </header>
     <hr style={{ backgroundColor: '#000000', height: '1px', border: 'none' }}/>

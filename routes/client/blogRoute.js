@@ -25,7 +25,6 @@ router.get("/categories", getCategories);
 
 // Private routes
 router.post("/createblog", protect, createBlog);
-// router.get("/getall", protect, getAllBlogs);
 router.get("/getlatest", protect, getTwoLatestPostByUser);
 router.get("/getrecent", protect, getrecentBlogs);
 router.get('/getcount', protect, getRecentBlogsCount)

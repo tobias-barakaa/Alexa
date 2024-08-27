@@ -17,17 +17,4 @@ router.get("/articlecount",protect, getArticleCountAfter30Minutes);
 router.put('/update/:id',protect, updateArticleCreation);
 
 
-// router.get("/getall", protect, getAllBlogs);
-// router.get("/getlatest", protect, getTwoLatestPostByUser);
-// router.get("/getrecent", protect, getrecentBlogs);
-// // router.delete("/blogs/:id", protect, deleteBlog);
-// router.delete('/deleteblog/:blogId', protect, deleteBlog);
-
-
-// router.get("/usersblog", protect, getBlogsByUser);
-// router.get("/blogs/:id", protect, getBlog);
-// router.put('/editblog/:blogId', protect, editBlog);
-
-// router.put('/editblog/:id', protect, editBlog);  
-
 module.exports = router;
