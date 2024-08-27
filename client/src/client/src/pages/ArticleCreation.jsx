@@ -455,7 +455,7 @@ const ArticleCreation = () => {
           </select>
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="status" className="label">Status</label>
           <select
             id="status"
@@ -467,7 +467,7 @@ const ArticleCreation = () => {
             <option value="Pending">Pending</option>
             <option value="Published">Published</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="form-group">
           <label htmlFor="cost" className="label">Cost</label>

@@ -91,6 +91,7 @@ import AboutPage from './client/src/pages/AboutPage';
 import Payment from './client/src/pages/Payment';
 import BlogForm from './client/src/pages/BlogForm';
 import UserProfile from './client/src/pages/UserProfile';
+import Settings from './client/src/pages/Settings';
 // import AboutPage from './client/src/pages/AboutPage';
 
 
@@ -199,6 +200,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <UserProfile />
+      },
+      {
+        path: "settings",
+        element: <Settings />
       }
     ]
   },

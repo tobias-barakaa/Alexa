@@ -1,14 +1,31 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
+import { Link, Navigate, useNavigate } from 'react-router-dom'; // Import useNavigate to handle redirection
 import './SidebarProfile.css';
 import userAvatar from '../../assets/images/logo.png';
-
+// import { logout } from '../../redux/slices/authSlice'; // Import your logout action
+import { logout } from '../../../../slices/client/authSlice';
+import { useLogoutMutation } from '../../../../slices/client/usersApiSlice';
 
 const SidebarProfile = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
+  const dispatch = useDispatch(); // Create a dispatch function
 
   const toggleDropdown = () => {
     setDropdownActive(!dropdownActive);
+  };
+  const [logoutApi] = useLogoutMutation();
+
+  const handleLogout = async() => {
+    try {
+      await logoutApi().unwrap();
+      dispatch(logout());
+      Navigate('/login');
+
+    } catch (error) {
+      console.log(error)
+    }
+    // Redirect to the login page or any other desired page
   };
 
   return (
@@ -25,16 +42,16 @@ const SidebarProfile = () => {
       </div>
       {dropdownActive && (
         <div className="profile-dropdown">
-          <Link to="profile/" className="dropdown-item">
+          <Link to="profile" className="dropdown-item">
             <i className="bi bi-person dropdown-item-icon"></i>
             <span>My Profile</span>
           </Link>
-          <Link to="/settings" className="dropdown-item">
+          <Link to="settings" className="dropdown-item">
             <i className="bi bi-gear dropdown-item-icon"></i>
             <span>Settings</span>
           </Link>
           <hr className="dropdown-divider" />
-          <button className="dropdown-item logout-button">
+          <button className="dropdown-item logout-button" onClick={handleLogout}>
             <i className="bi bi-box-arrow-right dropdown-item-icon"></i>
             <span>Logout</span>
           </button>
