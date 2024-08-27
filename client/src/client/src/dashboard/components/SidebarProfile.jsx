@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
-import { Link, Navigate, useNavigate } from 'react-router-dom'; // Import useNavigate to handle redirection
+import { useDispatch } from 'react-redux'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import './SidebarProfile.css';
 import userAvatar from '../../assets/images/logo.png';
-// import { logout } from '../../redux/slices/authSlice'; // Import your logout action
 import { logout } from '../../../../slices/client/authSlice';
 import { useLogoutMutation } from '../../../../slices/client/usersApiSlice';
 
 const SidebarProfile = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
-  const dispatch = useDispatch(); // Create a dispatch function
+  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownActive(!dropdownActive);
@@ -20,12 +20,12 @@ const SidebarProfile = () => {
     try {
       await logoutApi().unwrap();
       dispatch(logout());
-      Navigate('/login');
+      navigate('/login');
 
     } catch (error) {
-      console.log(error)
+      alert(error.message);
     }
-    // Redirect to the login page or any other desired page
+    
   };
 
   return (
