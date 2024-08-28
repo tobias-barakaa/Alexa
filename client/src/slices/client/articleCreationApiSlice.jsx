@@ -12,6 +12,13 @@ export const articleApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    deleteArticle: builder.mutation({
+      query: (id) => ({
+        url: `${ARTICLE_URL}/deletearticle/${id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+    }),
     // getNumberOfWords: builder.query({
     //   query: () => `${ARTICLE_URL}/numberofwords`,
     //   keepUnusedDataFor: 5,

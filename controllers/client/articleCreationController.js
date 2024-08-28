@@ -270,6 +270,7 @@ router.get("/", async (req, res) => {
 
 const deleteArticleCreation = async (id, res) => {
   try {
+    
       const article = await knex('articlecreation').where({ id }).first();
 
       if (!article) {

@@ -361,7 +361,7 @@ const editBlog = async (req, res) => {
 
 const deleteBlog = async (req, res) => {
   const { blogId } = req.params;
-  const user_id = req.user.userId; // Assuming user ID is set in the request
+  const user_id = req.user.userId; 
 
   try {
     // Fetch the blog post
