@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../styles/pages/edit/EditArticleCreation.css';
+// import ConfirmationModal from './ConfirmationModal'; // Import your modal component
+// import { useDeleteArticleMutation } from '../../slices/articleApiSlice';
+import ConfirmationModal from './DeleteConfirmationModal';
+import { useDeleteArticleMutation } from '../../../../slices/client/articleCreationApiSlice';
+import Warning from '../../dashboard/components/Warning';
 
 const EditArticleCreation = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error,setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [articleToDelete, setArticleToDelete] = useState(null);
+  const [deleteArticle] = useDeleteArticleMutation();
 
   useEffect(() => {
     fetchArticles();
@@ -14,9 +22,7 @@ const EditArticleCreation = () => {
   const fetchArticles = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/articlecreation/getarticle',
-        {withCredentials: true}
-      );
+      const response = await axios.get('http://localhost:5000/api/articlecreation/getarticle', { withCredentials: true });
       setArticles(response.data.articles);
       setLoading(false);
     } catch (error) {
@@ -26,29 +32,38 @@ const EditArticleCreation = () => {
     }
   };
 
-  const handleEdit = (id) => {
-    // Implement edit functionality
-    console.log('Edit article:', id);
+  const handleDeleteClick = (id) => {
+    setArticleToDelete(id);
+    setIsModalOpen(true);
   };
 
-  const handleDelete = (id) => {
-    // Implement delete functionality
-    console.log('Delete article:', id);
+  const handleConfirmDelete = async () => {
+    if (articleToDelete) {
+      try {
+        await deleteArticle(articleToDelete).unwrap();
+        setArticles(articles.filter(article => article.id !== articleToDelete));
+      } catch (error) {
+        setError('Failed to delete article. Please try again later.');
+      }
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setArticleToDelete(null);
   };
 
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
 
   return (
     <div className="edit-article-creation">
       <h1>Edit Article Creation Requests</h1>
       {articles.length === 0 ? (
-        <p>No articles found.</p>
+        <Warning message={error} />
       ) : (
         <div className="article-list">
           {articles.map((article) => (
@@ -58,7 +73,6 @@ const EditArticleCreation = () => {
               <div className="article-details">
                 <p><strong>Keywords:</strong> {article.keywords}</p>
                 <p><strong>Category:</strong> {article.category}</p>
-
                 <p><strong>Word Count:</strong> {article.word_count}</p>
                 <p><strong>Complexity:</strong> {article.complexity}</p>
                 <p><strong>Cost:</strong> ${article.cost}</p>
@@ -66,13 +80,18 @@ const EditArticleCreation = () => {
                 <p><strong>Created:</strong> {new Date(article.created_at).toLocaleString()}</p>
               </div>
               <div className="article-actions">
-                <button onClick={() => handleEdit(article.id)} className="edit-button">Edit</button>
-                <button onClick={() => handleDelete(article.id)} className="delete-button">Delete</button>
+                <button className="edit-button">Edit</button>
+                <button onClick={() => handleDeleteClick(article.id)} className="delete-button">Delete</button>
               </div>
             </div>
           ))}
         </div>
       )}
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmDelete}
+      />
     </div>
   );
 };

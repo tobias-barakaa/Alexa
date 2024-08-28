@@ -268,13 +268,17 @@ router.get("/", async (req, res) => {
 //   }
 // };
 
-const deleteArticleCreation = async (id, res) => {
+const deleteArticleCreation = async (req, res) => {
+  const { articleId } = req.params;
+  const user_id = req.user.userId;
+
   try {
-    
-      const article = await knex('articlecreation').where({ id }).first();
+      const article = await knex('articlecreation')
+          .where({ id: articleId, user_id })
+          .first();
 
       if (!article) {
-          return res.status(404).json({ message: `Article with ID ${id} not found.` });
+          return res.status(404).json({ message: `Article with ID ${articleId} not found or you don't have permission to delete it.` });
       }
 
       // Check if the article is younger than 30 minutes
@@ -284,16 +288,17 @@ const deleteArticleCreation = async (id, res) => {
       const timeDifference = (currentTime - createdTime) / 1000 / 60; // Difference in minutes
 
       if (timeDifference < 30) {
-          await knex('articlecreation').where({ id }).del();
-          res.json({ message: `Article with ID ${id} has been deleted successfully.` });
+          await knex('articlecreation').where({ id: articleId }).del();
+          res.json({ message: `Article with ID ${articleId} has been deleted successfully.` });
       } else {
-          res.json({ message: `Article with ID ${id} is older than 30 minutes and cannot be deleted.` });
+          res.json({ message: `Article with ID ${articleId} is older than 30 minutes and cannot be deleted.` });
       }
   } catch (error) {
-      console.error(`Failed to delete article with ID ${id}: ${error.message}`);
-      res.status(500).json({ message: `Failed to delete article with ID ${id}`, detail: error.message });
+      console.error(`Failed to delete article with ID ${articleId}: ${error.message}`);
+      res.status(500).json({ message: `Failed to delete article with ID ${articleId}`, detail: error.message });
   }
 };
+
 
 
 module.exports = {

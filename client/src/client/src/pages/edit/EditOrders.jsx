@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import "../../styles/pages/edit/EditOrders.css";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Warning from '../../dashboard/components/Warning';
 
 const EditOrders = () => {
   const [tip, setTip] = useState('');
@@ -101,9 +102,7 @@ const EditOrders = () => {
     <div className="edit-orders-container">
       <h1>Edit Your Content</h1>
       <p className="subtitle">Select an option to edit your content</p>
-      <div className="warning">
-        Warning: Content can only be edited within 30 minutes of posting.
-      </div>
+      <Warning />
       <div className="edit-options-grid">
         {editOptions.map((option, index) => (
           <Link to={option.link} key={index} className="edit-option-link">

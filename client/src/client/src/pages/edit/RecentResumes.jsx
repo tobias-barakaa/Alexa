@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../../styles/pages/edit/RecentResumes.css";
 import { useNavigate } from 'react-router-dom';
+import Warning from '../../dashboard/components/Warning';
 
 const RecentResumes = () => {
   const [resumes, setResumes] = useState([]);
@@ -59,7 +60,7 @@ const RecentResumes = () => {
     <div className="recent-resumes">
       <h1>Recent Resumes</h1>
       {resumes.length === 0 ? (
-        <p>No recent resumes found.</p>
+        <Warning />
       ) : (
         resumes.map(resume => (
           <div key={resume.id} className="resume-card">
