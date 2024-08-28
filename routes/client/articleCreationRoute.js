@@ -12,6 +12,7 @@ const router = express.Router();
 router.post("/create",validateArticleCreation, protect, createArticle);
 router.get("/getarticle",protect, getArticlesAfter30Minutes);
 router.get("/articlecount",protect, getArticleCountAfter30Minutes);
+router.put('/updatearticle', protect, updateArticle);
 router.delete("/deletearticle/:articleId",protect, deleteArticleCreation);
 
 

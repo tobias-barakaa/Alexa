@@ -300,12 +300,61 @@ const deleteArticleCreation = async (req, res) => {
 };
 
 
+const updateArticle = async (req, res) => {
+  const userId = req.user.userId;
+  const { articleId } = req.params;
+  const {
+      title,
+      description,
+      category = 'General',
+      keywords = '',
+      complexity = 'Basic',
+      duration = '1 day',
+      quantity = 1,
+      language = 'American English',
+      cost = 0.00,
+      status = 'Pending'
+  } = req.body;
+
+  try {
+      const article = await knex('articlecreation')
+          .where({ id: articleId, user_id: userId })
+          .first();
+
+      if (!article) {
+          return res.status(404).json({ error: 'Article not found or you don\'t have permission to update it' });
+      }
+
+      await knex('articlecreation')
+          .where({ id: articleId })
+          .update({
+              title: title || article.title,
+              description: description || article.description,
+              category: category || article.category,
+              keywords: keywords || article.keywords,
+              complexity: complexity || article.complexity,
+              duration: duration || article.duration,
+              quantity: quantity || article.quantity,
+              language: language || article.language,
+              cost: cost || article.cost,
+              status: status || article.status,
+              // Notice word_count is not being updated here
+          });
+
+      res.status(200).json({ message: 'Article updated successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to update article', detail: error.message });
+  }
+};
+
+
 
 module.exports = {
   createArticle,
   getArticlesAfter30Minutes,
   getArticleCountAfter30Minutes,
   getEmailCopyWritingCount,
+  updateArticle,
   updateArticleCreation,
   deleteArticleCreation,
 };

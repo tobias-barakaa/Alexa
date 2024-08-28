@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { useGetLatestQuery } from '../../../slices/client/blogApiSlice';
-import publish from '../assets/images/writer.jpg';
+// import publish from '../assets/images/writer.jpg';
 
 
 const Home = () => {
@@ -24,9 +24,9 @@ const Home = () => {
           <h2>Meet world-class publishing professionals</h2>
           <p>Browse profiles and collaborate on projects.</p>
         </div>
-        <div className="image-container">
+        {/* <div className="image-container">
           <img src={publish}  alt="Publishing professionalss" />
-        </div>
+        </div> */}
         {/* <hr className="divider" /> */}
       </div>
       <div className="home-container">

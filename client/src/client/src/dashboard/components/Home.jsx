@@ -21,7 +21,7 @@ const Home = () => {
       <div className="professionals-section">
         <div className="text-content">
           <h2>Meet world-class publishing professionals</h2>
-          <p>Browse profiles and collaborate on projects.</p>
+          <p>Browse profiles and collaborate on projects....</p>
         </div>
         <div className="image-container">
 

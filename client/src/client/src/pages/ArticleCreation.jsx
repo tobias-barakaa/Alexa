@@ -369,7 +369,7 @@ const ArticleCreation = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="complexity" className="label"></label>
+          <label htmlFor="complexity" className="label">Complexity</label>
           <select
             id="complexity"
             name="complexity"
