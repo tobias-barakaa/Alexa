@@ -19,113 +19,127 @@ const Sidebar = () => {
 
   return (
     <>
-      <div class="page-wrapper chiller-theme toggled">
-        <nav id="sidebar" class="sidebar-wrapper">
-          <div class="sidebar-content">
-            <div class="sidebar-brand">
-              <a href="#">pro sidebar</a>
-              <div id="close-sidebar">
-                <i class="fas fa-times"></i>
-              </div>
+      <div className="page-wrapper chiller-theme toggled">
+      <hr className="dropdown-divider" />
+
+        <nav id="sidebar" className="sidebar-wrapper">
+          <div className="sidebar-content">
+            <div className="sidebar-brand">
+            <div className="sidebar-menu-container">
+         <Link
+          to="/dashboard"
+          className={`sidebar-menu-link ${activeLink === '/dashboard' || activeLink === '/dashboard/' ? 'active' : ''}`}
+          onClick={() => handleLinkClick('/dashboard')}
+        >
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
             </div>
-            <div class="sidebar-header">
-              <div class="user-pic">
-                <img
-                  class="img-responsive img-rounded"
-                  src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                  alt="User picture"
-                />
-              </div>
-              <div class="user-info">
-                <span class="user-name">
-                  Jhon
-                  <strong>Smith</strong>
-                </span>
-                <span class="user-role">Administrator</span>
-                <span class="user-status">
-                  <i class="fa fa-circle"></i>
-                  <span>Online</span>
-                </span>
-              </div>
             </div>
-            <div class="sidebar-menu">
+          <hr className="dropdown-divider" />
+            
+            <div className="sidebar-menu">
               <ul>
-                <li class="header-menu">
+                <li className="header-menu">
                   <span>General</span>
                 </li>
 
                 <li>
-                  <a href="#">
-                    <i class="fa fa-folder"></i>
+                  <Link to="/dashboard/blogorder"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa fa-folder"></i>
                     <span>Blog Writing</span>
-                  </a>
+                  </Link>
                 </li>
 
+
+
                 <li>
-                  <a href="#">
-                    <i class="fa fa-chart-line"></i>
+                  <Link to="/dashboard/articlecreation"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa fa-chart-line"></i>
                     <span>Article Creation</span>
-                  </a>
+                  </Link>
                 </li>
 
+
                 <li>
-                  <a href="#">
-                    <i class="fa fa-folder"></i>
+                  <Link to="/dashboard/resumecvwriting"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa fa-folder"></i>
                     <span>Resume CVWriting</span>
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
-                  <a href="#">
-                    <i class="far fa-gem"></i>
+                  <Link to="/dashboard/emailcopywriting"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="far fa-gem"></i>
                     <span>Email Copywriting</span>
-                  </a>
+                  </Link>
                 </li>
 
 
-                <li class="header-menu">
-                  <span>Extra</span>
+
+
+
+
+
+
+
+
+
+                <li className="header-menu">
+                  <span>Manage</span>
                 </li>
 
+
                 <li>
-                  <a href="#">
-                    <i class="far fa-gem"></i>
-                    <span>Email Copywriting</span>
-                  </a>
+                  <Link to="/dashboard/editorders"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="far fa-gem"></i>
+                    <span>Edit Orders</span>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
-                    <i class="far fa-gem"></i>
-                    <span>Email Copywriting</span>
-                  </a>
+                  <Link to="/dashboard/completedorders"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa-solid fa-web-awesome"></i>
+                    <span>Completed Orders</span>
+                  </Link>
                 </li>
+
+
                 <li>
-                  <a href="#">
-                    <i class="far fa-gem"></i>
-                    <span>Email Copywriting</span>
-                  </a>
+                  <Link to="/dashboard/ordershistory"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa-solid fa-file-lines"></i>
+                    <span>Order History</span>
+                  </Link>
                 </li>
+
               </ul>
+
             </div>
           </div>
 
-          <div class="sidebar-footer">
-            <a href="#">
-              <i class="fa fa-bell"></i>
-              <span class="badge badge-pill badge-warning notification">3</span>
-            </a>
-            <a href="#">
-              <i class="fa fa-envelope"></i>
-              <span class="badge badge-pill badge-success notification">7</span>
-            </a>
-            <a href="#">
-              <i class="fa fa-cog"></i>
-              <span class="badge-sonar"></span>
-            </a>
-            <a href="#">
-              <i class="fa fa-power-off"></i>
-            </a>
-          </div>
+          <SidebarProfile />
+
+
+
         </nav>
       </div>
     </>
