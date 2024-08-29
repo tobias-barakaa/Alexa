@@ -393,6 +393,7 @@
   position: relative;
   overflow-y: auto; 
   height: 100vh;
+  border: solid 1px #e9e1e1;
   
 
 }

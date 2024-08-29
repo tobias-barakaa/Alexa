@@ -1,32 +1,31 @@
-/* Container Styling */
-/* Header Container */
+
 .top-navbar {
   height: auto;
-  background-color: white; /* Mostly white background */
+  /* background-color: rgb(2, 2, 2);  */
+  background-color: #ffffff;
   font-size: 20px;
   padding: 10px;
-  color: #333333; /* Dark grey text */
+  color: #333333;
   border: solid 1px #e9e1e1;
 }
 
-/* Navigation List */
+
 .nav-list {
   display: flex;
   list-style-type: none;
   padding: 0;
   margin: 0;
   height: 40px;
-  align-items: center; /* Center vertically */
+  align-items: center;
 }
 
-/* List Item Styling */
 .nav-list li {
   display: flex;
   align-items: center;
   padding: 0 15px;
   height: 100%;
   cursor: pointer;
-  color: #ffffff; /* Dark blue color for text */
+  color: #ffffff; 
   background-color: #0056D2;
   border-radius: 0px;
 
@@ -36,8 +35,8 @@
 }
 
 .nav-list .home {
-  background-color: white; /* Mostly white */
-  color: #ffffff; /* Dark blue text */
+  background-color: white; 
+  color: #ffffff; 
   border-radius: 10px 0 0 10px;
   background-image: linear-gradient(-180deg, #007BFF, #0056D2);
 
@@ -45,14 +44,14 @@
 
 .nav-list .about,
 .nav-list .faq {
-  background-color: #f0f0f0; /* Light grey for middle items */
+  background-color: #f0f0f0; 
   margin-left: 1px;
-  color: #333333; /* Dark grey text */
+  color: #333333; 
 }
 
 .nav-list .contact {
-  background-color: #e8e8e8; /* Slightly darker grey */
-  color: #333333; /* Dark grey text */
+  background-color: #e8e8e8; 
+  color: #333333; 
   border-radius: 0 15px 15px 0;
   margin-left: 1px;
   width: 160px;
@@ -62,38 +61,35 @@
 .menu {
   margin-left: 10px;
   border-radius: 15px;
-  background-color: #333333; /* Dark grey background */
-  color: white; /* White text */
+  background-color: #333333; 
+  color: white; 
 }
 
 .wallet {
   margin-left: 5px;
   border-radius: 15px;
-  background-color: #333333; /* Dark grey background */
-  color: white; /* White text */
+  background-color: #333333; 
+  color: white;
 }
 
 
 
-/* Notification Bell Styling */
 .notification {
   margin-left: 10px;
   border-radius: 15px;
-  background-color: #333333; /* Dark grey */
+  background-color: #333333; 
   color: white;
   padding: 5px 10px;
 }
 
-/* Profile Section Styling */
 .profile {
   margin-left: 10px;
   border-radius: 15px;
-  background-color: #333333; /* Dark grey */
+  background-color: #333333; 
   color: white;
   padding: 5px 10px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-list {
     flex-direction: column;
