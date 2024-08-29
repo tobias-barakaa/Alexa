@@ -20,7 +20,6 @@ const Sidebar = () => {
   return (
     <>
       <div className="page-wrapper chiller-theme toggled">
-      <hr className="dropdown-divider" />
 
         <nav id="sidebar" className="sidebar-wrapper">
           <div className="sidebar-content">

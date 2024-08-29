@@ -17,18 +17,16 @@ const Header = () => {
         </li>
 
         {/* Phone Number */}
-        <li className="phone-number" style={{ color: "white" }}>📞 254 7 29 78 77 83</li>
 
         {/* Notification Bell */}
-        <li className="notification">
-          <span>🔔</span> Notifications
-        </li>
+        
 
         {/* Profile Section */}
         <li className="profile">
           <span>👤</span> Profile
         </li>
       </ul>
+
     </div>
   );
 };

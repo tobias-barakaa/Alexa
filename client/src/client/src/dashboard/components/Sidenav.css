@@ -488,6 +488,10 @@
   color: #5cb85c;
 }
 
+.sidebar-wrapper:hover {
+  background-color: green;
+}
+
 /*-----------------------sidebar-search------------------------*/
 
 
@@ -589,6 +593,7 @@
   transform: rotate(90deg);
   right: 17px;
 }
+
 
 /*--------------------------side-footer------------------------------*/
 
