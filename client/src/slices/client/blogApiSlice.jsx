@@ -1,4 +1,4 @@
-import { BLOG_URL } from "../../constants";
+import { BLOG_URL, PAYPAL } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const blogApiSlice = apiSlice.injectEndpoints({
@@ -76,6 +76,20 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    payOrder: builder.mutation({
+      query: (orderId, details) => ({
+        url: `${PAYPAL}/paypal`,
+        method: 'PUT',
+        body: { ...details}
+      }),
+    }),
+    getPaypalClientId: builder.query({
+      query: () => ({
+        url: `${PAYPAL}/paypal`,
+      }),
+    keepUnusedDataFor: 5, 
+
+    }),
   }),
 });
 
@@ -90,4 +104,6 @@ export const {
   useGetUserBlogQuery,
   useGetLatestQuery,
   useGetRecentQuery,
+  usePayOrderMutation,
+  useGetPaypalClientIdQuery,
 } = blogApiSlice;

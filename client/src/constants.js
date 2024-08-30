@@ -24,3 +24,8 @@ export const ADMIN_BLOG_URL = 'api/blog/admin/blogs';
 
 // Completed
 export const COMPLETED = '/api/file/url'
+
+// Paypal
+export const PAYPAL = '/api/emailcopywriting/config'
+
+// Paypal

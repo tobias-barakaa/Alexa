@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import "./Payment.css";
 import { useCreateEmailCopywritingMutation } from "../../../slices/client/emailCopywritingApiSlice";
 
@@ -9,17 +10,14 @@ const Payment = () => {
   const formData = location.state?.formData;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const handlePayment = async () => {
-    // Here, you would normally integrate with a payment gateway.
-    // For simplicity, we'll assume the payment is successful and then submit the form data.
-
+  const handlePaymentSuccess = async (details, data) => {
     try {
       await createEmailCopywriting(formData).unwrap();
-      alert('Payment and request submitted successfully!');
-      navigate('/dashboard');
+      alert("Payment and request submitted successfully!");
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Error submitting request:', error);
-      alert('There was an error submitting your request.');
+      console.error("Error submitting request:", error);
+      alert("There was an error submitting your request.");
     }
   };
 
@@ -31,7 +29,27 @@ const Payment = () => {
         <p><strong>Balance:</strong> ${userInfo.balance}</p>
         <p><strong>Cost:</strong> ${formData.cost}</p>
       </div>
-      <button onClick={handlePayment} className="payment-button">Proceed to Payment</button>
+      <PayPalButtons
+        style={{ layout: "vertical" }}
+        createOrder={(data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: formData.cost.toFixed(2), // Set the amount to the cost of the formData
+                },
+              },
+            ],
+          });
+        }}
+        onApprove={async (data, actions) => {
+          return actions.order.capture().then(handlePaymentSuccess);
+        }}
+        onError={(err) => {
+          console.error("PayPal Checkout onError", err);
+          alert("There was an error processing the payment. Please try again.");
+        }}
+      />
     </div>
   );
 };

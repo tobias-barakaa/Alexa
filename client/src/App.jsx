@@ -96,6 +96,7 @@ import ComingSoon from './client/src/components/ComingSoon';
 import LearnMore from './client/src/components/LearnMore';
 // import AboutPage from './client/src/pages/AboutPage';
 
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 
 
@@ -280,7 +281,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+
+<PayPalScriptProvider>
+<RouterProvider router={router} />
+
+</PayPalScriptProvider>
   );
 }
 
