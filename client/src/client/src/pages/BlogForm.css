@@ -1,160 +1,100 @@
-/* BlogForm.css */
+.roww {
+  display: flex;
+  padding: 20px;
 
-header{
- margin-top: 50px;
- font-family: Cuprum, Arial, Helvetica, sans-serif;
-}
-.dws-menu *{
- margin: 0;
- padding: 0;
-}
-.dws-menu ul,
-.dws-menu ol{
- list-style: none;
-}
-.dws-menu > ul{
- display: flex;
- justify-content: center;
-}
-.dws-menu > ul li{
- position: relative;
- border-right: 1px solid #c7c8ca;
-}
-.dws-menu > ul li:first-child{
- border-left: 1px solid #b2b3b5;
-}
-.dws-menu > ul li:last-child{
- border-right: 1px solid #babbbd;
-}
-.dws-menu > ul li > a i.fa{
- position: absolute;
- top: 15px;
- left: 12px;
- font-size: 18px;
-}
-.dws-menu > ul li a{
- display: block;
- /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9c9c9+0,f6f6f6+2,c4c5c7+98,757577+100;Custom+3 */
- background: rgb(201,201,201); /* Old browsers */
- background: -moz-linear-gradient(top,  rgba(201,201,201,1) 0%, rgba(246,246,246,1) 2%, rgba(196,197,199,1) 98%, rgba(117,117,119,1) 100%); /* FF3.6-15 */
- background: -webkit-linear-gradient(top,  rgba(201,201,201,1) 0%,rgba(246,246,246,1) 2%,rgba(196,197,199,1) 98%,rgba(117,117,119,1) 100%); /* Chrome10-25,Safari5.1-6 */
- background: linear-gradient(to bottom,  rgba(201,201,201,1) 0%,rgba(246,246,246,1) 2%,rgba(196,197,199,1) 98%,rgba(117,117,119,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#757577',GradientType=0 ); /* IE6-9 */
-
- padding: 15px 30px 15px 40px;
- font-size: 14px;
- color: #454547;
- text-decoration: none;
- text-transform:uppercase;
- transition: all 0.3s ease;
-}
-.dws-menu li a:hover{
- /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e0e1e5+0,454547+2,454547+98,e0e1e5+100 */
- background: rgb(224,225,229); /* Old browsers */
- background: -moz-linear-gradient(top,  rgba(224,225,229,1) 0%, rgba(69,69,71,1) 2%, rgba(69,69,71,1) 98%, rgba(224,225,229,1) 100%); /* FF3.6-15 */
- background: -webkit-linear-gradient(top,  rgba(224,225,229,1) 0%,rgba(69,69,71,1) 2%,rgba(69,69,71,1) 98%,rgba(224,225,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
- background: linear-gradient(to bottom,  rgba(224,225,229,1) 0%,rgba(69,69,71,1) 2%,rgba(69,69,71,1) 98%,rgba(224,225,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e1e5', endColorstr='#e0e1e5',GradientType=0 ); /* IE6-9 */
-
- color: #ffffff;
- box-shadow: 1px 5px 10px -5px black;
- transition: all 0.3s ease;
 }
 
-/*sub menu*/
-.dws-menu li ul{
- position: absolute;
- min-width: 150px;
- display: none;
+.writers-image {
+  width: 100px;          
+  height: auto;          
+  display: block;        
+  margin: 0 auto 10px;   
+
 }
-.dws-menu li > ul li{
- border: 1px solid #c7c8ca;
-}
-.dws-menu li > ul li a{
- padding: 10px;
- text-transform: none;
- background: #e4e4e5;
-}
-.dws-menu li > ul li ul{
- position: absolute;
- right: -150px;
- top: 0;
-}
-.dws-menu li:hover > ul{
- display: block;
+ .form-sect {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-right: 4px;
+  border-radius: 4px;
+
 }
 
-.blog-form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .blog-form-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .blog-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .input-class,
-  .textarea-class {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .textarea-class {
-    resize: vertical;
-  }
-  
-  .input-error {
-    border-color: #ff0000;
-  }
-  
-  .error-message {
-    color: #ff0000;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .submit-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .submit-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-   
+.writer-sect {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-left: 4px; 
+  height: 50vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky; 
+  top: 20px; 
+  border-radius: 4px;
+}
+.label {
+  font-weight: 600;
+  color: black;
+}
+
+.my-input {
+  padding: 12px 14px;
+  transition: border .1s linear;
+  margin-top: 10px;
+
+}
+
+.contact-form {
+  margin-bottom: 20px;
+}
+
+.contact-form button {
+  background: #25274d;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
+}
+
+.contact-form button:focus {
+  box-shadow: none;
+}
+
+
+
+
+
+
+
+/* EstimatedCost.css */
+
+.form-cost {
+  margin-bottom: 20px; /* Space below the form group */
+  padding: 15px; /* Padding inside the form group */
+  background-color: #f9f9f9; /* Light background color */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: flex; /* Flexbox for alignment */
+  justify-content: space-between; /* Space between label and cost */
+  align-items: center; /* Center items vertically */
+}
+
+.form-label {
+  font-size: 18px; /* Font size for the label */
+  font-weight: bold; /* Bold label for emphasis */
+  color: #333; /* Dark text color */
+}
+
+.cost-value {
+  font-size: 24px; /* Larger font size for the cost */
+  font-weight: bold; /* Bold text for cost */
+  color: #28a745; /* Green color for cost */
+  background-color: #e7f9e7; /* Light green background for cost */
+  padding: 10px 15px; /* Padding around the cost */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #28a745; /* Green border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for cost */
+}
+
 
    /* BlogForm.css */
 
