@@ -9,7 +9,6 @@ const Payment = () => {
   const [createEmailCopywriting] = useCreateEmailCopywritingMutation();
   const formData = location.state?.formData;
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(import.meta.env.VITE_BASE_URL, "meet")
 
   const handlePaymentSuccess = async (details, data) => {
     try {

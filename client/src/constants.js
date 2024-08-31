@@ -1,6 +1,7 @@
 // constants.js
 
-export const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:5000'; // Default to localhost for development
+export const BASE_URL = 'http://localhost:5000'; // Default to localhost for development
+//export const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:5000'; // Default to localhost for development
 
 export const USERS_URL = 'api/users';
 export const ADMIN_URL = 'api/admin';

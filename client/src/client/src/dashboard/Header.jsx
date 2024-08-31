@@ -12,10 +12,13 @@ const Header = () => {
     <li className="contact">Contact us</li>
 
     <li className="menu"><span>⚙️</span>Settings</li>
-    <li className="what"><span>💳 </span>Wallet</li>
+    <li className="what"><span>💳 </span>Wallettt</li>
 
   </ul>
 </div>
+
+
+
         
     </div>
   );
