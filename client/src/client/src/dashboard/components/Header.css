@@ -22,16 +22,19 @@
 .nav-list li {
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 25px;
   height: 100%;
   cursor: pointer;
-  color: #ffffff; 
-  background-color: #4d4d4d;
-
-  /* background-image: linear-gradient(-180deg, #007BFF, #0056D2); */
-
-
+  color: #000000; /* Black text */
+  background-color: #f3f3f3; /* Light grey background */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
+
+.nav-list li:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
 
 .nav-list .home {
   background-color: white; 

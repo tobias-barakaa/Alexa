@@ -5,15 +5,15 @@ const Header = () => {
     <div className="top-navbar">
       <ul className="nav-list">
         <li className="home">Home</li>
-        <li className="about">About Website</li>
+        <li className="about">About</li>
         <li className="faq">FAQ</li>
         <li className="contact">Contact us</li>
 
         <li className="menu">
-          <span>⚙️</span> Settings
+          <span><i className="bi bi-gear-wide"></i></span> Settings
         </li>
         <li className="wallet">
-          <span>💳 </span> Wallet
+          <span><i className="bi bi-currency-rupee"></i></span> Wallet
         </li>
 
         {/* Phone Number */}
@@ -23,7 +23,7 @@ const Header = () => {
 
         {/* Profile Section */}
         <li className="profile">
-          <span>👤</span> Profile
+          <span><i className="bi bi-person-badge"></i></span> Profile
         </li>
       </ul>
 

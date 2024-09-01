@@ -10,7 +10,6 @@ const getNumberOfWords = async (req, res) => {
 };
 
 const getTimeframe = async (req, res) => {
-  console.log(process.env.DB_PASSWORD, 'get all blogs')
 
   try {
     const durations = await knex('duration').select('*');

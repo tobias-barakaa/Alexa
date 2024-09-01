@@ -108,7 +108,11 @@ const BlogForm = () => {
   };
 
   return (
-    <div>
+    <div className="form-layout-container">
+     <p className="heading">Order Your Blog Writing Service Today!</p>
+
+
+
       <div className="contact">
         <div className="roww">
           <div className="col-md-9 form-sect">
@@ -259,7 +263,7 @@ const BlogForm = () => {
                     className="btn btn-primary"
                     disabled={loading}
                   >
-                    Submit
+                    Proceed 
                   </button>
                 </div>
               </form>
@@ -282,7 +286,11 @@ const BlogForm = () => {
                 Personal Writer
               </button>
             </div>
+          <button className="btn btn-primary" style={{ border: "2px solid black", backgroundColor: "white", color: "black" }}>Order Article</button>
+
           </div>
+          
+
         </div>
       </div>
 
