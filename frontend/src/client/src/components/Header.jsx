@@ -1,44 +1,39 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "../styles/components/Header.css";
 import logo from "../assets/images/llo.png";
-import immage from "../assets/images/tob.png";
-
+import pleskImage from "../assets/images/tob.png";
 
 const Header = () => {
   return (
     <>
-    
-
-    <div>
       {/* Header */}
       <header className="header">
-        <img src={logo} alt="Logo" className="loggo" />
+        <img src={logo} alt="Logo" className="logo" />
       </header>
 
       {/* Hero Section */}
-      <div class="main-banner">
-        <div class="banner-content">
-          <img src={immage} alt="Plesk" class="plesk-image" />
-            <h1>Try Plesk for FREE on Your Server</h1>
-            <p>Grow your business with our complete solution - for Linux or Windows</p>
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>Try Plesk for FREE on Your Server</h1>
+          <h3>Grow your business with our complete solution - for Linux or Windows</h3>
         </div>
-    </div>
+      </section>
 
       {/* Main Content Section */}
       <div className="main-content">
-        {/* Left Side with Icons */}
+        {/* Left Side with Features and Image */}
         <div className="left-side">
-          <div className="icon-container">
-            <span className="icon">Automated</span>
-            <span className="icon">Trusted</span>
-            <span className="icon">Flexible</span>
-            <span className="icon">Scalable</span>
+          <div className="feature-icons">
+            <div className="icon">Automated</div>
+            <div className="icon">Trusted</div>
+            <div className="icon">Flexible</div>
+            <div className="icon">Scalable</div>
           </div>
           <h2>Empower Your Business</h2>
-          <img src="path/to/your/image.jpg" alt="Empower Your Business" className="empower-image" />
+          <img src={pleskImage} alt="Empower Your Business" className="empower-image" />
         </div>
 
-        {/* Right Side with Sign-up Form */}
+        {/* Right Side with Sign-Up Form */}
         <div className="right-side">
           <form className="signup-form">
             <h2>Sign Up</h2>
@@ -49,17 +44,12 @@ const Header = () => {
           </form>
         </div>
       </div>
-    </div>
-
-    
-
-
     </>
-
   );
 };
 
 export default Header;
+
 
 
 // import '@fortawesome/fontawesome-free/css/all.min.css';
