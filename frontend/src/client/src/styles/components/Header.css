@@ -1,4 +1,171 @@
-.headerr {
+.header {
+  height: 90px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loggo {
+  height: 60px;
+}
+
+/* Hero Section */
+.hero-section {
+  width: 100%;
+  height: 220px;
+  background: url('../../assets/images/enwriterss.png') center center/cover no-repeat;
+  position: relative;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Shadowed overlay */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.hero-content h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-side {
+  width: 50%;
+  padding: 20px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.icon {
+  background: #eee;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.empower-image {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.right-side {
+  width: 40%;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+}
+
+.signup-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.signup-form button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup-form button:hover {
+  background-color: #218838;
+}
+
+
+.main-banner {
+  width: 400px;
+  height: 300px;
+  background-image: url('');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.main-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Modal-like shadow effect */
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.banner-content h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.banner-content p {
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.plesk-image {
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+/* .headerr {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -59,4 +226,4 @@
     font-size: 28px;
     margin-left: 10px;
   }
-  
+   */
