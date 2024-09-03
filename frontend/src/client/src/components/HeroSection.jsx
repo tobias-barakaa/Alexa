@@ -8,8 +8,8 @@ const HeroSection = () => {
   <img src={centerImage} alt="Hero" className="hero-image" />
   <div className="overlay">
     <div>
-      <h1>Try Plesk for FREE on Your Server</h1>
-      <p>Grow your business with our complete solution - for Linux or Windows</p>
+      <h1>Get Professional Writing Assistance Today!</h1>
+      <p>high-quality articles, engaging blog posts, or standout resumes</p>
     </div>
   </div>
 </div>
