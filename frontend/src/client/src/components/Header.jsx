@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaChevronDown, FaQuestionCircle, FaBook, FaDollarSign, FaUser, FaLinkedin } from 'react-icons/fa';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/components/Header.css';
@@ -75,9 +75,7 @@ const Header = () => {
       </div>
 
       </div>
-
-      {/* New container for the divider */}
-      
+     
     </>
   );
 };

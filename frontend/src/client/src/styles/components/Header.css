@@ -8,27 +8,30 @@
 
 
 .dot {
-  color: #FF4500;
+  /* color: #FF4500; */
+  color: #53BCE6;
   font-size: 24px; /* Adjust the font size as needed */
 }
 
 .logo-text {
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 28px;  /* Large font for logo text */
   font-weight: bold;
 }
 
 .logo-text en {
-  color: #FF4500;  /* Orange-red color */
+  color: #53BCE6;  /* Orange-red color */
 }
 
 .navigation {
   display: flex; /* Flexbox for layout */
   align-items: center; /* Center items vertically */
-  background-color: #1E1F22; /* Background color */
+  /* background-color: #1E1F22;  */
+  background-color: #ffffff;
   height: 80px; /* Height of the navigation */
   padding: 0 20px; /* Padding on the sides */
   width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow */
 
 }
 
@@ -44,9 +47,10 @@
 
 .nav-item {
   position: relative; /* Position for dropdown */
-  color: white; /* Text color */
+  color: rgb(0, 0, 0); /* Text color */
   padding: 0 15px; /* Padding on nav items */
   cursor: pointer; /* Pointer on hover */
+  font-size:16px;
 }
 
 .nav-item:hover {
@@ -88,7 +92,7 @@
 }
 
 .btn-signin {
-  background-color: #FF4500; /* Orange-red color */
+  background-color: #53BCE6; /* Orange-red color */
   color: white; /* White text */
   border: none; /* No border */
   border-radius: 5px; /* Rounded corners */
@@ -102,16 +106,54 @@
 
 .btn-signup {
   background-color: transparent; /* Transparent background */
-  color: white; /* White text */
-  border: 2px solid white; /* White border */
+  color: rgb(0, 0, 0); /* White text */
+  border: 2px solid #53BCE6; /* White border */
   border-radius: 5px; /* Rounded corners */
   padding: 5px 15px; /* Padding */
   cursor: pointer; /* Pointer on hover */
 }
 
 .btn-signup:hover {
-  background-color: white; /* White background on hover */
-  color: #1E1F22; /* Dark text on hover */
+  background-color: #53BCE6; /* White background on hover */
+  color: #ffffff; /* Dark text on hover */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -56,7 +56,6 @@ const ClientRegister = () => {
 
       <form onSubmit={submitHandler}>
           <div className="signup-title-container">
-            <h3 className="signup-title">Sign Up</h3>
           </div>
           <input
             type="text"
