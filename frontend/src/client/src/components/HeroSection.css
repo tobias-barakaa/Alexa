@@ -44,3 +44,122 @@
   line-height: 8px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+
+/* BusinessPage.css */
+.business-page {
+  display: flex; /* Flexbox for layout */
+  padding: 20px; /* Padding around the container */
+  margin-top: -60px;
+  position: relative;
+  gap: 20px;
+}
+
+.left-div,
+.right-div {
+  flex: 0 0 40%; /* Each div takes up 40% of the available width */
+  max-width: 40%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+.left-div {
+  flex: 1; /* Take up space on the left */
+  background-color: orangered; /* Background color */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the left div */
+  border-radius: 8px; /* Rounded corners */
+  color: white;
+  height: 80px;
+
+}
+
+.features {
+  display: flex; /* Flexbox for feature items */
+  justify-content: space-around; /* Space between items */
+  height: 40px; /* Height of the feature section */
+  align-items: center; /* Center items vertically */
+}
+
+.feature-item {
+  display: flex; /* Flexbox for icon and text */
+  flex-direction: column; /* Stack icon above text */
+  align-items: center; /* Center items */
+}
+
+.feature-item i {
+  font-size: 24px; /* Icon size */
+  margin-bottom: 5px; /* Space below icon */
+}
+
+.empower-title {
+  font-size: 24px; /* Title font size */
+  margin-top: 20px; /* Space above title */
+}
+
+.feature-image {
+  max-width: 100%; /* Responsive image */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 20px; /* Space above image */
+}
+
+.right-div {
+  flex: 1; /* Take up space on the right */
+  padding: 20px; /* Padding inside the right div */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+  width: 40%;
+}
+
+.signup-title {
+  font-size: 28px; /* Title font size */
+  margin-bottom: 20px; /* Space below title */
+}
+
+.signup-form {
+  display: flex; /* Flexbox for form layout */
+  flex-direction: column; /* Stack inputs vertically */
+}
+
+.form-input {
+  padding: 10px; /* Padding inside inputs */
+  margin-bottom: 15px; /* Space below inputs */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.google-button {
+  display: flex; /* Flexbox for button layout */
+  align-items: center; /* Center items vertically */
+  background-color: #db4437; /* Google button color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside button */
+  cursor: pointer; /* Pointer on hover */
+}
+
+.google-icon {
+  width: 20px; /* Icon width */
+  height: 20px; /* Icon height */
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.signin-question {
+  margin-top: 10px; /* Space above question */
+}
+
+.submit-button {
+  background-color: #007bff; /* Button color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside button */
+  cursor: pointer; /* Pointer on hover */
+}
+
+
+
