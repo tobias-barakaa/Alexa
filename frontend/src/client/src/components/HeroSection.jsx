@@ -1,12 +1,9 @@
 import './HeroSection.css';
-import ClientRegister from '../pages/ClientRegister';
-import { Link } from 'react-router-dom';
 import centerImage from '../assets/images/come.png'
 
 const HeroSection = () => {
   return (
     <div className="hero-section">
-      {/* <div className="hero-content"> */}
       <div className="hero-image-container">
   <img src={centerImage} alt="Hero" className="hero-image" />
   <div className="overlay">

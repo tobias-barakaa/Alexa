@@ -72,9 +72,8 @@ const Header = () => {
         </div>
 
         <div className="divider-container">
-        <hr className="dividder" />
       </div>
-      
+
       </div>
 
       {/* New container for the divider */}
