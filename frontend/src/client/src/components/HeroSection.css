@@ -1,9 +1,55 @@
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 350px; /* Adjust the height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5); /* Dim the image */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 69, 0, 0.5), rgba(255, 69, 0, 0.1), rgba(255, 69, 0, 0.5)); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px; /* Reduce spacing between the heading and subheading */
+  color: white;
+}
+
+.overlay p {
+  font-size: 18px;
+  margin: 0; /* Remove extra spacing */
+  color: white;
+}
+
+
+
+
 .hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 50px;
-  background-color: #f8f9fa; /* Light background for the entire section */
+  /* padding: 100px 50px; */
+  background-color: #ffffff; /* Light background for the entire section */
 }
 
 .hero-content {
