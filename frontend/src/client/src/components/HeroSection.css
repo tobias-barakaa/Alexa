@@ -37,8 +37,8 @@
 }
 
 .overlay p {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 400;
   margin: 0; 
   color: white;
   line-height: 8px;

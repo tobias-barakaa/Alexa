@@ -9,7 +9,7 @@ const HeroSection = () => {
   <div className="overlay">
     <div>
       <h1>Get Professional Writing Assistance Today!</h1>
-      <p>high-quality articles, engaging blog posts, or standout resumes</p>
+      <p>high-quality articles, engaging blog posts, and standout resumes</p>
     </div>
   </div>
 </div>
