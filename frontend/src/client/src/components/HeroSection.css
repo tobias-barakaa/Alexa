@@ -51,42 +51,36 @@
 
 .business-page {
   display: flex;
-  justify-content: space-between; /* Ensures space is evenly distributed */
-  align-items: flex-start;        /* Align items to the top */
+  justify-content: space-between; 
+  align-items: flex-start;       
   padding: 20px;
   position: relative;
   margin-top: -60px;
   z-index: 10;
-  max-width: 1200px;              /* Limit the maximum width for centering */
-  margin-left: auto;              /* Center the container */
-  margin-right: auto;             /* Center the container */
+  max-width: 1200px;              
+  margin-left: auto;              
+  margin-right: auto;             
 }
 
 .left-div,
 .right-div {
-  flex: 0 0 49%;                  /* Take up 45% of the container width each */
+  flex: 0 0 40%;                  
   padding: 20px;
-  box-sizing: border-box;         /* Include padding and border in the width calculation */
+  box-sizing: border-box;  
+  width: 40%;       
 }
 
 .left-div {
-  background-color: #53BCE6;      /* Background color for the left div */
+  background-color: #53BCE6;    
   color: #ffffff;
-  height: 80px;
-  border-radius: 8px;
-
-}
-
-.right-div {
-  background-color: #f9f9f9;      /* Background color for the right div */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 70px;
   border-radius: 8px;
 
 }
 
 .features {
   display: flex;
-  justify-content: space-around;  /* Evenly space items within this div */
+  justify-content: space-around;  
   align-items: center;
   height: 40px;
 }
@@ -113,53 +107,8 @@
   margin-top: 20px;
 }
 
-.signup-form {
-  display: flex;
-  flex-direction: column;
-}
 
 
-.google-button {
-  display: flex;
-  align-items: center;
-  background-color: #db4437;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.google-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-.signin-question {
-  margin-top: 10px;
-}
-
-.submit-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.my-input{
-  cursor: text;
-  padding: 6px 8px;
-  }
 
 
-.signup-title{
-  background: #F4F4F2;
-  padding: 10px 20px;
-  border-bottom: 1px solid #DDD;
-  font-weight: bold;
-  margin-bottom: 20px;
 
-}

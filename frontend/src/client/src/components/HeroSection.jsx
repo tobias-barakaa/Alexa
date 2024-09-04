@@ -45,7 +45,7 @@ const HeroSection = () => {
     <img src={centerImage} alt="Empower" className="feature-image" /> */}
 
         <div className="right-div">
-          <div className="signup-title">Sign Up</div>
+          
           <ClientRegister />
         </div>
       </div>

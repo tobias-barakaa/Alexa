@@ -7,6 +7,7 @@ import { useRegisterMutation } from "../../../slices/client/usersApiSlice";
 // import { setCredentials } from '../../slices/client/authSlice';
 import { setCredentials } from "../../../slices/client/authSlice";
 import OAuth from "../components/OAuth";
+import "../styles/pages/ClientRegister.css";
 
 const ClientRegister = () => {
   const [email, setEmail] = useState("");
@@ -23,11 +24,6 @@ const ClientRegister = () => {
   const sp = new URLSearchParams(search);
   const redirect = sp.get("redirect") || "/login";
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate(redirect);
-  //   }
-  // }, [userInfo, redirect, navigate]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,13 +46,15 @@ const ClientRegister = () => {
   };
 
   return (
-    <div className="hero-right">
+    <div className="signup-box">
+      <div className="signup-title">Sign Up</div>
 
-<div className="signup-box">
+<div className="form-handle">
 
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} >
           <div className="signup-title-container">
           </div>
+          <label>Username</label>
           <input
             type="text"
             className="signup-input"
@@ -64,6 +62,8 @@ const ClientRegister = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <label className="email-label">Email</label>
+
           <input
             className="signup-input"
             type="email"
@@ -71,6 +71,8 @@ const ClientRegister = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <label>Password</label>
+
           <input
             className="signup-input"
             type="password"

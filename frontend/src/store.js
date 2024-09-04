@@ -23,6 +23,7 @@ const store = configureStore({
         articlecreation: articlecreationSliceReducer, 
         resumeCVWriting: resumeCVWritingReducer,
         emailCopywriting: emailCopywritingSliceReducer,
+        
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
