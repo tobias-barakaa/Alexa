@@ -21,7 +21,7 @@ const uploadFile = async (req, res) => {
       public_id: publicId,
       recipient_id: user_id,
       uploaded_by: uploaded_by,
-      blog_id: blog_id, // Ensure blog_id is included here
+      blog_id: blog_id, 
     }).returning('*');
 
     res.json({ id: fileRecord.id, fileUrl: fileRecord.file_url });
@@ -33,13 +33,12 @@ const uploadFile = async (req, res) => {
 
 const getUploadedFiles = async (req, res) => {
   try {
-    const recipient_id = req.user?.userId; // Ensure the user is logged in
+    const recipient_id = req.user?.userId; 
 
     if (!recipient_id) {
       return res.status(400).json({ error: 'User ID is required' });
     }
 
-    // Fetch all files for the recipient
     const files = await knex('blog_upload')
       .where({ recipient_id });
 

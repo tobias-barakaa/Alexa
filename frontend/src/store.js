@@ -30,5 +30,5 @@ const store = configureStore({
     devTools: true,
 
 })
-
+// re_8RPNPTMc_BLpxdoX2dqEG3p587yNC8jTp
 export default store;
