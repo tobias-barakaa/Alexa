@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/pages/LoginClient.css';
 // import { setCredentials } from '../../slices/authSlice';
 // import { useLoginMutation } from '../../slices/client/usersApiSlice';
@@ -52,7 +52,10 @@ const LoginClient = () => {
           required
         />
         {loginError && <div className="error">{loginError}</div>}
-        <a href="#" className="forgot-password">Forgot password?</a>
+        <a href="#"
+        style={{color: "blue", fontWeight: "bold"}}
+        className="forgot-password">Forgot password?</a>
+        <span><Link to="/password-reset">Click Here</Link></span>
         <button type="submit" className="login-button" disabled={isLoading}>
           Log in
         </button>

@@ -119,6 +119,8 @@ import LearnMore from './client/src/components/LearnMore';
 // import AdminLogin from './client/src/pages/AdminLogin';
 // import Blog from './client/src/pages/Blog';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PasswordReset from './client/src/pages/PasswordReset';
+import ForgotPassword from './client/src/pages/ForgotPassword';
 
 
 
@@ -132,6 +134,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginClient />
+  },
+  {
+    path: "/password-reset",
+    element: <PasswordReset />
+  },
+  {
+    path: "/forgot-password/:id/:token",
+    element: <ForgotPassword />
   },
   {
     path: "/about",
