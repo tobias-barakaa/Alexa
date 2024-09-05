@@ -1,9 +1,56 @@
 const knex = require("../../db/db.js");
 const {hashPassword, comparePassword} = require("../../utils/client/passwordUtiles.js");
 const { createJWT } = require("../../utils/client/tokenUtils.js");
+const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 
-const signupUser = async (req, res) => {
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: "tobiasbarakan@gmailcom",
+    pass: "Tobias@123"
+  }
+
+});
+
+
+
+
+
+
+
+const sendPasswordLink = async (req, res) => {
+      console.log(req.body);
+      const { email } = req.body;
+      if(!email) {
+        return res.status(400).json({ message: "Email is required" });
+      }
+    
+      try {
+        const userfind = await knex('users').where({ email}).first();
+        const token = jwt.sign({ id: userfind.id }, process.env.JWT_SECRET, {
+          expiresIn: '120s'
+        });
+        console.log("userfind", userfind);
+        console.log(process.env.JWT_SECRET, token);
+        
+      } catch (error) {
+        console.error("Error during password reset:", error);
+        res.status(500).json({ message: "An error occurred during password reset" });
+        
+      }
+    }
+
+
+
+
+
+
+
+
+
+    const signupUser = async (req, res) => {
   try {
     const {  username, email, password } = req.body;
 
@@ -320,19 +367,6 @@ const google = async (req, res, next) => {
 //   }
 // }
 
-const sendPasswordLink = async (req, res) => {
-  console.log(req.body);
-  const { email } = req.body;
-  if(!email) {
-    return res.status(400).json({ message: "Email is required" });
-  }
 
-  try {
-    
-  } catch (error) {
-    console.error("Error during password reset:", error);
-    res.status(500).json({ message: "An error occurred during password reset" });
-    
-  }
-}
+
 module.exports = {sendPasswordLink, signupUser, loginUser, getAllUsers, google, logoutUser };
