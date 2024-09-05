@@ -320,4 +320,19 @@ const google = async (req, res, next) => {
 //   }
 // }
 
-module.exports = { signupUser, loginUser, getAllUsers, google, logoutUser };
+const sendPasswordLink = async (req, res) => {
+  console.log(req.body);
+  const { email } = req.body;
+  if(!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  try {
+    
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    res.status(500).json({ message: "An error occurred during password reset" });
+    
+  }
+}
+module.exports = {sendPasswordLink, signupUser, loginUser, getAllUsers, google, logoutUser };
