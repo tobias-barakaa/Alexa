@@ -16,31 +16,79 @@ const transporter = nodemailer.createTransport({
 
 
 
-
-
-
-
 const sendPasswordLink = async (req, res) => {
-      console.log(req.body);
-      const { email } = req.body;
-      if(!email) {
-        return res.status(400).json({ message: "Email is required" });
-      }
-    
-      try {
-        const userfind = await knex('users').where({ email}).first();
-        const token = jwt.sign({ id: userfind.id }, process.env.JWT_SECRET, {
-          expiresIn: '120s'
-        });
-        console.log("userfind", userfind);
-        console.log(process.env.JWT_SECRET, token);
-        
-      } catch (error) {
-        console.error("Error during password reset:", error);
-        res.status(500).json({ message: "An error occurred during password reset" });
-        
-      }
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  try {
+    // Check if the user exists
+    const user = await knex('users').where({ email }).first();
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
+
+    // Generate tokens: one for general use and one for email verification
+    const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Store the tokens in the email_verification_tokens table
+    await knex('email_verification_tokens').insert({
+      user_id: user.id,
+      verifyToken: verifyToken,
+      expires_at: knex.raw("now() + interval '1 hour'") // Token expiration
+    });
+
+    // TODO: Send the verification email to the user, including the verifyToken
+    console.log('Verification token:', verifyToken);
+
+    res.status(200).json({ message: "Verification link sent to your email" });
+  } catch (error) {
+    console.error("Error during email verification:", error);
+    res.status(500).json({ message: "An error occurred during the email verification process" });
+  }
+};
+
+
+
+
+
+
+// const sendPasswordLink = async (req, res) => {
+//   const { email } = req.body;
+
+//   if (!email) {
+//     return res.status(400).json({ message: "Email is required" });
+//   }
+
+//   try {
+//     // Check if the user exists in the users table
+//     const userfind = await knex('users').where({ email }).first();
+
+//     if (!userfind) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     // Generate a JWT token that expires in 2 minutes (120s)
+//     const token = jwt.sign({ id: userfind.id }, process.env.JWT_SECRET, {
+//       expiresIn: '120s',
+//     });
+
+//     // Update the user's verifyToken in the members table
+//     await knex('members').where({ id: userfind.id }).update({ verifyToken: token });
+
+//     console.log('Token set for user:', userfind.id);
+
+//     // Send a response (you might want to send an email here)
+//     res.status(200).json({ message: "Password reset link sent to your email" });
+//   } catch (error) {
+//     console.error("Error during password reset:", error);
+//     res.status(500).json({ message: "An error occurred during password reset" });
+//   }
+// };
+
 
 
 
