@@ -7,23 +7,13 @@ require('dotenv').config();
 
 
 
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: "tobiasbarakan@gmailcom",
-//     pass: "3817.Tob.#123@bar"
-//   }
-
-// });
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: "tobiasbarakan@gmail.com",
-    pass: process.env.PASSWORD_NODEMAILER // Use the generated App Password from your Google account
+    pass: process.env.PASSWORD_NODEMAILER 
   }
-
 });
-
 
 
 const sendPasswordLink = async (req, res) => {
@@ -34,7 +24,7 @@ const sendPasswordLink = async (req, res) => {
   }
 
   try {
-    // Check if the user exists
+    
     const user = await knex('users').where({ email }).first();
 
     if (!user) {
@@ -103,7 +93,36 @@ const passwordForgot = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const { id, token } = req.params;
+  const { newPassword, confirmPassword } = req.body;
+  if(newPassword !== confirmPassword) {
+    return res.status(400).json({ message: "Passwords do not match"});
+  }
 
+  try {
+    // Query the database for the user with the matching token
+    const validUser = await knex('email_verification_tokens').where({ user_id: id, verifyToken: token }).first();
+    console.log('Valid User:', validUser);  // Check if the user was found
+
+    if (!validUser) {
+      return res.status(404).json({ message: 'User or token not found' });
+    }
+
+    // Verify the JWT token
+    const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('Verified Token:', verifyToken);  // Log the verified token
+
+    // If validUser and token verification succeed, update the user's password
+    if (validUser && verifyToken) {
+      const hashedPassword = await hashPassword(newPassword);
+      await knex('users').where({ id }).update({ password: hashedPassword });
+      return res.status(201).json({ message: 'Password updated successfully' });
+    }
+  } catch (error) {
+    return res.status(401).json({ message: 'Token Expired try to login again' });
+  }
+}
 
 // const sendPasswordLink = async (req, res) => {
 //   const { email } = req.body;
@@ -513,4 +532,4 @@ const google = async (req, res, next) => {
 
 
 
-module.exports = {sendPasswordLink,passwordForgot, signupUser, loginUser, getAllUsers, google, logoutUser };
+module.exports = {changePassword, sendPasswordLink,passwordForgot, signupUser, loginUser, getAllUsers, google, logoutUser };
