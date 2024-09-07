@@ -3,13 +3,23 @@ const {hashPassword, comparePassword} = require("../../utils/client/passwordUtil
 const { createJWT } = require("../../utils/client/tokenUtils.js");
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+require('dotenv').config(); 
 
 
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: "tobiasbarakan@gmailcom",
+//     pass: "3817.Tob.#123@bar"
+//   }
+
+// });
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: "tobiasbarakan@gmailcom",
-    pass: "Tobias@123"
+    user: "tobiasbarakan@gmail.com",
+    pass: process.env.PASSWORD_NODEMAILER // Use the generated App Password from your Google account
   }
 
 });
@@ -31,25 +41,111 @@ const sendPasswordLink = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Generate tokens: one for general use and one for email verification
-    const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Generate the verification token
+    const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '120s' });
 
-    // Store the tokens in the email_verification_tokens table
+    // Insert the token into the email_verification_tokens table
     await knex('email_verification_tokens').insert({
       user_id: user.id,
       verifyToken: verifyToken,
-      expires_at: knex.raw("now() + interval '1 hour'") // Token expiration
+      expires_at: knex.raw("now() + interval '120 seconds'") 
     });
 
-    // TODO: Send the verification email to the user, including the verifyToken
-    console.log('Verification token:', verifyToken);
+    // Setup the email options
+    const mailOptions = {
+      from: 'tobiasbarakan@gmail.com',
+      to: email,
+      subject: "Sending Email for Password Reset",
+      text: `This is your password reset link, valid for 2 minutes: http://localhost:5173/forgot-password/${user.id}/${verifyToken}`
+    };
 
-    res.status(200).json({ message: "Verification link sent to your email" });
+   
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error in sending password reset link" });
+      } else {
+        console.log("Email sent: ", info.response);
+        return res.status(200).json({ message: "Password reset link sent to your email" });
+      }
+    });
   } catch (error) {
     console.error("Error during email verification:", error);
     res.status(500).json({ message: "An error occurred during the email verification process" });
   }
 };
+
+
+const passwordForgot = async (req, res) => {
+  const { id, token } = req.params;
+
+  try {
+    console.log('ID:', id, 'Token:', token);  // Check incoming parameters
+
+    // Query database for user with matching token
+    const validUser = await knex('email_verification_tokens').where({ user_id: id, verifyToken: token }).first();
+    console.log('Valid User:', validUser);  // Check if the user was found
+
+    if (!validUser) {
+      return res.status(404).json({ message: 'User or token not found' });
+    }
+
+    // Verify the JWT token
+    const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('Verified Token:', verifyToken);  // Log the verified token
+
+    // If validUser and token verification succeed, return success
+    if (validUser && verifyToken) {
+      return res.status(200).json({ validUser, status:200 });
+    }
+  } catch (error) {
+    return res.status(401).json({ message: 'Token Expired try to login again' });
+  }
+};
+
+
+
+// const sendPasswordLink = async (req, res) => {
+//   const { email } = req.body;
+
+//   if (!email) {
+//     return res.status(400).json({ message: "Email is required" });
+//   }
+
+//   try {
+//     // Check if the user exists
+//     const user = await knex('users').where({ email }).first();
+
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     // Generate tokens: one for general use and one for email verification
+//     const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '120s' });
+    
+//    if(verifyToken) {
+//     const mailOptions = {
+//       from: 'tobiasbarakan',
+//       to: email,
+//       subject: "Sending Email for Password Reset",
+//       text: `This is your password reset link under 2 minutes: http://localhost:5173/forgotpassword/${userfind.id}/${setUsertoken.usertoken}`
+//    }
+//   }
+//     await knex('email_verification_tokens').insert({
+//       user_id: user.id,
+//       verifyToken: verifyToken,
+//       expires_at: knex.raw("now() + interval '120s'") // Token expiration
+//     });
+
+//     // TODO: Send the verification email to the user, including the verifyToken
+//     console.log('Verification token:', verifyToken);
+
+//     res.status(200).json({ message: "Verification link sent to your email" });
+//   } catch (error) {
+//     console.error("Error during email verification:", error);
+//     res.status(500).json({ message: "An error occurred during the email verification process" });
+//   }
+// };
 
 
 
@@ -417,4 +513,4 @@ const google = async (req, res, next) => {
 
 
 
-module.exports = {sendPasswordLink, signupUser, loginUser, getAllUsers, google, logoutUser };
+module.exports = {sendPasswordLink,passwordForgot, signupUser, loginUser, getAllUsers, google, logoutUser };
