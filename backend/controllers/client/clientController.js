@@ -31,17 +31,14 @@ const sendPasswordLink = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Generate the verification token
     const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '120s' });
 
-    // Insert the token into the email_verification_tokens table
     await knex('email_verification_tokens').insert({
       user_id: user.id,
       verifyToken: verifyToken,
       expires_at: knex.raw("now() + interval '120 seconds'") 
     });
 
-    // Setup the email options
     const mailOptions = {
       from: 'tobiasbarakan@gmail.com',
       to: email,
@@ -70,21 +67,18 @@ const passwordForgot = async (req, res) => {
   const { id, token } = req.params;
 
   try {
-    console.log('ID:', id, 'Token:', token);  // Check incoming parameters
+    console.log('ID:', id, 'Token:', token); 
 
-    // Query database for user with matching token
     const validUser = await knex('email_verification_tokens').where({ user_id: id, verifyToken: token }).first();
-    console.log('Valid User:', validUser);  // Check if the user was found
+    console.log('Valid User:', validUser); 
 
     if (!validUser) {
       return res.status(404).json({ message: 'User or token not found' });
     }
 
-    // Verify the JWT token
     const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Verified Token:', verifyToken);  // Log the verified token
+    console.log('Verified Token:', verifyToken); 
 
-    // If validUser and token verification succeed, return success
     if (validUser && verifyToken) {
       return res.status(200).json({ validUser, status:200 });
     }
@@ -101,21 +95,17 @@ const changePassword = async (req, res) => {
   }
 
   try {
-    // Query the database for the user with the matching token
     const validUser = await knex('email_verification_tokens').where({ user_id: id, verifyToken: token }).first();
-    console.log('Valid User:', validUser);  // Check if the user was found
 
     if (!validUser) {
       return res.status(404).json({ message: 'User or token not found' });
     }
 
-    // Verify the JWT token
     const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Verified Token:', verifyToken);  // Log the verified token
 
-    // If validUser and token verification succeed, update the user's password
     if (validUser && verifyToken) {
       const hashedPassword = await hashPassword(newPassword);
+
       await knex('users').where({ id }).update({ password: hashedPassword });
       return res.status(201).json({ message: 'Password updated successfully' });
     }
@@ -124,100 +114,10 @@ const changePassword = async (req, res) => {
   }
 }
 
-// const sendPasswordLink = async (req, res) => {
-//   const { email } = req.body;
-
-//   if (!email) {
-//     return res.status(400).json({ message: "Email is required" });
-//   }
-
-//   try {
-//     // Check if the user exists
-//     const user = await knex('users').where({ email }).first();
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Generate tokens: one for general use and one for email verification
-//     const verifyToken = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '120s' });
-    
-//    if(verifyToken) {
-//     const mailOptions = {
-//       from: 'tobiasbarakan',
-//       to: email,
-//       subject: "Sending Email for Password Reset",
-//       text: `This is your password reset link under 2 minutes: http://localhost:5173/forgotpassword/${userfind.id}/${setUsertoken.usertoken}`
-//    }
-//   }
-//     await knex('email_verification_tokens').insert({
-//       user_id: user.id,
-//       verifyToken: verifyToken,
-//       expires_at: knex.raw("now() + interval '120s'") // Token expiration
-//     });
-
-//     // TODO: Send the verification email to the user, including the verifyToken
-//     console.log('Verification token:', verifyToken);
-
-//     res.status(200).json({ message: "Verification link sent to your email" });
-//   } catch (error) {
-//     console.error("Error during email verification:", error);
-//     res.status(500).json({ message: "An error occurred during the email verification process" });
-//   }
-// };
-
-
-
-
-
-
-// const sendPasswordLink = async (req, res) => {
-//   const { email } = req.body;
-
-//   if (!email) {
-//     return res.status(400).json({ message: "Email is required" });
-//   }
-
-//   try {
-//     // Check if the user exists in the users table
-//     const userfind = await knex('users').where({ email }).first();
-
-//     if (!userfind) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Generate a JWT token that expires in 2 minutes (120s)
-//     const token = jwt.sign({ id: userfind.id }, process.env.JWT_SECRET, {
-//       expiresIn: '120s',
-//     });
-
-//     // Update the user's verifyToken in the members table
-//     await knex('members').where({ id: userfind.id }).update({ verifyToken: token });
-
-//     console.log('Token set for user:', userfind.id);
-
-//     // Send a response (you might want to send an email here)
-//     res.status(200).json({ message: "Password reset link sent to your email" });
-//   } catch (error) {
-//     console.error("Error during password reset:", error);
-//     res.status(500).json({ message: "An error occurred during password reset" });
-//   }
-// };
-
-
-
-
-
-
-
-
-
-
-    const signupUser = async (req, res) => {
+const signupUser = async (req, res) => {
   try {
     const {  username, email, password } = req.body;
 
-    // Input validation
     if (!username || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -461,74 +361,6 @@ const google = async (req, res, next) => {
     res.status(500).json({ message: "An error occurred during login" });
   }
 };
-
-
-// const google = async(req, res, next) => {
-//   const { name, email, googlePhotoUrl } = req.body;
-//   try {
-//     const user = await knex('users').where({ email }).first();
-//     if (user) {
-//     const token = createJWT({ userId: user.id, role: user.role });
-//     res.cookie('jwt', token, {
-//       httpOnly: true,
-//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
-//       // secure: process.env.NODE_ENV === 'production',
-//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-//       httpOnly: true,
-//       // path: '/'
-//     });
-//       res.json({
-//         id: user.id,
-//         username: user.username,
-//         email: user.email,
-//         profile_pic: user.profile_pic,
-//         role: user.role_id,
-//         balance: user.balance,
-//         created_at: user.created_at,
-//         updated_at: user.updated_at,
-//         message: "Successfully logged in 😁",
-//       });
-//     } else {
-//       const generatedPassword = Math.random().toString(36).slice(-8);
-//       const hashedPassword = await hashPassword(generatedPassword);
-//       const newUser = await knex('users').insert({
-//         username: name.toLowerCase().split(' ').join('') + Math.random().toString(36).slice(-5),
-//         email,
-//         password: hashedPassword,
-//         profile_pic: googlePhotoUrl,
-//         role_id: 1,
-//         balance: 0.0,
-//         created_at: knex.fn.now(),
-//         updated_at: knex.fn.now(),
-//       }).returning('*');
-//     const token = createJWT({ userId: user.id, role: user.role });
-//     res.cookie('jwt', token, {
-//       httpOnly: true,
-//       expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
-//       // secure: process.env.NODE_ENV === 'production',
-//       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-//       httpOnly: true,
-//       // path: '/'
-//     });
-//       res.json({
-//         id: newUser[0].id,
-//         first_name: newUser[0].first_name,
-//         last_name: newUser[0].last_name,
-//         username: newUser[0].username,
-//         email: newUser[0].email,
-//         profile_pic: newUser[0].profile_pic,
-//         role: newUser[0].role_id,
-//         balance: newUser[0].balance,
-//         created_at: newUser[0].created_at,
-//         updated_at: newUser[0].updated_at,
-//         message: "Successfully signed up 😁",
-//       });
-//     }
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     res.status(500).json({ message: "An error occurred during login" });
-//   }
-// }
 
 
 
