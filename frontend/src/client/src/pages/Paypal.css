@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  .paypal-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 24px;
+  }
+  
+  .paypal-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .paypal-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .paypal-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .paypal-form input:focus {
+    border-color: #5da8ff;
+    outline: none;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: #5da8ff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #4284db;
+  }
+  
+  @media (max-width: 500px) {
+    .paypal-container {
+      padding: 20px;
+    }
+  }
+  

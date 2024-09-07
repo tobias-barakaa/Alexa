@@ -121,6 +121,8 @@ import LearnMore from './client/src/components/LearnMore';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import PasswordReset from './client/src/pages/PasswordReset';
 import ForgotPassword from './client/src/pages/ForgotPassword';
+import TokenExpired from './client/src/components/TokenExpired';
+import Paypal from './client/src/pages/Paypal';
 
 
 
@@ -142,6 +144,14 @@ const router = createBrowserRouter([
   {
     path: "/forgot-password/:id/:token",
     element: <ForgotPassword />
+  },
+  {
+    path: "/forgot-password/token-expired",
+    element: <TokenExpired />
+  },
+  {
+    path: "/paypal",
+    element: <Paypal />
   },
   {
     path: "/about",
