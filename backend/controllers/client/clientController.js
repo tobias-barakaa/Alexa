@@ -49,16 +49,14 @@ const sendPasswordLink = async (req, res) => {
    
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error in sending password reset link" });
+        return res.status(500).json({ message: "Error in sending password reset link", status: 500 });
       } else {
-        console.log("Email sent: ", info.response);
-        return res.status(200).json({ message: "Password reset link sent to your email" });
+        return res.status(201).json({ message: "Password reset link sent to your email", status: 201 });
       }
     });
   } catch (error) {
     console.error("Error during email verification:", error);
-    res.status(500).json({ message: "An error occurred during the email verification process" });
+    res.status(500).json({ message: "An error occurred during the email verification process", status: 500 });
   }
 };
 
@@ -83,7 +81,7 @@ const passwordForgot = async (req, res) => {
       return res.status(200).json({ validUser, status:200 });
     }
   } catch (error) {
-    return res.status(401).json({ message: 'Token Expired try to login again' });
+    return res.status(401).json({ message: 'Token Expired try to login again', status: 401 });
   }
 };
 
