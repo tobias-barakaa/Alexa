@@ -90,8 +90,11 @@ const passwordForgot = async (req, res) => {
 const changePassword = async (req, res) => {
   const { id, token } = req.params;
   const { newPassword, confirmPassword } = req.body;
+  
+  console.log(newPassword, confirmPassword, 'Received values in backend');
+  
   if(newPassword !== confirmPassword) {
-    return res.status(400).json({ message: "Passwords do not match"});
+    return res.status(400).json({ message: "Passwords do not match" });
   }
 
   try {
@@ -107,12 +110,13 @@ const changePassword = async (req, res) => {
       const hashedPassword = await hashPassword(newPassword);
 
       await knex('users').where({ id }).update({ password: hashedPassword });
-      return res.status(201).json({ message: 'Password updated successfully' });
+      return res.status(201).json({ message: 'Password updated successfully', status: 201 });
     }
   } catch (error) {
-    return res.status(401).json({ message: 'Token Expired try to login again' });
+    return res.status(401).json({ message: 'Token Expired. Try to log in again.' });
   }
 }
+
 
 const signupUser = async (req, res) => {
   try {
@@ -199,16 +203,13 @@ const signupUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
-  // console.log(req.cookies);
   const { email, password } = req.body;  
 
   try {
-    // Input validation
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Fetch user with role information
     const user = await knex("users")
       .select(
         "users.id",
@@ -248,7 +249,6 @@ const loginUser = async (req, res) => {
     });
     
 
-    // Remove sensitive information before sending response
     const { password: _, ...userWithoutPassword } = user;
 
     res.json({
