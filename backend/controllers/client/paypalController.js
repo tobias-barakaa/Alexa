@@ -36,7 +36,7 @@ const payProduct = async (req, res) => {
                             name: product,
                             sku: "001",
                             price: price,
-                            currency: currency,
+                            currency: "USD",
                             quantity: 1
                         }
                     ]
