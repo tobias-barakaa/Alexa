@@ -3,9 +3,9 @@ import './Paypal.css';
 
 const Paypal = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    amount: ''
+    product: '',   // Product name
+    amount: '',    // Product price
+    currency: 'USD' // Default currency
   });
 
   const handleChange = (e) => {
@@ -18,19 +18,25 @@ const Paypal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Here you can make a POST request to send the data to your backend
-    // Example with fetch
+    // Make a POST request to send the data to your backend
     fetch('http://localhost:5000/api/paypal/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        product: formData.product,
+        price: formData.amount, // Map amount to price
+        currency: formData.currency
+      }),
     })
       .then(response => response.json())
       .then(data => {
         console.log('Payment success:', data);
-        // Handle success
+        // Handle success (e.g., redirect to approval URL)
+        if (data.approval_url) {
+          window.location.href = data.approval_url;
+        }
       })
       .catch((error) => {
         console.error('Payment error:', error);
@@ -43,26 +49,13 @@ const Paypal = () => {
       <h2>Payment Information</h2>
       <form className="paypal-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="product">Product</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
+            id="product"
+            name="product"
+            placeholder="Enter product name"
+            value={formData.product}
             onChange={handleChange}
             required
           />
@@ -76,9 +69,25 @@ const Paypal = () => {
             name="amount"
             placeholder="Enter amount"
             value={formData.amount}
+            step="0.01"
             onChange={handleChange}
             required
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="currency">Currency</label>
+          <select
+            id="currency"
+            name="currency"
+            value={formData.currency}
+            onChange={handleChange}
+          >
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            {/* Add more currencies as needed */}
+          </select>
         </div>
 
         <button type="submit" className="submit-btn">Pay Now</button>

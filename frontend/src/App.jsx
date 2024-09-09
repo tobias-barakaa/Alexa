@@ -123,6 +123,8 @@ import PasswordReset from './client/src/pages/PasswordReset';
 import ForgotPassword from './client/src/pages/ForgotPassword';
 import TokenExpired from './client/src/components/TokenExpired';
 import Paypal from './client/src/pages/Paypal';
+import SuccessPage from './client/src/pages/SuccessPage';
+import FailurePage from './client/src/pages/FailurePage';
 
 
 
@@ -152,6 +154,14 @@ const router = createBrowserRouter([
   {
     path: "/paypal",
     element: <Paypal />
+  },
+  {
+    path: "/paypal/success",
+    element: <SuccessPage />
+  },
+  {
+    path: "/paypal/cancel",
+    element: <FailurePage />
   },
   {
     path: "/about",

@@ -11,52 +11,62 @@ paypal.configure({
 });
 
 const payProduct = async (req, res) => {
-  const { product, price, currency } = req.body;
-
-  const create_payment_json = {
-    intent: "sale",
-    payer: {
-      payment_method: "paypal"
-    },
-    redirect_urls: {
-      return_url: "http://localhost:3000/api/success",
-      cancel_url: "http://localhost:3000/api/cancel"
-    },
-    transactions: [
-      {
-        item_list: {
-          items: [
-            {
-              name: product,
-              sku: "001",
-              price: price,
-              currency: currency, // Use dynamic currency here
-              quantity: 1
-            }
-          ]
-        },
-        amount: {
-          currency: currency, // Ensure currency consistency
-          total: price
-        },
-        description: product
+    try {
+      const { product, price, currency } = req.body;
+  
+      if (!product || !price || !currency) {
+        return res.status(400).send({ error: "Missing product, price, or currency." });
       }
-    ]
-  };
-
-  paypal.payment.create(create_payment_json, (error, payment) => {
-    if (error) {
-      console.error(error.response);
-      res.status(500).send({ error: error.response.message });
-    } else {
-      for (let i = 0; i < payment.links.length; i++) {
-        if (payment.links[i].rel === "approval_url") {
-          res.redirect(payment.links[i].href);
+  
+      const priceFormatted = parseFloat(price).toFixed(2); 
+  
+      const create_payment_json = {
+        intent: "sale",
+        payer: { payment_method: "paypal" },
+        redirect_urls: {
+          return_url: "http://localhost:5173/paypal/success",
+          cancel_url: "http://localhost:5173/paypal/cancel"
+        },
+        transactions: [
+          {
+            item_list: {
+              items: [
+                {
+                  name: product,
+                  sku: "001",
+                  price: priceFormatted, // Ensure price is correctly formatted
+                  currency: currency,
+                  quantity: 1
+                }
+              ]
+            },
+            amount: {
+              currency: currency,
+              total: priceFormatted // Ensure total is correctly formatted
+            },
+            description: product
+          }
+        ]
+      };
+  
+      console.log("Create Payment JSON:", create_payment_json); // Debugging
+  
+      paypal.payment.create(create_payment_json, (error, payment) => {
+        if (error) {
+          console.error("PayPal Payment Error:", error.response);
+          res.status(500).send({ error: error.response.message });
+        } else {
+          const approval_url = payment.links.find(link => link.rel === "approval_url").href;
+          res.json({ approval_url });
         }
-      }
+      });
+      
+    } catch (err) {
+      console.error("Error in payProduct:", err);
+      res.status(500).send({ error: "Server error while creating PayPal order." });
     }
-  });
-}
+  };
+  
 
 const successPage = async (req, res) => {
   const payerId = req.query.PayerID;
