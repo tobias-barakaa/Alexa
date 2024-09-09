@@ -19,14 +19,14 @@ const payProduct = async (req, res) => {
         return res.status(400).send({ error: "Missing product, price, or currency." });
       }
   
-      const priceFormatted = parseFloat(price).toFixed(2); // Format price
+      const priceFormatted = parseFloat(price).toFixed(2);
   
       const create_payment_json = {
         intent: "sale",
         payer: { payment_method: "paypal" },
         redirect_urls: {
-          return_url: "http://localhost:5173/paypal/success", // Change this to your frontend's success URL
-          cancel_url: "http://localhost:5173/paypal/cancel"  // Change this to your frontend's cancel URL
+          return_url: "http://localhost:5173/paypal/success",
+          cancel_url: "http://localhost:5173/paypal/cancel"
         },
         transactions: [
           {
@@ -50,22 +50,33 @@ const payProduct = async (req, res) => {
         ]
       };
   
-      paypal.payment.create(create_payment_json, (error, payment) => {
+      paypal.payment.create(create_payment_json, async (error, payment) => {
         if (error) {
           console.error("PayPal Payment Error:", error.response);
           res.status(500).send({ error: error.response.message });
         } else {
+          // Save payment details to the database
+          const paymentData = {
+            paymentId: payment.id,
+            amount: priceFormatted,
+            currency: currency,
+            status: 'created'
+          };
+        //   await knex('payments').insert(paymentData);
+          console.log(paymentData, 'payment data');
+  
           // Redirect user to PayPal's approval URL
           const approval_url = payment.links.find(link => link.rel === "approval_url").href;
           res.json({ approval_url });
         }
       });
-      
+  
     } catch (err) {
       console.error("Error in payProduct:", err);
       res.status(500).send({ error: "Server error while creating PayPal order." });
     }
-};
+  };
+  ;
 
 const successPage = async (req, res) => {
   const payerId = req.query.PayerID;
