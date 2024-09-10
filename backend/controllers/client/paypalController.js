@@ -63,7 +63,7 @@ const payProduct = async (req, res) => {
             status: 'created'
           };
         //   await knex('payments').insert(paymentData);
-          console.log(paymentData, 'payment data');
+          console.log(paymentData, 'payment data........');
   
           // Redirect user to PayPal's approval URL
           const approval_url = payment.links.find(link => link.rel === "approval_url").href;
