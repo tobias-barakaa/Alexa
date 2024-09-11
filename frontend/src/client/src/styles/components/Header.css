@@ -1,27 +1,28 @@
 /* Navigation.css */
-.logo-container {
+
+/* .logo-container {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
   font-family: 'Times New Roman', Times, serif;
-}
+} */
 
 
-.dot {
+/* .dot { */
   /* color: #FF4500; */
-  color: #53BCE6;
-  font-size: 24px; /* Adjust the font size as needed */
+  /* color: #53BCE6;
+  font-size: 84px; 
+  border-radius: 50%; 
 }
 
 .logo-text {
   color: rgb(0, 0, 0);
-  font-size: 28px;  /* Large font for logo text */
+  font-size: 28px; 
   font-weight: bold;
 }
 
 .logo-text en {
-  color: #53BCE6;  /* Orange-red color */
-}
+  color: #53BCE6; 
+} */
 
 .navigation {
   display: flex; /* Flexbox for layout */
