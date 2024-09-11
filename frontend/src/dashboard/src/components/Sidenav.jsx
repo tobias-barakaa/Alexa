@@ -1,155 +1,86 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-// import logo from "../../../client/src/assets/images/logo.png";
+import React from 'react';
+
+import $ from 'jquery';
 import "./Sidenav.css";
-import SidebarProfile from "./SidebarProfile";
+// import SidebarProfile from "./SidebarProfile";
+class Sidebar extends React.Component {
+  componentDidMount() {
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  }
 
-const Sidebar = () => {
-  const location = useLocation();
-  const [activeLink, setActiveLink] = useState(location.pathname);
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <h2>Some text</h2>
+          <hr />
 
-  const handleLinkClick = (path) => {
-    setActiveLink(path);
-    localStorage.setItem("activeLink", path);
-  };
-
-  useEffect(() => {
-    setActiveLink(location.pathname);
-  }, [location.pathname]);
-
-  return (
-    <>
-      <div className="page-wrapper chiller-theme toggled">
-
-        <nav id="sidebar" className="sidebar-wrapper">
-          <div className="sidebar-content">
-            <div className="sidebar-brand">
-            <div className="sidebar-menu-container">
-         <Link
-          to="/dashboard"
-          className={`sidebar-menu-link ${activeLink === '/dashboard' || activeLink === '/dashboard/' ? 'active' : ''}`}
-          onClick={() => handleLinkClick('/dashboard')}
-        >
-          
-          <div className="logo-container">
-          <span className="logo-text">en<span className='dot'>.</span>writers</span>
-        </div>
-
-
-        </Link>
-            </div>
-            </div>
-          <hr className="dropdown-divider" />
-            
-            <div className="sidebar-menu">
-              <ul>
-                <li className="header-menu">
-                  <span>General</span>
-                </li>
-
-                <li>
-                  <Link to="/dashboard/blogorder"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="fa fa-folder"></i>
-                    <span>Blog Writing</span>
-                  </Link>
-                </li>
-
-
-
-                <li>
-                  <Link to="/dashboard/articlecreation"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="fa fa-chart-line"></i>
-                    <span>Article Creation</span>
-                  </Link>
-                </li>
-
-
-                <li>
-                  <Link to="/dashboard/resumecvwriting"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="fa fa-folder"></i>
-                    <span>Resume CVWriting</span>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="/dashboard/emailcopywriting"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="far fa-gem"></i>
-                    <span>Email Copywriting</span>
-                  </Link>
-                </li>
-
-
-
-
-
-
-
-
-
-
-
-                <li className="header-menu">
-                  <span>Manage</span>
-                </li>
-
-
-                <li>
-                  <Link to="/dashboard/editorders"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="far fa-gem"></i>
-                    <span>Edit Orders</span>
-                  </Link>
+          <div id="wrapper">
+            {/* Sidebar */}
+            <div id="sidebar-wrapper">
+              <ul className="sidebar-nav" style={{ marginLeft: 0 }}>
+                <li className="sidebar-brand">
+                  <a href="#menu-toggle" id="menu-toggle" style={{ marginTop: '20px', float: 'right' }}>
+                    <i className="fa fa-bars" style={{ fontSize: '20px' }} aria-hidden="true"></i>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/dashboard/completedorders"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="fa-solid fa-web-awesome"></i>
-                    <span>Completed Orders</span>
-                  </Link>
+                  <a href="#">
+                    <i className="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
                 </li>
-
-
                 <li>
-                  <Link to="/dashboard/ordershistory"
-                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
-                              onClick={() => handleLinkClick('/dashboard/blogorder')}
-                  >
-                    <i className="fa-solid fa-file-lines"></i>
-                    <span>Order History</span>
-                  </Link>
+                  <a href="#">
+                    <i className="fa fa-play-circle-o" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
                 </li>
-
+                <li>
+                  <a href="#">
+                    <i className="fa fa-puzzle-piece" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-font" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-info-circle" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa fa-comment-o" aria-hidden="true"></i>
+                    <span style={{ marginLeft: '10px' }}>Section</span>
+                  </a>
+                </li>
               </ul>
+            </div>
 
+            {/* Page Content */}
+            <div id="page-content-wrapper">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-lg-12">
+                    {/* Your content goes here */}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <SidebarProfile />
-
-
-
-        </nav>
+        </div>
       </div>
-    </>
-
-    
-  );
-};
+    );
+  }
+}
 
 export default Sidebar;

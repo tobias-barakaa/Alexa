@@ -1,5 +1,8 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from "./client/src/pages/HomePage";
 import Main from './admin/src/pages/Main';

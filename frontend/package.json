@@ -19,6 +19,7 @@
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.3",
     "firebase": "^10.13.0",
+    "font-awesome": "^4.7.0",
     "js-file-download": "^0.4.12",
     "paypal-rest-sdk": "^1.8.1",
     "react": "^18.3.1",
