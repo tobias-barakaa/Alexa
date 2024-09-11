@@ -76,7 +76,6 @@ const payProduct = async (req, res) => {
       res.status(500).send({ error: "Server error while creating PayPal order." });
     }
   };
-  ;
 
 const successPage = async (req, res) => {
   const payerId = req.query.PayerID;
