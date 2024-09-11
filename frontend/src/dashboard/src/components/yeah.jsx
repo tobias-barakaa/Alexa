@@ -57,19 +57,39 @@ const Sidebar = () => {
                   </Link>
                 </li>
 
+
+
                 <li>
-                  <Link to="/dashboard/blogorder"
+                  <Link to="/dashboard/articlecreation"
                   className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
                               onClick={() => handleLinkClick('/dashboard/blogorder')}
                   >
-                    <i className="fa fa-folder"></i>
-                    <span>Blog Writing</span>
+                    <i className="fa fa-chart-line"></i>
+                    <span>Article Creation</span>
                   </Link>
                 </li>
 
 
+                <li>
+                  <Link to="/dashboard/resumecvwriting"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="fa fa-folder"></i>
+                    <span>Resume CVWriting</span>
+                  </Link>
+                </li>
 
-              
+                <li>
+                  <Link to="/dashboard/emailcopywriting"
+                  className={`sidebar-menu-link ${activeLink === '/dashboard/blogorder' ? 'active' : ''}`}
+                              onClick={() => handleLinkClick('/dashboard/blogorder')}
+                  >
+                    <i className="far fa-gem"></i>
+                    <span>Email Copywriting</span>
+                  </Link>
+                </li>
+
 
 
 
