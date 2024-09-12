@@ -1,227 +1,33 @@
-.form-layout-container {
-  background-color: #ffffff;
-  width: auto;
-  border: solid 2px #c9c9c9;
-  border-radius: 8px;
-}
-.form-layout {
-  height: 40px;
-}
-.roww {
-  display: flex;
-  padding: 20px;
-
-}
-
-.writers-image {
-  width: 100px;          
-  height: auto;          
-  display: block;        
-  margin: 0 auto 10px;   
-
-}
- .form-sect {
-  background-color: #ffffff;
-  padding: 24px;
-  border: 1px solid #ddd;
-  margin-right: 4px;
-  border-radius: 4px;
-
-}
-
-.writer-sect {
-  background-color: #ffffff;
-  padding: 20px;
-  border: 1px solid #ddd;
-  margin-left: 4px; 
-  height: 68vh;
-  position: sticky; 
-  top: 20px; 
-  border-radius: 4px;
-  display: table-column
-}
-.label {
-  font-weight: 400;
-  color: black;
-  font-size: 10px;
-}
-
-.my-input {
-  padding: 12px 14px;
-  transition: border .1s linear;
-  margin-top: 10px;
-
-}
-
-.contact-form {
-  margin-bottom: 20px;
-}
-
-.contact-form button {
-  background: #25274d;
-  color: #fff;
-  font-weight: 600;
-  width: 25%;
-}
-
-.contact-form button:focus {
-  box-shadow: none;
-}
+/* App.css */
 
 
-.heading {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #ddd; /* Light border */
-
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-
-
-
-
-
-/* EstimatedCost.css */
-
-.form-cost {
-  margin-bottom: 20px; /* Space below the form group */
-  padding: 15px; /* Padding inside the form group */
-  background-color: #f9f9f9; /* Light background color */
-  border: 1px solid #ddd; /* Light border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  display: flex; /* Flexbox for alignment */
-  justify-content: space-between; /* Space between label and cost */
-  align-items: center; /* Center items vertically */
-}
-
-.form-label {
-  font-size: 18px; /* Font size for the label */
-  font-weight: bold; /* Bold label for emphasis */
-  color: #333; /* Dark text color */
-}
-
-.cost-value {
-  font-size: 24px; /* Larger font size for the cost */
-  font-weight: bold; /* Bold text for cost */
-  color: #28a745; /* Green color for cost */
-  background-color: #e7f9e7; /* Light green background for cost */
-  padding: 10px 15px; /* Padding around the cost */
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid #28a745; /* Green border */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
-}
-
-
-
-.order-button {
-  width: 220px;
-  height: 20px;
-  border: 2px solid black;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.order-button:hover {
-  background-color: black;
-  color: white;
-}
-
-
-
-
-
-
-
-
-   /* BlogForm.css */
-
-/* .blog-form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
+  
+  .sidebar {
+    width: 1100px;
+    position: sticky;
+    top: 0;
+    height: 40px;
+    background-color: white;
+    border-bottom: 2px solid rgba(211, 211, 211, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .blog-form-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .blog-form {
+  .menu {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
   
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-input,
-  .form-textarea {
+  .content {
     width: 100%;
+    padding: 20px;
+  }
+  
+  .dummy-form {
+    margin: 20px 0;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
   }
   
-  .form-textarea {
-    resize: vertical;
-  }
-  
-  .form-input-error {
-    border-color: #ff0000;
-  }
-  
-  .form-error-message {
-    color: #ff0000;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .form-submit-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .form-submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .form-submit-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-   
