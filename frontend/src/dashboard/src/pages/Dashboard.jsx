@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 // import Header from '../components/Header';
-import Sidenav from "../components/Sidenav";
+// import Sidenav from "../components/Sidenav";
 import ".././styles/pages/Dashboard.css";
 
 const Dashboard = () => {
@@ -8,7 +8,7 @@ const Dashboard = () => {
     <>
       <div className="app-container">
         <div className="content-container">
-          <Sidenav />
+          {/* <Sidenav /> */}
 
           <div className="main-contentt">
 

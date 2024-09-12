@@ -1,18 +1,5 @@
 /* Adjustments for the sidebar and main content */
 
-.content-container {
-  display: flex;
-  height: 100vh; /* Full height */
-}
-
-.main-contentt {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  margin-left: 250px; /* Sidebar width */
-  background-color: #f1f5f9;
-}
-
 
 
 .sidebar-wrapper {
