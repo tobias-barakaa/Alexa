@@ -1,16 +1,19 @@
 /* Adjustments for the sidebar and main content */
+
 .content-container {
   display: flex;
-  height: 100vh; /* Ensure it occupies the full height */
+  height: 100vh; /* Full height */
 }
 
 .main-contentt {
   flex: 1;
-  margin-left: 250px; /* Sidebar width */
-  padding: 20px;
-  background-color: #f1f5f9; 
+  padding: 10px;
   overflow-y: auto;
+  margin-left: 250px; /* Sidebar width */
+  background-color: #f1f5f9;
 }
+
+
 
 .sidebar-wrapper {
   width: 250px;
@@ -28,48 +31,9 @@
   }
 
   .main-contentt {
-    margin-left: 60px; /* Adjust the main content margin on small screens */
+    margin-left: 60px; 
   }
 }
 
 
 
-
-
-
-.app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #f1f5f9;
-  }
-  
-  .content-container {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  
-  
-  .main-contentt {
-    flex: 1;
-    overflow-y: auto;
-    background-color: #f1f5f9; 
-    padding: 20px;
-  }
-  
-  
-  .dashboard-container {
-    display: flex;
-    flex-direction: row;
-    margin-top: 60px; 
-  }
-  
-  .content {
-    margin-left: 200px; 
-    padding: 20px;
-    flex-grow: 1;
-    height: 100vh;
-  }

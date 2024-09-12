@@ -1,11 +1,12 @@
 .form-layout-container {
   background-color: #ffffff;
   width: auto;
-  padding: 15px;
   border: solid 2px #c9c9c9;
   border-radius: 8px;
 }
-
+.form-layout {
+  height: 40px;
+}
 .roww {
   display: flex;
   padding: 20px;
@@ -143,6 +144,11 @@
   background-color: black;
   color: white;
 }
+
+
+
+
+
 
 
 

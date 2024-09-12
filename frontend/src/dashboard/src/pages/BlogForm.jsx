@@ -11,6 +11,7 @@ import "./BlogForm.css";
 // import FormLayout from "../dashboard/components/FormLayout";
 import writers from "../../../client/src/assets/images/writers.jpg";
 import Loader from "../components/Loader";
+import Header from "../components/Header";
 const BlogForm = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -109,7 +110,11 @@ const BlogForm = () => {
 
   return (
     <div className="form-layout-container">
-     <p className="heading">Order Your Blog Writing Service Today!</p>
+      <div className="form-layout">
+        <Header />
+         </div>
+      <hr style={{ width:  "100%" }} className="me" />
+     {/* <p className="heading">Order Your Blogsd Writing Service Today!</p> */}
 
 
 

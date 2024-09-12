@@ -1,21 +1,17 @@
 
 .top-navbar {
   height: auto;
-  /* background-color: rgb(2, 2, 2);  */
   background-color: #ffffff;
   font-size: 20px;
   padding: 10px;
   color: #333333;
-  border: solid 1px #e9e1e1;
 }
-
 
 .nav-list {
   display: flex;
   list-style-type: none;
   padding: 0;
   margin: 0;
-  height: 40px;
   align-items: center;
 }
 
