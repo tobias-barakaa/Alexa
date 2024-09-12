@@ -1,0 +1,66 @@
+
+  .main-container {
+    display: flex;
+    height: 100vh; /* Full height of the screen */
+    width: 100vw; /* Full width of the screen */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 20%; /* Sidebar takes 20% width */
+    background-color: #f3f3ee; 
+    padding: 20px;
+    color: white;
+    position: fixed; /* Fix sidebar on the left */
+    height: 100vh; /* Full height */
+    top: 0;
+    left: 0;
+    border: solid 1px #cfcfcf;
+
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    background-color: #34495e;
+  }
+  
+  /* Content Area */
+  .content-area {
+    margin-left: 20%; /* Content takes remaining width */
+    flex-grow: 1; /* Make content area grow and take the available space */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal overflow in content */
+    background-color: #fcfcf9;
+
+  }
+  
+  .header {
+    height: 60px;
+    background-color: #fcfcf9;
+    color: white;
+    display: flex;
+    align-items: center;
+    position: sticky; /* Makes header stick at the top */
+    top: 0;
+    z-index: 1; /* Ensure the header is on top */
+   
+
+  }
+    .cont {
+    padding: 0px;
+    height: calc(100vh - 40px); /* Remaining height for the content */
+    overflow-y: auto; /* Allow vertical scrolling if content is long */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+  

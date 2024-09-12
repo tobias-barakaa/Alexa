@@ -1,31 +1,37 @@
-.app-container {
+/* .app-container { */
     /* display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
     background-color: #f1f5f9; */
 
-    display: flex;
+    /* display: flex;
     height: 100vh;
     overflow: hidden; 
   }
   
   .content-container {
     display: flex;
-    flex: 1;
+    flex: 1; */
     /* overflow: hidden; */
-  }
   
-  
-  
+/*   
+
   .main-contentt {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  } */
+  
+  
+  /* .main-contentt {
     flex: 1;
     overflow-y: auto;
     background-color: #f1f5f9; 
     padding: 20px;
-  }
+  } */
   
-  
+/*   
   .dashboard-container {
     display: flex;
     flex-direction: row;
@@ -37,4 +43,4 @@
     padding: 20px;
     flex-grow: 1;
     height: 100vh;
-  }
+  } */
