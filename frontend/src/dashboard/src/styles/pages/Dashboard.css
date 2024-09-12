@@ -1,26 +1,40 @@
-/* Adjustments for the sidebar and main content */
+.app-container {
+    /* display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f1f5f9; */
 
-
-
-.sidebar-wrapper {
-  width: 250px;
-  min-height: 100vh;
-  position: fixed; /* Fix the sidebar on the left */
-  left: 0;
-  top: 0;
-  background-color: #2c3e50;
-  z-index: 1000;
-}
-
-@media (max-width: 768px) {
-  .sidebar-wrapper {
-    width: 60px; /* Collapse sidebar on small screens */
+    display: flex;
+    height: 100vh;
+    overflow: hidden; 
   }
-
+  
+  .content-container {
+    display: flex;
+    flex: 1;
+    /* overflow: hidden; */
+  }
+  
+  
+  
   .main-contentt {
-    margin-left: 60px; 
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f1f5f9; 
+    padding: 20px;
   }
-}
-
-
-
+  
+  
+  .dashboard-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px; 
+  }
+  
+  .content {
+    margin-left: 200px; 
+    padding: 20px;
+    flex-grow: 1;
+    height: 100vh;
+  }
