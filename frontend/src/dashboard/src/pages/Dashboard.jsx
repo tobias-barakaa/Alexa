@@ -1,44 +1,140 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Dashboard.css';
 
-const Profile = () => (
-  <div>
-    <h2>Profile Page</h2>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p><p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p><p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>vvvv<p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p><p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p><p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p><p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-    <p>This is the profile page content.</p>
-  </div>
-);
+const Profile = () => <div>Profile Content Profile Content Profile Content Profile Content Profile Content
 
-const Settings = () => <div>Settings Page Content</div>;
-const Wallet = () => <div>Wallet Page Content</div>;
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+Profile Content Profile Content Profile Content Profile Content Profile Content
+Profile Content Profile Content Profile Content Profile Content Profile Content
+
+</div>;
+const Settings = () => <div>Settings Content</div>;
+const Wallet = () => <div>Wallet Content</div>;
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState('Profile');
@@ -57,28 +153,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="main-container">
-      {/* Sidebar */}
+    <div className="app-container">
       <div className="sidebar">
-        <ul>
-          <li onClick={() => setActivePage('Profile')}>Profile</li>
-          <li onClick={() => setActivePage('Settings')}>Settings</li>
-          <li onClick={() => setActivePage('Wallet')}>Wallet</li>
-        </ul>
+        <button onClick={() => setActivePage('Profile')}>Profile</button>
+        <button onClick={() => setActivePage('Settings')}>Settings</button>
+        <button onClick={() => setActivePage('Wallet')}>Wallet</button>
       </div>
-
-      {/* Content Area */}
-      <div className="content-area">
-        {/* Header */}
-        <header className="header">My Dashboard
-
-        </header>
-        <hr style={{ width: "100%", color: "#34495e", marginTop: "0px" }} />
-
-        {/* Scrollable Content */}
-        <div className="cont">
-          {renderPage()}
-        </div>
+      <div className="main-cont">
+        <div className="header">Header</div>
+        <div className="cont">{renderPage()}</div>
       </div>
     </div>
   );
