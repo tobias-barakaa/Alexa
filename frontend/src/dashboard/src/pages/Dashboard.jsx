@@ -67,12 +67,11 @@ Profile ContProfile ContProfile ContProfile ContProfile Cont
 
 
 const Dashboard = () => {
-  const [expandedItems, setExpandedItems] = useState({});
+  const [isToggled, setIsToggled] = useState(true);
 
-  const toggleExpand = (item) => {
-    setExpandedItems(prev => ({ ...prev, [item]: !prev[item] }));
+  const toggleSidebar = () => {
+    setIsToggled(!isToggled);
   };
-  const [activePage, setActivePage] = useState('Profile');
 
   const renderPage = () => {
     switch (activePage) {
@@ -94,83 +93,170 @@ const Dashboard = () => {
 
 
 
-     <div className="sidebar">
-      <div className="sidebar-header">
-        <h2>ArticleCraft</h2>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <button onClick={() => toggleExpand('writing')}>
-              <PenTool size={18} />
-              <span>Writing</span>
-            </button>
-            {expandedItems.writing && (
-              <ul>
-                <li onClick={() => setActivePage('NewArticle')}>New Article</li>
-                <li onClick={() => setActivePage('Drafts')}>Drafts</li>
-                <li><button onClick={() => setActivePage('Templates')}>Templates</button></li>
+<div className="dashboard">
+      <div
+        id="full-screen-example"
+        className="sidenav bg-light"
+        data-color="dark"
+        data-mode="side"
+        data-hidden="false"
+        data-scroll-container="#scrollContainer"
+      >
+        <div className="mt-4">
+          <div id="header-content" className="pl-3">
+            <img
+              src="https://mdbootstrap.com/img/Photos/Avatars/img%20(23).jpg"
+              alt="avatar"
+              className="rounded-circle img-fluid mb-3"
+              style={{ maxWidth: "50px" }}
+            />
+            <h4>
+              <span style={{ whiteSpace: "nowrap" }}>Ann Smith</span>
+            </h4>
+            <p>ann_s@mdbootstrap.com</p>
+          </div>
+          <hr className="mb-0" />
+        </div>
+        <div id="scrollContainer">
+          <ul className="sidenav-menu">
+            <li className="sidenav-item">
+              <a className="sidenav-link" href="/">
+                <i className="fas fa-envelope pr-3"></i>Inbox
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-paper-plane pr-3"></i>Outbox
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-address-book pr-3"></i>Contacts
+              </a>
+              <ul className="sidenav-collapse">
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Family</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Friends</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Work</a>
+                </li>
               </ul>
-            )}
-          </li>
-          <li>
-            <button onClick={() => toggleExpand('management')}>
-              <Folder size={18} />
-              <span>Management</span>
-            </button>
-            {expandedItems.management && (
-              <ul>
-                <li><button onClick={() => setActivePage('Published')}>Published</button></li>
-                <li><button onClick={() => setActivePage('Categories')}>Categories</button></li>
-                <li><button onClick={() => setActivePage('Tags')}>Tags</button></li>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-file pr-3"></i>Drafts
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-heart pr-3"></i>Favourites
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-star pr-3"></i>Starred
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-trash pr-3"></i>Trash
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-ban pr-3"></i>Spam
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-tag pr-3"></i>Categories
+              </a>
+              <ul className="sidenav-collapse">
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Social</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Notifications</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Recent</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Uploads</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Backups</a>
+                </li>
+                <li className="sidenav-item">
+                  <a className="sidenav-link">Offers</a>
+                </li>
               </ul>
-            )}
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Analytics')}>
-              <BarChart size={18} />
-              <span>Analytics</span>
-            </button>
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Collaboration')}>
-              <Users size={18} />
-              <span>Collaboration</span>
-            </button>
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Comments')}>
-              <MessageCircle size={18} />
-              <span>Comments</span>
-            </button>
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Profile')}>
-              <FileText size={18} />
-              <span>Profile</span>
-            </button>
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Settings')}>
-              <Settings size={18} />
-              <span>Settings</span>
-            </button>
-          </li>
-          <li>
-            <button onClick={() => setActivePage('Wallet')}>
-              <Wallet size={18} />
-              <span>Wallet</span>
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <div className="sidebar-footer">
-        <button onClick={() => setActivePage('Help')}>
-          <HelpCircle size={18} />
-          <span>Help & Support</span>
-        </button>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-sticky-note pr-3"></i>Notes
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-user-circle pr-3"></i>Personal
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-ellipsis-h pr-3"></i>More
+              </a>
+            </li>
+          </ul>
+          <hr className="m-0" />
+          <ul className="sidenav-menu">
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-cogs pr-3"></i>Settings
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-user pr-3"></i>Profile
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-shield-alt pr-3"></i>Privacy
+              </a>
+            </li>
+            <li className="sidenav-item">
+              <a className="sidenav-link">
+                <i className="fas fa-user-astronaut pr-3"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="text-center" style={{ height: "100px" }}>
+          <hr className="mb-4 mt-0" />
+          <p>MDBootstrap.com</p>
+        </div>
       </div>
+
+      <div className="mdb-page-content text-center page-intro bg-light">
+        <div className="text-center py-5">
+          <h3 className="my-5">Resize to change the mode</h3>
+          <div>
+            <img
+              className="rounded"
+              src="https://mdbootstrap.com/img/Photos/Others/img%20(53).jpg"
+              alt="content"
+            />
+          </div>
+          <button id="toggler" className="btn btn-dark mt-5">
+            <i className="fas fa-bars"></i>
+          </button>
+        </div>
       </div>
+    </div>
 
 
 

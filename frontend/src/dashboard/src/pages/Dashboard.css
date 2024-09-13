@@ -56,3 +56,104 @@
     background-color: rgb(219, 219, 219); 
   }
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .page-intro {
+    background-color: white;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  
+  img {
+    max-width: 80%;
+  }
+  
+  .mdb-page-content {
+    padding-left: 240px;
+    transition: padding 0.3s linear;
+  }
+  
+  #toggler {
+    display: none;
+  }
+  
+  @media (max-width: 660px) {
+    .mdb-page-content {
+      padding-left: 0px;
+    }
+  
+    #toggler {
+      display: unset;
+    }
+  
+    .mask img {
+      width: 100%;
+    }
+  }
+  
+  .sidenav {
+    width: 240px;
+    background-color: #f8f9fa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding-top: 1rem;
+  }
+  
+  .sidenav-menu {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidenav-item {
+    margin: 0.5rem 0;
+  }
+  
+  .sidenav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: #495057;
+    text-decoration: none;
+  }
+  
+  .sidenav-link:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+  }
+  
+  .sidenav-collapse {
+    list-style-type: none;
+    padding-left: 1rem;
+  }
+  
+  .sidenav-collapse .sidenav-item {
+    margin: 0.25rem 0;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .bg-light {
+    background-color: #f8f9fa !important;
+  }
+  
