@@ -1,142 +1,71 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
 
-const Profile = () => <div>Profile Content Profile Content Profile Content Profile Content Profile Content
+const Profile = () => <div>Profile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
 
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
 
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
-Profile Content Profile Content Profile Content Profile Content Profile Content
-Profile Content Profile Content Profile Content Profile Content Profile Content
-
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
+Profile ContProfile ContProfile ContProfile ContProfile Cont
 </div>;
-const Settings = () => <div>Settings Content</div>;
-const Wallet = () => <div>Wallet Content</div>;
+const Settings = () => <div>Settings Cont</div>;
+const Wallet = () => <div>Wallet Cont</div>;
 
-const Dashboard = () => {
+const App = () => {
   const [activePage, setActivePage] = useState('Profile');
 
   const renderPage = () => {
@@ -161,10 +90,12 @@ const Dashboard = () => {
       </div>
       <div className="main-cont">
         <div className="header">Header</div>
+        <div className="horizontal-line"></div>
         <div className="cont">{renderPage()}</div>
       </div>
+
     </div>
   );
 };
 
-export default Dashboard;
+export default App;
