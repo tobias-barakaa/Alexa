@@ -121,27 +121,20 @@ const Dashboard = () => {
           <li className="header-menu">
             <span>General</span>
           </li>
+          <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>E-commerce</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+
+
           <li className="sidebar-dropdown">
             <a href="#">
               <i className="fa fa-tachometer-alt"></i>
               <span>dd</span>
               <span className="badge badge-pill badge-warning">New</span>
             </a>
-            <div className="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span className="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
+            
           </li>
          
          
