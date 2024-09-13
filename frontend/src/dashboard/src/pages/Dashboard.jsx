@@ -64,8 +64,7 @@ Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile 
 Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
 Profile ContProfile ContProfile ContProfile ContProfile Cont
 </div>;
-const Settings = () => <div>Settings Cont</div>;
-const Wallet = () => <div>Wallet Cont</div>;
+
 
 const Dashboard = () => {
   const [expandedItems, setExpandedItems] = useState({});
@@ -108,8 +107,8 @@ const Dashboard = () => {
             </button>
             {expandedItems.writing && (
               <ul>
-                <li><button onClick={() => setActivePage('NewArticle')}>New Article</button></li>
-                <li><button onClick={() => setActivePage('Drafts')}>Drafts</button></li>
+                <li onClick={() => setActivePage('NewArticle')}>New Article</li>
+                <li onClick={() => setActivePage('Drafts')}>Drafts</li>
                 <li><button onClick={() => setActivePage('Templates')}>Templates</button></li>
               </ul>
             )}

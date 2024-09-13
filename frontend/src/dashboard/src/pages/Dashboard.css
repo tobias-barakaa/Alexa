@@ -5,102 +5,12 @@
     height: 100vh;
   }
   
- 
-
-
-
-
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-  .sidebar-header {
-    padding: 0 20px 20px;
-    border-bottom: 1px solid #34495e;
-  }
-  .sidebar-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #3498db;
-  }
-  nav {
-    flex-grow: 1;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  li {
-    margin: 5px 0;
-  }
-  button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px 20px;
-    background: none;
-    border: none;
-    color: #ecf0f1;
-    cursor: pointer;
-    text-align: left;
-    transition: background-color 0.3s;
-  }
-  button:hover {
-    background-color: #34495e;
-  }
-  button span {
-    margin-left: 10px;
-  }
-  li ul {
-    margin-left: 20px;
-  }
-  li ul button {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-  }
-  .sidebar-footer {
-    padding-top: 20px;
-    border-top: 1px solid #34495e;
-  }
-  
-  /* Custom scrollbar styles */
-  .sidebar::-webkit-scrollbar {
-    width: 2px;
-  }
-  .sidebar::-webkit-scrollbar-track {
-    background: #34495e;
-  }
-  .sidebar::-webkit-scrollbar-thumb {
-    background: #95a5a6;
-  }
   .sidebar {
-    scrollbar-width: thin;
-    scrollbar-color: #95a5a6 #34495e;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    width: 250px;
+    background-color: #f3f3ee;
+    padding: 20px;
+    overflow-y: scroll; /* Force the scrollbar to always be visible */
+}
 
 /* Custom scrollbar for WebKit browsers */
 .sidebar::-webkit-scrollbar {
