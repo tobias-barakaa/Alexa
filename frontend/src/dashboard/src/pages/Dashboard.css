@@ -57,103 +57,118 @@
   }
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .page-intro {
-    background-color: white;
-    width: 100vw;
-    min-height: 100vh;
+  .page-wrapper {
+    height: 100vh;
+    transition: all 0.3s ease;
   }
   
-  img {
-    max-width: 80%;
-  }
-  
-  .mdb-page-content {
-    padding-left: 240px;
-    transition: padding 0.3s linear;
-  }
-  
-  #toggler {
-    display: none;
-  }
-  
-  @media (max-width: 660px) {
-    .mdb-page-content {
-      padding-left: 0px;
-    }
-  
-    #toggler {
-      display: unset;
-    }
-  
-    .mask img {
-      width: 100%;
-    }
-  }
-  
-  .sidenav {
-    width: 240px;
-    background-color: #f8f9fa;
-    position: fixed;
-    top: 0;
+  .page-wrapper.toggled .sidebar-wrapper {
     left: 0;
-    bottom: 0;
-    overflow-y: auto;
-    padding-top: 1rem;
   }
   
-  .sidenav-menu {
+   .sidebar-wrapper {
+    width: 260px;
+    height: 100%;
+    top: 0;
+    background: #fbfbfc;
+    z-index: 999;
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar-wrapper ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
   
-  .sidenav-item {
-    margin: 0.5rem 0;
+  .sidebar-wrapper a {
+    text-decoration: none;
+    color: #818896;
+    transition: all 0.3s ease;
   }
   
-  .sidenav-link {
+  .sidebar-wrapper .sidebar-header,
+  .sidebar-wrapper .sidebar-menu {
+    border-top: 1px solid #3a3f48;
+  }
+  
+  .sidebar-wrapper .sidebar-brand {
+    padding: 10px 20px;
     display: flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    color: #495057;
-    text-decoration: none;
+    justify-content: space-between;
   }
   
-  .sidenav-link:hover {
-    background-color: #e9ecef;
-    border-radius: 5px;
+  .sidebar-wrapper .sidebar-brand a {
+    text-transform: uppercase;
+    font-weight: bold;
   }
   
-  .sidenav-collapse {
-    list-style-type: none;
-    padding-left: 1rem;
+  .sidebar-wrapper .sidebar-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
   }
   
-  .sidenav-collapse .sidenav-item {
-    margin: 0.25rem 0;
+  .sidebar-wrapper .user-pic {
+    width: 60px;
+    margin-right: 15px;
   }
   
-  .text-center {
-    text-align: center;
+  .sidebar-wrapper .user-pic img {
+    width: 100%;
+    border-radius: 12px;
   }
   
-  .bg-light {
-    background-color: #f8f9fa !important;
+  .sidebar-wrapper .user-info > span {
+    display: block;
   }
+  
+  .sidebar-wrapper .user-info .user-role {
+    font-size: 12px;
+  }
+  
+  .sidebar-wrapper .user-info .user-status {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  
+   .sidebar-wrapper .sidebar-menu ul li a {
+    display: block;
+    padding: 8px 20px;
+  }
+  
+  .sidebar-wrapper .sidebar-menu .header-menu span {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 15px 20px;
+  }
+  
+  
+  
+  
+  .logo {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    display: inline-block;
+  }
+  
+  .en,
+  .writers {
+    color: black;
+  }
+  
+  .dot {
+    color: #078BC8; /* Beautiful bluish color */
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 1.1em; /* Slightly larger to stand out */
+  }
+  
+  .logo .en,
+  .logo .writers {
+    letter-spacing: 1px; /* Adjust to preference for a cleaner look */
+  }
+  
   

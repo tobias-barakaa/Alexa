@@ -67,11 +67,12 @@ Profile ContProfile ContProfile ContProfile ContProfile Cont
 
 
 const Dashboard = () => {
-  const [isToggled, setIsToggled] = useState(true);
+  const [expandedItems, setExpandedItems] = useState({});
 
-  const toggleSidebar = () => {
-    setIsToggled(!isToggled);
+  const toggleExpand = (item) => {
+    setExpandedItems(prev => ({ ...prev, [item]: !prev[item] }));
   };
+  const [activePage, setActivePage] = useState('Profile');
 
   const renderPage = () => {
     switch (activePage) {
@@ -93,170 +94,75 @@ const Dashboard = () => {
 
 
 
-<div className="dashboard">
-      <div
-        id="full-screen-example"
-        className="sidenav bg-light"
-        data-color="dark"
-        data-mode="side"
-        data-hidden="false"
-        data-scroll-container="#scrollContainer"
-      >
-        <div className="mt-4">
-          <div id="header-content" className="pl-3">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Avatars/img%20(23).jpg"
-              alt="avatar"
-              className="rounded-circle img-fluid mb-3"
-              style={{ maxWidth: "50px" }}
-            />
-            <h4>
-              <span style={{ whiteSpace: "nowrap" }}>Ann Smith</span>
-            </h4>
-            <p>ann_s@mdbootstrap.com</p>
-          </div>
-          <hr className="mb-0" />
-        </div>
-        <div id="scrollContainer">
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link" href="/">
-                <i className="fas fa-envelope pr-3"></i>Inbox
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-paper-plane pr-3"></i>Outbox
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-address-book pr-3"></i>Contacts
-              </a>
-              <ul className="sidenav-collapse">
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Family</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Friends</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Work</a>
-                </li>
-              </ul>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-file pr-3"></i>Drafts
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-heart pr-3"></i>Favourites
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-star pr-3"></i>Starred
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-trash pr-3"></i>Trash
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-ban pr-3"></i>Spam
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-tag pr-3"></i>Categories
-              </a>
-              <ul className="sidenav-collapse">
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Social</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Notifications</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Recent</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Uploads</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Backups</a>
-                </li>
-                <li className="sidenav-item">
-                  <a className="sidenav-link">Offers</a>
-                </li>
-              </ul>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-sticky-note pr-3"></i>Notes
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-user-circle pr-3"></i>Personal
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-ellipsis-h pr-3"></i>More
-              </a>
-            </li>
-          </ul>
-          <hr className="m-0" />
-          <ul className="sidenav-menu">
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-cogs pr-3"></i>Settings
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-user pr-3"></i>Profile
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-shield-alt pr-3"></i>Privacy
-              </a>
-            </li>
-            <li className="sidenav-item">
-              <a className="sidenav-link">
-                <i className="fas fa-user-astronaut pr-3"></i>Log out
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="text-center" style={{ height: "100px" }}>
-          <hr className="mb-4 mt-0" />
-          <p>MDBootstrap.com</p>
+<div className="page-wrapper chiller-theme toggled">
+  
+  <nav id="sidebar" className="sidebar-wrapper">
+    <div className="sidebar-content">
+      
+      <div className="sidebar-header">
+        <div className="user-pic">
+          <img className="img-responsive img-rounded"
+          src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture" />
+        </div> 
+        <div className="user-info">
+          <span className="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span className="user-role">Administrator</span>
+          <span className="user-status">
+            
+          </span>
         </div>
       </div>
-
-      <div className="mdb-page-content text-center page-intro bg-light">
-        <div className="text-center py-5">
-          <h3 className="my-5">Resize to change the mode</h3>
-          <div>
-            <img
-              className="rounded"
-              src="https://mdbootstrap.com/img/Photos/Others/img%20(53).jpg"
-              alt="content"
-            />
-          </div>
-          <button id="toggler" className="btn btn-dark mt-5">
-            <i className="fas fa-bars"></i>
-          </button>
-        </div>
+      
+      <div className="sidebar-menu">
+        <ul>
+          <li className="header-menu">
+            <span>General</span>
+          </li>
+          <li className="sidebar-dropdown">
+            <a href="#">
+              <i className="fa fa-tachometer-alt"></i>
+              <span>dd</span>
+              <span className="badge badge-pill badge-warning">New</span>
+            </a>
+            <div className="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Dashboard 1
+                    <span className="badge badge-pill badge-success">Pro</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 2</a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+         
+         
+          <li className="header-menu">
+            <span>Extra</span>
+          </li>
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Documentation</span>
+              <span className="badge badge-pill badge-primary">Beta</span>
+            </a>
+          </li>
+          
+        </ul>
       </div>
     </div>
+    
+  </nav>
+ 
+</div>
 
 
 

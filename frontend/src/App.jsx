@@ -41,6 +41,7 @@ import UserProfile from './dashboard/src/pages/UserProfile';
 import Settings from './dashboard/src/pages/Settings';
 import ComingSoon from './client/src/components/ComingSoon';
 import LearnMore from './client/src/components/LearnMore';
+
 // import AboutPage from './client/src/pages/AboutPage';
 // import HomePage from './client/src/home/HomePage';
 // import Dashboard from './pages/protected/Dashboard';
@@ -127,7 +128,8 @@ import ForgotPassword from './client/src/pages/ForgotPassword';
 import TokenExpired from './client/src/components/TokenExpired';
 import Paypal from './client/src/pages/Paypal';
 import SuccessPage from './client/src/pages/SuccessPage';
-import FailurePage from './client/src/pages/FailurePage';
+// import FailurePage from './client/src/pages/FailurePage';
+import FailurePage from './client/src/pages/FailPage';
 
 
 
