@@ -160,20 +160,20 @@
   }
   
   .dot {
-    color: #078BC8; /* Beautiful bluish color */
+    color: #078BC8;
     margin-left: 2px;
     margin-right: 2px;
-    font-size: 1.1em; /* Slightly larger to stand out */
+    font-size: 1.1em;
   }
   
   .logo .en,
   .logo .writers {
-    letter-spacing: 1px; /* Adjust to preference for a cleaner look */
+    letter-spacing: 1px; 
   }
   
   
 
-
+/* 
 
   .sidebar-dropdown > a:after {
     font-family: "Font Awesome 5 Free";
@@ -214,7 +214,7 @@
     -moz-osx-font-smoothing: grayscale;
     margin-right: 10px;
     font-size: 8px;
-  }
+  } */
   
   
  
@@ -251,72 +251,11 @@
 
 
 
-  .page-wrapper .sidebar-wrapper,
-  .sidebar-wrapper .sidebar-brand > a,
-  .sidebar-wrapper .sidebar-dropdown > a:after,
-  .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
-  .sidebar-wrapper ul li a i,
-  .page-wrapper .page-content,
-  .sidebar-wrapper .sidebar-search input.search-menu,
-  .sidebar-wrapper .sidebar-search .input-group-text,
-  .sidebar-wrapper .sidebar-menu ul li a,
-  #show-sidebar,
-  #close-sidebar {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  
-  /*----------------page-wrapper----------------*/
-  
-  .page-wrapper {
-    height: 100vh;
-  }
-  
-  .page-wrapper .theme {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 4px;
-    margin: 2px;
-  }
-  
-  .page-wrapper .theme.chiller-theme {
-    background: #1e2229;
-  }
-  
-  /*----------------toggeled sidebar----------------*/
-  
-  .page-wrapper.toggled .sidebar-wrapper {
-    left: 0px;
-  }
-  
-  @media screen and (min-width: 768px) {
-    .page-wrapper.toggled .page-content {
-      padding-left: 300px;
-    }
-  }
-  /*----------------show sidebar button----------------*/
-  #show-sidebar {
-    position: fixed;
-    left: 0;
-    top: 10px;
-    border-radius: 0 4px 4px 0px;
-    width: 35px;
-    transition-delay: 0.3s;
-  }
-  .page-wrapper.toggled #show-sidebar {
-    left: -40px;
-  }
-  /*----------------sidebar-wrapper----------------*/
   
   .sidebar-wrapper {
     width: 260px;
     height: 100%;
     max-height: 100%;
-    position: fixed;
     top: 0;
     left: -300px;
     z-index: 999;
