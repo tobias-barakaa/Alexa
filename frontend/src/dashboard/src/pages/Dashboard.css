@@ -87,10 +87,10 @@
     transition: all 0.3s ease;
   }
   
-  
+/*   
    .sidebar-menu {
     border-top: 1px solid #dadada;
-  }
+  } */
   
   .sidebar-wrapper .sidebar-brand {
     padding: 10px 20px;
@@ -222,7 +222,102 @@
 
 
 
-
+.sidebar-content {
+    padding: 20px;
+    background-color: #f3f3ee;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  
+  .sidebar-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-content p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .sidebar-content a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .sidebar-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .sidebar-content a:active {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  .sidebar-content a:focus-visible {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:visited {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:hover {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:active {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  .sidebar-content a:focus-visible {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:visited {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:hover {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:active {
+    color: #0056b3;
+  }
+  
+  .sidebar-content a:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  .sidebar-content a:focus-visible {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+  
+  .sidebar-content a:visited {
+    color: #005
+}
 
 
 
@@ -355,3 +450,35 @@
   .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
       background: #3a3f48;  
     }
+
+
+
+
+
+
+
+    .orderarticle {
+        width: 190px;
+        height: 40px; /* Set a height for a better appearance */
+        background-color: #fff; /* White background */
+        border: 2px solid #d3d3d3; /* Light grey border */
+        border-radius: 14px; /* Rounded corners */
+        color: #333; /* Dark grey text for better readability */
+        font-size: 12px; /* Font size for the button text */
+        font-weight: bold; /* Bold text */
+        cursor: pointer; /* Pointer on hover */
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Smooth hover effect */
+        padding: 10px 15px 15px 10px; /* Some padding for better appearance */
+    }
+      
+      .orderarticle:hover {
+        background-color: #f0f0f0; /* Slight grey background on hover */
+        border-color: #c0c0c0; /* Darken the border on hover */
+        color: #000; /* Darker text on hover */
+      }
+      
+      .orderarticle:active {
+        background-color: #e0e0e0; /* Even darker grey when active */
+        border-color: #b0b0b0; /* Darken the border on click */
+      }
+      

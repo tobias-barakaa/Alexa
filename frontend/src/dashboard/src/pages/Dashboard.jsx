@@ -1,69 +1,10 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
 import { PenTool, Settings, Wallet, FileText, Folder, BarChart, Users, MessageCircle, HelpCircle } from 'lucide-react';
+import BlogForm from './BlogForm';
 
 
-const Profile = () => <div>Profile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-
-
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile ContProfile Cont
-Profile ContProfile ContProfile ContProfile ContProfile Cont
-</div>;
+const Profile = () => <div></div>;
 
 
 const Dashboard = () => {
@@ -77,13 +18,13 @@ const Dashboard = () => {
   const renderPage = () => {
     switch (activePage) {
       case 'Profile':
-        return <Profile />;
+        return <BlogForm />;
       case 'Settings':
         return <Settings />;
       case 'Wallet':
         return <Wallet />;
       default:
-        return <Profile />;
+        return <BlogForm />;
     }
   };
 
@@ -115,24 +56,22 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
+
+      <button className="orderarticle">Order Article</button>
+
       
       <div className="sidebar-menu">
         <ul>
           <li className="header-menu">
             <span>General</span>
           </li>
-          <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>E-commerce</span>
-              <span class="badge badge-pill badge-danger">3</span>
-            </a>
+       
 
 
           <li className="sidebar-dropdown">
             <a href="#">
               <i className="fa fa-tachometer-alt"></i>
               <span>dd</span>
-              <span className="badge badge-pill badge-warning">New</span>
             </a>
             
           </li>
@@ -145,7 +84,6 @@ const Dashboard = () => {
             <a href="#">
               <i className="fa fa-book"></i>
               <span>Documentation</span>
-              <span className="badge badge-pill badge-primary">Beta</span>
             </a>
           </li>
           
