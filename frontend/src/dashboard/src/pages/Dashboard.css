@@ -553,3 +553,57 @@
         border-color: #b0b0b0; /* Darken the border on click */
       }
       
+
+
+
+
+
+
+
+
+
+
+
+     
+    
+      .profile-heading {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+        font-weight: bold;
+      }
+    
+      .profile-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    
+      .profile-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        background-color: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        color: #444;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+    
+      .profile-item:hover {
+        background-color: #f8f8f8;
+        color: #222;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+    
+      .profile-item svg {
+        color: #666;
+      }
+    
+      .profile-item:hover svg {
+        color: #444;
+      }

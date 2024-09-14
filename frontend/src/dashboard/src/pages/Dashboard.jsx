@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
-import { PenTool, Settings, Wallet, FileText, Folder, BarChart, Users, MessageCircle, HelpCircle } from 'lucide-react';
+//import { PenTool, Settings, Wallet, FileText, Folder, BarChart, Users, MessageCircle, HelpCircle } from 'lucide-react';
 import BlogForm from './BlogForm';
+import { User, Settings,Wallet, LogOut } from 'lucide-react';
+import Heed from './heeed';
+import Home from './Home';
 
 
 const Profile = () => <div></div>;
 
+
+const ProfileItem = ({ icon, text }) => (
+  <div className="profile-item">
+    {icon}
+    <span>{text}</span>
+  </div>
+);
 
 const Dashboard = () => {
   const [expandedItems, setExpandedItems] = useState({});
@@ -18,13 +28,13 @@ const Dashboard = () => {
   const renderPage = () => {
     switch (activePage) {
       case 'Profile':
-        return <BlogForm />;
+        return <Home />;
       case 'Settings':
         return <Settings />;
       case 'Wallet':
         return <Wallet />;
       default:
-        return <BlogForm />;
+        return <Home />;
     }
   };
 
@@ -105,11 +115,7 @@ const Dashboard = () => {
           <li className="header-menu">
             <span>Manage Orders</span>
           </li>
-
-
-
-         
-         
+   
           <li>
             <a href="#">
               <i className="fa fa-book"></i>
@@ -151,7 +157,34 @@ const Dashboard = () => {
         
           
         </ul>
+
+       
+
+
+        <div className="sidebar-profile">
+      <h2 className="profile-heading">Profile</h2>
+      <div className="profile-items">
+        <ProfileItem icon={<User size={18} />} text="View Profile" />
+        <ProfileItem icon={<Settings size={18} />} text="Settings" />
+        <ProfileItem icon={<LogOut size={18} />} text="Logout" />
       </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
     </div>
     
   </nav>
@@ -165,18 +198,11 @@ const Dashboard = () => {
 
 
 <div className="main-cont">
-  <div className="header">
-    en.writers
-    <div className="header-right">
-      <ul className="header-menu">
-        <li onClick={() => setActivePage('Wallet')} className={`${activePage === 'Wallet' ? 'active' : ''}`}>Wallet</li>
-        <li onClick={() => setActivePage('Settings')} className={`${activePage === 'Settings' ? 'active' : ''}`}>Settings</li>
-        <li onClick={() => setActivePage('Support')} className={`${activePage === 'Support' ? 'active' : ''}`}>Support</li>
-                <li onClick={() => setActivePage('Profile')} className={`${activePage === 'Profile' ? 'active' : ''}`}>Profile</li>
-      </ul>
-    </div>
-  </div>
-  <div className="horizontal-line"></div>
+
+  <Heed />
+
+
+
   <div className="cont">{renderPage()}</div>
 </div>
 
