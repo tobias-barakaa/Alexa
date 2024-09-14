@@ -63,29 +63,92 @@ const Dashboard = () => {
       <div className="sidebar-menu">
         <ul>
           <li className="header-menu">
-            <span>General</span>
+            <span>Orders</span>
           </li>
        
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Create Article</span>
+            </a>
+          </li>
+
+
+          
+
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Edit Requests</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Drafts</span>
+            </a>
+          </li>
 
 
           <li className="sidebar-dropdown">
             <a href="#">
               <i className="fa fa-tachometer-alt"></i>
-              <span>dd</span>
+              <span>Pricing</span>
             </a>
             
           </li>
+          
+          
          
          
           <li className="header-menu">
-            <span>Extra</span>
+            <span>Manage Orders</span>
           </li>
+
+
+
+         
+         
           <li>
             <a href="#">
               <i className="fa fa-book"></i>
-              <span>Documentation</span>
+              <span>View All Articles</span>
             </a>
           </li>
+
+          
+
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Published</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Archived</span>
+            </a>
+          </li>
+
+
+
+
+          <li>
+            <a href="#">
+              <i className="fa fa-book"></i>
+              <span>Order History</span>
+            </a>
+          </li>
+
+        
+
+
+
+
+        
           
         </ul>
       </div>
@@ -101,11 +164,22 @@ const Dashboard = () => {
 
 
 
-      <div className="main-cont">
-        <div className="header">Header</div>
-        <div className="horizontal-line"></div>
-        <div className="cont">{renderPage()}</div>
-      </div>
+<div className="main-cont">
+  <div className="header">
+    en.writers
+    <div className="header-right">
+      <ul className="header-menu">
+        <li onClick={() => setActivePage('Wallet')} className={`${activePage === 'Wallet' ? 'active' : ''}`}>Wallet</li>
+        <li onClick={() => setActivePage('Settings')} className={`${activePage === 'Settings' ? 'active' : ''}`}>Settings</li>
+        <li onClick={() => setActivePage('Support')} className={`${activePage === 'Support' ? 'active' : ''}`}>Support</li>
+                <li onClick={() => setActivePage('Profile')} className={`${activePage === 'Profile' ? 'active' : ''}`}>Profile</li>
+      </ul>
+    </div>
+  </div>
+  <div className="horizontal-line"></div>
+  <div className="cont">{renderPage()}</div>
+</div>
+
 
     </div>
   );
