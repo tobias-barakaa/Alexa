@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Dashboard.css';
 //import { PenTool, Settings, Wallet, FileText, Folder, BarChart, Users, MessageCircle, HelpCircle } from 'lucide-react';
-import BlogForm from './BlogForm';
-import { User, Settings,Wallet, LogOut } from 'lucide-react';
-import Heed from './heeed';
+import { Settings,Wallet } from 'lucide-react';
 import Home from './Home';
+import Header from '../components/Header';
+import Profile from '../components/Profile';
 
 
-const Profile = () => <div></div>;
+// const Profile = () => <div></div>;
 
 
-const ProfileItem = ({ icon, text }) => (
-  <div className="profile-item">
-    {icon}
-    <span>{text}</span>
-  </div>
-);
 
 const Dashboard = () => {
   const [expandedItems, setExpandedItems] = useState({});
@@ -161,14 +155,7 @@ const Dashboard = () => {
        
 
 
-        <div className="sidebar-profile">
-      <h2 className="profile-heading">Profile</h2>
-      <div className="profile-items">
-        <ProfileItem icon={<User size={18} />} text="View Profile" />
-        <ProfileItem icon={<Settings size={18} />} text="Settings" />
-        <ProfileItem icon={<LogOut size={18} />} text="Logout" />
-      </div>
-    </div>
+      <Profile />
 
 
 
@@ -199,7 +186,7 @@ const Dashboard = () => {
 
 <div className="main-cont">
 
-  <Heed />
+  <Header />
 
 
 
