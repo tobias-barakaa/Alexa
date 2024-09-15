@@ -532,14 +532,16 @@
         width: 190px;
         height: 40px; /* Set a height for a better appearance */
         background-color: #fff; /* White background */
-        border: 2px solid #d3d3d3; /* Light grey border */
+        border: 3px solid #066A9B; /* Light grey border */
         border-radius: 14px; /* Rounded corners */
-        color: #333; /* Dark grey text for better readability */
+        color: #066A9B; /* Dark grey text for better readability */
         font-size: 12px; /* Font size for the button text */
         font-weight: bold; /* Bold text */
         cursor: pointer; /* Pointer on hover */
         transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Smooth hover effect */
-        padding: 10px 15px 15px 10px; /* Some padding for better appearance */
+        padding: 10px; /* Some padding for better appearance */
+        align-items: center;
+        justify-content: center;
     }
       
       .orderarticle:hover {

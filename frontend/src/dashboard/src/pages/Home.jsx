@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { useGetLatestQuery } from '../../../slices/client/blogApiSlice';
+import HeroSection from './HeroSection';
 // import publish from '../assets/images/writer.jpg';
+import complete from '../../../../../frontend/src/client/src/assets/images/complete.png';
+import hand from '../../../../../frontend/src/client/src/assets/images/hand.png';
+import adjust from '../../../../../frontend/src/client/src/assets/images/adjust.png';
+import agenda from '../../../../../frontend/src/client/src/assets/images/agenda.png';
+
+
+
 
 
 const Home = () => {
@@ -19,34 +27,29 @@ const Home = () => {
 
   return (
     <>
-      <div className="professionals-section">
-        <div className="text-content">
-          <h2>Meet world-class publishing professionals</h2>
-          <p>Browse profiles and collaborate on projects.</p>
-        </div>
-        {/* <div className="image-container">
-          <img src={publish}  alt="Publishing professionalss" />
-        </div> */}
-        {/* <hr className="divider" /> */}
-      </div>
+      
       <div className="home-container">
+      <HeroSection />
+
         <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-          <span className="icon">📂</span>
+        <span className="icon"><img style={{ width: "70px", height: "70px" }} src={agenda} alt="agenda" /></span>
+
           <span className="title">Open Projects</span>
           <span className="number">12</span>
         </div>
         <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-          <span className="icon">⏳</span>
+          <span className="icon"><img style={{ width: "70px", height: "70px" }} src={complete} alt="complete" /></span>
           <span className="title">Pending</span>
           <span className="number">5</span>
         </div>
         <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
-          <span className="icon">✅</span>
+        <span className="icon"><img style={{ width: "70px", height: "70px" }} src={hand} alt="hand" /></span>
+
           <span className="title">Completed</span>
           <span className="number">28</span>
         </div>
         <Link to="edit" className="home-box" style={{ backgroundColor: '#ffffff' }}>
-          <span className="icon">💾</span>
+        <span className="icon"><img style={{ width: "70px", height: "70px" }} src={adjust} alt="adjust" /></span>
           <span className="title">Latest</span>
           <span className="number">{latestBlogCount}</span>
         </Link>

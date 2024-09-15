@@ -43,7 +43,7 @@
 
   .balance span {
     font-weight: bold;
-    color: #4CAF50;
+    color: #078BC8;
   }
 
   .notification-btn, .logout-btn {
@@ -62,7 +62,7 @@
   }
 
   .logout-btn {
-    background-color: #ff4d4d;
+    background-color: #078BC8;
     color: white;
   }
 
