@@ -7,7 +7,7 @@
   
   .sidebar {
     width: 250px;
-    background-color: #f3f3ee;
+    /* background-color: #f3f3ee; */
     padding: 20px;
     overflow-y: scroll; /* Force the scrollbar to always be visible */
 }
@@ -33,47 +33,20 @@
     flex-direction: column;
     box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
     margin-left: 3px;
+    background-color: #fcfcf9;
+
   }
   
-  .header {
-    height: 60px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid #dbdbdb;
-  }
   
-  .header-left h1 {
-    color: #078BC8;
-    font-size: 1.5rem;
-  }
   
-  .header-right {
-    display: flex;
-    align-items: center;
-  }
+
+
   
-  .header-menu {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-  }
-  
-  .header-menu li {
-    cursor: pointer;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .header-menu li:hover,
-  .header-menu li.active {
-    background-color: #078BC8;
-    color: white;
-    border-radius: 5px;
-  }
-  
+
+
+
+
+
   .submenu {
     display: none;
     position: absolute;
@@ -233,7 +206,9 @@
 
 .sidebar-content {
     padding: 20px;
-    background-color: #f3f3ee;
+    /* background-color: #f3f3ee; */
+    background-color: #f7f7f7;
+
     height: 100%;
     overflow-y: scroll;
   }
@@ -359,15 +334,17 @@
     height: 0px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #525965;
+    /* background: #525965; */
+    background-color: #e0e2e6;
     border: 0px none #ffffff;
     border-radius: 0px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #525965;
+    /* background: #525965; */
   }
   ::-webkit-scrollbar-thumb:active {
-    background: #525965;
+    /* background: #665151; */
+
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -404,10 +381,10 @@
   }
   
   
-  .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
+  /* .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
   .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
       background: #3a3f48;  
-    }
+    } */
 
 
 
@@ -429,6 +406,7 @@
         padding: 10px; /* Some padding for better appearance */
         align-items: center;
         justify-content: center;
+        
     }
       
       .orderarticle:hover {

@@ -4,7 +4,6 @@ import './Dashboard.css';
 import { Wallet } from 'lucide-react';
 import Home from './Home';
 import Header from '../components/Header';
-import Profile from '../components/Profile';
 import Sidenav from '../components/Sidenav';
 import Settings from './Settings';
 import { Outlet } from 'react-router-dom';

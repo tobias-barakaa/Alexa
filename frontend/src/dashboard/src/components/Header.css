@@ -1,11 +1,16 @@
 .header {
     display: flex;
+    height: 60px;
+
+    padding: 0 20px;
+
+    background-color: #fcfcf9;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff;
+    border-bottom: 1px solid #dbdbdb;
     
   }
+
 
   .logo {
     font-size: 1.5rem;
@@ -62,6 +67,7 @@
   }
 
   .logout-btn {
+    /* background-color: #5f817e; */
     background-color: #078BC8;
     color: white;
   }
@@ -71,10 +77,12 @@
   }
 
   .logout-btn:hover {
-    background-color: #ff3333;
+    background-color: #117bac;
   }
 
   .header-divider {
     height: 1px;
     background-color: #e0e0e0;
   }
+
+

@@ -1,4 +1,5 @@
-import Profile from './Profile'
+import Profile from "../pages/profile/Profile";
+import { BookOpenCheck, BringToFront, FileArchive, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch, Square } from "lucide-react";
 
 const Sidenav = () => {
   return (
@@ -10,7 +11,7 @@ const Sidenav = () => {
        
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <BringToFront className="fa fa-book" />
               <span>Create Article</span>
             </a>
           </li>
@@ -18,14 +19,14 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <Newspaper className="fa fa-book" />
               <span>Edit Requests</span>
             </a>
           </li>
 
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <GitPullRequest className="fa fa-book" />
               <span>Drafts</span>
             </a>
           </li>
@@ -33,7 +34,7 @@ const Sidenav = () => {
 
           <li className="sidebar-dropdown">
             <a href="#">
-              <i className="fa fa-tachometer-alt"></i>
+              <Gem className="fa fa-book" />
               <span>Pricing</span>
             </a>
             
@@ -48,7 +49,7 @@ const Sidenav = () => {
    
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <ScanSearch />
               <span>View All Articles</span>
             </a>
           </li>
@@ -57,14 +58,14 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <BookOpenCheck />
               <span>Published</span>
             </a>
           </li>
 
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <FileArchive />
               <span>Archived</span>
             </a>
           </li>
@@ -72,7 +73,7 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <i className="fa fa-book"></i>
+              <FileStack />
               <span>Order History</span>
             </a>
           </li>

@@ -93,7 +93,7 @@ const ClientRegister = () => {
               to={redirect ? `/login?redirect=${redirect}` : "/register"}
               className="link"
             >
-              Sign In
+              Sign Innnn
             </Link>
           </a>
     </div>
