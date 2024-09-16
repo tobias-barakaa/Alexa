@@ -1,4 +1,3 @@
-import React from 'react';
 import './HeroSection.css';
 import image from '../../../../../frontend/src/client/src/assets/images/alexa.jpg';
 

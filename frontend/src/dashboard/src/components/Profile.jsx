@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Profile.css"
 
 import { User, Settings,LogOut } from 'lucide-react';
@@ -16,7 +17,10 @@ const Profile = () => {
       <h2 className="profile-heading">Profile</h2>
       <div className="profile-items">
         <ProfileItem icon={<User size={18} />} text="View Profile" />
+        <Link to="/dashboard/settings" className="">
         <ProfileItem icon={<Settings size={18} />} text="Settings" />
+        
+        </Link>
         <ProfileItem icon={<LogOut size={18} />} text="Logout" />
       </div>
     </div>

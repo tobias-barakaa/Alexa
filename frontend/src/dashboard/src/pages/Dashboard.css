@@ -27,13 +27,7 @@
     outline: 1px solid rgb(0, 0, 0);
   }
 
-
-
-
-
-
-
-  .main-cont {
+.main-cont {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -121,47 +115,9 @@
     padding: 20px;
   }
   
-  .horizontal-line {
-    width: 100%;
-    height: 1px;
-    background-color: rgb(219, 219, 219);
-  }
+ 
   
 
-
-
-
-/*   
-  
-  .main-cont {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
-    margin-left: 3px;
-  }
-  
-  .header {
-    height: 50px;
-    background-color: #ffffff;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  .cont {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-  
-  .horizontal-line {
-    width: 100%;       
-    height: 1px;      
-    background-color: rgb(219, 219, 219); 
-  }
-   */
 
 
 
@@ -268,75 +224,6 @@
   
   
   
-  
-  .logo {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 36px;
-    display: inline-block;
-  }
-  
-  .en,
-  .writers {
-    color: black;
-  }
-  
-  .dot {
-    color: #078BC8;
-    margin-left: 2px;
-    margin-right: 2px;
-    font-size: 1.1em;
-  }
-  
-  .logo .en,
-  .logo .writers {
-    letter-spacing: 1px; 
-  }
-  
-  
-
-/* 
-
-  .sidebar-dropdown > a:after {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f105";
-    font-style: normal;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    background: 0 0;
-    position: absolute;
-    right: 15px;
-    top: 14px;
-  }
-  
-   .sidebar-dropdown  {
-    padding: 5px 0;
-  }
-  
-   .sidebar-dropdown {
-    padding-left: 25px;
-    font-size: 13px;
-  }
-  
-   .sidebar-dropdown  {
-    content: "\f111";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 400;
-    font-style: normal;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin-right: 10px;
-    font-size: 8px;
-  } */
   
   
  
@@ -525,7 +412,7 @@
 
 
 
-
+/* Order Article Button  */
 
 
     .orderarticle {
@@ -567,45 +454,3 @@
 
 
      
-    
-      .profile-heading {
-        color: #333;
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #ddd;
-        font-weight: bold;
-      }
-    
-      .profile-items {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-    
-      .profile-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px;
-        background-color: white;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        color: #444;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-    
-      .profile-item:hover {
-        background-color: #f8f8f8;
-        color: #222;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-    
-      .profile-item svg {
-        color: #666;
-      }
-    
-      .profile-item:hover svg {
-        color: #444;
-      }

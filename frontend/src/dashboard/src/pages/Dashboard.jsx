@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import './Dashboard.css';
 //import { PenTool, Settings, Wallet, FileText, Folder, BarChart, Users, MessageCircle, HelpCircle } from 'lucide-react';
-import { Settings,Wallet } from 'lucide-react';
+import { Wallet } from 'lucide-react';
 import Home from './Home';
 import Header from '../components/Header';
 import Profile from '../components/Profile';
+import Sidenav from '../components/Sidenav';
+import Settings from './Settings';
+import { Outlet } from 'react-router-dom';
 
 
 // const Profile = () => <div></div>;
@@ -27,6 +30,8 @@ const Dashboard = () => {
         return <Settings />;
       case 'Wallet':
         return <Wallet />;
+      case 'dashboard/settings':
+        return <Settings />;
       default:
         return <Home />;
     }
@@ -64,111 +69,7 @@ const Dashboard = () => {
       <button className="orderarticle">Order Article</button>
 
       
-      <div className="sidebar-menu">
-        <ul>
-          <li className="header-menu">
-            <span>Orders</span>
-          </li>
-       
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Create Article</span>
-            </a>
-          </li>
-
-
-          
-
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Edit Requests</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Drafts</span>
-            </a>
-          </li>
-
-
-          <li className="sidebar-dropdown">
-            <a href="#">
-              <i className="fa fa-tachometer-alt"></i>
-              <span>Pricing</span>
-            </a>
-            
-          </li>
-          
-          
-         
-         
-          <li className="header-menu">
-            <span>Manage Orders</span>
-          </li>
-   
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>View All Articles</span>
-            </a>
-          </li>
-
-          
-
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Published</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Archived</span>
-            </a>
-          </li>
-
-
-
-
-          <li>
-            <a href="#">
-              <i className="fa fa-book"></i>
-              <span>Order History</span>
-            </a>
-          </li>
-
-        
-
-
-
-
-        
-          
-        </ul>
-
-       
-
-
-      <Profile />
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-
+      <Sidenav />
 
 
 
@@ -179,18 +80,18 @@ const Dashboard = () => {
 </div>
 
 
-
-
-
-
-
 <div className="main-cont">
 
   <Header />
 
 
 
-  <div className="cont">{renderPage()}</div>
+  <div className="cont">
+    {/* {renderPage()} */}
+    <Outlet />
+
+
+  </div>
 </div>
 
 
