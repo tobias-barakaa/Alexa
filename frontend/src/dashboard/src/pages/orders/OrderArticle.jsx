@@ -92,20 +92,6 @@ const OrderArticle = () => {
           </div>
 
           <div className="form-group">
-            <label className="article-label">Category:</label>
-            <input
-              type="text"
-              id="category"
-              name="category"
-              className={`form-control ${errors.category ? "input-error" : ""}`}
-              value={formData.category}
-              onChange={handleChange}
-              placeholder="Article Category"
-            />
-            {errors.category && <span className="error-message">{errors.category}</span>}
-          </div>
-
-          <div className="form-group">
             <label className="article-label">Keywords:</label>
             <input
               type="text"
@@ -180,6 +166,8 @@ const OrderArticle = () => {
                 <option value="Basic">Basic</option>
                 <option value="Advanced">Advanced</option>
                 <option value="Expert">Expert</option>
+                <option value="Expert">Expert</option>
+
               </select>
             </div>
             {errors.complexity && <span className="error-message">{errors.complexity}</span>}
