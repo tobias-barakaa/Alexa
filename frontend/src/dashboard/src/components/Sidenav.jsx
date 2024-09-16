@@ -1,5 +1,6 @@
 import Profile from "../pages/profile/Profile";
-import { BookOpenCheck, BringToFront, FileArchive, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch, Square } from "lucide-react";
+import "./Sidenav.css"
+import { BookOpenCheck, BringToFront, FileArchive, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch } from "lucide-react";
 
 const Sidenav = () => {
   return (
@@ -11,7 +12,7 @@ const Sidenav = () => {
        
           <li>
             <a href="#">
-              <BringToFront className="fa fa-book" />
+              <BringToFront className="icon-menu" />
               <span>Create Article</span>
             </a>
           </li>
@@ -19,14 +20,14 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <Newspaper className="fa fa-book" />
+              <Newspaper className="icon-menu" />
               <span>Edit Requests</span>
             </a>
           </li>
 
           <li>
             <a href="#">
-              <GitPullRequest className="fa fa-book" />
+              <GitPullRequest className="icon-menu" />
               <span>Drafts</span>
             </a>
           </li>
@@ -34,7 +35,7 @@ const Sidenav = () => {
 
           <li className="sidebar-dropdown">
             <a href="#">
-              <Gem className="fa fa-book" />
+              <Gem className="icon-menu" />
               <span>Pricing</span>
             </a>
             
@@ -49,7 +50,7 @@ const Sidenav = () => {
    
           <li>
             <a href="#">
-              <ScanSearch />
+              <ScanSearch className="icon-menu" />
               <span>View All Articles</span>
             </a>
           </li>
@@ -58,14 +59,14 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <BookOpenCheck />
+              <BookOpenCheck className="icon-menu" />
               <span>Published</span>
             </a>
           </li>
 
           <li>
             <a href="#">
-              <FileArchive />
+              <FileArchive className="icon-menu" />
               <span>Archived</span>
             </a>
           </li>
@@ -73,7 +74,7 @@ const Sidenav = () => {
 
           <li>
             <a href="#">
-              <FileStack />
+              <FileStack className="icon-menu" />
               <span>Order History</span>
             </a>
           </li>
