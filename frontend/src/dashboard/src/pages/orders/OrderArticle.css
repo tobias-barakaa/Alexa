@@ -1,50 +1,116 @@
-.form-layout-container {
+.order-article-container {
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 0px;
+    /* background-color: white; */
   }
   
-  .order-form-container {
+  .order-your-article {
+    
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .form-side {
+    width: 70%;
+    padding: 20px;
+    /* border: 1px solid #17c3cf; */
+    border: 1px solid #7ca7d4;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+  }
+  
+  .hire-writer-side {
+    width: 28%;
     display: flex;
-    width: 100%;
-    max-width: 1200px;
-    padding: 30px;
-    border-radius: 10px;
-  }
-  
-  .form-section {
-    flex: 2;
-    padding: 20px;
-  }
-  
-  .writer-section {
-    flex: 1;
-    background-color: white;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 30px;
-    border-left: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    border: solid 1px #7ca7d4;
+    height: 450px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
+
+  @media (max-width: 1050px) {
+    .hire-writer-side {
+      width: 40%;
+      height: 450px;
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .hire-writer-side {
+      width: 40%;
+      height: 550px;
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hire-writer-side {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hire-writer-side {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 0;
+    }
+  }
+  
   
   .writers-image {
-    max-width: 100%;
+    width: 100%;
+    max-width: 180px;
     height: auto;
+    margin-bottom: 10px;
+  }
+  .hire-writers{
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .hire-writers p{
+    font-size: 1em;
+  }
+  
+  .form-group {
     margin-bottom: 20px;
   }
   
-  .label {
+  .article-label {
+    display: block;
+    margin-bottom: 5px;
     font-weight: bold;
-    color: black;
+    font-size: 1.8em; 
+    font-weight: 800;
   }
   
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+  /* General form control style */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e0e0e0; /* Keeps the grey-white border */
+  border-radius: 4px;
+  appearance: none; /* Removes the default arrow for most form controls */
+}
+
+/* Special case for select elements to keep the dropdown arrow */
+select.form-control {
+  appearance: auto; /* Restores the default arrow on select elements */
+  padding-right: 40px; /* Adjust padding for icon positioning if necessary */
+  background-color: white; /* Ensure the background is consistent */
+}
+
   
   .input-error {
     border-color: red;
@@ -55,31 +121,38 @@
     font-size: 0.9em;
   }
   
-  .cost-value {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
   .btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-  }
-  
-  .btn-primary {
-    background-color: #078bc8;
+    background-color: #007bff;
     color: white;
+    padding: 10px 20px;
     border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
   
-  .btn-primary:disabled {
+ 
+  
+  .secondary {
+    background-color: transparent;
+    color: #007bff;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    transition: all 0.3s ease; /* Added smooth transition */
+  }
+  
+  .secondary:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #929292; /* Darker border on hover */
+  }
+  
+  .btn:disabled {
     background-color: #ccc;
+    cursor: not-allowed;
   }
   
-  .btn-secondary {
-    background-color: black;
-    color: white;
-    border: none;
-    margin-top: 10px;
-  }
+
+  
+
   
