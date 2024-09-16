@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Profile from "../pages/profile/Profile";
 import "./Sidenav.css"
 import { BookOpenCheck, BringToFront, FileArchive, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch } from "lucide-react";
@@ -11,10 +12,10 @@ const Sidenav = () => {
           </li>
        
           <li>
-            <a href="#">
+            <Link to="/dashboard/orderarticle">
               <BringToFront className="icon-menu" />
-              <span>Create Article</span>
-            </a>
+              <span>Order Article</span>
+            </Link>
           </li>
          
 

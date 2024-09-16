@@ -1,24 +1,21 @@
-/* Ensure the body and html take full height */
-
+/* 
   
-  /* Container for the entire layout */
   .blog-form-container {
     display: flex;
     height: 100vh;
     overflow: hidden; 
   }
   
-  /* Sidebar Styles */
   .sidebar {
     width: 20%;
     background-color: #25274d;
     color: white;
     padding: 20px;
     position: fixed;
-    height: 100%; /* Fill the entire height */
+    height: 100%; 
     top: 0;
     left: 0;
-    overflow: auto; /* Allow content to scroll inside if it exceeds the viewport */
+    overflow: auto; 
   }
   
   .sidebar ul {
@@ -40,7 +37,6 @@
     text-decoration: underline;
   }
   
-  /* Main content */
   .main-content {
     margin-left: 20%; 
     width: 100%;
@@ -49,7 +45,6 @@
     overflow: hidden; 
   }
   
-  /* Navbar Styles */
   .navbar {
     height: 40px;
     background-color: #007bff;
@@ -82,12 +77,11 @@
     text-decoration: underline;
   }
   
-  /* Form Section */
   .form-section {
-    flex-grow: 1; /* Allow the form section to grow and take available space */
+    flex-grow: 1; 
     padding: 20px;
     background-color: #f9f9f9;
-    overflow-y: auto; /* Only scroll the form content if necessary */
+    overflow-y: auto; 
   }
   
   .form-group {
@@ -124,4 +118,4 @@
   button:hover {
     background-color: #218838;
   }
-  
+   */

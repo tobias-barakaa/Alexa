@@ -1,4 +1,4 @@
-.modal-backdrop {
+/* .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -90,13 +90,13 @@
     align-items: center;
     padding: 10px 15px;
     width: 200px;
-    background-color: rgba(0, 122, 193, 0.2); /* Blue with less opacity */
+    background-color: rgba(0, 122, 193, 0.2); 
     border: none;
     cursor: pointer;
     margin-bottom: 15px;
   }
   .google-btn img {
-    margin-right: 10px; /* Space between logo and text */
+    margin-right: 10px; 
   }
   .hr-line {
     border: none;
@@ -139,4 +139,4 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+  } */

@@ -129,6 +129,7 @@ import Paypal from './client/src/pages/Paypal';
 import SuccessPage from './client/src/pages/SuccessPage';
 // import FailurePage from './client/src/pages/FailurePage';
 import FailurePage from './client/src/pages/FailPage';
+import OrderArticle from './dashboard/src/pages/orders/OrderArticle';
 
 
 
@@ -186,6 +187,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardMain />
+      },
+      {
+        path: "orderarticle",
+        element: <OrderArticle />
       },
       {
         path: "blogorder",

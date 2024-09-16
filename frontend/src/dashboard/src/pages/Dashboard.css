@@ -1,5 +1,3 @@
-/* App.css */
-
 .app-container {
     display: flex;
     height: 100vh;
@@ -9,10 +7,9 @@
     width: 250px;
     /* background-color: #f3f3ee; */
     padding: 20px;
-    overflow-y: scroll; /* Force the scrollbar to always be visible */
+    overflow-y: scroll;
 }
 
-/* Custom scrollbar for WebKit browsers */
 .sidebar::-webkit-scrollbar {
     width: 0.5em;
 

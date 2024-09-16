@@ -1,23 +1,21 @@
-/* Overlay for the modal */
-.confirmation-modal-overlay {
+/* .confirmation-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-/* Modal container */
 .confirmation-modal {
-  background-color: #fff; /* White background */
+  background-color: #fff; 
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   max-width: 500px;
   width: 90%;
   text-align: center;
@@ -52,19 +50,19 @@
 }
 
 .confirm-button {
-  background-color: #d9534f; /* Red */
+  background-color: #d9534f; 
   color: white;
 }
 
 .confirm-button:hover {
-  background-color: #c9302c; /* Darker red */
+  background-color: #c9302c; 
 }
 
 .cancel-button {
-  background-color: #5bc0de; /* Light blue */
+  background-color: #5bc0de; 
   color: white;
 }
 
 .cancel-button:hover {
-  background-color: #31b0d5; /* Darker blue */
-}
+  background-color: #31b0d5; 
+} */

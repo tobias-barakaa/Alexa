@@ -1,0 +1,85 @@
+.form-layout-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+  }
+  
+  .order-form-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .form-section {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .writer-section {
+    flex: 1;
+    background-color: white;
+    text-align: center;
+    padding: 30px;
+    border-left: 2px solid #ccc;
+  }
+  
+  .writers-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: black;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .input-error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+  }
+  
+  .cost-value {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+  }
+  
+  .btn-primary {
+    background-color: #078bc8;
+    color: white;
+    border: none;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #ccc;
+  }
+  
+  .btn-secondary {
+    background-color: black;
+    color: white;
+    border: none;
+    margin-top: 10px;
+  }
+  
