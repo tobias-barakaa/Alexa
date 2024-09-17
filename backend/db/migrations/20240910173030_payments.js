@@ -3,12 +3,6 @@ exports.up = function(knex) {
     table.increments('id').primary();
     table.string('payment_id').notNullable();
     table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
-    table
-      .integer("order_id")
-      .unsigned()
-      .references("id")
-      .inTable("order_articles")
-      .onDelete("CASCADE");
     table.string('service_type').notNullable();
     table.decimal('amount', 10, 2).notNullable();
     table.string('currency').notNullable();

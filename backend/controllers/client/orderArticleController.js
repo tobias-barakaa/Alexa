@@ -83,7 +83,7 @@ const payProduct = async (req, res) => {
             service_type: serviceType,  // Add service_type to the payments table
             service_data: JSON.stringify({ title, description, keywords, word_count, complexity, language, quantity, cost })
           };
-          await knex('payments').insert(paymentData);
+          await knex('payment').insert(paymentData);
   
           // Save order details
           const orderData = {
