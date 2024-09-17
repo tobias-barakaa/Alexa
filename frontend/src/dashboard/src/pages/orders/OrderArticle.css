@@ -14,7 +14,9 @@
     width: 70%;
     padding: 20px;
     /* border: 1px solid #17c3cf; */
-    border: 1px solid #7ca7d4;
+    /* border: 1px solid #7ca7d4; */
+    border: 1px solid #9fb6ce;
+
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     height: auto;

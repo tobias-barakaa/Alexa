@@ -1,29 +1,72 @@
 import { useState } from "react";
 import "./OrderArticle.css";
 import writers from "../../../../client/src/assets/images/agenda.png";
+import { DollarSign } from "lucide-react";
 
 const OrderArticle = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category: "",
     keywords: "",
-    wordCount: "300 words", // default value
-    duration: "1 day", // default value
-    complexity: "Basic", // default value
-    language: "",
-    cost: "",
+    wordCount: "300 words", 
+    duration: "1 day", 
+    complexity: "Basic", 
+    language: "American English",
+    cost: 50, 
   });
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // Function to calculate cost based on complexity and duration
+  const calculateCost = (complexity, duration) => {
+    let baseCost = 50; // Base cost for the simplest option
+
+    // Adjust base cost based on complexity
+    switch (complexity) {
+      case "Advanced":
+        baseCost = 100;
+        break;
+      case "Expert":
+        baseCost = 150;
+        break;
+      default:
+        baseCost = 50; // Basic
+        break;
+    }
+
+    // Adjust cost based on duration
+    switch (duration) {
+      case "6 hrs":
+        return baseCost * 2;
+      case "12 hrs":
+        return baseCost * 1.8;
+      case "1 day":
+        return baseCost * 1.5;
+      case "2 days":
+        return baseCost * 1.2;
+      case "1 week":
+        return baseCost * 1.1;
+      default:
+        return baseCost; 
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    let updatedFormData = { ...formData, [name]: value };
+
+    // Recalculate the cost when complexity or duration changes
+    if (name === "complexity" || name === "duration") {
+      const newCost = calculateCost(
+        name === "complexity" ? value : formData.complexity,
+        name === "duration" ? value : formData.duration
+      );
+      updatedFormData.cost = newCost;
+    }
+
+    setFormData(updatedFormData);
 
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -37,7 +80,6 @@ const OrderArticle = () => {
 
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.description) newErrors.description = "Description is required";
-    if (!formData.category) newErrors.category = "Category is required";
     if (!formData.keywords) newErrors.keywords = "Keywords are required";
     if (!formData.wordCount) newErrors.wordCount = "Word count is required";
     if (!formData.duration) newErrors.duration = "Duration is required";
@@ -56,6 +98,7 @@ const OrderArticle = () => {
       alert("Order placed successfully!");
     }, 2000);
   };
+
 
   return (
     <div className="order-article-container">
@@ -101,6 +144,7 @@ const OrderArticle = () => {
               value={formData.keywords}
               onChange={handleChange}
               placeholder="Article Keywords"
+              
             />
             {errors.keywords && <span className="error-message">{errors.keywords}</span>}
           </div>
@@ -115,6 +159,8 @@ const OrderArticle = () => {
                 className={`form-control ${errors.wordCount ? "input-error" : ""}`}
                 value={formData.wordCount}
                 onChange={handleChange}
+                style={{ border: "2px solid #ccc" }}
+
               >
                 <option value="300 words">300 words</option>
                 <option value="500 words">500 words</option>
@@ -137,6 +183,8 @@ const OrderArticle = () => {
                 className={`form-control ${errors.duration ? "input-error" : ""}`}
                 value={formData.duration}
                 onChange={handleChange}
+                style={{ border: "2px solid #ccc" }}
+
               >
                 <option value="6 hrs">6 hrs</option>
                 <option value="12 hrs">12 hrs</option>
@@ -162,6 +210,7 @@ const OrderArticle = () => {
                 className={`form-control ${errors.complexity ? "input-error" : ""}`}
                 value={formData.complexity}
                 onChange={handleChange}
+                style={{ border: "2px solid #ccc" }}
               >
                 <option value="Basic">Basic</option>
                 <option value="Advanced">Advanced</option>
@@ -178,19 +227,23 @@ const OrderArticle = () => {
 
           <div className="form-group">
             <label className="article-label">Language:</label>
-            <input
-              type="text"
-              id="language"
-              name="language"
-              className={`form-control ${errors.language ? "input-error" : ""}`}
-              value={formData.language}
-              onChange={handleChange}
-              placeholder="Language of the Article"
-            />
+            <div className="dropdown-wrapper">
+              <select
+                id="language"
+                name="language"
+                className={`form-control ${errors.language ? "input-error" : ""}`}
+                value={formData.language}
+                onChange={handleChange}
+              >
+                <option value="Canadian English">Canadian English</option>
+                <option value="American English">American English</option>
+                <option value="Native English">Native English</option>
+              </select>
+            </div>
             {errors.language && <span className="error-message">{errors.language}</span>}
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label className="article-label">Cost ($):</label>
             <input
               type="number"
@@ -202,7 +255,15 @@ const OrderArticle = () => {
               placeholder="Cost in USD"
             />
             {errors.cost && <span className="error-message">{errors.cost}</span>}
-          </div>
+          </div> */}
+
+<div className="cost-display-container">
+              <label className="cost-label">Estimated Cost:</label>
+              <div className="cost-display">
+                <DollarSign size={24} className="dollar-icon" />
+                <span>{cost.toFixed(2)}</span>
+              </div>
+            </div>
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? "Placing Order..." : "Order Article"}
