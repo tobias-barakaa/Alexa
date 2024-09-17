@@ -32,7 +32,8 @@ const payProduct = async (req, res) => {
       const user_id = user.id;  // Correctly get user ID
   
       const currency = 'USD';
-      const priceFormatted = parseFloat(cost).toFixed(2);
+      const unitPriceFormatted = parseFloat(cost).toFixed(2);  // This is the price per unit
+      const totalAmount = (parseFloat(cost) * parseInt(quantity)).toFixed(2);  // Total = price * quantity
   
       // Define the service type (modify as needed based on your logic)
       const serviceType = 'article';  // Example: you can dynamically set this if needed
@@ -52,7 +53,7 @@ const payProduct = async (req, res) => {
                 {
                   name: title,
                   sku: "001",
-                  price: priceFormatted,
+                  price: unitPriceFormatted,  // This is the price per unit
                   currency: currency,
                   quantity: quantity  // Ensure quantity is correctly used
                 }
@@ -60,7 +61,7 @@ const payProduct = async (req, res) => {
             },
             amount: {
               currency: currency,
-              total: priceFormatted
+              total: totalAmount  // Total amount = price * quantity
             },
             description: title
           }
@@ -77,7 +78,7 @@ const payProduct = async (req, res) => {
           const paymentData = {
             payment_id: payment.id,
             user_id: user_id,  // Correctly use user_id
-            amount: priceFormatted,
+            amount: totalAmount,  // Total amount
             currency: currency,
             status: 'created',
             service_type: serviceType,  // Add service_type to the payments table
@@ -96,8 +97,7 @@ const payProduct = async (req, res) => {
             quantity,
             user_id,
             cost,
-            payment_id: payment.id,
-            status: 'pending',
+            status: 'Pending',
             created_at: new Date(),
             updated_at: new Date()
           };
