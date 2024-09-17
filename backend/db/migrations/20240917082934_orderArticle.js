@@ -6,10 +6,13 @@ exports.up = function (knex) {
       table.string("keywords").notNullable(); // Keywords
       table.string("word_count").defaultTo("300 words"); // Word count
       table.string("duration").defaultTo("1 day"); // Duration of the article
-      table.string("complexity").defaultTo("Basic"); // Complexity level
+      table.string("complexity").defaultTo("General"); // Complexity level
       table.string("language").defaultTo("American English"); // Language
+      table.integer('quantity').unsigned().notNullable().defaultTo(1);
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.decimal("cost", 10, 2).defaultTo(50); // Calculated cost
-      table.timestamps(true, true); // created_at and updated_at
+      table.enu('status', ['Pending', 'Published', 'Completed', 'Processing', 'Deleted', 'Rejected']).defaultTo('Pending');
+        table.timestamps(true, true);
     });
   };
   
