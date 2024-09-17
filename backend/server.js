@@ -34,6 +34,7 @@ const emailCopyWritingUploadRoute = require('./routes/admin/emailCopyWritingUplo
 const emailcoypwritingRoute = require('./routes/admin/emailCopywritingRoute');
 
 const paypalRoute = require('./routes/client/paypalRoute');
+const orderArticleRoute = require('./routes/client/orderArticleRoute');
 
 
 // blog route import
@@ -132,6 +133,10 @@ app.use('/api/admin/emailcopywriting', emailcoypwritingRoute)
 
 // paypal 
 app.use('/api/paypal', paypalRoute);
+
+// order Article
+app.use('/api/paypal', orderArticleRoute);
+
 
 // 404 handler
 app.use((req, res, next) => {

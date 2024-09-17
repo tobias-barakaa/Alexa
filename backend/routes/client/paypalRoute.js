@@ -4,9 +4,9 @@ const router = express.Router();
 
 
 
-router.post('/order', payProduct);
-router.get('/success', successPage);
-router.get('/cancel', cancelPage);
+router.post('/orde', payProduct);
+router.get('/succes', successPage);
+router.get('/cance', cancelPage);
 
 
 

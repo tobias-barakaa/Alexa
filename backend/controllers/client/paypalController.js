@@ -77,35 +77,44 @@ const payProduct = async (req, res) => {
     }
   };
 
-const successPage = async (req, res) => {
-  const payerId = req.query.PayerID;
-  const paymentId = req.query.paymentId;
-
-  const execute_payment_json = {
-    payer_id: payerId,
-    transactions: [
-      {
-        amount: {
-          currency: "USD", // Match the currency from the payProduct request
-          total: "25.00"  // This should match the total amount for your product
-        }
-      }
-    ]
-  };
-
-  paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
-    if (error) {
-      console.error(error.response);
-      res.status(500).send({ error: error.response.message });
-    } else {
-      res.send("Payment Successful");
+  const successPage = async (req, res) => {
+    const payerId = req.query.PayerID;
+    const paymentId = req.query.paymentId;
+  
+    if (!payerId || !paymentId) {
+      return res.status(400).send({ error: "Missing PayerID or paymentId." });
     }
-  });
-};
+  
+    const execute_payment_json = {
+      payer_id: payerId,
+      transactions: [
+        {
+          amount: {
+            currency: "USD", // Match the currency used in payProduct
+            total: "25.00"  // This should match the total amount for your product
+          }
+        }
+      ]
+    };
+  
+    paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
+      if (error) {
+        console.error("PayPal Payment Execute Error:", error.response);
+        return res.status(500).send({ error: error.response.message });
+      } else {
+        // Payment was successful; update order status or perform further actions
+        await knex('order_articles')
+          .where('payment_id', paymentId)
+          .update({ status: 'completed', updated_at: new Date() });
+  
+        res.send("Payment Successful");
+      }
+    });
+  };
 
 const cancelPage = async (req, res) => {
   res.send("Payment Cancelled");
-};
+}
 
 module.exports = {
   payProduct,
