@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-    return knex.schema.createTable("orderArticle", (table) => {
+    return knex.schema.createTable("order_articles", (table) => { // Changed to snake_case
       table.increments("id").primary(); // Primary key
       table.string("title").notNullable(); // Title of the article
       table.text("description").notNullable(); // Description of the article
@@ -12,11 +12,10 @@ exports.up = function (knex) {
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.decimal("cost", 10, 2).defaultTo(50); // Calculated cost
       table.enu('status', ['Pending', 'Published', 'Completed', 'Processing', 'Deleted', 'Rejected']).defaultTo('Pending');
-        table.timestamps(true, true);
+      table.timestamps(true, true);
     });
   };
   
   exports.down = function (knex) {
-    return knex.schema.dropTableIfExists("orderArticle");
+    return knex.schema.dropTableIfExists("order_articles");
   };
-  
