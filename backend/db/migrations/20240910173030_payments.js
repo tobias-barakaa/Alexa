@@ -6,7 +6,7 @@ exports.up = function(knex) {
       table.string('serviceType').notNullable();
       table.decimal('amount', 10, 2).notNullable();
       table.string('currency').notNullable();
-      table.enu('status', ['created', 'completed', 'failed']).defaultTo('created');
+      table.enu('status', ['created', 'completed', 'failed', 'paid']).defaultTo('created');
       table.timestamp('completed_at').nullable();
       table.text('serviceData').notNullable(); 
       table.timestamps(true, true);
