@@ -15,6 +15,7 @@ const OrderArticle = () => {
     cost: 50, 
   });
 
+  let cost = 0;
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -85,7 +86,7 @@ const OrderArticle = () => {
     if (!formData.duration) newErrors.duration = "Duration is required";
     if (!formData.language) newErrors.language = "Language is required";
     if (!formData.cost) newErrors.cost = "Cost is required";
-
+ console.log(formData, 'formdata')
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -243,27 +244,28 @@ const OrderArticle = () => {
             {errors.language && <span className="error-message">{errors.language}</span>}
           </div>
 
-          {/* <div className="form-group">
-            <label className="article-label">Cost ($):</label>
-            <input
-              type="number"
-              id="cost"
-              name="cost"
-              className={`form-control ${errors.cost ? "input-error" : ""}`}
-              value={formData.cost}
-              onChange={handleChange}
-              placeholder="Cost in USD"
-            />
-            {errors.cost && <span className="error-message">{errors.cost}</span>}
-          </div> */}
 
-<div className="cost-display-container">
-              <label className="cost-label">Estimated Cost:</label>
-              <div className="cost-display">
-                <DollarSign size={24} className="dollar-icon" />
-                <span>{cost.toFixed(2)}</span>
-              </div>
-            </div>
+          <div className="form-group">
+  <label className="article-label">Cost ($):</label>
+  <input
+    type="number"
+    id="cost"
+    name="cost"
+    className={`form-control ${errors.cost ? "input-error" : ""}`}
+    value={formData.cost}
+    onChange={handleChange}
+    placeholder="Cost in USD"
+    readOnly
+    style={{ fontWeight: "bold" }}
+  />
+  {errors.cost && <span className="error-message">{errors.cost}</span>}
+</div>
+
+
+
+
+
+
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? "Placing Order..." : "Order Article"}
