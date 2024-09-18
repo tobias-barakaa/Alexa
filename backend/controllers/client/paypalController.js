@@ -66,8 +66,11 @@ const payProduct = async (req, res) => {
           console.log(paymentData, 'payment data........');
   
           // Redirect user to PayPal's approval URL
+          // const approval_url = payment.links.find(link => link.rel === "approval_url").href;
+          // res.json({ approval_url });
           const approval_url = payment.links.find(link => link.rel === "approval_url").href;
-          res.json({ approval_url });
+         res.json({ approval_url });
+
         }
       });
   

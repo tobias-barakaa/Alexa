@@ -156,6 +156,55 @@ const payProduct = async (req, res) => {
   });
 };
 
+// const updateOrder = async (req, res) => {
+//   try {
+//     const { id } = req.params; // Article ID
+//     const userId = req.user.userId; // Assuming you get this from authentication middleware
+    
+//     // Fetch user
+//     const user = await knex('users').where('id', userId).first();
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Fetch article
+//     const article = await knex('order_articles')
+//       .where({ id, user_id: userId })
+//       .first();
+//     if (!article) {
+//       return res.status(404).json({ error: 'Article not found' });
+//     }
+
+//     // Prepare updated data
+//     const updatedData = {
+//       status: 'Completed',
+//       updated_at: new Date(),
+//       is_paid: true,  // Assuming 'isPaid' is now 'is_paid' based on column definition
+//       payment_result: JSON.stringify({
+//         id: req.body.id,
+//         status: req.body.status,
+//         update_time: req.body.update_time,
+//         email_address: req.body.payer.email_address
+//       })
+//     };
+
+//     // Update article
+//     await knex('order_articles')
+//       .where({ id, user_id: userId })
+//       .update(updatedData);
+
+//     // Fetch updated article to return
+//     const updatedArticle = await knex('order_articles').where({ id, user_id: userId }).first();
+
+//     res.status(200).json(updatedArticle);
+
+//   } catch (error) {
+//     console.error('Error updating order:', error);
+//     res.status(500).json({ error: 'Server error while updating order.' });
+//   }
+// };
+
+
   
 const cancelPage = async (req, res) => {
   res.send("Payment Cancelled");

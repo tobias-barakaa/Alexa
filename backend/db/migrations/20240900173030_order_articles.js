@@ -12,6 +12,7 @@ exports.up = function (knex) {
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.decimal("cost", 10, 2).defaultTo(50); // Calculated cost
       table.enu('status', ['Pending', 'Published', 'Completed', 'Processing', 'Deleted', 'Rejected']).defaultTo('Pending');
+      table.boolean('is_paid').defaultTo(false);
       table.timestamps(true, true);
     });
   };
