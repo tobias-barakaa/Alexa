@@ -9,7 +9,7 @@ export const ADMIN_USERS_URL = 'api/admin/users';
 
 export const ARTICLES = 'api/articles/order';
 export const COMMENTS = 'api/comments';
-export const PAYPAL_URL = '/api/articles';
+// export const PAYPAL_URL = '/api/articles';
 
 export const BLOG_URL = '/api/blog';
 export const ARTICLE_URL = '/api/articlecreation';
@@ -28,3 +28,6 @@ export const COMPLETED = '/api/file/url';
 
 // Paypal
 export const PAYPAL = '/api/emailcopywriting/config';
+
+
+export const PAYPAL_URL = '/api/config/paypal';

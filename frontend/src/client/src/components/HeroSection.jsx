@@ -1,6 +1,5 @@
 import "./HeroSection.css";
 import centerImage from "../assets/images/come.png";
-import { FaCheckCircle, FaGoogle } from "react-icons/fa"; // For the icons
 import ClientRegister from "../pages/ClientRegister";
 
 const HeroSection = () => {

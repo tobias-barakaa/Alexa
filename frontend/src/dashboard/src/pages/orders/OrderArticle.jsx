@@ -1,8 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./OrderArticle.css";
 import writers from "../../../../client/src/assets/images/agenda.png";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useGetPayPalClientIdQuery } from "../../../../slices/client/orderArticleApiSlice";
+import { usePayOrderMutation } from "../../../../slices/client/blogApiSlice";
+
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
+
+
 
 const OrderArticle = () => {
+  const {id: orderId} = useParams();
+  // const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId);
+
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
+
+  useEffect(() => {
+    if(!errorPaypal && !loadingPaypal && paypal.clientId) {
+      const loadPayScript = async () => {
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': paypal.clientId,
+            currency: 'USD'
+          }
+        });
+        paypalDispatch({
+          type: 'setLoadingStatus',
+          value: 'pending'
+        }  
+      );
+
+      if(order && !order.isPaid) {
+        if(!window.paypal) {
+          loadPayScript();
+        }
+      }
+
+      }
+      // paypalDispatch({ type: 'resetOptions', value: { 'client-id': paypal.clientId } });
+    }
+  })
 
   // console.log(user, 'this is the user');
 
