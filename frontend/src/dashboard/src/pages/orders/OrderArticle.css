@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0px;
-    /* background-color: white; */
   }
   
   .order-your-article {
@@ -30,7 +29,9 @@
     text-align: center;
     padding: 20px;
     border-radius: 10px;
-    border: solid 1px #7ca7d4;
+    /* border: solid 1px #7ca7d4; */
+    border: 1px solid #9fb6ce;
+
     height: 450px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

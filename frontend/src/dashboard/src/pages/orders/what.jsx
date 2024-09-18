@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./OrderArticle.css";
 import writers from "../../../../client/src/assets/images/agenda.png";
+import { useSelector } from "react-redux";
 
 const OrderArticle = () => {
+  const user_id = useSelector(state => state.auth.userInfo.id);
 
-  // console.log(user, 'this is the user');
 
   const [formData, setFormData] = useState({
     title: "",
@@ -31,7 +32,7 @@ const OrderArticle = () => {
   };
 
   // Function to calculate cost based on complexity, duration, word count, and quantity
-  const calculateCost = (complexity, duration, word_count, quantity) => {
+  const calculateCost = (complexity, word_count, quantity) => {
     let baseCost = wordCountPrices[word_count] || 20; // Base cost depends on word count
 
     // Adjust base cost based on complexity
@@ -46,7 +47,7 @@ const OrderArticle = () => {
         baseCost += 0; // General
     }
 
-    return baseCost;
+    return baseCost * quantity;
   };
 
   const handleChange = (e) => {
@@ -74,11 +75,9 @@ const OrderArticle = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
   
     const newErrors = {};
   
-    // Validation
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.description) newErrors.description = "Description is required";
     if (!formData.keywords) newErrors.keywords = "Keywords are required";
@@ -86,7 +85,6 @@ const OrderArticle = () => {
     if (!formData.duration) newErrors.duration = "Duration is required";
     if (!formData.language) newErrors.language = "Language is required";
     if (!formData.cost) newErrors.cost = "Cost is required";
-    formData.cost.toFixed(2);
   
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -95,38 +93,40 @@ const OrderArticle = () => {
   
     setLoading(true);
   
+    // Create a FormData instance
+    const data = new FormData();
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key)) {
+        data.append(key, formData[key]);
+      }
+    }
+  
+    // Append user_id to the FormData
+    data.append('user_id', user_id);
+  
     try {
-      const response = await fetch('http://localhost:5000/api/paypal/order', {
+      const response = await fetch('/api/your-endpoint', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include',
+        body: data,
+        credentials: 'include', // Include credentials (cookies, HTTP authentication) with the request
       });
-    
+  
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-    
+  
       const result = await response.json();
-      console.log(result);
-    
-      // Redirect the user to PayPal's approval URL
-      if (result.approval_url) {
-        window.location.href = result.approval_url;
-      } else {
-        alert("Failed to initiate PayPal payment.");
-      }
+  
+      // Handle the response
+      alert("Order placed successfully!");
     } catch (error) {
       console.error('Error submitting form:', error);
       alert("Failed to place the order. Please try again.");
-    }
-     finally {
+    } finally {
       setLoading(false);
     }
   };
-  
+
 
   return (
     <div className="order-article-container">
