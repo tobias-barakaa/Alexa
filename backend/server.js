@@ -9,36 +9,21 @@ const morgan = require('morgan');
 const AdminRoute = require('./routes/admin/adminRoute');
 const userRoutes = require('./routes/client/clientRoute');
 const writerRoute = require('./routes/writer/writerRoute');
-const articleRoutes = require('./routes/client/articleRoute');
 const articleAdminRoute = require('./routes/admin/articleAdminRoute');
 const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
-const articleCreationRouter = require('./routes/client/articleCreationRoute');
-const resumeRoute = require('./routes/client/resumeRoute');
-const emailCopywritingRoute = require('./routes/client/emailCopywritingRoute');
-//Admin
 const blogAdminRoute = require('./routes/admin/blogRoute');
 //upload
 const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
-const articleCreationRoute = require('./routes/admin/articleCreation')
-const articleCreationUploadRoute = require('./routes/admin/articleCreationUploadFile')
 
 // Resume CV Writing
-const cvResumeWritingRoute = require('./routes/admin/cvResumeWritingRoute');
-const cvResumeWritingUploadRoute = require('./routes/admin/resumeCvWritingUploadRoute');
 
 // Email Copy Writing
-const emailCopyWritingUploadRoute = require('./routes/admin/emailCopyWritingUploadRoute');
-
-const emailcoypwritingRoute = require('./routes/admin/emailCopywritingRoute');
-
-const paypalRoute = require('./routes/client/paypalRoute');
 const orderArticleRoute = require('./routes/client/orderArticleRoute');
 
 
 // blog route import
-const blogRoute = require('./routes/client/blogRoute');
 
 // Load environment variables
 dotenv.config();
@@ -79,7 +64,6 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.use("/api/admin", AdminRoute);
 app.use("/api/writer", writerRoute);
-app.use('/api/articles', articleRoutes);
 app.use('/api/admin/articles', articleAdminRoute);
 app.use('/api/admin/writers', adminWritersRoute);
 app.use('/api/writer/fill-profile', writerAccountProfileRoute);
@@ -89,19 +73,6 @@ app.use('/api/writer/fill-profile', writerAccountProfileRoute);
 app.use('/api/blog', blogAdminRoute);
 
 //Blog Route
-app.use('/api/blog', blogRoute);
-
-// Artice Creation
-app.use('/api/articlecreation', articleCreationRouter);
-
-// Resume Creation
-app.use('/api/resume', resumeRoute);
-
-
-// Email Creation
-app.use('/api/emailcopywriting', emailCopywritingRoute);
-
-// Admin file Route
 app.use('/api/file/image', uploadRoute);
 
 // client file Route Download
@@ -114,27 +85,14 @@ app.use('/api/admin/article', articleCreationRoute)
 
 // admin file Route Download
 
-app.use('/api/article', fileRoute);
-
 // admin Article Creation Upload
 app.use('/api/admin/article', articleCreationUploadRoute)
 
 // admin Resume CV Wrting 
-app.use('/api/admin/cvwriting', cvResumeWritingRoute);
 
 // admin Resume CV writing upload
-app.use('/api/admin/resume/file', cvResumeWritingUploadRoute)
 
-// admin email copywriting
-app.use('/api/admin/emailcopywriting', emailCopyWritingUploadRoute)
-
-// Admin email copywriting 
-app.use('/api/admin/emailcopywriting', emailcoypwritingRoute)
-
-// paypal 
-app.use('/api/paypal', paypalRoute);
-
-// order Article
+// Order 
 app.use('/api/article', orderArticleRoute);
 
 
