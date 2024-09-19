@@ -1,0 +1,85 @@
+.portfolio-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  h1 {
+    color: #76bdff;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .portfolio-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .portfolio-title {
+    position: relative;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .portfolio-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(0, 0, 0, 0.6); */
+    background-color: black;
+  }
+  
+  .portfolio-title h2 {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .portfolio-content {
+    padding: 20px;
+  }
+  
+  .portfolio-content h3 {
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .portfolio-content p {
+    margin-bottom: 15px;
+  }
+  
+  .portfolio-content a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #76bdff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .portfolio-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .metrics {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #76bdff;
+  }

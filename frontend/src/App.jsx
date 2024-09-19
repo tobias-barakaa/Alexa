@@ -1,17 +1,16 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from "./client/src/pages/HomePage";
 import Main from './admin/src/pages/Main';
-import LoginClient from './client/src/pages/LoginClient'
-import Dashboard from "./dashboard/src/pages/Dashboard"
-import ArticleCreation from "./dashboard/src/pages/ArticleCreation"
+import LoginClient from './client/src/pages/LoginClient';
+import Dashboard from "./dashboard/src/pages/Dashboard";
+import ArticleCreation from "./dashboard/src/pages/ArticleCreation";
 import Blog from './admin/src/pages/Blog';
 import BlogUser from './admin/src/pages/BlogUser';
-import OrderHistory from "./dashboard/src/pages/manageorders/OrderHistory"
-import EditArticleCreation from "./dashboard/src/pages/edit/EditArticleCreation"
+import OrderHistory from "./dashboard/src/pages/manageorders/OrderHistory";
+import EditArticleCreation from "./dashboard/src/pages/edit/EditArticleCreation";
 import DashboardAdmin from './admin/src/pages/DashboardAdmin';
 import DashboardMain from './dashboard/src/pages/DashboardMain';
 import EditBlog from "./dashboard/src/pages/edit/EditBlog";
@@ -40,14 +39,11 @@ import FailurePage from './client/src/pages/FailPage';
 import OrderArticle from './dashboard/src/pages/orders/OrderArticle';
 import PrivateRoute from './client/src/components/PrivateRoute';
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />
   },
-  
   {
     path: "/login",
     element: <LoginClient />
@@ -76,14 +72,12 @@ const router = createBrowserRouter([
     path: "/paypal/cancel",
     element: <FailurePage />
   },
-  
- 
   {
     path: "/dashboard",
     element: (
       <PrivateRoute>
         <Dashboard />
-      </PrivateRoute>
+        </PrivateRoute>
     ),
     children: [
       {
@@ -98,14 +92,10 @@ const router = createBrowserRouter([
         path: "blogorder",
         element: <BlogForm />
       },
-     
       {
         path: "articlecreation",
         element: <ArticleCreation />
       },
-      
-     
-                             
       {
         path: "ordershistory",
         element: <OrderHistory />
@@ -114,8 +104,6 @@ const router = createBrowserRouter([
         path: "payment",
         element: <Payment />
       },
-    
-   
       {
         path: "editblog",
         element: <EditBlog />
@@ -124,12 +112,10 @@ const router = createBrowserRouter([
         path: "completedorders",
         element: <CompletedOrders />
       },
-    
       {
         path: "editarticlecreation",
         element: <EditArticleCreation />
       },
-      
       {
         path: "completedorders/completedblog",
         element: <BlogWritingComplete />
@@ -156,7 +142,6 @@ const router = createBrowserRouter([
       }
     ]
   },
- 
   {
     path: "/admin",
     element: <AdminLogin />
@@ -173,12 +158,10 @@ const router = createBrowserRouter([
         path: "blog",
         element: <Blog />
       },
-      
       {
         path: "bloguser/:id",
         element: <BlogUser />
       },
-
       {
         path: "articles",
         element: <ArticleDetails />
@@ -187,7 +170,6 @@ const router = createBrowserRouter([
         path: "articleuser/:id",
         element: <UserDetail />
       },
-     
       {
         path: "resumeuser/:id",
         element: <ResumeCVWritingUser />
@@ -199,18 +181,16 @@ const router = createBrowserRouter([
       {
         path: "emailcopywriting/:id",
         element: <EmailCopyWritingUser />
-      },
+      }
     ]
   }
 ]);
 
 function App() {
   return (
-
-<PayPalScriptProvider>
-<RouterProvider router={router} />
-
-</PayPalScriptProvider>
+    <PayPalScriptProvider>
+      <RouterProvider router={router} />
+    </PayPalScriptProvider>
   );
 }
 

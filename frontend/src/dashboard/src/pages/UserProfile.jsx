@@ -28,7 +28,7 @@ const UserProfile = () => {
     <div className="user-profile">
       <div className="profile-pic-container">
         <img 
-          src={userInfo.profile_pic || 'https://www.gravatar.com/avatar/'}
+          src={userInfo.profile_pic || 'https://www.gravatar.com/avatar'}
           alt="Profile"
           className="profile-pic"
         />
