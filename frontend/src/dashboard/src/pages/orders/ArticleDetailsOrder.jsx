@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetOrderByIdQuery, useGetPayPalClientIdQuery, usePayOrderMutation } from '../../../../slices/client/orderArticleApiSlice';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { DollarSign, FileText, Clock, Star, Globe, AlertCircle, Hash, Clipboard, Loader } from 'lucide-react';
 import './ArticleDetailsOrder.css';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const ArticleDetailsOrder = () => {
   const { id } = useParams();
-  const { data: orderDetails, isLoading, isError } = useGetOrderByIdQuery(id);
+  const { data: orderDetails, isLoading, isError, refetch } = useGetOrderByIdQuery(id);
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
-  const { userInfo } = useSelector((state) => state.auth);
+  // const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
@@ -48,13 +48,22 @@ const ArticleDetailsOrder = () => {
           },
         },
       ],
-    });
+    }).then((orderId) => {
+      return orderId;
+    })
   }
 
   function onApprove(data, actions) {
-    return actions.order.capture().then(details => {
-      console.log('Transaction completed by ' + details.payer.name.given_name);
-      // Add logic to handle post-payment actions
+    return actions.order.capture().then( async function(details) {
+      try {
+        await payOrder({ orderId: order._id, details });
+        refetch();
+        alert('payment success')
+        
+      } catch (error) {
+        console.error('PayPal Checkout onApprove error', error);
+        
+      }
     });
   }
 
@@ -62,9 +71,10 @@ const ArticleDetailsOrder = () => {
     console.error('PayPal Checkout onError', error);
   }
 
-  function onApproveTest() {
-    console.log('Test Pay Order button clicked');
+  async function onApproveTest() {
+    await payOrder({ orderId: order.id, details: { payer: 'test' } });
     // Add test logic here
+    alert('success')
   }
 
   return (
