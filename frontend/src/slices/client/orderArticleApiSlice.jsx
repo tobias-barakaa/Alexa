@@ -6,7 +6,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     
     orderArticle: builder.mutation({
         query: (details) => ({
-          url: `${ORDER_URL}/order`,
+          url: `${ORDER_URL}`,
           method: 'POST',
           body: {...details},
          credentials: 'include',

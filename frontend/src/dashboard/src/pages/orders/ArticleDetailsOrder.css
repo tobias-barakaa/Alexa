@@ -1,0 +1,70 @@
+.article-details-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .details-section {
+    flex: 2;
+    padding: 30px;
+  }
+
+  .payment-section {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 30px;
+    border-left: 1px solid #e0e0e0;
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .detail-item svg {
+    margin-right: 10px;
+    color: #3498db;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .status-pending {
+    background-color: #ffeaa7;
+    color: #d35400;
+  }
+
+  .payment-info {
+    margin-bottom: 20px;
+  }
+
+  .cost {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-bottom: 20px;
+  }
+
+  .payment-status {
+    font-size: 16px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+  }
