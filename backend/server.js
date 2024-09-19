@@ -9,10 +9,8 @@ const morgan = require('morgan');
 const AdminRoute = require('./routes/admin/adminRoute');
 const userRoutes = require('./routes/client/clientRoute');
 const writerRoute = require('./routes/writer/writerRoute');
-const articleAdminRoute = require('./routes/admin/articleAdminRoute');
 const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
-const blogAdminRoute = require('./routes/admin/blogRoute');
 //upload
 const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
@@ -64,13 +62,11 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.use("/api/admin", AdminRoute);
 app.use("/api/writer", writerRoute);
-app.use('/api/admin/articles', articleAdminRoute);
 app.use('/api/admin/writers', adminWritersRoute);
 app.use('/api/writer/fill-profile', writerAccountProfileRoute);
 
 
 // Admin
-app.use('/api/blog', blogAdminRoute);
 
 //Blog Route
 app.use('/api/file/image', uploadRoute);
@@ -78,19 +74,6 @@ app.use('/api/file/image', uploadRoute);
 // client file Route Download
 
 app.use('/api/file/url', fileRoute);
-
-// admin Article Creation
-app.use('/api/admin/article', articleCreationRoute)
-
-
-// admin file Route Download
-
-// admin Article Creation Upload
-app.use('/api/admin/article', articleCreationUploadRoute)
-
-// admin Resume CV Wrting 
-
-// admin Resume CV writing upload
 
 // Order 
 app.use('/api/article', orderArticleRoute);

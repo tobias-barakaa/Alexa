@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const router = express.Router();
 router.post('/order',validateOrderArticle, protect, orderArticle);
-router.get('/order/:id', protect, getOrderById);
+router.get('/:id', protect, getOrderById);
 // router.get('/success', successPage);
 // router.get('/cancel', cancelPage);
 // router.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
