@@ -30,6 +30,6 @@ export const COMPLETED = '/api/file/url';
 export const PAYPAL = '/api/emailcopywriting/config';
 
 
-export const PAYPAL_URL = '/api/config/paypal';
+export const PAYPAL_URL = '/api/order/config/paypal';
 
 export const ORDER_URL = 'api/order/articles';

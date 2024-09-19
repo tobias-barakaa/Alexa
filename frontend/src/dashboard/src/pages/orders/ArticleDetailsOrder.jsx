@@ -1,12 +1,34 @@
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetOrderByIdQuery } from '../../../../slices/client/orderArticleApiSlice';
-import { PayPalButtons } from '@paypal/react-paypal-js';
-import { DollarSign, FileText, Clock, Star, Globe, AlertCircle, Hash, Clipboard } from 'lucide-react';
+import { useGetOrderByIdQuery, useGetPayPalClientIdQuery, usePayOrderMutation } from '../../../../slices/client/orderArticleApiSlice';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { DollarSign, FileText, Clock, Star, Globe, AlertCircle, Hash, Clipboard, Loader } from 'lucide-react';
 import './ArticleDetailsOrder.css';
+import { useSelector } from 'react-redux';
 
 const ArticleDetailsOrder = () => {
-  const { id } = useParams(); // Get the article ID from the URL
+  const { id } = useParams();
   const { data: orderDetails, isLoading, isError } = useGetOrderByIdQuery(id);
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
+      const loadPaypalScript = async () => {
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': paypal.clientId,
+            currency: 'USD',
+          },
+        });
+        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+      };
+      loadPaypalScript();
+    }
+  }, [paypal, paypalDispatch, loadingPaypal, errorPaypal]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading article details.</div>;
@@ -17,37 +39,65 @@ const ArticleDetailsOrder = () => {
 
   const { order } = orderDetails;
 
+  function createOrder(data, actions) {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: order.cost,
+          },
+        },
+      ],
+    });
+  }
+
+  function onApprove(data, actions) {
+    return actions.order.capture().then(details => {
+      console.log('Transaction completed by ' + details.payer.name.given_name);
+      // Add logic to handle post-payment actions
+    });
+  }
+
+  function onError(error) {
+    console.error('PayPal Checkout onError', error);
+  }
+
+  function onApproveTest() {
+    console.log('Test Pay Order button clicked');
+    // Add test logic here
+  }
+
   return (
     <div className="article-details-container">
       <div className="details-section">
         <h2>{order.title}</h2>
         <div className="detail-item">
           <FileText size={20} />
-          <span><span><strong> Description: </strong></span> {order.description}</span>
+          <span><strong>Description:</strong> {order.description}</span>
         </div>
         <div className="detail-item">
           <Hash size={20} />
-          <span><span><strong> Keywords: </strong></span> {order.keywords}</span>
+          <span><strong>Keywords:</strong> {order.keywords}</span>
         </div>
         <div className="detail-item">
           <Clipboard size={20} />
-          <span><span><strong> Word Count: </strong></span> {order.word_count}</span>
+          <span><strong>Word Count:</strong> {order.word_count}</span>
         </div>
         <div className="detail-item">
           <Clock size={20} />
-          <span><span><strong> Duration: </strong></span> {order.duration}</span>
+          <span><strong>Duration:</strong> {order.duration}</span>
         </div>
         <div className="detail-item">
           <Star size={20} />
-          <span><span><strong> Complexity: </strong></span> {order.complexity}</span>
+          <span><strong>Complexity:</strong> {order.complexity}</span>
         </div>
         <div className="detail-item">
           <Globe size={20} />
-          <span><span><strong> Language: </strong></span> {order.language}</span>
+          <span><strong>Language:</strong> {order.language}</span>
         </div>
         <div className="detail-item">
           <Clipboard size={20} />
-          <span><span><strong> Quantity: </strong></span> {order.quantity}</span>
+          <span><strong>Quantity:</strong> {order.quantity}</span>
         </div>
         <div className="detail-item">
           <AlertCircle size={20} />
@@ -64,30 +114,35 @@ const ArticleDetailsOrder = () => {
             {order.cost}
           </div>
           <div className="payment-status">
-            {order.is_paid ? "Paid" : "Payment Pending"}
+            {order.is_paid ? (
+              <span className="status-badge status-paid">Paid</span>
+            ) : (
+              <span className="status-badge status-pending">Payment Pending</span>
+            )}
+            {!order.is_paid && (
+              <div>
+                {loadingPay && <Loader />}
+                {isPending ? (
+                  <Loader />
+                ) : (
+                  <div>
+                    <button 
+                      onClick={onApproveTest}
+                      style={{ marginBottom: '10px' }}
+                    >
+                      Test Pay Order
+                    </button>
+                    <PayPalButtons
+                      createOrder={createOrder}
+                      onApprove={onApprove}
+                      onError={onError}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        {!order.is_paid && (
-          <PayPalButtons
-            createOrder={(data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: {
-                      value: order.cost,
-                    },
-                  },
-                ],
-              });
-            }}
-            onApprove={(data, actions) => {
-              return actions.order.capture().then(details => {
-                console.log('Transaction completed by ' + details.payer.name.given_name);
-                // Add logic to handle post-payment actions, e.g., updating the order status
-              });
-            }}
-          />
-        )}
       </div>
     </div>
   );
