@@ -135,7 +135,7 @@ app.use('/api/admin/emailcopywriting', emailcoypwritingRoute)
 app.use('/api/paypal', paypalRoute);
 
 // order Article
-app.use('/api/paypal', orderArticleRoute);
+app.use('/api/article', orderArticleRoute);
 
 
 // 404 handler
