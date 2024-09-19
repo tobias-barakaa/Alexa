@@ -2,42 +2,45 @@
     display: flex;
     max-width: 1200px;
     margin: 20px auto;
-    background-color: #f8f9fa;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #11b7e9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-
+  
   .details-section {
     flex: 2;
     padding: 30px;
+    background-color: #f9f9f9;
   }
-
+  
   .payment-section {
     flex: 1;
     background-color: #ffffff;
     padding: 30px;
     border-left: 1px solid #e0e0e0;
   }
-
+  
   h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
+    font-weight: 600;
   }
-
+  
   .detail-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
     font-size: 16px;
+    color: #333;
   }
-
+  
   .detail-item svg {
     margin-right: 10px;
     color: #3498db;
   }
-
+  
   .status-badge {
     display: inline-block;
     padding: 5px 10px;
@@ -45,26 +48,41 @@
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
+    color: #fff;
   }
-
+  
   .status-pending {
     background-color: #ffeaa7;
     color: #d35400;
   }
-
+  
+  .status-completed {
+    background-color: #5bc0de;
+    color: #fff;
+  }
+  
+  .status-canceled {
+    background-color: #d9534f;
+    color: #fff;
+  }
+  
   .payment-info {
     margin-bottom: 20px;
   }
-
+  
   .cost {
     font-size: 28px;
     font-weight: bold;
     color: #2ecc71;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
-
+  
   .payment-status {
     font-size: 16px;
     color: #e74c3c;
-    margin-bottom: 20px;
   }
+  
+  .payment-section .paypal-buttons {
+    margin-top: 20px;
+  }
+  
