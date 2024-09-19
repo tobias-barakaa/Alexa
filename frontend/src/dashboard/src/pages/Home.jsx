@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
 import './Home.css';
-import { useGetLatestQuery } from '../../../slices/client/blogApiSlice';
 import HeroSection from './HeroSection';
 // import publish from '../assets/images/writer.jpg';
 import complete from '../../../../../frontend/src/client/src/assets/images/complete.png';
@@ -8,22 +6,9 @@ import hand from '../../../../../frontend/src/client/src/assets/images/hand.png'
 import adjust from '../../../../../frontend/src/client/src/assets/images/adjust.png';
 import agenda from '../../../../../frontend/src/client/src/assets/images/agenda.png';
 
-
-
-
-
 const Home = () => {
-  const { data, isLoading, isError, error } = useGetLatestQuery();
 
-  if (isLoading) {
-    return <div>Loading latest blogs...</div>;
-  }
 
-  if (isError) {
-    return <div>Error: {error?.message || 'Failed to load latest blogs.'}</div>;
-  }
-
-  const latestBlogCount = data?.blogs?.length || 0;
 
   return (
     <>
@@ -48,11 +33,11 @@ const Home = () => {
           <span className="title">Completed</span>
           <span className="number">28</span>
         </div>
-        <Link to="edit" className="home-box" style={{ backgroundColor: '#ffffff' }}>
+        <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
         <span className="icon"><img style={{ width: "70px", height: "70px" }} src={adjust} alt="adjust" /></span>
           <span className="title">Latest</span>
-          <span className="number">{latestBlogCount}</span>
-        </Link>
+          <span className="number"></span>
+        </div>
       </div>
       <section className="recent-activity">
         <h2>Recent Activity</h2>

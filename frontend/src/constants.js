@@ -31,3 +31,5 @@ export const PAYPAL = '/api/emailcopywriting/config';
 
 
 export const PAYPAL_URL = '/api/config/paypal';
+
+export const ORDER_URL = 'api/article'

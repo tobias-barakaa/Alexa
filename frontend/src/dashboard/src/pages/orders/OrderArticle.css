@@ -6,7 +6,7 @@
   
   .order-your-article {
     
-    font-size: 2em;
+    font-size: 1.4em;
     font-weight: bold;
   }
   .form-side {
@@ -32,7 +32,7 @@
     /* border: solid 1px #7ca7d4; */
     border: 1px solid #9fb6ce;
 
-    height: 450px;
+    height: 420px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
@@ -82,7 +82,7 @@
     font-weight: bold;
     font-size: 1.2em;
   }
-  .hire-writers p{
+  .hire-writers-text{
     font-size: 1em;
   }
   
@@ -94,7 +94,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    font-size: 1.8em; 
+    font-size: 1em; 
     font-weight: 800;
   }
   

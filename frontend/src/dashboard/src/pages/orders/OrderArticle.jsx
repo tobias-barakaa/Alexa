@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./OrderArticle.css";
 import writers from "../../../../client/src/assets/images/agenda.png";
+import { useOrderArticleMutation } from "../../../../slices/client/orderArticleApiSlice";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -71,57 +73,32 @@ const OrderArticle = () => {
     }));
   };
 
+  const navigate = useNavigate(); // Initialize navigate
+  const [orderArticle] = useOrderArticleMutation();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-  
+
     const newErrors = {};
-  
-    // Validation
+    // Validate form data
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.description) newErrors.description = "Description is required";
     if (!formData.keywords) newErrors.keywords = "Keywords are required";
-    if (!formData.word_count) newErrors.word_count = "Word count is required";
-    if (!formData.duration) newErrors.duration = "Duration is required";
-    if (!formData.language) newErrors.language = "Language is required";
-    if (!formData.cost) newErrors.cost = "Cost is required";
-    formData.cost.toFixed(2);
-  
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-  
+
     setLoading(true);
-  
+
     try {
-      const response = await fetch('http://localhost:5000/api/paypal/order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include',
-      });
-    
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-    
-      const result = await response.json();
-      console.log(result);
-    
-      // Redirect the user to PayPal's approval URL
-      if (result.approval_url) {
-        window.location.href = result.approval_url;
-      } else {
-        alert("Failed to initiate PayPal payment.");
-      }
+      const result = await orderArticle(formData).unwrap(); // Call the RTK Query mutation
+      navigate(`/dashboard/articledetails/${result.id}`); // Redirect to Article Details page with article ID
     } catch (error) {
       console.error('Error submitting form:', error);
       alert("Failed to place the order. Please try again.");
-    }
-     finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -308,7 +285,7 @@ const OrderArticle = () => {
 
 
       <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? "Placing Order..." : "Order Article"}
+            {loading ? "Placing Order..." : "Place Order"}
           </button>
         </form>
       </div>
@@ -316,7 +293,7 @@ const OrderArticle = () => {
       <div className="hire-writer-side">
         <img src={writers} className="writers-image" alt="Hire Writers" />
         <div className="hire-writers">Hire a Professional Writer</div>
-        <p>Need top-notch content? Hire one of our expert writers to craft your perfect article.</p>
+        <p className="hire-writers-text">Need top-notch content? Hire one of our expert writers to craft your perfect article.</p>
         <button className="secondary">Hire a Writer</button>
       </div>
     </div>

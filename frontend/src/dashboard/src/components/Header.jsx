@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { Bell, LogOut } from 'lucide-react';
 import './Header.css';
 
 const Header = () => {
-    const [activePage, setActivePage] = useState('Wallet');
   const balance = 0.00; // This should be dynamically set in a real application
 
   return (
