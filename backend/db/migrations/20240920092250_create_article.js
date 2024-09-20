@@ -1,8 +1,8 @@
-// migrations/20240920121000_create_order_articles_table.js
+// migrations/20240920121000_create_create_article_table.js
 
 exports.up = function (knex) {
-    return knex.schema.createTable('order_article', (table) => {
-      table.increments('id').primary(); 
+    return knex.schema.createTable('create_article', (table) => {
+      table.increments('id').primary(); // Primary key
       table
         .integer('order_id')
         .unsigned()
@@ -18,6 +18,7 @@ exports.up = function (knex) {
       table.string('complexity').defaultTo('General'); // Complexity level
       table.string('language').defaultTo('American English'); // Language
       table.integer('quantity').unsigned().notNullable().defaultTo(1); // Quantity
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.decimal('cost', 10, 2).notNullable().defaultTo(50); // Cost of the article
       table
         .enu('status', ['Pending', 'Published', 'Completed', 'Processing', 'Deleted', 'Rejected'])
@@ -29,6 +30,6 @@ exports.up = function (knex) {
   };
   
   exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('order_article');
+    return knex.schema.dropTableIfExists('create_article');
   };
   

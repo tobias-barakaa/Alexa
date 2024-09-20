@@ -1,6 +1,63 @@
 const knex = require('../../db/db.js');
 
 // Create a new orderArticle
+// const orderArticle = async (req, res) => {
+//   const user_id = req.user?.userId;
+
+//   if (!user_id) {
+//     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+//   }
+
+//   // Check if the user exists in the users table
+//   const userExists = await knex('users').where({ id: user_id }).first();
+//   if (!userExists) {
+//     return res.status(400).json({ error: "Invalid user: User not found" });
+//   }
+
+//   const {
+//     title,
+//     description,
+//     keywords,
+//     word_count = "300 words",
+//     duration = "1 day",
+//     complexity = "General",
+//     language = "American English",
+//     quantity = 1,
+//     cost = 50.0,
+//     status = "Pending",
+//     is_paid = false,
+//   } = req.body;
+
+//   try {
+//     const [newOrderId] = await knex("create_article")
+//       .insert({
+//         title,
+//         description,
+//         keywords,
+//         word_count,
+//         duration,
+//         complexity,
+//         language,
+//         quantity,
+//         user_id,
+//         cost,
+//         status,
+//         is_paid,
+//       })
+//       .returning("id");
+
+//     res.status(201).json({
+//       message: "Order created successfully",
+//       orderId: newOrderId,
+//     });
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//     res.status(500).json({
+//       error: "Failed to create order",
+//     });
+//   }
+// };
+
 const orderArticle = async (req, res) => {
   const user_id = req.user?.userId;
 
@@ -18,19 +75,30 @@ const orderArticle = async (req, res) => {
     title,
     description,
     keywords,
-    word_count = "300 words",
-    duration = "1 day",
-    complexity = "General",
-    language = "American English",
-    quantity = 1,
-    cost = 50.0,
+    word_count = "500 words",
+    duration = "3 days",
+    complexity = "Expert",
+    language = "Canadian English",
+    quantity = 6,
+    cost = 510.00,
     status = "Pending",
     is_paid = false,
   } = req.body;
 
   try {
-    const [newOrderId] = await knex("order_articles")
+    // Create an order in the 'orders' table first
+    const [orderId] = await knex("create")
       .insert({
+        user_id, // Ensure you have user_id here
+        status: "Pending",
+        // Add other relevant fields for the 'orders' table
+      })
+      .returning("id");
+
+    // Use the generated 'orderId' when inserting into 'create_article'
+    const [newArticleId] = await knex("create_article")
+      .insert({
+        order_id: orderId, // Pass the correct 'order_id'
         title,
         description,
         keywords,
@@ -48,7 +116,7 @@ const orderArticle = async (req, res) => {
 
     res.status(201).json({
       message: "Order created successfully",
-      orderId: newOrderId,
+      articleId: newArticleId,
     });
   } catch (error) {
     console.error("Error creating order:", error);
@@ -57,6 +125,7 @@ const orderArticle = async (req, res) => {
     });
   }
 };
+
 
 
 
