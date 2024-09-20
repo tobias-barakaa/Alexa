@@ -1,18 +1,20 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetOrderByIdQuery, useGetPayPalClientIdQuery, usePayOrderMutation } from '../../../../slices/client/orderArticleApiSlice';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { DollarSign, FileText, Clock, Star, Globe, AlertCircle, Hash, Clipboard, Loader } from 'lucide-react';
 import './ArticleDetailsOrder.css';
-// import { useSelector } from 'react-redux';
 
 const ArticleDetailsOrder = () => {
   const { id } = useParams();
+  console.log('sounds ai', id)
   const { data: orderDetails, isLoading, isError, refetch } = useGetOrderByIdQuery(id);
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
-  // const { userInfo } = useSelector((state) => state.auth);
+
+  // Ensure orderDetails is available before destructuring
+  const order = orderDetails?.order;
 
   useEffect(() => {
     if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
@@ -28,16 +30,15 @@ const ArticleDetailsOrder = () => {
       };
       loadPaypalScript();
     }
-  }, [paypal, paypalDispatch, loadingPaypal, errorPaypal]);
+  }, [order, paypal, paypalDispatch, loadingPaypal, errorPaypal]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading article details.</div>;
 
-  if (!orderDetails || !orderDetails.order) {
+  // Check for orderDetails and order existence
+  if (!orderDetails || !order) {
     return <div>No order details found.</div>;
   }
-
-  const { order } = orderDetails;
 
   function createOrder(data, actions) {
     return actions.order.create({
@@ -50,19 +51,17 @@ const ArticleDetailsOrder = () => {
       ],
     }).then((orderId) => {
       return orderId;
-    })
+    });
   }
 
   function onApprove(data, actions) {
-    return actions.order.capture().then( async function(details) {
+    return actions.order.capture().then(async function (details) {
       try {
-        await payOrder({ orderId: order._id, details });
+        await payOrder({ orderId: order.id, details });
         refetch();
-        alert('payment success')
-        
+        alert('payment success');
       } catch (error) {
         console.error('PayPal Checkout onApprove error', error);
-        
       }
     });
   }
@@ -73,8 +72,7 @@ const ArticleDetailsOrder = () => {
 
   async function onApproveTest() {
     await payOrder({ orderId: order.id, details: { payer: 'test' } });
-    // Add test logic here
-    alert('success')
+    alert('success');
   }
 
   return (
@@ -136,10 +134,7 @@ const ArticleDetailsOrder = () => {
                   <Loader />
                 ) : (
                   <div>
-                    <button 
-                      onClick={onApproveTest}
-                      style={{ marginBottom: '10px' }}
-                    >
+                    <button onClick={onApproveTest} style={{ marginBottom: '10px' }}>
                       Test Pay Order
                     </button>
                     <PayPalButtons

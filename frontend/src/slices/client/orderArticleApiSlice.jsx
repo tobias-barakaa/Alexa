@@ -27,7 +27,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           method: 'PUT',
           body: {...details},
           credentials: 'include',
-        })
+        }),
       }),
       getPayPalClientId: builder.query({
         query: () => ({
