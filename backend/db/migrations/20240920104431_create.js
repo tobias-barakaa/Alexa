@@ -13,7 +13,7 @@ exports.up = function (knex) {
       table.string('title').notNullable(); // Title of the article
       table.text('description').notNullable(); // Description of the article
       table.string('keywords').notNullable(); // Keywords
-      table.string('word_count').defaultTo('300 words'); // Word count
+      table.string('word_count').defaultTo('300 words');
       table.string('duration').defaultTo('1 day'); // Duration
       table.string('complexity').defaultTo('General'); // Complexity level
       table.string('language').defaultTo('American English'); // Language
