@@ -156,7 +156,7 @@ const orderArticle = async (req, res) => {
   try {
     await knex.transaction(async trx => {
       // Insert into the order table and get the orderId
-      const [orderId] = await trx('order')
+      const [order] = await trx('order')
         .insert({
           user_id,
           cost,
@@ -165,8 +165,10 @@ const orderArticle = async (req, res) => {
         })
         .returning('id');
 
+      const orderId = order.id; // Ensure we extract the 'id' from the result
+
       // Insert into the create table (or articles table) using the same orderId
-      await trx('articles')  // Change 'articles' to your actual table name
+      await trx('create')  // Change 'create' to your actual table name
         .insert({
           title,
           description,
@@ -200,35 +202,40 @@ const orderArticle = async (req, res) => {
 
 
 const getOrderById = async (req, res) => {
-  const { id } = req.params; // Extract order ID from request parameters
-  const user_id = req.user?.userId; // Ensure the user is logged in
-
-  if (!user_id) {
-    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
-  }
+  const { id } = req.params;  // Assuming the ID is passed as a URL parameter
 
   try {
-    // Fetch the order from the 'order' table where the ID matches
-    const order = await knex('create')
-      .where({ id, user_id })
-      .first(); // Get the first matching row
+    // Query to get the order details
+    const order = await knex('order')
+      .where({ id })  // Search for the order by its ID
+      .first();  // Only return the first result, since ID is unique
 
     if (!order) {
-      return res.status(404).json({ error: 'Order not found' });
+      return res.status(404).json({ error: "Order not found" });
     }
 
-    // Respond with the order details
+    // Query to get the article or associated data using the order_id
+    const article = await knex('create')  // Replace 'create' with your actual table name if different
+      .where({ order_id: id })  // Matching order_id to retrieve associated data
+      .first();  // Assuming only one article per order
+
+    if (!article) {
+      return res.status(404).json({ error: "No associated article found for this order" });
+    }
+
+    // Return the combined data: order and article details
     res.status(200).json({
-      message: 'Order retrieved successfully',
       order,
+      article,
     });
   } catch (error) {
-    console.error('Error fetching order:', error);
+    console.error("Error fetching order:", error);
     res.status(500).json({
-      error: 'Failed to retrieve order',
+      error: "Failed to fetch order details",
     });
   }
 };
+
 
 
 const updateOrderToPaid = async (req, res) => {
