@@ -276,9 +276,11 @@ const getOrderById = async (req, res) => {
 
 const updateOrderToPaid = async (req, res) => {
   const { id } = req.params; // Order ID from URL
+  console.log(id, 'whats in the id')
   const { transactionId, payerId, status, email, amount } = req.body; // PayPal payment details
-  console.log(req.body)
+  console.log(req.body, 'whats in the body')
   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+  console.log(user_id, 'whats in the user_id')
 
   // Validate the ID and user ID
   if (!id || isNaN(Number(id))) {
@@ -294,7 +296,7 @@ const updateOrderToPaid = async (req, res) => {
     const order = await knex('order')
       .where({ id, user_id })
       .first();
-      console.log(order)
+      console.log(order, 'whats in the order');
 
     if (!order) {
       return res.status(404).json({ error: 'Order not found for this user' });
