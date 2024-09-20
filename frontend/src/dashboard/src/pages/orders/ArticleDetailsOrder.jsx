@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetOrderByIdQuery, useGetPayPalClientIdQuery, usePayOrderMutation } from '../../../../slices/client/orderArticleApiSlice';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -7,14 +7,15 @@ import './ArticleDetailsOrder.css';
 
 const ArticleDetailsOrder = () => {
   const { id } = useParams();
-  console.log('sounds ai', id)
-  const { data: orderDetails, isLoading, isError, refetch } = useGetOrderByIdQuery(id);
+  const { data: orderDetails, isLoading, isError } = useGetOrderByIdQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
 
-  // Ensure orderDetails is available before destructuring
-  const order = orderDetails?.order;
+  // Local state to manage order details
+  const [order, setOrder] = useState(orderDetails?.order);
 
   useEffect(() => {
     if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
@@ -28,17 +29,24 @@ const ArticleDetailsOrder = () => {
         });
         paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
       };
-      loadPaypalScript();
+      if (order && !order.is_paid) {
+        if (!window.paypal) {
+          loadPaypalScript();
+        }
+      }
     }
   }, [order, paypal, paypalDispatch, loadingPaypal, errorPaypal]);
 
+  useEffect(() => {
+    // Update the local state when orderDetails changes
+    if (orderDetails?.order) {
+      setOrder(orderDetails.order);
+    }
+  }, [orderDetails]);
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading article details.</div>;
-
-  // Check for orderDetails and order existence
-  if (!orderDetails || !order) {
-    return <div>No order details found.</div>;
-  }
+  if (!order) return <div>No order details found.</div>;
 
   function createOrder(data, actions) {
     return actions.order.create({
@@ -49,17 +57,21 @@ const ArticleDetailsOrder = () => {
           },
         },
       ],
-    }).then((orderId) => {
-      return orderId;
-    });
+    }).then((orderId) => orderId);
   }
 
-  function onApprove(data, actions) {
+  async function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
+        // Perform the mutation and update the order status locally
         await payOrder({ orderId: order.id, details });
-        refetch();
-        alert('payment success');
+        // Update local state to reflect the payment success without needing refetch
+        setOrder((prevOrder) => ({
+          ...prevOrder,
+          is_paid: true,
+          status: 'Completed', // Or any other status
+        }));
+        alert('Payment success');
       } catch (error) {
         console.error('PayPal Checkout onApprove error', error);
       }
@@ -71,8 +83,18 @@ const ArticleDetailsOrder = () => {
   }
 
   async function onApproveTest() {
-    await payOrder({ orderId: order.id, details: { payer: 'test' } });
-    alert('success');
+    try {
+      await payOrder({ orderId: order.id, details: { payer: 'test' } });
+      // Update local state after test payment
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        is_paid: true,
+        status: 'Completed', // Update the status accordingly
+      }));
+      alert('Test payment success');
+    } catch (error) {
+      console.error('Test payment error', error);
+    }
   }
 
   return (

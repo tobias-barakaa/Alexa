@@ -28,6 +28,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           body: {...details},
           credentials: 'include',
         }),
+        invalidatesTags: ['Order']
+
       }),
       getPayPalClientId: builder.query({
         query: () => ({
