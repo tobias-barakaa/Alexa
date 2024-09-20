@@ -1,4 +1,5 @@
-const knex = require("../../db/db.js");
+const knex = require('../../db/db.js');
+
 const {hashPassword, comparePassword} = require("../../utils/client/passwordUtiles.js");
 const { createJWT } = require("../../utils/client/tokenUtils.js");
 const nodemailer = require('nodemailer');

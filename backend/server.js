@@ -12,7 +12,7 @@ const writerRoute = require('./routes/writer/writerRoute');
 const adminWritersRoute = require('./routes/admin/adminWritersRoute');
 const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
 //upload
-const uploadRoute = require('./routes/admin/uploadRoute');
+// const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
 
 // Resume CV Writing
@@ -69,14 +69,16 @@ app.use('/api/writer/fill-profile', writerAccountProfileRoute);
 // Admin
 
 //Blog Route
-app.use('/api/file/image', uploadRoute);
 
 // client file Route Download
 
 app.use('/api/file/url', fileRoute);
 
 // Order 
-app.use('/api/article', orderArticleRoute);
+app.use('/api/order', orderArticleRoute);
+
+app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
+
 
 
 // 404 handler
@@ -85,6 +87,7 @@ app.use((req, res, next) => {
 });
 
 // upload file
+
 
 // Global error handler
 app.use((err, req, res, next) => {

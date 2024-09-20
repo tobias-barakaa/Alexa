@@ -1,4 +1,6 @@
-const knex = require('../../db/db');
+const knex = require('../../db/db.js');
+
+
 
 const fillWriterProfile = async (req, res) => {
     const { bio, profile_pic, specializations, years_of_experience, samples, contact } = req.body;

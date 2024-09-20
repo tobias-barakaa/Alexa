@@ -1,4 +1,5 @@
-const knex = require("../../db/db.js");
+const knex = require('../../db/db.js');
+
 const jwt = require('jsonwebtoken');
 
 const protectAdmin = async (req, res, next) => {

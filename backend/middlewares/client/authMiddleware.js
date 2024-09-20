@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const knex = require("../../db/db.js");
+const knex = require('../../db/db.js');
+
+
 const { verifyJWT } = require('../../utils/client/tokenUtils.js');
 
 

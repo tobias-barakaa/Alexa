@@ -1,4 +1,6 @@
-const knex = require("../../db/db.js");
+const knex = require('../../db/db.js');
+
+
 const axios = require("axios");
 const cloudinary = require('../../utils/cloudinary.js')
 
