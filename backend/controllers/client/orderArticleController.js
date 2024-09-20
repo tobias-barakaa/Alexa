@@ -201,41 +201,91 @@ const orderArticle = async (req, res) => {
 
 
 
+
+
 const getOrderById = async (req, res) => {
-  const { id } = req.params;  // Assuming the ID is passed as a URL parameter
+  const { id } = req.params; // Extract order ID from request parameters
+  const user_id = req.user?.userId; // Ensure the user is logged in
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
 
   try {
-    // Query to get the order details
+    // Fetch the order from the 'order' table where the ID matches
     const order = await knex('order')
-      .where({ id })  // Search for the order by its ID
-      .first();  // Only return the first result, since ID is unique
+      .where({ id, user_id })
+      .first(); // Get the first matching row
 
     if (!order) {
-      return res.status(404).json({ error: "Order not found" });
+      return res.status(404).json({ error: 'Order not found' });
     }
 
-    // Query to get the article or associated data using the order_id
-    const article = await knex('create')  // Replace 'create' with your actual table name if different
-      .where({ order_id: id })  // Matching order_id to retrieve associated data
-      .first();  // Assuming only one article per order
+    // Fetch the associated articles from the 'create' table where the order_id matches the order
+    const articles = await knex('create')
+      .where({ order_id: id })
+      .andWhere({ user_id });
 
-    if (!article) {
-      return res.status(404).json({ error: "No associated article found for this order" });
-    }
-
-    // Return the combined data: order and article details
+    // Respond with the order details along with the associated articles
     res.status(200).json({
+      message: 'Order retrieved successfully',
       order,
-      article,
+      articles,  // Return the associated articles
     });
   } catch (error) {
-    console.error("Error fetching order:", error);
+    console.error('Error fetching order:', error);
     res.status(500).json({
-      error: "Failed to fetch order details",
+      error: 'Failed to retrieve order',
     });
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const getOrderById = async (req, res) => {
+//   const { id } = req.params; // Extract order ID from request parameters
+//   const user_id = req.user?.userId; // Ensure the user is logged in
+
+//   if (!user_id) {
+//     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+//   }
+
+//   try {
+//     // Fetch the order from the 'order' table where the ID matches
+//     const order = await knex('create')
+//       .where({ id, user_id })
+//       .first(); // Get the first matching row
+
+//     if (!order) {
+//       return res.status(404).json({ error: 'Order not found' });
+//     }
+
+//     // Respond with the order details
+//     res.status(200).json({
+//       message: 'Order retrieved successfully',
+//       order,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching order:', error);
+//     res.status(500).json({
+//       error: 'Failed to retrieve order',
+//     });
+//   }
+// };
 
 
 const updateOrderToPaid = async (req, res) => {
