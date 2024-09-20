@@ -1,7 +1,7 @@
 // migrations/20240920121000_create_order_articles_table.js
 
 exports.up = function (knex) {
-    return knex.schema.createTable('order_articles', (table) => {
+    return knex.schema.createTable('order_article', (table) => {
       table.increments('id').primary(); // Primary key
       table
         .integer('order_id')
@@ -29,6 +29,6 @@ exports.up = function (knex) {
   };
   
   exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('order_articles');
+    return knex.schema.dropTableIfExists('order_article');
   };
   
