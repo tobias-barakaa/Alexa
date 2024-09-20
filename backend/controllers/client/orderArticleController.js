@@ -1,62 +1,62 @@
 const knex = require('../../db/db.js');
 
 // Create a new orderArticle
-const orderArticle = async (req, res) => {
-  const user_id = req.user?.userId;
+// const orderArticle = async (req, res) => {
+//   const user_id = req.user?.userId;
 
-  if (!user_id) {
-    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
-  }
+//   if (!user_id) {
+//     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+//   }
 
-  // Check if the user exists in the users table
-  const userExists = await knex('users').where({ id: user_id }).first();
-  if (!userExists) {
-    return res.status(400).json({ error: "Invalid user: User not found" });
-  }
+//   // Check if the user exists in the users table
+//   const userExists = await knex('users').where({ id: user_id }).first();
+//   if (!userExists) {
+//     return res.status(400).json({ error: "Invalid user: User not found" });
+//   }
 
-  const {
-    title,
-    description,
-    keywords,
-    word_count = "300 words",
-    duration = "1 day",
-    complexity = "General",
-    language = "American English",
-    quantity = 1,
-    cost = 50.0,
-    status = "Pending",
-    is_paid = false,
-  } = req.body;
+//   const {
+//     title,
+//     description,
+//     keywords,
+//     word_count = "300 words",
+//     duration = "1 day",
+//     complexity = "General",
+//     language = "American English",
+//     quantity = 1,
+//     cost = 50.0,
+//     status = "Pending",
+//     is_paid = false,
+//   } = req.body;
 
-  try {
-    const [newOrderId] = await knex("create")
-      .insert({
-        title,
-        description,
-        keywords,
-        word_count,
-        duration,
-        complexity,
-        language,
-        quantity,
-        user_id,
-        cost,
-        status,
-        is_paid,
-      })
-      .returning("id");
+//   try {
+//     const [newOrderId] = await knex("create")
+//       .insert({
+//         title,
+//         description,
+//         keywords,
+//         word_count,
+//         duration,
+//         complexity,
+//         language,
+//         quantity,
+//         user_id,
+//         cost,
+//         status,
+//         is_paid,
+//       })
+//       .returning("id");
 
-    res.status(201).json({
-      message: "Order created successfully",
-      orderId: newOrderId,
-    });
-  } catch (error) {
-    console.error("Error creating order:", error);
-    res.status(500).json({
-      error: "Failed to create order",
-    });
-  }
-};
+//     res.status(201).json({
+//       message: "Order created successfully",
+//       orderId: newOrderId,
+//     });
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//     res.status(500).json({
+//       error: "Failed to create order",
+//     });
+//   }
+// };
 
 // const orderArticle = async (req, res) => {
 //   const user_id = req.user?.userId;
@@ -126,6 +126,76 @@ const orderArticle = async (req, res) => {
 //   }
 // };
 
+const orderArticle = async (req, res) => {
+  const user_id = req.user?.userId;
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
+  // Optional: Check if the user exists in the users table
+  const userExists = await knex('users').where({ id: user_id }).first();
+  if (!userExists) {
+    return res.status(400).json({ error: "Invalid user: User not found" });
+  }
+
+  const {
+    title,
+    description,
+    keywords,
+    word_count = "300 words",
+    duration = "1 day",
+    complexity = "General",
+    language = "American English",
+    quantity = 1,
+    cost = 50.0,
+    status = "Pending",
+    is_paid = false,
+  } = req.body;
+
+  try {
+    await knex.transaction(async trx => {
+      // Insert into the order table and get the orderId
+      const [orderId] = await trx('order')
+        .insert({
+          user_id,
+          cost,
+          status,
+          is_paid,
+        })
+        .returning('id');
+
+      // Insert into the create table (or articles table) using the same orderId
+      await trx('articles')  // Change 'articles' to your actual table name
+        .insert({
+          title,
+          description,
+          keywords,
+          word_count,
+          duration,
+          complexity,
+          language,
+          quantity,
+          user_id,
+          cost,
+          order_id: orderId, // Using the same orderId from the 'order' table
+          status,
+          is_paid,
+        });
+
+      res.status(201).json({
+        message: "Order created successfully",
+        orderId: orderId,  // Returning the same orderId
+      });
+    });
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({
+      error: "Failed to create order",
+    });
+  }
+};
+
 
 
 
@@ -139,7 +209,7 @@ const getOrderById = async (req, res) => {
 
   try {
     // Fetch the order from the 'order' table where the ID matches
-    const order = await knex('order_articles')
+    const order = await knex('create')
       .where({ id, user_id })
       .first(); // Get the first matching row
 
@@ -163,7 +233,8 @@ const getOrderById = async (req, res) => {
 
 const updateOrderToPaid = async (req, res) => {
   const { id } = req.params; // Order ID from URL
-  const { transactionId, payerId, status, email, amount } = req.body.details; // PayPal payment details
+  const { transactionId, payerId, status, email, amount } = req.body; // PayPal payment details
+  console.log(req.body)
   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
 
   // Validate the ID and user ID
@@ -180,6 +251,7 @@ const updateOrderToPaid = async (req, res) => {
     const order = await knex('order')
       .where({ id, user_id })
       .first();
+      console.log(order)
 
     if (!order) {
       return res.status(404).json({ error: 'Order not found for this user' });
