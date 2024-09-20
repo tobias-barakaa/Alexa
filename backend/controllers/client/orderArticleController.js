@@ -155,20 +155,8 @@ const orderArticle = async (req, res) => {
 
   try {
     await knex.transaction(async trx => {
-      // Insert into the order table and get the orderId
-      const [order] = await trx('order')
-        .insert({
-          user_id,
-          cost,
-          status,
-          is_paid,
-        })
-        .returning('id');
-
-      const orderId = order.id; // Ensure we extract the 'id' from the result
-
-      // Insert into the create table (or articles table) using the same orderId
-      await trx('create')  // Change 'create' to your actual table name
+      // Insert into the 'create' table (which stores articles)
+      const [article] = await trx('create')
         .insert({
           title,
           description,
@@ -180,23 +168,26 @@ const orderArticle = async (req, res) => {
           quantity,
           user_id,
           cost,
-          order_id: orderId, // Using the same orderId from the 'order' table
           status,
           is_paid,
-        });
+        })
+        .returning('id'); // Return the ID of the inserted article
+
+      const articleId = article.id; // Ensure we extract the 'id' from the result
 
       res.status(201).json({
-        message: "Order created successfully",
-        orderId: orderId,  // Returning the same orderId
+        message: "Article created successfully",
+        articleId: articleId,  // Returning the article ID
       });
     });
   } catch (error) {
-    console.error("Error creating order:", error);
+    console.error("Error creating article:", error);
     res.status(500).json({
-      error: "Failed to create order",
+      error: "Failed to create article",
     });
   }
 };
+
 
 
 
@@ -204,7 +195,7 @@ const orderArticle = async (req, res) => {
 
 
 const getOrderById = async (req, res) => {
-  const { id } = req.params; // Extract order ID from request parameters
+  const { id } = req.params; // Extract article ID from request parameters
   const user_id = req.user?.userId; // Ensure the user is logged in
 
   if (!user_id) {
@@ -212,33 +203,28 @@ const getOrderById = async (req, res) => {
   }
 
   try {
-    // Fetch the order from the 'order' table where the ID matches
-    const order = await knex('order')
+    // Fetch the article from the 'create' table where the ID matches
+    const article = await knex('create')
       .where({ id, user_id })
       .first(); // Get the first matching row
 
-    if (!order) {
-      return res.status(404).json({ error: 'Order not found' });
+    if (!article) {
+      return res.status(404).json({ error: 'Article not found' });
     }
 
-    // Fetch the associated articles from the 'create' table where the order_id matches the order
-    const articles = await knex('create')
-      .where({ order_id: id })
-      .andWhere({ user_id });
-
-    // Respond with the order details along with the associated articles
+    // Respond with the article details
     res.status(200).json({
-      message: 'Order retrieved successfully',
-      order,
-      articles,  // Return the associated articles
+      message: 'Article retrieved successfully',
+      article, // Return the article
     });
   } catch (error) {
-    console.error('Error fetching order:', error);
+    console.error('Error fetching article:', error);
     res.status(500).json({
-      error: 'Failed to retrieve order',
+      error: 'Failed to retrieve article',
     });
   }
 };
+
 
 
 
