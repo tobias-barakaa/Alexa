@@ -1,5 +1,5 @@
 const express = require('express');
-const { orderArticle, getOrderById, updateOrderToPaid, updatePaidOrdersToProcessing, getUserArticles, getUserArticlesByCount } = require('../../controllers/client/orderArticleController');
+const { orderArticle, getOrderById, updateOrderToPaid, updatePaidOrdersToProcessing, getUserArticles, getUserArticlesByCount, countPendingProjects, countProcessingProjects, countPublishedProjects } = require('../../controllers/client/orderArticleController');
 // const { protect } = require('../../middlewares/client/authMiddleware');
 const { protect } = require('../../middlewares/client/authMiddleware.js');
 const { validateOrderArticle } = require('../../dataValidation/orderArticle.js');
@@ -16,6 +16,10 @@ router.put('/articles/:id/pay', protect, updateOrderToPaid);
 router.put('/update-paid-to-processing', updatePaidOrdersToProcessing);
 router.get('/userarticles', protect, getUserArticles);
 router.get('/count', protect, getUserArticlesByCount);
+
+router.get('/countpending', protect, countPendingProjects);
+router.get('/countcompleted', protect, countProcessingProjects);
+router.get('/countprocessing', protect, countPublishedProjects);
 
 
 module.exports = router;
