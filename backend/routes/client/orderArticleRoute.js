@@ -8,14 +8,14 @@ require('dotenv').config();
 const router = express();
 
 router.post('/articles',validateOrderArticle, protect, orderArticle);
-router.get('/articles/:id', protect, getOrderById);
+router.get('/articles/getone/:id', protect, getOrderById);
 // router.get('/success', successPage);
 // router.get('/cancel', cancelPage);
 router.put('/articles/:id/pay', protect, updateOrderToPaid);
 // router.put('/articles/')
-router.put('/articles/update-paid-to-processing', updatePaidOrdersToProcessing);
-router.get('/articles/userorders', protect, getUserArticles);
-router.get('/articles/count', protect, getUserArticlesByCount);
+router.put('/update-paid-to-processing', updatePaidOrdersToProcessing);
+router.get('/userarticles', protect, getUserArticles);
+router.get('/count', protect, getUserArticlesByCount);
 
 
 module.exports = router;
