@@ -481,9 +481,8 @@ const getUserArticles = async (req, res) => {
 
 const getUserArticlesByCount = async (req, res) => {
   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
-  console.log(user_id, 'Logged-in user ID');
 
-  // Validate the user_id
+  // Validate the user_id to make sure it's a valid integer
   if (!user_id || isNaN(user_id)) {
     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
   }
@@ -491,7 +490,7 @@ const getUserArticlesByCount = async (req, res) => {
   try {
     // Fetch all articles created by the user
     const userArticles = await knex('create')
-      .where({ user_id })
+      .where({ user_id }) // Ensure user_id is correctly queried as an integer
       .select('*');
 
     // Check if no articles were found
@@ -513,6 +512,7 @@ const getUserArticlesByCount = async (req, res) => {
     });
   }
 };
+
 
 
 
