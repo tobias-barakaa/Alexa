@@ -111,12 +111,90 @@ const getOrderById = async (req, res) => {
 
 
 
+// const updateOrderToPaid = async (req, res) => {
+//   const { id } = req.params; // Order ID from URL
+//   console.log(id, 'whats in the id');
+  
+//   const { transactionId, payerId, status, email, amount } = req.body; // PayPal payment details
+//   console.log(req.body, 'whats in the body');
+  
+//   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+//   console.log(user_id, 'whats in the user_id');
+
+//   // Validate the ID and user ID
+//   if (!id || isNaN(Number(id))) {
+//     return res.status(400).json({ error: 'Invalid order ID' });
+//   }
+
+//   if (!user_id || isNaN(user_id)) {
+//     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+//   }
+
+//   // Ensure the payment status is completed
+//   if (status !== 'COMPLETED') {
+//     return res.status(400).json({ error: 'Payment status is not completed' });
+//   }
+
+//   try {
+//     // Use a transaction to update both `create` and `order` tables atomically
+//     const updatedOrder = await knex.transaction(async (trx) => {
+//       // Check if the order exists in the `create` table
+//       const orderInCreateTable = await trx('create')
+//         .where({ id, user_id })
+//         .first();
+//       console.log(orderInCreateTable, 'whats in the create table order');
+
+//       if (!orderInCreateTable) {
+//         throw new Error('Order not found for this user in create table');
+//       }
+
+//       // Update the `create` table if necessary (you can customize this as needed)
+//       await trx('create')
+//         .where({ id, user_id })
+//         .update({
+//           // Any fields you want to update in the `create` table
+//           is_paid: true, // Example field
+//           status: 'Processing',
+//           updated_at: trx.fn.now(),
+//         });
+
+//       // Update the `order` table
+//       const updatedOrderInOrderTable = await trx('order')
+//         .where({ id, user_id })
+//         .update({
+//           is_paid: true,
+//           status: 'Completed',
+//           paypal_transaction_id: transactionId,
+//           paypal_payer_id: payerId,
+//           payer_email: email,
+//           paypal_amount: amount,
+//           updated_at: trx.fn.now(),
+//         })
+//         .returning('*'); // Return the updated order
+
+//       // Return the updated order from the `order` table
+//       return updatedOrderInOrderTable[0];
+//     });
+
+//     res.status(200).json({
+//       message: 'Order updated successfully',
+//       order: updatedOrder,
+//     });
+//   } catch (error) {
+//     console.error('Error updating order:', error);
+//     res.status(500).json({
+//       error: 'Failed to update order',
+//       details: error.message, // For debugging purposes
+//     });
+//   }
+// };
+
 const updateOrderToPaid = async (req, res) => {
   const { id } = req.params; // Order ID from URL
   console.log(id, 'whats in the id');
   
   const { transactionId, payerId, status, email, amount } = req.body; // PayPal payment details
-  console.log(req.body, 'whats in the body');
+  console.log(req.body, 'whats in the body...........................');
   
   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
   console.log(user_id, 'whats in the user_id');
@@ -136,7 +214,7 @@ const updateOrderToPaid = async (req, res) => {
   }
 
   try {
-    // Use a transaction to update both `create` and `order` tables atomically
+    // Start transaction
     const updatedOrder = await knex.transaction(async (trx) => {
       // Check if the order exists in the `create` table
       const orderInCreateTable = await trx('create')
@@ -148,18 +226,18 @@ const updateOrderToPaid = async (req, res) => {
         throw new Error('Order not found for this user in create table');
       }
 
-      // Update the `create` table if necessary (you can customize this as needed)
+      // Update the `create` table
       await trx('create')
         .where({ id, user_id })
         .update({
-          // Any fields you want to update in the `create` table
-          is_paid: true, // Example field
+          is_paid: true, // Mark the order as paid
           status: 'Processing',
           updated_at: trx.fn.now(),
         });
 
+
       // Update the `order` table
-      const updatedOrderInOrderTable = await trx('order')
+      const updatedOrderInOrderTable = await trx('order') // Ensure table name is correct
         .where({ id, user_id })
         .update({
           is_paid: true,
@@ -171,6 +249,8 @@ const updateOrderToPaid = async (req, res) => {
           updated_at: trx.fn.now(),
         })
         .returning('*'); // Return the updated order
+
+      console.log(updatedOrderInOrderTable, 'whats in the updated order in the order table');
 
       // Return the updated order from the `order` table
       return updatedOrderInOrderTable[0];
