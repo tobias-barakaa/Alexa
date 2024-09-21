@@ -43,9 +43,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         keepUnusedDataFor: 5,
       }),
-      getCompletedOrdersByCount: builder.query({
+      getPublishedOrdersByCount: builder.query({
         query: () => ({
-          url: `${ORDER_URL}/countcompleted`,
+          url: `${ORDER_URL}/countpublished/count`,
           credentials: 'include',
         }),
         keepUnusedDataFor: 5,
@@ -86,6 +86,6 @@ export const {
   useGetUserOrdersQuery,
   useGetUserOrdersByCountQuery,
   useGetPendingOrdersByCountQuery,
-  useGetCompletedOrdersByCountQuery,
+  useGetPublishedOrdersByCountQuery,
   useGetProcessingOrdersByCountQuery,
 } = usersApiSlice;

@@ -5,13 +5,17 @@ import complete from '../../../../../frontend/src/client/src/assets/images/compl
 import hand from '../../../../../frontend/src/client/src/assets/images/hand.png';
 import adjust from '../../../../../frontend/src/client/src/assets/images/adjust.png';
 import agenda from '../../../../../frontend/src/client/src/assets/images/agenda.png';
-import { useGetCompletedOrdersByCountQuery, useGetPendingOrdersByCountQuery, useGetProcessingOrdersByCountQuery, useGetUserOrdersByCountQuery } from '../../../slices/client/orderArticleApiSlice';
+import { useGetPendingOrdersByCountQuery, useGetProcessingOrdersByCountQuery, useGetPublishedOrdersByCountQuery, useGetUserOrdersByCountQuery } from '../../../slices/client/orderArticleApiSlice';
 
 const Home = () => {
   const { data: countDetails, error, isLoading } = useGetUserOrdersByCountQuery();
   const { data: pendingbyCount, error: isPendingError, isLoading: isLoadingPendingError } = useGetPendingOrdersByCountQuery();
-  const { data: processingByCount, error: isProcessingError, isLoading: isLoadingProcessingError } = useGetProcessingOrdersByCountQuery();
-  const { data: published, error: isPublishedError, isLoading: isLoadingPublishedError } = useGetPub();
+  const { data: processingByCount, error: isProcessingError, isLoading: isLoadingProcessingError } = useGetProcessingOrdersByCountQuery(
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
+  const { data: published, error: isPublishedError, isLoading: isLoadingPublishedError } = useGetPublishedOrdersByCountQuery();
 
 
   // Check for loading and errors
@@ -25,25 +29,26 @@ const Home = () => {
     return <div style={{ margin: 'auto' }}>...</div>;
   }
 
+  if (isPublishedError) {
+    return <div style={{ margin: 'auto' }}>...</div>;
+  }
+
   if (error) {
-    console.error('Error fetching count details:', error);
     return <div>Error fetching data</div>;
   }
 
   if (isLoadingPendingError) {
-    console.error('Error fetching count details:', error);
     return <div>Error fetching data</div>;
   }
 
   if (isLoadingProcessingError) {
-    console.error('Error fetching count details:', error);
     return <div>Error fetching data</div>;
   }
 
-  // Check if countDetails exist before logging
-  console.log(countDetails, 'count details');
-  console.log(pendingbyCount, 'pending count');
-  console.log(processingByCount, 'processing count');
+  if (isLoadingPublishedError) {
+    return <div>Error fetching data</div>;
+  }
+
 
   return (
     <>
@@ -71,7 +76,7 @@ const Home = () => {
         <div className="home-box" style={{ backgroundColor: '#ffffff' }}>
         <span className="icon"><img style={{ width: "70px", height: "70px" }} src={adjust} alt="adjust" /></span>
           <span className="title">Published</span>
-          <span className="number">{</span>
+          <span className="number">{published.count}</span>
         </div>
       </div>
       <section className="recent-activity">
