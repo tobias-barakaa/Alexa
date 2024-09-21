@@ -94,8 +94,7 @@ const OrderArticle = () => {
 
     try {
       const result = await orderArticle(formData).unwrap(); // Call the RTK Query mutation
-      console.log(result, 'this is the result')
-      navigate(`/dashboard/articledetails/${result.orderId.id}`); // Redirect to Article Details page with article ID
+      navigate(`/dashboard/articledetails/${result.articleId}`); // Redirect to Article Details page with article ID
     } catch (error) {
       console.error('Error submitting form:', error);
       alert("Failed to place the order. Please try again.");

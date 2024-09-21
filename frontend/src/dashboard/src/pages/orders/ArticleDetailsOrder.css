@@ -40,15 +40,31 @@
     color: #3498db;
   }
   
-  .status-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-  }
+  /* General badge style */
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+}
+
+/* Specific style for 'Paid' status */
+.status-paid {
+  background-color: #28a745; /* Green for 'Paid' */
+}
+
+/* Optional: you can add hover effects or transitions */
+.status-badge:hover {
+  opacity: 0.9;
+}
+
+.status-badge.transition {
+  transition: background-color 0.3s ease;
+}
+
   
   .status-pending {
     background-color: #ffeaa7;

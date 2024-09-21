@@ -6,7 +6,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     
     orderArticle: builder.mutation({
         query: (details) => ({
-          url: `${ORDER_URL}`,
+          url: `${ORDER_URL}/articles`,
           method: 'POST',
           body: {...details},
          credentials: 'include',
@@ -15,15 +15,51 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       getOrderById: builder.query({
         query: (id) => ({
-            url: `${ORDER_URL}/${id}`,
+            url: `${ORDER_URL}/articles/getone/${id}`,
             credentials: "include",
 
         }),
         keepUnusedDataFor: 5,
       }),
+      getUserOrders: builder.query({
+        query: () => ({
+          url: `${ORDER_URL}/userorders`,
+          credentials: 'include',
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getUserOrdersByCount: builder.query({
+        query: () => ({
+          url: `${ORDER_URL}/count`,
+          credentials: 'include',
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getPendingOrdersByCount: builder.query({
+        query: () => ({
+          url: `${ORDER_URL}/countpending`,
+          credentials: 'include',
+        
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getCompletedOrdersByCount: builder.query({
+        query: () => ({
+          url: `${ORDER_URL}/countcompleted`,
+          credentials: 'include',
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getProcessingOrdersByCount: builder.query({
+        query: () => ({
+          url: `${ORDER_URL}/countprocessing`,
+          credentials: 'include',
+        }),
+        keepUnusedDataFor: 5,
+      }),
       payOrder: builder.mutation({
         query: ({orderId, details}) => ({
-          url: `${ORDER_URL}/${orderId}/pay`,
+          url: `${ORDER_URL}/articles/${orderId}/pay`,
           method: 'PUT',
           body: {...details},
           credentials: 'include',
@@ -37,7 +73,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
           credentials: 'include',
         }),
         keepUnusedDataFor: 5,
-      })
+      }),
+
     }),
 });
 
@@ -45,5 +82,10 @@ export const {
   useOrderArticleMutation,
   useGetOrderByIdQuery, 
   usePayOrderMutation,
-  useGetPayPalClientIdQuery
+  useGetPayPalClientIdQuery,
+  useGetUserOrdersQuery,
+  useGetUserOrdersByCountQuery,
+  useGetPendingOrdersByCountQuery,
+  useGetCompletedOrdersByCountQuery,
+  useGetProcessingOrdersByCountQuery,
 } = usersApiSlice;
