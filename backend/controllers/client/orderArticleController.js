@@ -190,18 +190,19 @@ const getOrderById = async (req, res) => {
 // };
 
 const updateOrderToPaid = async (req, res) => {
-  const { id } = req.params; // Order ID from URL
+  const { id } = req.params; // Article ID from URL
+  
   console.log(id, 'whats in the id');
   
   const { transactionId, payerId, status, email, amount } = req.body; // PayPal payment details
-  console.log(req.body, 'whats in the body...........................');
+  console.log(req.body, 'whats in the body');
   
-  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
-  console.log(user_id, 'whats in the user_id');
+  const user_id = req.user.userId; // Access userId directly
+  console.log(user_id, 'whats in the user_id after accessing');
 
   // Validate the ID and user ID
   if (!id || isNaN(Number(id))) {
-    return res.status(400).json({ error: 'Invalid order ID' });
+    return res.status(400).json({ error: 'Invalid article ID' });
   }
 
   if (!user_id || isNaN(user_id)) {
@@ -214,51 +215,35 @@ const updateOrderToPaid = async (req, res) => {
   }
 
   try {
-    // Start transaction
-    const updatedOrder = await knex.transaction(async (trx) => {
-      // Check if the order exists in the `create` table
-      const orderInCreateTable = await trx('create')
-        .where({ id, user_id })
-        .first();
-      console.log(orderInCreateTable, 'whats in the create table order');
+    // Insert a new order in the order table
+    const [newOrder] = await knex('order').insert({
+      user_id,
+      paypal_transaction_id: transactionId,
+      paypal_payer_id: payerId,
+      payer_email: email,
+      paypal_amount: amount,
+      cost: amount, // Set the cost as the amount
+      status: 'Completed', // Set initial status
+      is_paid: true, // Mark as paid
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    }).returning('*'); // Return the new order
 
-      if (!orderInCreateTable) {
-        throw new Error('Order not found for this user in create table');
-      }
+    console.log(newOrder, 'whats in the new order');
 
-      // Update the `create` table
-      await trx('create')
-        .where({ id, user_id })
-        .update({
-          is_paid: true, // Mark the order as paid
-          status: 'Processing',
-          updated_at: trx.fn.now(),
-        });
-
-
-      // Update the `order` table
-      const updatedOrderInOrderTable = await trx('order') // Ensure table name is correct
-        .where({ id, user_id })
-        .update({
-          is_paid: true,
-          status: 'Completed',
-          paypal_transaction_id: transactionId,
-          paypal_payer_id: payerId,
-          payer_email: email,
-          paypal_amount: amount,
-          updated_at: trx.fn.now(),
-        })
-        .returning('*'); // Return the updated order
-
-      console.log(updatedOrderInOrderTable, 'whats in the updated order in the order table');
-
-      // Return the updated order from the `order` table
-      return updatedOrderInOrderTable[0];
-    });
+    // Update the `create` table
+    await knex('create')
+      .where({ id }) // Use the article ID
+      .update({
+        is_paid: true, // Mark the article as paid
+        status: 'Processing', // Or any other status you need
+        order_id: newOrder.id, // Save the new order ID in the `create` table
+        updated_at: knex.fn.now(),
+      });
 
     res.status(200).json({
-      message: 'Order updated successfully',
-      order: updatedOrder,
+      message: 'Order inserted and article updated successfully',
+      order: newOrder,
     });
   } catch (error) {
     console.error('Error updating order:', error);
@@ -268,6 +253,10 @@ const updateOrderToPaid = async (req, res) => {
     });
   }
 };
+
+
+
+
 
 
 
