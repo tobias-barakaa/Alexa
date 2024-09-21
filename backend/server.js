@@ -15,6 +15,9 @@ const writerAccountProfileRoute = require('./routes/writer/writerAccountRoute');
 // const uploadRoute = require('./routes/admin/uploadRoute');
 const fileRoute = require('./routes/client/fileRoute');
 
+// wallet
+const walletRoute = require('./routes/wallet/userWalletRoute');
+
 // Resume CV Writing
 
 // Email Copy Writing
@@ -79,7 +82,8 @@ app.use('/api/order', orderArticleRoute);
 
 app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
 
-
+//wallet
+app.use('/api/wallet', walletRoute);
 
 // 404 handler
 app.use((req, res, next) => {
