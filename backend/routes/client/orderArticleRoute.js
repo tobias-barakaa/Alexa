@@ -18,8 +18,8 @@ router.get('/userarticles', protect, getUserArticles);
 router.get('/count', protect, getUserArticlesByCount);
 
 router.get('/countpending', protect, countPendingProjects);
-router.get('/countcompleted', protect, countProcessingProjects);
-router.get('/countprocessing', protect, countPublishedProjects);
+router.get('/countprocessing', protect, countProcessingProjects);
+router.get('/countpublished/count', protect, countPublishedProjects);
 
 
 module.exports = router;

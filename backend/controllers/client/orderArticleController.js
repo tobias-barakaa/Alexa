@@ -295,9 +295,17 @@ const getUserArticlesByCount = async (req, res) => {
 
 // Function to count projects with status "pending"
 const countPendingProjects = async (req, res) => {
+  // Assuming userId is passed through req.user
+  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+
+  // Validate the user_id
+  if (!user_id || isNaN(user_id)) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
   try {
     const count = await knex('create')
-      .where({ status: 'pending' })
+      .where({ status: 'Pending', user_id }) // Filter by status and user_id
       .count('id as count'); // Counting the number of projects
 
     res.status(200).json({
@@ -313,12 +321,23 @@ const countPendingProjects = async (req, res) => {
   }
 };
 
+
 // Function to count projects with status "processing"
 const countProcessingProjects = async (req, res) => {
+  // Assuming userId is passed through req.user
+  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+
+  // Validate the user_id
+  if (!user_id || isNaN(user_id)) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
   try {
     const count = await knex('create')
-      .where({ status: 'processing' })
+      .where({ status: 'Processing', user_id }) // Filter by status and user_id
       .count('id as count'); // Counting the number of projects
+
+    console.log(count, 'what in the count');
 
     res.status(200).json({
       message: 'Processing projects count retrieved successfully',
@@ -333,11 +352,20 @@ const countProcessingProjects = async (req, res) => {
   }
 };
 
+
 // Function to count projects with status "published"
 const countPublishedProjects = async (req, res) => {
+  // Assuming userId is passed through req.user
+  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+
+  // Validate the user_id
+  if (!user_id || isNaN(user_id)) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
   try {
     const count = await knex('create')
-      .where({ status: 'published' })
+      .where({ status: 'Published', user_id }) // Filter by status and user_id
       .count('id as count'); // Counting the number of projects
 
     res.status(200).json({
@@ -352,6 +380,7 @@ const countPublishedProjects = async (req, res) => {
     });
   }
 };
+
 
 
 
