@@ -5,7 +5,7 @@ const { getUserOrders } = require('../../controllers/wallet/userWalletController
 
 const router = express.Router();
 
-router.post('/usertransactions',protect, getUserOrders);
+router.get('/usertransactions',protect, getUserOrders);
 
 
 
