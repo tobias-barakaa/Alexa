@@ -448,66 +448,39 @@ const updatePaidOrdersToProcessing = async (req, res) => {
 
 const getUserArticles = async (req, res) => {
   const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
+  console.log('Logged-in user ID:', user_id); // Log to inspect the value
+
+};
+
+
+
+
+
+const getUserArticlesByCount = async (req, res) => {
+  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
   console.log(user_id, 'Logged-in user ID');
 
   // Validate the user_id
   if (!user_id || isNaN(user_id)) {
     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
   }
-
-  try {
-    // Fetch articles only created by the logged-in user
-    const userArticles = await knex('create') // Assuming 'create' is the table for articles
-      .where({ user_id })
-      .select('*'); // Fetch all columns (or specify only the needed ones)
-
-    if (userArticles.length === 0) {
-      return res.status(404).json({ message: 'No articles found for this user' });
-    }
-
-    res.status(200).json({
-      message: 'User articles retrieved successfully',
-      articles: userArticles,
-    });
-  } catch (error) {
-    console.error('Error fetching user articles:', error);
-    res.status(500).json({
-      error: 'Failed to fetch user articles',
-      details: error.message,
-    });
-  }
-};
-
-
-const getUserArticlesByCount = async (req, res) => {
-  const user_id = parseInt(req.user?.userId, 10); // Ensure user_id is an integer
-
-  // Validate the user_id to make sure it's a valid integer
-  if (!user_id || isNaN(user_id)) {
-    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
-  }
   
   try {
-    // Fetch all articles created by the user
-    const userArticles = await knex('create')
-      .where({ user_id }) // Ensure user_id is correctly queried as an integer
-      .select('*');
+    // Fetch the count of articles created by the user
+    const userArticlesCount = await knex('create')
+      .where({ user_id })
+      .count('id as count') // Count the number of articles for the user
+      .first(); // Get the first result (as it returns an array)
 
-    // Check if no articles were found
-    if (userArticles.length === 0) {
-      return res.status(404).json({ message: 'No articles found for this user' });
-    }
-
-    // Return the articles and the total count
+    // Return the count
     res.status(200).json({
-      message: 'Articles retrieved successfully',
-      count: userArticles.length,  // Total number of articles
-      articles: userArticles,       // Article data
+      message: 'Articles count retrieved successfully',
+      count: userArticlesCount.count, // Return only the count
     });
   } catch (error) {
-    console.error('Error fetching user articles:', error);
+    console.error('Error fetching article count:', error);
     res.status(500).json({
-      error: 'Failed to fetch articles',
+      error: 'Failed to fetch article count',
       details: error.message,
     });
   }
@@ -619,7 +592,6 @@ const getUserArticlesByCount = async (req, res) => {
 //     });
 //   }
 // }
-
 
 
 module.exports = {
