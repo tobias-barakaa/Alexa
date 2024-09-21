@@ -28,6 +28,7 @@ const orderArticle = async (req, res) => {
     status = "Pending",
     is_paid = false,
   } = req.body;
+  console.log(req.body)
 
   try {
     await knex.transaction(async trx => {
@@ -47,7 +48,8 @@ const orderArticle = async (req, res) => {
           status,
           is_paid,
         })
-        .returning('id'); // Return the ID of the inserted article
+        .returning('id'); 
+        console.log(article, 'whats in the article');
 
       const articleId = article.id; // Ensure we extract the 'id' from the result
 
@@ -454,6 +456,30 @@ const countPublishedProjects = async (req, res) => {
 
 
 
+const getAllArticles = async (req, res) => {
+  try {
+    // Retrieve all articles from the `create` table
+    const articles = await knex('create')
+      .select('*'); // You can select specific fields if needed
+
+    // Get the count of articles
+    const articleCount = articles.length;
+
+    res.status(200).json({
+      message: 'Articles retrieved successfully',
+      count: articleCount,
+      articles,
+    });
+  } catch (error) {
+    console.error('Error retrieving articles:', error);
+    res.status(500).json({
+      error: 'Failed to retrieve articles',
+      details: error.message, // For debugging purposes
+    });
+  }
+};
+
+
 
 
 
@@ -472,7 +498,8 @@ module.exports = {
   getUserArticlesByCount,
   countPendingProjects,
   countProcessingProjects,
-  countPublishedProjects
+  countPublishedProjects,
+  getAllArticles
 
 
 };
