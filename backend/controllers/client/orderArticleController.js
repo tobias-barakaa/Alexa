@@ -483,6 +483,37 @@ const getAllArticles = async (req, res) => {
 
 
 
+const fetchRecentArticles = async (req, res) => {
+  const user_id = req.user?.userId;
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
+  try {
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+
+    const recentArticles = await knex('create')
+      .where('created_at', '>', oneHourAgo)
+      .where('status', 'Pending')
+      .where('user_id', user_id)  // Add this line to filter by user_id
+      .select('id', 'title', 'description', 'created_at');
+
+    res.status(200).json({
+      message: "Recent articles fetched successfully",
+      articles: recentArticles
+    });
+  } catch (error) {
+    console.error("Error fetching recent articles:", error);
+    res.status(500).json({
+      error: "Failed to fetch recent articles"
+    });
+  }
+};
+
+
+
+
 
 
 
@@ -499,7 +530,9 @@ module.exports = {
   countPendingProjects,
   countProcessingProjects,
   countPublishedProjects,
-  getAllArticles
+  getAllArticles,
+  fetchRecentArticles
+  
 
 
 };
