@@ -20,6 +20,7 @@ import OrderArticle from './dashboard/src/pages/orders/OrderArticle';
 import PrivateRoute from './client/src/components/PrivateRoute';
 import ArticleDetailsOrder from './dashboard/src/pages/orders/ArticleDetailsOrder';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import  ClientWallet from './dashboard/src/pages/wallet/ClientWallet';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "articledetails/:id",
         element: <ArticleDetailsOrder />
+      },
+      {
+        path: "wallet",
+        element: <ClientWallet />
       },
       
    

@@ -104,8 +104,8 @@ const ArticleDetailsOrder = () => {
         console.log('API response from payOrder:', response);
   
         // Check for the success message from the backend
-        if (response?.data?.message === 'Order updated successfully') {
-          // Manually update the order state since the API does not return the updated order object
+        if (response?.data?.message === 'Order inserted and article updated successfully') {
+          // Manually update the order state
           setOrder((prevOrder) => ({
             ...prevOrder,
             is_paid: true,  // Update the order's payment status
@@ -113,6 +113,7 @@ const ArticleDetailsOrder = () => {
           }));
           alert('Payment success');
         } else {
+          console.error('Unexpected response structure:', response); // Log unexpected response
           throw new Error('Unexpected response from payment API');
         }
       } catch (error) {
@@ -121,6 +122,7 @@ const ArticleDetailsOrder = () => {
       }
     });
   }
+  
   
   
 
@@ -141,19 +143,18 @@ const ArticleDetailsOrder = () => {
           payerId: 'TESTPAYERID',
           status: 'COMPLETED',
           email: 'testpayer@example.com',
-          amount: order.cost,
+          amount: order.cost,  // Assuming order.cost is the amount for the test
         },
       });
   
-      console.log('API response from payOrder:', response); // Log the full response for debugging
+      console.log('API response from payOrder...........:', response); // Log the full response for debugging
   
       // Check if the response contains a success message
-      if (response?.data?.message === 'Order updated successfully') {
+      if (response?.data?.message === 'Order inserted and article updated successfully') {
         // Update the local order state manually if needed
         setOrder((prevOrder) => ({
           ...prevOrder,
           is_paid: true,  // Mark the order as paid
-          status: 'COMPLETED',  // Update the status if necessary
         }));
   
         alert('Test payment success');
@@ -168,10 +169,12 @@ const ArticleDetailsOrder = () => {
   }
   
   
+  
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading article details. Please try again later.</div>;
   if (!order) return <div>No order details found.</div>;
+  console.log(order, 'this is teh order....')
 
   return (
     <div className="article-details-container">
@@ -207,7 +210,7 @@ const ArticleDetailsOrder = () => {
         </div>
         <div className="detail-item">
           <AlertCircle size={20} />
-          <span className={`status-badge status-${order.status.toLowerCase()}`}>{order.status}</span>
+          <span className={`status-badge status-${order.status}`}>{order.status}</span>
         </div>
       </div>
 

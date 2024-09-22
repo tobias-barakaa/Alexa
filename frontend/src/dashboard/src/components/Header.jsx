@@ -1,5 +1,6 @@
 import { Bell, LogOut } from 'lucide-react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const balance = 0.00; // This should be dynamically set in a real application
@@ -9,37 +10,11 @@ const Header = () => {
       <header className="header">
         <div className="logo">en.writers</div>
         <nav className="nav-menu">
-          {/* <ul>
-            <li 
-              onClick={() => setActivePage('Wallet')} 
-              className={activePage === 'Wallet' ? 'active' : ''}
-            >
-              Wallet
-            </li>
-            <li 
-              onClick={() => setActivePage('Settings')} 
-              className={activePage === 'Settings' ? 'active' : ''}
-            >
-              Settings
-            </li>
-            <li 
-              onClick={() => setActivePage('Support')} 
-              className={activePage === 'Support' ? 'active' : ''}
-            >
-              Support
-            </li>
-            <li 
-              onClick={() => setActivePage('Profile')} 
-              className={activePage === 'Profile' ? 'active' : ''}
-            >
-              Profile
-            </li>
-          </ul> */}
         </nav>
         <div className="header-actions">
-          <div className="balance">
+          <Link to="/dashboard/wallet" className="balance">
             Balance: <span>${balance.toFixed(2)}</span>
-          </div>
+          </Link>
           <button className="notification-btn">
             <Bell size={20} />
           </button>
