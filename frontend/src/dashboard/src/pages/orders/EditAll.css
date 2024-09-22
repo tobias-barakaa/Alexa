@@ -2,14 +2,11 @@
     --primary-color: #3498db;
     --primary-gradient: linear-gradient(45deg, #3498db, #2980b9);
     --secondary-color: #2ecc71;
-    --secondary-gradient: linear-gradient(45deg, #2ecc71, #27ae60);
     --warning-color: #f39c12;
     --danger-color: #e74c3c;
     --danger-gradient: linear-gradient(45deg, #e74c3c, #c0392b);
     --text-color: #333;
-    --background-color: #f4f4f4;
     --card-background: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
   }
   
   .sophisticated-article-list {
@@ -21,14 +18,13 @@
   }
   
   .warning-banner {
-    background-color: var(--warning-color);
-    color: white;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
     padding: 15px;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    text-align: center;
     font-weight: bold;
   }
   
@@ -67,6 +63,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px var(--shadow-color);
     transform: translateY(0);
+    border: 1px solid #e0e0e0;
   }
   
   .article-card:hover {

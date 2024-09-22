@@ -1,34 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './EditAll.css';
-
-const dummyData = [
-  {
-    "id": 92,
-    "title": "Ad porro exercitatio",
-    "description": "Tempora veniam haru",
-    "keywords": "Dolores non earum qu",
-    "word_count": "1000 words",
-    "duration": "2 months",
-    "complexity": "Advanced",
-    "language": "American English",
-    "quantity": 6,
-    "cost": "600.00",
-    "status": "Pending",
-    "is_paid": false,
-    "created_at": "2024-09-22T06:11:48.428Z"
-  },
-  // Add more dummy data here...
-];
+import { useGetRecentArticlesQuery } from '../../../../slices/client/orderArticleApiSlice';
 
 const EditAll = () => {
   const [articles, setArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
+  const { data: articlesData, isLoading, error } = useGetRecentArticlesQuery();
+
   useEffect(() => {
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 10000);
-    const filteredArticles = dummyData.filter(article => new Date(article.created_at) > oneHourAgo);
-    setArticles(filteredArticles);
-  }, []);
+    if (articlesData) {
+      console.log(articlesData); // Log the articlesData to inspect its structure
+
+      // Handle recent and expired articles separately
+      const recentArticles = articlesData.recentArticles || [];
+      const expiredArticles = articlesData.expiredArticles || [];
+
+      // Combine both recent and expired articles
+      const allArticles = [...recentArticles, ...expiredArticles];
+
+      // Now apply the filter to the correct array
+      if (Array.isArray(allArticles)) {
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+        const filteredArticles = allArticles.filter(article => new Date(article.created_at) > oneHourAgo || article.status === 'Expired');
+        setArticles(filteredArticles);
+      }
+    }
+  }, [articlesData]); // Only runs when articlesData changes
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching articles</div>;
 
   const handleEdit = (id) => {
     console.log('Edit article with id:', id);
@@ -44,6 +45,7 @@ const EditAll = () => {
     setSelectedArticle(selectedArticle === id ? null : id);
   };
 
+  console.log(articles, 'this is articles'); 
   return (
     <div className="sophisticated-article-list">
       <div className="warning-banner">
@@ -60,12 +62,11 @@ const EditAll = () => {
           {articles.map((article) => (
             <div key={article.id} className={`article-card ${selectedArticle === article.id ? 'expanded' : ''}`}>
               <div className="article-header" onClick={() => toggleArticleDetails(article.id)}>
-                <h2>{article.title}</h2>
-                <i className={`fas fa-chevron-${selectedArticle === article.id ? 'up' : 'down'}`}></i>
+                <h2 style={{ color: "white" }}>{article.title}</h2>
               </div>
               <div className="article-content">
-                <p><strong>Description:</strong> {article.description}</p>
-                <p><strong>Keywords:</strong> {article.keywords}</p>
+                <p><strong>Description:</strong> {article?.description}</p>
+                <p><strong>Keywords:</strong> {article?.keywords}</p>
                 <p><strong>Word Count:</strong> {article.word_count}</p>
                 <p><strong>Duration:</strong> {article.duration}</p>
                 <p><strong>Complexity:</strong> {article.complexity}</p>
