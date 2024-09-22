@@ -513,19 +513,18 @@ const getAllArticles = async (req, res) => {
 
 const fetchRecentArticles = async (req, res) => {
   const user_id = req.user?.userId;
+  console.log(user_id, 'whats in the user_id');
 
   if (!user_id) {
     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
   }
 
   try {
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000); // Current time minus one hour
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString(); // One hour ago
 
-    // Fetch all relevant article details created within the last hour with status 'Pending'
-    const recentArticles = await knex('create')
-      .where('created_at', '>', oneHourAgo)  // Articles created within the last hour
-      .andWhere('status', 'Pending')         // Only fetch articles with 'Pending' status
-      .andWhere('user_id', user_id)          // Filter by the current user's ID
+    // Fetch all articles by this user, regardless of creation time
+    const allArticles = await knex('create')
+      .where('user_id', user_id)
       .select(
         'id', 
         'title', 
@@ -540,24 +539,37 @@ const fetchRecentArticles = async (req, res) => {
         'status', 
         'is_paid', 
         'created_at'
-      );  // Selecting all relevant columns
+      );
 
-    if (recentArticles.length === 0) {
-      return res.status(404).json({ message: 'No recent articles found' });
+    // Separate recent and expired articles
+    const recentArticles = allArticles.filter(article => new Date(article.created_at) > new Date(oneHourAgo));
+    const expiredArticles = allArticles.filter(article => new Date(article.created_at) <= new Date(oneHourAgo));
+
+    // If no recent or expired articles found
+    if (recentArticles.length === 0 && expiredArticles.length === 0) {
+      return res.status(404).json({ message: 'No articles found for this user' });
     }
 
-    // Respond with the list of recent articles
+    // Send response with recent articles and expired articles with the additional expired flag
     res.status(200).json({
-      message: "Recent articles fetched successfully",
-      articles: recentArticles
+      message: "Articles fetched successfully",
+      recentArticles,
+      expiredArticles: expiredArticles.map(article => ({
+        ...article,
+        expired: 'Expired' // Add 'expired' field to expired articles
+      }))
     });
   } catch (error) {
-    console.error("Error fetching recent articles:", error);
+    console.error("Error fetching articles:", error);
     res.status(500).json({
-      error: "Failed to fetch recent articles"
+      error: "Failed to fetch articles"
     });
   }
 };
+
+
+
+
 
 
 const editArticle = async (req, res) => {
@@ -631,6 +643,51 @@ const editArticle = async (req, res) => {
   }
 };
 
+const getRecentArticleById = async (req, res) => {
+  const user_id = req.user?.userId;
+  const articleId = req.params.id; 
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
+  try {
+    const userExists = await knex('users').where({ id: user_id }).first();
+    if (!userExists) {
+      return res.status(400).json({ error: "Invalid user: User not found" });
+    }
+
+    // Fetch the article by ID
+    const article = await knex('create')
+      .where({
+        id: articleId,
+        user_id: user_id
+      })
+      .first();
+
+    if (!article) {
+      return res.status(404).json({ error: 'Article not found' });
+    }
+
+    // Check if the article is editable (within one hour of creation)
+    const createdAt = new Date(article.created_at);
+    const oneHourLater = new Date(createdAt.getTime() + 60 * 60 * 1000);
+    const isEditable = new Date() < oneHourLater;
+
+    // Respond with the article and whether it's editable
+    res.status(200).json({
+      message: 'Article fetched successfully',
+      article,
+      isEditable,
+    });
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    res.status(500).json({
+      error: "Failed to fetch article",
+    });
+  }
+};
+
 
 
 
@@ -650,7 +707,8 @@ module.exports = {
   countPublishedProjects,
   getAllArticles,
   fetchRecentArticles,
-  editArticle
+  editArticle,
+  getRecentArticleById
   
 
 
