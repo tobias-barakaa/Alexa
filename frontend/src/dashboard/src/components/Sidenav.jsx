@@ -19,11 +19,14 @@ const Sidenav = () => {
           </li>
          
 
+         
+
           <li>
-            <a href="#">
-              <Newspaper className="icon-menu" />
+            <Link to="/dashboard/editall">
+            <Newspaper className="icon-menu" />
+
               <span>Edit Requests</span>
-            </a>
+            </Link>
           </li>
 
           <li>
