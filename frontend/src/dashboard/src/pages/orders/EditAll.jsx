@@ -22,11 +22,10 @@ const dummyData = [
 
 const EditAll = () => {
   const [articles, setArticles] = useState([]);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   useEffect(() => {
-    // In a real application, you would fetch data from an API here
-    // For now, we'll use the dummy data and filter for articles created within the last hour
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 10000);
     const filteredArticles = dummyData.filter(article => new Date(article.created_at) > oneHourAgo);
     setArticles(filteredArticles);
   }, []);
@@ -41,33 +40,52 @@ const EditAll = () => {
     // Implement delete functionality
   };
 
+  const toggleArticleDetails = (id) => {
+    setSelectedArticle(selectedArticle === id ? null : id);
+  };
+
   return (
-    <div className="article-list-container">
-      <div className="warning-message">
-        Warning: Articles can only be Edited or Deleted within an hour after they were created
+    <div className="sophisticated-article-list">
+      <div className="warning-banner">
+        <i className="fas fa-exclamation-triangle"></i>
+        <p>Articles can only be Edited or Deleted within an hour after creation</p>
       </div>
       {articles.length === 0 ? (
-        <p className="no-articles">No articles found within the last hour.</p>
+        <div className="no-articles">
+          <i className="fas fa-folder-open"></i>
+          <p>No recent articles found</p>
+        </div>
       ) : (
-        articles.map((article) => (
-          <div key={article.id} className="article-card">
-            <h2>{article.title}</h2>
-            <p><strong>Description:</strong> {article.description}</p>
-            <p><strong>Keywords:</strong> {article.keywords}</p>
-            <p><strong>Word Count:</strong> {article.word_count}</p>
-            <p><strong>Duration:</strong> {article.duration}</p>
-            <p><strong>Complexity:</strong> {article.complexity}</p>
-            <p><strong>Language:</strong> {article.language}</p>
-            <p><strong>Quantity:</strong> {article.quantity}</p>
-            <p><strong>Cost:</strong> ${article.cost}</p>
-            <p><strong>Status:</strong> {article.status}</p>
-            <p><strong>Paid:</strong> {article.is_paid ? 'Yes' : 'No'}</p>
-            <div className="button-group">
-              <button onClick={() => handleEdit(article.id)} className="edit-button">Edit</button>
-              <button onClick={() => handleDelete(article.id)} className="delete-button">Delete</button>
+        <div className="article-grid">
+          {articles.map((article) => (
+            <div key={article.id} className={`article-card ${selectedArticle === article.id ? 'expanded' : ''}`}>
+              <div className="article-header" onClick={() => toggleArticleDetails(article.id)}>
+                <h2>{article.title}</h2>
+                <i className={`fas fa-chevron-${selectedArticle === article.id ? 'up' : 'down'}`}></i>
+              </div>
+              <div className="article-content">
+                <p><strong>Description:</strong> {article.description}</p>
+                <p><strong>Keywords:</strong> {article.keywords}</p>
+                <p><strong>Word Count:</strong> {article.word_count}</p>
+                <p><strong>Duration:</strong> {article.duration}</p>
+                <p><strong>Complexity:</strong> {article.complexity}</p>
+                <p><strong>Language:</strong> {article.language}</p>
+                <p><strong>Quantity:</strong> {article.quantity}</p>
+                <p><strong>Cost:</strong> ${article.cost}</p>
+                <p><strong>Status:</strong> <span className={`status ${article.status.toLowerCase()}`}>{article.status}</span></p>
+                <p><strong>Paid:</strong> <span className={`paid ${article.is_paid ? 'yes' : 'no'}`}>{article.is_paid ? 'Yes' : 'No'}</span></p>
+              </div>
+              <div className="article-actions">
+                <button onClick={() => handleEdit(article.id)} className="edit-button">
+                  <i className="fas fa-edit"></i> Edit
+                </button>
+                <button onClick={() => handleDelete(article.id)} className="delete-button">
+                  <i className="fas fa-trash-alt"></i> Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );

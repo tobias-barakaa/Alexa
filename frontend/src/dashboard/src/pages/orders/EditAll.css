@@ -1,130 +1,189 @@
-/* Container for the whole article list */
-.article-list-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    background-color: #f9f9fb;
-    min-height: 100vh;
+:root {
+    --primary-color: #3498db;
+    --primary-gradient: linear-gradient(45deg, #3498db, #2980b9);
+    --secondary-color: #2ecc71;
+    --secondary-gradient: linear-gradient(45deg, #2ecc71, #27ae60);
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --danger-gradient: linear-gradient(45deg, #e74c3c, #c0392b);
+    --text-color: #333;
+    --background-color: #f4f4f4;
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
   }
   
-  /* Warning message styling */
-  .warning-message {
-    background-color: #ffefc2;
-    color: #8a6d3b;
-    border: 1px solid #faebcc;
-    border-radius: 5px;
-    padding: 15px 20px;
-    font-size: 16px;
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* No articles found message */
-  .no-articles {
-    font-size: 18px;
-    color: #333;
-    margin-top: 20px;
-    text-align: center;
-    font-style: italic;
-  }
-  
-  /* Article card container */
-  .article-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  .sophisticated-article-list {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    width: 100%;
-    max-width: 800px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
   }
   
-  /* Title of each article */
-  .article-card h2 {
+  .warning-banner {
+    background-color: var(--warning-color);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    font-weight: bold;
+  }
+  
+  .warning-banner i {
+    margin-right: 10px;
     font-size: 24px;
-    color: #078BC8;
-    margin-bottom: 15px;
   }
   
-  /* Article details */
-  .article-card p {
-    font-size: 16px;
-    color: #555;
-    margin: 5px 0;
+  .no-articles {
+    text-align: center;
+    color: var(--text-color);
+    font-style: italic;
+    padding: 40px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: box-shadow 0.3s ease-in-out;
   }
   
-  /* Bold styling for field names */
-  .article-card p strong {
-    color: #333;
+  .no-articles i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
   }
   
-  /* Button group */
-  .button-group {
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .article-card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transform: translateY(0);
+  }
+  
+  .article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+  }
+  
+  .article-header {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .article-header:hover {
+    background-color: #2980b9;
+  }
+  
+  .article-header h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .article-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    display: block;  /* Ensure content is always visible */
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .article-content p {
+    margin: 10px 0;
+    color: var(--text-color);
+  }
+  
+  .status, .paid {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .status.pending { background-color: var(--warning-color); color: white; }
+  .status.completed { background-color: var(--secondary-color); color: white; }
+  
+  .paid.yes { background-color: var(--secondary-color); color: white; }
+  .paid.no { background-color: var(--danger-color); color: white; }
+  
+  .article-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
-    gap: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
   }
   
-  /* Edit button styling */
-  .edit-button {
-    background-color: #078BC8;
-    color: #fff;
-    border: none;
+  .edit-button, .delete-button {
     padding: 10px 20px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .edit-button {
+    background-image: var(--primary-gradient);
+    color: white;
+    margin-right: 15px;
+    box-shadow: 0 2px 6px var(--shadow-color);
   }
   
   .edit-button:hover {
-    background-color: #056fa1;
+    background-image: linear-gradient(45deg, #2980b9, #1c658c);
+    transform: scale(1.05);
   }
   
-  /* Delete button styling */
   .delete-button {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    background-image: var(--danger-gradient);
+    color: white;
+    box-shadow: 0 2px 6px var(--shadow-color);
   }
   
   .delete-button:hover {
-    background-color: #d32f2f;
+    background-image: linear-gradient(45deg, #c0392b, #992d22);
+    transform: scale(1.05);
   }
   
-  /* Article card hover effect */
-  .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  .edit-button i, .delete-button i {
+    margin-right: 8px;
   }
   
-  /* Responsive Design */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
   @media (max-width: 768px) {
-    .article-card {
-      padding: 15px;
-      max-width: 100%;
+    .article-grid {
+      grid-template-columns: 1fr;
     }
   
-    .warning-message {
-      padding: 10px 15px;
-      font-size: 14px;
+    .article-actions {
+      flex-direction: column;
     }
   
     .edit-button, .delete-button {
-      padding: 8px 15px;
-      font-size: 14px;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+      justify-content: center;
     }
   }
   
