@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useGetRecentArticleByIdQuery } from '../../../../slices/client/orderArticleApiSlice';
-// import { userParams } from '../../../../../../backend/db/db';
 import './EditArticle.css'; // Import the CSS file
 import { useParams } from 'react-router-dom';
 
 const EditArticle = () => {
-  const { articleId } = useParams();
-  console.log(articleId, 'articleId');
-  const { article, loading, error } = useGetRecentArticleByIdQuery(articleId);
+  const { id } = useParams();
+  const { data: article, isLoading: loading, error } = useGetRecentArticleByIdQuery(id); 
   const [formData, setFormData] = useState({});
   const [isEditable, setIsEditable] = useState(true);
 
@@ -28,12 +26,11 @@ const EditArticle = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Typically, send the updated formData to your API
     console.log('Submitting updated article:', formData);
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {error.message}</div>;
   if (!article) return <div>No article found</div>;
 
   return (
