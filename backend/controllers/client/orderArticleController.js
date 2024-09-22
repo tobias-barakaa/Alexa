@@ -483,6 +483,34 @@ const getAllArticles = async (req, res) => {
 
 
 
+// const fetchRecentArticles = async (req, res) => {
+//   const user_id = req.user?.userId;
+
+//   if (!user_id) {
+//     return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+//   }
+
+//   try {
+//     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+
+//     const recentArticles = await knex('create')
+//       .where('created_at', '>', oneHourAgo)
+//       .where('status', 'Pending')
+//       .where('user_id', user_id) 
+//       .select('id', 'title', 'description', 'created_at');
+
+//     res.status(200).json({
+//       message: "Recent articles fetched successfully",
+//       articles: recentArticles
+//     });
+//   } catch (error) {
+//     console.error("Error fetching recent articles:", error);
+//     res.status(500).json({
+//       error: "Failed to fetch recent articles"
+//     });
+//   }
+// };
+
 const fetchRecentArticles = async (req, res) => {
   const user_id = req.user?.userId;
 
@@ -491,14 +519,34 @@ const fetchRecentArticles = async (req, res) => {
   }
 
   try {
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000); // Current time minus one hour
 
+    // Fetch all relevant article details created within the last hour with status 'Pending'
     const recentArticles = await knex('create')
-      .where('created_at', '>', oneHourAgo)
-      .where('status', 'Pending')
-      .where('user_id', user_id)  // Add this line to filter by user_id
-      .select('id', 'title', 'description', 'created_at');
+      .where('created_at', '>', oneHourAgo)  // Articles created within the last hour
+      .andWhere('status', 'Pending')         // Only fetch articles with 'Pending' status
+      .andWhere('user_id', user_id)          // Filter by the current user's ID
+      .select(
+        'id', 
+        'title', 
+        'description', 
+        'keywords', 
+        'word_count', 
+        'duration', 
+        'complexity', 
+        'language', 
+        'quantity', 
+        'cost', 
+        'status', 
+        'is_paid', 
+        'created_at'
+      );  // Selecting all relevant columns
 
+    if (recentArticles.length === 0) {
+      return res.status(404).json({ message: 'No recent articles found' });
+    }
+
+    // Respond with the list of recent articles
     res.status(200).json({
       message: "Recent articles fetched successfully",
       articles: recentArticles
@@ -512,6 +560,76 @@ const fetchRecentArticles = async (req, res) => {
 };
 
 
+const editArticle = async (req, res) => {
+  const user_id = req.user?.userId;
+  const { articleId } = req.params;  // Assuming the article ID is passed as a URL parameter
+
+  if (!user_id) {
+    return res.status(401).json({ error: 'Unauthorized: User must be logged in' });
+  }
+
+  try {
+    // Fetch the article
+    const article = await knex('create')
+      .where({ id: articleId, user_id })
+      .first();
+
+    if (!article) {
+      return res.status(404).json({ error: 'Article not found or you do not have permission to edit it' });
+    }
+
+    // Check if the article was created within the last hour
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    if (new Date(article.created_at) < oneHourAgo) {
+      return res.status(403).json({ error: 'Edit time has expired. Articles can only be edited within one hour of creation' });
+    }
+
+    // If we've made it this far, we can proceed with the edit
+    const {
+      title,
+      description,
+      keywords,
+      word_count,
+      duration,
+      complexity,
+      language,
+      quantity,
+      cost,
+      status,
+      is_paid,
+    } = req.body;
+
+    // Update the article
+    const updatedArticle = await knex('create')
+      .where({ id: articleId })
+      .update({
+        title,
+        description,
+        keywords,
+        word_count,
+        duration,
+        complexity,
+        language,
+        quantity,
+        cost,
+        status,
+        is_paid,
+        // Note: We're not updating user_id or created_at
+      })
+      .returning('*');
+
+    res.status(200).json({
+      message: "Article updated successfully",
+      article: updatedArticle[0]
+    });
+
+  } catch (error) {
+    console.error("Error editing article:", error);
+    res.status(500).json({
+      error: "Failed to edit article",
+    });
+  }
+};
 
 
 
@@ -531,7 +649,8 @@ module.exports = {
   countProcessingProjects,
   countPublishedProjects,
   getAllArticles,
-  fetchRecentArticles
+  fetchRecentArticles,
+  editArticle
   
 
 
