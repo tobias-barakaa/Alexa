@@ -22,6 +22,7 @@ import ArticleDetailsOrder from './dashboard/src/pages/orders/ArticleDetailsOrde
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import  ClientWallet from './dashboard/src/pages/wallet/ClientWallet';
 import EditAll from './dashboard/src/pages/orders/EditAll';
+import EditArticle from './dashboard/src/pages/orders/EditArticle';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "editall",
         element: <EditAll />
+      },
+      {
+        path: "edit-article/:id",
+        element: <EditArticle />
       },
       
    

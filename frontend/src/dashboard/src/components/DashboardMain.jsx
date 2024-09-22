@@ -4,7 +4,7 @@ import Home from './Home';
 
 const DashboardMain = () => {
   return (
-    <div className="dashboard-main">
+    <div className="dashboard-mai">
       <Home />
     </div>
   );

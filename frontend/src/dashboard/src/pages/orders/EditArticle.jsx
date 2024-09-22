@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useFetchArticleBeforeAnHourEnds } from './hooks/useFetchArticleBeforeAnHourEnds';
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import { useGetRecentArticleByIdQuery } from '../../../../slices/client/orderArticleApiSlice';
+// import { userParams } from '../../../../../../backend/db/db';
+import './EditArticle.css'; // Import the CSS file
+import { useParams } from 'react-router-dom';
 
-const EditArticle = ({ articleId }) => {
-  const { article, loading, error } = useFetchArticleBeforeAnHourEnds(articleId);
+const EditArticle = () => {
+  const { articleId } = useParams();
+  console.log(articleId, 'articleId');
+  const { article, loading, error } = useGetRecentArticleByIdQuery(articleId);
   const [formData, setFormData] = useState({});
   const [isEditable, setIsEditable] = useState(true);
 
@@ -23,12 +23,12 @@ const EditArticle = ({ articleId }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the updated formData to your API
+    // Typically, send the updated formData to your API
     console.log('Submitting updated article:', formData);
   };
 
@@ -37,15 +37,15 @@ const EditArticle = ({ articleId }) => {
   if (!article) return <div>No article found</div>;
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <h2 className="text-2xl font-bold">Edit Article</h2>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="title">Title</Label>
-            <Input
+    <div className="edit-article-container">
+      <div className="header">
+        <h2>Edit Article</h2>
+      </div>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="title">Title</label>
+            <input
               id="title"
               name="title"
               value={formData.title || ''}
@@ -53,9 +53,9 @@ const EditArticle = ({ articleId }) => {
               disabled={!isEditable}
             />
           </div>
-          <div>
-            <Label htmlFor="description">Description</Label>
-            <Textarea
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <textarea
               id="description"
               name="description"
               value={formData.description || ''}
@@ -63,9 +63,9 @@ const EditArticle = ({ articleId }) => {
               disabled={!isEditable}
             />
           </div>
-          <div>
-            <Label htmlFor="keywords">Keywords</Label>
-            <Input
+          <div className="form-group">
+            <label htmlFor="keywords">Keywords</label>
+            <input
               id="keywords"
               name="keywords"
               value={formData.keywords || ''}
@@ -73,10 +73,10 @@ const EditArticle = ({ articleId }) => {
               disabled={!isEditable}
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="word_count">Word Count</Label>
-              <Input
+          <div className="form-grid">
+            <div className="form-group">
+              <label htmlFor="word_count">Word Count</label>
+              <input
                 id="word_count"
                 name="word_count"
                 value={formData.word_count || ''}
@@ -84,9 +84,9 @@ const EditArticle = ({ articleId }) => {
                 disabled={!isEditable}
               />
             </div>
-            <div>
-              <Label htmlFor="duration">Duration</Label>
-              <Input
+            <div className="form-group">
+              <label htmlFor="duration">Duration</label>
+              <input
                 id="duration"
                 name="duration"
                 value={formData.duration || ''}
@@ -95,10 +95,10 @@ const EditArticle = ({ articleId }) => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="complexity">Complexity</Label>
-              <Input
+          <div className="form-grid">
+            <div className="form-group">
+              <label htmlFor="complexity">Complexity</label>
+              <input
                 id="complexity"
                 name="complexity"
                 value={formData.complexity || ''}
@@ -106,9 +106,9 @@ const EditArticle = ({ articleId }) => {
                 disabled={!isEditable}
               />
             </div>
-            <div>
-              <Label htmlFor="language">Language</Label>
-              <Input
+            <div className="form-group">
+              <label htmlFor="language">Language</label>
+              <input
                 id="language"
                 name="language"
                 value={formData.language || ''}
@@ -117,10 +117,10 @@ const EditArticle = ({ articleId }) => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="quantity">Quantity</Label>
-              <Input
+          <div className="form-grid">
+            <div className="form-group">
+              <label htmlFor="quantity">Quantity</label>
+              <input
                 id="quantity"
                 name="quantity"
                 type="number"
@@ -129,9 +129,9 @@ const EditArticle = ({ articleId }) => {
                 disabled={!isEditable}
               />
             </div>
-            <div>
-              <Label htmlFor="cost">Cost</Label>
-              <Input
+            <div className="form-group">
+              <label htmlFor="cost">Cost</label>
+              <input
                 id="cost"
                 name="cost"
                 type="number"
@@ -142,9 +142,9 @@ const EditArticle = ({ articleId }) => {
               />
             </div>
           </div>
-          <div>
-            <Label htmlFor="status">Status</Label>
-            <Input
+          <div className="form-group">
+            <label htmlFor="status">Status</label>
+            <input
               id="status"
               name="status"
               value={formData.status || ''}
@@ -152,28 +152,27 @@ const EditArticle = ({ articleId }) => {
               disabled={!isEditable}
             />
           </div>
-          <div className="flex items-center">
+          <div className="form-group checkbox-group">
             <input
               id="is_paid"
               name="is_paid"
               type="checkbox"
               checked={formData.is_paid || false}
-              onChange={(e) => setFormData(prev => ({ ...prev, is_paid: e.target.checked }))}
+              onChange={(e) => setFormData((prev) => ({ ...prev, is_paid: e.target.checked }))}
               disabled={!isEditable}
-              className="mr-2"
             />
-            <Label htmlFor="is_paid">Is Paid</Label>
+            <label htmlFor="is_paid">Is Paid</label>
+          </div>
+          <div className="footer">
+            {isEditable ? (
+              <button type="submit" className="save-button">Save Changes</button>
+            ) : (
+              <p className="error-message">Editing time has expired</p>
+            )}
           </div>
         </form>
-      </CardContent>
-      <CardFooter>
-        {isEditable ? (
-          <Button type="submit" onClick={handleSubmit}>Save Changes</Button>
-        ) : (
-          <p className="text-red-500">Editing time has expired</p>
-        )}
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 };
 

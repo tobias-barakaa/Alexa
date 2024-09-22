@@ -64,6 +64,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         keepUnusedDataFor: 5,
       }),
+      getRecentArticleById: builder.query({
+        query: (id) => ({
+          url: `${ORDER_URL}/article/edit/getone/${id}`,
+          credentials: 'include',
+        }),
+        keepUnusedDataFor: 5,
+      }),
       payOrder: builder.mutation({
         query: ({orderId, details}) => ({
           url: `${ORDER_URL}/articles/${orderId}/pay`,
@@ -96,4 +103,5 @@ export const {
   useGetPublishedOrdersByCountQuery,
   useGetProcessingOrdersByCountQuery,
   useGetRecentArticlesQuery,
+  useGetRecentArticleByIdQuery,
 } = usersApiSlice;
