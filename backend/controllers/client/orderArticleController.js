@@ -692,6 +692,106 @@ const getRecentArticleById = async (req, res) => {
 
 
 
+const editRequest = async (req, res) => {
+    const articleId = req.params.id;
+    const { title, description, keywords, word_count, duration, complexity, language, quantity, cost } = req.body;
+    
+    try {
+        // Fetch the existing article and order
+        const article = await knex('create').where('id', articleId).first();
+        if (!article) {
+            return res.status(404).json({ error: 'Article not found' });
+        }
+
+        const order = await knex('order').where('id', article.order_id).first();
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        const originalCost = order.cost;
+        const newCost = cost;
+        const adjustmentAmount = newCost - originalCost;
+        const adjustmentType = adjustmentAmount < 0 ? 'refund' : 'additional_payment';
+        const adjustedAmount = Math.abs(adjustmentAmount);
+
+        // Insert adjustment record
+        const [adjustmentId] = await knex('article_cost_adjustments').insert({
+            user_id: order.user_id,
+            article_id: articleId,
+            order_id: order.id,
+            original_cost: originalCost,
+            new_cost: newCost,
+            adjustment_amount: adjustedAmount,
+            adjustment_type: adjustmentType,
+            payment_status: 'pending',
+            is_processed: false,
+            created_at: knex.fn.now(),
+            updated_at: knex.fn.now(),
+        }).returning('id');
+
+        // Update order and article with new cost
+        await knex('order').where('id', order.id).update({
+            cost: newCost,
+            is_paid: adjustmentType === 'additional_payment' ? false : true,
+            updated_at: knex.fn.now(),
+        });
+
+        await knex('create').where('id', articleId).update({
+            title,
+            description,
+            keywords,
+            word_count,
+            duration,
+            complexity,
+            language,
+            quantity,
+            cost: newCost,
+            updated_at: knex.fn.now(),
+        });
+
+        res.status(200).json({
+            message: 'Article updated successfully',
+            adjustmentId,
+        });
+
+    } catch (error) {
+        console.error('Error updating article:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+// Helper function for cost calculation
+function calculateNewCost({ word_count, complexity, duration, quantity }) {
+    const wordCountPrices = {
+        "300 words": 0.07 * 300,
+        "500 words": 0.07 * 500,
+        "800 words": 0.07 * 800,
+        "1000 words": 0.07 * 1000,
+        "1500 words": 0.07 * 1500,
+        "3000 words": 0.07 * 3000
+    };
+
+    let baseCost = wordCountPrices[word_count] || 20;
+
+    switch (complexity) {
+        case "Advanced":
+            baseCost += 30;
+            break;
+        case "Expert":
+            baseCost += 50;
+            break;
+        default:
+            baseCost += 0;
+    }
+
+    return baseCost * quantity;
+}
+
+
+
+
+
 
 
 
