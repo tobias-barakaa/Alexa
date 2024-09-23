@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import writers from "../../../../client/src/assets/images/agenda.png";
 // import { useUpdateArticleMutation } from "../../../../slices/client/articleApiSlice"; // Assuming you have this API slice
-import { useGetRecentArticleByIdQuery } from "../../../../slices/client/orderArticleApiSlice";
+import { useGetRecentArticleByIdQuery, useUpdateArticleMutation } from "../../../../slices/client/orderArticleApiSlice";
 import "./EditArticle.css";
 
 const EditArticle = () => {
   const { id } = useParams();
   const { data: articleData, isLoading: articleLoading } = useGetRecentArticleByIdQuery(id); // Fetch article data
   
-  console.log('articleData:', articleData);
-  // const [updateArticle] = useUpdateArticleMutation();
-  const updateArticle = async() => {
-    console.log('updateArticle');
-  }
+  const [updateArticle] = useUpdateArticleMutation();
+  
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -99,6 +95,8 @@ const EditArticle = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  console.log('formData:', formData);
+
 
     const newErrors = {};
     if (!formData.title) newErrors.title = "Title is required";
@@ -113,8 +111,8 @@ const EditArticle = () => {
     setLoading(true);
 
     try {
-      await updateArticle({ id, ...formData }).unwrap(); // Use article ID to update the article
-      navigate(`/dashboard/articledetails/${id}`);
+      await updateArticle({ id, ...formData }, { headers: { 'Content-Type': 'application/json' } }).unwrap();
+      navigate(`/dashboard/edit-detail/${id}`);
     } catch (error) {
       console.error('Error updating article:', error);
       alert("Failed to update the article. Please try again.");
@@ -253,6 +251,12 @@ const EditArticle = () => {
               <option value={3}>3</option>
               <option value={4}>4</option>
               <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
+              <option value={9}>9</option>
+              <option value={10}>10</option>
+
             </select>
             {errors.quantity && <span className="error-message">{errors.quantity}</span>}
           </div>

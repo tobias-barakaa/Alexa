@@ -13,9 +13,26 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 
      })
       }),
+      updateArticle: builder.mutation({
+        query: ({ id, ...articleData }) => ({
+          url: `${ORDER_URL}/article/request/edit/${id}`,  // Replace with your correct endpoint
+          method: 'PUT',           // Or PATCH depending on your use case
+          body: articleData,        // Ensure this sends as JSON
+          credentials: 'include',   // Include credentials for cookies
+        }),
+      }),
+    
       getOrderById: builder.query({
         query: (id) => ({
             url: `${ORDER_URL}/articles/getone/${id}`,
+            credentials: "include",
+
+        }),
+        keepUnusedDataFor: 5,
+      }),
+      getUpdatedOrderById: builder.query({
+        query: (id) => ({
+            url: `${ORDER_URL}/article/all/request/getone/${id}`,
             credentials: "include",
 
         }),
@@ -104,4 +121,6 @@ export const {
   useGetProcessingOrdersByCountQuery,
   useGetRecentArticlesQuery,
   useGetRecentArticleByIdQuery,
+  useUpdateArticleMutation,
+  useGetUpdatedOrderByIdQuery,
 } = usersApiSlice;

@@ -2,102 +2,99 @@
     display: flex;
     max-width: 1200px;
     margin: 20px auto;
+    
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #d1d1d1;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid #11b7e9;
   }
-  
+
   .details-section {
     flex: 2;
     padding: 30px;
-    background-color: #f9f9f9;
   }
-  
+
   .payment-section {
     flex: 1;
     background-color: #ffffff;
     padding: 30px;
     border-left: 1px solid #e0e0e0;
   }
-  
+
   h2 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
-    font-weight: 600;
   }
+
+
+
+
+
+
+
+
+
+
   
   .detail-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
     font-size: 16px;
-    color: #333;
   }
+
+  .detail-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  .detail-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+
+
+
+
+
+
+
+
+
+
   
+
   .detail-item svg {
     margin-right: 10px;
     color: #3498db;
   }
-  
-  /* General badge style */
-.status-badge {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-}
 
-/* Specific style for 'Paid' status */
-.status-paid {
-  background-color: #28a745; /* Green for 'Paid' */
-}
+  .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
-/* Optional: you can add hover effects or transitions */
-.status-badge:hover {
-  opacity: 0.9;
-}
-
-.status-badge.transition {
-  transition: background-color 0.3s ease;
-}
-
-  
   .status-pending {
     background-color: #ffeaa7;
     color: #d35400;
   }
-  
-  .status-completed {
-    background-color: #5bc0de;
-    color: #fff;
-  }
-  
-  .status-canceled {
-    background-color: #d9534f;
-    color: #fff;
-  }
-  
+
   .payment-info {
     margin-bottom: 20px;
   }
-  
+
   .cost {
     font-size: 28px;
     font-weight: bold;
     color: #2ecc71;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
-  
-  .payment-status {
-    font-size: 16px;
-    color: #e74c3c;
-  }
-  
-  .payment-section .paypal-buttons {
-    margin-top: 20px;
-  }
+
   
