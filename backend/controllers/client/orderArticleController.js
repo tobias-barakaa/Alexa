@@ -690,109 +690,99 @@ const getRecentArticleById = async (req, res) => {
 
 
 
+const editArticleRequest = async (req, res) => {
+  const articleId = req.params.id;
+  const { title, description, keywords, word_count, duration, complexity, language, quantity, cost } = req.body;
+  console.log('Request Body:', req.body);
 
+  try {
+      // Fetch the existing article and order
+      const article = await knex('create').where('id', articleId).first();
+      if (!article) {
+          return res.status(404).json({ error: 'Article not found' });
+      }
 
-const editRequest = async (req, res) => {
-    const articleId = req.params.id;
-    const { title, description, keywords, word_count, duration, complexity, language, quantity, cost } = req.body;
-    
-    try {
-        // Fetch the existing article and order
-        const article = await knex('create').where('id', articleId).first();
-        if (!article) {
-            return res.status(404).json({ error: 'Article not found' });
-        }
+      const order = await knex('order').where('id', article.order_id).first();
+      if (!order) {
+          return res.status(404).json({ error: 'Order not found' });
+      }
 
-        const order = await knex('order').where('id', article.order_id).first();
-        if (!order) {
-            return res.status(404).json({ error: 'Order not found' });
-        }
+      const originalCost = article.cost;
+      const newCost = cost;
+      const adjustmentAmount = newCost - originalCost;
 
-        const originalCost = order.cost;
-        const newCost = cost;
-        const adjustmentAmount = newCost - originalCost;
-        const adjustmentType = adjustmentAmount < 0 ? 'refund' : 'additional_payment';
-        const adjustedAmount = Math.abs(adjustmentAmount);
+      // Only create a cost adjustment if there's a change in the cost
+      if (adjustmentAmount !== 0) {
+          const adjustmentType = adjustmentAmount < 0 ? 'refund' : 'additional_payment';
+          const adjustedAmount = Math.abs(adjustmentAmount);
 
-        // Insert adjustment record
-        const [adjustmentId] = await knex('article_cost_adjustments').insert({
-            user_id: order.user_id,
-            article_id: articleId,
-            order_id: order.id,
-            original_cost: originalCost,
-            new_cost: newCost,
-            adjustment_amount: adjustedAmount,
-            adjustment_type: adjustmentType,
-            payment_status: 'pending',
-            is_processed: false,
-            created_at: knex.fn.now(),
-            updated_at: knex.fn.now(),
-        }).returning('id');
+          // Use appropriate paymentStatus based on the new cost and type
+          const paymentStatus = adjustmentType === 'additional_payment' ? 'Pending' : 'Completed';  // Use values allowed in the table
 
-        // Update order and article with new cost
-        await knex('order').where('id', order.id).update({
-            cost: newCost,
-            is_paid: adjustmentType === 'additional_payment' ? false : true,
-            updated_at: knex.fn.now(),
-        });
+          // Insert into cost_adjust table
+          const [adjustmentId] = await knex('cost_adjust').insert({
+              user_id: order.user_id,
+              article_id: articleId,
+              order_id: order.id,
+              original_cost: originalCost,
+              new_cost: newCost,
+              adjustment_amount: adjustedAmount,
+              adjustment_type: adjustmentType,
+              payment_status: paymentStatus,  // Values aligned with the table
+              is_processed: false,
+              created_at: knex.fn.now(),
+              updated_at: knex.fn.now(),
+          }).returning('id');
 
-        await knex('create').where('id', articleId).update({
-            title,
-            description,
-            keywords,
-            word_count,
-            duration,
-            complexity,
-            language,
-            quantity,
-            cost: newCost,
-            updated_at: knex.fn.now(),
-        });
+          // Update the order with new cost and payment status
+          await knex('order').where('id', order.id).update({
+              cost: newCost,
+              is_paid: adjustmentType === 'additional_payment' ? false : true,
+              updated_at: knex.fn.now(),
+          });
 
-        res.status(200).json({
-            message: 'Article updated successfully',
-            adjustmentId,
-        });
+          // Update article with new data
+          await knex('create').where('id', articleId).update({
+              title,
+              description,
+              keywords,
+              word_count,
+              duration,
+              complexity,
+              language,
+              quantity,
+              cost: newCost,
+              updated_at: knex.fn.now(),
+          });
 
-    } catch (error) {
-        console.error('Error updating article:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+          // Send response
+          return res.status(200).json({
+              message: 'Article updated successfully',
+              adjustmentId,
+          });
+      } else {
+          await knex('create').where('id', articleId).update({
+              title,
+              description,
+              keywords,
+              word_count,
+              duration,
+              complexity,
+              language,
+              quantity,
+              cost: newCost,
+              updated_at: knex.fn.now(),
+          });
+
+          return res.status(200).json({
+              message: 'Article updated without cost adjustment (no cost change)',
+          });
+      }
+  } catch (error) {
+      console.error('Error updating article:', error);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
 };
-
-
-// Helper function for cost calculation
-function calculateNewCost({ word_count, complexity, duration, quantity }) {
-    const wordCountPrices = {
-        "300 words": 0.07 * 300,
-        "500 words": 0.07 * 500,
-        "800 words": 0.07 * 800,
-        "1000 words": 0.07 * 1000,
-        "1500 words": 0.07 * 1500,
-        "3000 words": 0.07 * 3000
-    };
-
-    let baseCost = wordCountPrices[word_count] || 20;
-
-    switch (complexity) {
-        case "Advanced":
-            baseCost += 30;
-            break;
-        case "Expert":
-            baseCost += 50;
-            break;
-        default:
-            baseCost += 0;
-    }
-
-    return baseCost * quantity;
-}
-
-
-
-
-
-
 
 
 module.exports = {
@@ -808,8 +798,8 @@ module.exports = {
   getAllArticles,
   fetchRecentArticles,
   editArticle,
-  getRecentArticleById
-  
+  getRecentArticleById,
+  editArticleRequest
 
 
 };
