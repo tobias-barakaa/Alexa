@@ -702,9 +702,7 @@ const editArticleRequest = async (req, res) => {
     }
 
     const order = await knex("order").where("id", article.order_id).first();
-    if (!order) {
-      return res.status(404).json({ error: "Order not found" });
-    }
+    
 
     const originalCost = article.cost;
     const newCost = cost;
@@ -723,7 +721,7 @@ const editArticleRequest = async (req, res) => {
       // Insert into cost_adjust table
       const [adjustmentId] = await knex("cost_adjust")
         .insert({
-          user_id: order.user_id,
+          user_id: order?.user_id,
           article_id: articleId,
           order_id: order.id,
           original_cost: originalCost,
