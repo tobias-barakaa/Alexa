@@ -678,6 +678,10 @@ const getRecentArticleById = async (req, res) => {
 };
 
 const editArticleRequest = async (req, res) => {
+  const user_id = req.user?.userId;
+  if (!user_id) {
+    return res.status(401).json({ error: "Unauthorized: User must be logged in" });
+  }
   const articleId = req.params.id;
   const {
     title,
@@ -699,10 +703,7 @@ const editArticleRequest = async (req, res) => {
     const article = await knex("create").where("id", articleId).first();
     if (!article) {
       return res.status(404).json({ error: "Article not found" });
-    }
-
-    const order = await knex("order").where("id", article.order_id).first();
-    
+    }    
 
     const originalCost = article.cost;
     const newCost = cost;
@@ -718,12 +719,11 @@ const editArticleRequest = async (req, res) => {
       const paymentStatus =
         adjustmentType === "additional_payment" ? "Pending" : "Completed"; // Use values allowed in the table
 
-      // Insert into cost_adjust table
-      const [adjustmentId] = await knex("cost_adjust")
+      // Insert into cost_update table
+      const [adjustmentId] = await knex("cost_update")
         .insert({
-          user_id: order?.user_id,
+          user_id: user_id,
           article_id: articleId,
-          order_id: order.id,
           original_cost: originalCost,
           new_cost: newCost,
           adjustment_amount: adjustedAmount,
@@ -734,15 +734,6 @@ const editArticleRequest = async (req, res) => {
           updated_at: knex.fn.now(),
         })
         .returning("id");
-
-      // Update the order with new cost and payment status
-      await knex("order")
-        .where("id", order.id)
-        .update({
-          cost: newCost,
-          is_paid: adjustmentType === "additional_payment" ? false : true,
-          updated_at: knex.fn.now(),
-        });
 
       // Update article with new data
       await knex("create").where("id", articleId).update({
@@ -788,6 +779,41 @@ const editArticleRequest = async (req, res) => {
   }
 };
 
+
+const getCostUpdatesByArticle = async (req, res) => {
+  const user_id = req.user?.userId;
+  if (!user_id) {
+    return res.status(401).json({ error: "Unauthorized: User must be logged in" });
+  }
+
+  const articleId = req.params.id;
+
+  try {
+    // Verify if the article exists and belongs to the user
+    const article = await knex("create").where({ id: articleId, user_id }).first();
+    if (!article) {
+      return res.status(404).json({ error: "Article not found or you do not have access to this article" });
+    }
+
+    // Fetch cost updates related to the article and the user
+    const costUpdates = await knex("cost_update")
+      .where({ article_id: articleId, user_id })
+      .select("id", "original_cost", "new_cost", "adjustment_amount", "adjustment_type", "payment_status", "is_processed", "created_at", "updated_at");
+
+    // If no cost updates are found, return a suitable response
+    if (costUpdates.length === 0) {
+      return res.status(404).json({ message: "No cost updates found for this article" });
+    }
+
+    // Return the cost updates
+    return res.status(200).json({ costUpdates });
+  } catch (error) {
+    console.error("Error fetching cost updates:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
 module.exports = {
   orderArticle,
   getOrderById,
@@ -803,4 +829,5 @@ module.exports = {
   editArticle,
   getRecentArticleById,
   editArticleRequest,
+  getCostUpdatesByArticle
 };
