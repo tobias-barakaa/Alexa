@@ -1,14 +1,16 @@
 import { Plus, RefreshCw } from 'lucide-react';
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import "./EditDetails.css";
-import { useGetRecentArticleByIdQuery, useGetUpdatedOrderByIdQuery } from '../../../../slices/client/orderArticleApiSlice';
+import { useGetPayPalClientIdQuery, useGetRecentArticleByIdQuery, useGetUpdatedOrderByIdQuery, usePayOrderMutation } from '../../../../slices/client/orderArticleApiSlice';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const EditDetails = () => {
   const { id } = useParams();
   const { data: updatedData, isError, isLoading } = useGetUpdatedOrderByIdQuery(id);
   const { data: recentData, isError: recentDataError, isLoading: recentDataLoading } = useGetRecentArticleByIdQuery(id);
+  console.log('its true its recentData', recentData.article);
+  
   const [isRefundProcessed, setRefundProcessed] = useState(false); // State to handle refund status
   const [message, setMessage] = useState(''); 
 
@@ -27,6 +29,195 @@ const EditDetails = () => {
     );
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // PayPal client ID and mutation for handling payments
+  const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  
+  // State for managing order details locally
+  const [order, setOrder] = useState(null);
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+  // Load PayPal script when necessary
+  useEffect(() => {
+    if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
+      console.log('Loading PayPal script...');
+      const loadPaypalScript = async () => {
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': paypal.clientId,
+            currency: 'USD',
+          },
+        });
+        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+      };
+      if (order && !order.is_paid) {
+        if (!window.paypal) {
+          loadPaypalScript();
+        }
+      }
+    }
+  }, [order, paypal, paypalDispatch, loadingPaypal, errorPaypal]);
+
+  // Update local order state when orderDetails are fetched
+  useEffect(() => {
+    if (orderDetails?.article) {
+      setOrder(orderDetails.article);
+    }
+  }, [orderDetails]);
+
+  // PayPal order creation
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: order.cost,
+            },
+          },
+        ],
+      })
+      .then((orderId) => orderId);
+  }
+
+  // Handling PayPal order approval
+  async function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      console.log('PayPal payment details:', details);
+  
+      try {
+        const response = await payOrder({
+          orderId: order.id,
+          details: {
+            transactionId: details.id,  // PayPal transaction ID
+            payerId: details.payer.payer_id,  // PayPal payer ID
+            status: details.status,  // Payment status
+            email: details.payer.email_address,  // Payer's email
+            amount: details.purchase_units[0].amount.value,  // Payment amount
+          },
+        });
+  
+        console.log('API response from payOrder:', response);
+  
+        // Check for the success message from the backend
+        if (response?.data?.message === 'Order inserted and article updated successfully') {
+          // Manually update the order state
+          setOrder((prevOrder) => ({
+            ...prevOrder,
+            is_paid: true,  // Update the order's payment status
+            status: 'COMPLETED',  // Update order status to 'COMPLETED'
+          }));
+          alert('Payment success');
+        } else {
+          console.error('Unexpected response structure:', response); // Log unexpected response
+          throw new Error('Unexpected response from payment API');
+        }
+      } catch (error) {
+        console.error('PayPal Checkout onApprove error:', error);
+        alert('Payment failed. Please try again.');
+      }
+    });
+  }
+  
+  
+  
+
+  // Handling PayPal payment errors
+  function onError(error) {
+    console.error('PayPal Checkout onError:', error);
+    alert('An error occurred with the payment. Please try again.');
+  }
+
+  // Test payment approval handler
+  async function onApproveTest() {
+    try {
+      // Simulate a test payment call
+      const response = await payOrder({
+        orderId: order.id,
+        details: {
+          transactionId: 'TEST123456',
+          payerId: 'TESTPAYERID',
+          status: 'COMPLETED',
+          email: 'testpayer@example.com',
+          amount: order.cost,  // Assuming order.cost is the amount for the test
+        },
+      });
+  
+      console.log('API response from payOrder...........:', response); // Log the full response for debugging
+  
+      // Check if the response contains a success message
+      if (response?.data?.message === 'Order inserted and article updated successfully') {
+        // Update the local order state manually if needed
+        setOrder((prevOrder) => ({
+          ...prevOrder,
+          is_paid: true,  // Mark the order as paid
+        }));
+  
+        alert('Test payment success');
+      } else {
+        console.error('Unexpected response structure:', response); // Log any unexpected response
+        throw new Error('Unexpected response from payment API');
+      }
+    } catch (error) {
+      console.error('Test payment error:', error);  // Log the error for debugging
+      alert('Test payment failed. Please try again.');  // Notify user of payment failure
+    }
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Handle expired state for cost updates
   const costUpdates = updatedData?.costUpdates?.length ? updatedData.costUpdates : [{ adjustment_type: "Expired" }];
 
@@ -41,14 +232,6 @@ const EditDetails = () => {
     language: "N/A",
     quantity: "N/A",
     cost: "N/A"
-  };
-
-  const handleApprovePayment = (data, actions) => {
-    // Handle what happens after payment is approved
-    console.log('Payment approved:', data);
-    return actions.order.capture().then(function(details) {
-      alert('Transaction completed by ' + details.payer.name.given_name);
-    });
   };
 
   const isRefund = costUpdates[0].adjustment_type === 'refund';
@@ -139,7 +322,7 @@ const EditDetails = () => {
                       }]
                     });
                   }}
-                  onApprove={handleApprovePayment}
+                 
                 />
               </>
             ) 
