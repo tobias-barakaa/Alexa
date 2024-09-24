@@ -10,7 +10,7 @@ const EditDetails = () => {
   const { data: updatedData, isError, isLoading } = useGetUpdatedOrderByIdQuery(id);
   const { data: recentData, isError: recentDataError, isLoading: recentDataLoading } = useGetRecentArticleByIdQuery(id);
   const [isRefundProcessed, setRefundProcessed] = useState(false); // State to handle refund status
-  const [message, setMessage] = useState(''); // State to display success message
+  const [message, setMessage] = useState(''); 
 
   // Handle loading and error states
   if (isLoading || recentDataLoading) {
@@ -43,31 +43,11 @@ const EditDetails = () => {
     cost: "N/A"
   };
 
-  const handleApprovePayment = async (data, actions) => {
+  const handleApprovePayment = (data, actions) => {
     // Handle what happens after payment is approved
     console.log('Payment approved:', data);
-    return actions.order.capture().then(async function(details) {
+    return actions.order.capture().then(function(details) {
       alert('Transaction completed by ' + details.payer.name.given_name);
-      // Perform backend API call to update payment status, if necessary
-      try {
-        const response = await payOrder({
-          orderId: id,
-          details: {
-            transactionId: details.id,  // PayPal transaction ID
-            payerId: details.payer.payer_id,  // PayPal payer ID
-            status: details.status,  // Payment status
-            email: details.payer.email_address,  // Payer's email
-            amount: costUpdates[0].new_cost,  // Payment amount
-          },
-        });
-        if (response?.data?.message === 'Payment processed successfully') {
-          setMessage('Payment successful! Your order is updated.');
-        } else {
-          console.error('Unexpected response:', response);
-        }
-      } catch (error) {
-        console.error('Payment approval error:', error);
-      }
     });
   };
 
@@ -144,7 +124,7 @@ const EditDetails = () => {
             </>
           )}
 
-          {/* PayPal Button for processing cost update */}
+         
           <div className="paypal-button">
             {costUpdates[0].adjustment_type === "additional_payment" && !isRefundProcessed ? (
               <>
@@ -154,7 +134,7 @@ const EditDetails = () => {
                     return actions.order.create({
                       purchase_units: [{
                         amount: {
-                          value: costUpdates[0].new_cost || '0.00' // Add dynamic updated cost here
+                          value: updatedData?.costUpdates[0]?.new_cost || '0.00' // Add dynamic updated cost here
                         }
                       }]
                     });
@@ -162,7 +142,20 @@ const EditDetails = () => {
                   onApprove={handleApprovePayment}
                 />
               </>
-            ) : null}
+            ) 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            : null}
           </div>
 
           {/* Handle refund processing */}
