@@ -181,6 +181,39 @@
   
 
 
+
+
+
+  .success-message {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border-left: 4px solid #10b981;
+    padding: 16px;
+    margin: 20px 0;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+  }
+  
+  .success-message::before {
+    content: '✓';
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 12px;
+    background-color: #10b981;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 /* 
 
 
