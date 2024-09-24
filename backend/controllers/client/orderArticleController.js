@@ -708,6 +708,11 @@ const editArticleRequest = async (req, res) => {
     const originalCost = article.cost;
     const newCost = cost;
     const adjustmentAmount = newCost - originalCost;
+    // const checkIfisPaid = article.is_paid;
+    // if(checkIfisPaid === true && adjustmentAmount < 0) {
+    //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
+
+    // }
 
     // Only create a cost adjustment if there's a change in the cost
     if (adjustmentAmount !== 0) {
