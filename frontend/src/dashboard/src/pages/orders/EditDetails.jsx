@@ -8,19 +8,29 @@ import { useEffect, useState } from 'react';
 const EditDetails = () => {
   const { id } = useParams();
   const { data: updatedData, isError, isLoading } = useGetUpdatedOrderByIdQuery(id);
-  const { data: recentData, isError: recentDataError, isLoading: recentDataLoading } = useGetRecentArticleByIdQuery(id);
-  const [isRefundProcessed] = useState(false);
-  const [message] = useState(''); 
 
-  // PayPal client ID and mutation for handling payments
+// useEffect(() => {
+//   if (!isLoading && !isError && updatedData) {
+//     console.log(updatedData.original_cost, 'updatedData...fsssssssssssssssssssssssssssssssssssssssssssss.');
+//   }
+// }, [isLoading, isError, updatedData]);  // Make sure to add dependencies
+
+  const { data: recentData, isError: recentDataError, isLoading: recentDataLoading } = useGetRecentArticleByIdQuery(id);
+  
+  const [isRefundProcessed] = useState(false);
+  const [message] = useState('');
+  const [isPaid, setIsPaid] = useState(false); // Track if payment is completed
   const { data: paypal, isLoading: loadingPaypal, error: errorPaypal } = useGetPayPalClientIdQuery();
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
-  
   const [order, setOrder] = useState(null);
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-  const costUpdates = updatedData?.costUpdates?.length ? updatedData.costUpdates : [{ adjustment_type: "Expired" }];
-  const additionalPayment = costUpdates[0].adjustment_amount > 0 ? costUpdates[0].adjustment_amount : 0;
+  const costUpdates = updatedData
+  //.costUpdates?.length ? updatedData.costUpdates : [{ adjustment_type: "Expired" }];
+  // const isRefund = costUpdates[0].adjustment_type === 'refund';
+
+  // Use `new_cost` instead of `adjustment_amount` if the article is not paid
+  // const paymentAmount = recentData?.article?.is_paid ? 0 : updatedData.new_cost;
 
   useEffect(() => {
     if (!loadingPaypal && !errorPaypal && paypal?.clientId && !window.paypal) {
@@ -35,17 +45,18 @@ const EditDetails = () => {
         });
         paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
       };
-      if (order && !order.is_paid && additionalPayment > 0) {
+      if (order && !order.is_paid) {
         if (!window.paypal) {
           loadPaypalScript();
         }
       }
     }
-  }, [order, paypal, paypalDispatch, loadingPaypal, errorPaypal, additionalPayment]);
+  }, [order, paypal, paypalDispatch, loadingPaypal, errorPaypal]);
 
   useEffect(() => {
     if (recentData?.article) {
       setOrder(recentData.article);
+      setIsPaid(recentData.article.is_paid); // Set payment status from recentData
     }
   }, [recentData]);
 
@@ -56,7 +67,7 @@ const EditDetails = () => {
         purchase_units: [
           {
             amount: {
-              value: additionalPayment, // Payment amount
+              value: 0, // Payment amount
             },
           },
         ],
@@ -85,6 +96,7 @@ const EditDetails = () => {
             is_paid: true,
             status: 'COMPLETED',
           }));
+          setIsPaid(true); // Mark payment as completed
           alert('Payment success');
         } else {
           throw new Error('Unexpected response from payment API');
@@ -112,7 +124,7 @@ const EditDetails = () => {
           payerId: 'TESTPAYERID',
           status: 'COMPLETED',
           email: 'testpayer@example.com',
-          amount: additionalPayment,
+          amount: 0,
         },
       });
 
@@ -121,6 +133,7 @@ const EditDetails = () => {
           ...prevOrder,
           is_paid: true,
         }));
+        setIsPaid(true); // Mark payment as completed
         alert('Test payment success');
       } else {
         throw new Error('Unexpected response from payment API');
@@ -146,8 +159,6 @@ const EditDetails = () => {
     );
   }
 
-  const isRefund = costUpdates[0].adjustment_type === 'refund';
-
   return (
     <div className="edit-details-container">
       <div className="left-side">
@@ -167,12 +178,12 @@ const EditDetails = () => {
       <div className="right-side">
         <div className="cost-updates">
           <h3 className="section-title">Cost Updates</h3>
-          {costUpdates.map((update) => (
+          {updatedData.map((update) => (
             <div key={update.id} className="cost-update-item">
               <div className="cost-update-header">
                 <span className="cost-update-id">ID: {update.id}</span>
                 <span className={`cost-update-status ${update.payment_status?.toLowerCase()}`}>
-                  {update.payment_status}
+                  {update.original_cost}
                 </span>
               </div>
               <div className="cost-details">
@@ -198,48 +209,45 @@ const EditDetails = () => {
           ))}
         </div>
 
-        <div className="additional-actions">
-          {!isRefundProcessed && !isRefund && (
-            <>
-              <button className="action-button">
-                <Plus size={20} />
-                Additional Amount to Pay
-              </button>
+        {/* Display buttons only if not paid and refund is not involved */}
+        {!isPaid && !isRefund && (
+          <div className="additional-actions">
+            <button className="action-button">
+              <Plus size={20} />
+              Additional Amount to Pay
+            </button>
 
-              <button className="action-button">
-                <RefreshCw size={20} />
-                Process Cost Update
-              </button>
-            </>
-          )}
+            <button className="action-button">
+              <RefreshCw size={20} />
+              Process Cost Update
+            </button>
 
-          {/* PayPal payment section */}
-          {additionalPayment > 0 && (
-            <div className="paypal-button">
-              <h4>Please pay the additional amount: ${additionalPayment}</h4>
-              <button onClick={onApproveTest} style={{ marginBottom: '10px' }}>
-                Test Pay Order
-              </button>
-              <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError} />
-              {loadingPay && <Loader />}
-              {isPending && <Loader />}
-            </div>
-          )}
+            {/* PayPal payment section */}
+            {paymentAmount > 0 && !isPaid && (
+              <div className="paypal-button">
+                <h4>Please pay the additional amount: ${paymentAmount}</h4>
+                <button onClick={onApproveTest} style={{ marginBottom: '10px' }}>
+                  Test Pay Order
+                </button>
+                <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError} />
+                {(loadingPay || isPending) && <Loader />}
+              </div>
+            )}
+          </div>
+        )}
 
-          {/* Refund processing */}
-          {isRefund && !isRefundProcessed && (
-            <p className="success-message">
-              Successfully updated your Order, and your money has been refunded to your account.
-            </p>
-          )}
+        {isPaid && (
+          <p className="success-message">
+            Thank you! Your payment has been completed.
+          </p>
+        )}
 
-          {/* Success message after refund */}
-          {isRefundProcessed && (
-            <div className="success-message">
-              {message}
-            </div>
-          )}
-        </div>
+        {/* Success message after refund */}
+        {isRefundProcessed && (
+          <div className="success-message">
+            {message}
+          </div>
+        )}
       </div>
     </div>
   );
