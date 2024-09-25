@@ -24,6 +24,7 @@ import  ClientWallet from './dashboard/src/pages/wallet/ClientWallet';
 import EditAll from './dashboard/src/pages/orders/EditAll';
 import EditArticle from './dashboard/src/pages/orders/EditArticle';
 import EditDetails from './dashboard/src/pages/orders/EditDetails';
+import Drafts from './dashboard/src/pages/orders/Drafts';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "editall",
         element: <EditAll />
+      },
+      {
+        path: "drafts",
+        element: <Drafts />
       },
       {
         path: "edit-article/:id",

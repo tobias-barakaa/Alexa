@@ -1,0 +1,147 @@
+/* Drafts Container */
+.drafts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* Draft Card */
+  .draft-card {
+    background: linear-gradient(135deg, #f0f4f8, #ffffff);
+    border-radius: 12px;
+    /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px #e0e0e0;
+  }
+  
+  
+  .draft-card::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: rgba(7, 139, 200, 0.15);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .draft-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .draft-description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Draft Details */
+  .draft-details {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .draft-details p {
+    margin: 5px 0;
+  }
+  
+  .draft-details strong {
+    font-weight: 600;
+    color: #444;
+  }
+  
+  /* Status Indicator */
+  .status-pending {
+    color: #f39c12;
+    font-weight: bold;
+  }
+  
+  .status-processing {
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  .status-paid {
+    color: #2ecc71;
+    font-weight: bold;
+  }
+  
+  /* Draft Actions */
+  .draft-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .delete-btn, .pay-btn {
+    background: none;
+    border: 2px solid #078bc8;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .delete-btn {
+    color: #e74c3c;
+    border-color: #e74c3c;
+  }
+  
+  .delete-btn:hover {
+    background: #e74c3c;
+    color: #fff;
+  }
+  
+  .pay-btn {
+    color: #078bc8;
+  }
+  
+  .pay-btn:disabled {
+    color: #999;
+    border-color: #999;
+    cursor: not-allowed;
+  }
+  
+  .pay-btn:hover:not(:disabled) {
+    background: #078bc8;
+    color: #fff;
+  }
+  
+
+  .pay-btn-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #078bc8; /* Blue background */
+    color: white; /* White text */
+    text-align: center;
+    text-decoration: none; /* Remove default link underline */
+    border-radius: 25px; /* Rounded corners */
+    border: 2px solid #078bc8; /* Blue border */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add smooth transitions */
+    cursor: pointer;
+  }
+  
+  .pay-btn-link:hover {
+    background-color: white; /* Change background on hover */
+    color: #078bc8; /* Change text color on hover */
+  }
+  

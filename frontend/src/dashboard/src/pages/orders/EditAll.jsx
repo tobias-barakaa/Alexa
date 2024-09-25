@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './EditAll.css';
 import { useGetRecentArticlesQuery } from '../../../../slices/client/orderArticleApiSlice';
-import ConfirmationModal from '../../components/ConfirmationModal';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import DeleteButtonWithModal from '../../components/DeleteButtonWithModal';
 
 const EditAll = () => {
   const [recentArticles, setRecentArticles] = useState([]);
@@ -62,10 +62,6 @@ const EditAll = () => {
     navigate(`/dashboard/edit-article/${id}`);
   };
 
-  const handleDelete = (id) => {
-    // Implement delete functionality here
-    <ConfirmationModal />
-  };
 
   const toggleArticleDetails = (id) => {
     setSelectedArticle(selectedArticle === id ? null : id);
@@ -109,9 +105,9 @@ const EditAll = () => {
               <button onClick={() => handleEdit(article)} className="edit-button">
   <i className="fas fa-edit"></i> Edit
       </button>
-                <Link to='/edit-article' className="delete-button">
-                  <i className="fas fa-trash-alt"></i> Delete
-                </Link>
+      <DeleteButtonWithModal articleId={article.id} />
+
+
               </div>
             </div>
           ))}

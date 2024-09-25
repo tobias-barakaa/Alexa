@@ -30,10 +30,10 @@ const Sidenav = () => {
           </li>
 
           <li>
-            <a href="#">
+            <Link to="/dashboard/drafts">
               <GitPullRequest className="icon-menu" />
               <span>Drafts</span>
-            </a>
+            </Link>
           </li>
 
 

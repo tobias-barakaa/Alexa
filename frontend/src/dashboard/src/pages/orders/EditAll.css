@@ -62,14 +62,10 @@
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px var(--shadow-color);
-    transform: translateY(0);
     border: 1px solid #e0e0e0;
   }
   
-  .article-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 16px var(--shadow-color);
-  }
+  
   
   .article-header {
     background: var(--primary-gradient);
