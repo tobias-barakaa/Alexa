@@ -708,17 +708,17 @@ const editArticleRequest = async (req, res) => {
     const originalCost = article.cost;
     const newCost = cost;
     const adjustmentAmount = newCost - originalCost;
-    // // const checkIfisPaid = article.is_paid;
-    // // if(checkIfisPaid === true && adjustmentAmount < 0) {
-    // //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
+    // const checkIfisPaid = article.is_paid;
+    // if(checkIfisPaid === true && adjustmentAmount < 0) {
+    //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
 
-    // // }
+    // }
 
-    // // Only create a cost adjustment if there's a change in the cost
-    // if (adjustmentAmount !== 0) {
-    //   const adjustmentType =
-    //     adjustmentAmount < 0 ? "refund" : "additional_payment";
-    //   const adjustedAmount = Math.abs(adjustmentAmount);
+    // Only create a cost adjustment if there's a change in the cost
+    if (adjustmentAmount !== 0) {
+      const adjustmentType =
+        adjustmentAmount < 0 ? "refund" : "additional_payment";
+      const adjustedAmount = Math.abs(adjustmentAmount);
 
       // Use appropriate paymentStatus based on the new cost and type
       const paymentStatus =
@@ -751,7 +751,7 @@ const editArticleRequest = async (req, res) => {
         language,
         quantity,
         cost: newCost,
-        is_paid: adjustmentType === "additional_payment" ? false : true,
+        // is_paid: adjustmentType === "additional_payment" ? false : true,
         updated_at: knex.fn.now(),
       });
 
@@ -921,15 +921,23 @@ if (checkIfIsPaid === true && new_cost > original_cost) {
   console.log('Top-up needed: ', costDifference);
   return res.status(200).json({ 
     message: "You need to top up", 
+    original_cost,
+    new_cost,
     top_up_amount: costDifference        
   });
 }
     // If the article is not paid, return "Payment pending" message
     else if (checkIfIsPaid === false && new_cost > 0) {
-      response.message = 'Payment pending';
+      return res.status(200).json({
+        original_cost,
+        new_cost,
+        top_up_amount: new_cost,
+        yes: costDifference,
+        message: `You need to top up ${new_cost}`
+      })
     } 
     // If is_paid is true and adjustment_amount < original_cost, handle refunds
-    else if (checkIfIsPaid === true && adjustment_amount < original_cost) {
+    else if (checkIfIsPaid === true && adjustment_amount < new_cost) {
       const refundAmount = Math.abs(original_cost - adjustment_amount);
       response.message = `Refunded ${refundAmount} to your account.`;
     }
