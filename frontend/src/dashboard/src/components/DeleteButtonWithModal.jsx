@@ -1,15 +1,17 @@
+// DeleteButtonWithModal.js
 import React, { useState } from 'react';
 import './DeleteButtonWithModal.css'; // Optional for styling
 import { useDeleteArticleMutation } from '../../../slices/client/orderArticleApiSlice';
 
-const DeleteButtonWithModal = ({ articleId }) => {
+const DeleteButtonWithModal = ({ articleId, onDelete }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [deleteArticle, { isLoading, isError }] = useDeleteArticleMutation();
+  const [deleteArticle, { isLoading }] = useDeleteArticleMutation();
 
   const handleDelete = async () => {
     try {
       await deleteArticle(articleId).unwrap();
       setIsModalOpen(false); // Close modal after successful delete
+      onDelete(); // Call the onDelete callback to update the draft list
       console.log("Article deleted successfully");
     } catch (error) {
       console.error("Failed to delete article:", error);

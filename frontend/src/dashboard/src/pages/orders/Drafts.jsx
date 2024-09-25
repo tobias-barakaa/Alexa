@@ -1,8 +1,9 @@
-import React from 'react';
+// Drafts.js
 import './Drafts.css';
 import { useGetUnpaidArticlesByUserQuery } from '../../../../slices/client/orderArticleApiSlice';
 import DeleteButtonWithModal from '../../components/DeleteButtonWithModal';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Drafts = () => {
   const formatDate = (dateString) => {
@@ -10,12 +11,28 @@ const Drafts = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const { data, isLoading, error } = useGetUnpaidArticlesByUserQuery();
-  
+  const { data, isLoading } = useGetUnpaidArticlesByUserQuery();
+  const [drafts, setDrafts] = useState([]);
+
+  useEffect(() => {
+    setDrafts(data?.articles || []); 
+  }, [data]);
+
+  const handleDeleteDraft = (deletedId) => {
+    setDrafts((prevDrafts) => prevDrafts.filter(draft => draft.id !== deletedId));
+  };
+
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching drafts</div>;
-  
-  const drafts = data?.articles || []; 
+
+  // Handling case where no drafts are found
+  if (drafts.length === 0) {
+    return (
+      <div className="no-drafts-message">
+        <h2>No Unpaid Drafts Available</h2>
+        <p>It seems you do not have any unpaid drafts at the moment. Create one to get started!</p>
+      </div>
+    );
+  }
   
   return (
     <div className="drafts-container">
@@ -35,13 +52,11 @@ const Drafts = () => {
             <p><strong>Created:</strong> {formatDate(draft.created_at)}</p>
           </div>
           <div className="draft-actions">
-            <DeleteButtonWithModal articleId={draft.id} />
-            
+            <DeleteButtonWithModal articleId={draft.id} onDelete={() => handleDeleteDraft(draft.id)} />
             {!draft.is_paid ? (
               <Link to={`/dashboard/articledetails/${draft.id}`} className="pay-btn-link">
-              Pay
-            </Link>
-            
+                Pay
+              </Link>
             ) : (
               <button className="pay-btn" disabled>
                 Paid
