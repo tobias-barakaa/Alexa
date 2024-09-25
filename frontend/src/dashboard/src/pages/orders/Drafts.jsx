@@ -24,7 +24,6 @@ const Drafts = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  // Handling case where no drafts are found
   if (drafts.length === 0) {
     return (
       <div className="no-drafts-message">

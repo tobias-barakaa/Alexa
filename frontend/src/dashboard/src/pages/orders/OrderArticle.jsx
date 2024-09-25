@@ -16,7 +16,7 @@ const OrderArticle = () => {
     complexity: "General", 
     language: "American English",
     cost: 0.07 * 300,
-    quantity: 1, // Add quantity to formData
+    quantity: 1,
   });
 
   const [errors, setErrors] = useState({});

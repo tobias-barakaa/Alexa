@@ -25,6 +25,7 @@ import EditAll from './dashboard/src/pages/orders/EditAll';
 import EditArticle from './dashboard/src/pages/orders/EditArticle';
 import EditDetails from './dashboard/src/pages/orders/EditDetails';
 import Drafts from './dashboard/src/pages/orders/Drafts';
+import Pricing from './dashboard/src/pages/orders/Pricing';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: "edit-detail/:id",
         element: <EditDetails />
+      },
+      {
+        path: "pricing",
+        element: <Pricing />
       },
       
    

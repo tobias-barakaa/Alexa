@@ -38,10 +38,10 @@ const Sidenav = () => {
 
 
           <li className="sidebar-dropdown">
-            <a href="#">
+            <Link to="/dashboard/pricing">
               <Gem className="icon-menu" />
               <span>Pricing</span>
-            </a>
+            </Link>
             
           </li>
           
