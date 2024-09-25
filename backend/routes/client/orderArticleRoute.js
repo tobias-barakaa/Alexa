@@ -1,5 +1,5 @@
 const express = require('express');
-const { orderArticle, getOrderById, updateOrderToPaid, updatePaidOrdersToProcessing, getUserArticles, getUserArticlesByCount, countPendingProjects, countProcessingProjects, countPublishedProjects, getAllArticles, sumWordCountsByUserId, fetchRecentArticles, editArticle, getRecentArticleById, editArticleRequest, getCostUpdatesByArticle } = require('../../controllers/client/orderArticleController');
+const { orderArticle, getOrderById, updateOrderToPaid, updatePaidOrdersToProcessing, getUserArticles, getUserArticlesByCount, countPendingProjects, countProcessingProjects, countPublishedProjects, getAllArticles, sumWordCountsByUserId, fetchRecentArticles, editArticle, getRecentArticleById, editArticleRequest, getCostUpdatesByArticle, deleteArticle, getDraftArticleByUser } = require('../../controllers/client/orderArticleController');
 // const { protect } = require('../../middlewares/client/authMiddleware');
 const { protect } = require('../../middlewares/client/authMiddleware.js');
 const { validateOrderArticle } = require('../../dataValidation/orderArticle.js');
@@ -27,6 +27,11 @@ router.put('/articles/edit/:id', protect, editArticle);
 router.get('/article/edit/getone/:id', protect, getRecentArticleById);
 router.put('/article/request/edit/:id', protect, editArticleRequest);
 router.get('/article/all/request/getone/:id', protect, getCostUpdatesByArticle);
+router.delete('/article/request/deleteone/:id', protect, deleteArticle);
+router.get('/articles/request/drafts/all', protect, getDraftArticleByUser);
+router.get('/articles/request/getall', protect, getAllArticles);
+
+
 
 
 

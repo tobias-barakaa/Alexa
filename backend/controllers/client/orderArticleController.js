@@ -66,6 +66,40 @@ const orderArticle = async (req, res) => {
   }
 };
 
+
+
+
+
+const getAllArticles = async (req, res) => {
+  const user_id = req.user?.userId; // Get the user ID from the request
+
+  if (!user_id) {
+    return res.status(401).json({ error: "Unauthorized: User must be logged in" });
+  }
+
+  try {
+    // Query the 'create' table for articles created by the user
+    const articles = await knex("create").where({ user_id });
+
+    if (articles.length === 0) {
+      return res.status(404).json({ message: "No articles found for this user." });
+    }
+
+    // Return the articles found
+    res.status(200).json({
+      message: "Articles retrieved successfully",
+      articles,
+    });
+  } catch (error) {
+    console.error("Error retrieving articles:", error);
+    res.status(500).json({ error: "Failed to retrieve articles" });
+  }
+};
+
+
+
+
+
 const getOrderById = async (req, res) => {
   const { id } = req.params; // Extract article ID from request parameters
   const user_id = req.user?.userId; // Ensure the user is logged in
@@ -894,9 +928,7 @@ const getCostUpdatesByArticle = async (req, res) => {
 
     if (costUpdates.length === 0) {
       return res.status(200).json({ 
-        message: "No cost updates found", 
-        original_cost: article.original_cost, 
-        new_cost: article.new_cost 
+        message: "No cost updates found"
       });
     }
 
@@ -918,7 +950,8 @@ console.log('new_cost:', new_cost);
 console.log('original_cost:', original_cost);
 
 if (checkIfIsPaid === true && new_cost > original_cost) {
-  console.log('Top-up needed: ', costDifference);
+  const costDifference = Math.abs(new_cost - original_cost);
+  console.log('Top-up needed: ', costDifference); // Log the difference
   return res.status(200).json({ 
     message: "You need to top up", 
     original_cost,
@@ -926,21 +959,31 @@ if (checkIfIsPaid === true && new_cost > original_cost) {
     top_up_amount: costDifference        
   });
 }
+
     // If the article is not paid, return "Payment pending" message
     else if (checkIfIsPaid === false && new_cost > 0) {
       return res.status(200).json({
         original_cost,
         new_cost,
         top_up_amount: new_cost,
-        yes: costDifference,
         message: `You need to top up ${new_cost}`
       })
     } 
     // If is_paid is true and adjustment_amount < original_cost, handle refunds
-    else if (checkIfIsPaid === true && adjustment_amount < new_cost) {
-      const refundAmount = Math.abs(original_cost - adjustment_amount);
-      response.message = `Refunded ${refundAmount} to your account.`;
+    if (checkIfIsPaid === true && original_cost > new_cost) {
+      const refundAmount = Math.abs(original_cost - new_cost);
+      return res.status(200).json({
+        original_cost,
+        new_cost,
+        refund_amount: refundAmount,
+        refund: "Refund",
+        message: `Refunded ${refundAmount} to your account.`
+      });
     }
+
+
+  
+    
 
     // Return the response
     return res.status(200).json(response);
@@ -948,6 +991,73 @@ if (checkIfIsPaid === true && new_cost > original_cost) {
   } catch (error) {
     console.error("Error fetching cost updates:", error);
     return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+const deleteArticle = async (req, res) => {
+  const { id } = req.params; // Get the article ID from the request parameters
+  const user_id = req.user?.userId; // Get the logged-in user's ID from req.user
+
+  if (!user_id) {
+    return res
+      .status(401)
+      .json({ error: "Unauthorized: User must be logged in" });
+  }
+
+  try {
+    // Check if the article exists and belongs to the logged-in user
+    const article = await knex("create").where({ id, user_id }).first();
+
+    if (!article) {
+      return res.status(404).json({ error: "Article not found or access denied" });
+    }
+
+    // Proceed to delete the article from the 'create' table
+    await knex("create")
+      .where({ id, user_id })
+      .del();
+
+    // Return success response
+    res.status(200).json({ message: "Article deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting article:", error);
+    res.status(500).json({
+      error: "Failed to delete article",
+    });
+  }
+};
+
+
+const getDraftArticleByUser = async (req, res) => {
+  const user_id = req.user?.userId; // Ensure the user is logged in
+
+  if (!user_id) {
+    return res
+      .status(401)
+      .json({ error: "Unauthorized: User must be logged in" });
+  }
+
+  try {
+    // Fetch all articles from the 'create' table where 'is_paid' is false and the user is the creator
+    const unpaidArticles = await knex("create")
+      .where({ user_id, is_paid: false }) // Filter by user_id and is_paid = false
+      .select("*");
+
+    if (unpaidArticles.length === 0) {
+      return res.status(404).json({ message: "No unpaid articles found" });
+    }
+
+    // Return the list of unpaid articles
+    return res.status(200).json({
+      message: "Unpaid articles retrieved successfully",
+      articles: unpaidArticles
+    });
+  } catch (error) {
+    console.error("Error fetching unpaid articles:", error);
+    res.status(500).json({
+      error: "Failed to retrieve unpaid articles",
+    });
   }
 };
 
@@ -967,5 +1077,8 @@ module.exports = {
   editArticle,
   getRecentArticleById,
   editArticleRequest,
-  getCostUpdatesByArticle
+  getCostUpdatesByArticle,
+  deleteArticle,
+  getDraftArticleByUser,
+  getAllArticles
 };
