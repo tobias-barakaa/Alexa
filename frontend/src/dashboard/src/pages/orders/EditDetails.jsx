@@ -25,7 +25,7 @@ const EditDetails = () => {
   const [order, setOrder] = useState(null);
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-  const costUpdates = updatedData
+  // const costUpdates = updatedData
   //.costUpdates?.length ? updatedData.costUpdates : [{ adjustment_type: "Expired" }];
   // const isRefund = costUpdates[0].adjustment_type === 'refund';
 
@@ -178,39 +178,39 @@ const EditDetails = () => {
       <div className="right-side">
         <div className="cost-updates">
           <h3 className="section-title">Cost Updates</h3>
-          {updatedData.map((update) => (
-            <div key={update.id} className="cost-update-item">
+          {updatedData && (
+            <div key={updatedData.id} className="cost-update-item">
               <div className="cost-update-header">
-                <span className="cost-update-id">ID: {update.id}</span>
-                <span className={`cost-update-status ${update.payment_status?.toLowerCase()}`}>
-                  {update.original_cost}
+                <span className="cost-update-id">ID: {updatedData.id}</span>
+                <span className={`cost-update-status ${updatedData.original_cost}`}>
+                  {updatedData.original_cost}
                 </span>
               </div>
               <div className="cost-details">
                 <div className="cost-detail">
                   <span className="cost-label">Original Cost:</span>
-                  <span className="cost-value">${update.original_cost}</span>
+                  <span className="cost-value">${updatedData.original_cost}</span>
                 </div>
                 <div className="cost-detail">
                   <span className="cost-label">New Cost:</span>
-                  <span className="cost-value">${update.new_cost}</span>
+                  <span className="cost-value">${updatedData.new_cost}</span>
                 </div>
                 <div className="cost-detail">
                   <span className="cost-label">Adjustment:</span>
                   <span className="cost-value adjustment">
-                    ${update.adjustment_amount} ({update.adjustment_type})
+                    $({updatedData.top_up_amount | updatedData.refund_amount }) {updatedData?.refund}
                   </span>
                 </div>
               </div>
               <div className="update-timestamp">
-                Updated: {new Date(update.updated_at).toLocaleString()}
+                Updated: {new Date(updatedData.updated_at).toLocaleString()}
               </div>
             </div>
-          ))}
+          )}
         </div>
 
         {/* Display buttons only if not paid and refund is not involved */}
-        {!isPaid && !isRefund && (
+       
           <div className="additional-actions">
             <button className="action-button">
               <Plus size={20} />
@@ -223,18 +223,28 @@ const EditDetails = () => {
             </button>
 
             {/* PayPal payment section */}
-            {paymentAmount > 0 && !isPaid && (
+           
               <div className="paypal-button">
-                <h4>Please pay the additional amount: ${paymentAmount}</h4>
+                <h4>Please pay the additional amount: $</h4>
                 <button onClick={onApproveTest} style={{ marginBottom: '10px' }}>
                   Test Pay Order
                 </button>
-                <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError} />
-                {(loadingPay || isPending) && <Loader />}
+                <span className="cost-value adjustment">
+  $({updatedData.top_up_amount || updatedData.refund_amount}) {updatedData?.refund}
+</span>
+
+{updatedData && updatedData.refund === "Refund" ? (
+  "" // Don't show PayPal buttons if a refund is happening
+) : (
+  <>
+    <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError} />
+    {(loadingPay || isPending) && <Loader />}
+  </>
+)}
+
+                
               </div>
-            )}
           </div>
-        )}
 
         {isPaid && (
           <p className="success-message">
