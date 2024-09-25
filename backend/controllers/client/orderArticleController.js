@@ -708,17 +708,17 @@ const editArticleRequest = async (req, res) => {
     const originalCost = article.cost;
     const newCost = cost;
     const adjustmentAmount = newCost - originalCost;
-    // const checkIfisPaid = article.is_paid;
-    // if(checkIfisPaid === true && adjustmentAmount < 0) {
-    //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
+    // // const checkIfisPaid = article.is_paid;
+    // // if(checkIfisPaid === true && adjustmentAmount < 0) {
+    // //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
 
-    // }
+    // // }
 
-    // Only create a cost adjustment if there's a change in the cost
-    if (adjustmentAmount !== 0) {
-      const adjustmentType =
-        adjustmentAmount < 0 ? "refund" : "additional_payment";
-      const adjustedAmount = Math.abs(adjustmentAmount);
+    // // Only create a cost adjustment if there's a change in the cost
+    // if (adjustmentAmount !== 0) {
+    //   const adjustmentType =
+    //     adjustmentAmount < 0 ? "refund" : "additional_payment";
+    //   const adjustedAmount = Math.abs(adjustmentAmount);
 
       // Use appropriate paymentStatus based on the new cost and type
       const paymentStatus =
@@ -785,6 +785,94 @@ const editArticleRequest = async (req, res) => {
 };
 
 
+// const getCostUpdatesByArticle = async (req, res) => {
+//   // "original_cost": "1200.00",
+//   //           "new_cost": "245.00",
+//   //           "adjustment_amount": "955.00",
+//   //           "adjustment_type": "refund",
+//   //           "payment_status": "Completed",
+//   //           "is_processed": false,
+//   const user_id = req.user?.userId;
+//   if (!user_id) {
+//     return res.status(401).json({ error: "Unauthorized: User must be logged in" });
+//   }
+
+//   const articleId = req.params.id;
+
+//   try {
+//     // Verify if the article exists and belongs to the user
+//     const article = await knex("create").where({ id: articleId, user_id }).first();
+//     if (!article) {
+//       return res.status(404).json({ error: "Article not found or you do not have access to this article" });
+//     }
+
+//     // Fetch cost updates related to the article and the user
+//     // const costUpdates = await knex("cost_update")
+//     //   .where({ article_id: articleId, user_id })
+//     //   // .select("id", "original_cost", "new_cost", 
+//     //   //   "adjustment_amount", "adjustment_type", "payment_status", "is_processed", "created_at", "updated_at");
+//     //   console.log('costy updateess', costUpdates?.original_cost);
+
+//    const costUpdates = await knex("cost_update")
+//   .where({ article_id: articleId, user_id });
+
+//   // const isPaidAndIsRefund = costUpdates.costUpdates.is_paid 
+//   // //=== true && costUpdates.costUpdates.adjustment_type === 'refund';
+//   // if(isPaidAndIsRefund) {
+//   //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
+//   // }
+
+// console.log('costUpdates array:', costUpdates); // Log the entire array
+// console.log('articlees', article.is_paid)
+// const checkIfisPaid = article.is_paid;
+
+// // Ensure you always get the positive difference
+// if (checkIfisPaid === true && costUpdates[0].adjustment_amount > 0) {
+//   let x = costUpdates[0].adjustment_amount;
+//   let y = costUpdates[0].original_cost;
+//   const subtractAddedAmountAndOriginalCost = Math.abs(x - y);
+  
+//   // Determine if it's a refund or additional payment
+//   if (x > y) {
+//     console.log({ message: `You need to top up ${subtractAddedAmountAndOriginalCost} to your Account` });
+//     return res.status(200).json({ message: `You need to top up ${subtractAddedAmountAndOriginalCost} to your Account` });
+//   } else {
+//     console.log({ message: `${subtractAddedAmountAndOriginalCost} has been refunded to your account` });
+//     return res.status(200).json({ message: `${subtractAddedAmountAndOriginalCost} has been refunded to your account` });
+//   }
+
+// } else if (checkIfisPaid === false && costUpdates[0].new_cost > 0) {
+//   const newCost = costUpdates[0].new_cost;
+//   return res.status(200).json({ message: 'Payment pending', newCost });
+  
+// } else if (checkIfisPaid === true && costUpdates[0].adjustment_amount < costUpdates[0].original_cost) {
+//   const refundAmount = Math.abs(costUpdates[0].original_cost - costUpdates[0].adjustment_amount);
+//   return res.status(200).json({ message: `Refunded ${refundAmount} to your account` });
+// }
+
+
+// // Check if any results are returned
+// if (costUpdates.length > 0) {
+//   console.log('Original cost of first cost update:', costUpdates[0].original_cost);
+// } else {
+//   console.log('No cost updates found for the given article_id and user_id');
+// }
+
+    
+
+//     // If no cost updates are found, return a suitable response
+//     if (costUpdates.length === 0) {
+//       return;
+//     }
+
+//     // Return the cost updates
+//     return res.status(200).json({ costUpdates });
+//   } catch (error) {
+//     console.error("Error fetching cost updates:", error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
 const getCostUpdatesByArticle = async (req, res) => {
   const user_id = req.user?.userId;
   if (!user_id) {
@@ -802,16 +890,53 @@ const getCostUpdatesByArticle = async (req, res) => {
 
     // Fetch cost updates related to the article and the user
     const costUpdates = await knex("cost_update")
-      .where({ article_id: articleId, user_id })
-      .select("id", "original_cost", "new_cost", "adjustment_amount", "adjustment_type", "payment_status", "is_processed", "created_at", "updated_at");
+      .where({ article_id: articleId, user_id });
 
-    // If no cost updates are found, return a suitable response
     if (costUpdates.length === 0) {
-      return res.status(404).json({ message: "No cost updates found for this article" });
+      return res.status(200).json({ 
+        message: "No cost updates found", 
+        original_cost: article.original_cost, 
+        new_cost: article.new_cost 
+      });
     }
 
-    // Return the cost updates
-    return res.status(200).json({ costUpdates });
+    const checkIfIsPaid = article.is_paid;
+    const { original_cost, new_cost, adjustment_amount } = costUpdates[0];
+    
+    // Calculate the difference between the new cost and the original cost
+    const costDifference = Math.abs(new_cost - original_cost);
+
+    // Always return original_cost and new_cost
+    const response = {
+      original_cost,
+      new_cost
+    };
+
+    // If the article is paid but the new cost is higher, the user needs to top up
+    console.log('is_paid:', checkIfIsPaid);
+console.log('new_cost:', new_cost);
+console.log('original_cost:', original_cost);
+
+if (checkIfIsPaid === true && new_cost > original_cost) {
+  console.log('Top-up needed: ', costDifference);
+  return res.status(200).json({ 
+    message: "You need to top up", 
+    top_up_amount: costDifference        
+  });
+}
+    // If the article is not paid, return "Payment pending" message
+    else if (checkIfIsPaid === false && new_cost > 0) {
+      response.message = 'Payment pending';
+    } 
+    // If is_paid is true and adjustment_amount < original_cost, handle refunds
+    else if (checkIfIsPaid === true && adjustment_amount < original_cost) {
+      const refundAmount = Math.abs(original_cost - adjustment_amount);
+      response.message = `Refunded ${refundAmount} to your account.`;
+    }
+
+    // Return the response
+    return res.status(200).json(response);
+
   } catch (error) {
     console.error("Error fetching cost updates:", error);
     return res.status(500).json({ error: "Internal server error" });
