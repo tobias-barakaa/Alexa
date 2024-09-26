@@ -524,7 +524,6 @@ const countPublishedProjects = async (req, res) => {
 
 const fetchRecentArticles = async (req, res) => {
   const user_id = req.user?.userId;
-  console.log(user_id, "whats in the user_id");
 
   if (!user_id) {
     return res
@@ -714,6 +713,10 @@ const getRecentArticleById = async (req, res) => {
   }
 };
 
+
+
+
+
 const editArticleRequest = async (req, res) => {
   const user_id = req.user?.userId;
   if (!user_id) {
@@ -745,23 +748,15 @@ const editArticleRequest = async (req, res) => {
     const originalCost = article.cost;
     const newCost = cost;
     const adjustmentAmount = newCost - originalCost;
-    // const checkIfisPaid = article.is_paid;
-    // if(checkIfisPaid === true && adjustmentAmount < 0) {
-    //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
-
-    // }
-
-    // Only create a cost adjustment if there's a change in the cost
+    
     if (adjustmentAmount !== 0) {
       const adjustmentType =
         adjustmentAmount < 0 ? "refund" : "additional_payment";
       const adjustedAmount = Math.abs(adjustmentAmount);
 
-      // Use appropriate paymentStatus based on the new cost and type
       const paymentStatus =
-        adjustmentType === "additional_payment" ? "Pending" : "Completed"; // Use values allowed in the table
+        adjustmentType === "additional_payment" ? "Pending" : "Completed"; 
 
-      // Insert into cost_update table
       const [adjustmentId] = await knex("cost_update")
         .insert({
           user_id: user_id,
@@ -770,14 +765,13 @@ const editArticleRequest = async (req, res) => {
           new_cost: newCost,
           adjustment_amount: adjustedAmount,
           adjustment_type: adjustmentType,
-          payment_status: paymentStatus, // Values aligned with the table
+          payment_status: paymentStatus, 
           is_processed: false,
           created_at: knex.fn.now(),
           updated_at: knex.fn.now(),
         })
         .returning("id");
 
-      // Update article with new data
       await knex("create").where("id", articleId).update({
         title,
         description,
@@ -792,7 +786,6 @@ const editArticleRequest = async (req, res) => {
         updated_at: knex.fn.now(),
       });
 
-      // Send response
       return res.status(200).json({
         message: "Article updated successfully",
         adjustmentId,
@@ -822,93 +815,6 @@ const editArticleRequest = async (req, res) => {
 };
 
 
-// const getCostUpdatesByArticle = async (req, res) => {
-//   // "original_cost": "1200.00",
-//   //           "new_cost": "245.00",
-//   //           "adjustment_amount": "955.00",
-//   //           "adjustment_type": "refund",
-//   //           "payment_status": "Completed",
-//   //           "is_processed": false,
-//   const user_id = req.user?.userId;
-//   if (!user_id) {
-//     return res.status(401).json({ error: "Unauthorized: User must be logged in" });
-//   }
-
-//   const articleId = req.params.id;
-
-//   try {
-//     // Verify if the article exists and belongs to the user
-//     const article = await knex("create").where({ id: articleId, user_id }).first();
-//     if (!article) {
-//       return res.status(404).json({ error: "Article not found or you do not have access to this article" });
-//     }
-
-//     // Fetch cost updates related to the article and the user
-//     // const costUpdates = await knex("cost_update")
-//     //   .where({ article_id: articleId, user_id })
-//     //   // .select("id", "original_cost", "new_cost", 
-//     //   //   "adjustment_amount", "adjustment_type", "payment_status", "is_processed", "created_at", "updated_at");
-//     //   console.log('costy updateess', costUpdates?.original_cost);
-
-//    const costUpdates = await knex("cost_update")
-//   .where({ article_id: articleId, user_id });
-
-//   // const isPaidAndIsRefund = costUpdates.costUpdates.is_paid 
-//   // //=== true && costUpdates.costUpdates.adjustment_type === 'refund';
-//   // if(isPaidAndIsRefund) {
-//   //   return res.status(400).json({ error: "Cannot reduce cost for a paid article" });
-//   // }
-
-// console.log('costUpdates array:', costUpdates); // Log the entire array
-// console.log('articlees', article.is_paid)
-// const checkIfisPaid = article.is_paid;
-
-// // Ensure you always get the positive difference
-// if (checkIfisPaid === true && costUpdates[0].adjustment_amount > 0) {
-//   let x = costUpdates[0].adjustment_amount;
-//   let y = costUpdates[0].original_cost;
-//   const subtractAddedAmountAndOriginalCost = Math.abs(x - y);
-  
-//   // Determine if it's a refund or additional payment
-//   if (x > y) {
-//     console.log({ message: `You need to top up ${subtractAddedAmountAndOriginalCost} to your Account` });
-//     return res.status(200).json({ message: `You need to top up ${subtractAddedAmountAndOriginalCost} to your Account` });
-//   } else {
-//     console.log({ message: `${subtractAddedAmountAndOriginalCost} has been refunded to your account` });
-//     return res.status(200).json({ message: `${subtractAddedAmountAndOriginalCost} has been refunded to your account` });
-//   }
-
-// } else if (checkIfisPaid === false && costUpdates[0].new_cost > 0) {
-//   const newCost = costUpdates[0].new_cost;
-//   return res.status(200).json({ message: 'Payment pending', newCost });
-  
-// } else if (checkIfisPaid === true && costUpdates[0].adjustment_amount < costUpdates[0].original_cost) {
-//   const refundAmount = Math.abs(costUpdates[0].original_cost - costUpdates[0].adjustment_amount);
-//   return res.status(200).json({ message: `Refunded ${refundAmount} to your account` });
-// }
-
-
-// // Check if any results are returned
-// if (costUpdates.length > 0) {
-//   console.log('Original cost of first cost update:', costUpdates[0].original_cost);
-// } else {
-//   console.log('No cost updates found for the given article_id and user_id');
-// }
-
-    
-
-//     // If no cost updates are found, return a suitable response
-//     if (costUpdates.length === 0) {
-//       return;
-//     }
-
-//     // Return the cost updates
-//     return res.status(200).json({ costUpdates });
-//   } catch (error) {
-//     console.error("Error fetching cost updates:", error);
-//     return res.status(500).json({ error: "Internal server error" });
-//   }
-// };
 
 const getCostUpdatesByArticle = async (req, res) => {
   const user_id = req.user?.userId;
@@ -1042,19 +948,23 @@ const getDraftArticleByUser = async (req, res) => {
   }
 
   try {
-    // Fetch all articles from the 'create' table where 'is_paid' is false and the user is the creator
+    // Fetch all unpaid articles (drafts) from the 'create' table where 'is_paid' is false and the user is the creator
     const unpaidArticles = await knex("create")
       .where({ user_id, is_paid: false }) // Filter by user_id and is_paid = false
       .select("*");
 
+    // Return 200 with an empty array if no unpaid articles are found
     if (unpaidArticles.length === 0) {
-      return res.status(404).json({ message: "No unpaid articles found" });
+      return res.status(200).json({
+        message: "No unpaid articles found",
+        articles: [],
+      });
     }
 
-    // Return the list of unpaid articles
+    // Return the list of unpaid articles (drafts)
     return res.status(200).json({
       message: "Unpaid articles retrieved successfully",
-      articles: unpaidArticles
+      articles: unpaidArticles,
     });
   } catch (error) {
     console.error("Error fetching unpaid articles:", error);
@@ -1063,6 +973,7 @@ const getDraftArticleByUser = async (req, res) => {
     });
   }
 };
+
 
 
 module.exports = {
