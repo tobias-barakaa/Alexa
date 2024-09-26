@@ -17,7 +17,8 @@ const fileRoute = require('./routes/client/fileRoute');
 
 // wallet
 const walletRoute = require('./routes/wallet/userWalletRoute');
-const adminArticleRoute = require('./routes/admin/adminArticleRoute')
+const adminArticleRoute = require('./routes/admin/adminArticleRoute');
+const uploadFileRoute = require('./routes/admin/articleCreationUploadFile')
 
 // Resume CV Writing
 
@@ -88,6 +89,9 @@ app.use('/api/wallet', walletRoute);
 
 // admin
 app.use('/api/admin', adminArticleRoute)
+
+// upload
+app.use('/api/admin', uploadFileRoute)
 // 404 handler
 app.use((req, res, next) => {
   res.status(404).json({ message: "Resource not found" });
