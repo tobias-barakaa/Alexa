@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetArticleByIdQuery } from '../../../slices/admin/adminApiSlice';
+import { useGetArticleByIdQuery, useUploadArticleFileMutation } from '../../../slices/admin/adminApiSlice';
 import "./ArticleDetails.css";
 
 const ArticleDetails = () => {
@@ -9,7 +9,11 @@ const ArticleDetails = () => {
   const [status, setStatus] = useState('');
   const [file, setFile] = useState(null);
 
+  // Import the mutation hook
+  const [uploadArticleFile] = useUploadArticleFileMutation();
+
   const articleData = data?.article;
+  console.log('Article data:', articleData?.user_id);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
@@ -29,8 +33,34 @@ const ArticleDetails = () => {
     console.log('Status updated:', status);
   };
 
-  const handleSend = () => {
-    console.log('Sending file:', file);
+  const handleSend = async () => {
+    if (!file) {
+      alert('Please choose a file to upload.');
+      return;
+    }
+
+    if (!status) {
+      alert('Please select a status before uploading.');
+      return;
+    }
+
+    // Prepare the payload for the mutation
+    const payload = {
+      article_id: articleData.id,
+      user_id: articleData.user_id,
+      file,
+      status, // Include status in the payload
+    };
+
+    try {
+      // Call the mutation and handle response
+      const result = await uploadArticleFile(payload).unwrap();
+      alert('File uploaded successfully!');
+      console.log('Response:', result);
+    } catch (error) {
+      console.error('Error sending file:', error);
+      alert('An error occurred while uploading the file.');
+    }
   };
 
   if (isLoading) return <div>Loading article details...</div>;
@@ -72,15 +102,15 @@ const ArticleDetails = () => {
           </select>
         </div>
         <div className="control-group">
-  <label htmlFor="file-upload">Upload File (PDF or CSV)</label>
-  <div className="file-upload-wrapper">
-    <label className="custom-file-upload" htmlFor="file-upload">
-      Choose File
-    </label>
-    <input id="file-upload" type="file" accept=".pdf,.csv" onChange={handleFileChange} />
-    <span className="file-name">{file ? file.name : 'No file chosen'}</span>
-  </div>
-</div>
+          <label htmlFor="file-upload">Upload File (PDF or CSV)</label>
+          <div className="file-upload-wrapper">
+            <label className="custom-file-upload" htmlFor="file-upload">
+              Choose File
+            </label>
+            <input id="file-upload" type="file" accept=".pdf,.csv" onChange={handleFileChange} />
+            <span className="file-name">{file ? file.name : 'No file chosen'}</span>
+          </div>
+        </div>
         <div className="button-group">
           <button onClick={handleUpdateStatus}>Update Status</button>
           <button onClick={handleSend}>Send</button>

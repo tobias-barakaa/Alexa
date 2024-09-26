@@ -51,58 +51,6 @@
   }
   
  
-  .file-upload {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 8px;
-    background: #fafafa;
-    transition: border-color 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .file-upload:hover {
-    border-color: #5da8ff;
-  }
-  
-  .file-upload input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .file-upload .file-upload-btn {
-    background: #5da8ff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .file-upload .file-upload-btn:hover {
-    background: #4792df;
-  }
-  
-  .file-upload span {
-    flex: 1;
-    margin-left: 15px;
-    color: #555;
-    font-family: 'Roboto', sans-serif;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
   
   #status-select {
     width: 100%;

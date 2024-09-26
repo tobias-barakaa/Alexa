@@ -19,19 +19,38 @@ export const adminApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    
     getArticleById: builder.query({
       query: (id) => ({
         url: `${ADMIN_ARTICLE_URL}/${id}`,
-        credentials: "include"
+        credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
+
+    // Mutation to upload the file for an article
+    uploadArticleFile: builder.mutation({
+      query: ({ article_id, user_id, file, status }) => {
+        const formData = new FormData();
+        formData.append('article_id', article_id);
+        formData.append('user_id', user_id);
+        formData.append('file', file);
+        formData.append('status', status); // Include status in the form data
+
+        return {
+          url: `${ADMIN_ARTICLE_URL}/upload`,
+          method: 'POST',
+          body: formData,
+          credentials: 'include',
+        };
+      },
+    }),
   }),
-  
-  
 });
 
-export const { useAdminLoginMutation, 
-  useGetArticlesQuery,
-  useGetArticleByIdQuery
- } = adminApiSlice;
+export const { 
+  useAdminLoginMutation, 
+  useGetArticlesQuery, 
+  useGetArticleByIdQuery, 
+  useUploadArticleFileMutation 
+} = adminApiSlice;
