@@ -5,7 +5,7 @@ const { verifyAdmin } = require('../../middlewares/admin/adminMiddleware.js');
 
 const router = express.Router();
 
-router.get('/getall', protect, verifyAdmin, getArticles);
+router.get('/articles/getall', protect, verifyAdmin, getArticles);
 
 
 
