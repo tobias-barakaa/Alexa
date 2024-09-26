@@ -17,6 +17,7 @@ const fileRoute = require('./routes/client/fileRoute');
 
 // wallet
 const walletRoute = require('./routes/wallet/userWalletRoute');
+const adminArticleRoute = require('./routes/admin/adminArticleRoute')
 
 // Resume CV Writing
 
@@ -85,6 +86,8 @@ app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYP
 //wallet
 app.use('/api/wallet', walletRoute);
 
+// admin
+app.use('/api/admin', adminArticleRoute)
 // 404 handler
 app.use((req, res, next) => {
   res.status(404).json({ message: "Resource not found" });
