@@ -26,6 +26,8 @@ import EditArticle from './dashboard/src/pages/orders/EditArticle';
 import EditDetails from './dashboard/src/pages/orders/EditDetails';
 import Drafts from './dashboard/src/pages/orders/Drafts';
 import Pricing from './dashboard/src/pages/orders/Pricing';
+import ArticleList from './dashboard/src/pages/manage orders/ArticleList';
+import OrderHistory from './dashboard/src/pages/manage orders/OrderHistory';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -99,6 +101,14 @@ const router = createBrowserRouter([
       {
         path: "pricing",
         element: <Pricing />
+      },
+      {
+        path: "all-orders",
+        element: <ArticleList />
+      },
+      {
+        path: "history",
+        element: <OrderHistory />
       },
       
    

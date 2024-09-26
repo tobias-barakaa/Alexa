@@ -1,0 +1,80 @@
+.history-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h2 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .history-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .history-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .item-header h3 {
+    margin: 0;
+    color: #2c3e50;
+  }
+
+  .status {
+    background-color: #3498db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+  }
+
+  .description {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .item-details, .item-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+
+  .item-meta {
+    color: #777;
+  }
+
+  .delete-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }

@@ -69,7 +69,6 @@ const orderArticle = async (req, res) => {
 
 
 
-
 const getAllArticles = async (req, res) => {
   const user_id = req.user?.userId; // Get the user ID from the request
 
@@ -81,8 +80,12 @@ const getAllArticles = async (req, res) => {
     // Query the 'create' table for articles created by the user
     const articles = await knex("create").where({ user_id });
 
+    // Return 200 with an empty array if no articles are found
     if (articles.length === 0) {
-      return res.status(404).json({ message: "No articles found for this user." });
+      return res.status(200).json({
+        message: "No articles found for this user.",
+        articles: [],
+      });
     }
 
     // Return the articles found
@@ -469,27 +472,27 @@ const countPublishedProjects = async (req, res) => {
   }
 };
 
-const getAllArticles = async (req, res) => {
-  try {
-    // Retrieve all articles from the `create` table
-    const articles = await knex("create").select("*"); // You can select specific fields if needed
+// const getAllArticles = async (req, res) => {
+//   try {
+//     // Retrieve all articles from the `create` table
+//     const articles = await knex("create").select("*"); // You can select specific fields if needed
 
-    // Get the count of articles
-    const articleCount = articles.length;
+//     // Get the count of articles
+//     const articleCount = articles.length;
 
-    res.status(200).json({
-      message: "Articles retrieved successfully",
-      count: articleCount,
-      articles,
-    });
-  } catch (error) {
-    console.error("Error retrieving articles:", error);
-    res.status(500).json({
-      error: "Failed to retrieve articles",
-      details: error.message, // For debugging purposes
-    });
-  }
-};
+//     res.status(200).json({
+//       message: "Articles retrieved successfully",
+//       count: articleCount,
+//       articles,
+//     });
+//   } catch (error) {
+//     console.error("Error retrieving articles:", error);
+//     res.status(500).json({
+//       error: "Failed to retrieve articles",
+//       details: error.message, // For debugging purposes
+//     });
+//   }
+// };
 
 // const fetchRecentArticles = async (req, res) => {
 //   const user_id = req.user?.userId;
@@ -1080,5 +1083,4 @@ module.exports = {
   getCostUpdatesByArticle,
   deleteArticle,
   getDraftArticleByUser,
-  getAllArticles
 };

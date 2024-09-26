@@ -1,0 +1,117 @@
+/* Overall styling */
+.article-list {
+    font-family: 'Roboto', sans-serif;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* Page title */
+.article-list-header {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+
+/* Individual article card */
+.article-card {
+    background: linear-gradient(135deg, #ffffff 30%, #f7f7f7);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for card */
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Article title */
+.article-card h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+/* Article description */
+.description {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Article details: complexity, cost, word count */
+.article-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.article-details span {
+    background-color: #f0f3f4;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.complexity {
+    color: #2980b9;
+}
+
+.cost {
+    color: #27ae60;
+}
+
+.word-count {
+    color: #8e44ad;
+}
+
+/* Meta info: status and language */
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #7f8c8d;
+    align-items: center;
+}
+
+.status {
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.language {
+    font-style: italic;
+    color: #34495e;
+}
+
+/* Button for more interaction */
+.view-details-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.view-details-button:hover {
+    background-color: #2980b9;
+}

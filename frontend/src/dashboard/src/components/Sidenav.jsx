@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Profile from "../pages/profile/Profile";
 import "./Sidenav.css"
-import { BookOpenCheck, BringToFront, FileArchive, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch } from "lucide-react";
+import { BookOpenCheck, BringToFront, FileStack, Gem, GitPullRequest, Newspaper, ScanSearch } from "lucide-react";
 
 const Sidenav = () => {
   return (
@@ -53,10 +53,10 @@ const Sidenav = () => {
           </li>
    
           <li>
-            <a href="#">
+            <Link to="/dashboard/all-orders">
               <ScanSearch className="icon-menu" />
               <span>View All Articles</span>
-            </a>
+            </Link>
           </li>
 
           
@@ -68,19 +68,13 @@ const Sidenav = () => {
             </a>
           </li>
 
-          <li>
-            <a href="#">
-              <FileArchive className="icon-menu" />
-              <span>Archived</span>
-            </a>
-          </li>
-
+         
 
           <li>
-            <a href="#">
+            <Link to="/dashboard/history">
               <FileStack className="icon-menu" />
               <span>Order History</span>
-            </a>
+            </Link>
           </li>
 
         </ul>
