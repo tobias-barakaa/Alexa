@@ -33,9 +33,6 @@ router.get('/articles/request/getall', protect, getAllArticles);
 
 
 
-
-
-
 // router.get('/articles/all',protect, sumWordCountsByUserId);
 
 

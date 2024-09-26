@@ -522,6 +522,8 @@ const countPublishedProjects = async (req, res) => {
 //   }
 // };
 
+
+
 const fetchRecentArticles = async (req, res) => {
   const user_id = req.user?.userId;
 
@@ -534,7 +536,7 @@ const fetchRecentArticles = async (req, res) => {
   try {
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString(); // One hour ago
 
-    // Fetch all articles by this user, regardless of creation time
+    // Fetch all articles by this user
     const allArticles = await knex("create")
       .where("user_id", user_id)
       .select(
@@ -561,29 +563,88 @@ const fetchRecentArticles = async (req, res) => {
       (article) => new Date(article.created_at) <= new Date(oneHourAgo)
     );
 
-    // If no recent or expired articles found
-    if (recentArticles.length === 0 && expiredArticles.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No articles found for this user" });
-    }
-
-    // Send response with recent articles and expired articles with the additional expired flag
-    res.status(200).json({
+    // Always return a 200 response with the articles, even if they are empty
+    return res.status(200).json({
       message: "Articles fetched successfully",
-      recentArticles,
-      expiredArticles: expiredArticles.map((article) => ({
-        ...article,
-        expired: "Expired", // Add 'expired' field to expired articles
-      })),
+      recentArticles: recentArticles.length ? recentArticles : [],
+      expiredArticles: expiredArticles.length
+        ? expiredArticles.map((article) => ({
+            ...article,
+            expired: "Expired", // Add 'expired' field to expired articles
+          }))
+        : [],
     });
   } catch (error) {
     console.error("Error fetching articles:", error);
-    res.status(500).json({
+    return res.status(500).json({
       error: "Failed to fetch articles",
     });
   }
 };
+
+
+// const fetchRecentArticles = async (req, res) => {
+//   const user_id = req.user?.userId;
+
+//   if (!user_id) {
+//     return res
+//       .status(401)
+//       .json({ error: "Unauthorized: User must be logged in" });
+//   }
+
+//   try {
+//     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString(); // One hour ago
+
+//     // Fetch all articles by this user, regardless of creation time
+//     const allArticles = await knex("create")
+//       .where("user_id", user_id)
+//       .select(
+//         "id",
+//         "title",
+//         "description",
+//         "keywords",
+//         "word_count",
+//         "duration",
+//         "complexity",
+//         "language",
+//         "quantity",
+//         "cost",
+//         "status",
+//         "is_paid",
+//         "created_at"
+//       );
+
+//     // Separate recent and expired articles
+//     const recentArticles = allArticles.filter(
+//       (article) => new Date(article.created_at) > new Date(oneHourAgo)
+//     );
+//     const expiredArticles = allArticles.filter(
+//       (article) => new Date(article.created_at) <= new Date(oneHourAgo)
+//     );
+
+//     // If no recent or expired articles found
+//     if (recentArticles.length === 0 && expiredArticles.length === 0) {
+//       return res
+//         .status(404)
+//         .json({ message: "No articles found for this user" });
+//     }
+
+//     // Send response with recent articles and expired articles with the additional expired flag
+//     res.status(200).json({
+//       message: "Articles fetched successfully",
+//       recentArticles,
+//       expiredArticles: expiredArticles.map((article) => ({
+//         ...article,
+//         expired: "Expired", // Add 'expired' field to expired articles
+//       })),
+//     });
+//   } catch (error) {
+//     console.error("Error fetching articles:", error);
+//     res.status(500).json({
+//       error: "Failed to fetch articles",
+//     });
+//   }
+// };
 
 const editArticle = async (req, res) => {
   const user_id = req.user?.userId;
