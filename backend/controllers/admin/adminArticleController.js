@@ -29,11 +29,29 @@ const getArticles = async (req, res) => {
   };
   
 
-
-const getArticle = async (req, res) => {
+  const getArticle = async (req, res) => {
     const { id } = req.params;
+    const user_id = req.user?.userId; 
+
 
     try {
+        // Fetch the user's role from the database
+        const user = await knex('users')
+            .join('roles', 'users.role_id', 'roles.id')
+            .where('users.id', user_id)
+            .select('roles.name as role')
+            .first();
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if the user has the appropriate role (e.g., 'admin')
+        if (user.role !== 'admin') {
+            return res.status(403).json({ message: 'Access denied: Insufficient permissions' });
+        }
+
+        // Fetch the article if the user is authorized
         const article = await knex('create').where({ id }).first();
 
         if (article) {
