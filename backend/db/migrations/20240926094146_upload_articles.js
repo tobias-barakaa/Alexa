@@ -6,13 +6,18 @@ exports.up = function(knex) {
         table.integer('recipient_id').unsigned().notNullable();
         table.integer('uploaded_by').unsigned().notNullable();
         table.integer('article_id').unsigned().notNullable(); 
-        table.timestamp('created_at').defaultTo(knex.fn.now());
+        table.string('status').notNullable().defaultTo('Processing');
         table.foreign('recipient_id').references('id').inTable('users').onDelete('CASCADE');
         table.foreign('uploaded_by').references('id').inTable('users').onDelete('CASCADE');
         table.foreign('article_id').references('id').inTable('create').onDelete('CASCADE');
+        table.timestamp('created_at').defaultTo(knex.fn.now());
+        table.timestamp('updated_at').defaultTo(knex.fn.now()); 
+
+
     });
 };
 
 exports.down = function(knex) {
     return knex.schema.dropTable('upload_articles');
 };
+
