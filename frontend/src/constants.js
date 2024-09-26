@@ -35,3 +35,6 @@ export const PAYPAL_URL = '/api/config/paypal';
 export const ORDER_URL = 'api/order';
 
 export const WALLET_URL = 'api/wallet/usertransactions';
+
+// Admin
+export const ADMIN_ARTICLE_URL = 'api/admin/articles';

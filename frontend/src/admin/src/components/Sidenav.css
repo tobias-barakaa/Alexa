@@ -1,0 +1,70 @@
+.side {
+    width: 200px; 
+    /* background-color: #2c3e50;  */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    /* color: #ecf0f1;  */
+    padding: 20px; /* Padding around the sidebar */
+    height: 100vh; /* Full height of the viewport */
+    position: fixed; /* Fixed position on the left */
+    overflow-y: auto; /* Scrollable if content overflows */
+   
+}
+  
+  .side p {
+    font-size: 24px; /* Font size for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    text-align: center; /* Center the heading */
+  }
+  
+  .side-list {
+    list-style-type: none; 
+    padding: 0; 
+    
+  }
+  
+  .side-list li {
+    padding: 10px 15px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+     
+  }
+  
+  .side-list li:hover {
+    background-color: #f1f1f1; 
+    color: white;
+    width: 100%;
+  }
+  
+  .dropdown-toggle {
+    font-weight: bold; 
+  }
+  
+  .dropdown-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: none; 
+  }
+  
+  .dropdown-list li {
+    padding: 10px 30px; 
+     
+    transition: background-color 0.3s; 
+    
+  }
+  
+  .dropdown-list li:hover {
+    background-color: #4a6fa5; 
+  }
+  
+  .dropdown-toggle.open + .dropdown-list {
+    display: block; 
+  }
+  
+  
+  
+  
+  
+  
+  

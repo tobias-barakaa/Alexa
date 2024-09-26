@@ -28,6 +28,8 @@ import Drafts from './dashboard/src/pages/orders/Drafts';
 import Pricing from './dashboard/src/pages/orders/Pricing';
 import ArticleList from './dashboard/src/pages/manage orders/ArticleList';
 import OrderHistory from './dashboard/src/pages/manage orders/OrderHistory';
+import Articles from './admin/src/pages/Articles';
+import ArticleDetails from './admin/src/pages/ArticleDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -133,6 +135,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Main />
+      },
+      {
+        path: "articles",
+        element: <Articles />
+      },
+      {
+        path: "articles/:id",
+        element: <ArticleDetails />
       },
       
     ]

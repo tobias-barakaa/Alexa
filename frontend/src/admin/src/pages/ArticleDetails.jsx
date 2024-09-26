@@ -1,92 +1,91 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../styles/pages/ArticleDetails.css';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetArticleByIdQuery } from '../../../slices/admin/adminApiSlice';
+import "./ArticleDetails.css";
 
 const ArticleDetails = () => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const { id } = useParams(); 
+  const { data, isLoading, isError } = useGetArticleByIdQuery(id);
+  const [status, setStatus] = useState('');
+  const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/admin/article/retrieve', { withCredentials: true });
-        const { data } = response.data;
+  const articleData = data?.article;
 
-        if (Array.isArray(data)) {
-          setArticles(data);
-        } else {
-          setError('Unexpected response format');
-        }
-
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch articles');
-        setLoading(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
-
-  const handleArticleClick = (id) => {
-    navigate('/admindashboard/articleuser/' + id);
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile && (selectedFile.type === 'application/pdf' || selectedFile.type === 'text/csv')) {
+      setFile(selectedFile);
+    } else {
+      alert('Please upload only PDF or CSV files.');
+      e.target.value = null;
+    }
+  };
+
+  const handleUpdateStatus = () => {
+    console.log('Status updated:', status);
+  };
+
+  const handleSend = () => {
+    console.log('Sending file:', file);
+  };
+
+  if (isLoading) return <div>Loading article details...</div>;
+  if (isError) return <div>Error loading article details.</div>;
 
   return (
-    <div className="article-table-container">
-      <h2>Article List</h2>
-      <table className="article-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Ti</th> {/* Title */}
-            <th>De</th> {/* Description */}
-            <th>Ca</th> {/* Category */}
-            <th>Ke</th> {/* Keywords */}
-            <th>Co</th> {/* Complexity */}
-            <th>Wo</th> {/* Word Count */}
-            <th>Du</th> {/* Duration */}
-            <th>Qu</th> {/* Quantity */}
-            <th>La</th> {/* Language */}
-            <th>Us</th> {/* User ID */}
-            <th>Co</th> {/* Cost */}
-            <th>St</th> {/* Status */}
-            <th>Cr</th> {/* Created At */}
-            <th>Up</th> {/* Updated At */}
-          </tr>
-        </thead>
-        <tbody>
-          {articles.map(article => (
-            <tr
-              key={article.id}
-              className="article-row"
-              onClick={() => handleArticleClick(article.id)}
-            >
-              <td>{article.id}</td>
-              <td>{article.title.substring(0, 2)}</td>
-              <td>{article.description.substring(0, 2)}</td>
-              <td>{article.category.substring(0, 2)}</td>
-              <td>{article.keywords.substring(0, 2)}</td>
-              <td>{article.complexity.substring(0, 2)}</td>
-              <td>{article.word_count}</td>
-              <td>{article.duration.substring(0, 2)}</td>
-              <td>{article.quantity}</td>
-              <td>{article.language.substring(0, 2)}</td>
-              <td>{article.user_id}</td>
-              <td>{article.cost.substring(0, 2)}</td>
-              <td>{article.status.substring(0, 2)}</td>
-              <td>{new Date(article.created_at).toLocaleDateString()}</td>
-              <td>{new Date(article.updated_at).toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="article-details">
+      <div className="left-side">
+        <p>Article Details</p>
+        <div className="table-container">
+          <table>
+            <tbody>
+              {articleData ? (
+                Object.entries(articleData).map(([key, value]) => (
+                  <tr key={key}>
+                    <td>{key}</td>
+                    <td>{typeof value === 'object' ? JSON.stringify(value) : value.toString()}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={2}>No data available</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="right-side">
+        <div className="control-group">
+          <label htmlFor="status-select">Update Status</label>
+          <select id="status-select" value={status} onChange={handleStatusChange}>
+            <option value="">Select Status</option>
+            <option value="processing">Processing</option>
+            <option value="completed">Completed</option>
+            <option value="failed">Failed</option>
+            <option value="published">Published</option>
+            <option value="received">Received</option>
+          </select>
+        </div>
+        <div className="control-group">
+  <label htmlFor="file-upload">Upload File (PDF or CSV)</label>
+  <div className="file-upload-wrapper">
+    <label className="custom-file-upload" htmlFor="file-upload">
+      Choose File
+    </label>
+    <input id="file-upload" type="file" accept=".pdf,.csv" onChange={handleFileChange} />
+    <span className="file-name">{file ? file.name : 'No file chosen'}</span>
+  </div>
+</div>
+        <div className="button-group">
+          <button onClick={handleUpdateStatus}>Update Status</button>
+          <button onClick={handleSend}>Send</button>
+        </div>
+      </div>
     </div>
   );
 };

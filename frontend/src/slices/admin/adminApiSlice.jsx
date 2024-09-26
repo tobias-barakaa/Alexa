@@ -1,4 +1,4 @@
-import { ADMIN_URL } from '../../constants';
+import { ADMIN_URL, ADMIN_ARTICLE_URL } from '../../constants';
 import { apiSlice } from '../apiSlice';
 
 export const adminApiSlice = apiSlice.injectEndpoints({
@@ -11,7 +11,27 @@ export const adminApiSlice = apiSlice.injectEndpoints({
         credentials: 'include',
       }),
     }),
+
+    getArticles: builder.query({
+      query: () => ({
+        url: ADMIN_ARTICLE_URL,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    getArticleById: builder.query({
+      query: (id) => ({
+        url: `${ADMIN_ARTICLE_URL}/${id}`,
+        credentials: "include"
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
+  
+  
 });
 
-export const { useAdminLoginMutation } = adminApiSlice;
+export const { useAdminLoginMutation, 
+  useGetArticlesQuery,
+  useGetArticleByIdQuery
+ } = adminApiSlice;
