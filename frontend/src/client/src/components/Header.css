@@ -13,7 +13,9 @@
 
     padding: 0 10px;
 
-    background-color: #fcfcf9;
+    /* background-color: #fcfcf9; */
+    background-color: #ffffff;
+
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #dbdbdb;

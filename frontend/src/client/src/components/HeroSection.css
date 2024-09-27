@@ -13,12 +13,21 @@
 }
 
 .hero-title {
-  font-size: 36px;
+  font-size: 48px; /* Increase size for prominence */
   font-weight: bold;
-  color: #000000;
-  line-height: 1.3;
-  margin-bottom: 20px;
+  line-height: 1.4;
+  color: #000; /* Black for strong visual impact */
+  margin-bottom: 20px; /* Space between title and description */
 }
+
+.hero-description {
+  font-size: 18px; /* Adjust for readability */
+  color: #d3d3d3; /* Grey-white tone for the description */
+  line-height: 1.6;
+  max-width: 600px; /* Limit the width for better readability */
+  margin-top: 10px;
+}
+
 
 .hero-subtitle {
   font-size: 30px;

@@ -1,101 +1,109 @@
-.signup-container {
-    font-family: Arial, sans-serif;
-    max-width: 400px;
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Signup container */
+  .signup-container {
+    width: 370px;
+    padding: 40px;
+    background-color: white;
+    border: 1px solid #d3d3d3;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    position: relative;
   }
-  .signup-form {
-    display: flex;
-    flex-direction: column;
+  
+  /* Form Header */
+  .signup-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
   }
-  .form-header {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
+  
+  .header-divider {
+    border-bottom: 2px solid #d3d3d3;
+    margin-bottom: 20px;
   }
-  .input-group {
-    margin-bottom: 15px;
-  }
-  .input-group label {
+  
+  /* Form */
+  .signup-form label {
     display: block;
+    font-size: 14px;
     margin-bottom: 5px;
-    color: #555;
+    color: #333;
   }
-  .input-group input {
+  
+  .signup-form input {
     width: 100%;
-    height: 60px;
-    padding: 0 15px;
-    border: 2px solid #e0e0e0;
-    font-size: 16px;
+    padding: 12px;
+    border: 2px solid #d3d3d3;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 0; /* No border radius */
   }
+  
+  /* Social login buttons */
   .social-buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
-  .social-buttons button {
+  
+  .social-button {
     width: 48%;
-    height: 50px;
+    padding: 10px;
     border: none;
-    color: #fff;
-    font-size: 16px;
     cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-align: center;
   }
-  .facebook-btn {
+  
+  .facebook-button {
     background-color: #3b5998;
   }
-  .google-btn {
+  
+  .google-button {
     background-color: #db4437;
   }
-  .submit-btn {
+  
+  /* Sign-up button */
+  .signup-button {
     width: 100%;
-    height: 60px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 12px;
+    background-color: #5da8ff;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
     border: none;
-    font-size: 18px;
+    border-radius: 0; /* No border radius */
     cursor: pointer;
+    margin-bottom: 20px;
   }
-  .terms-notification {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-top: 1px solid #e0e0e0;
+  
+  .signup-button:hover {
+    background-color: #78bafc;
   }
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    color: #555;
-    font-size: 14px;
+  
+  /* Terms and conditions */
+  .terms-and-conditions {
+    background-color: #f4f6f8;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
   }
-  .checkbox-container input {
-    margin-right: 10px;
+  
+  .terms-and-conditions .link {
+    color: #5da8ff;
+    cursor: pointer;
+    text-decoration: underline;
   }
-  .checkmark {
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
-    border: 2px solid #e0e0e0;
-    display: inline-block;
-    position: relative;
-    margin-right: 10px;
+  
+  .terms-and-conditions .link:hover {
+    color: #78bafc;
   }
-  .checkbox-container input:checked + .checkmark:after {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid #007bff;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-  }
+  
