@@ -165,7 +165,7 @@ const EditDetails = () => {
         <h2 className="section-title">Edit Details</h2>
         <div className="details-grid">
           {Object.entries(recentData.article).map(([key, value]) => (
-            <div key={key} className="detail-item">
+            <div key={key} className="detail-itemm">
               <div className="detail-header">
                 <span className="detail-label">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
               </div>

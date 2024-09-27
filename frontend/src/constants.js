@@ -38,3 +38,5 @@ export const WALLET_URL = 'api/wallet/usertransactions';
 
 // Admin
 export const ADMIN_ARTICLE_URL = 'api/admin/articles';
+
+export const ADMIN_UPLOAD_URL = 'api/admin'

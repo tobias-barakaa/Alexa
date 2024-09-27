@@ -1,0 +1,123 @@
+
+/* Header container */
+.headerr {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 25px 40px;
+  border-bottom: 2px solid #5da8ff;
+  box-sizing: border-box; */
+    display: flex;
+    height: 80px;
+
+    padding: 0 10px;
+
+    background-color: #fcfcf9;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #dbdbdb;
+}
+
+.enwrit {
+  height: 140px;
+  width: 120px;
+  object-fit: contain;
+  padding: 20px;
+}
+
+/* Right - Navigation Icons and Buttons Container */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px; 
+}
+
+/* Middle - Navigation Icons and Text */
+.header-middle {
+  display: flex;
+  gap: 20px; /* Space between the two nav items */
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.nav-icon {
+  font-size: 18px; /* Prominent icons */
+  color: #000000;
+}
+
+.nav-text {
+  margin-top: 5px; /* Space between icon and text */
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover .nav-text {
+  color: #5da8ff;
+}
+
+/* Buttons */
+.border-button {
+  border: 1px solid #5da8ff;
+  /* color: #5da8ff; */
+
+  background-color: transparent;
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.border-button:hover {
+  background-color: #f8f7f7;
+  color: #000000;
+}
+
+.blue-button {
+  background-color: #5da8ff;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.blue-button:hover {
+  background-color: #78bafc;
+}
+
+@media (max-width: 768px) {
+  .headerr {
+    flex-direction: column;
+    padding: 20px;
+    height: 300px;
+    margin-top: -30px;
+    height: auto;
+  }
+
+  .header-right {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .header-middle {
+    justify-content: center;
+  }
+}
+
+/* 
+Here is how I want my sign up to look like so the sign up should not have a border radius and it should be 370px width and just the top left should start with words "Logg inn eller lag en aID-bruker
+" then after that line on followed by botter bottom of 2px grey-white then on the next line should be Username then after that line followed by input the input should not have any border radius and it should have a border solid of 2px; grey-white should have a padding of 20px from the left and right and then I want three inputs which means each of them has labels named email and password because we already got username so after those three follows the two buttons side by side facebook on teh left and google on its right then next line should follow with a button that says something about sign up you know then the button should not be with any border radius then after that button should follow a term and condition something like a notifications that is attached to sign up button then that terms and condition should have a background of white-grey  */

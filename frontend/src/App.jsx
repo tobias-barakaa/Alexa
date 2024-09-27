@@ -30,6 +30,7 @@ import ArticleList from './dashboard/src/pages/manage orders/ArticleList';
 import OrderHistory from './dashboard/src/pages/manage orders/OrderHistory';
 import Articles from './admin/src/pages/Articles';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
+import Published from './dashboard/src/pages/orders/Published';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "edit-detail/:id",
         element: <EditDetails />
+      },
+      {
+        path: "published",
+        element: <Published />
       },
       {
         path: "pricing",

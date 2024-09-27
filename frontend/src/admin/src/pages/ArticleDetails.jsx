@@ -112,8 +112,8 @@ const ArticleDetails = () => {
           </div>
         </div>
         <div className="button-group">
-          <button onClick={handleUpdateStatus}>Update Status</button>
-          <button onClick={handleSend}>Send</button>
+          <button className='button-update' onClick={handleUpdateStatus}>Update Status</button>
+          <button className='button-update' onClick={handleSend}>Send</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import HeroSection from "../components/HeroSection";
 
 const HomePage = () => {
   
@@ -8,6 +9,7 @@ const HomePage = () => {
    
 
       <Header />
+      <HeroSection />
       
        
     </div>

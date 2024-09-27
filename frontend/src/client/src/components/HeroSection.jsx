@@ -1,55 +1,39 @@
-import "./HeroSection.css";
-import centerImage from "../assets/images/come.png";
-import ClientRegister from "../pages/ClientRegister";
+import { useState } from 'react';
+import './HeroSection.css';
+import SignUpForm from './SignUpForm';
 
 const HeroSection = () => {
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
   return (
-    <>
-      <div className="hero-section">
-        <div className="hero-image-container">
-          <img src={centerImage} alt="Hero" className="hero-image" />
-          <div className="overlay">
-            <div>
-              <h1>Get Professional Writing Assistance Today!</h1>
-              <p>
-                high-quality articles, engaging blog posts, and standout resumes
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="hero-section">
+  <div className="hero-left">
+  <h1 className="hero-title">
+          Professional Article Creation <br />
+          and Natural Content Management
+        </h1>
+    <div className="button-container">
+      <div className="hero-button blue-button">Article Writing</div>
+      <div className="hero-button grey-button">Content Strategy</div>
+      <div className="hero-button white-button">SEO Optimization</div>
+      <div className="hero-button black-button">Editing Services</div>
+    </div>
+  </div>
+  <div className="hero-righ">
+  <SignUpForm />
 
-      <div className="business-page">
-        <div className="left-div">
-          <div className="features">
-            <div className="feature-item">
-              <i className="fas fa-cog"></i>
-              <span>Automated</span>
-            </div>
-            <div className="feature-item">
-              <i className="fas fa-shield-alt"></i>
-              <span>Trusted</span>
-            </div>
-            <div className="feature-item">
-              <i className="fas fa-adjust"></i>
-              <span>Flexible</span>
-            </div>
-            <div className="feature-item">
-              <i className="fas fa-chart-line"></i>
-              <span>Scalable</span>
-            </div>
-          </div>
-        </div>
-        {/* <h2 className="empower-title">Empower Your Business</h2>
-    <img src={centerImage} alt="Empower" className="feature-image" /> */}
+  </div>
+</div>
 
-        <div className="right-div">
-          
-          <ClientRegister />
-        </div>
-      </div>
-    </>
   );
 };
 
 export default HeroSection;
+
+
+
+
+
+
+
+

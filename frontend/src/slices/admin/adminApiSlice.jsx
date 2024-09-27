@@ -1,4 +1,4 @@
-import { ADMIN_URL, ADMIN_ARTICLE_URL } from '../../constants';
+import { ADMIN_URL, ADMIN_ARTICLE_URL, ADMIN_UPLOAD_URL } from '../../constants';
 import { apiSlice } from '../apiSlice';
 
 export const adminApiSlice = apiSlice.injectEndpoints({
@@ -38,13 +38,23 @@ export const adminApiSlice = apiSlice.injectEndpoints({
         formData.append('status', status); // Include status in the form data
 
         return {
-          url: `${ADMIN_ARTICLE_URL}/upload`,
+          url: `${ADMIN_UPLOAD_URL}/upload`,
           method: 'POST',
           body: formData,
           credentials: 'include',
         };
       },
     }),
+
+      getArticleFiles: builder.query({
+      query: () => ({
+        url: `${ADMIN_UPLOAD_URL}/upload/retrieve`, // Replace with the correct endpoint
+
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
+
   }),
 });
 
@@ -52,5 +62,6 @@ export const {
   useAdminLoginMutation, 
   useGetArticlesQuery, 
   useGetArticleByIdQuery, 
-  useUploadArticleFileMutation 
+  useUploadArticleFileMutation,
+  useGetArticleFilesQuery 
 } = adminApiSlice;

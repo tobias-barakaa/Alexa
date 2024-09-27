@@ -98,7 +98,7 @@
     gap: 10px;
   }
   
-  button {
+  .button-update {
     padding: 10px 18px;
     border-radius: 8px;
     border: none;
@@ -106,29 +106,29 @@
     color: #ffffff;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: background 0.3s, box-shadow 0.3s;
   }
   
-  button:hover {
+  .button-update:hover {
     background: #4792df;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
-  button:active {
+  .button-update:active {
     transform: translateY(1px);
   }
   
-  button:disabled {
+  .button-update:disabled {
     background: #cccccc;
     cursor: not-allowed;
   }
   
-  button:last-child {
+  .button-update:last-child {
     background: #4caf50;
   }
   
-  button:last-child:hover {
+  .button-update:last-child:hover {
     background: #43a047;
   }
   

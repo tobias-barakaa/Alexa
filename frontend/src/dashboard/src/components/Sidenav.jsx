@@ -61,13 +61,14 @@ const Sidenav = () => {
 
           
 
-          <li>
-            <a href="#">
-              <BookOpenCheck className="icon-menu" />
-              <span>Published</span>
-            </a>
-          </li>
 
+          <li>
+            <Link to="/dashboard/published">
+            <BookOpenCheck className="icon-menu" />
+
+              <span>Published</span>
+            </Link>
+          </li>
          
 
           <li>
