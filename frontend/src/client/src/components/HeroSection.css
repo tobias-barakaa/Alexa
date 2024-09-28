@@ -1,186 +1,90 @@
+.talent {
+  color: black;
+  font-size: 44;
+  font-weight: 800;
+}
+
 .hero-section {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 80px;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 50px;
+  background-color: #f8f9fa;
 }
 
-
+.hero-left, .hero-right {
+  margin-top: 40px;
+}
 .hero-left {
-  max-width: 60%; 
-  padding-right: 40px;
+  width: 60%;
 }
 
-.hero-title {
-  font-size: 50px; /* Increase size for prominence */
-  font-weight: 800;
-  line-height: 1.4;
-  color: #000; /* Black for strong visual impact */
-  margin-bottom: 20px; /* Space between title and description */
+.hero-left h1 {
+  font-size: 36px;
+  margin: 0 0 10px 0;
 }
 
 .hero-description {
-  font-size: 18px; /* Adjust for readability */
-  color: #d3d3d3; /* Grey-white tone for the description */
-  line-height: 1.6;
-  max-width: 600px; /* Limit the width for better readability */
-  margin-top: 10px;
-}
-
-
-.hero-subtitle {
-  font-size: 30px;
-  color: #333; /* Dark grey color */
-  margin-top: 10px;
-}
-
-.button-container {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap; /* Allows wrapping of buttons */
-  gap: 15px; /* Space between button divs */
-}
-
-.hero-button {
-  padding: 15px 25px;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  cursor: default; /* Indicate non-clickable */
-  display: inline-block;
-}
-
-.blue-button {
-  background-color: #5da8ff; /* Main blue shade */
-}
-
-.grey-button {
-  background-color: #e0e0e0; /* Light grey button */
-  color: #333; /* Dark text for contrast */
-}
-
-.white-button {
-  background-color: #ffffff; /* White button */
-  color: #5da8ff; /* Blue text */
-  border: 1px solid #5da8ff; /* Blue border */
-}
-
-.black-button {
-  background-color: #000000; /* Black button */
-  color: #ffffff;
-}
-
-/* Right Side (Sign-Up Form) */
-.hero-right {
-  width: 380px;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
-  background: #ffffff; 
-  margin-right: 120px;
-}
-
-
-
-.signup-container {
-  font-family: Arial, sans-serif;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  position: relative;
-}
-.signup-form {
-  display: flex;
-  flex-direction: column;
-}
-.form-header {
   font-size: 18px;
   color: #333;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #e0e0e0;
+  margin: 20px 0;
+  line-height: 1.5;
 }
-.input-group {
-  margin-bottom: 15px;
-}
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #555;
-}
-.input-group input {
-  width: 100%;
-  height: 60px;
-  padding: 0 15px;
-  border: 2px solid #e0e0e0;
-  font-size: 16px;
-}
-.social-buttons {
+
+.icon-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.social-buttons button {
-  width: 48%;
-  height: 50px;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-.facebook-btn {
-  background-color: #3b5998;
-}
-.google-btn {
-  background-color: #db4437;
-}
-.submit-btn {
-  width: 100%;
-  height: 60px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-}
-.terms-notification {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e0e0e0;
-}
-.checkbox-container {
+
+.icon-box {
   display: flex;
   align-items: center;
-  color: #555;
-  font-size: 14px;
+  padding: 15px 20px;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.checkbox-container input {
+
+.icon-box .icon {
   margin-right: 10px;
+  font-size: 18px;
+  color: #5da8ff;
 }
-.checkmark {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border: 2px solid #e0e0e0;
+
+.icon-box span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.get-started-btn {
   display: inline-block;
-  position: relative;
-  margin-right: 10px;
+  padding: 15px 40px;
+  background-color: #5da8ff;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0; /* No border radius */
+  margin-top: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  border-radius: 20px;
 }
-.checkbox-container input:checked + .checkmark:after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border: solid #007bff;
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
+
+.get-started-btn:hover {
+  background-color: #4291e0;
+
+}
+
+.hero-right {
+  width: 40%;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 20px;
+  border-bottom: 2px solid #565657;
 }
