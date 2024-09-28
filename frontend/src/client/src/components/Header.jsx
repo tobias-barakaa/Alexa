@@ -5,14 +5,11 @@ import { Gem, LayoutDashboard } from 'lucide-react';
 const Header = () => {
   return (
     <header className="headerr" >
-      {/* Left - Logo */}
       <div className="header-left">
         <img className='enwrit' src={centerImage} alt="Enwrit" />
       </div>
 
-      {/* Right - Navigation and Buttons */}
       <div className="header-right">
-        {/* Middle - Icons with Text */}
         <div className="header-middle">
           <div className="nav-item">
             <LayoutDashboard className="nav-icon" />
@@ -24,7 +21,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Right - Buttons */}
         <button className="border-button">Hire Professional Writers</button>
         <button className="blue-button">Login or Sign Up</button>
       </div>

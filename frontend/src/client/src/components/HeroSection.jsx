@@ -1,67 +1,49 @@
-import './HeroSection.css'; // Import CSS for styling
-import { FaRegChartBar, FaUserFriends, FaDollarSign, FaComments, FaLock, FaSignal } from 'react-icons/fa';
-import hero from '../assets/images/pre.png'
+import React from 'react';
+import "./HeroSection.css";
+import org from "../assets/images/org.png";
+import { DownloadCloud, LucideChevronLeftSquare, Satellite, SatelliteDish, StretchHorizontal, StretchVertical } from 'lucide-react';
 
 const HeroSection = () => {
   return (
     <div className="hero-section">
-      {/* Left Side Content */}
-      <div className="hero-left">
-        <h1 className='talent'>Your talent is worth the money</h1>
-        <p className="hero-description">
-          The best way for content creators to make money
-          <br />
-          and connect with the audience
-        </p>
-
-        {/* Icons and Labels Divs */}
-        <div className="icon-row">
-          <div className="icon-box">
-            <FaRegChartBar className="icon" />
-            <span>Subscription levels</span>
+      <div className="hero-content">
+        <h1 className='title-hero'>Your talent is worth the money</h1>
+        <p>The best way for content creators to make money and connect with the audience</p>
+        <div className="feature-grid">
+          <div className="feature-item">
+            <LucideChevronLeftSquare className='icon' size={30} />
+            <span className="text">Subscription levels</span>
           </div>
-          <div className="icon-box">
-            <FaUserFriends className="icon" />
-            <span>Streams</span>
+          <div className="feature-item">
+            <StretchHorizontal className='icon' />
+            <span className="text">Streams</span>
           </div>
-          <div className="icon-box">
-            <FaDollarSign className="icon" />
-            <span>Donations</span>
+          <div className="feature-item">
+           <Satellite className='icon' />
+            <span className="text">Donations</span>
           </div>
+          <div className="feature-item">
+            <StretchVertical className='icon' color='blue' />
+            <span className="text">Fundraising</span>
+          </div>
+          <div className="feature-item">
+            <DownloadCloud className='icon' />
+            <span className="text">private chats</span>
+          </div>
+          <div className="feature-item">
+            <SatelliteDish className='icon' />
+            <span className="text">Blog stats</span>
+          </div>
+          
         </div>
-        <div className="icon-row">
-          <div className="icon-box">
-            <FaSignal className="icon" />
-            <span>Fundraising</span>
-          </div>
-          <div className="icon-box">
-            <FaComments className="icon" />
-            <span>Access to private chats</span>
-          </div>
-        </div>
-        <div className="icon-row">
-          <div className="icon-box">
-            <FaLock className="icon" />
-            <span>Blog stats</span>
-          </div>
-          <div className="icon-box">
-            <FaRegChartBar className="icon" />
-            <span>Private posts</span>
-          </div>
-        </div>
-
-        {/* Get Started Button */}
-        <button className="get-started-btn">Get Started</button>
+        <button className="cta-button">Get Started</button>
       </div>
 
-      {/* Right Side Image */}
-      <div className="hero-right">
-        <img
-          src={hero} // Replace with your desired image
-          alt="Content Creator"
-          className="hero-image"
-        />
-      </div>
+      
+      <div className="card-bottom">
+          <img src={org} alt="Hero section" className="card-image" />
+        </div>
+      
     </div>
   );
 };
