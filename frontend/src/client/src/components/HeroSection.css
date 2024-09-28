@@ -13,8 +13,8 @@
 }
 
 .hero-title {
-  font-size: 48px; /* Increase size for prominence */
-  font-weight: bold;
+  font-size: 50px; /* Increase size for prominence */
+  font-weight: 800;
   line-height: 1.4;
   color: #000; /* Black for strong visual impact */
   margin-bottom: 20px; /* Space between title and description */

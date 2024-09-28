@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './HeroSection.css';
 import SignUpForm from './SignUpForm';
 
