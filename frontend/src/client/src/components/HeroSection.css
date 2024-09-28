@@ -5,7 +5,6 @@
           justify-content: space-between;
           align-items: center;
           padding: 4rem 6rem;
-          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
           font-family: 'Poppins', sans-serif;
           overflow: hidden;
         }
@@ -59,6 +58,7 @@
         .icon {
           margin-right: 0.75rem;
           font-size: 1.8rem;
+          color: #5da8ff;
         }
 
         .text {
@@ -93,7 +93,7 @@
         }
 
         .hero-image img {
-          width: 100%;
+          width: 60%;
           height: auto;
           border-radius: 12px;
           transition: all 0.3s ease;
@@ -175,3 +175,13 @@
             font-size: 1rem;
           }
         }
+
+
+
+
+
+
+
+
+
+

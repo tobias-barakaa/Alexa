@@ -1,6 +1,6 @@
 import React from 'react';
 import "./HeroSection.css";
-import org from "../assets/images/org.png";
+import org from "../assets/images/animate.gif";
 import { DownloadCloud, LucideChevronLeftSquare, Satellite, SatelliteDish, StretchHorizontal, StretchVertical } from 'lucide-react';
 
 const HeroSection = () => {
@@ -12,7 +12,7 @@ const HeroSection = () => {
         <div className="feature-grid">
           <div className="feature-item">
             <LucideChevronLeftSquare className='icon' size={30} />
-            <span className="text">Subscription levels</span>
+            <span className="text">Subscription </span>
           </div>
           <div className="feature-item">
             <StretchHorizontal className='icon' />
@@ -23,7 +23,7 @@ const HeroSection = () => {
             <span className="text">Donations</span>
           </div>
           <div className="feature-item">
-            <StretchVertical className='icon' color='blue' />
+            <StretchVertical className='icon' />
             <span className="text">Fundraising</span>
           </div>
           <div className="feature-item">
@@ -40,9 +40,11 @@ const HeroSection = () => {
       </div>
 
       
-      <div className="card-bottom">
-          <img src={org} alt="Hero section" className="card-image" />
-        </div>
+
+        <div className="hero-image">
+        <img src={org} alt="Hero section" className="card-image" />
+
+      </div>
       
     </div>
   );

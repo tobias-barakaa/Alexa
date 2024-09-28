@@ -15,6 +15,8 @@
 
 }
 
+
+
 :root{
 	/* --bs-font-sans-serif: 'Rubik', sans-serif; */
 }
@@ -25,5 +27,7 @@ body {
     font-family: myFont;
     /* background-color: #ffffff; */
     background-color: #f4f6f8;
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+
 
 }
