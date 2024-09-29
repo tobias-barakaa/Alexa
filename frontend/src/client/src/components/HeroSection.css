@@ -34,7 +34,7 @@
 }
 
 .hero-content {
-  width: 55%;
+  width: 50%;
   z-index: 1;
   animation: fadeInLeft 0.8s ease-out;
 }
@@ -129,10 +129,10 @@ p {
   transition: all 0.4s ease;
 }
 
-.hero-image img:hover {
+/* .hero-image img:hover {
   transform: scale(1.05);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
+} */
 
 @keyframes fadeInLeft {
   from {

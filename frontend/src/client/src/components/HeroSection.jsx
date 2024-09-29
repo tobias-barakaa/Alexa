@@ -1,6 +1,6 @@
 import React from 'react';
 import "./HeroSection.css";
-import org from "../assets/images/org.png";
+import org from "../assets/images/enwritte.png";
 import { DownloadCloud, LucideChevronLeftSquare, Satellite, SatelliteDish, StretchHorizontal, StretchVertical } from 'lucide-react';
 
 const HeroSection = () => {
@@ -42,7 +42,7 @@ const HeroSection = () => {
       
 
         <div className="hero-image">
-        {/* <img src={org} alt="Hero section" className="card-image" /> */}
+        <img src={org} alt="Hero section" className="card-image" />
 
       </div>
       
