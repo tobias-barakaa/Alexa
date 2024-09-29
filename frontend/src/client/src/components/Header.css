@@ -10,13 +10,9 @@
   background-color: #ffffff;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
 }
 
-/* Add padding to the body to avoid content going under the fixed header */
-body {
-  padding-top: 80px; /* Match this value to the height of the header */
-}
 
 .enwrit {
   height: 140px;

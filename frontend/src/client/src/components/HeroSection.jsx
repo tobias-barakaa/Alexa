@@ -1,6 +1,6 @@
 import React from 'react';
 import "./HeroSection.css";
-import org from "../assets/images/animate.gif";
+import org from "../assets/images/org.png";
 import { DownloadCloud, LucideChevronLeftSquare, Satellite, SatelliteDish, StretchHorizontal, StretchVertical } from 'lucide-react';
 
 const HeroSection = () => {
@@ -11,7 +11,7 @@ const HeroSection = () => {
         <p>The best way for content creators to make money and connect with the audience</p>
         <div className="feature-grid">
           <div className="feature-item">
-            <LucideChevronLeftSquare className='icon' size={30} />
+            <LucideChevronLeftSquare className='icon' />
             <span className="text">Subscription </span>
           </div>
           <div className="feature-item">
@@ -42,7 +42,7 @@ const HeroSection = () => {
       
 
         <div className="hero-image">
-        <img src={org} alt="Hero section" className="card-image" />
+        {/* <img src={org} alt="Hero section" className="card-image" /> */}
 
       </div>
       

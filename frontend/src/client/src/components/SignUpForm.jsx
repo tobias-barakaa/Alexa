@@ -70,5 +70,5 @@ const SignUpForm = () => { // Создаем компонент формы ре�
 
 };
 
-export default SignUpForm; // Экспортируем компонент
+export default SignUpForm; 
 

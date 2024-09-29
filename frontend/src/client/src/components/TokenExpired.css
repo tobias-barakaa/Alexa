@@ -5,7 +5,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  h1 {
+  .token-expired {
     color: #ff6b6b;
     font-size: 48px;
     margin-bottom: 16px;
