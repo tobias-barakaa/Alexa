@@ -23,7 +23,9 @@ body {
     font-family: myFont;
     /* background-color: #ffffff; */
     /* background-color: #f4f6f8; */
+  /* background: linear-gradient(120deg, #ffffff, #f8f9fd); */
   background: linear-gradient(120deg, #ffffff, #f8f9fd);
+
 
     /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
 

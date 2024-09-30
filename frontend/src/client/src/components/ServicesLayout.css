@@ -1,0 +1,27 @@
+.services-layout {
+  padding: 16px;
+}
+.services-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.services-container {
+  width: 100%;
+}
+.service-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.service-box p {
+  width: 66%;
+}
+.service-box svg {
+  color: #4b5563;
+}

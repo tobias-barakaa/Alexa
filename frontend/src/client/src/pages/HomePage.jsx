@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesLayout";
+import './HomePage.css'
 
 const HomePage = () => {
   
@@ -10,8 +11,12 @@ const HomePage = () => {
    
 
       <Header />
+      <div className="layout-component">
+
       <HeroSection />
+
       <ServicesSection />
+      </div>
       
        
     </div>
