@@ -2,12 +2,16 @@
 import './ServicesLayout.css';
 import color from '../assets/images/supply.png';
 import contract from '../assets/images/contract.png';
+import bulk from '../assets/images/bulk.png';
+
 
 const ServicesLayout = () => {
   return (
     <>
     <div className="services-layout">
       <h4 className="services-heading">Awards and recognition</h4>
+
+    
      
 
       <div className="services-box-container">
@@ -30,6 +34,16 @@ const ServicesLayout = () => {
         </div>
       </div>
 
+      <div className="service-offer">
+    <h6 className="service-title">Article Writing<br /> Services</h6>
+    <div className="service-description">
+        We offer top-quality article writing<br />
+         services for businesses and <br />
+          blog posts, <br />
+    </div>
+    <img src={bulk} alt="Service Image" className="service-image" />
+</div>
+
       <div className="services-box-three-container">
         <div className="large-service-box">
         <div className="services-text">
@@ -51,6 +65,14 @@ const ServicesLayout = () => {
           </div>
         </div>
       </div>
+
+
+
+     
+
+
+
+
     </div>
     </>
   );

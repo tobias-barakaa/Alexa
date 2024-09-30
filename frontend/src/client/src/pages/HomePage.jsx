@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesLayout";
+import WhyChooseUs from "../components/WhyChooseUs";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
       <HeroSection />
 
       <ServicesSection />
+      <WhyChooseUs />
       </div>
       
        

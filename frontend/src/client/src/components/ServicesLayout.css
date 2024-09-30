@@ -1,7 +1,53 @@
-.dark {
-  background-color: #000000;
-  padding: 50px;
+.service-offer {
+  width: 100%;
+  color: white;
+  position: relative;
+  padding: 20px;
+  height: 350px;
+  border: 1px solid #e2e8f0;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #e6f2ff 0%, #ffffff 100%);
 }
+
+/* Rest of the CSS remains the same */
+
+/* Rest of the CSS remains the same */
+
+.service-title {
+  font-size: 44px;
+  margin: 0;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: black;
+  font-weight: 600;
+}
+
+.service-description {
+  font-size: 18px;
+  margin-top: 40px;
+  color: #1a202c;
+  position: absolute;
+  font-weight: bold;
+  bottom: 20px;
+  left: 20px;
+  max-width: 50%; /* To limit the text width */
+}
+
+.service-image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-height: 100%; /* Image stays within the div's height */
+  width: 400px; /* Adjust width as needed */
+}
+
+
+
+
+
+
+
 .services-layout {
   width: 100%;
   padding: 40px 20px;
