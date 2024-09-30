@@ -10,7 +10,7 @@
   background-color: #ffffff;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 
@@ -58,9 +58,9 @@
 }
 
 .border-button {
-  border: 1px solid #5da8ff;
+  border: 2px solid #2b6cb0;
   background-color: transparent;
-  padding: 8px 15px;
+  padding: 10px 16px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: bold;
@@ -74,7 +74,7 @@
 }
 
 .blue-button {
-  background-color: #5da8ff;
+  /* background-color: #5da8ff; */
   border: none;
   color: #fff;
   padding: 10px 20px;
@@ -83,6 +83,11 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+
+  background: linear-gradient(to right, #2b6cb0, #2c5282);
+  box-shadow: 0 12px 24px rgba(66, 153, 225, 0.5);
+  transform: translateY(-4px);
 }
 
 .blue-button:hover {

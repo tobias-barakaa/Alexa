@@ -1,6 +1,6 @@
 import React from 'react';
 import "./HeroSection.css";
-import org from "../assets/images/enwritte.png";
+import org from "../assets/images/groupp.png";
 import { DownloadCloud, LucideChevronLeftSquare, Satellite, SatelliteDish, StretchHorizontal, StretchVertical } from 'lucide-react';
 
 const HeroSection = () => {
