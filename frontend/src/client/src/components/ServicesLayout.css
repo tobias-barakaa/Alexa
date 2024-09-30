@@ -1,189 +1,99 @@
-.service-offer {
+.container {
   width: 100%;
+  display: flex; /* Align both divs side by side */
+  height: 400px; /* Adjust height as needed */
+}
+
+/* Left Div Styles */
+.left-div {
+  width: 50%;
+  background-image: url('../assets/images/adjust.png');
+  background-size: cover;
+  background-position: center;
   color: white;
   position: relative;
-  padding: 20px;
-  height: 350px;
-  border: 1px solid #e2e8f0;
-  margin-top: 10px;
-  background: linear-gradient(135deg, #e6f2ff 0%, #ffffff 100%);
-}
-
-/* Rest of the CSS remains the same */
-
-/* Rest of the CSS remains the same */
-
-.service-title {
-  font-size: 44px;
-  margin: 0;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: black;
-  font-weight: 600;
-}
-
-.service-description {
-  font-size: 18px;
-  margin-top: 40px;
-  color: #1a202c;
-  position: absolute;
-  font-weight: bold;
-  bottom: 20px;
-  left: 20px;
-  max-width: 50%; /* To limit the text width */
-}
-
-.service-image {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  max-height: 100%; /* Image stays within the div's height */
-  width: 400px; /* Adjust width as needed */
-}
-
-
-
-
-
-
-
-.services-layout {
-  width: 100%;
-  padding: 40px 20px;
-}
-
-.services-heading {
-  font-size: 3rem;
-  font-weight: bold;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  text-align: left;
-  color: #1a202c;
-}
-
-.services-heading span {
-  display: block;
-  font-size: 1.5rem;
-  margin-top: 10px;
-  color: #4a5568;
-}
-
-.services-box-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 30px;
-  gap: 10px; /* Adds space between the boxes */
-}
-
-.services-box {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  background: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  width: 49.5%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e2e8f0;
 }
 
-.services-box:hover {
-  transform: translateY(-5px);
+.left-heading {
+  font-size: 70px;
+  color: white;
+  text-align: center;
+  z-index: 1;
+  position: relative;
 }
 
-.services-text {
-  font-size: 1.1rem;
-  color: #2d3748;
-  margin-right: 20px;
-  flex: 1;
-}
-
-.services-icon {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-}
-
-.hech4 {
-  font-size: 1.75rem;
-  color: #2d3748;
-  margin-bottom: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-/* Second section (three boxes) styling */
-.services-box-three-container {
-  display: flex;
-  justify-content: space-between;
+/* Optional: Add an overlay effect for readability */
+.left-div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin-top: 10px;
-  gap: 0px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with transparency */
+  z-index: 0;
 }
 
-.large-service-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  width: 49.5%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e2e8f0;
-}
-
-.large-service-box:hover {
-  transform: translateY(-5px);
-}
-
-.right-boxes {
-  display: flex;
-  justify-content: space-between;
-  width: 49.5%;
-  gap: 10px;
-}
-
-.small-service-box {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 30px;
+/* Right Div Styles */
+.right-div {
+  width: 50%;
+  background-color: #078BC8; /* Blue background or any other color you prefer */
+  color: white;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 50%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e2e8f0;
 }
 
-.small-service-box:hover {
-  transform: translateY(-5px);
+.right-heading {
+  font-size: 70px;
+  margin: 0;
+  text-align: left;
+  font-weight: bold;
 }
 
-.small-service-box h4 {
-  font-size: 1.5rem;
-  color: #2d3748;
-  margin-bottom: 10px;
-  font-weight: 700;
+.right-description {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: left;
 }
 
-.small-service-box img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .services-box-container, .services-box-three-container {
-    flex-direction: column;
-    gap: 30px;
-  }
 
-  .services-box, .large-service-box, .small-service-box {
-    width: 100%;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

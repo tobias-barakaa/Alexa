@@ -1,8 +1,9 @@
 
 import './ServicesLayout.css';
-import color from '../assets/images/supply.png';
-import contract from '../assets/images/contract.png';
-import bulk from '../assets/images/bulk.png';
+// import color from '../assets/images/supply.png';
+// import contract from '../assets/images/contract.png';
+// import bulk from '../assets/images/bulk.png';
+import TwoColumnLayout from './TwoColumnLayout';
 
 
 const ServicesLayout = () => {
@@ -10,11 +11,18 @@ const ServicesLayout = () => {
     <>
     <div className="services-layout">
       <h4 className="services-heading">Awards and recognition</h4>
-
-    
      
 
-      <div className="services-box-container">
+
+      <TwoColumnLayout />
+
+
+
+
+
+     
+
+      {/* <div className="services-box-container">
         <div className="services-box">
           <div className="services-text">
             <h4 className="hech4">This is a heading</h4>
@@ -32,19 +40,11 @@ const ServicesLayout = () => {
           </div>
           <img src={contract} className="services-icon" alt="icon 2" />
         </div>
-      </div>
+      </div> */}
 
-      <div className="service-offer">
-    <h6 className="service-title">Article Writing<br /> Services</h6>
-    <div className="service-description">
-        We offer top-quality article writing<br />
-         services for businesses and <br />
-          blog posts, <br />
-    </div>
-    <img src={bulk} alt="Service Image" className="service-image" />
-</div>
+     
 
-      <div className="services-box-three-container">
+      {/* <div className="services-box-three-container">
         <div className="large-service-box">
         <div className="services-text">
             <h4 className="hech4">This is a heading</h4>
@@ -64,7 +64,7 @@ const ServicesLayout = () => {
             <img src={color} className="services-icon" alt="icon 5" />
           </div>
         </div>
-      </div>
+      </div> */}
 
 
 
