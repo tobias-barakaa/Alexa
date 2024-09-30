@@ -1,33 +1,58 @@
-import React from 'react';
-import "./ServicesLayout.css"
+
+import './ServicesLayout.css';
+import color from '../assets/images/supply.png';
+import contract from '../assets/images/contract.png';
 
 const ServicesLayout = () => {
   return (
+    <>
     <div className="services-layout">
-      <h2 className="services-heading">
-        Innovative
-        <br />
-        Design Services
-      </h2>
-      <div className="services-container">
-        <div className="service-box">
-          <p>Design more visually striking and refined, consider incorporating a modern and elegant aesthetic.</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
+      <h4 className="services-heading">Awards and recognition</h4>
+     
+
+      <div className="services-box-container">
+        <div className="services-box">
+          <div className="services-text">
+            <h4 className="hech4">This is a heading</h4>
+            Design more visually striking and refined, consider incorporating a modern and elegant aesthetic.
+            Design more visually striking and refined, consider incorporating a modern and elegant aesthetic.
+          </div>
+          <img src={color} className="services-icon" alt="icon 1" />
         </div>
-        <div className="service-box">
-          <p>Design more visually striking and refined, consider incorporating a modern and elegant aesthetic.</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-            <path d="M2 2l7.586 7.586"></path>
-            <circle cx="11" cy="11" r="2"></circle>
-          </svg>
+
+        <div className="services-box">
+          <div className="services-text">
+            <h4 className="hech4">This is a heading</h4>
+            Design more visually striking and <br /> refined, consider incorporating a modern <br /> and elegant aesthetic.
+            <br /> Design more visually striking and <br />
+          </div>
+          <img src={contract} className="services-icon" alt="icon 2" />
         </div>
       </div>
-      
+
+      <div className="services-box-three-container">
+        <div className="large-service-box">
+        <div className="services-text">
+            <h4 className="hech4">This is a heading</h4>
+            Design more visually striking and <br /> refined, consider incorporating a modern <br /> and elegant aesthetic.
+            <br /> Design more visually striking and <br />
+          </div>
+          <img src={color} className="services-icon" alt="icon 3" />
+        </div>
+
+        <div className="right-boxes">
+          <div className="small-service-box">
+            <h4 className="hech4">Right box 1 heading</h4>
+            <img src={contract} className="services-icon" alt="icon 4" />
+          </div>
+          <div className="small-service-box">
+            <h4 className="hech4">Right box 2 heading</h4>
+            <img src={color} className="services-icon" alt="icon 5" />
+          </div>
+        </div>
+      </div>
     </div>
+    </>
   );
 };
 
