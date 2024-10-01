@@ -1,52 +1,94 @@
-.why-choose-us {
-    padding: 60px 20px;
-    background-color: #f7f9fc;
-    text-align: center;
-  }
-  
-  .why-choose-us-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 20px;
-  }
-  
-  .why-choose-us-subheading {
-    font-size: 1.25rem;
-    color: #4a5568;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .benefits-container {
+/* Main Container */
+.why-choose-us-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 800px; /* Increased height for more spacing */
+    position: relative;
+    padding: 20px; /* Added padding for extra margin */
+}
+
+/* Circular Background with Text Inside */
+.circular-background {
+    width: 450px; /* Slightly increased the width */
+    height: 450px;
+    border-radius: 50%; /* Perfect circle */
+    background: radial-gradient(circle, rgba(243, 243, 243, 0.1), rgba(226, 226, 226, 0.2)); /* Almost transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #000; /* Text color */
+    position: relative;
+    margin: 0 50px; /* Center margin for spacing */
+}
+/* Why Choose Us Text */
+.why-text,
+.choose-us-text {
+    font-size: 60px; /* Larger text for better visibility */
+    font-weight: 900; /* Bolder text */
+    line-height: 1.2; /* Improved spacing */
+    margin: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Text shadow effect */
+}
+
+/* Left and Right Info Boxes */
+.left-box,
+.right-box {
+    width: 250px; /* Increased width of the boxes */
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-  }
-  
-  .benefit-box {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 30px;
-    width: 30%;
-    min-width: 280px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .benefit-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  .benefit-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
-  }
-    
+    position: absolute;
+    top: 50%; /* Position the boxes at the middle */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+.left-box {
+    left: 15%; /* Adjusted position for balance */
+}
+
+.right-box {
+    right: 15%; /* Adjusted position for balance */
+}
+
+/* Individual Info Boxes */
+.info-box {
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    padding: 25px; /* Increased padding for better spacing */
+    margin: 20px 0; /* Increased margin for spacing */
+    border-radius: 15px; /* Increased radius for softer edges */
+    box-shadow: none; /* Removed box shadow */
+    text-align: center;
+    border: 2px solid rgba(200, 200, 200, 0.7); /* Solid grey-white border */
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover Effect on Info Box */
+.info-box:hover {
+    background: #f0f8ff; /* Light blue on hover */
+    transform: translateY(-5px); /* Subtle lift effect */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Optional: Light shadow on hover */
+}
+
+/* Info Box Headings */
+.info-box h2 {
+    font-size: 26px; /* Slightly increased font size */
+    font-weight: 800; /* Bolder text */
+    margin: 0 0 12px 0; /* Spacing below heading */
+    color: #333333; /* Dark grey heading color */
+}
+
+/* Info Box Paragraph Text */
+.info-box p {
+    font-size: 17px; /* Increased font size */
+    color: #444444; /* Slightly darker text color */
+    margin: 0;
+}
+
+
+
+
