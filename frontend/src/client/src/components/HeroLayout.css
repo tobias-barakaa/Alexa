@@ -1,0 +1,16 @@
+.containerrr {
+  padding: 4px 8px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-rows: 200px 300px 500px;
+  grid-template-columns: 100px 500px 200px;
+}
+
+.item {
+  background-color: yellow;
+}
+
+.item3{
+  background-color: orangered;
+  grid-column: 4;
+}
