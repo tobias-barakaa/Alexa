@@ -1,16 +1,98 @@
 .containerrr {
-  padding: 4px 8px;
-  margin-top: 40px;
-  display: grid;
-  grid-template-rows: 200px 300px 500px;
-  grid-template-columns: 100px 500px 200px;
+  display: grid;              /* Use CSS Grid for the container */
+  grid-template-columns: 50% 50%; /* Divide the container into two equal columns */
+  height: calc(100vh - 80px);     /* Full view height minus 80px header */
+  margin-top: 80px;
+
+
 }
 
-.item {
-  background-color: yellow;
+.left-section, .right-section {
+  padding: 20px;              /* Add padding to both sections */
+  display: grid;              /* Use CSS Grid to structure items */
+  gap: 20px;                  /* Spacing between items */
 }
 
-.item3{
-  background-color: orangered;
-  grid-column: 4;
+.left-section {
+  grid-template-rows: repeat(2, 1fr); /* Two equal rows for two items */
+  background-color: #f8f9fa;  /* Light grey background */
 }
+
+.right-section {
+  grid-template-rows: repeat(7, 1fr); 
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 80px;
+  grid-template-areas: 
+  "  .  .  .  .  .  right-item7  right-item7"
+  "  right-item1  right-item2  right-item3  right-item4  right-item6  right-item7  right-item7"
+  "  right-item1  right-item2  right-item3  right-item4  right-item6  right-item7  right-item7"
+  "  right-item1  right-item2  right-item3  right-item4  .  right-item7  right-item7"
+
+  
+ 
+
+}
+
+/* Style individual items */
+.left-item, .right-item {
+  background-color: #5da8ff;  
+  color: white;               /* White text */
+  display: flex;              /* Use flexbox for centering */
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;         /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+
+
+}
+
+
+.right-item1 {
+  grid-area: right-item1;    
+  
+}
+
+
+.right-item2 {
+  grid-area: right-item2;
+  
+
+}
+
+
+.right-item3 {
+  grid-area: right-item3;
+  
+}
+
+
+
+.right-item4 {
+  grid-area: right-item4;
+  
+}
+
+
+
+.right-item5 {
+  grid-area: right-item5;
+
+  
+  
+}
+
+.right-item6 {
+  grid-area: right-item6;
+
+  
+}
+
+
+.right-item7 {
+  grid-area: right-item7;
+
+  
+}
+
+
+
