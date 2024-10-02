@@ -9,12 +9,12 @@ import TwoColumnLayout from './TwoColumnLayout';
 const ServicesLayout = () => {
   return (
     <>
-    <div className="services-layout">
+    {/* <div className="services-layout">
       <h4 className="services-heading">Our Services</h4>
 
        <TwoColumnLayout />
 
-    </div>
+    </div> */}
     </>
   );
 };

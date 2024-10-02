@@ -1,16 +1,15 @@
+/* Main Container */
 .containerrr {
-  display: grid;              /* Use CSS Grid for the container */
-  grid-template-columns: 50% 50%; /* Divide the container into two equal columns */
-  height: calc(100vh - 80px);     /* Full view height minus 80px header */
-  margin-top: 80px;
-
-
+  display: grid;              
+  grid-template-columns: 50% 50%;
+  margin-top: 92px;
 }
 
+/* Left and Right Sections */
 .left-section, .right-section {
-  padding: 20px;              /* Add padding to both sections */
-  display: grid;              /* Use CSS Grid to structure items */
-  gap: 20px;                  /* Spacing between items */
+  padding: 20px;              
+  display: grid;             
+  gap: 20px;                 
 }
 
 .left-section {
@@ -19,80 +18,61 @@
 }
 
 .right-section {
-  grid-template-rows: repeat(7, 1fr); 
+  grid-template-rows: repeat(7, 50px); 
   grid-template-columns: repeat(7, 1fr);
   margin-top: 80px;
   grid-template-areas: 
   "  .  .  .  .  .  right-item7  right-item7"
-  "  right-item1  right-item2  right-item3  right-item4  right-item6  right-item7  right-item7"
-  "  right-item1  right-item2  right-item3  right-item4  right-item6  right-item7  right-item7"
-  "  right-item1  right-item2  right-item3  right-item4  .  right-item7  right-item7"
-
-  
- 
+  "  .  .  .  .  .  right-item7  right-item7"
+  "  .  .  .  .  right-item6  right-item7  right-item7"
+  "  .  .  .  .  right-item6  right-item7  right-item7"
+  "  .  .  .  right-item4  right-item6  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item6  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
+  "  .  .  .  right-item4  right-item3  .  ."
+  "  .  .  .  .  right-item3  .  ."
+  "  .  .  .  .  right-item3  .  ."
+  "  .  .  .  .  right-item3  .  ."
+  "  .  .  .  .  right-item3  .  ."
 
 }
 
-/* Style individual items */
+/* Style for left and right items */
 .left-item, .right-item {
   background-color: #5da8ff;  
   color: white;               /* White text */
-  display: flex;              /* Use flexbox for centering */
-  justify-content: center;
-  align-items: center;
   border-radius: 8px;         /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
-
-
 }
 
-
-.right-item1 {
-  grid-area: right-item1;    
-  
+/* Image Styling */
+.right-item img {
+ height: 200px;
+ width: 100px;
+  border-radius: 8px;  /* Match container style */
 }
 
-
-.right-item2 {
-  grid-area: right-item2;
-  
-
-}
-
-
+/* Specific Grid Areas */
 .right-item3 {
   grid-area: right-item3;
-  
 }
-
-
 
 .right-item4 {
   grid-area: right-item4;
-  
 }
-
-
 
 .right-item5 {
   grid-area: right-item5;
-
-  
-  
 }
 
 .right-item6 {
   grid-area: right-item6;
-
-  
 }
-
 
 .right-item7 {
   grid-area: right-item7;
-
-  
 }
-
-
-
