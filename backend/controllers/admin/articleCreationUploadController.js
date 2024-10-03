@@ -151,6 +151,7 @@ const getUploadedArticleFiles = async (req, res) => {
     // Extract user information
     const recipient_id = req.user?.userId;
     const userRole = req.user?.role;
+    console.log(recipient_id, 'this is recipient_id', userRole, 'this is userRole')
 
     // Ensure the user is logged in
     if (!recipient_id) {
@@ -176,7 +177,6 @@ const getUploadedArticleFiles = async (req, res) => {
         'article_upload.created_at',
         'create.title',
         'create.description',
-        'create.category', // Ensure 'category' exists in 'create' table
         'create.keywords',
         'create.complexity',
         'create.word_count',
@@ -190,9 +190,9 @@ const getUploadedArticleFiles = async (req, res) => {
       );
 
     // For non-admin users, restrict the columns further
-    if (userRole !== 'admin') {
-      query = query.select('article_upload.article_id'); // Limit columns for non-admins
-    }
+    // if (userRole !== 'admin') {
+    //   query = query.select('article_upload.article_id'); // Limit columns for non-admins
+    // }
 
     // Execute the query
     const files = await query;
