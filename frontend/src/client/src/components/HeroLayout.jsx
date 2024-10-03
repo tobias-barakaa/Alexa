@@ -1,30 +1,22 @@
 import "./HeroLayout.css";
-import google from '../assets/images/googleimg.png'; 
+import google from '../assets/images/googleimg.png';
 import free from '../assets/images/free.jpg';
+import alexa from '../assets/images/alexa.jpg';
+import writer from '../assets/images/writer.jpg';
 
 const HeroLayout = () => {
   return (
-    <div className="containerrr">
-      {/* Left Section */}
-      <div className="left-section">
-        <div className="left-item">Left Item 1</div>
-        <div className="left-item">Left Item 2</div>
-      </div>
-
-      {/* Right Section */}
-      <div className="right-section">
-        
-        <img className="right-item right-item3" src={free} />
-
-        <div className="right-item right-item4">Right Item 4</div>
-        <img className="right-item right-item5" src={google} />
-
-        <div className="right-item right-item6">Right Item 6</div>
-        <div className="right-item right-item7">Right Item 7</div>
-
+    <div className="wrapper">
+      <div className="left-side">Left Side</div>
+      <div className="right-sidee">
+        <div className="item1">item 1</div>
+        <div className="item2">item 2</div>
+        <div className="item3">item 3</div>
+        <div className="item4">item 4</div>
+        <div className="item5">item 5</div>
+      
       </div>
     </div>
-
   );
 };
 

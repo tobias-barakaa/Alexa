@@ -1,78 +1,58 @@
-/* Main Container */
-.containerrr {
-  display: grid;              
+.wrapper {
+  display: grid;
   grid-template-columns: 50% 50%;
-  margin-top: 92px;
+  width: 100%;
+  height: 100vh; 
+  margin-top: 80px; 
 }
 
-/* Left and Right Sections */
-.left-section, .right-section {
-  padding: 20px;              
-  display: grid;             
-  gap: 20px;                 
+.left-side {
+  background-color: #f8f9fa; 
 }
 
-.left-section {
-  grid-template-rows: repeat(2, 1fr); /* Two equal rows for two items */
-  background-color: #f8f9fa;  /* Light grey background */
+
+.right-sidee {
+  color: rgb(204, 1, 1);
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: repeat(5, 120px); 
+  grid-template-rows: repeat(5, 200px);    
+  margin-top: 100px;
+  justify-content: center;
 }
 
-.right-section {
-  grid-template-rows: repeat(7, 50px); 
-  grid-template-columns: repeat(7, 1fr);
-  margin-top: 80px;
-  grid-template-areas: 
-  "  .  .  .  .  .  right-item7  right-item7"
-  "  .  .  .  .  .  right-item7  right-item7"
-  "  .  .  .  .  right-item6  right-item7  right-item7"
-  "  .  .  .  .  right-item6  right-item7  right-item7"
-  "  .  .  .  right-item4  right-item6  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item6  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  right-item5  right-item5"
-  "  .  .  .  right-item4  right-item3  .  ."
-  "  .  .  .  .  right-item3  .  ."
-  "  .  .  .  .  right-item3  .  ."
-  "  .  .  .  .  right-item3  .  ."
-  "  .  .  .  .  right-item3  .  ."
 
+.item1{
+  background-color: yellow;
+  grid-column: 1;
+  grid-row: 3;
+  
 }
 
-/* Style for left and right items */
-.left-item, .right-item {
-  background-color: #5da8ff;  
-  color: white;               /* White text */
-  border-radius: 8px;         /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+
+.item2{
+  background-color: yellow;
+  grid-column: 4;
+  grid-row: 3;
 }
 
-/* Image Styling */
-.right-item img {
- height: 200px;
- width: 100px;
-  border-radius: 8px;  /* Match container style */
+.item3{
+  background-color: yellow;
+  grid-column: 4;
+  grid-row: 2;
 }
 
-/* Specific Grid Areas */
-.right-item3 {
-  grid-area: right-item3;
+
+.item4{
+  background-color: yellow;
+  grid-column: 5;
+  grid-row: 2;
 }
 
-.right-item4 {
-  grid-area: right-item4;
+
+.item5{
+  background-color: yellow;
+  grid-column: 5;
+  grid-row: 1
 }
 
-.right-item5 {
-  grid-area: right-item5;
-}
-
-.right-item6 {
-  grid-area: right-item6;
-}
-
-.right-item7 {
-  grid-area: right-item7;
-}
