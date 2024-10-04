@@ -89,11 +89,13 @@
   }
   .frametwocontentbox {
     border: none;
+    margin-top: 80px;
 
   }
   .box-frame{
     border: solid 1px #000;
     margin-bottom: 20px;
+    margin-top: 90px;
 
   }
   .frame-box{
@@ -103,16 +105,140 @@
 
   }
 
+
+
+
+
+
+
+
+
+
+  .frame-box {
+    position: relative;
+    height: 300px;
+    padding: 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+    background-color: #f5f5f5;
+
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  
+  /* Icon Position */
+  .icon-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .iconnn {
+    color: #000;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Title Styling */
+  .titlee {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #000000;
+    transition: color 0.3s ease, transform 0.5s ease;
+  }
+  
+  /* Description: Initially hidden and positioned at the bottom */
+  .descriptionn {
+    position: absolute;
+    left: 20px;
+    bottom: -100%; /* Start hidden below */
+    padding: 20px;
+    font-size: 34px; /* Font size increased to be almost double */
+    width: calc(100% - 40px);
+    color: #000; /* Set color to black or desired text color */
+    opacity: 0; /* Hidden initially */
+    transition: all 0.5s ease; /* Smooth transition */
+    transform: translateY(100%); /* Position it below */
+  }
+  
+  /* Hover Effects */
+  .frame-box:hover {
+    border-radius: 15px; /* Add border-radius on hover */
+    background-color: #000000;
+
+/* //background: linear-gradient(120deg, #000000, #272d43); */
+
+  }
+  
+  .frame-box:hover .icon {
+    color: #fff;
+    transform: translateY(2); /* Slight upward motion */
+  }
+  
+  .frame-box:hover .titlee {
+    color: #fff;
+    transform: translateY(-150px); /* Move upwards to align with description */
+  }
+  
+  /* Slide-in effect for description */
+  .frame-box:hover .descriptionn {
+    font-size: 24px;
+    bottom: 80px; /* Move it up to where the title would be */
+    transform: translateY(0); /* Slide up */
+    opacity: 1; /* Make visible */
+    color: white;
+  }
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .box2-frame{
     border: solid 1px #000;
     margin-bottom: 20px;
+    margin-top: 180px;
+    border-left: none;
+
+
 
   }
   .frame2-box{
     height: 300px;
     padding: 20px;
     border-bottom: 1px solid #000;
-    border-left: none;
 
   }
   .service-box {
@@ -133,5 +259,57 @@
     border: 1px solid black;
     padding: 20px;
     margin-bottom: 20px;
+  }
+  
+
+
+
+
+
+  .view-services-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 20px 40px;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: black;
+    z-index: 1;
+    margin-left: 50px;
+  }
+  
+  .view-services-button .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .view-services-button .view-services-button-after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  
+  .view-services-button.hovered {
+    color: white;
+  }
+  
+  .view-services-button.hovered .arrow-icon {
+    transform: translateX(5px);
+  }
+  
+  .view-services-button.hovered .view-services-button-after {
+    transform: translateY(0);
   }
   

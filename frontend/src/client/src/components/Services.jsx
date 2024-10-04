@@ -1,7 +1,74 @@
-import React from 'react';
+import { ArrowRight, StretchHorizontal } from 'lucide-react';
 import './Services.css';  // Import the CSS file
+import { useState } from 'react';
+import { Pencil } from 'lucide-react'; // Replace with your icons
+
+
 
 const Services = () => {
+    const [isHovered, setIsHovered] = useState(false);
+
+
+
+
+
+    const ServiceBox = ({ icon: Icon, title, description }) => {
+        return (
+            <div className="frame-box">
+            <div className="icon-wrapper">
+              <Pencil size={44} className="iconnn" /> {/* Replace with your icon component */}
+            </div>
+            <h3 className="titlee">Article Writing</h3>
+            <div className="descriptionn">
+              We provide high-quality article writing services that cater to various industries and niches.
+            </div>
+          </div>
+        );
+      };
+
+      
+
+
+      const services1 = [
+        {
+          icon: Pencil,
+          title: "Article Writing",
+          description: "We provide high-quality article writing services that cater to various industries and niches.",
+        },
+        {
+          icon: Pencil,
+          title: "Blog Writing",
+          description: "Our blog writing service ensures engaging content that helps you connect with your audience.",
+        },
+
+        {
+            icon: Pencil,
+            title: "Blog Writing",
+            description: "Our blog writing service ensures engaging content that helps you connect with your audience.",
+          },
+        // Add more services here...
+      ];
+
+
+
+      const services2 = [
+        {
+          icon: Pencil,
+          title: "Article Writing",
+          description: "We provide high-quality article writing services that cater to various industries and niches.",
+        },
+        {
+          icon: Pencil,
+          title: "Blog Writing",
+          description: "Our blog writing service ensures engaging content that helps you connect with your audience.",
+        },
+
+        
+      ];
+
+
+
+
   return (
     <div className="services-container">
       {/* Left Side */}
@@ -18,15 +85,34 @@ const Services = () => {
         </div>
 
         <div className='box-frame'>
-            <div className='frame-box'>
+            {/* <div className='frame-box'>
                 first box
-            </div>
-            <div className='frame-box'>
-                second box
-            </div>
-            <div className='frame-box'>
-                second box
-            </div>
+            </div> */}
+
+
+
+
+{services1.map((service, index) => (
+        <ServiceBox
+          key={index}
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+        />
+      ))}
+
+
+
+
+
+
+
+
+
+
+
+
+            
         </div>
       </div>
 
@@ -35,16 +121,30 @@ const Services = () => {
         
         
         <div className="frametwocontentbox">
-          <h3 className="service-title">Service 6</h3>
-          <p>Description for service 6</p>
+        <button 
+          className={`view-services-button ${isHovered ? 'hovered' : ''}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <span>VIEW SERVICES</span>
+          <ArrowRight 
+            size={24} 
+            className={`arrow-icon ${isHovered ? 'hovered' : ''}`}
+          />
+          <div className="view-services-button-after" />
+        </button>
+
         </div>
         <div className='box2-frame'>
-            <div className='frame2-box'>
-                first box
-            </div>
-            <div className='frame2-box'>
-                second box
-            </div>
+        {services2.map((service, index) => (
+        <ServiceBox
+          key={index}
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+        />
+      ))}
+            
         </div>
       </div>
     </div>
