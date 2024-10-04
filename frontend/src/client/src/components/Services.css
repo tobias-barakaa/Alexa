@@ -1,0 +1,67 @@
+
+
+  /* .services-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    align-items: start;
+    padding: 0;
+    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
+    background-size: 295px 200px;
+    background-position: calc(100px / 2) calc(100px / 2);
+    align-items: start; 
+
+  } */
+
+
+
+
+  .services-layout {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top */
+    margin: 20px; /* Margin around the layout */
+    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
+    background-size: 295px 200px;
+    background-position: calc(100px / 2) calc(100px / 2);
+      width: 100%;
+      /* minHeight: '100vh', */
+
+  }
+  
+  .frameonecontent,
+  .frametwocontent {
+    width: 50%;
+
+    border: 1px solid black; /* Solid border */
+    height: 300px; /* Fixed height */
+    margin: 0 10px; /* Space between frames */
+    padding: 20px; /* Padding inside frames */
+    display: flex; /* Flexbox for inner content */
+    flex-direction: column; /* Stack items vertically */
+  }
+  
+  .services-heading {
+    font-size: 24px; /* Font size for heading */
+    font-weight: bold; /* Very bold text */
+  }
+  
+  .services-description {
+    margin-top: 10px; /* Space above description */
+  }
+  
+  .service-item {
+    margin-top: auto; /* Push items to the bottom */
+  }
+  
+  .icon-container {
+    font-size: 24px; /* Size of the icon */
+  }
+  
+  .item-title {
+    font-size: 18px; /* Font size for item title */
+  }
+  
+  .item-description {
+    font-size: 14px; /* Font size for item description */
+  }

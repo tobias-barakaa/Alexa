@@ -5,9 +5,9 @@
   height: 100vh;
   margin-top: 80px;
   position: relative;
- /* background-color: rgb(0, 0, 0); */
   background-position: center center;
 }
+
 
 /* For a darker variation of the lines */
 .wrapper::before {
@@ -34,16 +34,118 @@
 
 
 
-
-
-
-
 .left-sidee {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-
+  align-items: center;
+  padding-left: 30px;
+  max-width: 600px;
 }
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-title {
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.highlight {
+  color: #0066FF;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+.cta-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.get-started-btn {
+  padding: 12px 24px;
+  border: 2px solid #0066FF;
+  border-radius: 25px;
+  background: transparent;
+  color: #0066FF;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background: #0066FF;
+  color: white;
+}
+
+.get-in-touch {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+}
+
+.get-in-touch::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0066FF;
+  transition: width 0.3s ease;
+}
+
+.get-in-touch:hover::after {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .right-sidee {
   display: grid;

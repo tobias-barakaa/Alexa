@@ -1,8 +1,7 @@
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
-// import HeroSection from "../components/HeroSection";
-import ServicesSection from "../components/ServicesLayout";
-import WhyChooseUs from "../components/WhyChooseUs";
+import Services from "../components/Services";
+import ServicesLayout from "../components/ServicesLayout";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -13,12 +12,13 @@ const HomePage = () => {
    
 
       <Header />
-      <div className="layout-componen">
+      <div className="">
 
       <HeroLayout />
 
-      <ServicesSection />
-      <WhyChooseUs />
+{/* <ServicesLayout /> */}
+<Services />
+      {/* <WhyChooseUs /> */}
       </div>
       
        

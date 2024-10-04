@@ -1,99 +1,124 @@
-.container {
-  width: 100%;
-  display: flex; /* Align both divs side by side */
-  height: 400px; /* Adjust height as needed */
+/* Container for the entire layout */
+.services-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px; /* Space between the two columns */
+  padding: 50px;
 }
 
-/* Left Div Styles */
-.left-div {
-  width: 50%;
-  background-image: url('../assets/images/adjust.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Left side styles */
+.left-sideee {
+  margin-left: 50px; /* Ensuring left side margin doesn't exceed 50px */
 }
 
-.left-heading {
-  font-size: 70px;
-  color: white;
-  text-align: center;
-  z-index: 1;
-  position: relative;
+.left-headingg {
+  font-size: 36px;
+  font-weight: 900; /* Very bold heading */
+  margin-bottom: 20px;
 }
 
-/* Optional: Add an overlay effect for readability */
-.left-div::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Black overlay with transparency */
-  z-index: 0;
-}
-
-/* Right Div Styles */
-.right-div {
-  width: 50%;
-  background-color: #078BC8; /* Blue background or any other color you prefer */
-  color: white;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.right-heading {
-  font-size: 70px;
-  margin: 0;
-  text-align: left;
-  font-weight: bold;
-}
-
-.right-description {
-  margin-top: 20px;
+.service-description {
   font-size: 18px;
-  text-align: left;
+  line-height: 1.6;
+  margin-bottom: 40px; /* Space before the bordered box */
 }
 
+.service-box {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #333; /* Dark border */
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.service-box:hover {
+  background-color: #c91111;
+  margin-top: 40px;
+  color: white;
+}
 
+.icon-wrapper {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
 
+.service-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 50px; /* Spacing below the icon */
+}
 
+.service-hidden-description {
+  font-size: 16px;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
+.service-box:hover .service-hidden-description {
+  opacity: 1; /* Reveal on hover */
+}
 
+/* Right side styles */
+.right-sideee {
+  margin-top: 80px; /* Ensure View Services has space */
+}
 
+.view-services {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
 
+/* The same styles for the right-sideee service box */
+.right-sideee .service-box {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #333;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.right-sideee .service-box:hover {
+  background-color: #f5f5f5;
+}
 
+.right-sideee .service-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 50px;
+}
 
+.right-sideee .service-hidden-description {
+  font-size: 16px;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
+.right-sideee .service-box:hover .service-hidden-description {
+  opacity: 1;
+}
 
+/* Responsive design */
+@media (max-width: 768px) {
+  .services-layout {
+    grid-template-columns: 1fr; /* Stack the columns on small screens */
+    text-align: center;
+  }
 
+  .left-sideee,
+  .right-sideee {
+    margin-left: 0; /* Remove the left margin on mobile */
+    margin-top: 30px;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .service-box {
+    margin: 0 auto; /* Center the service boxes on small screens */
+  }
+}
