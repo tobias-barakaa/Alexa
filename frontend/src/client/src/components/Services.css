@@ -14,54 +14,81 @@
   } */
 
 
+/* Services.css */
 
-
-  .services-layout {
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: flex-start; /* Align items to the top */
-    margin: 20px; /* Margin around the layout */
+.services-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
     background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
-    background-size: 295px 200px;
+    background-size: 297px 200px;
     background-position: calc(100px / 2) calc(100px / 2);
-      width: 100%;
-      /* minHeight: '100vh', */
-
   }
   
   .frameonecontent,
   .frametwocontent {
     width: 50%;
+  }
 
-    border: 1px solid black; /* Solid border */
-    height: 300px; /* Fixed height */
-    margin: 0 10px; /* Space between frames */
-    padding: 20px; /* Padding inside frames */
-    display: flex; /* Flexbox for inner content */
-    flex-direction: column; /* Stack items vertically */
+  .frameonecontent {
+    margin-top: 50px;
+    padding-left: 50px;
+
+  }
+
+  .frametwocontent {
+    margin-top: 150px;
+    padding-right: 50px;
+  }
+
+  .frameonecontentbox {
+    border: none;
+  }
+  .frametwocontentbox {
+    border: none;
+
+  }
+  .box-frame{
+    border: solid 1px #000;
+    margin-bottom: 20px;
+
+  }
+  .frame-box{
+    height: 300px;
+    padding: 20px;
+    border-bottom: 1px solid #000;
+
+  }
+
+  .box2-frame{
+    border: solid 1px #000;
+    margin-bottom: 20px;
+
+  }
+  .frame2-box{
+    height: 300px;
+    padding: 20px;
+    border-bottom: 1px solid #000;
+    border-left: none;
+
+  }
+  .service-box {
+    height: 300px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 20px;
   }
   
-  .services-heading {
-    font-size: 24px; /* Font size for heading */
-    font-weight: bold; /* Very bold text */
+  .service-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   
-  .services-description {
-    margin-top: 10px; /* Space above description */
+  .last-box {
+    height: 300px;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 20px;
   }
   
-  .service-item {
-    margin-top: auto; /* Push items to the bottom */
-  }
-  
-  .icon-container {
-    font-size: 24px; /* Size of the icon */
-  }
-  
-  .item-title {
-    font-size: 18px; /* Font size for item title */
-  }
-  
-  .item-description {
-    font-size: 14px; /* Font size for item description */
-  }

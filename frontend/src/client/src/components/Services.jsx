@@ -1,59 +1,46 @@
 import React from 'react';
-import './Services.css'; // Import your CSS file
+import './Services.css';  // Import the CSS file
 
 const Services = () => {
   return (
-    <div className="services-layout">
+    <div className="services-container">
+      {/* Left Side */}
       <div className="frameonecontent">
-        <h4 className="services-heading">Our Services</h4>
-        <p className="services-description">
-          Physical, digital, meta-physical – We’ll find a creative solution for all your business problems.
-        </p>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-cog"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service One</h5>
-          <p className="item-description">Description of service one.</p>
+       
+        
+        <div className="frameonecontentbox">
+          <h3 className="service-title">Service 3</h3>
+          <p>Description for service 3</p>
         </div>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-shield-alt"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service Two</h5>
-          <p className="item-description">Description of service two.</p>
-        </div>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-chart-line"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service Three</h5>
-          <p className="item-description">Description of service three.</p>
+
+        <div className='box-frame'>
+            <div className='frame-box'>
+                first box
+            </div>
+            <div className='frame-box'>
+                second box
+            </div>
+            <div className='frame-box'>
+                second box
+            </div>
         </div>
       </div>
 
+      {/* Right Side */}
       <div className="frametwocontent">
-        <h4 className="view-services-heading">View Services</h4>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-cog"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service One</h5>
-          <p className="item-description">Description of service one.</p>
+        
+        
+        <div className="frametwocontentbox">
+          <h3 className="service-title">Service 6</h3>
+          <p>Description for service 6</p>
         </div>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-shield-alt"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service Two</h5>
-          <p className="item-description">Description of service two.</p>
-        </div>
-        <div className="service-item">
-          <div className="icon-container">
-            <i className="fas fa-chart-line"></i> {/* Replace with your icon */}
-          </div>
-          <h5 className="item-title">Service Three</h5>
-          <p className="item-description">Description of service three.</p>
+        <div className='box2-frame'>
+            <div className='frame2-box'>
+                first box
+            </div>
+            <div className='frame2-box'>
+                second box
+            </div>
         </div>
       </div>
     </div>
