@@ -25,6 +25,49 @@
     background-position: calc(100px / 2) calc(100px / 2);
   }
   
+
+
+
+
+
+  .services-header {
+    width: 100%;
+    font-weight: 900;
+    font-size: 98px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #000000;
+    letter-spacing: 3.5px; /* Reduce the space between letters */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
+    -webkit-text-stroke: 2px black; /* Adds an outline */
+
+
+
+  }
+  
+  .services-description {
+    font-size: 24px;
+    line-height: 1.5;
+    width: 100%;
+    margin-bottom: 20px;
+    color: #000000;
+    margin: auto;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .frameonecontent,
   .frametwocontent {
     width: 50%;

@@ -9,8 +9,12 @@ const Services = () => {
        
         
         <div className="frameonecontentbox">
-          <h3 className="service-title">Service 3</h3>
-          <p>Description for service 3</p>
+        <div className="services-header">
+        SERVICES
+      </div>
+      <p className="services-description">
+        Physical, digital, meta-physical – We’ll find <br /> creative solution for all your<br /> business problems.
+      </p>
         </div>
 
         <div className='box-frame'>
