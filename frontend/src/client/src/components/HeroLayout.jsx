@@ -19,7 +19,7 @@ const HeroLayout = () => {
       <span className="highlight">innovative</span> business
     </h1>
     
-    <p className="description">
+    <p className="hero-layout-description">
       We build custom websites or mobile apps for innovative businesses<br />
       seeking a competitive edge.
     </p>
