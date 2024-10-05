@@ -1,95 +1,125 @@
-/* Main Container */
-.why-choose-us-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 800px; /* Increased height for more spacing */
-    position: relative;
-    padding: 20px; /* Added padding for extra margin */
-    margin-top: 20px;
-}
+.whychooseus-section {
+    width: 55%; /* Occupies 75% of the screen minus the margin-right */
+    border: 1px solid #000; /* Dark border */
+    padding: 20px 20px; /* Padding for content */
+    margin-top: 70px; /* Margin top */
+    margin-left: 41.1%; /* Pushes the div to the right by 25% */
+    margin-right: 20px; /* Adds the 20px margin on the right */
+    box-sizing: border-box; /* Ensures padding doesn’t affect the width */
+    border-bottom: none;
 
-/* Circular Background with Text Inside */
-.circular-background {
-    width: 450px; /* Slightly increased the width */
-    height: 450px;
-    border-radius: 50%; /* Perfect circle */
-    background: radial-gradient(circle, rgba(243, 243, 243, 0.1), rgba(226, 226, 226, 0.2)); /* Almost transparent */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #000; /* Text color */
-    position: relative;
-    margin: 0 50px; /* Center margin for spacing */
-}
-/* Why Choose Us Text */
-.why-text,
-.choose-us-text {
-    font-size: 60px; /* Larger text for better visibility */
-    font-weight: 900; /* Bolder text */
-    line-height: 1.2; /* Improved spacing */
+    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
+    background-size: 297px 200px;
+    background-position: calc(100px / 2) calc(100px / 2);
+  }
+  
+  .whychooseuse-heading {
     margin: 0;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white text */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Text shadow effect */
-}
+    text-align: center; /* Center the heading */
+    font-size: 72px; /* Large font size */
+    font-weight: 700; /* Makes it bold */
+    font-stretch: condensed; /* Condenses the font width */
+    line-height: 1; /* Reduces space between lines, keeping it tight */
+    letter-spacing: 1px; /* Reduces space between letters for more condensation */
+    color: #000000;
 
-/* Left and Right Info Boxes */
-.left-box,
-.right-box {
-    width: 250px; /* Increased width of the boxes */
+    color: #000000;
+    letter-spacing: 3.5px; /* Reduce the space between letters */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
+    -webkit-text-stroke: 2px black; /* Adds an outline */
+  }
+  
+  
+  .testimonial-subheading {
+    text-align: center; /* Center the subheading */
+    font-size: 16px; /* Adjust font size */
+    margin-top: 10px; /* Space between heading and subheading */
+    color: #666; /* Optional: lighter color for subheading */
+  }
+  
+
+
+
+
+
+
+
+
+
+  .why-choose-container {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    position: absolute;
-    top: 50%; /* Position the boxes at the middle */
-    transform: translateY(-50%); /* Center vertically */
-}
-
-.left-box {
-    left: 15%; /* Adjusted position for balance */
-}
-
-.right-box {
-    right: 15%; /* Adjusted position for balance */
-}
-
-/* Individual Info Boxes */
-.info-box {
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
-    padding: 25px; /* Increased padding for better spacing */
-    margin: 20px 0; /* Increased margin for spacing */
-    border-radius: 15px; /* Increased radius for softer edges */
-    box-shadow: none; /* Removed box shadow */
+    align-items: center;
+  }
+  
+  .why-choose-left,
+  .why-choose-right {
+    width: 50%;
+    height: 200px;
+    border: 1px solid #000;
+    overflow: hidden;
+  }
+  
+  .why-choose-left { margin-left: 50px; }
+  .why-choose-right { margin-right: 50px; }
+  
+  .why-choose-left:hover::before,
+  .why-choose-right:hover::before {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    color: white;
+  }
+  
+  .why-choose-heading {
     text-align: center;
-    border: 2px solid rgba(200, 200, 200, 0.7); /* Solid grey-white border */
-    transition: all 0.3s ease-in-out; /* Smooth transition effect */
-}
-
-/* Hover Effect on Info Box */
-.info-box:hover {
-    background: #f0f8ff; /* Light blue on hover */
-    transform: translateY(-5px); /* Subtle lift effect */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Optional: Light shadow on hover */
-}
-
-/* Info Box Headings */
-.info-box h2 {
-    font-size: 26px; /* Slightly increased font size */
-    font-weight: 800; /* Bolder text */
-    margin: 0 0 12px 0; /* Spacing below heading */
-    color: #333333; /* Dark grey heading color */
-}
-
-/* Info Box Paragraph Text */
-.info-box p {
-    font-size: 17px; /* Increased font size */
-    color: #444444; /* Slightly darker text color */
-    margin: 0;
-}
-
-
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #000;
+  }
+  
+  .text-container {
+    text-align: center;
+    margin: 20px auto;
+  }
+  
+  .main-heading {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  
+  .highlight-text {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  
+  .sub-text {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .why-choose-container { flex-direction: column; padding: 30px 20px 0; }
+    .why-choose-heading { font-size: 24px; }
+    .sub-text { font-size: 14px; }
+  }
+  
 
 
