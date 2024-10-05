@@ -43,75 +43,78 @@
 
 
 
-
-
-
-  .why-choose-container {
+  /* Main container with full width */
+.main-containerr {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    height: 400px;
+    position: relative;
+    border-top: 1px solid black; /* Horizontal line on top */
+    border-bottom: 1px solid black; /* Horizontal line on bottom */
   }
   
-  .why-choose-left,
-  .why-choose-right {
-    width: 50%;
-    height: 200px;
-    border: 1px solid #000;
-    overflow: hidden;
-  }
-  
-  .why-choose-left { margin-left: 50px; }
-  .why-choose-right { margin-right: 50px; }
-  
-  .why-choose-left:hover::before,
-  .why-choose-right:hover::before {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-  
-  .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* Individual item divs (4 items) */
+  .itemmm {
+    width: 25%;
     height: 100%;
     padding: 20px;
-    color: white;
+    position: relative;
+    text-align: center;
+    border-right: 1px solid black; /* Vertical line between divs */
   }
   
-  .why-choose-heading {
-    text-align: center;
-    font-size: 28px;
+  /* Remove right border for the last item */
+  .item4 {
+    background-color: rgba(0, 0, 255, 0.1); /* Low opacity blue background */
+    border-right: none;
+  }
+  
+  /* Styling for item numbers (01, 02, 03) */
+  .item-number {
+    font-size: 30px;
     font-weight: bold;
-    margin-bottom: 25px;
-    color: #000;
+    margin-top: 10px;
   }
   
-  .text-container {
-    text-align: center;
-    margin: 20px auto;
+  /* Placeholder for icons */
+  .icon-placeholder {
+    font-size: 50px;
+    margin-top: 70px; /* Margin from top */
+    display: block;
   }
   
-  .main-heading {
-    font-size: 64px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: #222;
+  /* Heading for each item */
+  .item-heading {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: bold;
   }
   
-  .highlight-text {
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 1.2;
+  /* Description under each heading */
+  .item-description {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 0 10px;
   }
   
-  .sub-text {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
+  /* Button in the fourth item */
+  .cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #078BC8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Remove border for the last item */
+  .itemmm:last-child {
+    border-right: none;
   }
   
   /* Responsive Design */

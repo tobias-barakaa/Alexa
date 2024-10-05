@@ -1,4 +1,5 @@
 
+import { StretchVerticalIcon } from 'lucide-react';
 import './WhyChooseUs.css';
 
 const WhyChooseUs = () => {
@@ -12,46 +13,34 @@ const WhyChooseUs = () => {
 
 
 
-<div className="why-choose-container">
-  {/* Left Section */}
-  <div className="why-choose-left">
 
-
-    <div className="text-container">
-      <p className="sub-text">
-        Some of the common aspects<br />
-        of our branding and visual identity projects
-      </p>
-    </div>
-
-
-    <div className="text-container">
-      <p className="sub-text">
-        Some of the common aspects<br />
-        of our branding and visual identity projects
-      </p>
-    </div>
-
-
-
+<div className="main-containerr">
+  <div className="itemmm itemm1">
+    <p className="item-number">01</p>
+    <i className="icon-placeholder">🔥</i>
+    <h3 className="item-heading">Our Expertise</h3>
+    <p className="item-description">We provide high-quality writing services tailored to your needs.</p>
   </div>
-
-  {/* Right Section */}
-  <div className="why-choose-right">
-    <div className="content-wrapper">
-      <div className="text-container">
-        <h1 className="main-heading">
-          How we<br />
-          <span className="highlight-text">Work</span>
-        </h1>
-        <p className="sub-text">
-          Some of the common aspects<br />
-          of our branding and visual identity projects
-        </p>
-      </div>
-    </div>
+  <div className="itemmm itemm2">
+    <p className="item-number">02</p>
+    <i className="icon-placeholder">🚀</i>
+    <h3 className="item-heading">Quick Turnaround</h3>
+    <p className="item-description">Timely delivery of projects, so your deadlines are always met.</p>
+  </div>
+  <div className="itemmm itemm3">
+    <p className="item-number">03</p>
+    <StretchVerticalIcon  className="icon-placeholder" />
+    <h3 className="item-heading">Affordable Pricing</h3>
+    <p className="item-description">Competitive pricing with the highest quality in mind.</p>
+  </div>
+  <div className="itemmm itemm4">
+    <i className="icon-placeholder">🔑</i>
+    <h3 className="item-heading">Get Started</h3>
+    <p className="item-description">Let us help you bring your vision to life.</p>
+    <button className="cta-button">Find Your Plan</button>
   </div>
 </div>
+
 
 
 
