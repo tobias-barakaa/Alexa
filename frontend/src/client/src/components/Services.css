@@ -113,18 +113,6 @@
 
 
 
-
-  .frame-box {
-    position: relative;
-    height: 300px;
-    padding: 20px;
-    border: 1px solid #000;
-    cursor: pointer;
-    background-color: #f5f5f5;
-
-    overflow: hidden;
-    transition: all 0.5s ease;
-  }
   
   /* Icon Position */
   .icon-wrapper {
@@ -165,14 +153,61 @@
   
   /* Hover Effects */
   .frame-box:hover {
-    border-radius: 15px; /* Add border-radius on hover */
+    border-radius: 15px;
     background-color: #000000;
+    padding-left: 1%;
+    width: 98%;
+    padding-right: 1px;
+  }
 
-/* //background: linear-gradient(120deg, #000000, #272d43); */
 
+
+
+  .frame-box {
+    
+  }
+
+
+
+  .frame-box {
+    width: 100%; /* Initial width to fill the parent */
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto; /* Centering the div */
+    background-color: #f4f4f4; /* Initial color */
+    border-radius: 10px; /* Initial border radius */
+    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+
+    position: relative;
+    height: 300px;
+    padding: 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: none;
+
+    overflow: hidden;
+    transition: all 0.5s ease;
   }
   
-  .frame-box:hover .icon {
+  .frame-box:hover {
+    border-radius: 15px; /* Change border-radius on hover */
+    background-color: #000000; /* Change background color on hover */
+    padding-left: 1%; /* Add some padding */
+    padding-right: 1%; /* Equal padding on the right */
+    width: 98%; /* Slightly reduce the width */
+    margin-left: auto; /* Maintain center alignment */
+    margin-right: auto; /* Maintain center alignment */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    height: 280px;
+  }
+  
+
+
+
+
+  
+  .frame-box:hover .iconnn {
     color: #fff;
     transform: translateY(2); /* Slight upward motion */
   }

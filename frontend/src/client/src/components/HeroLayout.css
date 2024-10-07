@@ -20,7 +20,8 @@
   background: 
     linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
-  background-size: 200px 200px;
+    background-size: 297px 200px;
+
   background-position: calc(100px/2) calc(100px/2);
   z-index: -1;
 }

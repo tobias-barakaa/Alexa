@@ -1,4 +1,4 @@
-import { ArrowRight, StretchHorizontal } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './Services.css';  // Import the CSS file
 import { useState } from 'react';
 import { Pencil } from 'lucide-react'; // Replace with your icons
