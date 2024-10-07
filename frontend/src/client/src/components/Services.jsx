@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
-import './Services.css';  // Import the CSS file
+import './Services.css'; 
 import { useState } from 'react';
-import { Pencil } from 'lucide-react'; // Replace with your icons
+import { Pencil } from 'lucide-react'; 
 
 
 

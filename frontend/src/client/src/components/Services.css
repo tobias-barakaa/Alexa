@@ -20,9 +20,7 @@
     display: flex;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
-    background-size: 297px 200px;
-    background-position: calc(100px / 2) calc(100px / 2);
+    
   }
   
 
@@ -152,13 +150,7 @@
   }
   
   /* Hover Effects */
-  .frame-box:hover {
-    border-radius: 15px;
-    background-color: #000000;
-    padding-left: 1%;
-    width: 98%;
-    padding-right: 1px;
-  }
+ 
 
 
 
@@ -170,13 +162,12 @@
 
 
   .frame-box {
-    width: 100%; /* Initial width to fill the parent */
+    width: 100%;
     padding-left: 0;
     padding-right: 0;
-    margin: 0 auto; /* Centering the div */
-    background-color: #f4f4f4; /* Initial color */
-    border-radius: 10px; /* Initial border radius */
-    transition: all 0.3s ease-in-out; /* Smooth transition effect */
+    margin: 0 auto;
+    background-color: #f4f4f4; 
+    transition: all 0.3s ease-in-out; 
 
     position: relative;
     height: 300px;
@@ -191,15 +182,17 @@
   }
   
   .frame-box:hover {
-    border-radius: 15px; /* Change border-radius on hover */
-    background-color: #000000; /* Change background color on hover */
-    padding-left: 1%; /* Add some padding */
-    padding-right: 1%; /* Equal padding on the right */
-    width: 98%; /* Slightly reduce the width */
-    margin-left: auto; /* Maintain center alignment */
-    margin-right: auto; /* Maintain center alignment */
-    transition: all 0.3s ease-in-out; /* Smooth transition */
-    height: 280px;
+    border-radius: 15px; 
+    background-color: #000000; 
+    padding-left: 1%;
+    padding-right: 1%; 
+    width: 98%;
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
   }
   
 

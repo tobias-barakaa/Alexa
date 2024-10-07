@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
 import Services from "../components/Services";
-import ServicesLayout from "../components/ServicesLayout";
 import WhyChooseUs from "../components/WhyChooseUs";
 import './HomePage.css'
 
@@ -13,17 +12,19 @@ const HomePage = () => {
    
 
       <Header />
-      <div className="">
+      <div className='background-lines'>
+      <div className="layout-component">
 
       <HeroLayout />
 
 {/* <ServicesLayout /> */}
 <Services />
       {/* <WhyChooseUs /> */}
-      <WhyChooseUs />
       </div>
+
+      <WhyChooseUs />
       
-       
+      </div>
     </div>
   );
 };

@@ -1,5 +1,15 @@
+.background-lines {
+  background: 
+  linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
+  /* linear-gradient(to bottom, rgba(169, 169, 169, 0.1) 1px, transparent 1px); */
+  background-size: 0px 360px;
+
+background-position: calc(100px/2) calc(100px/2);
+z-index: -1;
+}
+
 .layout-component{
-  padding: 2rem 4.5rem;
+  padding: 2.5rem;
 
 }
 .next{

@@ -8,9 +8,7 @@
     box-sizing: border-box; /* Ensures padding doesn’t affect the width */
     border-bottom: none;
 
-    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
-    background-size: 297px 200px;
-    background-position: calc(100px / 2) calc(100px / 2);
+   
   }
   
   .whychooseuse-heading {
