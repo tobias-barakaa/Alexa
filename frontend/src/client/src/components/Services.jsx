@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Pencil } from "lucide-react";
 import "./Services.css";
 import { useState } from "react";
 
@@ -17,13 +17,57 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="left-container">
-          <div className="container-items">container-items 1</div>
-          <div className="container-items">container-items 2</div>
-        </div>
+        
 
-        <div className="vertical-line"></div>
+
+        <div className="left-container">
+
+
+       <div className="container-items">
+  <Pencil className="iconn" />
+  <h5 className="item-title">Article Writing</h5>
+  <div className="item-description">
+    We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+  </div>
+</div>
+
+<div className="container-items">
+  <Pencil className="iconn" />
+  <h5 className="item-title">Blog Writing</h5>
+  <div className="item-description">
+    Our team specializes in crafting compelling blog content that helps your brand connect deeply with your readers, encouraging more interaction and loyalty.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
+
 
       {/* Right Side */}
       <div className="frametwocontent">

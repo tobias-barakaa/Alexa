@@ -66,16 +66,16 @@
 
 
 //       // const services2 = [
-//       //   {
-//       //     icon: Pencil,
-//       //     title: "Article Writing",
-//       //     description: "We provide high-quality article writing services that cater to various industries and niches.",
-//       //   },
-//       //   {
-//       //     icon: Pencil,
-//       //     title: "Blog Writing",
-//       //     description: "Our blog writing service ensures engaging content that helps you connect with your audience.",
-//       //   },
+    // {
+    //     icon: Pencil,
+    //     title: "Article Writing",
+    //     description: "We provide high-quality article writing services that cater to various industries and niches.",
+    //   },
+    //   {
+    //     icon: Pencil,
+    //     title: "Blog Writing",
+    //     description: "Our blog writing service ensures engaging content that helps you connect with your audience.",
+    //   },
 
         
 
