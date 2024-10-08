@@ -147,7 +147,7 @@
 .right-sidee {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 50px; /* Set a fixed height for all rows */
+  grid-auto-rows: 44px; /* Set a fixed height for all rows */
   gap: 10px; /* Space between items */
   margin-top: 84px;
 }

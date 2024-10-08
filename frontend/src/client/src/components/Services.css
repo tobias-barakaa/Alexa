@@ -1,21 +1,3 @@
-
-
-  /* .services-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
-    align-items: start;
-    padding: 0;
-    background: linear-gradient(to right, rgba(132, 132, 132, 0.1) 1px, transparent 1px);
-    background-size: 295px 200px;
-    background-position: calc(100px / 2) calc(100px / 2);
-    align-items: start; 
-
-  } */
-
-
-/* Services.css */
-
 .services-container {
     display: flex;
     width: 100%;
@@ -24,11 +6,7 @@
   }
   
 
-
-
-
-
-  .services-header {
+ .services-header {
     width: 100%;
     font-weight: 900;
     font-size: 98px;
@@ -38,8 +16,6 @@
     letter-spacing: 3.5px; /* Reduce the space between letters */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
     -webkit-text-stroke: 2px black; /* Adds an outline */
-
-
 
   }
   
@@ -54,18 +30,6 @@
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   .frameonecontent,
   .frametwocontent {
     width: 50%;
@@ -73,23 +37,22 @@
 
   .frameonecontent {
     margin-top: 50px;
-    padding-left: 50px;
+    padding-left: 30px;
+  max-width: 50%;
+
 
   }
 
-  .frametwocontent {
-    margin-top: 150px;
-    padding-right: 50px;
-  }
 
   .frameonecontentbox {
     border: none;
   }
-  .frametwocontentbox {
-    border: none;
-    margin-top: 80px;
-
-  }
+  .frametwocontent{
+    margin-top: 180px;
+    padding-right: 30px;
+  max-width: 50%;
+  height: 300px;
+ }
   .box-frame{
     border: solid 1px #000;
     margin-bottom: 20px;
@@ -102,11 +65,6 @@
     border-bottom: 1px solid #000;
 
   }
-
-
-
-
-
 
 
 
@@ -154,15 +112,7 @@
 
 
 
-
   .frame-box {
-    
-  }
-
-
-
-  .frame-box {
-    width: 100%;
     padding-left: 0;
     padding-right: 0;
     margin: 0 auto;
@@ -170,8 +120,6 @@
     transition: all 0.3s ease-in-out; 
 
     position: relative;
-    height: 300px;
-    padding: 20px;
     border: 1px solid #000;
     cursor: pointer;
     background-color: #f5f5f5;
@@ -179,8 +127,9 @@
 
     overflow: hidden;
     transition: all 0.5s ease;
+    height: 350px;
   }
-  
+
   .frame-box:hover {
     border-radius: 15px; 
     background-color: #000000; 
@@ -196,10 +145,6 @@
   }
   
 
-
-
-
-  
   .frame-box:hover .iconnn {
     color: #fff;
     transform: translateY(2); /* Slight upward motion */
@@ -210,7 +155,6 @@
     transform: translateY(-150px); /* Move upwards to align with description */
   }
   
-  /* Slide-in effect for description */
   .frame-box:hover .descriptionn {
     font-size: 24px;
     bottom: 80px; /* Move it up to where the title would be */
@@ -220,80 +164,62 @@
   }
   
   
-  
+  .frame-box2 {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+    background-color: #f4f4f4; 
+    transition: all 0.3s ease-in-out; 
 
+    position: relative;
+    border: 1px solid #000;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: none;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .box2-frame{
-    border: solid 1px #000;
-    margin-bottom: 20px;
-    margin-top: 180px;
-    border-left: none;
-
-
-
-  }
-  .frame2-box{
-    height: 300px;
-    padding: 20px;
-    border-bottom: 1px solid #000;
-
-  }
-  .service-box {
-    height: 300px;
-    border: 1px solid black;
-    margin-bottom: 20px;
-    padding: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    height: 350px;
   }
   
-  .service-title {
-    font-size: 20px;
-    font-weight: bold;
+  
+
+  .frame-box2:hover {
+    border-radius: 15px; 
+    background-color: #000000; 
+    padding-left: 1%;
+    padding-right: 1%; 
+    width: 98%;
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
     margin-bottom: 10px;
-  }
-  
-  .last-box {
-    height: 300px;
-    border: 1px solid black;
-    padding: 20px;
-    margin-bottom: 20px;
+    
   }
   
 
 
+  .frame-box2:hover .iconnn {
+    color: #fff;
+    transform: translateY(2); /* Slight upward motion */
+  }
+  
+  .frame-box2:hover .titlee {
+    color: #fff;
+    transform: translateY(-150px); /* Move upwards to align with description */
+  }
+  
+  .frame-box2:hover .descriptionn {
+    font-size: 24px;
+    bottom: 80px; /* Move it up to where the title would be */
+    transform: translateY(0); /* Slide up */
+    opacity: 1; /* Make visible */
+    color: white;
+  }
 
 
-
+  
   .view-services-button {
     display: inline-flex;
     align-items: center;
@@ -309,7 +235,7 @@
     transition: all 0.3s ease;
     color: black;
     z-index: 1;
-    margin-left: 50px;
+    margin-left: 62px;
   }
   
   .view-services-button .arrow-icon {

@@ -17,9 +17,7 @@ const HomePage = () => {
 
       <HeroLayout />
 
-{/* <ServicesLayout /> */}
-<Services />
-      {/* <WhyChooseUs /> */}
+     <Services />
       </div>
 
       <WhyChooseUs />
