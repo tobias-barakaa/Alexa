@@ -1,0 +1,269 @@
+.services-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    
+  }
+  
+
+ .services-header {
+    width: 100%;
+    font-weight: 900;
+    font-size: 98px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #000000;
+    letter-spacing: 3.5px; /* Reduce the space between letters */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
+    -webkit-text-stroke: 2px black; /* Adds an outline */
+
+  }
+  
+  .services-description {
+    font-size: 24px;
+    line-height: 1.5;
+    width: 100%;
+    margin-bottom: 20px;
+    color: #000000;
+    margin: auto;
+
+  }
+
+
+  .frameonecontent,
+  .frametwocontent {
+    width: 50%;
+  }
+
+  .frameonecontent {
+    margin-top: 50px;
+    padding-left: 30px;
+  max-width: 50%;
+
+
+  }
+
+
+  .frameonecontentbox {
+    border: none;
+  }
+  .frametwocontent{
+    margin-top: 180px;
+    padding-right: 30px;
+  max-width: 50%;
+  height: 300px;
+ }
+  .box-frame{
+    border: solid 1px #000;
+    margin-bottom: 20px;
+    margin-top: 90px;
+
+  }
+  .frame-box{
+    height: 300px;
+    padding: 20px;
+    border-bottom: 1px solid #000;
+
+  }
+
+
+
+
+  
+  /* Icon Position */
+  .icon-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .iconnn {
+    color: #000;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Title Styling */
+  .titlee {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #000000;
+    transition: color 0.3s ease, transform 0.5s ease;
+  }
+  
+  /* Description: Initially hidden and positioned at the bottom */
+  .descriptionn {
+    position: absolute;
+    left: 20px;
+    bottom: -100%; /* Start hidden below */
+    padding: 20px;
+    font-size: 34px; /* Font size increased to be almost double */
+    width: calc(100% - 40px);
+    color: #000; /* Set color to black or desired text color */
+    opacity: 0; /* Hidden initially */
+    transition: all 0.5s ease; /* Smooth transition */
+    transform: translateY(100%); /* Position it below */
+  }
+  
+  /* Hover Effects */
+ 
+
+
+
+  .frame-box {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+    background-color: #f4f4f4; 
+    transition: all 0.3s ease-in-out; 
+
+    position: relative;
+    border: 1px solid #000;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: none;
+
+    overflow: hidden;
+    transition: all 0.5s ease;
+    height: 350px;
+  }
+
+  .frame-box:hover {
+    border-radius: 15px; 
+    background-color: #000000; 
+    padding-left: 1%;
+    padding-right: 1%; 
+    width: 98%;
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+  }
+  
+
+  .frame-box:hover .iconnn {
+    color: #fff;
+    transform: translateY(2); /* Slight upward motion */
+  }
+  
+  .frame-box:hover .titlee {
+    color: #fff;
+    transform: translateY(-150px); /* Move upwards to align with description */
+  }
+  
+  .frame-box:hover .descriptionn {
+    font-size: 24px;
+    bottom: 80px; /* Move it up to where the title would be */
+    transform: translateY(0); /* Slide up */
+    opacity: 1; /* Make visible */
+    color: white;
+  }
+  
+  
+  .frame-box2 {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+    background-color: #f4f4f4; 
+    transition: all 0.3s ease-in-out; 
+
+    position: relative;
+    border: 1px solid #000;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: none;
+
+    overflow: hidden;
+    transition: all 0.5s ease;
+    height: 350px;
+  }
+  
+  
+
+  .frame-box2:hover {
+    border-radius: 15px; 
+    background-color: #000000; 
+    padding-left: 1%;
+    padding-right: 1%; 
+    width: 98%;
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+  }
+  
+
+
+  .frame-box2:hover .iconnn {
+    color: #fff;
+    transform: translateY(2); /* Slight upward motion */
+  }
+  
+  .frame-box2:hover .titlee {
+    color: #fff;
+    transform: translateY(-150px); /* Move upwards to align with description */
+  }
+  
+  .frame-box2:hover .descriptionn {
+    font-size: 24px;
+    bottom: 80px; /* Move it up to where the title would be */
+    transform: translateY(0); /* Slide up */
+    opacity: 1; /* Make visible */
+    color: white;
+  }
+
+
+  
+  .view-services-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 20px 40px;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: black;
+    z-index: 1;
+    margin-left: 62px;
+  }
+  
+  .view-services-button .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .view-services-button .view-services-button-after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  
+  .view-services-button.hovered {
+    color: white;
+  }
+  
+  .view-services-button.hovered .arrow-icon {
+    transform: translateX(5px);
+  }
+  
+  .view-services-button.hovered .view-services-button-after {
+    transform: translateY(0);
+  }
+  

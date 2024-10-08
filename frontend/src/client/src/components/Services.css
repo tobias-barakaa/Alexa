@@ -1,10 +1,86 @@
+/* Parent container with flexbox */
 .services-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    
-  }
+  display: flex; 
+  position: relative; 
+  width: 100%; 
+}
+
+
+.frameonecontent,
+.frametwocontent {
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.frametwocontent {
+  width: 50%;
+  box-sizing: border-box;
+  margin-top: 240px;
+}
+
+
+
+/* Vertical line in between */
+.vertical-line {
+  position: absolute;
+  left: 50%; 
+  width: 1px; 
+  height: 53.6rem;
+  background-color: rgb(0, 0, 0); 
+  top: 0; 
+  margin-top: 409px;
   
+}
+
+/* Left container styling */
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 200px;
+  border: solid 1px #000;
+  border-right: none;
+
+
+}
+
+.container-items {
+  height: 400px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #000;
+
+}
+
+/* Right container styling */
+.right-containerr {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: solid 1px #000;
+  border-left: none;
+  margin-top: 100px;
+}
+
+.container-items-second {
+  height: 400px;
+  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #000;
+}
+
+
+
+
+
+
+
+
+
 
  .services-header {
     width: 100%;
@@ -13,9 +89,9 @@
     margin-bottom: 10px;
     text-align: center;
     color: #000000;
-    letter-spacing: 3.5px; /* Reduce the space between letters */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
-    -webkit-text-stroke: 2px black; /* Adds an outline */
+    letter-spacing: 3.5px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
+    -webkit-text-stroke: 2px black; 
 
   }
   
@@ -30,196 +106,6 @@
   }
 
 
-  .frameonecontent,
-  .frametwocontent {
-    width: 50%;
-  }
-
-  .frameonecontent {
-    margin-top: 50px;
-    padding-left: 30px;
-  max-width: 50%;
-
-
-  }
-
-
-  .frameonecontentbox {
-    border: none;
-  }
-  .frametwocontent{
-    margin-top: 180px;
-    padding-right: 30px;
-  max-width: 50%;
-  height: 300px;
- }
-  .box-frame{
-    border: solid 1px #000;
-    margin-bottom: 20px;
-    margin-top: 90px;
-
-  }
-  .frame-box{
-    height: 300px;
-    padding: 20px;
-    border-bottom: 1px solid #000;
-
-  }
-
-
-
-
-  
-  /* Icon Position */
-  .icon-wrapper {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
-  
-  .iconnn {
-    color: #000;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  
-  /* Title Styling */
-  .titlee {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-size: 28px;
-    font-weight: 600;
-    color: #000000;
-    transition: color 0.3s ease, transform 0.5s ease;
-  }
-  
-  /* Description: Initially hidden and positioned at the bottom */
-  .descriptionn {
-    position: absolute;
-    left: 20px;
-    bottom: -100%; /* Start hidden below */
-    padding: 20px;
-    font-size: 34px; /* Font size increased to be almost double */
-    width: calc(100% - 40px);
-    color: #000; /* Set color to black or desired text color */
-    opacity: 0; /* Hidden initially */
-    transition: all 0.5s ease; /* Smooth transition */
-    transform: translateY(100%); /* Position it below */
-  }
-  
-  /* Hover Effects */
- 
-
-
-
-  .frame-box {
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 auto;
-    background-color: #f4f4f4; 
-    transition: all 0.3s ease-in-out; 
-
-    position: relative;
-    border: 1px solid #000;
-    cursor: pointer;
-    background-color: #f5f5f5;
-    border-radius: none;
-
-    overflow: hidden;
-    transition: all 0.5s ease;
-    height: 350px;
-  }
-
-  .frame-box:hover {
-    border-radius: 15px; 
-    background-color: #000000; 
-    padding-left: 1%;
-    padding-right: 1%; 
-    width: 98%;
-    margin-left: auto; 
-    margin-right: auto; 
-    transition: all 0.3s ease-in-out;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    
-  }
-  
-
-  .frame-box:hover .iconnn {
-    color: #fff;
-    transform: translateY(2); /* Slight upward motion */
-  }
-  
-  .frame-box:hover .titlee {
-    color: #fff;
-    transform: translateY(-150px); /* Move upwards to align with description */
-  }
-  
-  .frame-box:hover .descriptionn {
-    font-size: 24px;
-    bottom: 80px; /* Move it up to where the title would be */
-    transform: translateY(0); /* Slide up */
-    opacity: 1; /* Make visible */
-    color: white;
-  }
-  
-  
-  .frame-box2 {
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 auto;
-    background-color: #f4f4f4; 
-    transition: all 0.3s ease-in-out; 
-
-    position: relative;
-    border: 1px solid #000;
-    cursor: pointer;
-    background-color: #f5f5f5;
-    border-radius: none;
-
-    overflow: hidden;
-    transition: all 0.5s ease;
-    height: 350px;
-  }
-  
-  
-
-  .frame-box2:hover {
-    border-radius: 15px; 
-    background-color: #000000; 
-    padding-left: 1%;
-    padding-right: 1%; 
-    width: 98%;
-    margin-left: auto; 
-    margin-right: auto; 
-    transition: all 0.3s ease-in-out;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    
-  }
-  
-
-
-  .frame-box2:hover .iconnn {
-    color: #fff;
-    transform: translateY(2); /* Slight upward motion */
-  }
-  
-  .frame-box2:hover .titlee {
-    color: #fff;
-    transform: translateY(-150px); /* Move upwards to align with description */
-  }
-  
-  .frame-box2:hover .descriptionn {
-    font-size: 24px;
-    bottom: 80px; /* Move it up to where the title would be */
-    transform: translateY(0); /* Slide up */
-    opacity: 1; /* Make visible */
-    color: white;
-  }
-
-
-  
   .view-services-button {
     display: inline-flex;
     align-items: center;
