@@ -36,10 +36,7 @@
 .left-container {
   display: flex;
   flex-direction: column;
-  width: 95%;
   margin-top: 200px;
-  border: solid 1px #000;
-  border-right: none;
   margin-left: 35px;
   background-color: #f8f9fd;
 
@@ -47,19 +44,15 @@
 
 }
 
-/* .container-items {
-  height: 400px;
-  background-color: lightblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #000;
+.container-border {
+  border: 1px solid #000000;
+  border-bottom: none;
+}
 
-} */
-/* Container styling */
-/* Container Styling */
-/* Container Styling */
-/* Container styling */
+.container-border2 {
+  border: 1px solid #000000;
+}
+
 .container-items {
   position: relative;
   cursor: pointer;
@@ -67,16 +60,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border: 1px solid #e0e0e0;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 30px;
   box-sizing: border-box;
   pointer-events: auto;
 }
 
-/* Prevent hover effect triggering between cards */
 .container-items::before {
   content: '';
   position: absolute;
@@ -94,20 +85,48 @@
   transform: scale(0.98);
 }
 
-/* Icon styling */
-.iconn {
+/* Icon container for animation */
+.icon-container {
   position: absolute;
   top: 30px;
-  right: 30px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Original icon styling */
+.iconn {
   width: 48px;
   height: 48px;
-  color: #078bc8;
+  color: #000000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Direction icon styling */
+.direction-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects for icons */
+.container-items:hover .icon-container {
+  transform: translateX(30px);
 }
 
 .container-items:hover .iconn {
   color: #ffffff;
-  transform: rotate(10deg) scale(1.1);
+  transform: translateX(20px);
+}
+
+.container-items:hover .direction-icon {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Title styling */
@@ -124,7 +143,7 @@
 
 .container-items:hover .item-title {
   color: white;
-  transform: translateY(-100px);
+  transform: translateY(-150px);
 }
 
 /* Description styling */
@@ -136,24 +155,20 @@
   padding: 30px;
   color: white;
   text-align: left;
-  font-size: 16px;
+  font-size: 32px;
   line-height: 1.6;
-  opacity: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent;
 }
 
 .container-items:hover .item-description {
-  bottom: 30px;
-  opacity: 1;
+  bottom: 60px;
+  margin-left: 30px;
+  font-size: 22px;
+  color: white;
+  z-index: 6;
 }
 
-/* Add gap between cards */
-.container-items + .container-items {
-  margin-top: 20px;
-}
-
-/* Optional: Add a subtle animation for the content shift */
 @keyframes slideUp {
   from {
     transform: translateY(20px);

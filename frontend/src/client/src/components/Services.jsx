@@ -22,31 +22,32 @@ const Services = () => {
 
         <div className="left-container">
 
-
-       <div className="container-items">
-  <Pencil className="iconn" />
-  <h5 className="item-title">Article Writing</h5>
-  <div className="item-description">
-    We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+        <div className='container-border'>
+  <div className="container-items">
+    <div className="icon-container">
+      <ArrowRight className="direction-icon" />
+      <Pencil className="iconn" />
+    </div>
+    <h5 className="item-title">Article Writing</h5>
+    <div className="item-description">
+      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+    </div>
   </div>
 </div>
 
-<div className="container-items">
-  <Pencil className="iconn" />
-  <h5 className="item-title">Blog Writing</h5>
-  <div className="item-description">
-    Our team specializes in crafting compelling blog content that helps your brand connect deeply with your readers, encouraging more interaction and loyalty.
+<div className='container-border2'>
+  <div className="container-items">
+    <div className="icon-container">
+      <ArrowRight className="direction-icon" />
+      <Pencil className="iconn" />
+    </div>
+    <h5 className="item-title">Article Writing</h5>
+    <div className="item-description">
+      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+    </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-  </div>
+</div>
 
 
 
