@@ -4,6 +4,22 @@ import './WhyChooseUs.css';
 const WhyChooseUs = () => {
   return (
     <>
+
+
+<section class="hero-section">
+  <div class="heading-container">
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <h3 class="stacked-heading">
+      <span class="heading-line">Why</span>
+      <span class="heading-line">Choose</span>
+      <span class="heading-line">Us</span>
+    </h3>
+  </div>
+</section>
+
+
+    
       <div className="whychooseus-section">
         <p className="whychooseuse-heading">WHY CHOOSE US</p>
         <p className="testimonial-subheading">We’ve helped many achieve their goals. Here's what some of them had to say about our services.</p>

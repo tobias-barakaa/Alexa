@@ -1,3 +1,22 @@
+.why-choose-us {
+  margin: 50px; /* Adjust as needed */
+  text-align: center;
+}
+
+.why-choose-us h3 {
+  font-size: 72px; /* Large text size */
+  line-height: 1.2; /* Adjust line spacing */
+  text-transform: uppercase; /* Make text uppercase */
+  margin: 0;
+}
+
+.why-choose-us h3 span {
+  display: block; /* Each word on a separate line */
+}
+
+
+
+
 .whychooseus-section {
     width: 55%; /* Occupies 75% of the screen minus the margin-right */
     border: 1px solid #000; /* Dark border */
