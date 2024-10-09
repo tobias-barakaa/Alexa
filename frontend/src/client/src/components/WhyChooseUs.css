@@ -1,153 +1,100 @@
-.why-choose-us {
-  margin: 50px; /* Adjust as needed */
-  text-align: center;
+.search-container {
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 250px;
 }
 
-.why-choose-us h3 {
-  font-size: 72px; /* Large text size */
-  line-height: 1.2; /* Adjust line spacing */
-  text-transform: uppercase; /* Make text uppercase */
-  margin: 0;
+.right-content-manage {
+  width: 69%;
+  height: 600px;
+  margin-left: 26.8%;
+  margin-right: 4.2%;
+  border: 1px solid #000;
+  background-color: transparent;
+
 }
 
-.why-choose-us h3 span {
-  display: block; /* Each word on a separate line */
+.contentt-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heading-line {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  margin: 0;               /* Remove margins */
+  height: 100vh;    
+  padding-top: 40px;      
+  margin-bottom: -40px;
+}
+
+.heading-text {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 10px; /* Adds space between the text and the icon */
+}
+
+.camera-icon {
+  font-size: 40px;
+  color: #000;
 }
 
 
 
-
-.whychooseus-section {
-    width: 55%; /* Occupies 75% of the screen minus the margin-right */
-    border: 1px solid #000; /* Dark border */
-    padding: 20px 20px; /* Padding for content */
-    margin-top: 200px; /* Margin top */
-    margin-left: 41.1%; /* Pushes the div to the right by 25% */
-    margin-right: 20px; /* Adds the 20px margin on the right */
-    box-sizing: border-box; /* Ensures padding doesn’t affect the width */
-    border-bottom: none;
-
-   
-  }
-  
-  .whychooseuse-heading {
-    margin: 0;
-    text-align: center; /* Center the heading */
-    font-size: 72px; /* Large font size */
-    font-weight: 700; /* Makes it bold */
-    font-stretch: condensed; /* Condenses the font width */
-    line-height: 1; /* Reduces space between lines, keeping it tight */
-    letter-spacing: 1px; /* Reduces space between letters for more condensation */
+.main-headingg {
+  font-size: 120px;          /* Keep large font size */
+  font-weight: 900;         /* Maintain heavy weight */
+  letter-spacing: -6px;     /* More negative spacing to condense */
+  line-height: 0.8;         /* Reduced line height for tighter spacing */
+  text-transform: uppercase; /* Convert text to uppercase */
+  word-spacing: -10px;      /* Reduce word spacing for tighter appearance */
+    margin-bottom: 10px;
     color: #000000;
-
-    color: #000000;
-    letter-spacing: 3.5px; /* Reduce the space between letters */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow to create a bold effect */
-    -webkit-text-stroke: 2px black; /* Adds an outline */
-  }
-  
-  
-  .testimonial-subheading {
-    text-align: center; /* Center the subheading */
-    font-size: 16px; /* Adjust font size */
-    margin-top: 10px; /* Space between heading and subheading */
-    color: #666; /* Optional: lighter color for subheading */
-  }
-  
+    letter-spacing: 3.5px; 
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); 
+    -webkit-text-stroke: 4px black; 
+    padding-left: 20px;
+}
 
 
 
+.sub-heading {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
 
-/* Main container with full width */
-.main-containerr {
-    display: flex;
-    width: 100%;
-    height: 480px;
-    position: relative;
-    border-top: 1px solid black; /* Horizontal line on top */
-    border-bottom: 1px solid black; /* Horizontal line on bottom */
-    margin-bottom: 30px;
-  }
-  
-  /* Individual item divs (4 items) */
-  .itemmm {
-    width: 25%;
-    height: 100%;
-    padding: 20px;
-    position: relative;
-    text-align: center;
-    border-right: 1px solid black; /* Vertical line between divs */
-  }
-  
-  /* Styling for item numbers (01, 02, 03) */
-  .item-number {
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  /* Icon styling */
-  .icon-placeholder {
-    font-size: 50px;
-    margin-top: 70px; /* Margin from top */
-    display: block;
-  }
-  
-  /* Heading for each item */
-  .item-heading {
-    font-size: 22px;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-  
-  /* Description under each heading */
-  .item-description {
-    margin-top: 10px;
-    font-size: 16px;
-    padding: 0 10px;
-  }
-  
-  /* Fourth div (Get Started) */
-  .itemm4 {
-    /* background-color: rgba(255, 145, 0, 0.1); */
-    background-color: rgb(0, 208, 245);
-  }
-  
-  /* Button in the fourth item */
-  .cta-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  /* Remove border for the last item */
-  .itemmm:last-child {
-    border-right: none;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .main-containerr {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .itemmm {
-      width: 100%;
-      border-right: none;
-      border-bottom: 1px solid black;
-    }
-  
-    .itemmm:last-child {
-      border-bottom: none;
-    }
-  }
-  
+
+
+.about-us-description {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 10px; /* Adds space between the text and the icon */
+}
+
+.about-us-headline {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  margin: 0;               /* Remove margins */
+  height: 100vh;           /* Makes the div take full viewport height for vertical centering */
+
+}
+
+/* Icon styling */
+.camera-icon {
+  width: 32px;
+  height: 32px;
+  color: #000;
+}
+
+
+

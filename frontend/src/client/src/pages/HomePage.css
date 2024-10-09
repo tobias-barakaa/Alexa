@@ -1,7 +1,6 @@
 .background-lines {
-  background: 
+  background:  linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
   /* linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px); */
-  linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
 
   /* linear-gradient(to bottom, rgba(169, 169, 169, 0.1) 1px, transparent 1px); */
   background-size: 346.5px 300px;
