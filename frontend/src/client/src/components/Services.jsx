@@ -51,23 +51,7 @@ const Services = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
+     </div>
 
 
       {/* Right Side */}
@@ -86,8 +70,38 @@ const Services = () => {
         </button>
 
         <div className="right-containerr">
-          <div className="container-items-second">Right Item 1</div>
-          <div className="container-items-second">Right Item 2</div>
+
+
+<div className='container-border3'>
+          <div className="container-items-second">
+            <div className="icon-container">
+            <ArrowRight className="direction-icon" />
+            <Pencil className="iconn" />
+
+            </div>
+            <h5 className="item-title">Article Writing</h5>
+    <div className="item-description">
+      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+    </div>
+          </div>
+          </div>
+
+
+
+          <div className='container-border4'>
+          <div className="container-items-second">
+            <div className="icon-container">
+            <ArrowRight className="direction-icon" />
+            <Pencil className="iconn" />
+
+            </div>
+            <h5 className="item-title">Article Writing</h5>
+    <div className="item-description">
+      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
+    </div>
+          </div>
+          </div>
+
         </div>
       </div>
     </div>
