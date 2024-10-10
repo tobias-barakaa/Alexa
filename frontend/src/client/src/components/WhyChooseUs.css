@@ -2,15 +2,17 @@
   min-height: 100vh;
   width: 100%;
   margin-top: 250px;
+  
 }
 
 .right-content-manage {
   width: 69%;
   height: 600px;
-  margin-left: 26.8%;
+  margin-left: 26.4%;
   margin-right: 4.2%;
   border: 1px solid #000;
   background-color: transparent;
+  border-bottom: none;
 
 }
 

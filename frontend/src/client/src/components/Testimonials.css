@@ -1,0 +1,162 @@
+/* Testimonials.css */
+
+.container-testimonial {
+    text-align: center;
+  margin: 0 auto;
+  width: 75%;
+  padding: 50px 0;
+  }
+  
+  /* Heading */
+.testimonial-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .icon-animated {
+    font-size: 48px;
+    animation: icon-spin 1.5s infinite;
+  }
+  
+  @keyframes icon-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .testimonial-title {
+    font-weight: bold;
+  }
+  
+  /* Subheading */
+  .testimonial-voices {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .testimonial-subheading {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 50px;
+  }
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .testimonial-card {
+    border: none;
+    padding: 25px;
+    border-radius: 0px;
+    transition: all 0.3s ease;
+    position: relative;
+    border: solid 1px #000000;
+
+  }
+  
+  
+  
+  .testimonial-card.tall {
+    grid-row: span 2;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .star-rating {
+    display: flex;
+    gap: 3px;
+  }
+  
+  .star {
+    fill: #000000;
+    transition: transform 0.3s ease;
+  }
+  
+  .star:hover {
+    transform: scale(1.1);
+  }
+  
+  .quote-icon {
+    fill: #333;
+    opacity: 0.6;
+  }
+  
+  .testimonial-text {
+    flex-grow: 1;
+    margin: 0 0 20px;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+    transition: border 0.3s ease;
+  }
+  
+  .profile-img:hover {
+    border: 2px solid #FFD700;
+  }
+  
+  .profile-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .profile-info p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 5%;
+    }
+  
+    h5 {
+      font-size: 1.8rem;
+    }
+  
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  
+    .testimonial-card {
+      padding: 20px;
+    }
+  }
+  

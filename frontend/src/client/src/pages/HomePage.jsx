@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
 import Services from "../components/Services";
+import StaggeredLayout from "../components/StaggeredLayout";
+import Testimonials from "../components/Testimonials";
 import WhyChooseUs from "../components/WhyChooseUs";
 import './HomePage.css'
 
@@ -19,10 +21,11 @@ const HomePage = () => {
 
      <Services />
       </div>
-
-      <WhyChooseUs />
-      
       </div>
+
+      <StaggeredLayout />
+      <Testimonials />
+      
     </div>
   );
 };

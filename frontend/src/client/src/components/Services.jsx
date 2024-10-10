@@ -7,6 +7,7 @@ const Services = () => {
 
   return (
     <div className="services-container">
+      {/* Left Side */}
       <div className="frameonecontent">
         <div className="frameonecontentbo">
           <div className="services-header">SERVICES</div>
@@ -17,42 +18,37 @@ const Services = () => {
           </p>
         </div>
 
-        
-
-
         <div className="left-container">
+          <div className="container-border">
+            <div className="container-items">
+              <div className="icon-container">
+                <ArrowRight className="direction-icon" />
+                <Pencil className="iconn" />
+              </div>
+              <h5 className="item-title">Article Writing</h5>
+              <div className="item-description">
+                We offer professional and high-quality article writing services
+                tailored to your needs, ensuring your content is informative and
+                engaging for your target audience.
+              </div>
+            </div>
+          </div>
 
-        <div className='container-border'>
-  <div className="container-items">
-    <div className="icon-container">
-      <ArrowRight className="direction-icon" />
-      <Pencil className="iconn" />
-    </div>
-    <h5 className="item-title">Article Writing</h5>
-    <div className="item-description">
-      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
-    </div>
-  </div>
-</div>
-
-<div className='container-border2'>
-  <div className="container-items">
-    <div className="icon-container">
-      <ArrowRight className="direction-icon" />
-      <Pencil className="iconn" />
-    </div>
-    <h5 className="item-title">Article Writing</h5>
-    <div className="item-description">
-      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
-    </div>
-  </div>
-</div>
-</div>
-
-
-
-     </div>
-
+          <div className="container-border2">
+            <div className="container-items">
+              <div className="icon-container">
+                <ArrowRight className="direction-icon" />
+                <Pencil className="iconn" />
+              </div>
+              <h5 className="item-title">Blog Writing</h5>
+              <div className="item-description">
+                High-quality blog writing services to help you attract more
+                visitors and grow your audience.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Right Side */}
       <div className="frametwocontent">
@@ -70,38 +66,33 @@ const Services = () => {
         </button>
 
         <div className="right-containerr">
-
-
-<div className='container-border3'>
-          <div className="container-items-second">
-            <div className="icon-container">
-            <ArrowRight className="direction-icon" />
-            <Pencil className="iconn" />
-
+          <div className="container-border3">
+            <div className="container-items-second">
+              <div className="icon-container">
+                <ArrowRight className="direction-icon" />
+                <Pencil className="iconn" />
+              </div>
+              <h5 className="item-title">Social Media Content</h5>
+              <div className="item-description">
+                Creative social media content that drives engagement and
+                boosts your brand presence.
+              </div>
             </div>
-            <h5 className="item-title">Article Writing</h5>
-    <div className="item-description">
-      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
-    </div>
-          </div>
           </div>
 
-
-
-          <div className='container-border4'>
-          <div className="container-items-second">
-            <div className="icon-container">
-            <ArrowRight className="direction-icon" />
-            <Pencil className="iconn" />
-
+          <div className="container-border4">
+            <div className="container-items-second">
+              <div className="icon-container">
+                <ArrowRight className="direction-icon" />
+                <Pencil className="iconn" />
+              </div>
+              <h5 className="item-title">SEO Writing</h5>
+              <div className="item-description">
+                Optimize your website content for better search engine rankings
+                with our SEO writing services.
+              </div>
             </div>
-            <h5 className="item-title">Article Writing</h5>
-    <div className="item-description">
-      We offer professional and high-quality article writing services tailored to your needs, ensuring your content is informative and engaging for your target audience.
-    </div>
           </div>
-          </div>
-
         </div>
       </div>
     </div>

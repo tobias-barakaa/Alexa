@@ -1,5 +1,6 @@
 import { SwitchCamera } from 'lucide-react';
 import './WhyChooseUs.css';
+import WhatTheySay from './WhatTHEYSAY';
 
 const WhyChooseUs = () => {
   return (
@@ -18,8 +19,8 @@ const WhyChooseUs = () => {
 
 
           <h3 className="main-headingg">
-            WHAT THEY SAY <br />
-            About Us
+            Customers Trusts us <br />
+            find Out Why
           </h3> 
 
           
@@ -30,11 +31,14 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
+
+    <WhatTheySay />
+
     </div>
 
 
+
     
-     
 
       
     </>
