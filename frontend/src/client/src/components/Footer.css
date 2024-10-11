@@ -1,0 +1,151 @@
+/* Footer Container */
+.footer-container {
+    width: 100%;
+    background-color: #f8fafc;
+    padding: 50px 20px;
+    position: relative;
+  }
+  
+  /* Footer Content */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  /* Left Section */
+  .footer-left {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 65%;
+    gap: 30px;
+  }
+  
+  .left-column {
+    flex: 1;
+  }
+  
+  .left-column h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #1f2937;
+  }
+  
+  .left-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .left-column ul li {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 10px;
+  }
+  
+  /* Right Section (REAL TALK) */
+  .footer-right {
+    background-color: #1f2937;
+    flex-basis: 35%;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .real-talk-icon {
+    margin-bottom: 15px;
+  }
+  
+  .real-talk-icon .icon {
+    font-size: 50px;
+    color: #fff;
+  }
+  
+  .real-talk-heading {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .real-talk-subheading {
+    font-size: 18px;
+    font-weight: 500;
+    color: #d1d5db;
+    margin-bottom: 30px;
+  }
+  
+  .message-input {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    justify-content: space-between;
+  }
+  
+  .message-input span {
+    flex-grow: 1;
+  }
+  
+  .message-input .arrow-icon {
+    font-size: 24px;
+    color: #078bc8;
+  }
+  
+  .message-input:hover {
+    background-color: #078bc8;
+    color: #fff;
+  }
+  
+  .message-input:hover .arrow-icon {
+    color: #fff;
+  }
+  
+  /* Social Media Section */
+  .social-media {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .social-icon {
+    font-size: 30px;
+    color: #6b7280;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .social-icon:hover {
+    color: #078bc8;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-left,
+    .footer-right {
+      flex-basis: 100%;
+    }
+  
+    .left-column {
+      text-align: center;
+    }
+  }
+  

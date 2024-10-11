@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
 import Services from "../components/Services";
@@ -24,6 +25,7 @@ const HomePage = () => {
 
       <StaggeredLayout />
       <Testimonials />
+      <Footer />
       </div>
       </div>
     </div>
