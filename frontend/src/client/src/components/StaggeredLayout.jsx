@@ -4,9 +4,9 @@ import './StaggeredLayout.css';
 function StaggeredLayout() {
   return (
     <div className="customers-wrapper">
-      <div className="text-containerr">
+      <div className="text-container">
         <div className="line-one">Customers</div>
-        <div className="line-two">Trusts Us</div>
+        <div className="line-two">Trust Us</div>
         <div className="line-three">Find Out Why</div>
       </div>
 

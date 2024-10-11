@@ -1,383 +1,82 @@
-/* Parent container with flexbox */
-.services-container {
-  display: flex; 
-  position: relative; 
-  width: 100%; 
+/* Container for the entire services section */
+.container {
+  width: 100%;
+  padding: 20px;
 }
 
-
-.frameonecontent,
-.frametwocontent {
-  width: 50%;
-  box-sizing: border-box;
-}
-
-.frametwocontent {
-  width: 50%;
-  box-sizing: border-box;
-  margin-top: 240px;
-}
-
-
-
-/* Left container styling */
-.left-container {
+/* Services header: Calibration Services title and button */
+.services-header {
   display: flex;
-  flex-direction: column;
-  margin-top: 120px;
-  margin-left: 35px;
-  background-color: #f8f9fd;
-
-
-
-}
-
-.container-border {
-  border: 1px solid #000000;
-  border-bottom: none;
-}
-
-.container-border2 {
-  border: 1px solid #000000;
-  border-right: 0.5px solid #000000;
-}
-
-.container-border3 {
-  border: 1px solid #000000;
-  border-left: none;
-  
-}
-
-.container-border4 {
-  border: 1px solid #000000;
-  border-left: 0.1px solid #000000;
-
-}
-
-.container-items {
-  position: relative;
-  cursor: pointer;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: transparent;
-  padding: 30px;
-  box-sizing: border-box;
-  pointer-events: auto;
-}
-
-.container-items::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  z-index: -1;
-}
-
-.container-items:hover {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  transform: scale(0.98);
-}
-
-/* Icon container for animation */
-.icon-container {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 120px;
 }
 
-/* Original icon styling */
-.iconn {
-  width: 48px;
-  height: 48px;
-  color: #000000;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Direction icon styling */
-.direction-icon {
-  width: 24px;
-  height: 24px;
-  color: #ffffff;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Hover effects for icons */
-.container-items:hover .icon-container {
-  transform: translateX(30px);
-}
-
-.container-items:hover .iconn {
-  color: #ffffff;
-  transform: translateX(20px);
-}
-
-.container-items:hover .direction-icon {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Title styling */
-.item-title {
-  position: relative;
+/* Heading styling */
+.services-header h2 {
   font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-  text-align: left;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0);
+  font-weight: bold;
+  color: #000;
 }
 
-.container-items:hover .item-title {
+/* Button styling */
+.view-btn {
+  padding: 10px 20px;
+  background-color: #078BC8;
   color: white;
-  transform: translateY(-150px);
-}
-
-/* Description styling */
-.item-description {
-  position: absolute;
-  bottom: -100%;
-  left: 0;
-  right: 0;
-  padding: 30px;
-  color: white;
-  text-align: left;
-  font-size: 32px;
-  line-height: 1.6;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-}
-
-.container-items:hover .item-description {
-  bottom: 60px;
-  margin-left: 30px;
-  font-size: 22px;
-  color: white;
-  z-index: 6;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.container-items:hover .item-description {
-  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Right container styling */
-.right-containerr {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  margin-top: 150px;
-  margin-right: 35px;
-  background-color: #f8f9fd;
-
-}
-
-/* .container-items-second {
-  height: 400px;
-  background-color: lightgreen;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #000;
-} */
-
-
-
-
-
-.container-items-second {
-  position: relative;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
-  height: 400px;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.view-btn:hover {
+  background-color: #005F8A;
+}
+
+/* Services row: 3 cards per row */
+.services-row {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: transparent;
-  padding: 30px;
-  box-sizing: border-box;
-  pointer-events: auto;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.container-items-second::before {
-  content: '';
+/* Individual service card */
+.service-card {
+  width: 32%;
+  height: 140px;
+  border: 1px solid #078BC8;
+  padding: 10px;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Card hover effect */
+.service-card:hover {
+  background-color: #e0f3fc;
+  border-color: #005F8A;
+}
+
+/* Service heading */
+.service-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Paragraph under the heading */
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Icon positioned to the right */
+.service-card .icon {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  z-index: -1;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
 }
-
-.container-items-second:hover {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  transform: scale(0.98);
-}
-
-
-
-.container-items-second:hover .item-description {
-  bottom: 60px;
-  margin-left: 30px;
-  font-size: 22px;
-  color: white;
-  z-index: 6;
-}
-
-.container-items-second:hover .item-title {
-  color: white;
-  transform: translateY(-150px);
-}
-
-/* Hover effects for icons */
-.container-items-second:hover .icon-container {
-  transform: translateX(30px);
-}
-
-.container-items-second:hover .iconn {
-  color: #ffffff;
-  transform: translateX(20px);
-}
-
-.container-items-second:hover .direction-icon {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- .services-header {
-    width: 100%;
-    font-weight: 900;
-    font-size: 98px;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #000000;
-    letter-spacing: 3.5px; 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
-    -webkit-text-stroke: 2px black; 
-
-  }
-  
-  .services-description {
-    font-size: 24px;
-    line-height: 1.5;
-    width: 100%;
-    margin-bottom: 20px;
-    color: #000000;
-    margin: auto;
-
-  }
-
-
-  .view-services-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 20px 40px;
-    border: 2px solid black;
-    cursor: pointer;
-    background-color: transparent;
-    font-size: 18px;
-    font-weight: 500;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    color: black;
-    z-index: 1;
-    margin-left: 62px;
-  }
-  
-  .view-services-button .arrow-icon {
-    transition: transform 0.3s ease;
-  }
-  
-  .view-services-button .view-services-button-after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    z-index: -1;
-  }
-  
-  .view-services-button.hovered {
-    color: white;
-  }
-  
-  .view-services-button.hovered .arrow-icon {
-    transform: translateX(5px);
-  }
-  
-  .view-services-button.hovered .view-services-button-after {
-    transform: translateY(0);
-  }
-  
-
-  

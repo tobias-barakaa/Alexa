@@ -1,102 +1,156 @@
-import { ArrowRight, Pencil } from "lucide-react";
-import "./Services.css";
-import { useState } from "react";
+import { ActivityIcon, ChartBarIcon, FileTextIcon, SettingsIcon, WrenchIcon } from 'lucide-react';
+import React from 'react';
 
-const Services = () => {
-  const [isHovered, setIsHovered] = useState(false);
+const ArrowRightIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+);
+
+// Other icon components remain unchanged...
+
+export default function ServicesGrid() {
+  const services = [
+    {
+      title: 'Equipment Calibration',
+      description: 'Professional calibration services for precision measuring instruments',
+      icon: SettingsIcon
+    },
+    {
+      title: 'Maintenance Service',
+      description: 'Regular maintenance and inspection of your equipment',
+      icon: WrenchIcon
+    },
+    {
+      title: 'Quality Assurance',
+      description: 'Comprehensive quality control and verification processes',
+      icon: ActivityIcon
+    },
+    {
+      title: 'Documentation',
+      description: 'Detailed calibration certificates and reports',
+      icon: FileTextIcon
+    },
+    {
+      title: 'Performance Analysis',
+      description: 'In-depth analysis of equipment performance metrics',
+      icon: ChartBarIcon
+    },
+    {
+      title: 'Certification Services',
+      description: 'Industry-standard certifications for your equipment',
+      icon: ChartBarIcon
+    }
+  ];
 
   return (
-    <div className="services-container">
-      {/* Left Side */}
-      <div className="frameonecontent">
-        <div className="frameonecontentbo">
-          <div className="services-header">SERVICES</div>
-          <p className="services-description">
-            Physical, digital, meta-physical – We’ll find <br /> creative
-            solution for all your
-            <br /> business problems.
-          </p>
-        </div>
-
-        <div className="left-container">
-          <div className="container-border">
-            <div className="container-items">
-              <div className="icon-container">
-                <ArrowRight className="direction-icon" />
-                <Pencil className="iconn" />
-              </div>
-              <h5 className="item-title">Article Writing</h5>
-              <div className="item-description">
-                We offer professional and high-quality article writing services
-                tailored to your needs, ensuring your content is informative and
-                engaging for your target audience.
-              </div>
-            </div>
-          </div>
-
-          <div className="container-border2">
-            <div className="container-items">
-              <div className="icon-container">
-                <ArrowRight className="direction-icon" />
-                <Pencil className="iconn" />
-              </div>
-              <h5 className="item-title">Blog Writing</h5>
-              <div className="item-description">
-                High-quality blog writing services to help you attract more
-                visitors and grow your audience.
-              </div>
-            </div>
-          </div>
-        </div>
+    <div style={{
+      width: '100%',
+      padding: '32px',
+      marginTop: '120px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      {/* Header Section */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '40px'
+      }}>
+        <h1 style={{
+          fontSize: '36px',
+          fontWeight: 'bold',
+          marginBottom: '16px',
+          color: '#1e293b'
+        }}>Calibration Services</h1>
+        
+        <p style={{
+          fontSize: '18px',
+          color: '#64748b',
+          maxWidth: '600px',
+          lineHeight: '1.6',
+          margin: '0 auto'
+        }}>
+          Comprehensive calibration and maintenance services ensuring precision, 
+          accuracy, and reliability for all your measuring instruments.
+        </p>
+        
+        <button style={{
+          backgroundColor: '#2563eb',
+          color: 'white',
+          padding: '12px 28px',
+          borderRadius: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'background-color 0.2s',
+          fontSize: '16px',
+          fontWeight: '500',
+          marginTop: '20px'
+        }}
+        onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+        onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+        >
+          View All Services
+          <ArrowRightIcon />
+        </button>
       </div>
 
-      {/* Right Side */}
-      <div className="frametwocontent">
-        <button
-          className={`view-services-button ${isHovered ? "hovered" : ""}`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <span className="view-services-header">VIEW SERVICES</span>
-          <ArrowRight
-            size={24}
-            className={`arrow-icon ${isHovered ? "hovered" : ""}`}
-          />
-          <div className="view-services-button-after" />
-        </button>
-
-        <div className="right-containerr">
-          <div className="container-border3">
-            <div className="container-items-second">
-              <div className="icon-container">
-                <ArrowRight className="direction-icon" />
-                <Pencil className="iconn" />
+      {/* Services Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '24px',
+        maxWidth: '1200px',
+        width: '100%'
+      }}>
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <div
+              key={index}
+              style={{
+                border: '1px solid #bfdbfe',
+                padding: '28px',
+                height: '160px',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+                transition: 'all 0.2s',
+                backgroundColor: 'transparent',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.borderColor = '#2563eb';
+                e.currentTarget.style.backgroundColor = '#eff6ff';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = '#bfdbfe';
+                e.currentTarget.style.backgroundColor = 'white';
+              }}
+            >
+              <div>
+                <h3 style={{
+                  fontWeight: 'bold',
+                  fontSize: '22px',
+                  marginBottom: '12px',
+                  color: '#1e293b'
+                }}>{service.title}</h3>
+                <p style={{
+                  color: '#64748b',
+                  fontSize: '16px',
+                  lineHeight: '1.5'
+                }}>{service.description}</p>
               </div>
-              <h5 className="item-title">Social Media Content</h5>
-              <div className="item-description">
-                Creative social media content that drives engagement and
-                boosts your brand presence.
+              <div style={{ color: '#2563eb' }}>
+                <Icon />
               </div>
             </div>
-          </div>
-
-          <div className="container-border4">
-            <div className="container-items-second">
-              <div className="icon-container">
-                <ArrowRight className="direction-icon" />
-                <Pencil className="iconn" />
-              </div>
-              <h5 className="item-title">SEO Writing</h5>
-              <div className="item-description">
-                Optimize your website content for better search engine rankings
-                with our SEO writing services.
-              </div>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
-};
-
-export default Services;
+}

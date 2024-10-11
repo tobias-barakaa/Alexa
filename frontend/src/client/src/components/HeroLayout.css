@@ -6,6 +6,14 @@
   margin-top: 120px;
   position: relative;
   background-position: center center;
+
+
+  background:  linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px),
+
+  linear-gradient(to bottom, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
+  background-size: 346.5px 300px;
+
+background-position: calc(100px/1.6) calc(100px/2);
 }
 
 

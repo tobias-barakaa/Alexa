@@ -14,18 +14,18 @@ const HomePage = () => {
    
 
       <Header />
-      <div className='background-lines'>
+      <div className='background-lin'>
       <div className="layout-component">
 
       <HeroLayout />
 
      <Services />
-      </div>
-      </div>
+      
 
       <StaggeredLayout />
       <Testimonials />
-      
+      </div>
+      </div>
     </div>
   );
 };

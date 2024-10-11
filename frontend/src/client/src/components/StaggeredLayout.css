@@ -3,51 +3,53 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    width: 76%; /* Center content by reducing width and leaving 12% margin on each side */
+    width: 100%; /* Full width */
     margin: 0 auto;
     padding: 20px;
-    margin-top: 80px;
+    margin-top: 120px;
     background: linear-gradient(to right, rgba(169, 169, 169, 0.1) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(169, 169, 169, 0.1) 1px, transparent 1px);
     background-size: 100px 100px;
     background-position: calc(100px / 1.6) calc(100px / 2);
     z-index: -1;
     position: relative;
-  }
-  
-  /* Text Container Styling */
-  .text-containerr {
-    width: 40%; /* Make this div 40% wide */
-    margin-right: auto; /* Align to the left side */
+}
+
+/* Text Container Styling */
+.text-container {
+    flex: 1; /* Allow this to grow to fill space */
+    max-width: 600px; /* Set max width */
     color: #333;
     font-family: 'Roboto', sans-serif;
-  }
-  
-  .line-one, .line-two, .line-three {
+    padding-bottom: 10px; /* Reduce space at the bottom */
+}
+
+.line-one, .line-two, .line-three {
     font-size: 36px;
     font-weight: bold;
     text-align: left; /* Align the text to the left */
     margin: 0;
     color: #078BC8;
-  }
-  
-  .line-one {
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.line-one {
     padding-left: 40px; /* Start on the left */
-  }
-  
-  .line-two {
-    padding-left: 100px; /* Adjust second line to start after 'Customers' */
-  }
-  
-  .line-three {
-    padding-left: 280px; /* Adjust third line's start position */
+}
+
+.line-two {
+    padding-left: 40px; /* Align second line under first */
+}
+
+.line-three {
+    padding-left: 40px; /* Align third line under second */
     color: #333;
-  }
-  
-  /* Info Box Styling */
-  .info-box {
-    width: 25%; /* Each box takes 25% width */
-    height: 300px;
+}
+
+/* Info Box Styling */
+.info-box {
+    width: 25%; /* Adjust width for better layout */
+    height: 380px;
     border: 1px solid #000000;
     padding: 20px;
     box-sizing: border-box;
@@ -55,45 +57,44 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add soft shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
-  }
-  
-  .info-box:hover {
+    background-color: transparent;
+}
+
+.info-box:hover {
     transform: translateY(-10px); /* Slight lift on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .info-box h3 {
-    font-size: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.info-box h3 {
+    font-size: 22px; /* Slightly larger heading */
     margin-bottom: 15px;
     color: #078BC8;
-  }
-  
-  .info-box p {
+}
+
+.info-box p {
     font-size: 16px;
     color: #555;
     text-align: center;
-  }
-  
-  /* Bottom Container */
-  .bottom-container {
+}
+
+/* Bottom Container */
+.bottom-container {
     display: flex;
     width: 100%;
-    justify-content: flex-start; /* Start from the left */
-    gap: 20px; /* Space between the small boxes */
+    justify-content: center; /* Center the two small boxes */
+    gap: 0; /* No space between the small boxes */
     align-items: flex-start;
-  }
-  
-  .small-box {
-    height: 300px;
-    width: 25%; /* Same width as the other boxes */
-  }
-  
-  /* General Hover Effects for Boxes */
-  .small-box:hover {
+    margin-top: 20px; /* Space above the bottom container */
+}
+
+.small-box {
+    width: 25%; /* Adjust width for better layout */
+    height: 380px;
+}
+
+/* General Hover Effects for Boxes */
+.small-box:hover {
     transform: translateY(-10px); /* Lift effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow on hover */
-  }
-  
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
