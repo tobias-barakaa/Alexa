@@ -3,6 +3,8 @@ import './Footer.css';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { MdChatBubbleOutline } from 'react-icons/md'; // Example icon for the 'REAL TALK' section
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
@@ -37,10 +39,10 @@ const Footer = () => {
           </div>
           <h2 className="real-talk-heading">REAL TALK</h2>
           <h5 className="real-talk-subheading">Let's work together!</h5>
-          <div className="message-input">
+          <Link to="/contact-us" className="message-input">
             <span>SEND US A MESSAGE</span>
             <AiOutlineArrowRight className="arrow-icon" />
-          </div>
+          </Link>
         </div>
       </div>
 

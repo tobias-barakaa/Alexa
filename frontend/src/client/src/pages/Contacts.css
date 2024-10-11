@@ -1,0 +1,191 @@
+/* Contacts Container */
+.contacts-container {
+    width: 100%;
+    padding: 0 30px;
+    background: #0b202c; /* Gradient background with brown, black, grey tones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Decorative Lines */
+  .contacts-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+  /* Contacts Content */
+  .contacts-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 50px 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Left Section */
+  .contacts-left {
+    flex: 1;
+    color: #e5e7eb;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .questions-heading {
+    font-size: 36px;
+    font-weight: 700;
+    color: #078bc8; /* Bright blue */
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+  
+  .questions-heading span {
+    display: block;
+  }
+  
+  .social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .social-icon {
+    font-size: 36px;
+    color: #078bc8;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .social-icon:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+  
+  /* Right Section */
+  .contacts-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-field,
+  .textarea-field {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #078bc8;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    font-size: 18px;
+    color: #e5e7eb;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .input-field::placeholder,
+  .textarea-field::placeholder {
+    color: #9ca3af;
+  }
+  
+  .input-field:hover, 
+  .textarea-field:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+  }
+  
+  .textarea-field {
+    height: 150px;
+    resize: none;
+  }
+  
+  .submit-btn {
+    padding: 15px;
+    background-color: #078bc8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #055a8b;
+  }
+  
+  /* Footer Text */
+  .footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    z-index: 3;
+  }
+  
+  .footer-text p {
+    margin: 0;
+    color: #ffffff;
+
+  }
+  
+  /* Back to Home Button */
+  .home-btn {
+    margin-top: 30px;
+    padding: 12px 20px;
+    background-color: #e11d48;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #9f1239;
+  }
+  
+  .home-icon {
+    margin-right: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contacts-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .contacts-left,
+    .contacts-right {
+      flex-basis: 100%;
+    }
+  
+    .questions-heading {
+      font-size: 28px;
+      text-align: center;
+    }
+  
+    .social-icons {
+      justify-content: center;
+    }
+  
+    .home-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  

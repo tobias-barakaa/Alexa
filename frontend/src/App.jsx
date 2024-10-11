@@ -31,6 +31,7 @@ import OrderHistory from './dashboard/src/pages/manage orders/OrderHistory';
 import Articles from './admin/src/pages/Articles';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
 import Published from './dashboard/src/pages/orders/Published';
+import Contacts from './client/src/pages/Contacts';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/paypal/cancel",
     element: <FailurePage />
+  },
+  {
+    path: "/contact-us",
+    element: <Contacts />
   },
   {
     path: "/dashboard",
