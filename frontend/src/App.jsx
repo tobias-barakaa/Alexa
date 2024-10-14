@@ -32,6 +32,7 @@ import Articles from './admin/src/pages/Articles';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
 import Published from './dashboard/src/pages/orders/Published';
 import Contacts from './client/src/pages/Contacts';
+import HireWriters from './dashboard/src/pages/HireWriters';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
   {
     path: "/contact-us",
     element: <Contacts />
+  },
+  {
+    path: "/hire-writers",
+    element: <HireWriters />
   },
   {
     path: "/dashboard",

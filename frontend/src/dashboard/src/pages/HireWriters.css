@@ -1,0 +1,120 @@
+/* General reset and box-sizing */
+  
+  /* Header styling */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blur effect for the background */
+    position: relative;
+    z-index: 10; /* Ensure header is above other layers */
+  }
+  
+  .logo img {
+    height: 60px; /* Logo size */
+  }
+  
+  .nav-items a {
+    color: #ffffff; /* White for nav links */
+    text-decoration: none;
+    margin-left: 40px; /* Space between links */
+    font-size: 1.5rem; /* Font size */
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  .nav-items a:hover {
+    color: #00bfff; /* Shiny blue on hover */
+  }
+  
+  /* Hero section styling */
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .hero-container {
+    max-width: 900px;
+    z-index: 2; /* Ensure hero content is above background */
+  }
+  
+  h1 {
+    font-size: 5rem; /* Large font size */
+    margin-bottom: 20px;
+    color: #ffffff; /* White for contrast */
+  }
+  
+  .shiny-text {
+    color: #00bfff; /* Shiny blue color */
+    font-size: 6rem; /* Large font size */
+    margin-bottom: 30px;
+  }
+  
+  p {
+    font-size: 1.8rem; /* Medium font size */
+    margin-bottom: 40px;
+    color: #ffffff; /* White for readability */
+  }
+  
+  /* Animation section */
+  .animated-section p {
+    font-size: 2rem; /* Increased font size */
+    animation: fadeIn 2s ease-in-out infinite alternate;
+  }
+  
+  /* Fade animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0.7;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Button styling */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between buttons */
+  }
+  
+  button {
+    padding: 15px 30px; /* Padding for buttons */
+    font-size: 1.5rem; /* Font size */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s; /* Smooth transitions */
+  }
+  
+  .hire-writer {
+    background-color: #00bfff; /* Shiny blue */
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 191, 255, 0.5); /* Shadow for depth */
+  }
+  
+  .become-writer {
+    background-color: transparent;
+    border: 3px solid #ffffff; /* White border */
+    color: #ffffff; /* White text */
+  }
+  
+  button:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  
+  .hire-writer:hover {
+    background-color: #0088cc; /* Darker blue on hover */
+  }
+  
+  .become-writer:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly darker transparent background */
+  }
+  

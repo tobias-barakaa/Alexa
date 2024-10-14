@@ -1,6 +1,7 @@
 import './Header.css';
 import centerImage from '../assets/images/Enwrit.png';
 import { Gem, LayoutDashboard } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -21,7 +22,7 @@ const Header = () => {
           </div>
         </div>
 
-        <button className="border-button">Hire Professional Writers</button>
+        <Link to="hire-writers" className="border-button">Hire Professional Writers</Link>
         <button className="blue-button">Login or Sign Up</button>
       </div>
     </header>
