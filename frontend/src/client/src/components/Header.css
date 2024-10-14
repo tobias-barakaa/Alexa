@@ -56,14 +56,16 @@
 }
 
 .border-button {
-  border: 2px solid #2b6cb0;
+  border: 1px solid #78bafc;
   background-color: transparent;
   padding: 10px 16px;
-  border-radius: 30px;
-  font-size: 16px;
+  /* border-radius: 30px; */
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  color: #000000;
 }
 
 .border-button:hover {
@@ -75,13 +77,12 @@
   border: none;
   color: #fff;
   padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 16px;
+  /* border-radius: 30px; */
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
   background: linear-gradient(to right, #2b6cb0, #2c5282);
-  box-shadow: 0 12px 24px rgba(66, 153, 225, 0.5);
   transform: translateY(-4px);
 }
 
@@ -137,7 +138,7 @@
     font-size: 11px;
   }
 
-  .border-button, .blue-button {
+  .border-button,  {
     font-size: 14px;
     padding: 8px 16px;
   }
