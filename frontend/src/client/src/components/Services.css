@@ -1,82 +1,137 @@
-/* Container for the entire services section */
-.container {
-  width: 100%;
-  padding: 20px;
-}
-
-/* Services header: Calibration Services title and button */
-.services-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 120px;
-}
-
-/* Heading styling */
-.services-header h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
-}
-
-/* Button styling */
-.view-btn {
-  padding: 10px 20px;
-  background-color: #078BC8;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* Button hover effect */
-.view-btn:hover {
-  background-color: #005F8A;
-}
-
-/* Services row: 3 cards per row */
-.services-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-/* Individual service card */
-.service-card {
-  width: 32%;
-  height: 140px;
-  border: 1px solid #078BC8;
-  padding: 10px;
+/* Main Services Container with Background */
+.services-container {
+  font-family: 'Playfair Display', serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
   position: relative;
-  transition: background-color 0.3s, border-color 0.3s;
+  
 }
 
-/* Card hover effect */
-.service-card:hover {
-  background-color: #e0f3fc;
-  border-color: #005F8A;
+/* Title and Description Styling */
+.services-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 
-/* Service heading */
-.service-card h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Paragraph under the heading */
-.service-card p {
-  font-size: 14px;
+.services-description {
+  font-size: 1.2rem;
   color: #555;
-  margin-bottom: 10px;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Icon positioned to the right */
-.service-card .icon {
+/* Services Grid Styling */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* 2px gap between items */
+}
+
+/* Service Item Styling */
+.service-item {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  border-radius: 16px;
+  /* background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 50%, #e6f2ff 100%); */
+  /* White to Bluish Gradient */
+  background-color: rgba(93, 173, 226, 0.09); /* Blue with 30% opacity */
+
+
+
+
+  box-shadow: 0 10px 30px rgba(173, 216, 230, 0.1), 0 1px 8px rgba(173, 216, 230, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.service-item::before {
+  content: '';
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Icon Styling */
+.service-icon {
+  border-radius: 50%;
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+
+/* Title and Description Styling for Service Items */
+.service-item-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.service-item-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #3498db;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+
+.service-item-description {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+  max-width: 320px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .service-item-description {
+  color: #333;
+}
+
+/* Additional sophisticated touches */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+
+.service-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 }
