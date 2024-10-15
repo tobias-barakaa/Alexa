@@ -1,9 +1,11 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
+import LetsBuild from "../components/LetsBuild";
 import Services from "../components/Services";
 import StaggeredLayout from "../components/StaggeredLayout";
 import Testimonials from "../components/Testimonials";
+import WhyTheyLikeUs from "../components/WhyTheyLikeUs";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -22,8 +24,7 @@ const HomePage = () => {
      <Services />
       
 
-      <StaggeredLayout />
-      <Testimonials />
+      <WhyTheyLikeUs />
       <Footer />
       </div>
       </div>

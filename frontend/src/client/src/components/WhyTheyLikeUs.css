@@ -1,0 +1,64 @@
+.why-they-like-us-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
+  
+  .why-they-like-us-section h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  .makes-sense {
+    color: rgba(93, 173, 226, 0.8); /* Fading blue color */
+    font-weight: bold;
+  }
+  
+  .why-they-like-us-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .why-us-item {
+    width: 25%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 0 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .why-us-item h4 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: #333;
+  }
+  
+  .why-us-item p {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+    margin-top: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .fading-blue {
+    background-color: rgba(93, 173, 226, 0.7); /* Fading blue background */
+  }
+  
+  .white-grey {
+    background-color: #e0e0e0; /* Light grey background */
+  }
+  
+  .why-us-icon {
+    color: #5da8ff; /* Blue color for icons */
+  }
+  

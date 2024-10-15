@@ -8,22 +8,22 @@ const Services = () => {
     {
       icon: <FaCog />,
       title: "Advanced Features",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do."
     },
     {
       icon: <FaRocket />,
       title: "Fast Performance",
-      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do."
     },
     {
       icon: <FaChartBar />,
       title: "Data Analytics",
-      description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do."
     },
     {
       icon: <FaShieldAlt />,
       title: "Enhanced Security",
-      description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do."
     }
   ];
 
@@ -33,7 +33,7 @@ const Services = () => {
         We Deliver <span className="gradient-text">higher Services</span> models, faster
       </div>
       <p className="services-subheading">
-        Label Studio Enterprise has all the features your team needs to be collaborative, efficient, and compliant.
+        Label Studio Enterprise has all the features your team needs to be collaborative, efficient, and<br /> compliant.
       </p>
       <div className="services-content">
         <div className="services-image">
