@@ -27,6 +27,7 @@ const HomePage = () => {
 
       <WhyTheyLikeUs />
       <BuiltFor />
+      <Testimonials />
       <Footer />
       </div>
       </div>

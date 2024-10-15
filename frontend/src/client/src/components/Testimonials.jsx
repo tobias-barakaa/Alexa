@@ -1,52 +1,65 @@
 import React from 'react';
-import './Testimonials.css';
+import { FaQuoteLeft } from 'react-icons/fa';  // Import an icon for the review
+import './Testimonials.css';  // Link to your CSS file
+import centerImage from '../assets/images/tobby.png';
 
-const testimonials = [
-  {
-    name: 'John Doe',
-    title: 'CEO of Company X',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    quote:
-      'This service has transformed our business. The quality is exceptional, and we’ve seen a 40% increase in efficiency!',
-  },
-  {
-    name: 'Jane Smith',
-    title: 'Marketing Director at Y',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-    quote:
-      'Absolutely fantastic! The attention to detail and personalized approach make this service stand out from the rest.',
-  },
-  {
-    name: 'Sarah Parker',
-    title: 'Freelance Writer',
-    image: 'https://randomuser.me/api/portraits/women/48.jpg',
-    quote:
-      'Professional, reliable, and affordable. Highly recommended for anyone looking for quality services.',
-  },
-];
 
-const Testimonial = () => {
+const Testimonials = () => {
   return (
-    <div className="testimonial-container">
-      <h2 className="testimonial-heading">What Our Clients Say</h2>
-      <div className="testimonial-cards">
-        {testimonials.map((testimonial, index) => (
-          <div className="testimonial-card" key={index}>
-            <div className="testimonial-image-wrapper">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="testimonial-image"
-              />
-            </div>
-            <h3 className="testimonial-name">{testimonial.name}</h3>
-            <p className="testimonial-title">{testimonial.title}</p>
-            <p className="testimonial-quote">“{testimonial.quote}”</p>
+    <div className="testimonials-section">
+      <div className="main-heading">BUILT ON TRUST</div>
+      <div className="sub-heading">What our clients are saying</div>
+
+      <div className="testimonial-container">
+        {/* Left testimonial div */}
+        <div className="testimonial">
+          <img src={centerImage} alt="Reviewer" className="reviewer-image" />
+          <div className="icon-container">
+            <FaQuoteLeft size={60} className="quote-icon" />
           </div>
-        ))}
+          <div className="review-content">
+            <p className="review-text">
+              A heartfelt thank you to the all-<br />
+              volunteer team that built and <br />
+              launched The ImmuneCorps, a site <br />
+              to connect those who need help<br />
+              with those who can help.
+            </p>
+            <div className="stars">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p className="reviewer-name">John Doe</p>
+            <p className="reviewer-role">Client</p>
+          </div>
+        </div>
+
+        {/* Right testimonial div */}
+        <div className="testimonial">
+          <div className='icon-image'>
+          <div className="icon-container">
+            <FaQuoteLeft size={40} className="quote-icon" />
+          </div>
+          <img src={centerImage} alt="Reviewer" className="reviewer-image" />
+          </div>
+
+          <div className="review-content">
+            <p className="review-text">
+              Working with this team has been<br />
+              an absolute pleasure. They delivered<br />
+              high-quality work and met all<br />
+              deadlines, exceeding our <br />
+              expectations in every way.
+            </p>
+            <div className="stars">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p className="reviewer-name">Jane Smith</p>
+            <p className="reviewer-role">Freelancer</p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Testimonial;
+export default Testimonials;
