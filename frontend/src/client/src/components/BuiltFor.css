@@ -1,0 +1,53 @@
+/* Main Section Styling */
+.built-for-section {
+    width: 100%;
+    height: 480px;
+    background-color: #0066cc; /* Sky blue background color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  
+  /* Heading Styling */
+  .builtfor-enwriters {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Items Container */
+  .built-for-items {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
+    gap: 1rem;
+  }
+  
+  /* Individual Item Styling */
+  .built-for-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23%; /* To ensure spacing for 4 items in a row */
+    color: white;
+  }
+  
+  /* Icon Styling */
+  .built-for-icon {
+    margin-bottom: 10px;
+  }
+  
+  /* Text Below Icon */
+  .built-for-item h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  

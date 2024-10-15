@@ -1,3 +1,4 @@
+import BuiltFor from "../components/BuiltFor";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import HeroLayout from "../components/HeroLayout";
@@ -25,6 +26,7 @@ const HomePage = () => {
       
 
       <WhyTheyLikeUs />
+      <BuiltFor />
       <Footer />
       </div>
       </div>

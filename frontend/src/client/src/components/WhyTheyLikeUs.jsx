@@ -1,29 +1,42 @@
 import React from 'react';
-import { FaThumbsUp, FaStar, FaHeart } from 'react-icons/fa';
-import './WhyTheyLikeUs.css'; // Link to your CSS file
+import { FaRocket, FaUserFriends, FaChartLine } from 'react-icons/fa';
+import './WhyTheyLikeUs.css';
 
 const WhyTheyLikeUs = () => {
+  const reasons = [
+    {
+      icon: <FaRocket />,
+      title: "Fast Delivery",
+      description: "We prioritize quick and efficient delivery of our services to meet your deadlines.",
+      bgClass: "blue-bg"
+    },
+    {
+      icon: <FaUserFriends />,
+      title: "Customer Support",
+      description: "Our dedicated team provides excellent support throughout your journey with us.",
+      bgClass: "blue-bg"
+    },
+    {
+      icon: <FaChartLine />,
+      title: "Proven Results",
+      description: "Our track record speaks for itself, with consistent growth and success for our clients.",
+      bgClass: "grey-bg"
+    }
+  ];
+
   return (
-    <div className="why-they-like-us-section">
-      <h3>
-        Why Our Customers like us, <span className="makes-sense">makes sense.</span>
-      </h3>
-      <div className="why-they-like-us-content">
-        <div className="why-us-item fading-blue">
-          <FaThumbsUp size={40} className="why-us-icon" />
-          <h4>High Quality</h4>
-          <p>We ensure top-notch service that meets the highest standards.</p>
-        </div>
-        <div className="why-us-item fading-blue">
-          <FaStar size={40} className="why-us-icon" />
-          <h4>Top Ratings</h4>
-          <p>Our customers love our services and constantly give us 5-star ratings.</p>
-        </div>
-        <div className="why-us-item white-grey">
-          <FaHeart size={40} className="why-us-icon" />
-          <h4>Customer Love</h4>
-          <p>We build lasting relationships with our clients based on trust.</p>
-        </div>
+    <div className="why-they-like-us-container">
+      <div className="why-they-like-us-heading">
+        Why Our Client are happy, <span className="fading-blue">makes sense.</span>
+      </div>
+      <div className="reasons-container">
+        {reasons.map((reason, index) => (
+          <div key={index} className={`reason-card ${reason.bgClass}`}>
+            <div className="reason-icon">{reason.icon}</div>
+            <h4 className="reason-title">{reason.title}</h4>
+            <p className="reason-description">{reason.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
