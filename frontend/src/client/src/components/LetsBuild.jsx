@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCheck, FaComments } from 'react-icons/fa'; // FaCheck for the ticks and FaComments for the button icon
 import deliverImage from '../assets/images/deliver.png'; // Your image import
 import './LetsBuild.css';
@@ -28,7 +27,7 @@ const LetsBuild = () => {
             ))}
           </ul>
           <button className="lets-talk-button">
-            <FaComments className="button-icon" /> Let's Talk
+            <FaComments className="button-icon" /> Lets Talk
           </button>
         </div>
 

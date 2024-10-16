@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FaDollarSign, FaChartLine, FaHandshake, FaSyncAlt, FaShieldAlt, FaGlobe } from 'react-icons/fa';
 
@@ -14,7 +14,6 @@ const WhyUsHeading = styled.h2`
   color: #333;
   text-align: center;
   margin-bottom: 3rem;
-
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }

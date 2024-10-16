@@ -33,11 +33,33 @@ import ArticleDetails from './admin/src/pages/ArticleDetails';
 import Published from './dashboard/src/pages/orders/Published';
 import Contacts from './client/src/pages/Contacts';
 import HireWriters from './dashboard/src/pages/HireWriters';
+import HeroLayout from './client/src/components/HeroLayout';
+import Layout from './client/src/pages/Layout';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
+    element: <HomePage />, // Assuming you have a Layout component for the main structure
+    children: [
+      {
+        index: true,
+        element: <Layout /> // This renders the HeroLayout when the index route is hit.
+      },
+      {
+        path: "/contact-us",
+        element: <Contacts /> // This defines the Contacts page as a separate route.
+      },
+    ]
   },
+  {
+    path: "/contact-us",
+    element: <Contacts /> // This defines the Contacts page as a separate route.
+  },
+
+
+
+ 
+
+
   {
     path: "/login",
     element: <LoginClient />
@@ -62,10 +84,6 @@ const router = createBrowserRouter([
   {
     path: "/paypal/cancel",
     element: <FailurePage />
-  },
-  {
-    path: "/contact-us",
-    element: <Contacts />
   },
   {
     path: "/hire-writers",

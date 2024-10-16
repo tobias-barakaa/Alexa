@@ -1,8 +1,7 @@
-import React from 'react';
 import './Footer.css';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { MdChatBubbleOutline } from 'react-icons/md'; // Example icon for the 'REAL TALK' section
+import { MdChatBubbleOutline } from 'react-icons/md'; 
 import { Link } from 'react-router-dom';
 
 
@@ -38,7 +37,7 @@ const Footer = () => {
             <MdChatBubbleOutline className="icon" />
           </div>
           <h2 className="real-talk-heading">REAL TALK</h2>
-          <h5 className="real-talk-subheading">Let's work together!</h5>
+          <h5 className="real-talk-subheading">Lets work together!</h5>
           <Link to="/contact-us" className="message-input">
             <span>SEND US A MESSAGE</span>
             <AiOutlineArrowRight className="arrow-icon" />

@@ -1,6 +1,5 @@
-import React from 'react';
-import { FaQuoteLeft } from 'react-icons/fa';  // Import an icon for the review
-import './Testimonials.css';  // Link to your CSS file
+import { FaQuoteLeft } from 'react-icons/fa';  
+import './Testimonials.css'; 
 import centerImage from '../assets/images/tobby.png';
 
 
@@ -11,7 +10,6 @@ const Testimonials = () => {
       <div className="sub-heading">What our clients are saying</div>
 
       <div className="testimonial-container">
-        {/* Left testimonial div */}
         <div className="testimonial">
           <img src={centerImage} alt="Reviewer" className="reviewer-image" />
           <div className="icon-container">
@@ -33,7 +31,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Right testimonial div */}
         <div className="testimonial">
           <div className='icon-image'>
           <div className="icon-container">

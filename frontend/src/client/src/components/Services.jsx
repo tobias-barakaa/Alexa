@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCog, FaRocket, FaChartBar, FaShieldAlt } from 'react-icons/fa';
 import centerImage from '../assets/images/tobby.png';
 import './Services.css';

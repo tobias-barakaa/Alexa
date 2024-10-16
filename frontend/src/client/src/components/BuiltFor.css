@@ -2,26 +2,26 @@
 .built-for-section {
     width: 100%;
     height: 480px;
-    background-color: #0066cc; /* Sky blue background color */
+    background-color: #f0f8ff; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     border-radius: 20px;
+    margin-top: 5rem;
   }
   
   /* Heading Styling */
   .builtfor-enwriters {
     font-size: 4.5rem;
     font-weight: 700;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 1.5rem;
     text-align: center;
     font-weight: bold;
   }
   
-  /* Items Container */
   .built-for-items {
     display: flex;
     justify-content: space-around;
@@ -30,21 +30,18 @@
     gap: 1rem;
   }
   
-  /* Individual Item Styling */
   .built-for-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 23%; /* To ensure spacing for 4 items in a row */
-    color: white;
+    width: 23%; 
+    color: rgb(0, 0, 0);
   }
   
-  /* Icon Styling */
   .built-for-icon {
     margin-bottom: 10px;
   }
   
-  /* Text Below Icon */
   .built-for-item h4 {
     font-size: 1.2rem;
     font-weight: 500;

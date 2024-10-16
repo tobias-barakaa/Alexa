@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaRocket, FaUserFriends, FaChartLine } from 'react-icons/fa';
 import './WhyTheyLikeUs.css';
 
@@ -21,7 +20,20 @@ const WhyTheyLikeUs = () => {
       title: "Proven Results",
       description: "Our track record speaks for itself, with consistent growth and success for our clients.",
       bgClass: "grey-bg"
-    }
+    },
+    {
+        icon: <FaChartLine />,
+        title: "Proven Results",
+        description: "Our track record speaks for itself, with consistent growth and success for our clients.",
+        bgClass: "grey-bg"
+      },
+
+      {
+        icon: <FaUserFriends />,
+        title: "Customer Support",
+        description: "Our dedicated team provides excellent support throughout your journey with us.",
+        bgClass: "blue-bg"
+      },
   ];
 
   return (
