@@ -1,120 +1,108 @@
-/* General reset and box-sizing */
-  
-  /* Header styling */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Blur effect for the background */
-    position: relative;
-    z-index: 10; /* Ensure header is above other layers */
-  }
-  
-  .logo img {
-    height: 60px; /* Logo size */
-  }
-  
-  .nav-items a {
-    color: #ffffff; /* White for nav links */
-    text-decoration: none;
-    margin-left: 40px; /* Space between links */
-    font-size: 1.5rem; /* Font size */
-    font-weight: bold;
-    transition: color 0.3s; /* Smooth color transition */
-  }
-  
-  .nav-items a:hover {
-    color: #00bfff; /* Shiny blue on hover */
-  }
-  
-  /* Hero section styling */
-  .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-    position: relative;
-  }
-  
-  .hero-container {
-    max-width: 900px;
-    z-index: 2; /* Ensure hero content is above background */
-  }
-  
-  h1 {
-    font-size: 5rem; /* Large font size */
-    margin-bottom: 20px;
-    color: #ffffff; /* White for contrast */
-  }
-  
-  .shiny-text {
-    color: #00bfff; /* Shiny blue color */
-    font-size: 6rem; /* Large font size */
-    margin-bottom: 30px;
-  }
-  
-  p {
-    font-size: 1.8rem; /* Medium font size */
-    margin-bottom: 40px;
-    color: #ffffff; /* White for readability */
-  }
-  
-  /* Animation section */
-  .animated-section p {
-    font-size: 2rem; /* Increased font size */
-    animation: fadeIn 2s ease-in-out infinite alternate;
-  }
-  
-  /* Fade animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0.7;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Button styling */
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Space between buttons */
-  }
-  
-  button {
-    padding: 15px 30px; /* Padding for buttons */
-    font-size: 1.5rem; /* Font size */
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s; /* Smooth transitions */
-  }
-  
-  .hire-writer {
-    background-color: #00bfff; /* Shiny blue */
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 191, 255, 0.5); /* Shadow for depth */
-  }
-  
-  .become-writer {
-    background-color: transparent;
-    border: 3px solid #ffffff; /* White border */
-    color: #ffffff; /* White text */
-  }
-  
-  button:hover {
-    transform: scale(1.1); /* Scale effect on hover */
-  }
-  
-  .hire-writer:hover {
-    background-color: #0088cc; /* Darker blue on hover */
-  }
-  
-  .become-writer:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly darker transparent background */
-  }
-  
+.hire-writers-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  margin-top: 5rem;
+}
+
+.order-content-btn {
+  padding: 10px 20px;
+  background-color: #007bff; /* Nice blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-content-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+.writers-info {
+  width: 20%;
+}
+
+.meet-expert {
+  font-size: 3.25rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  margin-top: 3rem;
+}
+
+.writers-info p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.writers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  width: 75%;
+}
+
+.writer-card {
+  position: relative;
+  width: 150px;
+  height: 200px;
+}
+
+.writer-img {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.writer-card:hover .writer-img {
+  filter: grayscale(0%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.writer-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay h6 {
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+.overlay p {
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.hire-btn {
+  padding: 5px 10px;
+  background-color: #5da8ff;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+.hire-btn:hover {
+  background-color: #007bff;
+}
