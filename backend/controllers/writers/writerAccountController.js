@@ -27,6 +27,8 @@ const fillWriterProfile = async (req, res) => {
                 status: 'pending',
                 created_at: knex.fn.now(),
                 updated_at: knex.fn.now(),
+                Rates/Price per Word or per Project,
+                Experience Level: Let the writer specify their experience level (e.g., Beginner, Intermediate, Expert).
             })
             .returning('*');
 
