@@ -2,6 +2,8 @@ const knex = require('../../db/db.js');
 const bcrypt = require("bcryptjs");
 const { hashPassword } = require("../../utils/client/auth.utils");
 const generateToken = require("../../utils/client/generateToken");
+const { comparePassword } = require('../../utils/client/passwordUtiles.js');
+const { createJWT } = require('../../utils/client/tokenUtils.js');
 
 const addWriter = async (req, res) => {
     const { username, email, password, profile_pic } = req.body;
@@ -71,51 +73,122 @@ const addWriter = async (req, res) => {
 
 
 
+// const loginWriter = async (req, res) => {
+//     const { email, password } = req.body;
+
+//     try {
+//         // Retrieve user information including role name
+//         const user = await knex("users")
+//             .select(
+//                 "users.id",
+//                 "users.username",
+//                 "users.email",
+//                 "users.password",
+//                 "users.profile_pic",
+//                 "users.balance",
+//                 "roles.name as role"
+//             )
+//             .join("roles", "users.role_id", "roles.id")
+//             .where({ email })
+//             .first();
+
+//         // Check if user exists and password matches
+//         if (user && (await bcrypt.compare(password, user.password))) {
+//             // Generate token and set it in response cookie
+//             generateToken(res, user.id);
+
+//             // Return user information with login success message
+//             return res.json({
+//                 id: user.id,
+//                 username: user.username,
+//                 email: user.email,
+//                 profile_pic: user.profile_pic,
+//                 balance: user.balance,
+//                 role: user.role,
+//                 message: "Successfully logged in 😁",
+//             });
+//         } else {
+//             // Handle invalid credentials
+//             return res.status(401).json({ message: "Invalid email or password" });
+//         }
+//     } catch (error) {
+//         console.error("Error during writer login:", error);
+//         return res.status(500).json({ message: "An error occurred during login" });
+//     }
+// };
+
+
+
+
+
+
+
 const loginWriter = async (req, res) => {
-    const { email, password } = req.body;
-
+    const { email, password } = req.body;  
+  
     try {
-        // Retrieve user information including role name
-        const user = await knex("users")
-            .select(
-                "users.id",
-                "users.username",
-                "users.email",
-                "users.password",
-                "users.profile_pic",
-                "users.first_name",
-                "users.last_name",
-                "users.balance",
-                "roles.name as role"
-            )
-            .join("roles", "users.role_id", "roles.id")
-            .where({ email })
-            .first();
-
-        // Check if user exists and password matches
-        if (user && (await bcrypt.compare(password, user.password))) {
-            // Generate token and set it in response cookie
-            generateToken(res, user.id);
-
-            // Return user information with login success message
-            return res.json({
-                id: user.id,
-                username: user.username,
-                email: user.email,
-                profile_pic: user.profile_pic,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                balance: user.balance,
-                role: user.role,
-                message: "Successfully logged in 😁",
-            });
-        } else {
-            // Handle invalid credentials
-            return res.status(401).json({ message: "Invalid email or password" });
-        }
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+      }
+  
+      const user = await knex("users")
+        .select(
+          "users.id",
+          "users.username",
+          "users.email",
+          "users.password",
+          "users.profile_pic",
+          "roles.name as role",
+          "users.balance",
+          "users.created_at",
+          "users.updated_at"
+        )
+        .join("roles", "users.role_id", "roles.id")
+        .where("users.email", email)
+        .first();
+  
+        const isValidUser = user && (await comparePassword(req.body.password, user.password))
+  
+      if (!isValidUser) {
+        return res.status(401).json({ message: "Invalid email orrrr password" });
+      }
+  
+      const isPasswordValid = await comparePassword(req.body.password, user.password)
+  
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+  
+      // Generate and set token
+      const token = createJWT({ userId: user.id, role: user.role });
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000 * 7),
+        // secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        // path: '/'
+      });
+      
+  
+      const { password: _, ...userWithoutPassword } = user;
+  
+      res.json({
+        ...userWithoutPassword,
+        message: "Successfully logged in ",
+      });
+  
     } catch (error) {
-        console.error("Error during writer login:", error);
-        return res.status(500).json({ message: "An error occurred during login" });
+      console.error("Error during login:", error);
+      res.status(500).json({ message: "An error occurred during login" });
     }
-};
+  };
+  
+  
+
+
+
+
+
+
+
 module.exports = { addWriter, loginWriter };

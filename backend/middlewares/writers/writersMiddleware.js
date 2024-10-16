@@ -58,7 +58,7 @@ const protectWriter = async (req, res, next) => {
             }
 
             // Check if user has writer role
-            if (req.user.role !== 'writers') {
+            if (req.user.role !== 'writer') {
                 console.log('User role:', req.user.role); // Log user role for debugging
                 return res.status(403).json({ message: 'Access denied, user is not a writer' });
             }
@@ -67,7 +67,7 @@ const protectWriter = async (req, res, next) => {
             next();
         } catch (error) {
             console.error('Error during token verification:', error);
-            return res.status(401).json({ message: 'Not authorized, token failed' });
+            return res.status(401).json({ message: 'Not authorizedgg, token failed' });
         }
     } else {
         res.status(401).json({ message: 'Not authorized, no token' });
@@ -75,3 +75,4 @@ const protectWriter = async (req, res, next) => {
 };
 
 module.exports = { protectWriter };
+
