@@ -32,33 +32,27 @@ import Articles from './admin/src/pages/Articles';
 import ArticleDetails from './admin/src/pages/ArticleDetails';
 import Published from './dashboard/src/pages/orders/Published';
 import Contacts from './client/src/pages/Contacts';
-import HireWriters from './dashboard/src/pages/HireWriters';
-import HeroLayout from './client/src/components/HeroLayout';
-import Layout from './client/src/pages/Layout';
+import HireWriters from './client/src/pages/HireWriters';
+import MainLayout from './client/src/pages/MainLayout';
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />, // Assuming you have a Layout component for the main structure
+    path: "",
+    element: <MainLayout />,  // Use MainLayout for pages with header/footer
     children: [
       {
-        index: true,
-        element: <Layout /> // This renders the HeroLayout when the index route is hit.
+        index: true,  // This makes HomePage the default route when path is "/"
+        element: <HomePage />,
       },
       {
-        path: "/contact-us",
-        element: <Contacts /> // This defines the Contacts page as a separate route.
+        path: "contact-us",  // No need for "/" prefix inside children
+        element: <Contacts />,
       },
-    ]
+      {
+        path: "/hire-writers",
+        element: <HireWriters />
+      },
+    ],
   },
-  {
-    path: "/contact-us",
-    element: <Contacts /> // This defines the Contacts page as a separate route.
-  },
-
-
-
- 
-
 
   {
     path: "/login",
@@ -85,10 +79,7 @@ const router = createBrowserRouter([
     path: "/paypal/cancel",
     element: <FailurePage />
   },
-  {
-    path: "/hire-writers",
-    element: <HireWriters />
-  },
+  
   {
     path: "/dashboard",
     element: (

@@ -11,6 +11,15 @@
     border-radius: 20px;
     margin-top: 5rem;
   }
+
+  .built-for {
+
+    background: linear-gradient(45deg, #4a90e2, #01c6f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #4a90e2; /* Fallback color */
+  }
   
   /* Heading Styling */
   .builtfor-enwriters {
@@ -20,6 +29,9 @@
     margin-bottom: 1.5rem;
     text-align: center;
     font-weight: bold;
+
+
+    
   }
   
   .built-for-items {

@@ -4,7 +4,7 @@ import './BuiltFor.css';
 const BuiltFor = () => {
   return (
     <div className="built-for-section">
-      <div className='builtfor-enwriters'>Enwriters is <span style={{ color: "blue" }}>built for</span> </div>
+      <div className='builtfor-enwriters'>Enwriters is <span className='built-for'>built for</span> </div>
       <div className="built-for-items">
         <div className="built-for-item">
           <FaBullhorn size={60} className="built-for-icon" />
