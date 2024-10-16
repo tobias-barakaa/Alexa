@@ -73,6 +73,72 @@ const addWriter = async (req, res) => {
 
 
 
+// const addWriter = async (req, res) => {
+//     const { username, email, password, profile_pic, role = 'writer' } = req.body;
+
+//     try {    
+
+//         const existUserByEmail = await knex("users").where({ email }).first();
+//         if (existUserByEmail) {
+//             console.log("User already exists with email:", email);
+//             return res.status(400).json({ message: "User already exists with this email" });
+//         }
+//         const existUserByUsername = await knex("users").where({ username }).first();
+//         if (existUserByUsername) {
+//             console.log("Username already taken:", username);
+//             return res.status(400).json({ message: "Username already taken" });
+//         }
+//         const userRole = await knex("roles").where({ name: role }).first();
+//         if (!userRole) {
+//             console.log("Invalid role specified");
+//             return res.status(400).json({ message: "Invalid role specified" });
+//         }
+//         const hashedPassword = await hashPassword(password);
+//         console.log("Password hashed successfully");
+
+//         const [newUser] = await knex("users")
+//             .insert({
+//                 username,
+//                 email,
+//                 password: hashedPassword,
+//                 profile_pic: profile_pic || "https://www.gravatar.com/avatar/",
+//                 role_id: userRole.id,
+//                 balance: 0.00,
+//                 created_at: knex.fn.now(),
+//                 updated_at: knex.fn.now(),
+//             })
+//             .returning("*");
+
+//         if (newUser) {
+//             const userWithRole = await knex("users")
+//                 .select(
+//                     "users.id",
+//                     "users.username",
+//                     "users.email",
+//                     "users.profile_pic",
+//                     "roles.name as role",
+//                     "users.balance",
+//                     "users.created_at",
+//                     "users.updated_at"
+//                 )
+//                 .join("roles", "users.role_id", "roles.id")
+//                 .where("users.id", newUser.id)
+//                 .first();
+
+//             console.log("New user created:", userWithRole);
+//             return res.status(201).json({ message: "User created successfully", user: userWithRole });
+//         } else {
+//             console.log("User creation failed");
+//             return res.status(400).json({ message: "User not created" });
+//         }
+//     } catch (error) {
+//         console.error("Error during user creation:", error);
+//         return res.status(500).json({ message: "An error occurred during user creation" });
+//     }
+// };
+
+
+
 // const loginWriter = async (req, res) => {
 //     const { email, password } = req.body;
 

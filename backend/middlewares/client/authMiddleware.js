@@ -59,7 +59,7 @@ const protect = async (req, res, next) => {
     console.log('Cookies:', req.cookies); // Log cookies to check if the token is present
 
     if (!jwt) {
-      return res.status(401).json({ message: "Not authorized, no jwt" });
+      return res.status(401).json({ message: "Not authorized, Please refresh and try to login" });
     }
 
     const { userId, role } = verifyJWT(jwt);
