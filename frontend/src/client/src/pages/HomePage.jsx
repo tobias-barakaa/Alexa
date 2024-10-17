@@ -1,3 +1,4 @@
+import BecomeWriter from "../components/BecomeWriter";
 import BuiltFor from "../components/BuiltFor";
 import HeroLayout from "../components/HeroLayout";
 import Services from "../components/Services";
@@ -21,6 +22,7 @@ const HomePage = () => {
       <WhyTheyLikeUs />
       <BuiltFor />
       <Testimonials />
+      <BecomeWriter />
       {/* <LetsBuild /> */}
       </div>
       </div>

@@ -3,7 +3,7 @@
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  margin-top: 5rem;
+  margin-top: 9rem;
 }
 
 .order-content-btn {
@@ -18,7 +18,7 @@
 }
 
 .order-content-btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3; 
 }
 .writers-info {
   width: 20%;
@@ -31,11 +31,15 @@
   margin-bottom: 10px;
   white-space: pre-wrap;
   margin-top: 3rem;
+  padding: 10px 20px;
+
 }
 
 .writers-info p {
   font-size: 1.5rem;
   line-height: 1.5;
+  padding: 10px 20px;
+
 }
 
 .writers-grid {
