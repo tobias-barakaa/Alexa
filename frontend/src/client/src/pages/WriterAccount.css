@@ -10,13 +10,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4rem 20px; /* Padding for the container */
+    padding: 4rem 20px; 
   }
   
   /* Form Card */
   .form-card {
     width: 100%;
-    max-width: 400px; /* Limit width for better layout */
+    max-width: 400px; 
     padding: 20px;
     background-color: #f9f9f9; /* Light background for the form */
     border: 1px solid #ccc; /* Light border */
@@ -69,26 +69,26 @@ body {
   .form-label {
     font-size: 14px;
     color: #333;
-    margin-bottom: 5px; /* Reduced space between label and input */
-    display: block; /* Block display for labels */
+    margin-bottom: 5px; 
+    display: block;
   }
   
   /* Submit Button */
   .submit-button {
     width: 100%;
     padding: 12px;
-    background-color: #1a202c; /* Dark background */
+    background-color: #1a202c;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-top: 10px; /* Space above button */
+    margin-top: 10px; 
   }
   
   .submit-button:hover {
-    background-color: #333; /* Darker shade on hover */
+    background-color: #333; 
   }
   
   /* Footer Text */
@@ -96,11 +96,11 @@ body {
     font-size: 14px;
     color: #555;
     text-align: center;
-    margin-top: 20px; /* Space above footer text */
+    margin-top: 20px; 
   }
   
   .toggle-link {
-    color: #007bff; /* Link color */
+    color: #007bff; 
     text-decoration: none;
     background: none;
     border: none;
@@ -108,11 +108,30 @@ body {
   }
   
   .toggle-link:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline; 
   }
   
-  /* Google Icon */
+
+
+
+
   .google-icon {
-    font-size: 20px; /* Size of the Google icon */
+    font-size: 20px;
+  }
+  
+
+  .error-input {
+    border: 1px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+  }
+  
+  .backend-error {
+    color: red;
+    margin-top: 10px;
+    font-size: 1em;
   }
   

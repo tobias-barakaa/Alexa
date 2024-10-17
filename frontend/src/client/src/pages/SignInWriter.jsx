@@ -3,12 +3,11 @@ import './WriterAccount.css';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; // For redirection
-import { useRegisterWriterMutation } from '../../../slices/writers/writerApiSlice';
+import { useLoginWriterMutation } from '../../../slices/writers/writerApiSlice';
 import { setCredentials } from '../../../slices/writers/writerSlice';
 
-const WriterAccount = () => {
+const SignInWriter = () => {
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: ''
   });
@@ -18,8 +17,8 @@ const WriterAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // API mutation for registration
-  const [registerWriter, { isLoading: isRegistering }] = useRegisterWriterMutation();
+  // API mutation for login
+  const [loginWriter, { isLoading: isLoggingIn }] = useLoginWriterMutation();
 
   const handleInputChange = (e) => {
     setFormData({
@@ -30,7 +29,6 @@ const WriterAccount = () => {
 
   const validateForm = () => {
     let formErrors = {};
-    if (!formData.username) formErrors.username = 'Username is required';
     if (!formData.email) formErrors.email = 'Email is required';
     if (!formData.password) formErrors.password = 'Password is required';
     setErrors(formErrors);
@@ -44,39 +42,27 @@ const WriterAccount = () => {
     if (!validateForm()) return;
 
     try {
-      const userData = await registerWriter({
-        username: formData.username,
+      const userData = await loginWriter({
         email: formData.email,
         password: formData.password
       }).unwrap();
       dispatch(setCredentials(userData));
-      navigate('/login-writer');
+      navigate('/profile-fill');
     } catch (err) {
-      setBackendError(err.data?.message || 'Failed to register');
+      setBackendError(err.data?.message || 'Failed to sign in');
     }
   };
 
   return (
     <div className="writer-account-container">
       <div className="form-card">
-        <h2 className="form-heading">Create Your Writer Account</h2>
+        <h2 className="form-heading">Sign In to Your Account</h2>
         
         <button className="google-button">
-          <FaGoogle className="google-icon" /> Sign up with Google
+          <FaGoogle className="google-icon" /> Sign in with Google
         </button>
 
         <form onSubmit={handleSubmit}>
-          <label className="form-label">Username</label>
-          <input
-            className={`input-field ${errors.username ? 'error-input' : ''}`}
-            type="text"
-            name="username"
-            placeholder="Enter your username"
-            value={formData.username}
-            onChange={handleInputChange}
-          />
-          {errors.username && <span className="error-message">{errors.username}</span>}
-
           <label className="form-label">Email</label>
           <input
             className={`input-field ${errors.email ? 'error-input' : ''}`}
@@ -101,18 +87,18 @@ const WriterAccount = () => {
 
           {backendError && <span className="backend-error">{backendError}</span>}
 
-          <button className="submit-button" type="submit" disabled={isRegistering}>
-            {isRegistering ? 'Creating Account...' : 'Create Account'}
+          <button className="submit-button" type="submit" disabled={isLoggingIn}>
+            {isLoggingIn ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 
         <p className="footer-text">
-          Already using Enwriters?{' '}
-          <a href="/login-writer" className="toggle-link">Sign in</a>
+          Not a member yet?{' '}
+          <a href="/writer-account" className="toggle-link">Sign up</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default WriterAccount;
+export default SignInWriter;

@@ -35,6 +35,8 @@ import Contacts from './client/src/pages/Contacts';
 import HireWriters from './client/src/pages/HireWriters';
 import MainLayout from './client/src/pages/MainLayout';
 import WriterAccount from './client/src/pages/WriterAccount';
+import ProfileFill from './client/src/pages/ProfileFill';
+import SignInWriter from './client/src/pages/SignInWriter';
 const router = createBrowserRouter([
   {
     path: "",
@@ -83,6 +85,14 @@ const router = createBrowserRouter([
   {
     path: "/writer-account",
     element: <WriterAccount />
+  },
+  {
+    path: "/login-writer",
+    element: <SignInWriter />
+  },
+  {
+    path: "/profile-fill",
+    element: <ProfileFill />
   },
   
   {
