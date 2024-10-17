@@ -43,3 +43,4 @@ export const ADMIN_UPLOAD_URL = 'api/admin'
 
 // Writer
 export const WRITER_SIGN_UP = 'api/writer/add-writer';
+export const WRITER_SIGN_IN= 'api/writer/signin';

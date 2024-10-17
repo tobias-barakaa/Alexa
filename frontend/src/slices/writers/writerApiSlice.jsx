@@ -1,27 +1,27 @@
-import { USERS_URL, WRITER_SIGN_UP } from "../../constants";
+import { USERS_URL, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const writersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    loginWriter: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/signin`,
+        url: `${WRITER_SIGN_IN}`,
         method: "POST",
         body: data,
         credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
-    register: builder.mutation({
+    registerWriter: builder.mutation({
       query: (data) => ({
-        url: `${WRITER_SIGN_UP}/signup`,
+        url: `${WRITER_SIGN_UP}`,
         method: "POST",
         body: data,
         credentials: "include",
       }),
       keepUnusedDataFor: 5,
     }),
-    profile: builder.mutation({
+    writerProfile: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/profile`,
         method: "PUT",
@@ -30,7 +30,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
-    logout: builder.mutation({
+    logoutWriter: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
         method: "POST",
@@ -41,9 +41,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, 
-  useRegisterMutation, 
-  useProfileMutation
-  , useLogoutMutation
+export const {  
+  useRegisterWriterMutation, 
+  useLoginWriterMutation,
+  useWriterProfileMutation,
+  useLogoutWriterMutation,
 } =
-  usersApiSlice;
+  writersApiSlice;
