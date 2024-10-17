@@ -34,6 +34,7 @@ import Published from './dashboard/src/pages/orders/Published';
 import Contacts from './client/src/pages/Contacts';
 import HireWriters from './client/src/pages/HireWriters';
 import MainLayout from './client/src/pages/MainLayout';
+import WriterAccount from './client/src/pages/WriterAccount';
 const router = createBrowserRouter([
   {
     path: "",
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
   {
     path: "/paypal/cancel",
     element: <FailurePage />
+  },
+  {
+    path: "/writer-account",
+    element: <WriterAccount />
   },
   
   {

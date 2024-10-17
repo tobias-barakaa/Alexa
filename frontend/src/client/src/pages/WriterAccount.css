@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Writer Account Container */
+  .writer-account-container {
+    width: 100%;
+    background-color: #87CEEB; /* Sky blue background */
+    padding: 20px;
+  }
+  
+  /* Content Area */
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Left Section */
+  .left-section {
+    flex: 1;
+    padding: 20px;
+    background-color: white; /* White background for left section */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Space between sections */
+  }
+  
+  .sign-up-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .google-button {
+    background-color: #DB4437; /* Google red */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .google-button:hover {
+    background-color: #c13528; /* Darker shade on hover */
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Right Section */
+  .right-section {
+    flex: 1;
+    padding: 20px;
+    background: linear-gradient(135deg, #dbeffb, #a3c4f3); /* Fading blue background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workflow-heading {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient color */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+  }
+  
+  .workflow-description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .spacer {
+    margin: 20px 0; /* Space before the quote */
+  }
+  
+  /* Quote Icon */
+  .quote-icon {
+    color: #ffcc00; /* Yellow color for the quote icon */
+  }
+  
+  /* Review Text */
+  .review-text {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  /* Reviewer Container */
+  .reviewer-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reviewer-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .reviewer-info {
+    text-align: left;
+  }
+  
+  .reviewer-name {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .reviewer-role {
+    font-size: 14px;
+    color: #777;
+  }
+  

@@ -1,5 +1,6 @@
 import React from 'react';
 import './BecomeWriter.css'; // External CSS file
+import { Link } from 'react-router-dom';
 
 const BecomeWriter = () => {
   return (
@@ -12,7 +13,10 @@ const BecomeWriter = () => {
             Enwriters is audited and certified by industry-leading Third Party Standards.
           </p>
           <div className="become-writer-buttons">
+            <Link to="/writer-account">
             <button className="black-button">Become Writer</button>
+            
+            </Link>
             <button className="outline-button">Get Started</button>
           </div>
         </div>
