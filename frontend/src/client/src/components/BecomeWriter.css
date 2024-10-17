@@ -4,8 +4,10 @@
     border-top: 2px solid #2D3748;
     border-bottom: 2px solid #2D3748;
     padding: 40px 0;
-    background-color: #F7FAFC;
+    /* background-color: #F7FAFC; */
     margin-top: 4rem;
+    border: solid 1px rgb(215, 215, 215);
+    border-radius: 12px;
   }
   
   .become-writer-flex {
@@ -97,7 +99,7 @@
   
   .right-paragraph {
     font-size: 18px;
-    color: #4A5568;
+    color: #684a4a;
     margin-bottom: 40px;
   }
   

@@ -38,7 +38,7 @@ const BecomeWriter = () => {
                 <div className="stat-label">Support</div>
               </div>
             </div>
-          </div>
+          </div>  
         </div>
       </div>
     </div>

@@ -20,9 +20,9 @@ const HomePage = () => {
       
 
       <WhyTheyLikeUs />
-      <BuiltFor />
-      <Testimonials />
       <BecomeWriter />
+
+      <Testimonials />
       {/* <LetsBuild /> */}
       </div>
       </div>

@@ -1,59 +1,68 @@
-import { FaQuoteLeft } from 'react-icons/fa';  
-import './Testimonials.css'; 
-import centerImage from '../assets/images/tobby.png';
+import React from 'react';
+import { FaQuoteLeft, FaStar } from 'react-icons/fa';
+import reviewerImage1 from '../assets/images/tobby.png'; // First reviewer's image
+import reviewerImage2 from '../assets/images/tobby.png'; // Second reviewer's image
+import reviewerImage3 from '../assets/images/tobby.png'; // Third reviewer's image
+import reviewerImage4 from '../assets/images/tobby.png'; // Fourth reviewer's image
 
+import './Testimonials.css';
 
 const Testimonials = () => {
+  const testimonials = [
+    {
+      image: reviewerImage1,
+      text: "A heartfelt thank you to the all-volunteer team that built and launched The ImmuneCorps, a site to connect those who need help with those who can help.",
+      name: "John Doe",
+      role: "Client/Freelancer",
+    },
+    {
+      image: reviewerImage2,
+      text: "Their service transformed my business. I've never felt more supported and confident in my decisions. Highly recommend working with them! The results speak for themselves.",
+      name: "Jane Smith",
+      role: "Client/Freelancer",
+    },
+    {
+      image: reviewerImage3,
+      text: "The team at Enwriters exceeded my expectations. Professional, timely, and always available for questions. I couldn't be happier with the results.",
+      name: "Alice Johnson",
+      role: "Business Owner",
+    },
+    {
+      image: reviewerImage4,
+      text: "Incredible experience! Their attention to detail and commitment to quality made all the difference in my project. Will definitely hire again.",
+      name: "Bob Brown",
+      role: "Entrepreneur",
+    },
+  ];
+
   return (
     <div className="testimonials-section">
-      <div className="main-heading">BUILT ON TRUST</div>
-      <div className="sub-heading">What our clients are saying</div>
+      {/* Heading */}
+      <div className='built-on-trust'>BUILT ON TRUST</div>
+      <div className='what-out-clients-are-saying'>What our clients are saying</div>
 
+      {/* Testimonial Container */}
       <div className="testimonial-container">
-        <div className="testimonial">
-          <img src={centerImage} alt="Reviewer" className="reviewer-image" />
-          <div className="icon-container">
-            <FaQuoteLeft size={60} className="quote-icon" />
-          </div>
-          <div className="review-content">
-            <p className="review-text">
-              A heartfelt thank you to the all-<br />
-              volunteer team that built and <br />
-              launched The ImmuneCorps, a site <br />
-              to connect those who need help<br />
-              with those who can help.
-            </p>
-            <div className="stars">
-              ⭐⭐⭐⭐⭐
+        {testimonials.map((testimonial, index) => (
+          <div className="testimonial-item" key={index}>
+            <div className="testimonial-left">
+              <div className="icon-box">
+                <FaQuoteLeft size={30} className="quote-icon" />
+              </div>
+              <img src={testimonial.image} alt={`Reviewer ${index + 1}`} className="reviewer-image" />
             </div>
-            <p className="reviewer-name">John Doe</p>
-            <p className="reviewer-role">Client</p>
-          </div>
-        </div>
-
-        <div className="testimonial">
-          <div className='icon-image'>
-          <div className="icon-container">
-            <FaQuoteLeft size={40} className="quote-icon" />
-          </div>
-          <img src={centerImage} alt="Reviewer" className="reviewer-image" />
-          </div>
-
-          <div className="review-content">
-            <p className="review-text">
-              Working with this team has been<br />
-              an absolute pleasure. They delivered<br />
-              high-quality work and met all<br />
-              deadlines, exceeding our <br />
-              expectations in every way.
-            </p>
-            <div className="stars">
-              ⭐⭐⭐⭐⭐
+            <div className="testimonial-right">
+              <p className="review-text">{testimonial.text}</p>
+              <div className="stars-rating">
+                {[...Array(5)].map((star, index) => (
+                  <FaStar key={index} className="star-icon" />
+                ))}
+              </div>
+              <p className="reviewer-name">{testimonial.name}</p>
+              <p className="reviewer-role">{testimonial.role}</p>
             </div>
-            <p className="reviewer-name">Jane Smith</p>
-            <p className="reviewer-role">Freelancer</p>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
