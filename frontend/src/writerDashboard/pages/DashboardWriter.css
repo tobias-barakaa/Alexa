@@ -1,0 +1,123 @@
+.dashboard-writer {
+    display: flex;
+  }
+  
+  .sidewriter {
+    width: 300px;
+    background-color: #f8f9fa;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .sidewriter .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .sidewriter ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidewriter .menu-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .sidewriter .menu-item .icon {
+    margin-right: 10px;
+  }
+  
+  .sidewriter .menu-item .bold-text {
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .sidewriter .sub-menu {
+    margin-left: 25px;
+    margin-top: 5px;
+  }
+  
+  .sidewriter .sub-menu li {
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  .writer-header {
+    height: 60px;
+    background-color: #ffffff;
+    margin-left: 300px;
+    width: calc(100% - 300px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .writer-header .header-content h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .writer-header .header-actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .main-content {
+    margin-left: 300px;
+    padding: 20px;
+    width: calc(100% - 300px);
+  }
+  
+  .main-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .overview {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  
+  .stats-box {
+    width: 23%;
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .stats-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .projects-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .projects-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .projects-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .projects-list li:last-child {
+    border-bottom: none;
+  }
+  

@@ -47,7 +47,7 @@ const SignInWriter = () => {
         password: formData.password
       }).unwrap();
       dispatch(setCredentials(userData));
-      navigate('/profile-fill');
+      navigate('/writer-dashboard');
     } catch (err) {
       setBackendError(err.data?.message || 'Failed to sign in');
     }

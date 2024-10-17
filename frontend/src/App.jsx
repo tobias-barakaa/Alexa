@@ -37,6 +37,7 @@ import MainLayout from './client/src/pages/MainLayout';
 import WriterAccount from './client/src/pages/WriterAccount';
 import ProfileFill from './client/src/pages/ProfileFill';
 import SignInWriter from './client/src/pages/SignInWriter';
+import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 const router = createBrowserRouter([
   {
     path: "",
@@ -185,7 +186,27 @@ const router = createBrowserRouter([
       },
       
     ]
-  }
+  },
+
+
+
+
+  {
+    path: "/writer-dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardWriter />
+        </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <DashboardWriter />
+      }
+      
+    ]
+  },
+
 ]);
 
 function App() {
