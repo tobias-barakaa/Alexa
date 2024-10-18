@@ -4,7 +4,7 @@ const { getWriters, assignArticle, getWriterProfiles } = require('../../controll
 
 const router = express.Router();
 
-router.get("/", protectAdmin, verifyAdmin, getWriters);
+router.get("/", getWriters);
 router.post("/", protectAdmin, verifyAdmin, assignArticle);
 router.get('/profile',protectAdmin,verifyAdmin, getWriterProfiles);
 

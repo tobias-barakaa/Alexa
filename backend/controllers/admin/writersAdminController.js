@@ -5,8 +5,6 @@ const getWriters = async (req, res) => {
         const writers = await knex('users')
             .select(
                 'users.id',
-                'users.first_name',
-                'users.last_name',
                 'users.username',
                 'users.email',
                 'users.profile_pic',
@@ -16,7 +14,7 @@ const getWriters = async (req, res) => {
                 'users.updated_at'
             )
             .join('roles', 'users.role_id', 'roles.id')
-            .where('roles.name', 'writers');
+            .where('roles.name', 'writer');
 
         res.status(200).json({ writers });
     } catch (error) {
@@ -84,6 +82,35 @@ const getWriterProfiles = async (req, res) => {
     }
 };
 
+
+
+const getWriterProfile = async (req, res) => {
+  try {
+    // Extract the username from the URL parameters
+    const { username } = req.params; 
+
+    console.log(username, 'this is username');
+
+    // Query to get the writer's profile from the database
+    const writerProfile = await knex('writer_profile').where({ username }).first();
+
+    // Check if the profile exists
+    if (!writerProfile) {
+      return res.status(404).json({ message: 'Writer profile not found.' });
+    }
+
+    // Return the writer's profile
+    res.status(200).json(writerProfile);
+  } catch (error) {
+    console.error('Error retrieving writer profile:', error);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
+  }
+};
+
+module.exports = {
+  fillWriterProfile,
+  getWriterProfile,
+};
 
 const updateWriterStatus = async (req, res) => {
     const { writerId } = req.params;
