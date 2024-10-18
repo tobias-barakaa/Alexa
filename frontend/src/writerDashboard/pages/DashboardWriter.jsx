@@ -9,8 +9,13 @@ import {
   Briefcase,
   
   Bell as BellIcon,
-  DollarSignIcon
+  DollarSignIcon,
+  AccessibilityIcon,
+  Component,
+  BellDotIcon
 } from 'lucide-react';
+import { MdAccountBalanceWallet } from 'react-icons/md';
+import { FaMoneyCheck } from 'react-icons/fa';
 
 const DashboardWriter = () => {
   const styles = {
@@ -57,11 +62,13 @@ const DashboardWriter = () => {
       marginBottom: '25px',
     },
     navTitle: {
-      fontSize: '14px',
-      color: '#6c757d',
+      fontSize: '20px',
+      color: '#000000',
       marginBottom: '10px',
       paddingLeft: '10px',
+      fontWeight: '800',
     },
+    // color: '#202020',
     navItem: {
       display: 'flex',
       alignItems: 'center',
@@ -73,19 +80,20 @@ const DashboardWriter = () => {
       marginBottom: '5px',
     },
     navItemTitle: {
-      fontWeight: 'bold',
-      color: '#333',
-      fontSize: '14px',
+      fontWeight: '500',
+      color: '#202020',
+      fontSize: '16px',
     },
     navItemSubtitle: {
-      color: '#6c757d',
+      color: '#202020',
       fontSize: '12px',
       marginLeft: '24px',
     },
     hiconn: {
-      width: '18px',
-      height: '18px',
-      color: 'red',
+      width: '10px',
+      height: '10px',
+      color: '#202020',
+      paddingRight: "30px"
     },
   };
 
@@ -99,11 +107,11 @@ const DashboardWriter = () => {
   const navItems = [
     {
       title: 'My Projects',
-      icon: <Briefcase style={styles.icon} />,
+     
       subitems: [
-        { title: 'Ongoing Projects', subtitle: 'List of projects the writer is currently working on' },
-        { title: 'Completed Projects', subtitle: 'History of completed projects' },
-        { title: 'New Project Opportunities', subtitle: 'New writing opportunities the writer can accept' },
+        { title: 'Ongoing', icon: <Briefcase style={styles.icon} />, },
+        { title: 'Completed', icon: <Component style={styles.icon} />, },
+        { title: 'New ', icon: <BellDotIcon style={styles.icon} />, },
       ],
     },
    
@@ -111,45 +119,39 @@ const DashboardWriter = () => {
       title: 'Earnings & Payments',
       icon: <DollarSignIcon style={styles.icon} />,
       subitems: [
-        { title: 'Current Balance', subtitle: 'Amount earned so far' },
-        { title: 'Payout History', subtitle: 'Details of payments received' },
-        { title: 'Pending Payouts', subtitle: 'Any pending payments' },
+        { title: 'Current Balance', subtitle: 'Amount earned so far', icon: <DollarSignIcon style={styles.icon} />, },
+        { title: 'Payout History', icon: <DollarSignIcon style={styles.icon} />, },
+        { title: 'Pending Payouts', icon: <DollarSignIcon style={styles.icon} />, },
       ],
     },
     {
       title: 'Tasks',
       icon: <CheckSquare style={styles.icon} />,
       subitems: [
-        { title: 'Due Today', subtitle: 'Writing tasks that need to be completed today' },
-        { title: 'Upcoming Tasks', subtitle: 'Tasks due soon' },
-        { title: 'Completed Tasks', subtitle: 'History of completed tasks' },
+        { title: 'Due Today', icon: <CheckSquare style={styles.icon} />, },
+        { title: 'Upcoming Tasks', icon: <CheckSquare style={styles.icon} />, },
+        { title: 'Completed Tasks', icon: <CheckSquare style={styles.icon} />, },
       ],
     },
     {
       title: 'Profile & Settings',
-      icon: <User style={styles.icon} />,
+      
       subitems: [
-        { title: 'Profile Info', subtitle: "Writer's personal details" },
-        { title: 'Account Settings', subtitle: 'Change password, email, etc.' },
-        { title: 'Payment Settings', subtitle: 'Configure payment methods' },
+        { title: 'Profile Info', icon: <User style={styles.icon} /> },
+        { title: 'Account Settings',  icon: <FaMoneyCheck style={styles.icon} />, },
+        { title: 'Payment Settings', icon: <FaMoneyCheck style={styles.icon} />, },
+        
       ],
     },
     {
       title: 'Notifications',
       icon: <Bell style={styles.icon} />,
       subitems: [
-        { title: 'Unread Notifications', subtitle: 'Important messages or alerts' },
-        { title: 'All Notifications', subtitle: 'Full list of notifications' },
+        { title: 'Unread Notifications', icon: <CheckSquare style={styles.icon} />, },
+        { title: 'All Notifications', icon: <CheckSquare style={styles.icon} />, },
       ],
     },
-    {
-      title: 'Support & Help',
-      icon: <HelpCircle style={styles.icon} />,
-      subitems: [
-        { title: 'FAQs', subtitle: 'Frequently asked questions' },
-        { title: 'Contact Support', subtitle: 'Reach out to support for help' },
-      ],
-    },
+   
   ];
 
   return (
@@ -165,12 +167,13 @@ const DashboardWriter = () => {
           
           {navItems.map((section, index) => (
             <div key={index} style={styles.navSection}>
-              <div style={styles.hiconn}>{section.icon}</div>
               <div style={styles.navTitle}>{section.title}</div>
 
               {section.subitems.map((item, subIndex) => (
                 <div key={subIndex} className="nav-itemd" style={styles.navItem}>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex' }}>
+              <div style={styles.hiconn}>{item.icon}</div>
+
                     <div style={styles.navItemTitle}>{item.title}</div>
                   </div>
                 </div>

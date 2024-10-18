@@ -40,6 +40,9 @@ export const WALLET_URL = 'api/wallet/usertransactions';
 export const ADMIN_ARTICLE_URL = 'api/admin/articles';
 
 export const ADMIN_UPLOAD_URL = 'api/admin'
+// Admin Writer
+export const HIRE_WRITERS = 'api/admin/writers'
+
 
 // Writer
 export const WRITER_SIGN_UP = 'api/writer/add-writer';

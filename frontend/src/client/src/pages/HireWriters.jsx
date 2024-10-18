@@ -1,26 +1,26 @@
 import React from 'react';
 import './HireWriters.css'; 
-import centerImage from '../assets/images/tobby.png';
-
+import centerImage from '../assets/images/woman.jpeg'; // Placeholder for profile image
+import { useGetWritersQuery } from '../../../slices/admin/adminWritersApiSlice';
+import { Link } from 'react-router-dom';
 
 const HireWriters = () => {
-  const writers = [
-    { id: 1, name: 'John Doe', description: 'Expert in technical writing.' },
-    { id: 2, name: 'Jane Smith', description: 'Creative content specialist.' },
-    { id: 3, name: 'Mark Thompson', description: 'Professional blog writer.' },
-    { id: 4, name: 'Sara Johnson', description: 'Skilled CV writer.' },
-    { id: 5, name: 'Chris Evans', description: 'Email marketing expert.' },
-    { id: 6, name: 'Lily Brooks', description: 'SEO content writer.' },
-    { id: 7, name: 'Jake Turner', description: 'Specialist in academic writing.' },
-    { id: 8, name: 'Anna Watson', description: 'Business proposal writer.' },
-    { id: 9, name: 'James Lee', description: 'Copywriting specialist.' },
-    { id: 10, name: 'Sophia King', description: 'Resume writing expert.' },
-    { id: 11, name: 'David Clark', description: 'Press release writer.' },
-    { id: 12, name: 'Ella Walker', description: 'Social media content writer.' },
-    { id: 13, name: 'Lucas Green', description: 'Digital marketing expert.' },
-    { id: 14, name: 'Emma Scott', description: 'Brand story writer.' },
-    { id: 15, name: 'William Brown', description: 'Technical documentation specialist.' }
-  ];
+  const { data: hire_writers, isLoading, error } = useGetWritersQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading writers.</div>;
+  }
+
+  // Convert the object of writers into an array if it's not already an array
+  const writersArray = Array.isArray(hire_writers) ? hire_writers : Object.values(hire_writers);
+  console.log('writersArray...', writersArray);
+
+  // Check if the first element is an array and use it for rendering
+  const actualWritersArray = Array.isArray(writersArray[0]) ? writersArray[0] : writersArray;
 
   return (
     <div className="hire-writers-container">
@@ -34,17 +34,20 @@ const HireWriters = () => {
 
       {/* Right Section (Grid of Writers) */}
       <div className="writers-grid">
-        {writers.map(writer => (
+        {actualWritersArray.map(writer => (
           <div key={writer.id} className="writer-card">
             <img 
-              src={centerImage} 
-              alt={writer.name}
+              src={centerImage}  // Use profile picture from backend or fallback to default image
+              alt={writer.username}
               className="writer-img"
             />
             <div className="overlay">
-              <h6>{writer.name}</h6>
-              <p>{writer.description}</p>
-              <button className="hire-btn">Hire</button>
+              <h6>{writer.username}</h6> {/* Username from backend */}
+              <p>{writer.email}</p> {/* Email from backend */}
+              {/* Link to writer's profile using their username */}
+              <Link to={`/writer/${writer.username}`}>
+                <button className="hire-btn">View Full Profile</button>
+              </Link>
             </div>
           </div>
         ))}

@@ -38,6 +38,7 @@ import WriterAccount from './client/src/pages/WriterAccount';
 import ProfileFill from './client/src/pages/ProfileFill';
 import SignInWriter from './client/src/pages/SignInWriter';
 import DashboardWriter from './writerDashboard/pages/DashboardWriter';
+import WriterProfile from './client/src/pages/WriterProfile';
 const router = createBrowserRouter([
   {
     path: "",
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/hire-writers",
         element: <HireWriters />
+      },
+      {
+        path: "/writer/:username",
+        element: <WriterProfile />
       },
     ],
   },

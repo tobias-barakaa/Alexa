@@ -4,6 +4,7 @@
   width: 100%;
   padding: 20px;
   margin-top: 9rem;
+
 }
 
 .order-content-btn {
@@ -19,26 +20,28 @@
 
 .order-content-btn:hover {
   background-color: #0056b3; 
+  border-radius: 12px;
+
 }
 .writers-info {
   width: 20%;
+  margin-left: 50px;
 }
 
 .meet-expert {
-  font-size: 3.25rem;
-  font-weight: bold;
+  font-size: 4.25rem;
+  font-weight: 900;
   line-height: 1.2;
   margin-bottom: 10px;
   white-space: pre-wrap;
-  margin-top: 3rem;
-  padding: 10px 20px;
+  margin-top: 0rem;
+  
 
 }
 
 .writers-info p {
   font-size: 1.5rem;
   line-height: 1.5;
-  padding: 10px 20px;
 
 }
 
@@ -47,12 +50,17 @@
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
   width: 75%;
+  border-radius: 12px;
+
+
 }
 
 .writer-card {
   position: relative;
-  width: 150px;
+  width: 200px;
   height: 200px;
+  border-radius: 12px;
+
 }
 
 .writer-img {
@@ -60,9 +68,13 @@
   height: 100%;
   filter: grayscale(100%);
   transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+
 }
 
 .writer-card:hover .writer-img {
+  border-radius: 12px;
+
   filter: grayscale(0%);
 }
 
@@ -83,6 +95,8 @@
 }
 
 .writer-card:hover .overlay {
+  border-radius: 12px;
+
   opacity: 1;
 }
 
@@ -109,4 +123,5 @@
 
 .hire-btn:hover {
   background-color: #007bff;
+  
 }
