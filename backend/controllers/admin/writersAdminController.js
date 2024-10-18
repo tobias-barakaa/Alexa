@@ -107,11 +107,6 @@ const getWriterProfile = async (req, res) => {
   }
 };
 
-module.exports = {
-  fillWriterProfile,
-  getWriterProfile,
-};
-
 const updateWriterStatus = async (req, res) => {
     const { writerId } = req.params;
     const { status } = req.body;
