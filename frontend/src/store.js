@@ -3,6 +3,7 @@ import { apiSlice } from "./slices/apiSlice";
 import authSliceReducer from "./slices/client/authSlice";
 import adminReducer from "./slices/admin/adminSlice";
 import adminUsersReducer from "./slices/admin/adminUsersSlice";
+import placeOrderReducer from "./slices/writers/placeOrderSlice";
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         auth: authSliceReducer,
         admin: adminReducer,
         users: adminUsersReducer,
+        project: placeOrderReducer
         
 
     },

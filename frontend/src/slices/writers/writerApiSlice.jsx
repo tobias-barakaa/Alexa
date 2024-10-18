@@ -1,4 +1,4 @@
-import { USERS_URL, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
+import { HIRE_WRITERS, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const writersApiSlice = apiSlice.injectEndpoints({
@@ -30,6 +30,21 @@ export const writersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getWriterProfileByUsername: builder.query({
+      query: (username) => ({
+        url: `${VIEW_PROFILE}/${username}`,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    placeOrder: builder.mutation({
+      query: (details) => ({
+        url: `${HIRE_WRITERS}/articles`,
+        method: "POST",
+        body: { ...details },
+        credentials: "include",
+      }),
+    }),
     logoutWriter: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
@@ -37,7 +52,7 @@ export const writersApiSlice = apiSlice.injectEndpoints({
         credentials: "include",
       }),
       keepUnusedDataFor: 5,
-    }),
+    })
   }),
 });
 
@@ -46,5 +61,7 @@ export const {
   useLoginWriterMutation,
   useWriterProfileMutation,
   useLogoutWriterMutation,
+  useGetWriterProfileByUsernameQuery,
+  usePlaceOrderMutation
 } =
   writersApiSlice;

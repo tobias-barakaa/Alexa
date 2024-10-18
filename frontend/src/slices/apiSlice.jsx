@@ -17,6 +17,7 @@ export const apiSlice = createApi({
     "blogs",
     "resumeCVWriting",
     "emailCopywriting",
+    "project"
   ],
   credentials: "include",
   endpoints: () => ({}),

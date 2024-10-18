@@ -43,7 +43,7 @@ export const ADMIN_UPLOAD_URL = 'api/admin'
 // Admin Writer
 export const HIRE_WRITERS = 'api/admin/writers'
 
-
+export const VIEW_PROFILE = '/api/writer/fill-profile/writer-profile'
 // Writer
 export const WRITER_SIGN_UP = 'api/writer/add-writer';
 export const WRITER_SIGN_IN= 'api/writer/signin';

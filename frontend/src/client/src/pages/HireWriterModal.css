@@ -1,0 +1,279 @@
+/* HiringFlow.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  
+  .modal-close:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  .modal-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .modal-header h2 {
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+  
+  .steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .step {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  
+  .step.active {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .step-line {
+    flex: 0 0 60px;
+    height: 2px;
+    background: #e5e7eb;
+  }
+  
+  .project-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .project-type-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .project-type-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+  }
+  
+  .project-type-card.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+  
+  .project-type-card input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .project-type-icon {
+    font-size: 2rem;
+  }
+  
+  .project-type-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .next-button,
+  .back-button,
+  .submit-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .next-button,
+  .submit-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+  }
+  
+  .next-button:hover,
+  .submit-button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+  
+  .back-button {
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+  }
+  
+  .back-button:hover {
+    background: #e5e7eb;
+  }
+  
+  .next-button:disabled {
+    background: #e5e7eb;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  @media (max-width: 640px) {
+    .modal-content {
+      padding: 1.5rem;
+    }
+  
+    .project-types-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .button-group {
+      flex-direction: column;
+    }
+  
+    .back-button,
+    .next-button,
+    .submit-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+
+
+  .error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .input-icon-group {
+    position: relative;
+  }
+  
+  .input-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+  }
+  
