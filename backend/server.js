@@ -25,6 +25,8 @@ const uploadFileRoute = require('./routes/admin/articleCreationUploadFile')
 // Email Copy Writing
 const orderArticleRoute = require('./routes/client/orderArticleRoute');
 
+// writer order
+const placeOrderRoute = require('./routes/writer/placeOrderWriterRoute');
 
 // blog route import
 
@@ -88,7 +90,10 @@ app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYP
 app.use('/api/wallet', walletRoute);
 
 // admin
-app.use('/api/admin', adminArticleRoute)
+app.use('/api/admin', adminArticleRoute);
+
+// writer Order 
+app.use('/api/order-writer', placeOrderRoute);
 
 // upload
 app.use('/api/admin', uploadFileRoute)
