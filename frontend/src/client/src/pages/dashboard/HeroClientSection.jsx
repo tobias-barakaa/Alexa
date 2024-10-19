@@ -8,14 +8,17 @@ const styles = `
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
   }
 
   .hero-card {
-    width: 350px;
-    height: 200px;
+    width: 100%;
+    max-width: 350px; /* Ensure a max width for smaller screens */
+    height: auto;
     border: 1px solid #cacaca;
     border-radius: 4px;
     overflow: hidden;
+    margin-bottom: 20px; /* Add margin between rows when they wrap */
   }
 
   .card-header {
@@ -53,8 +56,8 @@ const styles = `
 
   .content-title {
     font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
   }
 
   .content-links {
@@ -64,9 +67,10 @@ const styles = `
   }
 
   .content-link {
+    display: block;
     text-decoration: none;
-    color: #2563eb;
-    font-size: 14px;
+    color: #078BC8;
+    font-weight: 600;
   }
 
   .content-link:hover {
@@ -76,6 +80,12 @@ const styles = `
   .empty-state {
     color: #666;
     font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      justify-content: center; /* Center the cards on smaller screens */
+    }
   }
 `;
 

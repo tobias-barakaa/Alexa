@@ -62,7 +62,7 @@ const HireWriterModal = ({ writer, onClose }) => {
     try {
      const result = await placeOrder({ ...formData });
      console.log(result, 'this is the result')
-      navigate(`/client-writer-dashboard/projects/${result?.data?.order_id}`);
+      navigate(`/client-writer-dashboard/projects/${result?.data?.order_id * Math.random() * 100}`);
     } catch (error) {
       console.error("Error placing order:", error);
     }
