@@ -47,3 +47,7 @@ export const VIEW_PROFILE = '/api/writer/fill-profile/writer-profile'
 // Writer
 export const WRITER_SIGN_UP = 'api/writer/add-writer';
 export const WRITER_SIGN_IN= 'api/writer/signin';
+
+// admin writer
+
+export const ORDER_WRITER = 'api/order-writer/place-order';

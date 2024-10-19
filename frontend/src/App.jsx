@@ -39,6 +39,7 @@ import ProfileFill from './client/src/pages/ProfileFill';
 import SignInWriter from './client/src/pages/SignInWriter';
 import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
+import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
 const router = createBrowserRouter([
   {
     path: "",
@@ -60,12 +61,17 @@ const router = createBrowserRouter([
         path: "/writer/:username",
         element: <WriterProfile />
       },
+      
     ],
   },
 
   {
     path: "/login",
     element: <LoginClient />
+  },
+  {
+    path: "/client-writer-dashboard/projects/:id",
+    element: <WriterDashboard />
   },
   {
     path: "/password-reset",

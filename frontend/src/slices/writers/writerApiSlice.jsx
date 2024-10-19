@@ -1,4 +1,4 @@
-import { HIRE_WRITERS, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
+import { ORDER_WRITER, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const writersApiSlice = apiSlice.injectEndpoints({
@@ -39,7 +39,7 @@ export const writersApiSlice = apiSlice.injectEndpoints({
     }),
     placeOrder: builder.mutation({
       query: (details) => ({
-        url: `${HIRE_WRITERS}/articles`,
+        url: `${ORDER_WRITER}`,
         method: "POST",
         body: { ...details },
         credentials: "include",

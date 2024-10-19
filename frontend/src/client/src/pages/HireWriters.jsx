@@ -1,4 +1,3 @@
-import React from 'react';
 import './HireWriters.css'; 
 import centerImage from '../assets/images/woman.jpeg'; // Placeholder for profile image
 import { useGetWritersQuery } from '../../../slices/admin/adminWritersApiSlice';

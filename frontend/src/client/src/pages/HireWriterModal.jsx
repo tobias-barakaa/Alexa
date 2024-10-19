@@ -24,14 +24,19 @@ const HireWriterModal = ({ writer, onClose }) => {
   const dispatch = useDispatch();
   const [placeOrder] = usePlaceOrderMutation();
   const [step, setStep] = useState(1);
+  
+  // Set default value for the deadline to '12hrs'
   const [formData, setFormDataState] = useState({
     projectType: '',
     title: '',
     description: '',
     budget: '',
-    deadline: '',
-    requirements: ''
+    deadline: '12hrs',  // Default to '12hrs'
+    requirements: '',
+    writerId: writer.id,  // Include writer.id
+    writerUsername: writer.username  // Include writer.username
   });
+  
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -50,11 +55,14 @@ const HireWriterModal = ({ writer, onClose }) => {
 
     setErrors({});
 
+    // Dispatch the form data including writer information
     dispatch(setFormData(formData));
+    console.log(formData, 'this is form data yawa')
 
     try {
-      await placeOrder({ ...formData, writerId: writer.id });
-      navigate('/dashboard/projects/new');
+     const result = await placeOrder({ ...formData });
+     console.log(result, 'this is the result')
+      navigate(`/client-writer-dashboard/projects/${result.order_id}`);
     } catch (error) {
       console.error("Error placing order:", error);
     }
@@ -166,7 +174,7 @@ const HireWriterModal = ({ writer, onClose }) => {
                   <label>Deadline</label>
                   <select
                     name="deadline"
-                    value={formData.deadline}
+                    value={formData.deadline}  // Set default value
                     onChange={handleChange}
                     required
                     className={errors.deadline ? 'error' : ''}
@@ -190,8 +198,17 @@ const HireWriterModal = ({ writer, onClose }) => {
                 ></textarea>
               </div>
 
-              <div className="form-footer">
-                <button type="submit" className="submit-button">Submit</button>
+              <div className="button-group">
+                <button 
+                  type="button" 
+                  className="back-button"
+                  onClick={() => setStep(1)}
+                >
+                  Back
+                </button>
+                <button type="submit" className="submit-button">
+                  Create Project
+                </button>
               </div>
             </div>
           )}
