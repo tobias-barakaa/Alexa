@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Search, Bell, User, ChevronDown, Plus, Menu } from 'lucide-react';
+import HeroClientSection from './HeroClientSection';
+import { useParams } from 'react-router-dom';
 
 const styles = `
   .dashboard-container-writer {
@@ -218,7 +220,8 @@ const WriterDashboard = () => {
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showPeopleDropdown, setShowPeopleDropdown] = useState(false);
-
+ const {id} = useParams();
+ console.log('id', id)
   const navItems = ['Dashboard', 'Hire', 'Manage', 'Payments'];
   const profileMenuItems = ['View Cash', 'Payment Methods', 'Help', 'Logout'];
 
@@ -322,6 +325,8 @@ const WriterDashboard = () => {
         </main>
 
         <div className="profile-divider" />
+
+        <HeroClientSection />
       </div>
     </>
   );
