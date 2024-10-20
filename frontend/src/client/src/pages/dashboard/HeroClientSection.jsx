@@ -1,4 +1,3 @@
-import React from 'react';
 import { PinIcon, FileText } from 'lucide-react';
 
 const styles = `

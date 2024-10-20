@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Search, Bell, User, ChevronDown, Plus, Menu } from 'lucide-react';
 import HeroClientSection from './HeroClientSection';
 import { useParams } from 'react-router-dom';
+import MainLayout from './MainLayout';
+import PostJob from './PostJob';
 
 const styles = `
   .dashboard-container-writer {
@@ -17,7 +19,7 @@ const styles = `
   .header-content-writer {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0px 20px;
   }
 
   .top-header {
@@ -116,26 +118,31 @@ const styles = `
     padding: 4px;
   }
 
-  .navigation {
+  .navigation-writer-dashboard {
     display: flex;
     align-items: center;
-    gap: 32px;
-    height: 48px;
+    gap: 16px;
+    height: 39px;
+    font-weight: bold;
+
   }
 
-  .nav-item {
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
+  .navigation-items {
+  padding: 8px 16px;
+  border: 1px solid transparent; 
+  border-radius: 0px;
+  cursor: pointer;
+  background: none;
+}
 
-  .nav-item.active {
-    background: white;
-  }
 
-  .main-content {
+.navigation-items.active {
+  background: white;
+  border-color: #e5e5e5; 
+  border-bottom: none; 
+}
+
+.main-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0px 0px;
@@ -183,8 +190,9 @@ const styles = `
 
   .profile-info .email {
     color: #666;
-    margin-top: 8px;
+    margin-top: 2px;
     display: block;
+    font-size: 14px;
   }
 
   .profile-divider {
@@ -289,11 +297,11 @@ const WriterDashboard = () => {
               </div>
             </div>
 
-            <nav className="navigation">
+            <nav className="navigation-writer-dashboard">
               {navItems.map((item) => (
                 <button
                   key={item}
-                  className={`nav-item ${activeTab === item ? 'active' : ''}`}
+                  className={`navigation-items ${activeTab === item ? 'active' : ''}`}
                   onClick={() => setActiveTab(item)}
                 >
                   {item}
@@ -303,30 +311,18 @@ const WriterDashboard = () => {
           </div>
         </header>
 
-        <main className="main-content">
-          <div className="profile-card">
-            <div className="profile-content">
-              <div className="profile-left">
-                <div className="profile-image" />
-                <div className="profile-info">
-                  <div className="profile-name">Name</div>
-                  <span className="separator">|</span>
-                  <span className="feedback">No feedback</span>
-                  <span className="email">email@tobbygmail.com</span>
-                </div>
-              </div>
 
-              <div className="cash-account-section">
-                <span>Cash Account: $0.00</span>
-                <button>Add Funds</button>
-              </div>
-            </div>
-          </div>
-        </main>
 
-        <div className="profile-divider" />
 
-        <HeroClientSection />
+
+       {activeTab === 'Dashboard' ? <MainLayout /> : <PostJob />
+        }
+     
+     
+     
+     
+     
+     
       </div>
     </>
   );
