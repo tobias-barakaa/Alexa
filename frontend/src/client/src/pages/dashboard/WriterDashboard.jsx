@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, Bell, User, ChevronDown, Plus, Menu } from 'lucide-react';
 import HeroClientSection from './HeroClientSection';
 import { useParams } from 'react-router-dom';
-import MainLayout from './MainLayout';
 import PostJob from './PostJob';
+import MainLayout from './MainLayout';
+import Manage from './Manage';
+import Payments from './Payments';
 
 const styles = `
   .dashboard-container-writer {
@@ -45,11 +47,11 @@ const styles = `
   }
 
   .search-input {
-    padding: 8px 16px;
+    padding: 5px 14px;
     padding-right: 40px;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
-    width: 256px;
+    width: 340px;
   }
 
   .search-icon {
@@ -129,7 +131,7 @@ const styles = `
 
   .navigation-items {
   padding: 8px 16px;
-  border: 1px solid transparent; 
+  border: 1px solid transparent; /* Transparent border to prevent shifting */
   border-radius: 0px;
   cursor: pointer;
   background: none;
@@ -229,9 +231,40 @@ const WriterDashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showPeopleDropdown, setShowPeopleDropdown] = useState(false);
  const {id} = useParams();
- console.log('id', id)
+ console.log('id', id);
   const navItems = ['Dashboard', 'Hire', 'Manage', 'Payments'];
   const profileMenuItems = ['View Cash', 'Payment Methods', 'Help', 'Logout'];
+
+
+  const handleTabClick = (item) => {
+    setActiveTab(item);
+    localStorage.setItem('activeTab', item); 
+  };
+
+  
+  useEffect(() => {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab) {
+      setActiveTab(savedTab);
+    }
+  }, []);
+  
+
+
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Hire':
+        return <PostJob />; // Render the PostJob component when 'Hire' is active
+      case 'Manage':
+        return <Manage />; // Render the Manage component when 'Manage' is active
+      case 'Payments':
+        return <Payments />; // Render the Payments component when 'Payments' is active
+      default:
+        return <MainLayout />; // Default to MainLayout when 'Dashboard' is active
+    }
+  };
+
 
   return (
     <>
@@ -298,31 +331,30 @@ const WriterDashboard = () => {
             </div>
 
             <nav className="navigation-writer-dashboard">
-              {navItems.map((item) => (
-                <button
-                  key={item}
-                  className={`navigation-items ${activeTab === item ? 'active' : ''}`}
-                  onClick={() => setActiveTab(item)}
-                >
-                  {item}
-                </button>
-              ))}
+            {navItems.map((item) => (
+  <button
+    key={item}
+    className={`navigation-items ${activeTab === item ? 'active' : ''}`}
+    onClick={() => handleTabClick(item)}
+  >
+    {item}
+  </button>
+))}
+
             </nav>
           </div>
         </header>
 
+        <main className="main-content">
+
+            
+          {renderContent()}
+         
 
 
+        </main>
 
 
-       {activeTab === 'Dashboard' ? <MainLayout /> : <PostJob />
-        }
-     
-     
-     
-     
-     
-     
       </div>
     </>
   );

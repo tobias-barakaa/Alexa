@@ -12,7 +12,7 @@ const styles = `
 
   .hero-card {
     width: 100%;
-    max-width: 350px; /* Ensure a max width for smaller screens */
+    max-width: 366px; /* Ensure a max width for smaller screens */
     height: auto;
     border: 1px solid #cacaca;
     border-radius: 4px;
