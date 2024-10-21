@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import WorkRooms from "./WorkRooms";
 
 const Manage = () => {
 
@@ -6,7 +7,7 @@ const Manage = () => {
  console.log('id', id);
   return (
     <div>
-      Manage jsx
+      <WorkRooms />
     </div>
   )
 }

@@ -40,7 +40,7 @@ import SignInWriter from './client/src/pages/SignInWriter';
 import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
-import Manage from './client/src/pages/dashboard/Manage';
+import Manage from './client/src/pages/dashboard/manage/Manage';
 import PostJob from './client/src/pages/dashboard/postjob/PostJob';
 import Payments from './client/src/pages/dashboard/Payments';
 import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
