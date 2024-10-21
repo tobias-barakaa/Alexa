@@ -42,7 +42,7 @@ import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
 import Manage from './client/src/pages/dashboard/manage/Manage';
 import PostJob from './client/src/pages/dashboard/postjob/PostJob';
-import Payments from './client/src/pages/dashboard/Payments';
+import Payments from './client/src/pages/dashboard/payments/Payments';
 import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
 import CustomPost from './client/src/pages/dashboard/postjob/CustomPost';
 import MyFavorites from './client/src/pages/dashboard/postjob/MyFavorites';
