@@ -1,4 +1,3 @@
-// WriterProfile.jsx
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetWriterProfileByUsernameQuery } from '../../../slices/writers/writerApiSlice';
@@ -6,7 +5,7 @@ import './WriterProfile.css';
 import HireWriterModal from './HireWriterModal';
 
 const ErrorState = ({ message }) => (
-  <div className="error-container">
+  <div className="error-container-hire">
     <div className="error-content">
       <div className="error-icon">😕</div>
       <h2>{message}</h2>
@@ -23,9 +22,12 @@ const WriterProfile = () => {
   const { data: writer, isLoading, isError } = useGetWriterProfileByUsernameQuery(username);
   const [showHireModal, setShowHireModal] = useState(false);
 
-
   if (isLoading) {
-    return <div className="loader"></div>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   if (isError) {
@@ -37,10 +39,9 @@ const WriterProfile = () => {
   }
 
   const handleHire = () => {
-    // Implement hire functionality
     console.log('Hire writer:', writer.username);
   };
-  
+
   return (
     <div className="profile-container">
       {/* Header Section */}
@@ -62,22 +63,22 @@ const WriterProfile = () => {
               <div className="rate-badge">${writer.hourly_rate}/word</div>
             </div>
             <button className="hire-button" onClick={() => setShowHireModal(true)}>
-        Hire Me
-        <span className="button-arrow">→</span>
-      </button>
+              Hire Me
+              <span className="button-arrow">→</span>
+            </button>
 
-      {showHireModal && (
-        <HireWriterModal 
-          writer={writer} 
-          onClose={() => setShowHireModal(false)} 
-        />
-      )}
+            {showHireModal && (
+              <HireWriterModal 
+                writer={writer} 
+                onClose={() => setShowHireModal(false)} 
+              />
+            )}
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="profile-content">
+       {/* Main Content */}
+       <div className="profile-content">
         {/* Left Column */}
         <div className="profile-main">
           {/* Bio Section */}
@@ -179,3 +180,86 @@ export default WriterProfile;
 
 
 
+// import React, { useState } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { useGetWriterProfileByUsernameQuery } from '../../../slices/writers/writerApiSlice';
+// import './WriterProfile.css';
+// import HireWriterModal from './HireWriterModal';
+
+// const ErrorState = ({ message }) => (
+//   <div className="error-container">
+//     <div className="error-content">
+//       <div className="error-icon">😕</div>
+//       <h2>{message}</h2>
+//       <p>Please try again later or check the profile URL</p>
+//       <button className="error-button" onClick={() => window.history.back()}>
+//         Go Back
+//       </button>
+//     </div>
+//   </div>
+// );
+
+// const WriterProfile = () => {
+//   const { username } = useParams();
+//   const { data: writer, isLoading, isError } = useGetWriterProfileByUsernameQuery(username);
+//   const [showHireModal, setShowHireModal] = useState(false);
+
+
+//   if (isLoading) {
+//     return <div className="loader"></div>;
+//   }
+
+//   if (isError) {
+//     return <ErrorState message="Oops! We couldn't find this writer's profile" />;
+//   }
+
+//   if (!writer) {
+//     return <ErrorState message="Profile not found" />;
+//   }
+
+//   const handleHire = () => {
+//     // Implement hire functionality
+//     console.log('Hire writer:', writer.username);
+//   };
+  
+//   return (
+//     <div className="profile-container">
+//       {/* Header Section */}
+//       <div className="profile-header">
+//         <div className="profile-header-content">
+//           <div className="profile-image">
+//             <img src={writer.profile_pic} alt={${writer.first_name} ${writer.last_name}} />
+//           </div>
+//           <div className="profile-header-info">
+//             <div className="profile-name-section">
+//               <h1>{writer.first_name} {writer.last_name}</h1>
+//               <p className="username">@{writer.username}</p>
+//             </div>
+//             <div className="profile-stats">
+//               <div className="rating">
+//                 <span className="star">★</span>
+//                 <span>{writer.rating || 'New'}</span>
+//               </div>
+//               <div className="rate-badge">${writer.hourly_rate}/word</div>
+//             </div>
+//             <button className="hire-button" onClick={() => setShowHireModal(true)}>
+//         Hire Me
+//         <span className="button-arrow">→</span>
+//       </button>
+
+//       {showHireModal && (
+//         <HireWriterModal 
+//           writer={writer} 
+//           onClose={() => setShowHireModal(false)} 
+//         />
+//       )}
+//           </div>
+//         </div>
+//       </div>
+
+     
+//     </div>
+//   );
+// };
+
+// export default WriterProfile;

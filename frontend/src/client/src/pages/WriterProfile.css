@@ -290,12 +290,13 @@
   }
   
   /* Error State */
-  .error-container {
+  .error-container-hire {
     min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    background-color: transparent;
   }
   
   .error-content {
@@ -308,6 +309,7 @@
     max-width: 400px;
     width: 100%;
     animation: slideUp 0.5s ease-out forwards;
+    margin-top: 5rem;
   }
   
   @keyframes slideUp {

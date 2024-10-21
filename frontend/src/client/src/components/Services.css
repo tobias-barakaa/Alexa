@@ -1,9 +1,9 @@
 .services-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   /* padding: 40px 20px; */
   font-family: 'Arial', sans-serif;
-  margin-top: 150px;
+  margin-top: 10rem;
 }
 
 .services-heading {
@@ -50,7 +50,7 @@
 .services-grid {
   flex: 0 0 55%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 18rem);
   gap: 20px;
 }
 

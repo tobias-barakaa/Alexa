@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Search, Bell, User, ChevronDown, Plus, Menu } from 'lucide-react';
-import HeroClientSection from './HeroClientSection';
-import { useParams } from 'react-router-dom';
-import PostJob from './PostJob';
-import MainLayout from './MainLayout';
-import Manage from './Manage';
-import Payments from './Payments';
+import { Outlet, useNavigate } from 'react-router-dom';
+import Footer from '../../components/Footer';
+
 
 const styles = `
   .dashboard-container-writer {
@@ -147,7 +144,7 @@ const styles = `
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0px 0px;
+    padding: 1px 1px;
   }
 
   .profile-card {
@@ -230,18 +227,28 @@ const WriterDashboard = () => {
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showPeopleDropdown, setShowPeopleDropdown] = useState(false);
- const {id} = useParams();
- console.log('id', id);
+ 
   const navItems = ['Dashboard', 'Hire', 'Manage', 'Payments'];
   const profileMenuItems = ['View Cash', 'Payment Methods', 'Help', 'Logout'];
+  const navigate = useNavigate();
 
 
   const handleTabClick = (item) => {
     setActiveTab(item);
-    localStorage.setItem('activeTab', item); 
+    localStorage.setItem('activeTab', item);
+
+    // Navigate to the appropriate route based on the tab
+    if (item === 'Dashboard') {
+      navigate('/cli-wri');  // Navigates to the base route
+    } else if (item === 'Hire') {
+      navigate('/cli-wri/projects/hire');
+    } else if (item === 'Manage') {
+      navigate('/cli-wri/manage/1');  // Example manage route, adjust the id
+    } else if (item === 'Payments') {
+      navigate('/cli-wri/payments');
+    }
   };
 
-  
   useEffect(() => {
     const savedTab = localStorage.getItem('activeTab');
     if (savedTab) {
@@ -252,18 +259,6 @@ const WriterDashboard = () => {
 
 
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'Hire':
-        return <PostJob />; // Render the PostJob component when 'Hire' is active
-      case 'Manage':
-        return <Manage />; // Render the Manage component when 'Manage' is active
-      case 'Payments':
-        return <Payments />; // Render the Payments component when 'Payments' is active
-      default:
-        return <MainLayout />; // Default to MainLayout when 'Dashboard' is active
-    }
-  };
 
 
   return (
@@ -348,14 +343,15 @@ const WriterDashboard = () => {
         <main className="main-content">
 
             
-          {renderContent()}
-         
+         <Outlet />
 
 
         </main>
 
 
       </div>
+      <Footer />
+
     </>
   );
 };

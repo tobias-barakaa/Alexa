@@ -32,7 +32,7 @@ const Footer = () => {
         </div>
 
         {/* Right Section */}
-        <div className="footer-right">
+        {/* <div className="footer-right">
           <div className="real-talk-icon">
             <MdChatBubbleOutline className="icon" />
           </div>
@@ -42,7 +42,7 @@ const Footer = () => {
             <span>SEND US A MESSAGE</span>
             <AiOutlineArrowRight className="arrow-icon" />
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Social Media Section */}

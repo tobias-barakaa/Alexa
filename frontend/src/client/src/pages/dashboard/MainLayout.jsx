@@ -2,7 +2,7 @@ import React from 'react'
 import HeroClientSection from './HeroClientSection';
 import "./MainLayout.css";
 
-const MainLayout = () => {
+const MainLayoutClient = () => {
   return (
     <div>
        <main className="main-content">
@@ -33,4 +33,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default MainLayoutClient

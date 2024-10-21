@@ -2,12 +2,13 @@ import './HireWriters.css';
 import centerImage from '../assets/images/woman.jpeg'; // Placeholder for profile image
 import { useGetWritersQuery } from '../../../slices/admin/adminWritersApiSlice';
 import { Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const HireWriters = () => {
   const { data: hire_writers, isLoading, error } = useGetWritersQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;  // Display the loader when content is loading
   }
 
   if (error) {
@@ -16,7 +17,6 @@ const HireWriters = () => {
 
   // Convert the object of writers into an array if it's not already an array
   const writersArray = Array.isArray(hire_writers) ? hire_writers : Object.values(hire_writers);
-  console.log('writersArray...', writersArray);
 
   // Check if the first element is an array and use it for rendering
   const actualWritersArray = Array.isArray(writersArray[0]) ? writersArray[0] : writersArray;

@@ -40,6 +40,10 @@ import SignInWriter from './client/src/pages/SignInWriter';
 import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
+import Manage from './client/src/pages/dashboard/Manage';
+import PostJob from './client/src/pages/dashboard/PostJob';
+import Payments from './client/src/pages/dashboard/Payments';
+import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
 const router = createBrowserRouter([
   {
     path: "",
@@ -69,10 +73,45 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginClient />
   },
+  
+
   {
-    path: "/client-writer-dashboard/projects/:id",
-    element: <WriterDashboard />
+    path: "/cli-wri",
+    element: <WriterDashboard />,  // Use MainLayout for pages with header/footer
+    children: [
+      {
+        index: true,  // This makes HomePage the default route when path is "/"
+        element: <MainLayoutClient />,
+      },
+      {
+        path: "projects/hire",
+        element: <PostJob />,
+      },
+      {
+        path: "manage/:id",
+        element: <Manage />,
+      },
+      {
+        path: "payments/",
+        element: <Payments />,
+      },
+            
+    ],
   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {
     path: "/password-reset",
     element: <PasswordReset />

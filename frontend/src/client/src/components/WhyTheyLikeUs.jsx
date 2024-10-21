@@ -28,12 +28,7 @@ const WhyTheyLikeUs = () => {
         bgClass: "grey-bg"
       },
 
-      {
-        icon: <FaUserFriends />,
-        title: "Customer Support",
-        description: "Our dedicated team provides excellent support throughout your journey with us.",
-        bgClass: "blue-bg"
-      },
+     
   ];
 
   return (

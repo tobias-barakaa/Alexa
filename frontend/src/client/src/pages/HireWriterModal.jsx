@@ -34,7 +34,6 @@ const HireWriterModal = ({ writer, onClose }) => {
     deadline: '12hrs',  // Default to '12hrs'
     requirements: '',
     writerId: writer.id,  // Include writer.id
-    writerUsername: writer.username  // Include writer.username
   });
   
   const [errors, setErrors] = useState({});
@@ -62,7 +61,7 @@ const HireWriterModal = ({ writer, onClose }) => {
     try {
      const result = await placeOrder({ ...formData });
      console.log(result, 'this is the result')
-      navigate(`/client-writer-dashboard/projects/${result?.data?.order_id * Math.random() * 100}`);
+      navigate(`/cli-wri/manage/${result?.data?.order_id * Math.random() * 10000000}`);
     } catch (error) {
       console.error("Error placing order:", error);
     }

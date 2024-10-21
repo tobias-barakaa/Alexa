@@ -1,8 +1,12 @@
-import './Loader.css'; // Loader CSS file
+// Loader.js
+import React from 'react';
+import './Loader.css';
 
 const Loader = () => {
   return (
-    <div className="loader"></div>
+    <div className="loader-container">
+      <div className="spinner"></div>
+    </div>
   );
 };
 

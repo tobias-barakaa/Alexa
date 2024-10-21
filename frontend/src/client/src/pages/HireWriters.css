@@ -1,9 +1,9 @@
 .hire-writers-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   padding: 20px;
   margin-top: 9rem;
+  max-width: 1200px;
 
 }
 
@@ -47,10 +47,11 @@
 
 .writers-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   width: 75%;
   border-radius: 12px;
+  margin-left: 5rem;
 
 
 }
@@ -125,3 +126,29 @@
   background-color: #007bff;
   
 }
+
+
+
+/* Loader.css */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

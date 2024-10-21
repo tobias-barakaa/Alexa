@@ -1,11 +1,13 @@
 /* Footer Container */
 .footer-container {
     width: 100%;
-    background-color: #f8fafc;
+    background-color: #f5f5f5;
     padding: 50px 20px;
     position: relative;
-    margin-top: 5rem;
-
+    border-top: 2px solid rgb(221, 221, 221);
+    bottom: 0; /* Sticks to the bottom */
+    left: 0;
+    right: 0;
   }
   
   /* Footer Content */

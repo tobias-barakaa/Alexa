@@ -1,0 +1,180 @@
+.post-job-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .hire-form {
+    max-width: 800px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  
+  .form-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  
+  .form-group-post-job {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #2563eb;
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+  }
+  
+  .text-area {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .upload-area {
+    border: 2px dashed #e5e5e5;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .upload-area:hover {
+    border-color: #2563eb;
+  }
+  
+  .upload-icon {
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .upload-text {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .pricing-inputs {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .submit-button {
+    background: #2563eb;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .submit-button:hover {
+    background: #1d4ed8;
+  }
+  
+  .counter-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* To space out buttons and input */
+    gap: 8px;
+    max-width: 200px; /* Set a limit to prevent expanding */
+    margin: 0 auto; /* Center it */
+  }
+  
+  .counter-button {
+    background: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Align icon vertically */
+    justify-content: center; /* Align icon horizontally */
+    width: 40px; /* Fix button size */
+    height: 40px; /* Ensure consistent height */
+  }
+  
+  .counter-button:hover {
+    background: #e5e5e5;
+  }
+  
+  .word-count {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+  }
+  
+  
+  .deadline-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  .deadline-option {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .deadline-option.selected,
+  .deadline-option:hover {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+  }
+  
