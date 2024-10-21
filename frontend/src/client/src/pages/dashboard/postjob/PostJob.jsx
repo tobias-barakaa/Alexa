@@ -1,34 +1,34 @@
-// HireCustoms.jsx
 import React, { useState } from 'react';
-import './PostJob.css';
-import { Outlet } from 'react-router-dom';
+import './PostJob.css'; // Correct CSS file reference
+import { Link, Outlet } from 'react-router-dom';
 
 const PostJob = () => {
-  const [activeTab, setActiveTab] = useState('CustomPost');
+  const [activeTab, setActiveTab] = useState(''); // Initialize with an empty string
   
   const navItems = [
-    'CustomPost',
-    'My Favorites',
-    'Hire a Writer',
-    'Job Listings'
+    { id: 1, name: 'Custom Post', path: '' },
+    { id: 2, name: 'My Favorites', path: 'favorites' },
+    { id: 3, name: 'Hire a Writer', path: 'find-writer' }, // Placeholder path
+    { id: 4, name: 'Job Listings', path: 'job-listings' }, // Placeholder path
   ];
 
   return (
     <>
-    <nav className="nav-container">
-      <div className="nav-items">
-        {navItems.map((item) => (
-          <button
-            key={item}
-            onClick={() => setActiveTab(item)}
-            className={`nav-item ${activeTab === item ? 'active' : ''}`}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-    </nav>
-<Outlet />
+      <nav className="nav-container">
+        <div className="nav-items">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={item.path}
+              onClick={() => setActiveTab(item.path)} // Set activeTab to item.path
+              className={`nav-item ${activeTab === item.path ? 'active' : ''}`} // Compare correctly
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+      <Outlet />
     </>
   );
 };

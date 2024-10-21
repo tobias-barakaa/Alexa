@@ -22,6 +22,7 @@
   cursor: pointer;
   color: #666;
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .nav-item:hover {

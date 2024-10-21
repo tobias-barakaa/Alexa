@@ -1,0 +1,163 @@
+/* Main container for the entire page */
+.find-writer-container {
+    padding: 20px;
+  }
+  
+  /* Header section */
+  .header-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .header-section p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Content section: Categories and Freelancer List */
+  .content-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Left: Category section */
+  .category-section {
+    width: 20%;
+  }
+  
+  .category-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .category-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .category-section li {
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: color 0.3s;
+  }
+  
+  .category-section li:hover {
+    color: #078BC8;
+  }
+  
+  /* Right: Main section (Search bar and freelancer list) */
+  .main-section {
+    width: 75%;
+  }
+  
+  .search-bar {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .search-bar button {
+    padding: 10px 20px;
+    background-color: #078BC8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #005f87;
+  }
+  
+  /* Freelancer list styling */
+  .freelancer-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .freelancer-item {
+    display: flex;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .freelancer-profile {
+    display: flex;
+    width: 40%;
+  }
+  
+  .profile-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 0; /* No border radius */
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  .profile-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating span {
+    margin-right: 5px;
+    color: green;
+    font-size: 1.2rem;
+  }
+  
+  /* Service details styling */
+  .service-details {
+    display: flex;
+    width: 60%;
+  }
+  
+  .service-image {
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+  }
+  
+  .service-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .service-info h4 span {
+    font-size: 1rem;
+    color: #666;
+    margin-left: 10px;
+  }
+  
+  .service-info p {
+    margin: 5px 0;
+  }
+  

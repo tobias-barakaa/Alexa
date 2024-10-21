@@ -45,6 +45,9 @@ import PostJob from './client/src/pages/dashboard/postjob/PostJob';
 import Payments from './client/src/pages/dashboard/Payments';
 import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
 import CustomPost from './client/src/pages/dashboard/postjob/CustomPost';
+import MyFavorites from './client/src/pages/dashboard/postjob/MyFavorites';
+import FindAWriter from './client/src/pages/dashboard/postjob/FindAWriter';
+import JobListings from './client/src/pages/dashboard/postjob/JobListings';
 const router = createBrowserRouter([
   {
     path: "",
@@ -91,6 +94,18 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <CustomPost />
+          },
+          {
+            path: "favorites",
+            element: <MyFavorites />
+          },
+          {
+            path: "find-writer",
+            element: <FindAWriter />
+          },
+          {
+            path: "job-listings",
+            element: <JobListings />
           }
         ]
       },
