@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Upload, Plus, Minus } from 'lucide-react';
-import './PostJob.css'; // Assuming the CSS will be placed in a separate file (PostJob.css)
+import './CustomPost.css'; // Assuming the CSS will be placed in a separate file (CustomPost.css)
 
-const PostJob = () => {
+const CustomPost = () => {
   const [wordCount, setWordCount] = useState(500);
   const [selectedDeadline, setSelectedDeadline] = useState('24h');
   const [contentType, setContentType] = useState('article');
@@ -152,4 +152,4 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default CustomPost;

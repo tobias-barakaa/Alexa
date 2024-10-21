@@ -41,9 +41,10 @@ import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
 import Manage from './client/src/pages/dashboard/Manage';
-import PostJob from './client/src/pages/dashboard/PostJob';
+import PostJob from './client/src/pages/dashboard/postjob/PostJob';
 import Payments from './client/src/pages/dashboard/Payments';
 import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
+import CustomPost from './client/src/pages/dashboard/postjob/CustomPost';
 const router = createBrowserRouter([
   {
     path: "",
@@ -86,6 +87,12 @@ const router = createBrowserRouter([
       {
         path: "projects/hire",
         element: <PostJob />,
+        children: [
+          {
+            index: true,
+            element: <CustomPost />
+          }
+        ]
       },
       {
         path: "manage/:id",
