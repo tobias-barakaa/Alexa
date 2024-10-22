@@ -1,6 +1,7 @@
 const express = require('express');
-const { createPlaceOrder, getUserOrders, assignedManagerGet } = require('../../controllers/writers/writerPlaceOrderController');
+const { createPlaceOrder, getUserOrders, assignedManagerGet, getAllPendingOrdersForWritersQueue } = require('../../controllers/writers/writerPlaceOrderController');
 const { protect } = require('../../middlewares/client/authMiddleware');
+const { protectWriter } = require('../../middlewares/writers/writersMiddleware');
 
 const router = express.Router();
 
@@ -8,5 +9,6 @@ const router = express.Router();
 router.post('/place-order', protect, createPlaceOrder);
 router.get('/get-limited-order', protect, getUserOrders)
 router.get('/get-manager/:id', protect, assignedManagerGet)
+router.get('/v1/writer-pending/orders', protectWriter, getAllPendingOrdersForWritersQueue);
 
 module.exports = router;

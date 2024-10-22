@@ -65,6 +65,9 @@ const createPlaceOrder = async (req, res) => {
   };
   
 
+
+
+
   // const getUserOrders = async (req, res) => {
   //   try {
   //     // Extract the logged-in user ID from req.user
@@ -185,4 +188,51 @@ const createPlaceOrder = async (req, res) => {
   
   
 
-module.exports = { createPlaceOrder, getUserOrders, assignedManagerGet };
+  const getAllPendingOrdersForWritersQueue = async (req, res) => {
+    try {
+      // Check if the writer is logged in
+      const writer_id = req.user?.id; // The logged-in writer's ID from the middleware
+  
+      // If the writer is not logged in, return unauthorized
+      if (!writer_id) {
+        return res.status(401).json({ message: 'Unauthorized: Writer not logged in' });
+      }
+  
+      // Fetch the user's role based on the writer_id
+      const user = await knex('users')
+        .select('users.id', 'roles.name as role')
+        .join('roles', 'users.role_id', 'roles.id')
+        .where({ 'users.id': writer_id })
+        .first();
+  
+      // Check if the user has the 'writer' role
+      if (!user || user.role !== 'writer') {
+        return res.status(403).json({ message: 'Forbidden: You are not authorized to access this content' });
+      }
+  
+      // Fetch all orders with 'Pending' status (regardless of writer assignment)
+      const pendingOrders = await knex('order_place')
+        .where({ status: 'Pending' }) // Only orders with 'Pending' status
+        .select('*'); // Fetch all columns (you can limit fields if necessary)
+  
+      // If no pending orders are found
+      if (pendingOrders.length === 0) {
+        return res.status(404).json({ message: 'No pending orders found' });
+      }
+  
+      // Return the list of pending orders
+      return res.status(200).json({
+        message: 'Pending orders retrieved successfully',
+        pendingOrders,
+      });
+    } catch (error) {
+      console.error('Error fetching pending orders:', error);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+  
+  
+  
+
+module.exports = { createPlaceOrder, getUserOrders, assignedManagerGet, getAllPendingOrdersForWritersQueue };
