@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { MessageCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import Footer from '../../../client/src/components/Footer';
 
 const styles = {
   dashboardContainer: {
@@ -10,6 +12,10 @@ const styles = {
     backgroundColor: '#f5f5f5',
     borderBottom: '1px solid #e0e0e0',
     padding: '10px 20px',
+  },
+  navLink: {
+    color: '#333',
+    textDecoration: 'none',  
   },
   headerContent: {
     display: 'flex',
@@ -77,12 +83,16 @@ const styles = {
     padding: 0,
     maxWidth: '1200px',
     margin: '0 auto',
+    textDecoration: 'none'
+
   },
   navItem: {
     padding: '8px 16px',
     cursor: 'pointer',
     fontSize: '14px',
     color: '#333',
+    textDecoration: 'none'
+
   },
   dropdownMenu: {
     padding: '8px 0',
@@ -112,7 +122,12 @@ const DashboardWriter = () => {
   const [showMessages, setShowMessages] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
-  const navItems = ['Dashboard', 'View New Jobs', 'Manage Projects', 'Payments', 'Analytics'];
+  const navItems = [
+    { label: 'Dashboard', path: '' },
+    { label: 'View New Jobs', path: 'new-jobs' },
+    { label: 'Manage Projects', path: 'manage-projects' },
+    { label: 'Payments', path: 'payments' },
+  ];
   const profileMenuItems = [
     'Edit My Account',
     'View Cash Payment',
@@ -143,7 +158,7 @@ const DashboardWriter = () => {
                 style={styles.iconButton}
                 onClick={() => setShowMessages(!showMessages)}
               >
-                📨
+                <MessageCircle size={24} />
               </button>
               {showMessages && (
                 <div style={{...styles.dropdown, ...styles.messageDropdown}}>
@@ -192,28 +207,32 @@ const DashboardWriter = () => {
 
       {/* Navigation */}
       <nav style={styles.navigationBar}>
-        <ul style={styles.navList}>
-          {navItems.map((item, index) => (
-            <li 
-              key={index} 
-              style={styles.navItem}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = '#f5f5f5';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'transparent';
-              }}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <ul style={styles.navList}>
+        {navItems.map((item, index) => (
+          <li 
+            key={index} 
+            style={styles.navItem}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = '#f5f5f5';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }}
+          >
+            {/* Link to the route */}
+            <Link to={item.path} style={styles.navLink}>
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
       {/* Main Content */}
       <main style={styles.mainContent}>
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };

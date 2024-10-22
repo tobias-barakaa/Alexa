@@ -52,6 +52,9 @@ import FindAWriter from './client/src/pages/dashboard/postjob/FindAWriter';
 import JobListings from './client/src/pages/dashboard/postjob/JobListings';
 import MyManagers from './client/src/pages/dashboard/manage/MyManagers';
 import DashboardContent from './writerDashboard/pages/dashbaord/DashboardContent';
+import ViewNewJobs from './writerDashboard/pages/dashbaord/ViewNewJobs';
+import ManageProject from './writerDashboard/pages/dashbaord/ManageProject';
+import PaymentsInvoice from './writerDashboard/pages/dashbaord/PaymentsInvoice';
 const router = createBrowserRouter([
   {
     path: "",
@@ -290,6 +293,18 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardContent />
+      },
+      {
+        path: 'new-jobs',
+        element: <ViewNewJobs />
+      },
+      {
+        path: 'manage-projects',
+        element: <ManageProject />
+      },
+      {
+        path: 'payments',
+        element: <PaymentsInvoice />
       }
       
     ]
