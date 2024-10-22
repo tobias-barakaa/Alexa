@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Summary</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        font-size: 14px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 12rem;
+        min-height: 100vh;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+
+      .main-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .left-section {
+        flex: 1;
+        min-width: 55%;
+      }
+      .right-section {
+        min-width: 25%;
+      }
+
+      .order-header {
+        background: transparent;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 2px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .order-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .order-number {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .order-date {
+        color: #666;
+        font-size: 12px;
+      }
+
+      .order-right {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 0;
+      }
+
+      .buy-again-btn {
+        padding: 10px 18px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        color: #0066cc;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .update-status {
+        display: flex;
+        align-items: center;
+        border: 1px solid grey;
+        padding: 0.5rem;
+        border-radius: 4px;
+        background: transparent;
+        width: 100%;
+      }
+
+      .update-status svg {
+        margin-right: 0.5rem;
+      }
+
+      .dropdown-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .status-input {
+        width: 100%;
+        padding: 0.5rem;
+        padding-right: 2rem;
+        border: none;
+        background: transparent;
+        color: #333;
+        font-size: 1rem;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .dropdown-icon {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 0.8rem;
+        color: #333;
+      }
+
+      .order-summary {
+        background: white;
+
+        border-radius: 4px;
+        padding: 10px;
+        height: 180px;
+        overflow: hidden;
+        font-size: 8px;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .order-additional {
+        color: #666;
+        font-size: 10px;
+      }
+
+      .summary-title {
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .price-details {
+        margin-top: 10px;
+      }
+
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
+
+      .price-value {
+        font-weight: bold;
+      }
+
+      .total-row {
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+      }
+
+      .including {
+        color: #a5a4a4;
+      }
+      .separator {
+        margin: 10px 0;
+      }
+
+      .price-note {
+        font-size: 12px;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .return-status {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        height: 290px;
+
+        position: relative;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .return-image {
+        position: relative;
+      }
+
+      .image-jpg {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: -10px;
+        left: 40px;
+        background-color: grey;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .print-label-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .image-jpg {
+        width: 60px;
+        height: 60px;
+        background: #ddd;
+        margin-bottom: 15px;
+        border: solid 1px #ddd;
+      }
+
+      .return-info {
+        margin-bottom: 15px;
+      }
+      .status-updated {
+        display: flex;
+        align-items: center;
+      }
+
+      .bullet-point {
+        width: 12px;
+        height: 12px;
+        background-color: white; 
+        border: 2px solid black; 
+        border-radius: 50%; 
+        margin-right: 8px; 
+      }
+      .return-progress {
+        font-size: 16px;
+        margin-bottom: 0px;
+      }
+      .return-info p {
+        color: rgb(124, 124, 124);
+        font-size: 14px;
+      }
+      .print-label-btn {
+        padding: 12px 20px;
+        background: white;
+        border: 1px solid #b3b3b3;
+        color: #0066cc;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .tracking-box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .tracking-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .tracking-details {
+        color: #666;
+        font-size: 12px;
+      }
+      .upside-down {
+        display: inline-block;
+        transform: rotate(-90deg);
+      }
+
+      .transparent-dropdown {
+        background-color: transparent;
+        color: #333;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+        outline: none;
+      }
+
+      .dropdown-container {
+        width: 100%;
+      }
+
+      .tracking-container {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        height: 200px;
+      }
+
+      .tracking-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .tracking-number {
+        font-size: 14px;
+        color: #333;
+      }
+
+      .tracking-number a {
+        color: #0066cc;
+        text-decoration: none;
+        margin-left: 4px;
+      }
+
+      .tracking-number a:hover {
+        text-decoration: underline;
+      }
+
+      .tracking-content {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .status-section {
+        flex: 1;
+        display: flex;
+        gap: 12px;
+      }
+
+      .icon-container {
+        color: #333;
+      }
+
+      .status-details {
+        position: relative;
+      }
+
+      .status-title {
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .timeline {
+        position: absolute;
+        left: -22px;
+        top: 30px;
+        bottom: 0;
+        width: 2px;
+        background: #e0e0e0;
+      }
+
+      .status-date {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .status-description {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .show-details {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #0066cc;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .show-details:hover {
+        text-decoration: underline;
+      }
+
+      .chevron-down {
+        width: 16px;
+        height: 16px;
+        stroke: #0066cc;
+      }
+
+      .newsletter-container {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .newsletter-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      .newsletter-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 16px;
+        line-height: 1.4;
+      }
+
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .custom-checkbox {
+        width: 18px;
+        height: 18px;
+        accent-color: #0066cc;
+        cursor: pointer;
+      }
+
+      .checkbox-label {
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .order-details-container {
+        background: white;
+        border-radius: 8px;
+        padding: 24px;
+        margin-top: 20px;
+        height: auto; 
+      }
+
+      .main-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 24px;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #666;
+        margin-bottom: 12px;
+      }
+
+      .email {
+        color: #000000;
+        text-decoration: none;
+        margin-bottom: 24px;
+        display: block;
+        font-size: 10px;
+      }
+
+      .payment-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .dollar-icon {
+        color: #666;
+        border: solid 1px #666;
+        padding: 2px;
+        width: 50px;
+        height: 20px;
+      }
+
+      .payment-text {
+        font-size: 14px;
+        color: #333;
+      }
+
+      .payment-date {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 24px;
+      }
+
+      .address-section {
+        margin-top: 24px;
+      }
+
+      .address-line {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .details-grid {
+          grid-template-columns: 1fr; 
+        }
+
+        .main-title {
+          font-size: 18px;
+        }
+
+        .section-title {
+          font-size: 12px;
+        }
+
+        .email {
+          font-size: 12px; 
+        }
+
+        .payment-text {
+          font-size: 12px; 
+        }
+
+        .payment-date {
+          font-size: 12px; 
+        }
+
+        .address-line {
+          font-size: 12px; 
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+      }
+      /* Media query for responsiveness */
+      @media (max-width: 768px) {
+        .left-section,
+        .right-section {
+          min-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-wrapper">
+        <div class="left-section">
+          <div class="order-header">
+            <div class="order-info">
+              <div class="order-title">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+                <span class="order-number">Order #1005</span>
+              </div>
+              <div class="order-date">Confirmed October 21 from order #DTS</div>
+            </div>
+          </div>
+
+          <div class="dropdown-container">
+            <select class="transparent-dropdown">
+              <option value="1">Your Order was updated on Oct 21, 2024</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+            </select>
+          </div>
+
+          <div class="return-status">
+            <div class="return-image">
+              <div class="notification-badge">1</div>
+              <img
+                src="images/jpegg.jpg"
+                class="image-jpg"
+                alt="Description of the image"
+              />
+            </div>
+            <div class="return-info">
+              <div class="status-updated">
+                <div class="bullet-point"></div>
+                <h3 class="return-progress">Return in progress</h3>
+              </div>
+              <p>Updated October 21, 2024</p>
+              <br />
+              <p>
+                Your request was approved. Print your return shipping label and
+                attach it to the package containing your return items.
+              </p>
+            </div>
+            <button class="print-label-btn">Print shipping label</button>
+          </div>
+
+          
+
+          <div class="tracking-container">
+            <div class="tracking-header">
+              <div class="tracking-number">
+                Deutsche Post DHL <a href="#">123456789</a>
+              </div>
+            </div>
+
+            <div class="tracking-content">
+              <div class="status-section">
+                <div class="icon-container">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.99-3.99A1 1 0 0 0 12.16 6H7.84a1 1 0 0 0-.84.51L4 10.5v5.5h3m14 0h-4m-5 0H8m6 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0zm-10 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0z"
+                    />
+                  </svg>
+                </div>
+                <div class="status-details">
+                  <div class="status-title">On its way</div>
+                  <div class="timeline"></div>
+                  <div class="status-date">Updated October 21, 2024</div>
+                  <div class="status-description">
+                    This shipment is on its way.
+                  </div>
+                </div>
+              </div>
+
+              <a href="#" class="show-details">
+                Show details
+                <svg
+                  class="chevron-down"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="newsletter-container">
+            <h2 class="newsletter-title">News and offers</h2>
+            <p class="newsletter-description">
+              You'll receive marketing emails. You can unsubscribe at any time
+            </p>
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                id="newsletter-checkbox"
+                class="custom-checkbox"
+              />
+              <label for="newsletter-checkbox" class="checkbox-label"
+                >Email me with news and offers</label
+              >
+            </div>
+          </div>
+
+          <div class="order-details-container">
+            <h2 class="main-title">Order details</h2>
+
+            <div class="details-grid">
+              <!-- Left Column -->
+              <div class="left-column">
+                <h3 class="section-title">Contact information</h3>
+                <a href="mailto:ayumu.hirano@example.com" class="email"
+                  >ayumu.hirano@example.com</a
+                >
+
+                <div class="address-section">
+                  <h3 class="section-title">Shipping address</h3>
+                  <p class="address-line">Ayumu Hirano</p>
+                  <p class="address-line">Meininger Strasse 31</p>
+                  <p class="address-line">66392 Riedgelsberg</p>
+                  <p class="address-line">Germany</p>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="right-column">
+                <h3 class="section-title">Payment</h3>
+                <div class="payment-info">
+                  <svg
+                    class="dollar-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    ></path>
+                  </svg>
+                  <span class="payment-text">Manual-E729.95</span>
+                </div>
+                <p class="payment-date">October 21, 2024</p>
+
+                <div class="address-section">
+                  <h3 class="section-title">Billing address</h3>
+                  <h3 class="section-title">-</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-section">
+          <div class="order-right">
+            <button class="buy-again-btn">Buy again</button>
+          </div>
+
+          <div class="order-summary">
+            <h3 class="summary-title">Order Summary</h3>
+            <p class="order-additional">
+              No additional items in this order are eligible for return.
+            </p>
+
+            <div class="price-details">
+              <div class="price-row">
+                <strong>Subtotal</strong>
+                <span class="price-value">€0.00</span>
+              </div>
+              <div class="price-row">
+                <strong>Shipping</strong>
+                <span class="price-value">Free</span>
+              </div>
+              <div class="price-row">
+                <strong>Total</strong>
+                <strong class="price-value">EUR €0.00</strong>
+              </div>
+              <div class="price-row including">
+                <strong>Including €0.00 in taxes</strong>
+                <span></span>
+              </div>
+
+              <hr class="separator" />
+
+              <p class="price-note">
+                Total includes duties and taxes. No extra charges on delivery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background: #f5f5f5;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.order-header {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-number {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.order-date {
+    color: #666;
+    font-size: 14px;
+}
+
+.buy-again-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #0066cc;
+    cursor: pointer;
+}
+
+.update-status {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-icon {
+    color: #666;
+}
+
+.order-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    height: 300px;
+}
+
+.summary-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.price-details {
+    margin-top: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.return-status {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.return-image {
+    width: 100px;
+    height: 100px;
+    background: #ddd;
+    margin-bottom: 15px;
+}
+
+.return-info {
+    margin-bottom: 15px;
+}
+
+.print-label-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid #0066cc;
+    color: #0066cc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tracking-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.tracking-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tracking-details {
+    color: #666;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="main-wrapper">
+        <div class="left-section">
+            <div class="order-header">
+                <div class="order-info">
+                    <div class="order-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                        <span class="order-number">Order #1005</span>
+                    </div>
+                    <div class="order-date">Confirmed October 21 from order #DTS</div>
+                </div>
+            </div>
+
+            <div class="update-status">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>Your Order was updated on Oct 21, 2024</span>
+            </div>
+
+            <div class="return-status">
+                <div class="return-image"></div>
+                <div class="return-info">
+                    <h3>Return in progress</h3>
+                    <p>Updated October 21, 2024</p>
+                    <p>Your request was approved. Print your return shipping label and attach it to the package containing your return items.</p>
+                </div>
+                <button class="print-label-btn">Print shipping label</button>
+            </div>
+
+            <div class="tracking-box">
+                <div class="tracking-header">
+                    <span>Deutsche Post DHL 123456789</span>
+                    <span>Hide details ^</span>
+                </div>
+                <div class="tracking-details">
+                    <p>On its way</p>
+                    <p>Updated October 21, 2024</p>
+                    <p>Germany</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="order-header">
+                <button class="buy-again-btn">Buy again</button>
+            </div>
+
+            <div class="order-summary">
+                <h3 class="summary-title">Order Summary</h3>
+                <p>No additional items in this order are eligible for return.</p>
+                
+                <div class="price-details">
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <span>€0.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Including €0.00 in taxes</span>
+                        <span></span>
+                    </div>
+                    <div class="price-row">
+                        <strong>Total</strong>
+                        <strong>EUR €0.00</strong>
+                    </div>
+                    <p class="price-note">Total includes duties and taxes. No extra charges on delivery.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
