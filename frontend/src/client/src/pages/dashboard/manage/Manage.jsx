@@ -6,36 +6,36 @@ const Manage = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [managerId, setManagerId] = useState(null);
   const location = useLocation();
-  const [pathSegment, setPathSegment] = useState('');
-
-  useEffect(() => {
-    // Extracting everything after '/manage/'
-    const basePath = '/manage/';
-    const extractedPath = location.pathname.split(basePath)[1]; // Extract the part after '/manage/'
-    setPathSegment(extractedPath || '');  // Ensure it defaults to an empty string
-  }, [location]);
-
-  useEffect(() => {
-    // Set active tab based on pathSegment
-    if (pathSegment.length === 1) {
-      setActiveTab(1);
-    } else {
-      setActiveTab(2);
-    }
-  }, [pathSegment]); // Runs whenever pathSegment changes
 
   useEffect(() => {
     // Get manager ID from localStorage
     const savedManagerId = localStorage.getItem('manager');
     if (savedManagerId) {
-      setManagerId(savedManagerId); 
+      setManagerId(savedManagerId);
     }
-  }, []); 
+  }, []);
 
-  // Navigation items with correct manager ID interpolation
+  useEffect(() => {
+    // Set active tab based on current path
+    if (location.pathname.includes('manage-order')) {
+      setActiveTab(2);
+    } else {
+      setActiveTab(1);
+    }
+  }, [location.pathname]);
+
+  // Navigation items with proper path construction
   const navItems = [
-    { id: 1, name: 'Work Rooms', path: '' },
-    { id: 2, name: 'My Manager', path: `manage-order/${managerId}` }, 
+    { 
+      id: 1, 
+      name: 'Work Rooms', 
+      path: '' // Base path for work rooms
+    },
+    { 
+      id: 2, 
+      name: 'My Manager', 
+      path: managerId ? `manage-order/${managerId}` : '/manage' 
+    }
   ];
 
   return (
@@ -48,8 +48,8 @@ const Manage = () => {
             <Link
               key={item.id}
               to={item.path}
-              onClick={() => setActiveTab(item.id)} 
-              className={`tab-btn ${activeTab === item.id ? 'active' : ''}`} // Adjust active class based on item.id
+              onClick={() => setActiveTab(item.id)}
+              className={`tab-btn ${activeTab === item.id ? 'active' : ''}`}
             >
               {item.name}
             </Link>

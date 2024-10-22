@@ -55,4 +55,6 @@ export const ORDER_WRITER = 'api/order-writer/place-order';
 // Writer Get Ordere
 
 export const ORDER_WRITER_GET = 'api/order-writer/get-limited-order';
+export const ORDER_WRITER_GET_ONE = 'api/order-writer';
+
 
