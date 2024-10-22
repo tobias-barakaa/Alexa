@@ -51,3 +51,8 @@ export const WRITER_SIGN_IN= 'api/writer/signin';
 // admin writer
 
 export const ORDER_WRITER = 'api/order-writer/place-order';
+
+// Writer Get Ordere
+
+export const ORDER_WRITER_GET = 'api/order-writer/get-limited-order';
+

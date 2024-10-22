@@ -1,4 +1,4 @@
-import { ORDER_WRITER, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP } from "../../constants";
+import { ORDER_WRITER, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP, ORDER_WRITER_GET } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const writersApiSlice = apiSlice.injectEndpoints({
@@ -45,6 +45,21 @@ export const writersApiSlice = apiSlice.injectEndpoints({
         credentials: "include",
       }),
     }),
+    getLimitedOrders: builder.query({
+      query: () => ({
+        url: `${ORDER_WRITER_GET}`,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
+
+    getManager: builder.query({
+      query: (id) => ({
+        url: `${ORDER_WRITER_GET}/get-manager/${id}`,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
     logoutWriter: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
@@ -62,6 +77,8 @@ export const {
   useWriterProfileMutation,
   useLogoutWriterMutation,
   useGetWriterProfileByUsernameQuery,
-  usePlaceOrderMutation
+  usePlaceOrderMutation,
+  useGetLimitedOrdersQuery,
+  useGetManagerQuery,
 } =
   writersApiSlice;

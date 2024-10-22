@@ -1,0 +1,61 @@
+/* Container for the job listings page */
+.job-listings-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .job-listings-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Job listings container */
+  .job-listings {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Single job item styling */
+  .job-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .job-item p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  /* Job details section */
+  .job-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .job-details span {
+    padding-right: 10px;
+  }
+  
+  /* No job listings message */
+  .no-job-listings {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  

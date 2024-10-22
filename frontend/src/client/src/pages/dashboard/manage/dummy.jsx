@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import './WorkRooms.css';
 import { useGetLimitedOrdersQuery } from '../../../../../slices/writers/writerApiSlice';
 import Loader from '../../../components/Loader';
 import { Link } from 'react-router-dom';
+import MyManagers from './MyManagers';
 
 const Manage = () => {
+  const [activeTab, setActiveTab] = useState('workrooms');
   const { data: dreams, isLoading, error } = useGetLimitedOrdersQuery();
 
   if (isLoading) return <Loader />;
@@ -11,13 +14,6 @@ const Manage = () => {
 
   // Fetch orders from the API response
   const orders = dreams?.orders || [];
-
-  const writerId = orders[0]?.writer_id; // Assuming writer_id is present on the first order
-
-// Save it in localStorage as 'manager'
-if (writerId) {
-  localStorage.setItem('manager', writerId);
-}
 
   const renderProjectCard = (order) => (
     <div key={order.order_id} className="project-card">
@@ -52,8 +48,7 @@ if (writerId) {
       </div>
 
       <div className="project-actions">
-        <Link to={`manage-order/${order.writer_id}`}>
-
+        <Link to={`/cli-wri/manage/manage-order/${order.writer_id}`}>
         <button className="view-btn">View My Manager</button>
         </Link>
         
@@ -68,8 +63,26 @@ if (writerId) {
 
   return (
     <div className="workroom-container">
+      <h1>Manage</h1>
       
-   
+      <div className="tabs-container">
+        <div className="tabs">
+          <button 
+            className={`tab-btn ${activeTab === 'workrooms' ? 'active' : ''}`}
+            onClick={() => setActiveTab('workrooms')}
+          >
+            WorkRooms
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'managers' ? 'active' : ''}`}
+            onClick={() => setActiveTab('managers')}
+          >
+            My Managers
+          </button>
+        </div>
+      </div>
+
+      {activeTab === 'workrooms' && (
         <div className="projects-grid">
           {orders.length > 0 ? (
             orders.map(order => renderProjectCard(order))
@@ -77,8 +90,15 @@ if (writerId) {
             <p>No active WorkRooms available.</p>
           )}
         </div>
+      )}
 
-     
+      {activeTab === 'managers' && (
+        <div className="managers-section">
+
+            <MyManagers />
+          <p className="empty-managers">No managers assigned yet.</p>
+        </div>
+      )}
     </div>
   );
 };

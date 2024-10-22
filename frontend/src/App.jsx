@@ -41,6 +41,8 @@ import DashboardWriter from './writerDashboard/pages/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
 import Manage from './client/src/pages/dashboard/manage/Manage';
+import WorkRooms from './client/src/pages/dashboard/manage/WorkRooms';
+
 import PostJob from './client/src/pages/dashboard/postjob/PostJob';
 import Payments from './client/src/pages/dashboard/payments/Payments';
 import MainLayoutClient from './client/src/pages/dashboard/MainLayout';
@@ -48,6 +50,7 @@ import CustomPost from './client/src/pages/dashboard/postjob/CustomPost';
 import MyFavorites from './client/src/pages/dashboard/postjob/MyFavorites';
 import FindAWriter from './client/src/pages/dashboard/postjob/FindAWriter';
 import JobListings from './client/src/pages/dashboard/postjob/JobListings';
+import MyManagers from './client/src/pages/dashboard/manage/MyManagers';
 const router = createBrowserRouter([
   {
     path: "",
@@ -109,10 +112,22 @@ const router = createBrowserRouter([
           }
         ]
       },
+     
       {
         path: "manage/:id",
         element: <Manage />,
+        children: [
+          {
+            index: true,
+            element: <WorkRooms />
+          },
+          {
+            path: "manage-order/:managerId", 
+            element: <MyManagers />
+          }
+        ]
       },
+      
       {
         path: "payments/",
         element: <Payments />,
