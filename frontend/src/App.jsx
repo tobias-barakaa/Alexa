@@ -37,7 +37,7 @@ import MainLayout from './client/src/pages/MainLayout';
 import WriterAccount from './client/src/pages/WriterAccount';
 import ProfileFill from './client/src/pages/ProfileFill';
 import SignInWriter from './client/src/pages/SignInWriter';
-import DashboardWriter from './writerDashboard/pages/DashboardWriter';
+import DashboardWriter from './writerDashboard/pages/dashbaord/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
 import WriterDashboard from './client/src/pages/dashboard/WriterDashboard';
 import Manage from './client/src/pages/dashboard/manage/Manage';
@@ -51,6 +51,7 @@ import MyFavorites from './client/src/pages/dashboard/postjob/MyFavorites';
 import FindAWriter from './client/src/pages/dashboard/postjob/FindAWriter';
 import JobListings from './client/src/pages/dashboard/postjob/JobListings';
 import MyManagers from './client/src/pages/dashboard/manage/MyManagers';
+import DashboardContent from './writerDashboard/pages/dashbaord/DashboardContent';
 const router = createBrowserRouter([
   {
     path: "",
@@ -288,7 +289,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardWriter />
+        element: <DashboardContent />
       }
       
     ]

@@ -1,0 +1,59 @@
+.dashboard-writer {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.view-jobs {
+  background-color: white;
+  border: 1px solid #dcdcdc; /* dark-white */
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.message-icon,
+.profile-icon {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.dropdown-message,
+.dropdown-profile {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 1;
+}
+
+.divider {
+  border: 1px solid #dcdcdc; /* dark-white */
+  margin: 20px 0;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.nav-items p {
+  cursor: pointer;
+}
