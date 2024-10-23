@@ -10,6 +10,8 @@ const PostJob = () => {
     { id: 2, name: 'My Favorites', path: 'favorites' },
     { id: 3, name: 'Hire a Writer', path: 'find-writer' }, // Placeholder path
     { id: 4, name: 'Job Listings', path: 'job-listings' }, // Placeholder path
+    { id: 4, name: 'Completed', path: 'job-completed' }, // Placeholder path
+
   ];
 
   return (

@@ -62,12 +62,12 @@ const JobListings = () => {
     );
   }
 
+  
+
+
   return (
     <div className="job-listings-container">
-      <div className="listings-header">
-        <h1>My Job Listings</h1>
-        <button className="post-job-btn">Post a Job</button>
-      </div>
+      
 
       <div className="jobs-list">
         {jobs.map(job => (

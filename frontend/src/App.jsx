@@ -55,6 +55,7 @@ import DashboardContent from './writerDashboard/pages/dashbaord/DashboardContent
 import ViewNewJobs from './writerDashboard/pages/dashbaord/ViewNewJobs';
 import ManageProject from './writerDashboard/pages/dashbaord/ManageProject';
 import PaymentsInvoice from './writerDashboard/pages/dashbaord/PaymentsInvoice';
+import Completed from './client/src/pages/dashboard/postjob/Completed';
 const router = createBrowserRouter([
   {
     path: "",
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
           {
             path: "job-listings",
             element: <JobListings />
+          },
+          {
+            path: "job-completed",
+            element: <Completed />
           }
         ]
       },
