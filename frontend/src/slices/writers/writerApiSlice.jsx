@@ -1,4 +1,4 @@
-import { ORDER_WRITER, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP, ORDER_WRITER_GET, ORDER_WRITER_GET_ONE } from "../../constants";
+import { ORDER_WRITER, USERS_URL, VIEW_PROFILE, WRITER_SIGN_IN, WRITER_SIGN_UP, ORDER_WRITER_GET, ORDER_WRITER_GET_ONE, ORDER_WRITER_JOBS } from "../../constants";
 import { apiSlice } from "../apiSlice";
 
 export const writersApiSlice = apiSlice.injectEndpoints({
@@ -60,6 +60,13 @@ export const writersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getNewJobs: builder.query({
+      query: () => ({
+        url: `${ORDER_WRITER_JOBS}`,
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 5,
+    }),
     logoutWriter: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
@@ -80,5 +87,6 @@ export const {
   usePlaceOrderMutation,
   useGetLimitedOrdersQuery,
   useGetManagerQuery,
+  useGetNewJobsQuery
 } =
   writersApiSlice;
