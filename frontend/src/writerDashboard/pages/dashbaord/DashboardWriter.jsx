@@ -7,6 +7,8 @@ const styles = {
   dashboardContainer: {
     minHeight: '100vh',
     backgroundColor: '#f5f5f5',
+
+    marginTop: '1px'
   },
   header: {
     backgroundColor: '#f5f5f5',

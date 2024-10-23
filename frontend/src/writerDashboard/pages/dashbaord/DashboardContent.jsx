@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 const styles = {
-  container: {
-    padding: '20px',
+  containerDashboard: {
     backgroundColor: '#f5f5f5',
-    minHeight: '100vh',
-    marginTop: '1rem'
   },
   statsGrid: {
     display: 'grid',
@@ -87,7 +84,7 @@ const DashboardContent = () => {
 
 
   return (
-    <div style={styles.container}>
+    <div style={styles.containerDashboard}>
 
 <h1 style={{ margin: 0, fontSize: '24px', color: '#333', marginBottom: "20px" }}>
           Welcome to Writer Dashboard
