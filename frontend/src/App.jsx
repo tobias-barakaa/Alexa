@@ -35,7 +35,7 @@ import Contacts from './client/src/pages/Contacts';
 import HireWriters from './client/src/pages/HireWriters';
 import MainLayout from './client/src/pages/MainLayout';
 import WriterAccount from './client/src/pages/WriterAccount';
-import ProfileFill from './client/src/pages/ProfileFill';
+// import ProfileFill from './client/src/pages/ProfileFill';
 import SignInWriter from './client/src/pages/SignInWriter';
 import DashboardWriter from './writerDashboard/pages/dashbaord/DashboardWriter';
 import WriterProfile from './client/src/pages/WriterProfile';
@@ -56,6 +56,7 @@ import ViewNewJobs from './writerDashboard/pages/dashbaord/ViewNewJobs';
 import ManageProject from './writerDashboard/pages/dashbaord/ManageProject';
 import PaymentsInvoice from './writerDashboard/pages/dashbaord/PaymentsInvoice';
 import Completed from './client/src/pages/dashboard/postjob/Completed';
+import ProfileForm from './writerDashboard/pages/dashbaord/ProfileFill';
 const router = createBrowserRouter([
   {
     path: "",
@@ -187,10 +188,7 @@ const router = createBrowserRouter([
     path: "/login-writer",
     element: <SignInWriter />
   },
-  {
-    path: "/profile-fill",
-    element: <ProfileFill />
-  },
+  
   
   {
     path: "/dashboard",
@@ -310,7 +308,11 @@ const router = createBrowserRouter([
       {
         path: 'payments',
         element: <PaymentsInvoice />
-      }
+      },
+      {
+        path: 'profile-fill',
+        element: <ProfileForm />
+      },
       
     ]
   },

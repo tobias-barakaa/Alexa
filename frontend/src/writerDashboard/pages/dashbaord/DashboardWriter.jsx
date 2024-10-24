@@ -131,11 +131,12 @@ const DashboardWriter = () => {
     { label: 'Payments', path: 'payments' },
   ];
   const profileMenuItems = [
-    'Edit My Account',
-    'View Cash Payment',
-    'Payment Methods',
-    'Help',
-    'Logout'
+
+    { label: "Complete Profile", path: 'profile-fill' },
+    { label: "Edit Profile", path: 'edit-profile' },
+    { label: "Logout", path: 'logout' },
+
+    
   ];
 
   return (
@@ -196,7 +197,8 @@ const DashboardWriter = () => {
                           e.target.style.backgroundColor = 'transparent';
                         }}
                       >
-                        {item}
+                        <Link to={item.path} >
+                        {item.label}</Link>
                       </button>
                     ))}
                   </div>
