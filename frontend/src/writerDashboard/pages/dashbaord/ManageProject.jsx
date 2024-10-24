@@ -88,57 +88,14 @@ const ManageContent = () => {
 
         {/* Editor Section */}
 
-        <div className="header-bars">
-          <div className="header-bar">
-            <span className="header-bar-text">100% Human</span>
-          </div>
-          
-        </div>
-        <QuillEditor />
+        
+        {/* <QuillEditor /> */}
 
         {/* Action Buttons */}
         <div className="action-buttons">
-          <button className="save-button">
-            Save to Draft
-          </button>
           
-          <div className="dropdown">
-            <button 
-              className="dropdown-button"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              Actions
-              <svg 
-                width="16" 
-                height="16" 
-                viewBox="0 0 16 16" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  d="M4 6L8 10L12 6" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            
-            {isDropdownOpen && (
-              <div className="dropdown-content">
-                <button className="dropdown-item">
-                  Send to Owner (Pure Content)
-                </button>
-                <button className="dropdown-item">
-                  Convert to PDF before send
-                </button>
-                <button className="dropdown-item">
-                  Preview
-                </button>
-              </div>
-            )}
-          </div>
+          
+          
 
           {/* Upload PDF Button */}
           <button className="upload-button" onClick={triggerFileInput}>
