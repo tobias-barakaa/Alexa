@@ -79,50 +79,65 @@ const formStyles = {
 
 const ProfileForm = () => {
   const [profile, setProfile] = useState({
-    location: '',
-    contact: '',
-    bio: '',
-    specializations: '',
-    years_of_experience: '',
-    rate_per_word: '',
-    rate_per_project: '',
-    languages: '',
-    timezone: '',
-    profile_pic: '',
-    balance: 0.00,
-    available: false,
-    profile_visible: true,
-    city: '',
-    country: '',
-    hourly_rate: 0.00,
-    certifications: '',
-    rating: 0,
-    total_jobs_completed: 0,
-    social_media_links: {},
-    file_url: '',
-    portfolio_link: '',
-    skills: '',
+location: '',
+  contact: '',
+  bio: '',
+  specializations: '',
+  years_of_experience: '',
+  rate_per_word: '',
+  rate_per_project: '',
+  languages: '',
+  timezone: '',
+  profile_pic: '',
+  balance: 0.00,
+  available: false,
+  profile_visible: true,
+  city: '',
+  country: '',
+  hourly_rate: 0.00,
+  certifications: '',
+  rating: 0,
+  total_jobs_completed: 0,
+  social_media_links: {},
+  file_url: '',
+  portfolio_link: '',
+  skills: '',
+  first_name: '',
+  last_name: ''
   });
 
   const [errors, setErrors] = useState({});
 
+
+
+
+    const [isFormComplete, setIsFormComplete] = useState(false);
+
+
+
   useEffect(() => {
-    const fetchProfileData = async () => {
-      const response = await fetch('/api/profile'); // Example endpoint
-      const data = await response.json();
-      setProfile(data);
-    };
+  const fetchProfileData = async () => {
+    const response = await fetch('/api/profile'); // Example endpoint
+    const data = await response.json();
 
-    fetchProfileData();
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+    // Set default values if any keys are missing
     setProfile((prevProfile) => ({
       ...prevProfile,
-      [name]: value,
+      ...data, // Merge fetched data
     }));
   };
+
+  fetchProfileData();
+}, []);
+
+  const handleChange = (e) => {
+  const { name, value } = e.target;
+  setProfile((prevProfile) => ({
+    ...prevProfile,
+    [name]: value || '', // Set to empty string if value is undefined
+  }));
+};
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -141,17 +156,24 @@ const ProfileForm = () => {
   const validateForm = () => {
     const newErrors = {};
     for (const [key, value] of Object.entries(profile)) {
-      if (key !== 'balance' && key !== 'profile_pic' && !value) {
+      if (key !== 'balance' && key !== 'profile_pic' && key !== 'complete' && !value) {
         newErrors[key] = true;
       }
     }
     setErrors(newErrors);
+    // Update form completion status
+    setIsFormComplete(Object.keys(newErrors).length === 0);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      // Set the complete status
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        complete: true,
+      }));
       // Submit form logic here
       console.log('Form submitted successfully:', profile);
     }
@@ -166,10 +188,11 @@ const ProfileForm = () => {
             alt="Profile"
             style={formStyles.profileImage}
           />
-          <h2 style={formStyles.title}>Great! Let's get some details.</h2>
+          <h2 style={formStyles.title}>Great! Lets get some details.</h2>
         </div>
 
         <form onSubmit={handleSubmit} style={formStyles.formContent}>
+        
           {/* Profile Picture Upload */}
           <div style={formStyles.formGroup}>
             <label style={formStyles.label} htmlFor="profile_pic">Profile Picture</label>
@@ -179,8 +202,39 @@ const ProfileForm = () => {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              required
+              
             />
+          </div>
+
+          {/* First and last name  */}
+
+           <div style={formStyles.row}>
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="location">First Name</label>
+              <input
+                id="first_name"
+                name="first_name"
+                style={{ ...formStyles.input, ...(errors.location && formStyles.inputError) }}
+                type="text"
+                value={profile.first_name}
+                onChange={handleChange}
+                placeholder="Enter your location"
+                
+              />
+            </div>
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="contact">Last Name</label>
+              <input
+                id="last_name"
+                name="last_name"
+                style={{ ...formStyles.input, ...(errors.contact && formStyles.inputError) }}
+                type="email"
+                value={profile.last_name}
+                onChange={handleChange}
+                placeholder="Enter your LastName"
+                
+              />
+            </div>
           </div>
 
           {/* Location and Contact */}
@@ -188,15 +242,12 @@ const ProfileForm = () => {
             <div style={formStyles.formGroup}>
               <label style={formStyles.label} htmlFor="location">Location</label>
               <input
-                id="location"
-                name="location"
-                style={{ ...formStyles.input, ...(errors.location && formStyles.inputError) }}
-                type="text"
-                value={profile.location}
-                onChange={handleChange}
-                placeholder="Enter your location"
-                required
-              />
+  id="location"
+  name="location"
+  type="text"
+  value={profile.location || ''} // Default to empty string if undefined
+  onChange={handleChange}
+/>
             </div>
             <div style={formStyles.formGroup}>
               <label style={formStyles.label} htmlFor="contact">Contact</label>
@@ -208,7 +259,7 @@ const ProfileForm = () => {
                 value={profile.contact}
                 onChange={handleChange}
                 placeholder="Enter your contact"
-                required
+                
               />
             </div>
           </div>
@@ -224,7 +275,7 @@ const ProfileForm = () => {
                 value={profile.bio}
                 onChange={handleChange}
                 placeholder="Enter your bio"
-                required
+                
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -238,7 +289,7 @@ const ProfileForm = () => {
                   value={profile.specializations}
                   onChange={handleChange}
                   placeholder="Enter your specializations"
-                  required
+                  
                 />
               </div>
               <div style={formStyles.formGroup}>
@@ -251,7 +302,7 @@ const ProfileForm = () => {
                   value={profile.years_of_experience}
                   onChange={handleChange}
                   placeholder="Years of experience"
-                  required
+                  
                 />
               </div>
             </div>
@@ -269,7 +320,7 @@ const ProfileForm = () => {
                 step="0.01"
                 value={profile.rate_per_word}
                 onChange={handleChange}
-                required
+                
               />
             </div>
             <div style={formStyles.formGroup}>
@@ -282,7 +333,7 @@ const ProfileForm = () => {
                 step="0.01"
                 value={profile.rate_per_project}
                 onChange={handleChange}
-                required
+                
               />
             </div>
           </div>
@@ -297,7 +348,7 @@ const ProfileForm = () => {
                 type="text"
                 value={profile.languages}
                 onChange={handleChange}
-                required
+                
               />
             </div>
             <div style={formStyles.formGroup}>
@@ -309,7 +360,7 @@ const ProfileForm = () => {
                 type="text"
                 value={profile.timezone}
                 onChange={handleChange}
-                required
+                
               />
             </div>
           </div>
@@ -339,7 +390,7 @@ const ProfileForm = () => {
                 step="0.01"
                 value={profile.hourly_rate}
                 onChange={handleChange}
-                required
+                
               />
             </div>
           </div>
@@ -354,7 +405,7 @@ const ProfileForm = () => {
                 type="text"
                 value={profile.certifications}
                 onChange={handleChange}
-                required
+                
               />
             </div>
             <div style={formStyles.formGroup}>
@@ -367,7 +418,7 @@ const ProfileForm = () => {
                 step="0.1"
                 value={profile.rating}
                 onChange={handleChange}
-                required
+                
               />
             </div>
           </div>
@@ -382,7 +433,7 @@ const ProfileForm = () => {
                 type="number"
                 value={profile.total_jobs_completed}
                 onChange={handleChange}
-                required
+                
               />
             </div>
             <div style={formStyles.formGroup}>
@@ -394,14 +445,14 @@ const ProfileForm = () => {
                 type="text"
                 value={profile.portfolio_link}
                 onChange={handleChange}
-                required
+                
               />
             </div>
           </div>
 
           {/* Submit Button */}
           <div style={formStyles.buttonContainer}>
-            <button type="submit" className="submit-profile-button" style={formStyles.button}>
+            <button type="submit" className="submit-profile-button" style={formStyles.button} disabled={!isFormComplete}>
               Submit
             </button>
           </div>
