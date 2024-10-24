@@ -19,10 +19,10 @@ const fillWriterProfile = async (req, res) => {
       return res.status(403).json({ message: 'Forbidden. User does not have writer role.' });
     }
 
+
     const {
       first_name,         // Added first_name
       last_name,          // Added last_name
-      username,           // Added username
       bio,
       profile_pic,
       specializations,
@@ -43,12 +43,14 @@ const fillWriterProfile = async (req, res) => {
       profile_visible,    // Added profile_visible
     } = req.body;
 
+    const user_name = req.user.username;
+
     // Create a new writer profile
     const newProfile = {
       user_id: user_id, // Use user_id directly
       first_name,         // Include first_name
       last_name,          // Include last_name
-      username,           // Include username
+      username: user_name,           // Include username
       bio: bio || 'no bio provided yet',
       profile_pic: profile_pic || 'https://avatar.iran.liara.run/username?username=default',
       specializations: specializations || 'not provided yet',
