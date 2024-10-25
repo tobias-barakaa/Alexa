@@ -254,7 +254,4 @@ const loginWriter = async (req, res) => {
 
 
 
-
-
-
 module.exports = { addWriter, loginWriter };

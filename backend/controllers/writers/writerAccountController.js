@@ -5,93 +5,167 @@ const upload = require("../../utils/multer.js")
 const cloudinary = require('../../utils/cloudinary.js');
 
 // Controller function to handle the writer profile creation
+
 const fillWriterProfile = async (req, res) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
+    let profile_pic;
 
-    res.json(result)
-    // Use req.user.id instead of req.user.userId
+    if (req.file) {
+      // Upload to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path);
+      console.log(result, 'this is the result')
+      profile_pic = result.secure_url; // Use the secure URL from Cloudinary
+    } else {
+      profile_pic = 'https://avatar.iran.liara.run/username?username=default'; // Default image
+    }
+
     const user_id = req.user.id;
-
-    console.log(user_id, 'this is user');
     if (!user_id) {
       return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
     }
 
-    // Check if the user has the "writer" role
     if (!req.user.role || req.user.role !== 'writer') {
       return res.status(403).json({ message: 'Forbidden. User does not have writer role.' });
     }
 
-
     const {
-      first_name,         // Added first_name
-      last_name,          // Added last_name
+      first_name,
+      last_name,
       bio,
-      profile_pic,
       specializations,
       years_of_experience,
       contact,
-      hourly_rate,        // Adjusted to use hourly_rate instead of rate_per_word/rate_per_project
+      hourly_rate,
       languages,
       certifications,
-      social_media_links,
       portfolio_link,
       skills,
-      city,               // Added city
-      country,            // Added country
+      city,
+      country,
       available,
       timezone,
-      profile_visible,    // Added profile_visible
+      profile_visible,
     } = req.body;
 
-    const user_name = req.user.username;
-
-    // Create a new writer profile
     const newProfile = {
-      user_id: user_id, // Use user_id directly
-      first_name,         // Include first_name
-      last_name,          // Include last_name
-      samples: 'none',
-      username: user_name,           // Include username
+      user_id,
+      first_name,
+      last_name,
       bio: bio || 'no bio provided yet',
-      profile_pic: profile_pic || 'https://avatar.iran.liara.run/username?username=default',
+      profile_pic,
       specializations: specializations || 'not provided yet',
       years_of_experience: years_of_experience || 4,
-      samples: samples || 'not provided yet',
       contact: contact || 'not provided yet',
-      balance: 0.00, // default balance
+      balance: 0.00,
       available: available || false,
-      profile_visible: profile_visible || true, // Default profile visibility
-      city: city || null,       // Include city
-      country: country || null,   // Include country
-      hourly_rate: hourly_rate || null,  // Include hourly_rate
-      
-      // New additions
+      profile_visible: profile_visible || true,
+      city: city || null,
+      country: country || null,
+      hourly_rate: hourly_rate || null,
       languages: languages || 'English',
       certifications: certifications || 'none',
-
-      // Optional fields
-      social_media_links: social_media_links || null,
       portfolio_link: portfolio_link || null,
       skills: skills || null,
-      file_url: file_url || 'https://example.com/files/resume.pdf',
       timezone: timezone || null,
-
-      // Timestamps
       created_at: knex.fn.now(),
       updated_at: knex.fn.now(),
     };
 
-    // Insert the new profile into the writers_profile table
     await knex('writers_profile').insert(newProfile);
-
     res.status(201).json({ message: 'Writer profile created successfully!' });
   } catch (error) {
     console.error('Error creating writer profile:', error);
     res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 };
+
+// const fillWriterProfile = async (req, res) => {
+//   try {
+//     const result = await cloudinary.uploader.upload(req.file.path);
+
+//     res.json(result)
+//     // Use req.user.id instead of req.user.userId
+//     const user_id = req.user.id;
+
+//     console.log(user_id, 'this is user');
+//     if (!user_id) {
+//       return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
+//     }
+
+//     // Check if the user has the "writer" role
+//     if (!req.user.role || req.user.role !== 'writer') {
+//       return res.status(403).json({ message: 'Forbidden. User does not have writer role.' });
+//     }
+
+
+//     const {
+//       first_name,         // Added first_name
+//       last_name,          // Added last_name
+//       bio,
+//       profile_pic,
+//       specializations,
+//       years_of_experience,
+//       contact,
+//       hourly_rate,        // Adjusted to use hourly_rate instead of rate_per_word/rate_per_project
+//       languages,
+//       certifications,
+//       social_media_links,
+//       portfolio_link,
+//       skills,
+//       city,               // Added city
+//       country,            // Added country
+//       available,
+//       timezone,
+//       profile_visible,    // Added profile_visible
+//     } = req.body;
+
+//     const user_name = req.user.username;
+
+//     // Create a new writer profile
+//     const newProfile = {
+//       user_id: user_id, // Use user_id directly
+//       first_name,         // Include first_name
+//       last_name,          // Include last_name
+//       samples: 'none',
+//       username: user_name,           // Include username
+//       bio: bio || 'no bio provided yet',
+//       profile_pic: profile_pic || 'https://avatar.iran.liara.run/username?username=default',
+//       specializations: specializations || 'not provided yet',
+//       years_of_experience: years_of_experience || 4,
+//       samples: samples || 'not provided yet',
+//       contact: contact || 'not provided yet',
+//       balance: 0.00, // default balance
+//       available: available || false,
+//       profile_visible: profile_visible || true, // Default profile visibility
+//       city: city || null,       // Include city
+//       country: country || null,   // Include country
+//       hourly_rate: hourly_rate || null,  // Include hourly_rate
+      
+//       // New additions
+//       languages: languages || 'English',
+//       certifications: certifications || 'none',
+
+//       // Optional fields
+//       social_media_links: social_media_links || null,
+//       portfolio_link: portfolio_link || null,
+//       skills: skills || null,
+//       file_url: file_url || 'https://example.com/files/resume.pdf',
+//       timezone: timezone || null,
+
+//       // Timestamps
+//       created_at: knex.fn.now(),
+//       updated_at: knex.fn.now(),
+//     };
+
+//     // Insert the new profile into the writers_profile table
+//     await knex('writers_profile').insert(newProfile);
+
+//     res.status(201).json({ message: 'Writer profile created successfully!' });
+//   } catch (error) {
+//     console.error('Error creating writer profile:', error);
+//     res.status(500).json({ message: 'Server error. Please try again later.' });
+//   }
+// };
 
 
 const getWriterProfileByUsername = async (req, res) => {
