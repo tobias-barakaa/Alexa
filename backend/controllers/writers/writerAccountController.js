@@ -8,26 +8,34 @@ const cloudinary = require('../../utils/cloudinary.js');
 
 const fillWriterProfile = async (req, res) => {
   try {
-    let profile_pic;
+    let image;
 
     if (req.file) {
       // Upload to Cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
-      console.log(result, 'this is the result')
-      profile_pic = result.secure_url; // Use the secure URL from Cloudinary
+      console.log(result, 'this is the result');
+      image = result.secure_url; // Use the secure URL from Cloudinary
     } else {
-      profile_pic = 'https://avatar.iran.liara.run/username?username=default'; // Default image
+      image = 'https://avatar.iran.liara.run/username?username=default'; // Default image
     }
 
-    const user_id = req.user.id;
+    const { id: user_id, username, role } = req.user;
+
     if (!user_id) {
       return res.status(401).json({ message: 'Unauthorized. User not logged in.' });
     }
 
-    if (!req.user.role || req.user.role !== 'writer') {
+    if (!role || role !== 'writer') {
       return res.status(403).json({ message: 'Forbidden. User does not have writer role.' });
     }
 
+    // Check if a profile already exists for this username
+    const existingProfile = await knex('writers_profile').where({ username }).first();
+    if (existingProfile) {
+      return res.status(400).json({ message: 'A profile with this username already exists.' });
+    }
+
+    // Proceed to insert new profile
     const {
       first_name,
       last_name,
@@ -49,10 +57,11 @@ const fillWriterProfile = async (req, res) => {
 
     const newProfile = {
       user_id,
+      username,
       first_name,
       last_name,
       bio: bio || 'no bio provided yet',
-      profile_pic,
+      profile_pic: image, // Set the profile_pic to the uploaded image URL
       specializations: specializations || 'not provided yet',
       years_of_experience: years_of_experience || 4,
       contact: contact || 'not provided yet',
@@ -78,6 +87,10 @@ const fillWriterProfile = async (req, res) => {
     res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 };
+
+
+
+
 
 // const fillWriterProfile = async (req, res) => {
 //   try {
