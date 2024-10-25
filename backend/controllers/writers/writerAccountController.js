@@ -1,11 +1,15 @@
 const knex = require('../../db/db.js');
+// const cloudinary = require("../../utils/cloudinary.js").v2;
+const upload = require("../../utils/multer.js")
 
-
-
+const cloudinary = require('../../utils/cloudinary.js');
 
 // Controller function to handle the writer profile creation
 const fillWriterProfile = async (req, res) => {
   try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+
+    res.json(result)
     // Use req.user.id instead of req.user.userId
     const user_id = req.user.id;
 
@@ -27,7 +31,6 @@ const fillWriterProfile = async (req, res) => {
       profile_pic,
       specializations,
       years_of_experience,
-      samples,
       contact,
       hourly_rate,        // Adjusted to use hourly_rate instead of rate_per_word/rate_per_project
       languages,
@@ -38,7 +41,6 @@ const fillWriterProfile = async (req, res) => {
       city,               // Added city
       country,            // Added country
       available,
-      file_url,
       timezone,
       profile_visible,    // Added profile_visible
     } = req.body;
@@ -50,6 +52,7 @@ const fillWriterProfile = async (req, res) => {
       user_id: user_id, // Use user_id directly
       first_name,         // Include first_name
       last_name,          // Include last_name
+      samples: 'none',
       username: user_name,           // Include username
       bio: bio || 'no bio provided yet',
       profile_pic: profile_pic || 'https://avatar.iran.liara.run/username?username=default',
@@ -72,7 +75,7 @@ const fillWriterProfile = async (req, res) => {
       social_media_links: social_media_links || null,
       portfolio_link: portfolio_link || null,
       skills: skills || null,
-      file_url: file_url || '',
+      file_url: file_url || 'https://example.com/files/resume.pdf',
       timezone: timezone || null,
 
       // Timestamps

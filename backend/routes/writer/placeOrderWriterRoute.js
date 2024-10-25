@@ -11,4 +11,5 @@ router.get('/get-limited-order', protect, getUserOrders)
 router.get('/get-manager/:id', protect, assignedManagerGet)
 router.get('/v1/writer-pending/orders', protectWriter, getAllPendingOrdersForWritersQueue);
 
+
 module.exports = router;
