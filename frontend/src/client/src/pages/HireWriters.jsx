@@ -21,6 +21,19 @@ const HireWriters = () => {
   // Check if the first element is an array and use it for rendering
   const actualWritersArray = Array.isArray(writersArray[0]) ? writersArray[0] : writersArray;
 
+  // Check if there are any writers available
+  if (actualWritersArray.length === 0) {
+    return (
+      <div className="no-writers-container">
+        <div className='no-writers'>No Writers Available</div>
+        <p>Currently, there are no writers available for hire. Please check back later.</p>
+
+        <a href="/" className="go-back-button">Go Back</a>
+
+      </div>
+    );
+  }
+
   return (
     <div className="hire-writers-container">
       {/* Left Section */}
@@ -36,7 +49,7 @@ const HireWriters = () => {
         {actualWritersArray.map(writer => (
           <div key={writer.id} className="writer-card">
             <img 
-              src={centerImage}  // Use profile picture from backend or fallback to default image
+              src={writer.profile_pic}  // Use profile picture from backend or fallback to default image
               alt={writer.username}
               className="writer-img"
             />

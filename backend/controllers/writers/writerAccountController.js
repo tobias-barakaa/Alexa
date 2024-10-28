@@ -80,13 +80,19 @@ const fillWriterProfile = async (req, res) => {
       updated_at: knex.fn.now(),
     };
 
+    // Insert the new profile into writers_profile
     await knex('writers_profile').insert(newProfile);
+    
+    // Update the user's profile_pic in the users table
+    await knex('users').where({ id: user_id }).update({ profile_pic: image });
+
     res.status(201).json({ message: 'Writer profile created successfully!' });
   } catch (error) {
     console.error('Error creating writer profile:', error);
     res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 };
+
 
 
 

@@ -152,3 +152,34 @@
   }
 }
 
+
+
+.no-writers-container {
+  text-align: center;
+  margin-top: 9rem;
+  height: 50vh;
+}
+
+.no-writers {
+  color: #d9534f; /* Bootstrap danger color */
+}
+
+.no-writers-container p {
+  color: #5a5a5a; /* Darker grey */
+}
+
+
+.go-back-button {
+  background-color: #5da8ff; /* Your preferred button color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding around the text */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.go-back-button:hover {
+  background-color: #4a9bd5; /* Darker shade on hover */
+}

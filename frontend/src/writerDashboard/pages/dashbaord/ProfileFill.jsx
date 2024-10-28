@@ -1,100 +1,26 @@
 import { useState } from 'react';
+import axios from 'axios'; // Make sure to import axios
+import formStyles from './formStyles';
 
 // Separate CSS styles for cleaner code
-const formStyles = {
-  containerProfile: {
-    display: 'flex',
-    padding: '20px',
-  },
-  cardProfile: {
-    width: '100%',
-    maxWidth: '800px',
-    background: '#fff',
-    borderRadius: '2px',
-    padding: '20px',
-    border: 'solid 1px #e0e0e0'
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: '20px',
-  },
-  profileImage: {
-    borderRadius: '50%',
-    width: '100px',
-    height: '100px',
-  },
-  title: {
-    fontSize: '24px',
-    margin: '10px 0',
-  },
-  formContent: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '15px',
-  },
-  formGroup: {
-    flex: '1',
-    margin: '0 5px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '5px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    boxSizing: 'border-box',
-  },
-  textarea: {
-    width: '100%',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    boxSizing: 'border-box',
-  },
-  buttonContainer: {
-    textAlign: 'center',
-    marginTop: '20px',
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    width: 'auto',
-  },
-};
+
 
 const ProfileForm = () => {
   const [profile, setProfile] = useState({
-    location: '',
     contact: '',
     bio: '',
     specializations: '',
-    years_of_experience: '',
-    rate_per_word: '',
-    rate_per_project: '',
+    years_of_experience: '', 
     languages: '',
     timezone: '',
-    profile_pic: '',
+    image: '',
     available: false,
     profile_visible: true,
     city: '',
     country: '',
     hourly_rate: 0.00,
     certifications: '',
-    rating: 0,
-    total_jobs_completed: 0,
     social_media_links: {},
-    file_url: '',
     portfolio_link: '',
     skills: '',
     first_name: '',
@@ -116,28 +42,54 @@ const ProfileForm = () => {
       reader.onloadend = () => {
         setProfile((prevProfile) => ({
           ...prevProfile,
-          profile_pic: reader.result,
+          image: reader.result,
         }));
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Log the profile data to the console
-    console.log('Profile Data:', profile);
-    
-    // Here you would typically send the data to the backend
-    // Example: axios.post('/api/profile', profile);
+    try {
+      const formData = new FormData();
+      
+      // Append the image file directly
+      const imageFile = document.getElementById('image').files[0]; // Get the file directly
+      if (imageFile) {
+        formData.append('image', imageFile); // Append the file to FormData
+      }
+  
+      // Append other profile data
+      Object.entries(profile).forEach(([key, value]) => {
+        if (key !== 'image') { // Exclude the image since it's already appended
+          formData.append(key, value);
+        }
+      });
+  
+      // Send POST request to your API
+      const response = await axios.post('http://localhost:5000/api/writer/fill-profile/writer-profile/fill', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      });
+  
+      console.log(response.data); // Log success message
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
+  
+
 
   return (
     <div style={formStyles.containerProfile}>
       <div style={formStyles.cardProfile}>
         <div style={formStyles.header}>
           <img
-            src={profile.profile_pic || "/api/placeholder/100/100"}
+            src={profile.image}
             alt="Profile"
             style={formStyles.profileImage}
           />
@@ -147,10 +99,10 @@ const ProfileForm = () => {
         <form onSubmit={handleSubmit} style={formStyles.formContent}>
           {/* Profile Picture Upload */}
           <div style={formStyles.formGroup}>
-            <label style={formStyles.label} htmlFor="profile_pic">Profile Picture</label>
+            <label style={formStyles.label} htmlFor="image">Profile Picture</label>
             <input
-              id="profile_pic"
-              name="profile_pic"
+              id="image"
+              name="image"
               type="file"
               accept="image/*"
               onChange={handleFileChange}
@@ -187,17 +139,7 @@ const ProfileForm = () => {
 
           {/* Location and Contact */}
           <div style={formStyles.row}>
-            <div style={formStyles.formGroup}>
-              <label style={formStyles.label} htmlFor="location">Location</label>
-              <input
-                id="location"
-                name="location"
-                type="text"
-                value={profile.location}
-                style={formStyles.input}
-                onChange={handleChange}
-              />
-            </div>
+           
             <div style={formStyles.formGroup}>
               <label style={formStyles.label} htmlFor="contact">Contact</label>
               <input
@@ -208,6 +150,19 @@ const ProfileForm = () => {
                 value={profile.contact}
                 onChange={handleChange}
                 placeholder="Enter your contact"
+              />
+            </div>
+
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="contact">Country</label>
+              <input
+                id="country"
+                name="country"
+                style={formStyles.input}
+                type="text"
+                value={profile.country}
+                onChange={handleChange}
+                placeholder="Enter your Country"
               />
             </div>
           </div>
@@ -241,30 +196,7 @@ const ProfileForm = () => {
 
           {/* Additional Fields */}
           <div style={formStyles.row}>
-            <div style={formStyles.formGroup}>
-              <label style={formStyles.label} htmlFor="rate_per_word">Rate per Word ($)</label>
-              <input
-                id="rate_per_word"
-                name="rate_per_word"
-                style={formStyles.input}
-                type="number"
-                step="0.01"
-                value={profile.rate_per_word}
-                onChange={handleChange}
-              />
-            </div>
-            <div style={formStyles.formGroup}>
-              <label style={formStyles.label} htmlFor="rate_per_project">Rate per Project ($)</label>
-              <input
-                id="rate_per_project"
-                name="rate_per_project"
-                style={formStyles.input}
-                type="number"
-                step="0.01"
-                value={profile.rate_per_project}
-                onChange={handleChange}
-              />
-            </div>
+           
           </div>
 
           <div style={formStyles.row}>
@@ -308,6 +240,50 @@ const ProfileForm = () => {
             </div>
           </div>
 
+          <div style={formStyles.row}>
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="hourly_rate">Years of experience</label>
+              <input
+                id="years_of_experience"
+                name="years_of_experience"
+                style={formStyles.input}
+                type="number"
+                step="0.01"
+                value={profile.years_of_experience}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="languages">City</label>
+              <input
+                id="city"
+                name="city"
+                style={formStyles.input}
+                type="text"
+                value={profile.city}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          {/* skill  */}
+          <div style={formStyles.row}>
+            <div style={formStyles.formGroup}>
+              <label style={formStyles.label} htmlFor="hourly_rate">skills</label>
+              <input
+                id="skills"
+                name="skills"
+                style={formStyles.input}
+                type="text"
+                step="0.01"
+                value={profile.skills}
+                onChange={handleChange}
+                placeholder='please separate by a comma ","'
+              />
+            </div>
+          </div>
+
           {/* Certifications and Rating */}
           <div style={formStyles.row}>
             <div style={formStyles.formGroup}>
@@ -321,33 +297,12 @@ const ProfileForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <div style={formStyles.formGroup}>
-              <label style={formStyles.label} htmlFor="rating">Rating</label>
-              <input
-                id="rating"
-                name="rating"
-                style={formStyles.input}
-                type="number"
-                step="0.1"
-                value={profile.rating}
-                onChange={handleChange}
-              />
-            </div>
+           
           </div>
 
           {/* Total Jobs Completed and Portfolio Link */}
           <div style={formStyles.row}>
-            <div style={formStyles.formGroup}>
-              <label style={formStyles.label} htmlFor="total_jobs_completed">Total Jobs Completed</label>
-              <input
-                id="total_jobs_completed"
-                name="total_jobs_completed"
-                style={formStyles.input}
-                type="number"
-                value={profile.total_jobs_completed}
-                onChange={handleChange}
-              />
-            </div>
+            
             <div style={formStyles.formGroup}>
               <label style={formStyles.label} htmlFor="portfolio_link">Portfolio Link</label>
               <input
