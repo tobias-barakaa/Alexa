@@ -15,9 +15,9 @@ const pool = new Pool({
   port: 5432,
   ssl: {
     rejectUnauthorized: false,
-    agent: keepAliveAgent, // Use the keep-alive agent
+    agent: keepAliveAgent,
   },
-  connectionTimeoutMillis: 50000, // Adjust timeout if needed
+  connectionTimeoutMillis: 50000,
 });
 
 pool.connect()
